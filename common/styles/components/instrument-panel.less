@@ -1,9 +1,10 @@
 @import "instrument-panel.variables.less";
 
 .instrument-panel {
-	display: block;
+	display: inline-block;
 	position: relative;
-	max-width: @instrument-panel-max-width;
+	width: @instrument-panel-max-width;
+	margin-right: 2px;
 }
 	.instrument-panel-header {
 		display: block;
@@ -11,7 +12,6 @@
 		font-size: @instrument-panel-font-size;
 		padding: @instrument-panel-header-padding;
 		background: @instrument-panel-header-background;
-
 		.clearfix();
 	}
 		.instrument-panel-title {
@@ -20,12 +20,19 @@
 			text-transform: uppercase;
 			color: @instrument-panel-font-color-highlight;
 			float: left;
+			&:extend(.font-sb);
 		}
 		.instrument-panel-duration {
 			display: block;
 			color: @instrument-panel-font-color;
 			line-height: inherit;
 			float: right;
+
+			&:before {
+				content: "";
+				display: inline-block;
+				.sprite(@clock-grey);
+			}
 		}
 
 	.instrument-panel-body {
@@ -39,3 +46,31 @@
 		.instrument-panel-closing {
 			font-size: @instrument-panel-small-font-size;
 		}
+
+.instrument-panel-active {
+	border: @instrument-panel-active-border;
+	width: (@instrument-panel-active-border-width*2) + @instrument-panel-max-width;
+	border-radius: @instrument-panel-active-border-radius;
+	.instrument-panel-header {
+		background: @instrument-panel-active-header-background;
+	}
+		.instrument-panel-title {
+			color: @instrument-panel-active-font-color-highlight;
+		}
+		.instrument-panel-duration {
+			color: @instrument-panel-active-font-color;
+			&:before {
+				content: "";
+				display: inline-block;
+				.sprite(@clock-dark);
+			}
+		}
+
+	.instrument-panel-body {
+		background: @instrument-panel-active-body-background;
+		color: @instrument-panel-active-body-font-color;
+	}
+		.instrument-panel-closing {
+			color: @instrument-panel-active-header-background;
+		}
+}

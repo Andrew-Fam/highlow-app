@@ -5,7 +5,6 @@ module.exports = function(grunt) {
 
 	grunt.initConfig({
 		pkg: grunt.file.readJSON("package.json"),
-
 		connect: {
 			server: {
 				options: {
@@ -72,6 +71,15 @@ module.exports = function(grunt) {
 				}]
 			}
 		},
+		sprite: {
+			all: {
+				src: ['common/images/sprite-src/*.png'],
+				destImg: 'common/images/spritesheet.png',
+				destCSS: 'common/styles/spritesheet.less',
+				algorithm: 'binary-tree',
+				padding: 2
+			}
+		},
 		watch: {
 			styles: {
 				files: ['**/*.less'],
@@ -108,7 +116,7 @@ module.exports = function(grunt) {
 		},
 		concurrent: {
 			all: {
-				tasks: ['newer:less', 'newer:requirejs', 'connect:server', 'newer:liquid', 'newer:copy', 'watch'],
+				tasks: ['sprite', 'newer:less', 'newer:requirejs', 'connect:server', 'newer:liquid', 'newer:copy', 'watch'],
 				options: {
 					logConcurrentOutput: true
 				}
@@ -117,5 +125,5 @@ module.exports = function(grunt) {
 	});
 
 	grunt.registerTask('default', ['concurrent:all']);
-	grunt.registerTask('build', ['newer:less', 'newer:requirejs', 'newer:liquid', 'newer:copy']);
+	grunt.registerTask('build', ['sprite', 'newer:less', 'newer:requirejs', 'newer:liquid', 'newer:copy']);
 };
