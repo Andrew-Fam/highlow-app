@@ -1,0 +1,44 @@
+{% extends layout %}
+{% block content %}
+<h1>UI Element</h1>
+<div class="container">
+	<h2>
+		Instrument Panel
+	</h2>
+	<div class="row">
+		<div class="instrument-panel">
+			<div class="instrument-panel-header">
+				<div class="instrument-panel-title">
+					NZD/JPY
+				</div>
+				<div class="instrument-panel-duration font-light">
+					15m
+				</div>
+			</div>
+			<div class="instrument-panel-body">
+				<div class="clearfix">
+					<div class="pull-left">
+						Market
+					</div>
+					<div class="pull-right font-light">
+						102.227
+					</div>
+				</div>
+				<div class="clearfix">
+					<div class="pull-left">
+						Payout
+					</div>
+					<div class="pull-right font-light">
+						$1.85
+					</div>
+				</div>
+				<div>
+					<div class="instrument-panel-closing font-light">
+						Closing: 12.45
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}

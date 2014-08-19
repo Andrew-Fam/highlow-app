@@ -1,0 +1,19 @@
+{
+  "name": "boilerplate",
+  "private": true,
+  "devDependencies": {
+    "grunt": "~0.4.2",
+    "grunt-contrib-connect": "latest",
+    "grunt-contrib-watch": "latest",
+    "matchdep": "*",
+    "grunt-contrib-less": "latest",
+    "grunt-contrib-requirejs": "latest",
+    "grunt-concurrent": "latest",
+    "q": "^1.0.1",
+    "grunt-liquid": "^2.0.0",
+    "grunt-newer": "^0.7.0",
+    "grunt-contrib-imagemin": "^0.8.0",
+    "grunt-contrib-copy": "^0.5.0"
+  },
+  "author": "James"
+}

@@ -1,0 +1,121 @@
+module.exports = function(grunt) {
+	"use strict";
+	
+	require("matchdep").filterDev("grunt-*").forEach(grunt.loadNpmTasks);
+
+	grunt.initConfig({
+		pkg: grunt.file.readJSON("package.json"),
+
+		connect: {
+			server: {
+				options: {
+					port: 9001,
+					base: './build/',
+					keepalive: true,
+					hostname: 'localhost'
+				}
+			}
+		},
+		less: {
+			main: {
+				files: {
+					'common/dist/main.css': [
+						'common/styles/main.less'
+					]
+				},
+				options: {
+					compress: true,
+					sourceMap: true,
+					sourceMapFilename: 'common/dist/main.css.map',
+					sourceMapURL: '/common/dist/main.css.map',
+					sourceMapRootpath: '/'
+				}
+			}
+		},
+		requirejs: {
+			compile: {
+				options: {
+					generateSourceMaps: true,
+					logLevel: 4,
+					baseUrl: "common/scripts/",
+					include: './main',
+					out: "common/dist/main.js",
+					preserveLicenseComments: false,
+					optimize: 'uglify2',
+					mainConfigFile: 'common/scripts/main.js'
+				}
+			}
+		},
+		liquid: {
+			options: {
+				includes: 'templates/includes'
+			},
+			pages: {
+				files: [{
+					cwd: 'templates/',
+					expand: true,
+					flatten: false,
+					src: ['**/*.liquid', "!includes/**/*.liquid"],
+					dest: 'build/',
+					ext: '.html'
+				}]
+			}
+		},
+		copy: {
+			main: {
+				files: [{
+					expand: true,
+					flatten: false,
+					cwd: 'common/',
+					src: ['**/*.*'],
+					dest: 'build/common/'
+				}]
+			}
+		},
+		watch: {
+			styles: {
+				files: ['**/*.less'],
+				tasks: ['less'],
+				options: {
+					nospawn: false,
+					livereload: true
+				}
+			},
+			js: {
+				files: ['common/scripts/'],
+				tasks: ['newer:requirejs'],
+				options: {
+					livereload: true
+				}
+			},
+			template: {
+				files: ['**/*.liquid'],
+				tasks: ['liquid'],
+				options: {
+					livereload: true
+				}
+			},
+			html: {
+				files: ['**/*.html'],
+				options: {
+					livereload: true
+				}
+			},
+			copy: {
+				files: ['common/**/*.*'],
+				tasks: ['newer:copy']
+			}
+		},
+		concurrent: {
+			all: {
+				tasks: ['newer:less', 'newer:requirejs', 'connect:server', 'newer:liquid', 'newer:copy', 'watch'],
+				options: {
+					logConcurrentOutput: true
+				}
+			}
+		}
+	});
+
+	grunt.registerTask('default', ['concurrent:all']);
+	grunt.registerTask('build', ['newer:less', 'newer:requirejs', 'newer:liquid', 'newer:copy']);
+};

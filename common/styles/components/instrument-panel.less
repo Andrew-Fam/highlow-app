@@ -1,0 +1,41 @@
+@import "instrument-panel.variables.less";
+
+.instrument-panel {
+	display: block;
+	position: relative;
+	max-width: @instrument-panel-max-width;
+}
+	.instrument-panel-header {
+		display: block;
+		line-height: 1em;
+		font-size: @instrument-panel-font-size;
+		padding: @instrument-panel-header-padding;
+		background: @instrument-panel-header-background;
+
+		.clearfix();
+	}
+		.instrument-panel-title {
+			display: block;
+			line-height: inherit;
+			text-transform: uppercase;
+			color: @instrument-panel-font-color-highlight;
+			float: left;
+		}
+		.instrument-panel-duration {
+			display: block;
+			color: @instrument-panel-font-color;
+			line-height: inherit;
+			float: right;
+		}
+
+	.instrument-panel-body {
+		display: block;
+		background: @instrument-panel-body-background;
+		color: @instrument-panel-body-font-color;
+		line-height: 1.43em;
+		font-size: @instrument-panel-font-size;
+		padding: @instrument-panel-body-padding;
+	}
+		.instrument-panel-closing {
+			font-size: @instrument-panel-small-font-size;
+		}

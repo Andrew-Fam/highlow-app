@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<html>
+	<head>
+		<meta charset="utf-8">
+	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	    <title>{% block title %}App Component{% endblock %}</title>
+
+	    <link rel="shortcut icon" type="image/x-icon" href="/common/Images/favicon.ico">
+
+	    <!-- Meta for viewport -->
+	    <meta name="viewport" content="initial-scale=1">
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	    
+	    <script src="/common/scripts/vendor/modernizr-2.7.1.js"></script>
+	    <link rel="stylesheet" href="/common/dist/main.css" media="all" />
+	</head>
+	<body>
+		<!-- begin main content -->
+		{% block content %}{% endblock %}
+		<!-- end main content -->
+		
+		<!-- begin javascript -->
+		{% block script %}{% endblock %}
+		<!-- end javascript -->
+	</body>  
+</html>
