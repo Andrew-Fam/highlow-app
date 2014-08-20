@@ -3,261 +3,268 @@
 <h1>UI Element</h1>
 <div class="container">
 	<h2> Instrument Selector Widget</h2>
-	<div class="pull-left tab-view tab-view-default instrument-selector-widget">
-		<div class="instrument-selector-widget-duration-selectors-container">
-			<div class="instrument-selector-widget-instrument-filter pull-right">
-				<ul class="dropdown dropdown-default pull-left" tabindex="0">
-					<li class="dropdown-item active">
-						<input id="all-currency" checked name="instrument-filter" type="radio" value=""/>
-						<label for="all-currency">
-							Filter Currencies
-						</label>
-					</li>
-					<li class="dropdown-item">
-						<input id="nzd-jpy" name="instrument-filter" type="radio" value="nzd-jpy"/>
-						<label for="nzd-jpy">
-							NZD/JPY
-						</label>
-					</li>
-					<li class="dropdown-item">
-						<input id="nzd-aud" name="instrument-filter" type="radio" value="nzd-aud"/>
-						<label for="nzd-aud">
-							NZD/AUD
-						</label>
-					</li>
-					<li class="dropdown-item">
-						<input id="aud-jpy" name="instrument-filter" type="radio" value="aud-jpy"/>
-						<label for="aud-jpy">
-							AUD/JPY
-						</label>
-					</li>
-				</ul>
+	<div class="clearfix">
+		<div class="pull-left tab-view tab-view-default instrument-selector-widget">
+			<div class="instrument-selector-widget-duration-selectors-container">
+				<div class="instrument-selector-widget-instrument-filter pull-right">
+					<ul class="dropdown dropdown-default pull-left" tabindex="0">
+						<li class="dropdown-item active">
+							<input id="all-currency" checked name="instrument-filter" type="radio" value=""/>
+							<label for="all-currency">
+								Filter Currencies
+							</label>
+						</li>
+						<li class="dropdown-item">
+							<input id="nzd-jpy" name="instrument-filter" type="radio" value="nzd-jpy"/>
+							<label for="nzd-jpy">
+								NZD/JPY
+							</label>
+						</li>
+						<li class="dropdown-item">
+							<input id="nzd-aud" name="instrument-filter" type="radio" value="nzd-aud"/>
+							<label for="nzd-aud">
+								NZD/AUD
+							</label>
+						</li>
+						<li class="dropdown-item">
+							<input id="aud-jpy" name="instrument-filter" type="radio" value="aud-jpy"/>
+							<label for="aud-jpy">
+								AUD/JPY
+							</label>
+						</li>
+					</ul>
+				</div>
+				<div class="tab-view-tab-selectors-container font-m">
+					<ul class="tab-view-tab-selectors instrument-selector-widget-duration-selectors">
+						<li class="tab-view-tab-selector instrument-selector-widget-duration-selector">
+							ALL
+						</li>
+						<li class="tab-view-tab-selector instrument-selector-widget-duration-selector active">
+							15 MIN
+						</li>
+						<li class="tab-view-tab-selector instrument-selector-widget-duration-selector">
+							1 HOUR
+						</li>
+						<li class="tab-view-tab-selector instrument-selector-widget-duration-selector">
+							1 DAY
+						</li>
+					</ul>
+				</div>
 			</div>
-			<div class="tab-view-tab-selectors-container font-m">
-				<ul class="tab-view-tab-selectors instrument-selector-widget-duration-selectors">
-					<li class="tab-view-tab-selector instrument-selector-widget-duration-selector">
-						ALL
-					</li>
-					<li class="tab-view-tab-selector instrument-selector-widget-duration-selector active">
-						15 MIN
-					</li>
-					<li class="tab-view-tab-selector instrument-selector-widget-duration-selector">
-						1 HOUR
-					</li>
-					<li class="tab-view-tab-selector instrument-selector-widget-duration-selector">
-						1 DAY
-					</li>
-				</ul>
-			</div>
-		</div>
-		<div class="tab-view-body instrument-selector-widget-instruments-container">
-			<a class="instrument-selector-widget-instruments-slider backward">
-			</a>
-			<a class="instrument-selector-widget-instruments-slider forward">
-			</a>
-			<div class="tab-view-panel">
-				<div class="row">
-					<div class="instrument-panel">
-						<div class="instrument-panel-header">
-							<div class="instrument-panel-title">
-								NZD/JPY
-							</div>
-							<div class="instrument-panel-duration font-l">
-								15m
-							</div>
-						</div>
-						<div class="instrument-panel-body">
-							<div class="clearfix">
-								<div class="pull-left font-sb">
-									Market
+			<div class="tab-view-body instrument-selector-widget-instruments-container">
+				<a class="instrument-selector-widget-instruments-slider backward">
+				</a>
+				<a class="instrument-selector-widget-instruments-slider forward">
+				</a>
+				<div class="tab-view-panel">
+					<div class="row">
+						<div class="instrument-panel">
+							<div class="instrument-panel-header">
+								<div class="instrument-panel-title">
+									NZD/JPY
 								</div>
-								<div class="pull-right font-l highlow-high">
-									102.227
+								<div class="instrument-panel-duration font-l">
+									15m
 								</div>
 							</div>
-							<div class="clearfix">
-								<div class="pull-left font-sb">
-									Payout
+							<div class="instrument-panel-body">
+								<div class="clearfix">
+									<div class="pull-left font-sb">
+										Market
+									</div>
+									<div class="pull-right font-l highlow-high">
+										102.227
+									</div>
 								</div>
-								<div class="pull-right font-l">
-									$1.85
+								<div class="clearfix">
+									<div class="pull-left font-sb">
+										Payout
+									</div>
+									<div class="pull-right font-l">
+										$1.85
+									</div>
 								</div>
-							</div>
-							<div>
-								<div class="instrument-panel-closing font-l">
-									Closing: 12.45
+								<div>
+									<div class="instrument-panel-closing font-l">
+										Closing: 12.45
+									</div>
 								</div>
 							</div>
 						</div>
-					</div>
-					<div class="instrument-panel">
-						<div class="instrument-panel-header">
-							<div class="instrument-panel-title">
-								NZD/JPY
-							</div>
-							<div class="instrument-panel-duration font-l">
-								15m
-							</div>
-						</div>
-						<div class="instrument-panel-body">
-							<div class="clearfix">
-								<div class="pull-left font-sb">
-									Market
+						<div class="instrument-panel">
+							<div class="instrument-panel-header">
+								<div class="instrument-panel-title">
+									NZD/JPY
 								</div>
-								<div class="pull-right font-l highlow-low">
-									102.227
+								<div class="instrument-panel-duration font-l">
+									15m
 								</div>
 							</div>
-							<div class="clearfix">
-								<div class="pull-left font-sb">
-									Payout
+							<div class="instrument-panel-body">
+								<div class="clearfix">
+									<div class="pull-left font-sb">
+										Market
+									</div>
+									<div class="pull-right font-l highlow-low">
+										102.227
+									</div>
 								</div>
-								<div class="pull-right font-l">
-									$1.85
+								<div class="clearfix">
+									<div class="pull-left font-sb">
+										Payout
+									</div>
+									<div class="pull-right font-l">
+										$1.85
+									</div>
 								</div>
-							</div>
-							<div>
-								<div class="instrument-panel-closing font-l">
-									Closing: 12.45
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="instrument-panel instrument-panel-active">
-						<div class="instrument-panel-header">
-							<div class="instrument-panel-title">
-								NZD/JPY
-							</div>
-							<div class="instrument-panel-duration font-l">
-								15m
-							</div>
-						</div>
-						<div class="instrument-panel-body">
-							<div class="clearfix">
-								<div class="pull-left font-sb">
-									Market
-								</div>
-								<div class="pull-right font-l highlow-high">
-									102.227
-								</div>
-							</div>
-							<div class="clearfix">
-								<div class="pull-left font-sb">
-									Payout
-								</div>
-								<div class="pull-right font-l">
-									$1.85
-								</div>
-							</div>
-							<div>
-								<div class="instrument-panel-closing font-l">
-									Closing: 12.45
+								<div>
+									<div class="instrument-panel-closing font-l">
+										Closing: 12.45
+									</div>
 								</div>
 							</div>
 						</div>
-					</div>
-					<div class="instrument-panel">
-						<div class="instrument-panel-header">
-							<div class="instrument-panel-title">
-								NZD/JPY
-							</div>
-							<div class="instrument-panel-duration font-l">
-								15m
-							</div>
-						</div>
-						<div class="instrument-panel-body">
-							<div class="clearfix">
-								<div class="pull-left font-sb">
-									Market
+						<div class="instrument-panel instrument-panel-active">
+							<div class="instrument-panel-header">
+								<div class="instrument-panel-title">
+									NZD/JPY
 								</div>
-								<div class="pull-right font-l highlow-high">
-									102.227
+								<div class="instrument-panel-duration font-l">
+									15m
 								</div>
 							</div>
-							<div class="clearfix">
-								<div class="pull-left font-sb">
-									Payout
+							<div class="instrument-panel-body">
+								<div class="clearfix">
+									<div class="pull-left font-sb">
+										Market
+									</div>
+									<div class="pull-right font-l highlow-high">
+										102.227
+									</div>
 								</div>
-								<div class="pull-right font-l">
-									$1.85
+								<div class="clearfix">
+									<div class="pull-left font-sb">
+										Payout
+									</div>
+									<div class="pull-right font-l">
+										$1.85
+									</div>
 								</div>
-							</div>
-							<div>
-								<div class="instrument-panel-closing font-l">
-									Closing: 12.45
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="instrument-panel">
-						<div class="instrument-panel-header">
-							<div class="instrument-panel-title">
-								NZD/JPY
-							</div>
-							<div class="instrument-panel-duration font-l">
-								15m
-							</div>
-						</div>
-						<div class="instrument-panel-body">
-							<div class="clearfix">
-								<div class="pull-left font-sb">
-									Market
-								</div>
-								<div class="pull-right font-l highlow-low">
-									102.227
-								</div>
-							</div>
-							<div class="clearfix">
-								<div class="pull-left font-sb">
-									Payout
-								</div>
-								<div class="pull-right font-l">
-									$1.85
-								</div>
-							</div>
-							<div>
-								<div class="instrument-panel-closing font-l">
-									Closing: 12.45
+								<div>
+									<div class="instrument-panel-closing font-l">
+										Closing: 12.45
+									</div>
 								</div>
 							</div>
 						</div>
-					</div>
-					<div class="instrument-panel">
-						<div class="instrument-panel-header">
-							<div class="instrument-panel-title">
-								NZD/JPY
+						<div class="instrument-panel">
+							<div class="instrument-panel-header">
+								<div class="instrument-panel-title">
+									NZD/JPY
+								</div>
+								<div class="instrument-panel-duration font-l">
+									15m
+								</div>
 							</div>
-							<div class="instrument-panel-duration font-l">
-								15m
+							<div class="instrument-panel-body">
+								<div class="clearfix">
+									<div class="pull-left font-sb">
+										Market
+									</div>
+									<div class="pull-right font-l highlow-high">
+										102.227
+									</div>
+								</div>
+								<div class="clearfix">
+									<div class="pull-left font-sb">
+										Payout
+									</div>
+									<div class="pull-right font-l">
+										$1.85
+									</div>
+								</div>
+								<div>
+									<div class="instrument-panel-closing font-l">
+										Closing: 12.45
+									</div>
+								</div>
 							</div>
 						</div>
-						<div class="instrument-panel-body">
-							<div class="clearfix">
-								<div class="pull-left font-sb">
-									Market
+						<div class="instrument-panel">
+							<div class="instrument-panel-header">
+								<div class="instrument-panel-title">
+									NZD/JPY
 								</div>
-								<div class="pull-right font-l highlow-high">
-									102.227
-								</div>
-							</div>
-							<div class="clearfix">
-								<div class="pull-left font-sb">
-									Payout
-								</div>
-								<div class="pull-right font-l">
-									$1.85
+								<div class="instrument-panel-duration font-l">
+									15m
 								</div>
 							</div>
-							<div>
-								<div class="instrument-panel-closing font-l">
-									Closing: 12.45
+							<div class="instrument-panel-body">
+								<div class="clearfix">
+									<div class="pull-left font-sb">
+										Market
+									</div>
+									<div class="pull-right font-l highlow-low">
+										102.227
+									</div>
+								</div>
+								<div class="clearfix">
+									<div class="pull-left font-sb">
+										Payout
+									</div>
+									<div class="pull-right font-l">
+										$1.85
+									</div>
+								</div>
+								<div>
+									<div class="instrument-panel-closing font-l">
+										Closing: 12.45
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="instrument-panel">
+							<div class="instrument-panel-header">
+								<div class="instrument-panel-title">
+									NZD/JPY
+								</div>
+								<div class="instrument-panel-duration font-l">
+									15m
+								</div>
+							</div>
+							<div class="instrument-panel-body">
+								<div class="clearfix">
+									<div class="pull-left font-sb">
+										Market
+									</div>
+									<div class="pull-right font-l highlow-high">
+										102.227
+									</div>
+								</div>
+								<div class="clearfix">
+									<div class="pull-left font-sb">
+										Payout
+									</div>
+									<div class="pull-right font-l">
+										$1.85
+									</div>
+								</div>
+								<div>
+									<div class="instrument-panel-closing font-l">
+										Closing: 12.45
+									</div>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div>	
+			</div>	
+		</div>
 	</div>
+	<br/>
+	<br/>
+	<p>
+		To do: main trading area
+	</p>
 </div>
 {% endblock %}

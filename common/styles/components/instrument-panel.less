@@ -1,6 +1,7 @@
 @import "instrument-panel.variables.less";
 
 .instrument-panel {
+	cursor: pointer;
 	display: inline-block;
 	position: relative;
 	width: @instrument-panel-max-width;
@@ -12,6 +13,8 @@
 		font-size: @instrument-panel-font-size;
 		padding: @instrument-panel-header-padding;
 		background: @instrument-panel-header-background;
+		transition: @instrument-panel-hover-transition;
+
 		.clearfix();
 	}
 		.instrument-panel-title {
@@ -42,12 +45,25 @@
 		line-height: 1.43em;
 		font-size: @instrument-panel-font-size;
 		padding: @instrument-panel-body-padding;
+		transition: @instrument-panel-hover-transition;
 	}
 		.instrument-panel-closing {
 			font-size: @instrument-panel-small-font-size;
 		}
 
-.instrument-panel-active {
+
+.instrument-panel:hover {
+	.instrument-panel-header {
+		background: @instrument-panel-hover-header-background;
+	}
+
+	.instrument-panel-body {
+		background: @instrument-panel-hover-body-background;
+	}
+}
+
+.instrument-panel-active,
+.instrument-panel-active:hover {
 	border: @instrument-panel-active-border;
 	width: (@instrument-panel-active-border-width*2) + @instrument-panel-max-width;
 	border-radius: @instrument-panel-active-border-radius;

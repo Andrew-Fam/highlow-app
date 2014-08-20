@@ -21,12 +21,9 @@
 			padding: @dropdown-padding;
 			transition: @dropdown-hover-transition;
 		}
-
 		input:checked + label { 
 			display: block;
 		}
-
-		
 	}
 
 .dropdown:focus:hover {
@@ -66,7 +63,7 @@
 			}
 		}
 	}
-	&:focus {
+	&:focus:hover {
 		input:checked + label { 
 			background-color: lighten(@dropdown-bg,5%);
 		}

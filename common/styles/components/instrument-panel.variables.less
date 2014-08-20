@@ -21,3 +21,8 @@
 @instrument-panel-active-border: @instrument-panel-active-border-width solid @instrument-panel-active-header-background;
 
 @instrument-panel-active-border-radius: @instrument-panel-active-border-width;
+
+@instrument-panel-hover-lighten-factor: 5%;
+@instrument-panel-hover-transition: background-color 0.3s ease;
+@instrument-panel-hover-header-background: lighten(@instrument-panel-header-background, @instrument-panel-hover-lighten-factor);
+@instrument-panel-hover-body-background: lighten(@instrument-panel-body-background, @instrument-panel-hover-lighten-factor);
