@@ -1,0 +1,65 @@
+@instrument-selector-widget-duration-selectors-container-bg: @ink;
+@instrument-selector-widget-header-padding: 25px 48px 0px;
+@instrument-selector-widget-body-padding: 25px 48px 24px;
+@instrument-selector-widget-slider-padding: 0px 16px;
+.instrument-selector-widget {
+	position: relative;
+}
+	.instrument-selector-widget-duration-selectors-container {
+		background-color: @instrument-selector-widget-duration-selectors-container-bg;
+		padding: @instrument-selector-widget-header-padding;
+		position: relative;
+	}
+		.instrument-selector-widget-duration-selectors {
+
+		}
+			.instrument-selector-widget-duration-selector {
+				&:before {
+					content: "";
+					display: inline-block;
+					margin-right: 3px;
+					
+					.sprite(@clock-grey);
+				}
+				&.active {
+					&:before {
+						margin-right: 7px;
+						
+						.sprite(@clock-yellow);
+					}
+				}
+			}
+
+	.instrument-selector-widget-instruments-container {
+		padding: @instrument-selector-widget-body-padding;
+		position: relative;
+	}
+		.instrument-selector-widget-instruments-slider {
+			cursor: pointer;
+			display: block;
+			height: 100%;
+			padding: @instrument-selector-widget-slider-padding;
+			position: absolute;
+			top: 0px;
+
+			&:before {
+				margin-top: 70px;
+				display: block;
+				content: "";
+			}
+
+			&.backward {
+				left: 0;
+				
+				&:before {
+					.sprite(@arrow-left);
+				}
+			}
+			&.forward {
+				right: 0;
+				
+				&:before {
+					.sprite(@arrow-right);
+				}
+			}
+		}

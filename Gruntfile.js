@@ -116,7 +116,7 @@ module.exports = function(grunt) {
 		},
 		concurrent: {
 			all: {
-				tasks: ['sprite', 'newer:less', 'newer:requirejs', 'connect:server', 'newer:liquid', 'newer:copy', 'watch'],
+				tasks: ['newer:requirejs', 'connect:server', 'watch'],
 				options: {
 					logConcurrentOutput: true
 				}
@@ -124,6 +124,6 @@ module.exports = function(grunt) {
 		}
 	});
 
-	grunt.registerTask('default', ['concurrent:all']);
+	grunt.registerTask('default', ['sprite', 'newer:less', 'newer:liquid', 'newer:copy', 'concurrent:all']);
 	grunt.registerTask('build', ['sprite', 'newer:less', 'newer:requirejs', 'newer:liquid', 'newer:copy']);
 };
