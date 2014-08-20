@@ -5,6 +5,34 @@
 	<h2> Instrument Selector Widget</h2>
 	<div class="pull-left tab-view tab-view-default instrument-selector-widget">
 		<div class="instrument-selector-widget-duration-selectors-container">
+			<div class="instrument-selector-widget-instrument-filter pull-right">
+				<ul class="dropdown dropdown-default pull-left" tabindex="0">
+					<li class="dropdown-item active">
+						<input id="all-currency" checked name="instrument-filter" type="radio" value=""/>
+						<label for="all-currency">
+							Filter Currencies
+						</label>
+					</li>
+					<li class="dropdown-item">
+						<input id="nzd-jpy" name="instrument-filter" type="radio" value="nzd-jpy"/>
+						<label for="nzd-jpy">
+							NZD/JPY
+						</label>
+					</li>
+					<li class="dropdown-item">
+						<input id="nzd-aud" name="instrument-filter" type="radio" value="nzd-aud"/>
+						<label for="nzd-aud">
+							NZD/AUD
+						</label>
+					</li>
+					<li class="dropdown-item">
+						<input id="aud-jpy" name="instrument-filter" type="radio" value="aud-jpy"/>
+						<label for="aud-jpy">
+							AUD/JPY
+						</label>
+					</li>
+				</ul>
+			</div>
 			<div class="tab-view-tab-selectors-container font-m">
 				<ul class="tab-view-tab-selectors instrument-selector-widget-duration-selectors">
 					<li class="tab-view-tab-selector instrument-selector-widget-duration-selector">

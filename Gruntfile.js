@@ -89,6 +89,13 @@ module.exports = function(grunt) {
 					livereload: true
 				}
 			},
+			sprite: {
+				files: ['common/images/sprite-src/*.*'],
+				task: ['sprite'],
+				options: {
+					livereload: true
+				}
+			},
 			js: {
 				files: ['common/scripts/'],
 				tasks: ['newer:requirejs'],

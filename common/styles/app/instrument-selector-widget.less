@@ -2,9 +2,23 @@
 @instrument-selector-widget-header-padding: 25px 48px 0px;
 @instrument-selector-widget-body-padding: 25px 48px 24px;
 @instrument-selector-widget-slider-padding: 0px 16px;
+@instrument-selector-widget-instrument-filter-width: 175px;
+@instrument-selector-widget-instrument-filter-margin: -10px 0px 0px 0px;
 .instrument-selector-widget {
 	position: relative;
 }
+	.instrument-selector-widget-instrument-filter {
+		margin: @instrument-selector-widget-instrument-filter-margin;
+		min-width: @instrument-selector-widget-instrument-filter-width;
+		position: relative;
+		z-index: 1;
+		.dropdown {
+			left: 0px;
+			position: absolute;
+			top: 0px;
+			width: 100%;
+		}
+	}
 	.instrument-selector-widget-duration-selectors-container {
 		background-color: @instrument-selector-widget-duration-selectors-container-bg;
 		padding: @instrument-selector-widget-header-padding;
