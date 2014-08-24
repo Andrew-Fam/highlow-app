@@ -1,8 +1,6 @@
 {% extends layout %}
 {% block content %}
-<h1>UI Element</h1>
-<div class="container">
-	<h2> Instrument Selector Widget</h2>
+<div class="trading-app-container">
 	<div class="clearfix">
 		<div class="pull-left tab-view tab-view-default instrument-selector-widget">
 			<div class="instrument-selector-widget-duration-selectors-container">
@@ -10,25 +8,25 @@
 					<ul class="dropdown dropdown-default pull-left" tabindex="0">
 						<li class="dropdown-item active">
 							<input id="all-currency" checked name="instrument-filter" type="radio" value=""/>
-							<label for="all-currency">
+							<label for="all-currency" data-label="Filter Currencies">
 								Filter Currencies
 							</label>
 						</li>
 						<li class="dropdown-item">
 							<input id="nzd-jpy" name="instrument-filter" type="radio" value="nzd-jpy"/>
-							<label for="nzd-jpy">
+							<label for="nzd-jpy" data-label="NZD/JPY">
 								NZD/JPY
 							</label>
 						</li>
 						<li class="dropdown-item">
 							<input id="nzd-aud" name="instrument-filter" type="radio" value="nzd-aud"/>
-							<label for="nzd-aud">
+							<label for="nzd-aud" data-label="NZD/AUD">
 								NZD/AUD
 							</label>
 						</li>
 						<li class="dropdown-item">
 							<input id="aud-jpy" name="instrument-filter" type="radio" value="aud-jpy"/>
-							<label for="aud-jpy">
+							<label for="aud-jpy" data-label="AUD/JPY">
 								AUD/JPY
 							</label>
 						</li>
@@ -86,12 +84,11 @@
 								</div>
 								<div>
 									<div class="instrument-panel-closing font-l">
-										Closing: 12.45
+										Closing: <span class="expiry-time">12.45</span>
 									</div>
 								</div>
 							</div>
-						</div>
-						<div class="instrument-panel">
+						</div><div class="instrument-panel">
 							<div class="instrument-panel-header">
 								<div class="instrument-panel-title">
 									NZD/JPY
@@ -119,12 +116,43 @@
 								</div>
 								<div>
 									<div class="instrument-panel-closing font-l">
-										Closing: 12.45
+										Closing: <span class="expiry-time">12.45</span>
 									</div>
 								</div>
 							</div>
-						</div>
-						<div class="instrument-panel instrument-panel-active">
+						</div><div class="instrument-panel instrument-panel-active">
+							<div class="instrument-panel-header">
+								<div class="instrument-panel-title">
+									NZD/JPY
+								</div>
+								<div class="instrument-panel-duration font-l">
+									15m
+								</div>
+							</div>
+							<div class="instrument-panel-body">
+								<div class="clearfix">
+									<div class="pull-left font-sb">
+										Market
+									</div>
+									<div class="pull-right font-l highlow-high current-rate">
+										102.227
+									</div>
+								</div>
+								<div class="clearfix">
+									<div class="pull-left font-sb">
+										Payout
+									</div>
+									<div class="pull-right font-l">
+										$1.85
+									</div>
+								</div>
+								<div>
+									<div class="instrument-panel-closing font-l">
+										Closing: <span class="expiry-time">12.45</span>
+									</div>
+								</div>
+							</div>
+						</div><div class="instrument-panel">
 							<div class="instrument-panel-header">
 								<div class="instrument-panel-title">
 									NZD/JPY
@@ -152,45 +180,11 @@
 								</div>
 								<div>
 									<div class="instrument-panel-closing font-l">
-										Closing: 12.45
+										Closing: <span class="expiry-time">12.45</span>
 									</div>
 								</div>
 							</div>
-						</div>
-						<div class="instrument-panel">
-							<div class="instrument-panel-header">
-								<div class="instrument-panel-title">
-									NZD/JPY
-								</div>
-								<div class="instrument-panel-duration font-l">
-									15m
-								</div>
-							</div>
-							<div class="instrument-panel-body">
-								<div class="clearfix">
-									<div class="pull-left font-sb">
-										Market
-									</div>
-									<div class="pull-right font-l highlow-high">
-										102.227
-									</div>
-								</div>
-								<div class="clearfix">
-									<div class="pull-left font-sb">
-										Payout
-									</div>
-									<div class="pull-right font-l">
-										$1.85
-									</div>
-								</div>
-								<div>
-									<div class="instrument-panel-closing font-l">
-										Closing: 12.45
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="instrument-panel">
+						</div><div class="instrument-panel">
 							<div class="instrument-panel-header">
 								<div class="instrument-panel-title">
 									NZD/JPY
@@ -218,12 +212,11 @@
 								</div>
 								<div>
 									<div class="instrument-panel-closing font-l">
-										Closing: 12.45
+										Closing: <span class="expiry-time">12.45</span>
 									</div>
 								</div>
 							</div>
-						</div>
-						<div class="instrument-panel">
+						</div><div class="instrument-panel">
 							<div class="instrument-panel-header">
 								<div class="instrument-panel-title">
 									NZD/JPY
@@ -251,7 +244,7 @@
 								</div>
 								<div>
 									<div class="instrument-panel-closing font-l">
-										Closing: 12.45
+										Closing: <span class="expiry-time">12.45</span>
 									</div>
 								</div>
 							</div>
@@ -261,10 +254,141 @@
 			</div>	
 		</div>
 	</div>
-	<br/>
-	<br/>
-	<p>
-		To do: main trading area
-	</p>
+	<div class="panel panel-default trading-platform pull-left">
+		<div class="panel-header">
+			<div class="pull-left">
+				<span class="trading-platform-instrument-title font-sb">
+					USD/JPY
+				</span>
+				<span class="trading-platform-instrument-rate highlow-high current-rate">
+					102.277
+				</span>
+			</div>
+			<div class="pull-right">
+				<span class="trading-platform-instrument-duration">
+					15 mins
+				</span>
+				<span class="trading-platform-instrument-time-left">
+					04:15:48
+				</span>
+				<a class="trading-platform-instrument-one-click-toggler active">
+				</a>
+			</div>
+		</div>
+		<div class="panel-body">
+			<div class="trading-platform-live-graph">
+				<div id="live-graph"></div>
+			</div>
+			<div class="trading-platform-main-controls">
+				<div class="trading-platform-main-controls-instrument-title font-sb">
+					USD/JPY
+				</div>
+				<div class="trading-platform-main-controls-live-rate">
+					<div class="pull-left font-sb">
+						Market
+					</div>
+					<div class="pull-right font-l highlow-high current-rate">
+						102.77
+					</div>
+				</div>
+				<div class="trading-platform-main-controls-investment form-control">
+					$<input type="text" id="investment-value-input" value="500"/>
+				</div>
+				<div class="clearfix trading-platform-main-controls-common-amount">
+					<!-- I've used div as button here because button deosn't get :focus style on click for Firefox and Safari on MAc OSX -->
+
+					<div class="btn btn-default btn-md-pad" tabindex="0" onclick="document.getElementById('investment-value-input').value = this.getAttribute('data-value')" data-value="50">$50</div>
+					<div class="btn btn-default btn-md-pad" tabindex="0" onclick="document.getElementById('investment-value-input').value = this.getAttribute('data-value')" data-value="100">$100</div>
+					<div class="btn btn-default btn-md-pad active" tabindex="0" onclick="document.getElementById('investment-value-input').value = this.getAttribute('data-value')" data-value="500">$500</div>
+				</div>
+				<div class="trading-platform-main-controls-options">
+					<div class="btn btn-positive btn-extruded font-m btn-md-pad bet-high">
+						HIGH
+					</div>
+					<div class="btn btn-negative btn-extruded font-m btn-md-pad bet-low">
+						LOW
+					</div>
+				</div>
+				<div class="trading-platform-main-controls-payout">
+					<div class="pull-left font-sb">
+						Payout
+					</div>
+					<div class="pull-right font-l">
+						$ <span class="trading-platform-main-controls-payout-rate">1.85</span>
+					</div>
+				</div>
+				<div class="trading-platform-main-controls-return">
+					<div class="pull-left font-sb">
+						Return
+					</div>
+					<div class="pull-right font-l">
+						$925.00
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="panel panel-default trading-platform pull-left">
+		<div class="panel-header">
+			<div class="pull-left">
+				<div class="font-m">
+					CURRENT ACTIVITY
+				</div>
+			</div>
+			<div class="pull-right">
+				
+			</div>
+		</div>
+		<div class="panel-body">
+			<div class="trading-platform-investments">
+				<table class="table table-stripped table-fluid-width">
+					<thead>
+						<tr>
+							<th>
+								Select
+							</th>
+							<th>
+								Type
+							</th>
+							<th>
+								Asset
+							</th>
+							<th>
+								Strike
+							</th>
+							<th>
+								Start time
+							</th>
+							<th>
+								Expiry
+							</th>
+							<th>
+								Status
+							</th>
+							<th>
+								Closing rate
+							</th>
+							<th>
+								Investment
+							</th>
+							<th>
+								Payout
+							</th>
+							<th>
+								Take payout
+							</th>
+						</tr>
+					</thead>
+					<tbody class="trading-platform-investments-list">
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
 </div>
+{% endblock %}
+{% block script %}
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+	<script src="http://code.highcharts.com/highcharts.js"></script>
+	<script src="common/scripts/highlow-main.js"></script>
 {% endblock %}

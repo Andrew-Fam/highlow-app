@@ -5,7 +5,10 @@
 	display: inline-block;
 	position: relative;
 	width: @instrument-panel-max-width;
-	margin-right: 2px;
+	margin-right: 4px;
+	&:last-child {
+		margin-right: 0px;
+	}
 }
 	.instrument-panel-header {
 		display: block;
@@ -32,8 +35,7 @@
 			float: right;
 
 			&:before {
-				content: "";
-				display: inline-block;
+				.inline-icon();
 				.sprite(@clock-grey);
 			}
 		}
@@ -76,8 +78,6 @@
 		.instrument-panel-duration {
 			color: @instrument-panel-active-font-color;
 			&:before {
-				content: "";
-				display: inline-block;
 				.sprite(@clock-dark);
 			}
 		}

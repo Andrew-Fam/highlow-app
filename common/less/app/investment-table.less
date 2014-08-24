@@ -1,0 +1,85 @@
+@investment-winning-fg: @banana;
+@investment-losing-fg: white;
+@investment-tying-fg: @light-grey;
+@investment-sell-btn-font-size: 10px;
+
+@investment-sell-btn-default-bg: @mortar;
+@investment-sell-btn-default-fg: @mouse;
+
+@investment-sell-btn-win-fg: white;
+
+.trading-platform-investments {
+	table {
+		> tbody {
+			> tr {
+				&.investment-winning {
+
+					> td {
+						color: @investment-winning-fg;
+						&.investment-type {
+							&:before {
+								.block-icon();
+								.sprite(@highlow-gold);
+							}
+						}
+
+						.investment-sell-btn {
+							&:extend(.btn-negative);
+							color: @investment-sell-btn-win-fg;
+						}
+					}
+
+				}
+
+				&.investment-losing {
+					> td {
+						color: @investment-losing-fg;
+						&.investment-type {
+							&:before {
+								.block-icon();
+								.sprite(@highlow-white);
+							}
+						}
+					}
+				}
+
+				&.investment-tying {
+					> td {
+						color: @investment-tying-fg;
+						&.investment-type {
+							&:before {
+								.block-icon();
+								.sprite(@highlow-grey);
+							}
+						}
+					}
+				}
+
+				> td {
+
+					&.investment-sell {
+						position: relative;
+						width: 100px;
+						padding: 8px;
+					}
+					&.investment-type {
+						&:before {
+							margin-bottom: -4px;
+						}
+					}
+					.investment-sell-btn {
+						background-color: @mortar;
+						color: @investment-sell-btn-default-fg;
+						display: block;
+						float: none;
+						font-size: @investment-sell-btn-font-size;
+						width: 84px;
+						text-align: center;
+					}
+
+				}
+			}
+		}
+	}
+}
+

@@ -1,0 +1,166 @@
+@trading-platform-title-font-size: 24px;
+@trading-platform-rate-font-size: 20px;
+@trading-platform-duration-font-size: 16px;
+@trading-platform-time-left-font-size: @trading-platform-duration-font-size;
+@trading-platform-width: 1170px;
+
+@trading-platform-main-controls-title-font-size: @trading-platform-rate-font-size;
+
+@trading-platform-fg: white;
+@trading-platform-input-font-size: 25px;
+
+@trading-platform-common-amount-bg: @elephant;
+@trading-platform-common-amount-focus-bg: @mortar;
+
+@trading-platform-common-amount-font-size: 13px;
+@trading-platform-common-amount-fg: @light-grey;
+
+@trading-platform-options-font-size: @trading-platform-duration-font-size;
+
+@trading-platform-payout-font-size: 14px;
+@trading-platform-return-font-size: 14px;
+.trading-platform {
+	line-height: @trading-platform-title-font-size;
+	width: @trading-platform-width;
+}
+	.trading-platform-instrument-title {
+		display: inline-block;
+		font-size: @trading-platform-title-font-size;
+	}
+	.trading-platform-instrument-rate {
+		display: inline-block;
+		font-size: @trading-platform-rate-font-size;
+		margin-left: @trading-platform-rate-font-size*2 + @trading-platform-duration-font-size;
+	
+		&:before {
+			margin-bottom: 1px;
+		}
+	}
+	.trading-platform-instrument-duration {
+		display: inline-block;
+		font-size: @trading-platform-duration-font-size;
+		margin-right: @trading-platform-duration-font-size*1.54;
+		vertical-align: sub;
+		&:before {
+			.inline-icon();
+			.sprite(@clock-white-md);
+		}
+	}
+	.trading-platform-instrument-time-left {
+		display: inline-block;
+		font-size: @trading-platform-time-left-font-size;
+		margin-right: @trading-platform-duration-font-size*2.25;
+		vertical-align: sub;
+		&:before {
+
+			.inline-icon();
+			.sprite(@timer);
+		}
+	}
+	.trading-platform-instrument-one-click-toggler {
+		cursor: pointer;
+		display: inline-block;
+		font-size: @trading-platform-time-left-font-size;
+		vertical-align: top;
+		&.active {
+			&:before {
+				margin-bottom: -5px;
+				.inline-icon();
+				.sprite(@one-click);
+			}
+		}
+	}
+	.trading-platform-live-graph {
+		display: block;
+		width: 840px;
+		min-height: 290px;
+		float: left;
+		position: relative;
+	}
+	.trading-platform-main-controls {
+		display: block;
+		width: 274px;
+		padding-left: 31px;
+		float: right;
+		position: relative;
+	}
+		.trading-platform-main-controls-instrument-title {
+			font-size: @trading-platform-main-controls-title-font-size;
+			line-height: @trading-platform-title-font-size;
+			margin-bottom: @trading-platform-main-controls-title-font-size/3;
+		}
+		.trading-platform-main-controls-live-rate {
+			font-size: @trading-platform-duration-font-size;
+			line-height: @trading-platform-title-font-size;
+			margin-bottom: @trading-platform-input-font-size/1.5;
+			.clearfix();
+		}
+		.trading-platform-main-controls-investment {
+			font-size: @trading-platform-input-font-size;
+			margin-bottom: 3px;
+			max-width: 100%;
+			input {
+				background: none;
+				border: none;
+				color: inherit;
+				display: inline-block;
+				outline: none;
+				-webkit-appearance: none;
+				width: 80%;
+			}
+		}
+		.trading-platform-main-controls-common-amount {
+			margin-bottom: 10px;
+			.clearfix();
+			.btn {
+
+
+				background-color: @trading-platform-common-amount-bg;
+				color: @trading-platform-common-amount-fg;
+				display: block;
+				float: left;
+				font-size: @trading-platform-common-amount-font-size;
+				margin-right: 3px;
+				padding: @trading-platform-duration-font-size/1.5 @trading-platform-duration-font-size; 
+				text-align: center;
+				width: 79px;
+
+				&:focus {
+					background-color: @trading-platform-common-amount-focus-bg;
+					color: white;
+				}
+
+				&:last-child {
+					margin-right: 0px;
+				}
+			}
+		}
+		.trading-platform-main-controls-options {
+			margin-bottom: 21px;
+
+			.clearfix();
+
+			.btn {
+				font-weight: 700;
+				display: block;
+				float: left;
+				font-size: @trading-platform-options-font-size;
+				margin-right: 11px;
+				text-align: center;
+				width: 116px;
+
+				&:last-child {
+					margin-right: 0px;
+				}
+			}
+		}
+		.trading-platform-main-controls-payout {
+			font-size: @trading-platform-payout-font-size;
+
+			.clearfix();
+		}
+		.trading-platform-main-controls-return {
+			font-size: @trading-platform-payout-font-size;
+
+			.clearfix();
+		}

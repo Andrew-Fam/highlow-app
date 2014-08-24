@@ -1,0 +1,25 @@
+{
+  "name": "highlow-app",
+  "version": "0.0.0",
+  "homepage": "https://github.com/Andrew-Fam/highlow-app",
+  "authors": [
+    "A Pham <whatsup@andrewfam.com>"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "highcharts-release": "https://github.com/highslide-software/highcharts-release",
+    "highcharts": "https://github.com/highslide-software/highcharts-release.git#~4.0.3",
+    "jquery": "1.11.1"
+  },
+  "devDependencies": {
+    "backbone": "https://github.com/jashkenas/backbone.git#~1.1.2"
+  }
+}

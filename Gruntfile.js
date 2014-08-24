@@ -18,17 +18,30 @@ module.exports = function(grunt) {
 		less: {
 			main: {
 				files: {
-					'common/dist/main.css': [
-						'common/styles/main.less'
+					'common/css/main.css': [
+						'common/less/main.less'
 					]
 				},
 				options: {
 					compress: true,
 					sourceMap: true,
-					sourceMapFilename: 'common/dist/main.css.map',
-					sourceMapURL: '/common/dist/main.css.map',
+					sourceMapFilename: 'common/css/main.css.map',
+					sourceMapURL: '/common/css/main.css.map',
 					sourceMapRootpath: '/'
 				}
+			}
+		},
+		concat : {
+			options: {
+				separator: grunt.util.linefeed + ';' + grunt.util.linefeed
+			},
+			js: {
+				src: [
+					// 'bower_components/jquery/dist/jquery.min.js',
+					// 'bower_components/highcharts/highchart.js',
+					'common/scripts/components/graph.js'
+				],
+				dest: 'common/scripts/highlow-main.js'
 			}
 		},
 		requirejs: {
@@ -69,13 +82,20 @@ module.exports = function(grunt) {
 					src: ['**/*.*'],
 					dest: 'build/common/'
 				}]
+			},
+			map: {
+				files: [{
+					src: ['bower_components/jquery/dist/jquery.min.map'],
+					dest: 'build/common/scripts/jquery.min.map'
+				}]
 			}
+
 		},
 		sprite: {
 			all: {
 				src: ['common/images/sprite-src/*.png'],
 				destImg: 'common/images/spritesheet.png',
-				destCSS: 'common/styles/spritesheet.less',
+				destCSS: 'common/less/spritesheet.less',
 				algorithm: 'binary-tree',
 				padding: 2
 			}
@@ -91,14 +111,14 @@ module.exports = function(grunt) {
 			},
 			sprite: {
 				files: ['common/images/sprite-src/*.*'],
-				task: ['sprite'],
+				task: ['sprite','less'],
 				options: {
 					livereload: true
 				}
 			},
 			js: {
-				files: ['common/scripts/'],
-				tasks: ['newer:requirejs'],
+				files: ['common/scripts/**/*.js'],
+				tasks: ['newer:requirejs','newer:concat:js'],
 				options: {
 					livereload: true
 				}
@@ -117,7 +137,7 @@ module.exports = function(grunt) {
 				}
 			},
 			copy: {
-				files: ['common/**/*.*'],
+				files: ['common/**/*.*','templates/**/*.*'],
 				tasks: ['newer:copy']
 			}
 		},
@@ -131,6 +151,6 @@ module.exports = function(grunt) {
 		}
 	});
 
-	grunt.registerTask('default', ['sprite', 'newer:less', 'newer:liquid', 'newer:copy', 'concurrent:all']);
-	grunt.registerTask('build', ['sprite', 'newer:less', 'newer:requirejs', 'newer:liquid', 'newer:copy']);
+	grunt.registerTask('default', ['sprite', 'newer:less', 'newer:concat', 'newer:liquid', 'newer:copy', 'concurrent:all']);
+	grunt.registerTask('build', ['sprite', 'newer:less', 'newer:concat', 'newer:requirejs', 'newer:liquid', 'newer:copy']);
 };
