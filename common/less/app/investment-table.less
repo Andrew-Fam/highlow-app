@@ -9,17 +9,35 @@
 @investment-sell-btn-win-fg: white;
 
 .trading-platform-investments {
+	position: relative;
+	z-index: 100;
 	table {
 		> tbody {
 			> tr {
+
 				&.investment-winning {
 
 					> td {
 						color: @investment-winning-fg;
-						&.investment-type {
+
+						&.investment-select {
 							&:before {
-								.block-icon();
+								.inline-icon();
+								.sprite(@select-win);
+							}
+						}
+
+						&.investment-type.highlow {
+							&:before {
+								.inline-icon();
 								.sprite(@highlow-gold);
+							}
+						}
+
+						&.investment-type.spread {
+							&:before {
+								.inline-icon();
+								.sprite(@spread-win);
 							}
 						}
 
@@ -34,38 +52,72 @@
 				&.investment-losing {
 					> td {
 						color: @investment-losing-fg;
-						&.investment-type {
+						&.investment-select {
 							&:before {
-								.block-icon();
+								.inline-icon();
+								.sprite(@select-lose);
+							}
+						}
+
+						&.investment-type.highlow {
+							&:before {
+								.inline-icon();
 								.sprite(@highlow-white);
 							}
 						}
+						&.investment-type.spread {
+							&:before {
+								.inline-icon();
+								.sprite(@spread-lose);
+							}
+						}
+
 					}
 				}
 
 				&.investment-tying {
 					> td {
 						color: @investment-tying-fg;
-						&.investment-type {
+						&.investment-select {
 							&:before {
-								.block-icon();
+								.inline-icon();
+								.sprite(@select-tie);
+							}
+						}
+						&.investment-type.highlow {
+							&:before {
+								.inline-icon();
 								.sprite(@highlow-grey);
 							}
 						}
+						&.investment-type.spread {
+							&:before {
+								.inline-icon();
+								.sprite(@spread-tie);
+							}
+						}
+
 					}
 				}
 
 				> td {
+					&.investment-select {
+						text-align: center;
+						width: 55px;
+						&:before {
+							vertical-align: bottom;
+						}
+					}
+					&.investment-type {
+						&:before {
+							vertical-align: bottom;
+						}
+					}
 
 					&.investment-sell {
 						position: relative;
 						width: 100px;
 						padding: 8px;
-					}
-					&.investment-type {
-						&:before {
-							margin-bottom: -4px;
-						}
 					}
 					.investment-sell-btn {
 						background-color: @mortar;

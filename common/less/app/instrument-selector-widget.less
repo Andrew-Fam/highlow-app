@@ -8,7 +8,7 @@
 .instrument-selector-widget {
 	position: relative;
 	width: @instrument-selector-width;
-}
+
 	.instrument-selector-widget-instrument-filter {
 		margin: @instrument-selector-widget-instrument-filter-margin;
 		min-width: @instrument-selector-widget-instrument-filter-width;
@@ -21,7 +21,19 @@
 			width: 100%;
 		}
 	}
-	.instrument-selector-widget-duration-selectors-container {
+	.instrument-selector-widget-collapse-toggle {
+
+		cursor: pointer;
+		position: absolute;
+		right: 16px;
+		top: 24px;
+		.block-icon();
+		.sprite(@collapse);
+		&.on {
+			.sprite(@expand);
+		}
+	}
+	.instrument-selector-widget-duration-selectors-container{
 		background-color: @instrument-selector-widget-duration-selectors-container-bg;
 		padding: @instrument-selector-widget-header-padding;
 		position: relative;
@@ -47,6 +59,12 @@
 			}
 
 	.instrument-selector-widget-instruments-container {
+		.page-container {
+			// height: 180px;
+		}
+	}		
+
+	.instrument-selector-widget-instruments-container.tab-view-body  {
 		padding: @instrument-selector-widget-body-padding;
 		position: relative;
 	}
@@ -54,14 +72,14 @@
 			cursor: pointer;
 			display: block;
 			height: 100%;
+			line-height: 188px;
 			padding: @instrument-selector-widget-slider-padding;
 			position: absolute;
 			top: 0px;
 
 			&:before {
-				margin-top: 70px;
-				display: block;
-				content: "";
+				.inline-icon();
+				.transition(all 0.2s ease);
 			}
 
 			&.backward {
@@ -79,3 +97,4 @@
 				}
 			}
 		}
+}

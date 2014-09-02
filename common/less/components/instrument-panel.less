@@ -1,13 +1,23 @@
 @import "instrument-panel.variables.less";
-
+@instrument-panel-transition: all 0.2s ease;
 .instrument-panel {
+	border-top: @instrument-panel-border;
+	border-bottom: @instrument-panel-border;
 	cursor: pointer;
 	display: inline-block;
-	position: relative;
-	width: @instrument-panel-max-width;
 	margin-right: 4px;
+	height: 140px;
+	overflow: hidden;
+	position: relative;
+	.transition(@instrument-panel-transition);
+	width: @instrument-panel-max-width;
 	&:last-child {
 		margin-right: 0px;
+	}
+	&.collapsed {
+		height: 36px;
+		border-top-width: 0px;
+		border-bottom-width: 0px;
 	}
 }
 	.instrument-panel-header {
@@ -49,10 +59,42 @@
 		padding: @instrument-panel-body-padding;
 		transition: @instrument-panel-hover-transition;
 	}
+		.instrument-panel-payout {
+
+			&:extend(.font-l);
+
+			display: block;
+			font-size: @instrument-panel-payout-font-size;
+			letter-spacing: 0.025em;
+			margin-top: 0.272em;
+		}
+		.instrument-panel-rate {
+
+			&:extend(.font-l);
+
+			display: block;
+			margin-top: 0.5em;
+			vertical-align: sub;
+
+		}
 		.instrument-panel-closing {
 			font-size: @instrument-panel-small-font-size;
 		}
 
+.instrument-spread-panel {
+		.instrument-panel-payout {
+
+			
+		}
+		.instrument-panel-rate {
+
+			margin-top: 0.25em;
+
+		}
+		.instrument-panel-closing {
+			margin-top: 0.175em;
+		}
+}
 
 .instrument-panel:hover {
 	.instrument-panel-header {
@@ -69,6 +111,13 @@
 	border: @instrument-panel-active-border;
 	width: (@instrument-panel-active-border-width*2) + @instrument-panel-max-width;
 	border-radius: @instrument-panel-active-border-radius;
+	height: 140px;
+	&.collapsed {
+		height: 36px;
+		border-top-width: 0px;
+		border-bottom-width: 0px;
+	}
+
 	.instrument-panel-header {
 		background: @instrument-panel-active-header-background;
 	}

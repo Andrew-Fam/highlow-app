@@ -19,9 +19,23 @@
 
 @trading-platform-payout-font-size: 14px;
 @trading-platform-return-font-size: 14px;
+
+@spread-range-fg: @orange-juice;
+@spread-range-main-control-font-size: 12px;
 .trading-platform {
 	line-height: @trading-platform-title-font-size;
 	width: @trading-platform-width;
+	.one-click-control {
+		display: none!important;
+	}
+	&.one-click {
+		.one-click-control {
+			display: block!important;
+		}
+		.none-one-click-control {
+			display: none!important;
+		}
+	}
 }
 	.trading-platform-instrument-title {
 		display: inline-block;
@@ -31,10 +45,13 @@
 		display: inline-block;
 		font-size: @trading-platform-rate-font-size;
 		margin-left: @trading-platform-rate-font-size*2 + @trading-platform-duration-font-size;
-	
+		width: @trading-platform-rate-font-size*4.25;
 		&:before {
 			margin-bottom: 1px;
 		}
+	}
+	.trading-platform-instrument-spread-range {
+		color: @spread-range-fg;
 	}
 	.trading-platform-instrument-duration {
 		display: inline-block;
@@ -49,7 +66,7 @@
 	.trading-platform-instrument-time-left {
 		display: inline-block;
 		font-size: @trading-platform-time-left-font-size;
-		margin-right: @trading-platform-duration-font-size*2.25;
+		width: @trading-platform-duration-font-size*5.125;
 		vertical-align: sub;
 		&:before {
 
@@ -62,10 +79,13 @@
 		display: inline-block;
 		font-size: @trading-platform-time-left-font-size;
 		vertical-align: top;
+		&:before {
+			margin-bottom: -9px;
+			.inline-icon();
+			.sprite(@one-click-inactive);
+		}
 		&.active {
 			&:before {
-				margin-bottom: -5px;
-				.inline-icon();
 				.sprite(@one-click);
 			}
 		}
@@ -109,6 +129,10 @@
 				width: 80%;
 			}
 		}
+		.trading-platform-main-control-instrument-spread-range {
+			color: @spread-range-fg;
+			font-size: @spread-range-main-control-font-size;
+		}
 		.trading-platform-main-controls-common-amount {
 			margin-bottom: 10px;
 			.clearfix();
@@ -136,14 +160,22 @@
 			}
 		}
 		.trading-platform-main-controls-options {
-			margin-bottom: 21px;
+			margin-bottom: 20px;
+
+			&.none-one-click-control {
+				margin-bottom: 3px;
+				.btn {
+					font-size: 12px;
+					margin-bottom: 4px;
+				}
+			}
 
 			.clearfix();
 
 			.btn {
-				font-weight: 700;
 				display: block;
 				float: left;
+				font-weight: 700;
 				font-size: @trading-platform-options-font-size;
 				margin-right: 11px;
 				text-align: center;
@@ -153,6 +185,26 @@
 					margin-right: 0px;
 				}
 			}
+		}
+		.trading-platform-main-controls-select-direction {
+			width: 116px;
+			float: left;
+			margin-right: 10px;
+			input[type="radio"] {
+				display: none;
+			}
+			.btn {
+				width: 100%;
+				.opacity(60);
+				&.active {
+					.opacity(100);		
+				}
+			}
+		}
+		.trading-platform-main-controls-place-bet {
+			float: left;
+			font-size: 16px!important;
+			width: 116px;
 		}
 		.trading-platform-main-controls-payout {
 			font-size: @trading-platform-payout-font-size;

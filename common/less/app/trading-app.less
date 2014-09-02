@@ -1,4 +1,59 @@
+@trading-app-root-mode-selector-container-wrapper-padding: 20px 0px 0px;
+@trading-app-root-mode-selector-padding: 18px 0px 18px;
 .trading-app-container {
 	max-width: 1170px;
 	margin: 0 auto;
+}
+
+.trading-app-root {
+	overflow: hidden;
+
+	> .trading-app-root-mode-selector-container-wrapper {
+		&:extend(.font-m);
+		padding: @trading-app-root-mode-selector-container-wrapper-padding;
+		.tab-view-tab-selectors {
+			.tab-view-tab-selector {
+				font-size: 16px;
+				line-height: 32px;
+				padding: @trading-app-root-mode-selector-padding;
+				&:before {
+					margin-right: 3px;
+					vertical-align: middle;
+				}
+			}
+		}
+	}
+		.trading-mode-highlow-selector {
+			&:before {
+				.inline-icon();
+				.sprite(@highlow);
+			}
+			&.active {
+				&:before {
+					.sprite(@highlow-active);
+				}
+			}
+		}
+		.trading-mode-spread-selector {
+			&:before {
+				.inline-icon();
+				.sprite(@spread);
+			}
+			&.active {
+				&:before {
+					.sprite(@spread-active);
+				}
+			}
+		}
+		.trading-mode-on-demand-selector {
+			&:before {
+				.inline-icon();
+				.sprite(@on-demand);
+			}
+			&.active {
+				&:before {
+					.sprite(@on-demand-active);
+				}
+			}
+		}
 }

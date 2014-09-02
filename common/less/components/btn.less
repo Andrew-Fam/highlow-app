@@ -7,6 +7,7 @@
 	cursor: pointer;
 	display: inline-block;
 	outline: none;
+	text-align: center;
 	text-decoration: none;
 }
 	.btn-xs-pad {
@@ -14,15 +15,16 @@
 	}
 	.btn-sm-pad {
 		line-height: 1em;
-		padding: 0.6em 1.4em;
+		padding: 0.70em 1.4em 0.55em;
 	}
 	.btn-md-pad {
 		line-height: 1em;
 		outline: none;
-		padding: 1em 1.4em; 
+		padding: 1em 1.4em 0.875em; 
 	}
 	.btn-lg-pad {
-
+		line-height: 1em;
+		padding: 1.335em 1.4em;
 	}
 	.btn-positive {
 		background-color: @positive-color;
@@ -30,12 +32,16 @@
 	.btn-negative {
 		background-color: @negative-color;
 	}
+	.btn-highlight {
+		background-color: @orange-juice;
+		color: @night;
+	}
 	.btn-extruded {
 		border-bottom-width: 0.1875em;
 		border-bottom-style: solid;
 		&:active {
-			border-top: 0.125em solid transparent;
-			border-bottom-width: 0.0625em;
+			border-top: 0.1875em solid transparent;
+			border-bottom-width: 0em;
 		}
 
 		&.btn-positive {
@@ -43,5 +49,8 @@
 		}
 		&.btn-negative {
 			border-bottom-color: @negative-shadow;
+		}
+		&.btn-highlight {
+			border-bottom-color: @pumpkin;
 		}
 	}

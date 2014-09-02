@@ -34,6 +34,24 @@
 	}
 }
 
+.highlow-up {
+	&:before {
+		content: "";
+		margin-right: 4px;
+		display: inline-block;
+		.sprite(@highlow-up);
+	}
+}
+
+.highlow-down {
+	&:before {
+		content: "";
+		margin-right: 4px;
+		display: inline-block;
+		.sprite(@highlow-down);
+	}
+}
+
 .v-centered-wrapper {
 	display: table;
 	.v-centered {
@@ -41,4 +59,9 @@
 		vertical-align: middle;
 	}
 }
+
+.full-width {
+	width: 100%!important;
+}
+
 

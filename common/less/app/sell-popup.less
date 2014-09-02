@@ -1,0 +1,44 @@
+@trading-platform-sell-popup-width: 324px;
+@trading-platform-sell-popup-details-header-bg: @night;
+@trading-platform-sell-popup-details-header-padding: 14px;
+@trading-platform-sell-popup-details-body-bg: @elephant;
+@trading-platform-sell-popup-instrument-font-size: 18px;
+@trading-platform-sell-popup-rate-font-size: 16px;
+.trading-platform-sell-popup {
+	.trading-platform-popup {
+		width: @trading-platform-sell-popup-width;
+		margin: 0 auto;
+	}
+}
+
+	.trading-platform-sell-popup-details {
+
+		margin-bottom: 21px;
+
+		.panel-header {
+			background-color: @trading-platform-sell-popup-details-header-bg;
+			padding: @trading-platform-sell-popup-details-header-padding;
+		}
+		.panel-body {
+			background-color: @trading-platform-sell-popup-details-body-bg;
+			padding: @trading-platform-sell-popup-details-header-padding;
+		}
+	}
+		.trading-platform-sell-popup-instrument {
+			font-size: @trading-platform-sell-popup-instrument-font-size;
+		}
+		.trading-platform-sell-popup-rate {
+			font-size: @trading-platform-sell-popup-rate-font-size;
+		}
+		.trading-platform-sell-popup-investment {
+			.clearfix();
+			margin-bottom: 10px;
+		}
+		.trading-platform-sell-popup-return-rate {
+			.clearfix();
+			margin-bottom: 10px;
+		}
+		.trading-platform-sell-popup-pay-out {
+			color: @orange-juice;
+			.clearfix();
+		}

@@ -223,6 +223,32 @@ $(function () {
 		$('.expiry-time').html(date.getHours()+":"+date.getMinutes());
 		// $('.time-to-expiry').html(closing);
 	},
+	updateRemainingTime = function () {
+		setTimeout(function(){
+
+			var currentTime = new Date().getTime(),
+				expiryTime = demo.expiryTime;
+
+				remainingTime = expiryTime - currentTime;
+
+				remainingMinute = (remainingTime - remainingTime%60000) / 60000;
+
+				remainingSecond = Math.floor((remainingTime%60000) / 1000);
+
+			if(remainingSecond<0 & remainingMinute==0) {
+				$('.time-to-expiry').html(' expired');
+			} else {
+				$('.time-to-expiry').html(" "+(remainingMinute<10?"0"+remainingMinute:remainingMinute)+":"+(remainingSecond<10?"0"+remainingSecond:remainingSecond));
+
+				console.log('updating times');
+
+
+				updateRemainingTime();
+			}
+
+			
+		},1000);
+	},
 	placeBet = function(bet,point,renderer) {
 		var x = point.plotX,
 			y = point.plotY,
@@ -511,8 +537,8 @@ $(function () {
 				second: '%H:%M',
 				minute: '%H:%M',
 				hour: '%H:%M:%S',
-				day: '%e. %b %H:%M:%S',
-				week: '%e. %b %H:%M:%S'
+				day: '%e. %b %H:%M',
+				week: '%e. %b %H:%M'
 			},
 			plotBands: [{
 				color: 'rgba(77,81,88,0.55)',
@@ -578,7 +604,27 @@ $(function () {
 	$('.bet-high').click(function(){
 		placeBet('high',series.points[series.points.length-2],liveGraph.renderer);
 	});
+	
 	$('.bet-low').click(function(){
 		placeBet('low',series.points[series.points.length-2],liveGraph.renderer);
 	});
+
+	$('.trading-platform-instrument-one-click-toggler').click(function(){
+		var self = $(this),
+		$platform = $('.trading-platform');
+
+		if(self.hasClass('active')) {
+			self.removeClass('active');
+			$platform.removeClass('one-click');
+		} else {
+			self.addClass('active');
+			$platform.addClass('one-click');
+		}
+	});
+
+
+
+	// update remaining time 
+
+	updateRemainingTime();
 });

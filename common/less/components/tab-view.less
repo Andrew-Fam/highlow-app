@@ -3,60 +3,113 @@
 .tab-view {
 	display: block;
 	position: relative;
-}
-	.tab-view-tab-selectors-container {
-		display: table;
+	>.tab-view-tab-selectors-container-wrapper {
 		position: relative;
-		border-collapse: separate;
-	}
-		.tab-view-tab-selectors {
-			display: table-row;
-			padding: 0px;
+		z-index: 1000;
+		> .tab-view-tab-selectors-container {
+			display: table;
 			position: relative;
-		}
-			.tab-view-tab-selector {
-				border-right: 0.27em solid transparent;
-				cursor: pointer;
-				display: table-cell;
-				font-size: @tab-view-selector-font-size;
-				line-height: 1em;
-				min-width: 12.72em;
-				padding: @tab-view-selector-padding;
+			border-collapse: separate;
+		
+			> .tab-view-tab-selectors {
+				display: table-row;
+				padding: 0px;
 				position: relative;
-				text-align: center;
-				vertical-align: middle;
-				&:last-child {
-					border: none;
+			}
+				.tab-view-tab-selector {
+					border-right: 0.27em solid transparent;
+					cursor: pointer;
+					display: table-cell;
+					font-size: @tab-view-selector-font-size;
+					line-height: 1em;
+					min-width: 12.72em;
+					padding: @tab-view-selector-padding;
+					position: relative;
+					text-align: center;
+					vertical-align: middle;
+					&:last-child {
+						border: none;
+					}
+				}
+		}
+	}
+		
+	> .tab-view-body-wrapper {
+		.clearfix();
+		> .tab-view-body {
+			display: block;
+			padding: @tab-view-default-body-padding;
+			position: relative;
+			.clearfix();
+			> .tab-view-panel {
+				.clearfix();
+				.transition(all 0.2s ease);
+				.opacity(00);
+				width: 100%;
+				position: absolute;
+				z-index: -1;
+				&.active {
+					.opacity(100);
+					position: relative;
+					z-index: 100;
 				}
 			}
-	.tab-view-body {
-		display: block;
-		padding: @tab-view-default-body-padding;
+		}
 	}
+}
 
-.tab-view.tab-full-width {
-	.tab-view-tab-selectors-container {
-		width: 100%;
-	}
+.tab-view-tab-selectors-container.tab-full-width {
+	width: 100%;
 }
 
 .tab-view.tab-view-default {
-	.tab-view-tab-selectors-container {
-		background: none;
-	}
-		.tab-view-tab-selectors {
+	> .tab-view-tab-selectors-container-wrapper {
+		> .tab-view-tab-selectors-container {
 			background: none;
-		}
-			.tab-view-tab-selector {
-				background-color: @tab-view-default-selector-bg;
-				color: @tab-view-default-selector-fg;
-				&.active {
-					background-color: @tab-view-default-active-selector-bg;
-					color: @tab-view-default-active-selector-fg;
+		 	.tab-view-tab-selectors {
+				background: none;
+				.tab-view-tab-selector {
+					background-color: @tab-view-default-selector-bg;
+					color: @tab-view-default-selector-fg;
+					&.active {
+						background-color: @tab-view-default-active-selector-bg;
+						color: @tab-view-default-active-selector-fg;
+					}
 				}
 			}
-	.tab-view-body {
-		background-color: @tab-view-default-body-bg;
+		}
+	}
+	
+	> .tab-view-body-wrapper {
+		> .tab-view-body {
+			background-color: @tab-view-default-body-bg;
+		}
+	}
+}
+
+.tab-view.tab-view-alternate {
+	> .tab-view-tab-selectors-container-wrapper {
+		background-color: @charcoal;
+		> .tab-view-tab-selectors-container {
+			background: @charcoal;
+			> .tab-view-tab-selectors {
+				background: none;
+				> .tab-view-tab-selector {
+					background-color: @elephant;
+					color: @light-grey;
+					&.active {
+						background-color: @night;
+						color: white;
+					}
+				}
+			}
+		}
+	}
+		
+	> .tab-view-body-wrapper { 
+		> .tab-view-body {
+			background-color: @night;
+		}
 	}
 }
 
