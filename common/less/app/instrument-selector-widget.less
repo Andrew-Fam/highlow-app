@@ -35,6 +35,7 @@
 	}
 	.instrument-selector-widget-duration-selectors-container{
 		background-color: @instrument-selector-widget-duration-selectors-container-bg;
+		min-height: 59px;
 		padding: @instrument-selector-widget-header-padding;
 		position: relative;
 	}
@@ -61,6 +62,26 @@
 	.instrument-selector-widget-instruments-container {
 		.page-container {
 			// height: 180px;
+		}
+		.slider-fade-left,.slider-fade-right {
+			height: 100%;
+			.opacity(00);
+			.transition(opacity 0.2s ease);
+			position: absolute;
+			top: 0;
+			z-index: 10;
+
+			&.in {
+				.opacity(100);
+			}
+		}
+		.slider-fade-left {
+			.sprite(@slider-fade-left);
+			left: 0;
+		}
+		.slider-fade-right {
+			.sprite(@slider-fade-right);
+			right: 0;
 		}
 	}		
 

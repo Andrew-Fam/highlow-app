@@ -41,6 +41,13 @@
 							}
 						}
 
+						&.investment-type.on-demand {
+							&:before {
+								.inline-icon();
+								.sprite(@on-demand-win);
+							}
+						}
+
 						.investment-sell-btn {
 							&:extend(.btn-negative);
 							color: @investment-sell-btn-win-fg;
@@ -71,7 +78,12 @@
 								.sprite(@spread-lose);
 							}
 						}
-
+						&.investment-type.on-demand {
+							&:before {
+								.inline-icon();
+								.sprite(@on-demand-lose);
+							}
+						}
 					}
 				}
 
@@ -94,6 +106,12 @@
 							&:before {
 								.inline-icon();
 								.sprite(@spread-tie);
+							}
+						}
+						&.investment-type.on-demand {
+							&:before {
+								.inline-icon();
+								.sprite(@on-demand-tie);
 							}
 						}
 
