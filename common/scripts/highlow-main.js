@@ -106,12 +106,27 @@ $(function () {
 		pointX = point.plotX,
 		pointY = point.plotY;
 
+
+		var	highX = pointX+76,
+			highY = pointY-37,
+			lowX = pointX+76,
+			lowY = pointY+22;
+
+		if(highY<5 || lowY>230) {
+			highY = pointY - 7;
+			highX = pointX + 68;
+			lowY = pointY - 7;
+			lowX = pointX + 104;
+		}
+
+
+
 		// now render the 2 buttons
 
-		var high = renderer.image('common/images/graph-up.png',pointX+76,pointY-37, 27, 27);
+		var high = renderer.image('common/images/graph-up.png',highX,highY, 27, 27);
 
 		if(type=="spread") {
-			high = renderer.image('common/images/graph-up-spread.png',pointX+76,pointY-37, 82, 27);
+			high = renderer.image('common/images/graph-up-spread.png',highX,highY, 82, 27);
 		}
 
 		high.attr({
@@ -138,10 +153,10 @@ $(function () {
 
 
 
-		var low = renderer.image('common/images/graph-down.png',pointX+76,pointY+22, 27, 27);
+		var low = renderer.image('common/images/graph-down.png',lowX,lowY, 27, 27);
 
 		if(type=="spread") {
-			low = renderer.image('common/images/graph-down-spread.png',pointX+76,pointY+22, 82, 27);
+			low = renderer.image('common/images/graph-down-spread.png',lowX,lowY, 82, 27);
 		}
 
 		low.attr({
@@ -260,7 +275,6 @@ $(function () {
 							});
 
 							
-
 							winning = true;
 
 						} else if (rate < strike) { // losing
@@ -1440,7 +1454,7 @@ $(function () {
 							stroke: '#2c2f35'
 						}).add();
 
-						self.xAxis[0].setExtremes(onDemand.currentTime-15*60*1000,onDemand.currentTime+3*60*1000,true);
+						self.xAxis[0].setExtremes(onDemand.currentTime-10*60*1000,onDemand.currentTime+3*60*1000,true);
 						
 					  	// set up the updating of the chart every 1 to 2 seconds
 
@@ -1500,7 +1514,7 @@ $(function () {
 								
 								addOnGraphUI(series,ren,'on-demand');
 
-								self.xAxis[0].setExtremes(x-15*60*1000,x+3*60*1000,true);
+								self.xAxis[0].setExtremes(x-10*60*1000,x+3*60*1000,true);
 
 					  			updateRate(y,'on-demand');
 					  			updateBetStatus(y,'on-demand',series, ren);
