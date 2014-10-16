@@ -1,24 +1,130 @@
+@orange-juice: #ffe048;
+@watermelon: #e55858;
+@melon: #68c093;
+
 @message-body-padding: 25px 48px 24px;
+.animated {
+  -webkit-animation-duration: 0.5s;
+          animation-duration: 0.5s;
+  -webkit-animation-fill-mode: both;
+          animation-fill-mode: both;
+}
+@-webkit-keyframes shake {
+  0%, 100% {
+    -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+  }
+
+  40%, 80% {
+    -webkit-transform: translate3d(-5px, 0, 0);
+            transform: translate3d(-5px, 0, 0);
+  }
+
+  20%, 60% {
+    -webkit-transform: translate3d(5px, 0, 0);
+            transform: translate3d(5px, 0, 0);
+  }
+}
+
+@keyframes shake {
+  0%, 100% {
+    -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+  }
+
+  40%, 80% {
+    -webkit-transform: translate3d(-5px, 0, 0);
+            transform: translate3d(-5px, 0, 0);
+  }
+
+  20%, 60% {
+    -webkit-transform: translate3d(5px, 0, 0);
+            transform: translate3d(5px, 0, 0);
+  }
+}
+
+.shake {
+  -webkit-animation-name: shake;
+          animation-name: shake;
+}
+
 .message-wrapper {
 
 	.clearfix();
 
-	padding: @message-body-padding;
-
+	height: 42px;
+	line-height: 42px;
+	margin-top: -42px;
+	text-align: center;
+	position: relative;
+	.opacity(00);
+	transition: all 0.2s cubic-bezier(.59,0,.25,1.47);
+	-webkit-transition: all 0.2s cubic-bezier(.59,0,.25,1);
+	-webkit-transition: all 0.2s cubic-bezier(.59,0,.25,1.47);
 	.message {
-		display: block;
-		float: left;
-		font-size: 16px;
+		display: inline-block;
+		font-size: 14px;
+		font-weight: 600;
+		&:before {
+			content: "";
+			display: inline-block;
+			margin-right: 10px;
+		}
 	}
 	.close {
-		float: right;
+		position: absolute;
+		right: 0px;
+		top: 0px;
+		cursor: pointer;
 		.block-icon();
-		.sprite(@close);
 	}
 
-	&.error {
-		background-color: @tomato;
-		border: 1px solid @ripped-tomato;
-		color: @ink;
+	&.display {
+		margin-top: 0;
+		.opacity(100);
+	}
+
+	&.fail {
+		background-color: @watermelon;
+		// border: 1px solid @ripped-tomato;
+		color: white;
+		&:extend(.animated);
+		&:extend(.shake);
+		.close {
+			.sprite(@error-close);
+		}
+		.message {
+			&:before {
+				.sprite(@error-icon);
+			}
+		}
+	}
+	&.warning {
+		background-color: @orange-juice;
+		// border: 1px solid @ripped-tomato;
+		color: @night;
+		&:extend(.animated);
+		&:extend(.shake);
+		.close {
+			.sprite(@warning-close);
+		}
+		.message {
+			&:before {
+				.sprite(@warning-icon);
+			}
+		}
+	}
+	&.success {
+		background-color: @melon;
+		// border: 1px solid @ripped-tomato;
+		color: white;
+		.close {
+			.sprite(@success-close);
+		}
+		.message {
+			&:before {
+				.sprite(@success-icon);
+			}
+		}
 	}
 }

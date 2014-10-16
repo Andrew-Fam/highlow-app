@@ -1,8 +1,7 @@
 $(function () {
 
-
 	var labelStyle = {
-		fontFamily: '"Ek Mukta","Helvetica Neue",Arial, sans-serif',
+		fontFamily: '"Open Sans","Helvetica Neue",Helvetica, Arial, sans-serif',
 		fontSize: '10px',
 		color: 'white'
 	},
@@ -117,6 +116,10 @@ $(function () {
 			highX = pointX + 68;
 			lowY = pointY - 7;
 			lowX = pointX + 104;
+
+			if(type=="spread") {
+				lowX = lowX + 55;
+			}
 		}
 
 
@@ -183,7 +186,7 @@ $(function () {
 
 
 		if(type=="spread") {
-			var highRate = renderer.text('<div>'+(point.y+0.005).toFixed(3)+'</div>',pointX+76+27,pointY-18);
+			var highRate = renderer.text('<div>'+(point.y+0.005).toFixed(3)+'</div>',highX+27,highY+19);
 			highRate.on('click', function () {
 				confirmBet('high',point,type);
 				//placeBet('low',point,renderer);
@@ -199,7 +202,7 @@ $(function () {
 			});
 			highRate.add();
 
-			var lowRate = renderer.text('<div>'+(point.y-0.005).toFixed(3)+'</div>',pointX+76+27,pointY+41);
+			var lowRate = renderer.text('<div>'+(point.y-0.005).toFixed(3)+'</div>',lowX+27,lowY+19);
 			lowRate.on('click', function () {
 				confirmBet('low',point,type);
 				//placeBet('low',point,renderer);
@@ -220,13 +223,8 @@ $(function () {
 
 			symbols[type].lowRate = lowRate;
 		}
-
-
-
 	},
 	updateBetStatus = function (rate,type,series, renderer) {
-
-
 		if(bets[type]) {
 			for (var i = 0; i < bets[type].length; i++) {
 
@@ -425,8 +423,9 @@ $(function () {
 					
 						var x = point.plotX;
 
+						labelX = x+213;
 
-						label = renderer.rect(x+163,43,17,177,0);
+						label = renderer.rect(labelX,43,17,177,0);
 
 						label.attr({
 							fill: '#f8f7f5',
@@ -437,7 +436,7 @@ $(function () {
 
 						symbols[type][finishLabelId] = label;
 
-						var textX = x + 168,
+						var textX = labelX+5,
 							textY = 132;
 
 						if(symbols[type][finishTextId]==undefined) {
@@ -475,6 +474,10 @@ $(function () {
 								'transform': 'translate(0,0) rotate(90 '+textX+' '+textY+')'
 							});
 						}
+
+
+
+
 					} else {
 						if(symbols[type][finishTextId] != undefined) {
 							
@@ -483,7 +486,14 @@ $(function () {
 						}
 					}
 					
+
 				}
+
+				$('#on-demand-graph .highcharts-markers.highcharts-tracker').each(function(){
+					var self = $(this),
+					svg = $('#on-demand-graph svg');
+					$(svg).append(self);
+				});
 			}
 		}		
 	},
@@ -491,11 +501,7 @@ $(function () {
 
 		var $currentRate = $('.current-rate'+(type?"-"+type:""));
 
-
-
-
 		var lastRate = $currentRate.html();
-
 
 		if(lastRate > rate) {
 			$currentRate.removeClass('highlow-low highlow-high');
@@ -507,10 +513,7 @@ $(function () {
 			$currentRate.addClass('highlow-high');
 		}
 
-
-
 		$currentRate.html(" "+rate.toFixed(3));
-
 
 		if(type=="spread") {
 			var $currentRatePlus = $('.current-rate-spread-plus');
@@ -562,13 +565,9 @@ $(function () {
 		y = point.plotY,
 		value = point.y;
 
-
-
-
 		if(!bets[type]) {
 			bets[type] = [];
 		}
-
 
 		if(bet!="high" && bet!="low") {
 			displayError("Please select an option (High or Low)!");
@@ -761,9 +760,8 @@ $(function () {
 		displaySuccess("Investment successfully placed!");
 	},
 	triggerSell = function(type) {
-
+		console.log('hahahah '+ type);
 		$('.trading-platform-sell-popup'+'.'+type).removeClass('concealed');
-
 
 		
 	},
@@ -780,6 +778,11 @@ $(function () {
 
 		return Math.floor(Math.random() * (to-from+1)+from)/factor;
 	},
+	selectInstrument = function(element){
+
+		console.log("selectInstrument to be implemented");
+
+	}
 	highlow = {},
 	spread = {},
 	onDemand = {};
@@ -859,7 +862,7 @@ $(function () {
 				marginLeft: 50,
 				renderTo: 'container',
 				style : {
-					fontFamily: '"Ek Mukta","Helvetica Neue",Arial, sans-serif',
+					fontFamily: '"Open Sans","Helvetica Neue",Helvetica, Arial, sans-serif',
 					fontSize: '10px',
 					color: 'white',
 					'overflow' : 'visible'
@@ -930,6 +933,7 @@ $(function () {
 					  						enabled: false
 					  					}
 					  				},
+					  				zIndex: 10
 					  			});
 
 
@@ -1074,7 +1078,7 @@ $(function () {
 		updateRate(series.points[series.points.length-1].y,'highlow');
 		addOnGraphUI(series,highlowGraph.renderer,'highlow');
 
-		$('.trading-platform-investments').on('click','.investment-sell-btn.highlow',function(){
+		$('.trading-platform').on('click','.investment-sell-btn.highlow',function(){
 			triggerSell('highlow');
 		});
 
@@ -1143,7 +1147,7 @@ $(function () {
 				marginLeft: 50,
 				renderTo: 'container',
 				style : {
-					fontFamily: '"Ek Mukta","Helvetica Neue",Arial, sans-serif',
+					fontFamily: '"Open Sans","Helvetica Neue",Helvetica, Arial, sans-serif',
 					fontSize: '10px',
 					color: 'white',
 					overflow: 'visible'
@@ -1216,6 +1220,7 @@ $(function () {
 					  						enabled: false
 					  					}
 					  				},
+					  				zIndex: 10
 					  			});
 
 
@@ -1360,7 +1365,7 @@ $(function () {
 		addOnGraphUI(spreadSeries,spreadGraph.renderer,'spread');
 
 
-		$('.trading-platform-investments').on('click','.investment-sell-btn.spread',function(){
+		$('.trading-platform').on('click','.investment-sell-btn.spread',function(){
 			triggerSell('spread');
 		});
 
@@ -1431,7 +1436,7 @@ $(function () {
 				marginLeft: 50,
 				renderTo: 'container',
 				style : {
-					fontFamily: '"Ek Mukta","Helvetica Neue",Arial, sans-serif',
+					fontFamily: '"Open Sans","Helvetica Neue",Helvetica, Arial, sans-serif',
 					fontSize: '10px',
 					color: 'white',
 					overflow: 'visible'
@@ -1508,7 +1513,8 @@ $(function () {
 					  					hover: {
 					  						enabled: false
 					  					}
-					  				}
+					  				},
+					  				zIndex: 10
 					  			});
 								
 								
@@ -1532,6 +1538,12 @@ $(function () {
 						//start adding point with last element from the highlow data as seed value
 
 						addPoint(onDemand.data[onDemand.data.length-1][1]);
+
+
+						// make sure the graph marker stays on top
+
+						
+						
 					}
 				}
 			},credits: {
@@ -1698,6 +1710,7 @@ $(function () {
 	$('.trading-platform-popup-wrapper').on('click','.close', function(event) {
 		$(event.target).closest('.trading-platform-popup-wrapper').addClass('concealed');
 	});
+	
 	$('.trading-platform-popup-wrapper').on('click',function(event) {
 		if (!$(event.target).closest('.trading-platform-popup-content-inner-wrap').length) {
 			$(this).addClass('concealed');
@@ -1830,4 +1843,101 @@ $(function () {
 	// update remaining time 
 
 	updateRemainingTime();
+
+
+	var systemMessages = {
+		"fail" : [
+			"Invalid Username or Password",
+			"Investment error. Please select Up or Down",
+			"Investment error. Please insert correct investment amount",
+			"Sell trade action failed",
+			"Add trade action failed",
+			"Invalid trade action ID",
+			"Trade rejected due to stale rate",
+			"Sell Price is invalid"
+		],
+
+		"success" : [
+			"Sell trade action completed successfully",
+			"Success"
+		],
+
+		"warning" : [
+			"General error occurred, please contact a system administrator",
+			"Interval between trades is not enough",
+			"Not Enough Money",
+			"Investment amount is out of the allowed range",
+			"Unable to process request, trade rate unavailable",
+			"Min Margin Time to Allow Trade",
+			"Exceeded the maximum loss per day allowed",
+			"General server error",
+			"Your account is currently inactive",
+			"Please login",
+			"Exceed Maximum Trade Actions",
+			"Exceed Max Trade Volume",
+			"Exceeded Maximum Trader Exposure"
+		]
+	},
+	$messageTriggers = $('.message-triggers .wrapper');
+
+
+	for (var type in systemMessages) {
+	    if (systemMessages.hasOwnProperty(type)) {
+	        var typeMarkup = $("<div class='message-trigger-type "+type+"'><div class='message-trigger-type-title'>"+type+"</div></div>");
+	      	var typeGroup = systemMessages[type];
+	        for(var i=0; i< typeGroup.length;i++) {
+	        	var message = typeGroup[i].length<=35?typeGroup[i]:(typeGroup[i].substr(0,34)+'&hellip;');
+	        	typeMarkup.append($("<div class='message-trigger' data-type='"+type+"' data-message='"+typeGroup[i]+"'>"+message+"</div>"));
+	        }
+
+	        $messageTriggers.append(typeMarkup);
+	    }
+	}
+
+
+	$messageTriggers.on('click','.message-trigger', function(){
+
+		var type= $(this).data('type'),
+		message= $(this).data('message');
+
+
+
+		$('.message-wrapper')
+			.removeClass('display')
+			.removeClass('fail')
+			.removeClass('success')
+			.removeClass('alert')
+			.removeClass('generic')
+			.removeClass('warning');
+		setTimeout(function(){
+
+			$('.demo-message .message').html(message);
+			$('.demo-message').addClass(type).addClass('display');	
+		},100);
+
+	});
+
+	$('.message-wrapper .close').click(function(){
+		$('.message-wrapper').removeClass('display').removeClass('fail').removeClass('success').removeClass('alert').removeClass('generic').removeClass('warning');
+	});
+
+	$('.message-triggers').on('click','.toggle',function(){
+		if($('.message-triggers').hasClass('tucked-away')) {
+			$('.message-triggers').removeClass('tucked-away');
+		} else {
+			$('.message-triggers').addClass('tucked-away');
+		}
+	});
+
+
+	// handle instrument selector click
+
+	$('.instrument-panel').click(function(e){
+		var target = $(e.target);
+		$(target.closest('.instrument-selector-widget-instruments-container').find('.instrument-panel-active')).removeClass('instrument-panel-active');
+		$(this).addClass('instrument-panel-active');
+		$('.instrument-panel-active');
+		selectInstrument($(this));
+	});
+
 });

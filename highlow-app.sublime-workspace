@@ -1,0 +1,958 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"text",
+				"text-transform"
+			],
+			[
+				"system",
+				"systemMessages"
+			],
+			[
+				"inline",
+				"inline-block"
+			],
+			[
+				"inlin",
+				"inline-block"
+			],
+			[
+				"over",
+				"overflow"
+			],
+			[
+				"marg",
+				"margin-left"
+			],
+			[
+				"bac",
+				"background"
+			],
+			[
+				"tabe",
+				"table-row"
+			],
+			[
+				"click",
+				"clickHandler"
+			],
+			[
+				"onDemand",
+				"onDemandBetOnFocus"
+			],
+			[
+				"ondeMan",
+				"onDemandBetOnFocus"
+			],
+			[
+				"ondemand",
+				"onDemandBetOnFocus"
+			],
+			[
+				"get",
+				"getMinutes"
+			],
+			[
+				"render",
+				"renderer"
+			],
+			[
+				"ex",
+				"expiryTime"
+			],
+			[
+				"exi",
+				"expiry"
+			],
+			[
+				"cu",
+				"currentTime"
+			],
+			[
+				"axi",
+				"xAxis"
+			],
+			[
+				"high",
+				"highlow"
+			],
+			[
+				"syst",
+				"systemMessenger"
+			],
+			[
+				"sys",
+				"systemMessenger"
+			],
+			[
+				"question-pr",
+				"question-printable-padding"
+			],
+			[
+				"pad",
+				"padding"
+			],
+			[
+				"font-",
+				"font-style"
+			],
+			[
+				"collectio",
+				"collectionResult"
+			],
+			[
+				"frame",
+				"framesLoaded"
+			],
+			[
+				"spread",
+				"spread-range-main-control-font-size"
+			],
+			[
+				"t",
+				"top"
+			],
+			[
+				"trading-",
+				"trading-platform-popup-wrapper"
+			],
+			[
+				"margin",
+				"margin-bottom"
+			],
+			[
+				"trading-platform",
+				"trading-platform-sell-popup-details-header-bg"
+			],
+			[
+				"trading-plat",
+				"trading-platform-popup-body"
+			],
+			[
+				"trading-platform-popup",
+				"trading-platform-popup-header-font-size"
+			],
+			[
+				"trading",
+				"trading-platform-popup-header-color"
+			],
+			[
+				"overflow",
+				"overflow-y"
+			],
+			[
+				"rotta-",
+				"rotate-transition-duration"
+			],
+			[
+				"rotated-ra",
+				"rotate-box-base-border-radius"
+			],
+			[
+				"rotate",
+				"rotate-box-space"
+			],
+			[
+				"rota",
+				"rotate-box-width"
+			],
+			[
+				"mobile",
+				"mobile"
+			],
+			[
+				"attr",
+				"attribute"
+			],
+			[
+				"select",
+				"selectedType"
+			],
+			[
+				"currentField",
+				"currentFieldGeneratedHTML"
+			],
+			[
+				"field",
+				"fieldBuilder"
+			],
+			[
+				"outer",
+				"outerHeight"
+			],
+			[
+				"oute",
+				"outerHeight"
+			],
+			[
+				"out",
+				"outerHeight"
+			],
+			[
+				"padd",
+				"padding-left"
+			],
+			[
+				"ease",
+				"easeInOutQuad"
+			],
+			[
+				"account-",
+				"account-menu-bar"
+			],
+			[
+				"backg",
+				"background-color"
+			],
+			[
+				"stick",
+				"sticky-strip"
+			],
+			[
+				"add",
+				"addHandler"
+			],
+			[
+				"first",
+				"first-child"
+			],
+			[
+				"mar",
+				"margin-left"
+			],
+			[
+				"back",
+				"background"
+			],
+			[
+				"background",
+				"background-color"
+			],
+			[
+				"list-",
+				"list-style-type"
+			],
+			[
+				"hover",
+				"hover-lighten-medium"
+			],
+			[
+				"full",
+				"fullHeightHeroInit"
+			],
+			[
+				"resize",
+				"resizeHandler"
+			],
+			[
+				"nav-",
+				"navbar-default"
+			],
+			[
+				"le",
+				"letter-spacing"
+			],
+			[
+				"error-me",
+				"error-message-panel"
+			],
+			[
+				"marin-",
+				"margin-bottom"
+			],
+			[
+				"kor",
+				"kordii-shadow"
+			],
+			[
+				"kor-",
+				"kordii-background"
+			],
+			[
+				"kord",
+				"kordii-success"
+			],
+			[
+				"kordii-",
+				"kordii-text"
+			],
+			[
+				"ko",
+				"kordii-control"
+			],
+			[
+				"string",
+				"string"
+			],
+			[
+				"blac",
+				"blackKeyTemplate"
+			],
+			[
+				"max",
+				"max-height"
+			],
+			[
+				"tran",
+				"transparent"
+			],
+			[
+				"di",
+				"display"
+			],
+			[
+				"list",
+				"list-style-type"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "common/scripts/highlow-main.js",
+			"settings":
+			{
+				"buffer_size": 44202,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "templates/index.liquid",
+			"settings":
+			{
+				"buffer_size": 100800,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "common/less/demo.less",
+			"settings":
+			{
+				"buffer_size": 1363,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "common/less/components/message.less",
+			"settings":
+			{
+				"buffer_size": 2870,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "common/less/spritesheet.less",
+			"settings":
+			{
+				"buffer_size": 19344,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 47.0,
+		"selected_items":
+		[
+			[
+				"instal",
+				"Package Control: Install Package"
+			],
+			[
+				"INstal",
+				"Package Control: Install Package"
+			],
+			[
+				"INsta",
+				"Package Control: Install Package"
+			],
+			[
+				"package",
+				"Preferences: Browse Packages"
+			]
+		],
+		"width": 449.0
+	},
+	"console":
+	{
+		"height": 125.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/Users/apham/development/highlow/affiliate-project/assets/scripts/highlow-affiliate.js",
+		"/Users/apham/development/highlow/affiliate-project/assets/less/jp/hero.less",
+		"/Users/apham/development/highlow/affiliate-project/html/jp/index.html",
+		"/Users/apham/development/highlow/affiliate-project/assets/less/jp.less",
+		"/Users/apham/development/highlow/affiliate-project/assets/less/jp/zoomed-in-features.less",
+		"/Users/apham/development/highlow/affiliate-project/assets/less/jp/flow-explain.less",
+		"/Users/apham/development/highlow/affiliate-project/html/jp/faq.html",
+		"/Users/apham/development/highlow/affiliate-project/html/forgot-password.html",
+		"/Users/apham/development/highlow/affiliate-project/html/signin.html",
+		"/Users/apham/development/highlow/affiliate-project/assets/less/affiliate.less",
+		"/Users/apham/development/highlow/affiliate-project/html/faq.html",
+		"/Users/apham/development/highlow/affiliate-project/assets/less/affiliate/utilities.less",
+		"/Users/apham/development/highlow/affiliate-project/assets/less/affiliate/navbar.less",
+		"/Users/apham/development/highlow/affiliate-project/assets/less/affiliate/header.less",
+		"/Users/apham/development/highlow/affiliate-project/assets/less/jp/nav.less",
+		"/Users/apham/development/highlow/affiliate-project/assets/less/jp/fcs.less",
+		"/Users/apham/development/highlow/affiliate-project/assets/less/affiliate/hero.less",
+		"/Users/apham/development/highlow/affiliate-project/assets/less/affiliate/flow-explain.less",
+		"/Users/apham/development/highlow/affiliate-project/html/index.html",
+		"/Users/apham/development/highlow/affiliate-project/assets/less/affiliate/zoomed-in-feature.less",
+		"/Users/apham/development/highlow/affiliate-project/assets/less/affiliate/dark-cta-strip.less",
+		"/Users/apham/development/highlow/affiliate-project/assets/less/affiliate/footer.less",
+		"/Users/apham/development/highlow/affiliate-project/html/signup.html",
+		"/Users/apham/development/highlow/affiliate-project/html/contact.html",
+		"/Users/apham/development/highlow/affiliate-project/assets/less/highlow/hero.less",
+		"/Users/apham/development/highlow/affiliate-project/assets/less/highlow/body.less",
+		"/Users/apham/development/highlow/affiliate-project/assets/less/highlow/header.less",
+		"/Users/apham/development/highlow/affiliate-project/html/jp/signup.html",
+		"/Users/apham/development/highlow/affiliate-project/assets/less/highlow/highlow.less",
+		"/Users/apham/development/highlow/affiliate-project/assets/less/highlow/expandable.less",
+		"/Users/apham/development/highlow/affiliate-project/assets/less/affiliate/expandable.less",
+		"/Users/apham/development/highlow/affiliate-project/html/forgot-password",
+		"/Users/apham/development/highlow/affiliate-project/html/jp/contact.html",
+		"/Users/apham/development/highlow/affiliate-project/assets/less/jp/form.less",
+		"/Users/apham/development/highlow/affiliate-project/html/jp/signin.html",
+		"/Users/apham/development/highlow/affiliate-project/assets/less/jp/typography.less",
+		"/Users/apham/development/highlow/affiliate-project/assets/less/jp/orange-header-panel.less",
+		"/Users/apham/development/highlow/affiliate-project/build/faq.html",
+		"/Users/apham/development/Project Xaam/examixer/packages/examixer/server/routes/examixer.js",
+		"/Users/apham/development/highlow/affiliate-project/assets/less/main.less",
+		"/Users/apham/development/highlow/affiliate-project/assets/less/highlow/variables.less",
+		"/Users/apham/development/highlow/affiliate-project/build/signup.html",
+		"/Users/apham/development/highlow/affiliate-project/assets/less/affiliate/testimonials.less",
+		"/Users/apham/development/highlow/affiliate-project/Gruntfile.js",
+		"/Users/apham/development/highlow/affiliate-project/assets/less/highlow/footer.less",
+		"/Users/apham/development/highlow/affiliate-project/assets/less/affiliate/contact.less",
+		"/Users/apham/development/highlow/affiliate-project/assets/less/highlow/btn.less",
+		"/Users/apham/development/highlow/affiliate-project/assets/less/affiliate/sign-up.less",
+		"/Users/apham/development/highlow/affiliate-project/assets/less/ie8.less",
+		"/Users/apham/development/highlow/affiliate-project/assets/less/highlow/wizard.less",
+		"/Users/apham/development/highlow/affiliate-project/assets/less/affiliate/full-width-pseudo-table.less",
+		"/Users/apham/development/highlow/affiliate-project/assets/less/highlow/blog-list.less",
+		"/Users/apham/Downloads/animate (1).css",
+		"/Users/apham/development/highlow/affiliate-project/build/index.html",
+		"/Users/apham/development/highlow/affiliate/public/less/highlow.less",
+		"/Users/apham/development/highlow/affiliate-project/assets/less/highlow/pagination.less",
+		"/Users/apham/development/highlow/affiliate-project/assets/less/highlow/icon.less",
+		"/Users/apham/development/highlow/affiliate-project/build/contact.html",
+		"/Users/apham/development/highlow/affiliate/signin.html",
+		"/Users/apham/development/highlow/affiliate/signup.html",
+		"/Users/apham/development/highlow/affiliate-project/build/assets/scripts/highlow-affiliate.js",
+		"/Users/apham/development/highlow/affiliate-project/assets/less/highlow/app-download.less",
+		"/Users/apham/development/highlow/affiliate-project/assets/less/highlow/kapitall-strip.less",
+		"/Users/apham/development/highlow/affiliate-project/assets/less/highlow/feature-row.less",
+		"/Users/apham/development/highlow/affiliate-project/assets/less/highlow/navbar.less",
+		"/Users/apham/development/highlow/affiliate-project/assets/less/highlow/modal.less",
+		"/Users/apham/development/highlow/affiliate-project/assets/less/highlow/utilities.less",
+		"/Users/apham/development/highlow/affiliate-project/assets/less/highlow/faq.less",
+		"/Users/apham/development/highlow/affiliate-project/assets/less/highlow/zoomed-in-features.less",
+		"/Users/apham/development/highlow/affiliate-project/assets/less/highlow/parallax.less",
+		"/Users/apham/development/highlow/affiliate-project/assets/less/highlow/block-cta.less",
+		"/Users/apham/development/highlow/affiliate-project/assets/less/highlow/panel.less",
+		"/Users/apham/development/highlow/affiliate-project/assets/less/highlow/sticky-strip.less",
+		"/Users/apham/development/highlow/affiliate-project/assets/less/highlow/cta-strip.less",
+		"/Users/apham/development/highlow/affiliate-project/assets/less/highlow/tab.less",
+		"/Users/apham/development/highlow/affiliate-project/assets/less/highlow/table.less",
+		"/Users/apham/development/highlow/affiliate-project/assets/less/highlow/std-content.less",
+		"/Users/apham/development/highlow/affiliate-project/assets/less/highlow/headed-list.less",
+		"/Users/apham/development/highlow/affiliate-project/assets/less/highlow/std-content.kess",
+		"/Users/apham/development/highlow/affiliate-project/assets/less/highlow/typography.less",
+		"/Users/apham/development/highlow/affiliate-project/assets/less/highlow/form.less",
+		"/Users/apham/development/highlow/affiliate-project/assets/less/highlow/anchor-link.less",
+		"/Users/apham/development/highlow/affiliate-project/bower.json",
+		"/Users/apham/development/highlow/affiliate-project/assets/less/highlow/mixins.less",
+		"/Users/apham/development/highlow/affiliate/affiliate/less/buttons.less",
+		"/Users/apham/development/highlow/highlow-app/templates/index.liquid",
+		"/Users/apham/development/highlow/highlow-app/common/less/app/instrument-selector-widget.less",
+		"/Users/apham/development/highlow/highlow-app/common/scripts/highlow-main.js",
+		"/Users/apham/development/highlow/highlow-app/common/less/app/trading-app.less",
+		"/Users/apham/development/highlow/highlow-app/common/less/app/investment-table.less",
+		"/Users/apham/development/highlow/highlow-app/common/less/main.less",
+		"/Users/apham/development/highlow/highlow-app/common/less/demo.less",
+		"/Users/apham/development/highlow/highlow-app/common/less/spritesheet.less",
+		"/Users/apham/development/highlow/highlow-app/common/less/app/live-graph.less",
+		"/Users/apham/development/highlow/highlow-app/common/less/base/mixins.less",
+		"/Users/apham/development/highlow/highlow-app/common/less/base/rotate.less",
+		"/Users/apham/development/highlow/highlow-app/common/less/app/invest-popup.less",
+		"/Users/apham/development/Project Xaam/examixer/packages/system/public/assets/css/less/paper.less",
+		"/Users/apham/development/Project Xaam/examixer/packages/system/public/assets/css/less/btn.less",
+		"/Users/apham/development/Project Xaam/examixer/packages/system/public/init.js",
+		"/Users/apham/development/Project Xaam/examixer/config/assets.json",
+		"/Users/apham/development/Project Xaam/examixer/packages/system/public/assets/css/less/common.less",
+		"/Users/apham/development/Project Xaam/examixer/packages/system/public/assets/css/less/list.less",
+		"/Users/apham/development/Project Xaam/examixer/packages/system/public/assets/css/less/mixin.less",
+		"/Users/apham/development/Project Xaam/examixer/packages/system/public/assets/css/less/grab-able.less",
+		"/Users/apham/development/Project Xaam/examixer/bower_components/bootstrap/less/variables.less",
+		"/Users/apham/development/Project Xaam/examixer/packages/system/public/assets/css/less/full-screen.less",
+		"/Users/apham/development/Project Xaam/examixer/packages/system/public/assets/css/less/app.less",
+		"/Users/apham/development/Project Xaam/examixer/bower_components/angular-dragdrop/draganddrop.js",
+		"/Users/apham/development/Project Xaam/examixer/packages/system/public/controllers/index.js",
+		"/Users/apham/development/Project Xaam/examixer/packages/system/public/assets/css/less/form.less",
+		"/Users/apham/development/Project Xaam/examixer/packages/system/public/services/menus.js",
+		"/Users/apham/development/Project Xaam/examixer/packages/system/public/views/index.html",
+		"/Users/apham/development/Project Xaam/examixer/packages/system/public/assets/css/less/variables.less",
+		"/Users/apham/development/Project Xaam/examixer/packages/system/server/views/includes/head.html",
+		"/Users/apham/development/Project Xaam/examixer/packages/system/public/views/header.html",
+		"/Users/apham/development/Project Xaam/examixer/packages/system/server/views/layouts/default.html",
+		"/Users/apham/development/Project Xaam/examixer/data/seed/questions.json",
+		"/Users/apham/development/Project Xaam/examixer/packages/questions/server/models/questions.js",
+		"/Users/apham/development/Project Xaam/examixer/packages/questions/server/controllers/questions.js",
+		"/Users/apham/development/Project Xaam/examixer/packages/questions/server/routes/questions.js",
+		"/Users/apham/development/Project Xaam/examixer/config/env/development.js",
+		"/Users/apham/development/Project Xaam/examixer/Gruntfile.js",
+		"/Users/apham/development/Project Xaam/examixer/packages/system/public/assets/css/common.css",
+		"/Users/apham/development/Project Xaam/examixer/packages/examixer/server/config/assets.json",
+		"/Users/apham/development/Project Xaam/examixer/packages/articles/server/routes/articles.js",
+		"/Users/apham/development/Project Xaam/examixer/packages/system/server/views/index.html",
+		"/Users/apham/development/Project Xaam/examixer/packages/system/public/routes/system.js"
+	],
+	"find":
+	{
+		"height": 35.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+			"/Users/apham/development/highlow/affiliate-project/assets/less/highlow",
+			"/Users/apham/development/highlow/affiliate-project/assets/less/affiliate",
+			"/Users/apham/development/Project Xaam/examixer",
+			"/Users/apham/development/project Isolate/routes",
+			"/Users/apham/development/Kordii-sails"
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": true,
+		"find_history":
+		[
+			"title",
+			"form-signin",
+			"href=\"asse",
+			"src=\"",
+			"hero-content",
+			"loaded",
+			".splash",
+			".spash",
+			".splash",
+			".plash",
+			"expandable",
+			"mac",
+			"、",
+			"。",
+			"、",
+			"/assets",
+			"username",
+			"assets",
+			"f08461",
+			"tfn",
+			"a",
+			"kapitall",
+			"resize",
+			"/assets",
+			"assets",
+			"fullHeight",
+			"last-child",
+			"first-child",
+			"error-message",
+			"public/js",
+			"waitForWeb",
+			"#ee7045",
+			"animated",
+			"ee7045",
+			"btn",
+			"returnToMainPage",
+			"margin-top",
+			"public/js/",
+			"href=\"affiliate",
+			"src=\"affiliate",
+			"href=\"affiliate",
+			"public/js/",
+			"href=\"affiliate",
+			"src=\"affiliate",
+			"\"affiliate",
+			"public/js/",
+			"\"affiliate",
+			"public/js/",
+			"\"affiliate",
+			"public/js",
+			"f08461",
+			"body {",
+			"jq-ui-bootstrap",
+			"\"@bootstrap-path",
+			"on-demand",
+			"ondemand",
+			"trading-platform-investments-list",
+			"append(",
+			"console.log",
+			"14",
+			"bet.finishTextId",
+			"on('click",
+			"destroy",
+			"expireLine",
+			"updateBetStatus",
+			"addBettingButtons",
+			"slide",
+			"spread",
+			"selected",
+			"bet-high.spread",
+			"displayError",
+			"displaySuccess",
+			"bounceIn",
+			"opacity",
+			"onDragEnter",
+			"shadow",
+			"box-shadow",
+			"margin",
+			"sessionCollection",
+			"db",
+			"article",
+			"articles",
+			"Article",
+			"article",
+			"Article",
+			"aggregated.js",
+			"module",
+			"less",
+			"\"",
+			"@media",
+			";\n",
+			"type",
+			"type-calendar",
+			"\"",
+			"frames",
+			"resource",
+			"margin-left 0.2s ease {{dot.delay}}ms,",
+			"left 0.2",
+			"placeBet",
+			"direction",
+			"placeBEt",
+			"addClass('concealed",
+			"sell-popup",
+			"index",
+			"triggerSell",
+			"investment-sell-btn",
+			"updateBetStatus",
+			"createBetEntry",
+			"console.log",
+			"instrument-selector-widget-instruments-container",
+			"instrument",
+			"createBetEntry",
+			"placeBet",
+			"popup",
+			"placebet(",
+			"direction",
+			"highlow",
+			"placeBet",
+			"updateBetStatus",
+			"placeBet",
+			"updateBetStatus",
+			"placeBet",
+			"INVEST</div",
+			"trading-platform-main-controls-place-bet",
+			"confirmBet",
+			"addBettingButton",
+			"trading-platform-main-controls-select-direction",
+			"margin-bottom: 3px"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"src=\"../asse",
+			"src=\"../",
+			"<span class=\"punct\">、</span>",
+			"<span class=\"punct\">。</span>",
+			"<span class=\"punct\">、</span>",
+			"../assets",
+			"/assets",
+			"",
+			"assets/scripts",
+			"@orange-peach",
+			"assets/scripts/",
+			"href=\"assets/affiliate",
+			"src=\"assets/affiliate",
+			"href=\"assets/affiliate",
+			"assets/scripts/",
+			"href=\"assets/affiliate",
+			"src=\"assets/affiliate",
+			"\"assets/affiliate",
+			"assets/scripts/",
+			"\"assets/affiliate",
+			"assets/scripts/",
+			"\"assets/affiliate",
+			"assets/scripts",
+			"\"@{bootstrap-path}",
+			"addOnGraphUI",
+			"question",
+			"questions",
+			"Question",
+			"question",
+			"Question",
+			"'",
+			"@med",
+			"'",
+			"margin-left 0.2s ease {{dot.delay}}ms, opacity 0.2s ease {{dot.delay}}ms,",
+			"margin-left 0.2",
+			"current-rate-highlow",
+			"current-rate-spread",
+			"highlow",
+			"invest-popup",
+			"\"fill-rule\"",
+			"\"clip-rule\"",
+			"svg(",
+			"circle(",
+			"rect(",
+			"\",",
+			")",
+			"path(",
+			")",
+			"\",id",
+			"\",s",
+			")",
+			"\",d",
+			")",
+			"\",s",
+			"\",d",
+			"path(",
+			"@rotate-box-blur",
+			"../../bower_components/bootstrap/less/",
+			"eje_winners_yes",
+			"eje31",
+			"Budapest",
+			"July",
+			"<small>\n								<strong>27",
+			"2014</strong>\n							</small>",
+			"<small>\n								<strong>27",
+			"<small>\n								<strong>",
+			"small",
+			"blog-item-wrapper",
+			"@kerb",
+			"@fade-blue;",
+			"@fade-blue",
+			""
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 4,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "common/scripts/highlow-main.js",
+					"settings":
+					{
+						"buffer_size": 44202,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								43780,
+								43780
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 32304.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "templates/index.liquid",
+					"settings":
+					{
+						"buffer_size": 100800,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								100476,
+								100476
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Liquid/Syntaxes/HTML Liquid.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 44850.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "common/less/demo.less",
+					"settings":
+					{
+						"buffer_size": 1363,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								973,
+								973
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/LESS/LESS.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 654.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "common/less/components/message.less",
+					"settings":
+					{
+						"buffer_size": 2870,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2323,
+								2323
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/LESS/LESS.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 1857.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "common/less/spritesheet.less",
+					"settings":
+					{
+						"buffer_size": 19344,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								843,
+								843
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/LESS/LESS.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 0.0
+	},
+	"input":
+	{
+		"height": 31.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"replace":
+	{
+		"height": 64.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"selected_items":
+		[
+		],
+		"width": 380.0
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 178.0,
+	"status_bar_visible": true
+}

@@ -37,25 +37,9 @@ module.exports = function(grunt) {
 			},
 			js: {
 				src: [
-					// 'bower_components/jquery/dist/jquery.min.js',
-					// 'bower_components/highcharts/highchart.js',
-					'common/scripts/components/graph.js'
+					'common/scripts/highlow-main.js'
 				],
 				dest: 'common/scripts/highlow-main.js'
-			}
-		},
-		requirejs: {
-			compile: {
-				options: {
-					generateSourceMaps: true,
-					logLevel: 4,
-					baseUrl: "common/scripts/",
-					include: './main',
-					out: "common/dist/main.js",
-					preserveLicenseComments: false,
-					optimize: 'uglify2',
-					mainConfigFile: 'common/scripts/main.js'
-				}
 			}
 		},
 		liquid: {
@@ -118,7 +102,7 @@ module.exports = function(grunt) {
 			},
 			js: {
 				files: ['common/scripts/**/*.js'],
-				tasks: ['newer:requirejs','newer:concat:js'],
+				tasks: ['newer:concat:js'],
 				options: {
 					livereload: true
 				}
@@ -143,7 +127,7 @@ module.exports = function(grunt) {
 		},
 		concurrent: {
 			all: {
-				tasks: ['newer:requirejs', 'connect:server', 'watch'],
+				tasks: ['connect:server', 'watch'],
 				options: {
 					logConcurrentOutput: true
 				}
@@ -152,5 +136,5 @@ module.exports = function(grunt) {
 	});
 
 	grunt.registerTask('default', ['sprite', 'newer:less', 'newer:concat', 'newer:liquid', 'newer:copy', 'concurrent:all']);
-	grunt.registerTask('build', ['sprite', 'newer:less', 'newer:concat', 'newer:requirejs', 'newer:liquid', 'newer:copy']);
+	grunt.registerTask('build', ['sprite', 'newer:less', 'newer:concat', 'newer:liquid', 'newer:copy']);
 };
