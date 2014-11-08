@@ -34,6 +34,46 @@ highlowApp.randomValue = function(from, to, decimal) {
 highlowApp.isNumber = function(n) {
   return !isNaN(parseFloat(n)) && isFinite(n);
 }
+
+highlowApp.durationToText = function(stamp) {
+
+	var remainingTime = stamp,
+	remainingTimeText = "";
+
+	remainingHour = (remainingTime - remainingTime%(60*60*1000)) / (60*60*1000);
+
+	remainingMinute = ((remainingTime - remainingHour*(60*60*1000)) - (remainingTime - remainingHour*(60*60*1000))%60000) / 60000;
+
+	remainingSecond = Math.floor((remainingTime%60000) / 1000);
+
+	if(remainingSecond<0 & remainingMinute==0 & remainingHour == 0) {
+		remainingTimeText = ' expired';
+	} else if(remainingHour > 0) {
+		remainingTimeText = " "+(remainingHour<10?"0"+remainingHour:remainingHour)+":"+(remainingMinute<10?"0"+remainingMinute:remainingMinute);
+	} else {
+		remainingTimeText = " "+(remainingMinute<10?"0"+remainingMinute:remainingMinute)+":"+(remainingSecond<10?"0"+remainingSecond:remainingSecond);
+	}
+
+	return remainingTimeText;
+}
+
+highlowApp.timeToText  = function(stamp) {
+	var time = new Date(stamp);
+	var hour = time.getHours(),
+	minute = time.getMinutes();
+
+	var text = "";
+
+	text +=  hour < 10?("0"+hour):hour;
+
+
+	text +=':';
+
+	text += minute < 10? ("0"+minute):minute;
+
+	return text;
+
+}
 ;
 highlowApp.betSystem = {
 	bets : {},
@@ -349,12 +389,15 @@ highlowApp.graph = {
 		        series: {
 		            animation: false
 		        }
+		    },
+		    global : {
+		    	useUTC: false
 		    }
 		});
 
 		this.prepareGraph('#highlow-graph');
 		this.prepareGraph('#spread-graph');
-		this.prepareGraph('#on-demand-graph');
+		this.prepareGraph('#on-demand-graph',2*60*1000);
 
 		this.graphs['highlow'] = Highcharts.charts[$("#highlow-graph").data('highchartsChart')];
 		this.graphs['spread'] = Highcharts.charts[$("#spread-graph").data('highchartsChart')];
@@ -552,12 +595,14 @@ highlowApp.graph = {
 		var renderer  = graph.renderer;
 
 		
+		var xAxis = graph.xAxis[0],
+		yAxis = graph.yAxis[0];
 
-		graph.yAxis[0].removePlotLine('current-value');
+		yAxis.removePlotLine('current-value');
 
 		// add trace line to newest data point
 
-		graph.yAxis[0].addPlotLine({
+		yAxis.addPlotLine({
 			color: '#ffffff',
 			width: 1,
 			dashStyle: 'ShortDash',
@@ -566,21 +611,77 @@ highlowApp.graph = {
 			id : 'current-value'
 		});
 
-		var xAxis = graph.xAxis[0];
+
 
 		if(model.type==="on-demand") {
 
 			// set graph range
 
-			xAxis.setExtremes(point.x-10*60*1000,point.x+3*60*1000,true);
+			xAxis.setExtremes(point.x-7*60*1000,point.x+3*60*1000,true);
 
 		} else {
 
 			// set graph range
 
-			//xAxis.setExtremes(point.x-10*60*1000,point.x+15*60*1000,true);
+			xAxis.setExtremes(point.x-10*60*1000,point.x+12*60*1000,true);
 
 		}
+
+		// get the extremes of y Axis to check if the current point is going to fall off screen
+
+		var currentYExtremes = yAxis.getExtremes();
+
+		console.log(currentYExtremes);
+
+		var bottomExtreme = currentYExtremes.min,
+		topExtreme = currentYExtremes.max;
+
+		var yMiddle = (topExtreme + bottomExtreme) / 2;
+
+		var safeZone = 0.005;
+		var interval = 0.002;
+		var bufferZone = interval*1;
+		var tickCount = 8;
+
+		var newTopExtreme = topExtreme,
+		newBottomExtreme = bottomExtreme;
+
+		console.log(yMiddle);
+
+
+
+
+
+		if( point.y>yMiddle) {
+			// check if point is too close to top edge
+			console.log(topExtreme-point.y);
+
+			if(topExtreme - point.y < safeZone) {
+
+				newTopExtreme  += safeZone - (topExtreme-point.y);
+				newBottomExtreme = newTopExtreme - interval*tickCount;
+
+				console.log(newBottomExtreme+":"+newTopExtreme);
+
+				yAxis.setExtremes(newBottomExtreme,newTopExtreme,true);
+
+			} 
+		} else {
+			// check if point is too close to bottom edge
+			console.log(point.y-bottomExtreme);
+
+			if(point.y - bottomExtreme < safeZone) {
+
+				newBottomExtreme -= safeZone-(point.y-bottomExtreme);
+				newTopExtreme = newBottomExtreme + interval*tickCount;
+
+				console.log(newBottomExtreme+":"+newTopExtreme);
+
+				yAxis.setExtremes(newBottomExtreme,newTopExtreme,true);
+
+			}
+		}
+
 
 		// get position of latest point in the series (we want to position the high/low buttons relatively to the latest point)
 
@@ -780,12 +881,20 @@ highlowApp.graph = {
 		
 
 	},
-	prepareGraph: function (id) {
+	prepareGraph: function (id,xInterval) {
 		var labelStyle = {
 			fontFamily: '"Open Sans","Helvetica Neue",Helvetica, Arial, sans-serif',
 			fontSize: '10px',
 			color: 'white'
 		};
+
+		var xTickInterval = ""+(5*60*1000);
+
+		if(xInterval) {
+			xTickInterval = ""+xInterval;
+		}
+
+
 		return $(id).highcharts({
 			chart: {
 				type: 'area',
@@ -846,6 +955,8 @@ highlowApp.graph = {
 				tickWidth : 0,
 				lineColor: '#2c2f35',
 				lineWidth: 1,
+				startOnTick: false,
+				endOnTick: true,
 				title: {
 					text : null
 				}
@@ -864,7 +975,7 @@ highlowApp.graph = {
 					week: '%e. %b %H:%M'
 				},
 				ordinal : false,
-				tickInterval : '300000',
+				tickInterval : xTickInterval,
 				tickWidth : 0,
 				type: 'datetime',
 				lineColor: 'transparent'
@@ -883,7 +994,7 @@ highlowApp.graph = {
 ;
 highlowApp.instrumentPanelCollapser = {
 	init: function() {
-
+		var duration = 0;
 		//collapser
 
 		$('.instrument-selector-widget').on('click','.instrument-selector-widget-collapse-toggle',function(event){
@@ -896,26 +1007,29 @@ highlowApp.instrumentPanelCollapser = {
 			if(self.hasClass('on')) {
 				self.removeClass('on');
 				// $instrumentPanels.removeClass('collapsed');
+				
 				$instrumentPanelsWrapper.animate({
-					height: '140px'
-				},250,function(){
+					height: '140px',
+					top: '0px'
+				},duration,function(){
 					$instrumentPanels.removeClass('collapsed');
 				});
 				$instrumentSliders.animate({
 					'line-height' : '188px'
-				},250);
+				},duration);
 			} else {
 				self.addClass('on');
 				// $instrumentPanels.addClass('collapsed');
 				$instrumentPanelsWrapper.animate({
-					height: '36px'
-				},250,function(){
+					height: '36px',
+					top: '4px'
+				},duration,function(){
 					$instrumentPanels.addClass('collapsed');
 				});
 
 				$instrumentSliders.animate({
-					'line-height' : '98px'
-				},250);
+					'line-height' : '108px'
+				},duration);
 			}
 		});
 	}
@@ -1071,10 +1185,10 @@ highlowApp.instrumentPanelSlider = {
 highlowApp.marketSimulator = {
 	instruments : [],
 	spread: 0.005,
-	rounding: 3,
+	rounding: 4,
 	minInterval: 1000,
 	maxInterval: 1500,
-	maxChange: 0.002,
+	maxChange: 0.0008,
 	start: function() {
 		var self = this;
 		for (var i = 0; i < this.instruments.length; i++) {
@@ -1087,7 +1201,7 @@ highlowApp.marketSimulator = {
 	simulate: function(instrument) {
 		var self = this;
 	
-		var deviation = highlowApp.randomValue(0,self.maxChange,3);
+		var deviation = highlowApp.randomValue(0,self.maxChange,4);
 		var variation = Math.random() >= 0.5 ? deviation : -deviation;
 
 		instrument.previousRate = parseFloat(instrument.currentRate);
@@ -1441,19 +1555,25 @@ highlowApp.marketSimulator = {
 
 			remainingTime = model.expireAt - currentTime;
 
-			remainingHour = (remainingTime - remainingTime%(60*60*1000)) / (60*60*1000);
+			// remainingHour = (remainingTime - remainingTime%(60*60*1000)) / (60*60*1000);
 
-			remainingMinute = ((remainingTime - remainingHour*(60*60*1000)) - (remainingTime - remainingHour*(60*60*1000))%60000) / 60000;
+			// remainingMinute = ((remainingTime - remainingHour*(60*60*1000)) - (remainingTime - remainingHour*(60*60*1000))%60000) / 60000;
 
-			remainingSecond = Math.floor((remainingTime%60000) / 1000);
+			// remainingSecond = Math.floor((remainingTime%60000) / 1000);
 
-			if(remainingSecond<0 & remainingMinute==0 & remainingHour == 0) {
-				remainingTimeText = ' expired';
+			// if(remainingSecond<0 & remainingMinute==0 & remainingHour == 0) {
+			// 	remainingTimeText = ' expired';
+			// 	model.expired = true;
+			// } else if(remainingHour > 0) {
+			// 	remainingTimeText = " "+(remainingHour<10?"0"+remainingHour:remainingHour)+":"+(remainingMinute<10?"0"+remainingMinute:remainingMinute);
+			// } else {
+			// 	remainingTimeText = " "+(remainingMinute<10?"0"+remainingMinute:remainingMinute)+":"+(remainingSecond<10?"0"+remainingSecond:remainingSecond);
+			// }
+
+			remainingTimeText = highlowApp.durationToText(remainingTime);
+
+			if(remainingTime<=0) {
 				model.expired = true;
-			} else if(remainingHour > 0) {
-				remainingTimeText = " "+(remainingHour<10?"0"+remainingHour:remainingHour)+":"+(remainingMinute<10?"0"+remainingMinute:remainingMinute);
-			} else {
-				remainingTimeText = " "+(remainingMinute<10?"0"+remainingMinute:remainingMinute)+":"+(remainingSecond<10?"0"+remainingSecond:remainingSecond);
 			}
 
 			if(model.active) {
@@ -1462,7 +1582,7 @@ highlowApp.marketSimulator = {
 
 			}
 
-			remainingTimeDisplay.html(remainingTimeText);
+			// remainingTimeDisplay.html(remainingTimeText);
 		} else {
 			// only update for focused bet
 			if(model.focusedBet!=undefined) {
@@ -1585,7 +1705,7 @@ highlowApp.marketSimulator = {
 
 				// 50% of going up or down by 0 to 0.003;
 
-				var deviation = highlowApp.randomValue(0,marketSimulator.maxChange,3);
+				var deviation = highlowApp.randomValue(0,marketSimulator.maxChange,4);
 
 				var variation = Math.random() >= 0.5 ? deviation : -deviation;
 
@@ -1650,9 +1770,6 @@ highlowApp.marketSimulator = {
 					popupRateDisplay.html(" " + parseFloat(model.currentRate).toFixed(marketSimulator.rounding));
 					sellPopupRateDisplay.html(" " + parseFloat(model.currentRate).toFixed(marketSimulator.rounding));
 				}
-
-				//@ update payout display
-				//@ update payout rate
 			}
 
 			instrumentModel.update = function(){
@@ -1685,7 +1802,10 @@ highlowApp.marketSimulator = {
 			//attach the model to the UI
 
 			$('[data-uid="'+self.data('uid')+'"]').data('instrumentModel',instrumentModel);
-			
+
+			// update closing time to instrument panel
+
+			$('[data-uid="'+self.data('uid')+'"] .closing-at').html(highlowApp.timeToText(instrumentModel.expireAt));
 
 			marketSimulator.instruments.push(instrumentModel);
 		});

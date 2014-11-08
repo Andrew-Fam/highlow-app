@@ -8,12 +8,15 @@ highlowApp.graph = {
 		        series: {
 		            animation: false
 		        }
+		    },
+		    global : {
+		    	useUTC: false
 		    }
 		});
 
 		this.prepareGraph('#highlow-graph');
 		this.prepareGraph('#spread-graph');
-		this.prepareGraph('#on-demand-graph');
+		this.prepareGraph('#on-demand-graph',2*60*1000);
 
 		this.graphs['highlow'] = Highcharts.charts[$("#highlow-graph").data('highchartsChart')];
 		this.graphs['spread'] = Highcharts.charts[$("#spread-graph").data('highchartsChart')];
@@ -211,12 +214,14 @@ highlowApp.graph = {
 		var renderer  = graph.renderer;
 
 		
+		var xAxis = graph.xAxis[0],
+		yAxis = graph.yAxis[0];
 
-		graph.yAxis[0].removePlotLine('current-value');
+		yAxis.removePlotLine('current-value');
 
 		// add trace line to newest data point
 
-		graph.yAxis[0].addPlotLine({
+		yAxis.addPlotLine({
 			color: '#ffffff',
 			width: 1,
 			dashStyle: 'ShortDash',
@@ -225,21 +230,77 @@ highlowApp.graph = {
 			id : 'current-value'
 		});
 
-		var xAxis = graph.xAxis[0];
+
 
 		if(model.type==="on-demand") {
 
 			// set graph range
 
-			xAxis.setExtremes(point.x-10*60*1000,point.x+3*60*1000,true);
+			xAxis.setExtremes(point.x-7*60*1000,point.x+3*60*1000,true);
 
 		} else {
 
 			// set graph range
 
-			//xAxis.setExtremes(point.x-10*60*1000,point.x+15*60*1000,true);
+			xAxis.setExtremes(point.x-10*60*1000,point.x+12*60*1000,true);
 
 		}
+
+		// get the extremes of y Axis to check if the current point is going to fall off screen
+
+		var currentYExtremes = yAxis.getExtremes();
+
+		console.log(currentYExtremes);
+
+		var bottomExtreme = currentYExtremes.min,
+		topExtreme = currentYExtremes.max;
+
+		var yMiddle = (topExtreme + bottomExtreme) / 2;
+
+		var safeZone = 0.005;
+		var interval = 0.002;
+		var bufferZone = interval*1;
+		var tickCount = 8;
+
+		var newTopExtreme = topExtreme,
+		newBottomExtreme = bottomExtreme;
+
+		console.log(yMiddle);
+
+
+
+
+
+		if( point.y>yMiddle) {
+			// check if point is too close to top edge
+			console.log(topExtreme-point.y);
+
+			if(topExtreme - point.y < safeZone) {
+
+				newTopExtreme  += safeZone - (topExtreme-point.y);
+				newBottomExtreme = newTopExtreme - interval*tickCount;
+
+				console.log(newBottomExtreme+":"+newTopExtreme);
+
+				yAxis.setExtremes(newBottomExtreme,newTopExtreme,true);
+
+			} 
+		} else {
+			// check if point is too close to bottom edge
+			console.log(point.y-bottomExtreme);
+
+			if(point.y - bottomExtreme < safeZone) {
+
+				newBottomExtreme -= safeZone-(point.y-bottomExtreme);
+				newTopExtreme = newBottomExtreme + interval*tickCount;
+
+				console.log(newBottomExtreme+":"+newTopExtreme);
+
+				yAxis.setExtremes(newBottomExtreme,newTopExtreme,true);
+
+			}
+		}
+
 
 		// get position of latest point in the series (we want to position the high/low buttons relatively to the latest point)
 
@@ -439,12 +500,20 @@ highlowApp.graph = {
 		
 
 	},
-	prepareGraph: function (id) {
+	prepareGraph: function (id,xInterval) {
 		var labelStyle = {
 			fontFamily: '"Open Sans","Helvetica Neue",Helvetica, Arial, sans-serif',
 			fontSize: '10px',
 			color: 'white'
 		};
+
+		var xTickInterval = ""+(5*60*1000);
+
+		if(xInterval) {
+			xTickInterval = ""+xInterval;
+		}
+
+
 		return $(id).highcharts({
 			chart: {
 				type: 'area',
@@ -505,6 +574,8 @@ highlowApp.graph = {
 				tickWidth : 0,
 				lineColor: '#2c2f35',
 				lineWidth: 1,
+				startOnTick: false,
+				endOnTick: true,
 				title: {
 					text : null
 				}
@@ -523,7 +594,7 @@ highlowApp.graph = {
 					week: '%e. %b %H:%M'
 				},
 				ordinal : false,
-				tickInterval : '300000',
+				tickInterval : xTickInterval,
 				tickWidth : 0,
 				type: 'datetime',
 				lineColor: 'transparent'

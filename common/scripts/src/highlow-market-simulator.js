@@ -1,10 +1,10 @@
 highlowApp.marketSimulator = {
 	instruments : [],
 	spread: 0.005,
-	rounding: 3,
+	rounding: 4,
 	minInterval: 1000,
 	maxInterval: 1500,
-	maxChange: 0.002,
+	maxChange: 0.0008,
 	start: function() {
 		var self = this;
 		for (var i = 0; i < this.instruments.length; i++) {
@@ -17,7 +17,7 @@ highlowApp.marketSimulator = {
 	simulate: function(instrument) {
 		var self = this;
 	
-		var deviation = highlowApp.randomValue(0,self.maxChange,3);
+		var deviation = highlowApp.randomValue(0,self.maxChange,4);
 		var variation = Math.random() >= 0.5 ? deviation : -deviation;
 
 		instrument.previousRate = parseFloat(instrument.currentRate);
@@ -371,19 +371,25 @@ highlowApp.marketSimulator = {
 
 			remainingTime = model.expireAt - currentTime;
 
-			remainingHour = (remainingTime - remainingTime%(60*60*1000)) / (60*60*1000);
+			// remainingHour = (remainingTime - remainingTime%(60*60*1000)) / (60*60*1000);
 
-			remainingMinute = ((remainingTime - remainingHour*(60*60*1000)) - (remainingTime - remainingHour*(60*60*1000))%60000) / 60000;
+			// remainingMinute = ((remainingTime - remainingHour*(60*60*1000)) - (remainingTime - remainingHour*(60*60*1000))%60000) / 60000;
 
-			remainingSecond = Math.floor((remainingTime%60000) / 1000);
+			// remainingSecond = Math.floor((remainingTime%60000) / 1000);
 
-			if(remainingSecond<0 & remainingMinute==0 & remainingHour == 0) {
-				remainingTimeText = ' expired';
+			// if(remainingSecond<0 & remainingMinute==0 & remainingHour == 0) {
+			// 	remainingTimeText = ' expired';
+			// 	model.expired = true;
+			// } else if(remainingHour > 0) {
+			// 	remainingTimeText = " "+(remainingHour<10?"0"+remainingHour:remainingHour)+":"+(remainingMinute<10?"0"+remainingMinute:remainingMinute);
+			// } else {
+			// 	remainingTimeText = " "+(remainingMinute<10?"0"+remainingMinute:remainingMinute)+":"+(remainingSecond<10?"0"+remainingSecond:remainingSecond);
+			// }
+
+			remainingTimeText = highlowApp.durationToText(remainingTime);
+
+			if(remainingTime<=0) {
 				model.expired = true;
-			} else if(remainingHour > 0) {
-				remainingTimeText = " "+(remainingHour<10?"0"+remainingHour:remainingHour)+":"+(remainingMinute<10?"0"+remainingMinute:remainingMinute);
-			} else {
-				remainingTimeText = " "+(remainingMinute<10?"0"+remainingMinute:remainingMinute)+":"+(remainingSecond<10?"0"+remainingSecond:remainingSecond);
 			}
 
 			if(model.active) {
@@ -392,7 +398,7 @@ highlowApp.marketSimulator = {
 
 			}
 
-			remainingTimeDisplay.html(remainingTimeText);
+			// remainingTimeDisplay.html(remainingTimeText);
 		} else {
 			// only update for focused bet
 			if(model.focusedBet!=undefined) {
@@ -515,7 +521,7 @@ highlowApp.marketSimulator = {
 
 				// 50% of going up or down by 0 to 0.003;
 
-				var deviation = highlowApp.randomValue(0,marketSimulator.maxChange,3);
+				var deviation = highlowApp.randomValue(0,marketSimulator.maxChange,4);
 
 				var variation = Math.random() >= 0.5 ? deviation : -deviation;
 
@@ -580,9 +586,6 @@ highlowApp.marketSimulator = {
 					popupRateDisplay.html(" " + parseFloat(model.currentRate).toFixed(marketSimulator.rounding));
 					sellPopupRateDisplay.html(" " + parseFloat(model.currentRate).toFixed(marketSimulator.rounding));
 				}
-
-				//@ update payout display
-				//@ update payout rate
 			}
 
 			instrumentModel.update = function(){
@@ -615,7 +618,10 @@ highlowApp.marketSimulator = {
 			//attach the model to the UI
 
 			$('[data-uid="'+self.data('uid')+'"]').data('instrumentModel',instrumentModel);
-			
+
+			// update closing time to instrument panel
+
+			$('[data-uid="'+self.data('uid')+'"] .closing-at').html(highlowApp.timeToText(instrumentModel.expireAt));
 
 			marketSimulator.instruments.push(instrumentModel);
 		});
