@@ -1,6 +1,6 @@
 @instrument-selector-widget-duration-selectors-container-bg: @ink;
 @instrument-selector-widget-header-padding: 25px 51px 0px 49px;
-@instrument-selector-widget-body-padding: 25px 48px 24px;
+@instrument-selector-widget-body-padding: 25px 44px 24px;
 @instrument-selector-widget-slider-padding: 0px 16px;
 @instrument-selector-widget-instrument-filter-width: 175px;
 @instrument-selector-widget-instrument-filter-margin: -10px 0px 0px 0px;
@@ -29,8 +29,14 @@
 		top: 24px;
 		.block-icon();
 		.sprite(@collapse);
+		&:hover {
+			.sprite(@collapse-hover);
+		}
 		&.on {
 			.sprite(@expand);
+			&:hover {
+				.sprite(@expand-hover);
+			}
 		}
 	}
 	.instrument-selector-widget-duration-selectors-container{
@@ -43,6 +49,7 @@
 
 		}
 			.instrument-selector-widget-duration-selector {
+				border-bottom: 1px solid @tab-view-default-selector-bg;
 				&:before {
 					
 					.inline-icon();
@@ -51,8 +58,8 @@
 					.sprite(@clock-grey);
 				}
 				&.active {
+					border-bottom: 1px solid @tab-view-default-active-selector-bg;
 					&:before {
-						margin-right: 7px;
 						
 						.sprite(@clock-yellow);
 					}
@@ -86,8 +93,11 @@
 	}		
 
 	.instrument-selector-widget-instruments-container.tab-view-body  {
-		padding: @instrument-selector-widget-body-padding;
 		position: relative;
+		padding-top: 0px;
+		.tab-view-panel {
+			padding: @instrument-selector-widget-body-padding;
+		}
 	}
 		.instrument-selector-widget-instruments-slider {
 			cursor: pointer;
@@ -100,21 +110,31 @@
 
 			&:before {
 				.inline-icon();
-				.transition(all 0.2s ease);
 			}
 
 			&.backward {
-				left: 0;
+				left: 0px;
 				
 				&:before {
 					.sprite(@arrow-left);
 				}
+
+				&:hover {
+					&:before {
+						.sprite(@arrow-left-hover);
+					}
+				}
 			}
 			&.forward {
-				right: 0;
+				right: 0px;
 				
 				&:before {
 					.sprite(@arrow-right);
+				}
+				&:hover {
+					&:before {
+						.sprite(@arrow-right-hover);
+					}
 				}
 			}
 		}

@@ -7,7 +7,11 @@
 
 .trading-app-root {
 	overflow: hidden;
-
+	background-color: @night;
+	padding-bottom: 80px;
+	.trading-app-body {
+		background-color: @ink;
+	}
 	> .trading-app-root-mode-selector-container-wrapper {
 		&:extend(.font-m);
 		padding: @trading-app-root-mode-selector-container-wrapper-padding;
@@ -20,45 +24,41 @@
 					margin-right: 3px;
 					vertical-align: middle;
 				}
-			}
-		}
-	}
-		.trading-mode-highlow-selector {
-			&:before {
-				.inline-icon();
-				.sprite(@highlow);
-			}
-			&.active {
-				&:before {
-					.sprite(@highlow-active);
-				}
-			}
-		}
-		.trading-mode-spread-selector {
-			&:before {
-				.inline-icon();
-				.sprite(@spread);
-			}
-			&.active {
-				&:before {
-					.sprite(@spread-active);
-				}
-			}
-		}
-		.trading-mode-on-demand-selector {
-			&:before {
-				.inline-icon();
-				.sprite(@on-demand);
-			}
-			&.active {
-				&:before {
-					.sprite(@on-demand-active);
-				}
-			}
-		}
-}
 
-// .on-demand-finish-text {
-// 	// position: absolute;
-// 	.rotate(90deg);
-// }
+				&.highlow {
+					&:before {
+						.inline-icon();
+						.sprite(@highlow);
+					}
+					&.active {
+						&:before {
+							.sprite(@highlow-active);
+						}
+					}
+				}
+				&.spread {
+					&:before {
+						.inline-icon();
+						.sprite(@spread);
+					}
+					&.active {
+						&:before {
+							.sprite(@spread-active);
+						}
+					}
+				}
+				&.on-demand {
+					&:before {
+						.inline-icon();
+						.sprite(@on-demand);
+					}
+					&.active {
+						&:before {
+							.sprite(@on-demand-active);
+						}
+					}
+				}
+			}
+		}
+	}	
+}

@@ -11,10 +11,28 @@
 .trading-platform-investments {
 	position: relative;
 	z-index: 100;
+	.trading-platform-investments-list-no-data {
+		td {
+			text-align: center;
+		}
+	}
 	table {
 		> tbody {
 			> tr {
 				cursor: pointer;
+				border: none;
+				>td {
+					border: none;
+					vertical-align: top;
+					.investment-sell-btn {
+						&:extend(.btn-negative);
+						.transition(all 0.2s ease);
+						font-size: @investment-sell-btn-font-size;
+						display: block;
+						width: 100%;
+						color: @investment-sell-btn-win-fg;
+					}
+				}
 				&.investment-winning {
 
 					> td {
@@ -48,10 +66,7 @@
 							}
 						}
 
-						.investment-sell-btn {
-							&:extend(.btn-negative);
-							color: @investment-sell-btn-win-fg;
-						}
+						
 					}
 
 				}
@@ -133,18 +148,8 @@
 					}
 
 					&.investment-sell {
-						position: relative;
 						width: 100px;
 						padding: 8px;
-					}
-					.investment-sell-btn {
-						background-color: @mortar;
-						color: @investment-sell-btn-default-fg;
-						display: block;
-						float: none;
-						font-size: @investment-sell-btn-font-size;
-						width: 84px;
-						text-align: center;
 					}
 
 				}

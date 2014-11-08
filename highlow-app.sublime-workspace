@@ -4,6 +4,34 @@
 		"selected_items":
 		[
 			[
+				"finish",
+				"finishTextId"
+			],
+			[
+				"nex",
+				"nextPage"
+			],
+			[
+				"hi",
+				"highlowApp"
+			],
+			[
+				"to",
+				"toFixed"
+			],
+			[
+				"remain",
+				"remainingTimeDisplay"
+			],
+			[
+				"all",
+				"allCount"
+			],
+			[
+				"select",
+				"selectInstrument"
+			],
+			[
 				"text",
 				"text-transform"
 			],
@@ -168,10 +196,6 @@
 				"attribute"
 			],
 			[
-				"select",
-				"selectedType"
-			],
-			[
 				"currentField",
 				"currentFieldGeneratedHTML"
 			],
@@ -315,7 +339,124 @@
 			"file": "common/scripts/highlow-main.js",
 			"settings":
 			{
-				"buffer_size": 44202,
+				"buffer_size": 44846,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "templates/includes/layout.liquid",
+			"settings":
+			{
+				"buffer_size": 1063,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "Gruntfile.js",
+			"settings":
+			{
+				"buffer_size": 15634,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "common/less/app/live-graph.less",
+			"settings":
+			{
+				"buffer_size": 128,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "common/scripts/src/highlow-system-messages.js",
+			"settings":
+			{
+				"buffer_size": 3191,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "common/scripts/src/highlow-app-util.js",
+			"settings":
+			{
+				"buffer_size": 335,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "common/scripts/src/highlow-instrument-panel-slider.js",
+			"settings":
+			{
+				"buffer_size": 2453,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "common/scripts/src/highlow-popup.js",
+			"settings":
+			{
+				"buffer_size": 420,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "build/common/scripts/highcharts.src.js",
+			"settings":
+			{
+				"buffer_size": 471988,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/Users/apham/Documents/GA-class/Note 1",
+			"settings":
+			{
+				"buffer_size": 0,
+				"line_ending": "Unix",
+				"name": "Experience is the stories you tell after all you b"
+			}
+		},
+		{
+			"contents": "highlowApp.graph = {\n	graphs : {},\n	onGraphUI : {},\n	init : function (){\n\n		Highcharts.setOptions({\n		    plotOptions: {\n		        series: {\n		            animation: false\n		        }\n		    }\n		});\n\n		this.prepareGraph('#highlow-graph');\n		this.prepareGraph('#spread-graph');\n		this.prepareGraph('#on-demand-graph');\n\n		this.graphs['highlow'] = Highcharts.charts[$(\"#highlow-graph\").data('highchartsChart')];\n		this.graphs['spread'] = Highcharts.charts[$(\"#spread-graph\").data('highchartsChart')];\n		this.graphs['on-demand'] = Highcharts.charts[$(\"#on-demand-graph\").data('highchartsChart')];\n	},\n	indexOfPointByXRecursive: function(points, x, lowerBoundary, upperBoundary) {\n\n		// Fool check...\n\n	    if (upperBoundary < lowerBoundary) {\n	        return null;\n	    }\n	    // get mid point\n\n	    var mid = Math.floor((lowerBoundary+upperBoundary)/2);\n\n	    if (points[mid].x > x)\n	        return this.indexOfPointByXRecursive(points, x, lowerBoundary, mid-1);\n	    else if (points[mid].x < x)\n	        return this.indexOfPointByXRecursive(points, x, mid+1, upperBoundary);\n	    else\n	        return mid;\n	},\n	loadInstrument: function (model) {\n\n		var currentTime = new Date().getTime();\n\n		\n\n		$('#'+model.type+\"-graph\").highcharts().destroy();\n\n		this.prepareGraph('#'+model.type+\"-graph\");\n\n		this.graphs[model.type] = $('#'+model.type+\"-graph\").highcharts();\n\n		var graph = this.graphs[model.type];\n\n		var renderer = graph.renderer;\n\n		// add graph closing line;\n\n		var closingLine = renderer.path(['M', 830, 6, 'L', 830, 255])\n		.attr({\n			'stroke-width': 1,\n			stroke: '#2c2f35'\n		}).add();\n\n\n		var series = graph.series[0];\n\n		// make sure the graph data and model data doesn't intertwine\n\n		var data = JSON.parse(JSON.stringify(model.data));\n\n		series.setData(data, true, false, false);\n\n		var xAxis = graph.xAxis[0];\n\n\n\n\n		if(model.type===\"on-demand\") {\n			\n			xAxis.setExtremes(currentTime-10*60*1000,currentTime+3*60*1000,true);\n		\n		} else {\n			\n			xAxis.setExtremes(model.openAt-5*60*1000,model.openAt+20*60*1000,true);\n			\n			var plotBandId = model.type+\"-plot-band\";\n			var startLineId = model.type+\"-start-plot-line\";\n			var endLineId = model.type+\"-end-plot-line\";\n\n			xAxis.removePlotBand(plotBandId);\n			\n			xAxis.addPlotBand({\n				color: 'rgba(77,81,88,0.55)',\n				from: model.openAt, \n				to: model.expireAt,\n				zIndex: 2,\n				id: plotBandId\n			});\n\n			xAxis.removePlotLine(startLineId);\n\n			xAxis.addPlotLine({\n				color: 'rgba(255,255,255,0.7)',\n				value:  model.openAt, \n				width: 1,\n				zIndex: 1000,\n				id: startLineId\n			});\n\n			xAxis.removePlotLine(endLineId);\n\n			xAxis.addPlotLine({\n				color: 'rgba(255,255,255,0.7)',\n				value:  model.expireAt, \n				width: 1,\n				zIndex: 1000,\n				id: endLineId\n			});\n\n		}\n\n		series.points[series.points.length-1].update({\n			marker : {\n				enabled : true,\n				symbol : \"url(common/images/graph-marker.png)\",\n				zIndex : 1000\n			},\n			states: {\n				hover: {\n					enabled: false\n				}\n			},\n			zIndex: 1000\n		});\n\n		// add trace line to newest data point\n\n		graph.yAxis[0].addPlotLine({\n			color: '#ffffff',\n			width: 1,\n			dashStyle: 'ShortDash',\n			value: model.currentRate,\n			zIndex: 4,\n			id : 'current-value'\n		});\n\n		this.updateOnGraphUI(model,series.points[series.points.length-1]);\n\n		\n		// reload bet points \n\n		// go through all bets associated with this instrument\n\n		for(var i=0; i< model.bets.length; i++) {\n\n\n\n			var bet = model.bets[i];\n\n\n\n			// reset finish text for on-demand bets\n\n			if(model.type.indexOf('on-demand')>=0) {\n				bet.finishLabel = undefined;\n				bet.finishText = undefined;\n\n\n				\n			}\n\n\n			// do a binary search in the series.points to find the right point.\n\n			bet.point = series.points[this.indexOfPointByXRecursive(series.points,bet.x,0,series.points.length-1)];\n\n			this.placeBet(bet);\n\n			\n		}\n\n\n	},\n	updateOnGraphUI: function (model,point) {\n\n		var symbols = this.onGraphUI,\n		type = model.type;\n\n		if(!symbols[type]) {\n			symbols[type] = {};\n		}\n\n		// remove old button added with the last data point\n		if(symbols[type].highButton) {\n			symbols[type].highButton.destroy();\n		}\n		\n		if(symbols[type].lowButton) {\n			symbols[type].lowButton.destroy();\n		}\n\n		if(symbols[type].lowRate) {\n			symbols[type].lowRate.destroy();\n		}\n\n		if(symbols[type].highRate) {\n			symbols[type].highRate.destroy();\n		}\n\n		var graph = this.graphs[model.type];\n\n		var series = graph.series[0];\n\n		var renderer  = graph.renderer;\n\n		\n\n		graph.yAxis[0].removePlotLine('current-value');\n\n		// add trace line to newest data point\n\n		graph.yAxis[0].addPlotLine({\n			color: '#ffffff',\n			width: 1,\n			dashStyle: 'ShortDash',\n			value: point.y,\n			zIndex: 4,\n			id : 'current-value'\n		});\n\n		var xAxis = graph.xAxis[0];\n\n		if(model.type===\"on-demand\") {\n\n			// set graph range\n\n			xAxis.setExtremes(point.x-10*60*1000,point.x+3*60*1000,true);\n\n		} else {\n\n			// set graph range\n\n			//xAxis.setExtremes(point.x-10*60*1000,point.x+15*60*1000,true);\n\n		}\n\n		// get position of latest point in the series (we want to position the high/low buttons relatively to the latest point)\n\n		pointX = point.plotX,\n		pointY = point.plotY;\n\n\n		var	highX = pointX+76,\n			highY = pointY-37,\n			lowX = pointX+76,\n			lowY = pointY+22;\n\n		if(highY<5 || lowY>230) {\n			highY = pointY - 7;\n			highX = pointX + 68;\n			lowY = pointY - 7;\n			lowX = pointX + 104;\n\n			if(type==\"spread\") {\n				lowX = lowX + 69;\n			}\n		}\n\n		// now render the 2 buttons\n\n		var high = renderer.image('common/images/graph-up.png',highX,highY, 27, 27);\n\n		if(type==\"spread\") {\n			high = renderer.image('common/images/graph-up-spread.png',highX,highY, 96, 27);\n		}\n\n		high.attr({\n			zIndex:'10',\n			id:'in-chart-high-bet'\n		});\n\n		high.on('click', function () {\n			highlowApp.betSystem.confirmBet('high',point,model.type);\n		})\n\n		// add click handler\n\n		high.add();\n\n		high.css({\n			\"cursor\" : \"pointer\"\n		});\n\n		symbols[type].highButton = high;\n\n		// \n\n		var low = renderer.image('common/images/graph-down.png',lowX,lowY, 27, 27);\n\n		if(type==\"spread\") {\n			low = renderer.image('common/images/graph-down-spread.png',lowX,lowY, 96, 27);\n		}\n\n		low.attr({\n			zIndex:'10',\n			id:'in-chart-low-bet'\n		});\n\n		low.on('click', function () {\n			highlowApp.betSystem.confirmBet('low',point,model.type);\n		})\n\n		// add click handler\n\n		low.add();\n\n		low.css({\n			\"cursor\" : \"pointer\"\n		});\n\n		symbols[type].lowButton = low;\n\n		if(type==\"spread\") {\n			var highRate = renderer.text('<div class=\"on-graph-button\">'+(point.y+0.005).toFixed(3)+'</div>',highX+27,highY+19);\n			highRate.on('click', function () {\n				highlowApp.betSystem.confirmBet('high',point,model.type);\n			})\n			highRate.attr({\n				zIndex:'10',\n				id:'in-chart-spread-high-bet-rate'\n			});\n			highRate.css({\n				\"cursor\" : \"pointer\",\n				\"font-size\" : \"16px;\",\n				\"color\" : \"white\"\n			});\n			highRate.add();\n\n			var lowRate = renderer.text('<div class=\"on-graph-button\">'+(point.y-0.005).toFixed(3)+'</div>',lowX+27,lowY+19);\n			lowRate.on('click', function () {\n				highlowApp.betSystem.confirmBet('low',point,model.type);\n			});\n			lowRate.css({\n				\"cursor\" : \"pointer\",\n				\"font-size\" : \"16px;\",\n				\"color\" : \"white\"\n			});\n			lowRate.attr({\n				zIndex:'10',\n				id:'in-chart-spread-low-bet-rate'\n			});\n\n			lowRate.add();\n\n			symbols[type].highRate = highRate;\n\n			symbols[type].lowRate = lowRate;\n		}\n\n\n\n	},\n	placeBet : function(betObject) {\n\n		var graph = $('#'+betObject.type+\"-graph\").highcharts();\n\n		var series = graph.series[0];\n\n		var renderer = graph.renderer;\n\n		if(betObject.marker!=undefined) {\n			betObject.marker.destroy();\n		}\n\n		var pointX = betObject.point.plotX,\n		pointY = betObject.point.plotY;\n\n		// if(betObject.type.indexOf('on-demand')<0) {\n			switch(betObject.direction) {\n				case 'high' : {\n					var img = renderer.image('common/images/high-level.png',pointX+40,pointY-24,21,28);\n\n					img.on('click', betObject.focus);\n\n					img.css({\n						'cursor' : 'pointer'\n					});\n\n					img.attr({\n						zIndex : 10\n					});\n					img.add();\n					betObject.marker = img;\n					break;\n				}\n				case 'low' : {\n					var img = renderer.image('common/images/low-level.png',pointX+40,pointY-24,21,28);\n\n					img.on('click', betObject.focus);\n\n					img.css({\n						'cursor' : 'pointer'\n					});\n\n					img.attr({\n						zIndex : 10\n					});\n					img.add();\n					betObject.marker = img;\n					break;\n				}\n				default : {\n					break;\n				}\n			}\n\n		// } else {\n\n\n		// }\n\n\n	},\n	addPoint: function (model,point) {\n\n\n\n		var graph = this.graphs[model.type];\n\n		var series = graph.series[0];\n\n		series.points[series.points.length-1].update({\n			marker : {\n				enabled: false\n			}\n		});\n\n		series.addPoint(point,true,false,false);\n\n\n		this.updateOnGraphUI(model,series.points[series.points.length-1]);\n		\n\n	},\n	prepareGraph: function (id) {\n		var labelStyle = {\n			fontFamily: '\"Open Sans\",\"Helvetica Neue\",Helvetica, Arial, sans-serif',\n			fontSize: '10px',\n			color: 'white'\n		};\n		return $(id).highcharts({\n			chart: {\n				type: 'area',\n				animation: false,\n				backgroundColor : '#3e424a',\n				marginTop: 6,\n				marginLeft: 50,\n				renderTo: 'container',\n				style : {\n					fontFamily: '\"Open Sans\",\"Helvetica Neue\",Helvetica, Arial, sans-serif',\n					fontSize: '10px',\n					color: 'white',\n					overflow: 'visible'\n				},\n				startOnTick: false,\n				endOnTick: false\n			},credits: {\n				enabled: false\n			},legend: {\n				enabled: false\n			},plotOptions: {\n				area: {\n					lineColor: '#ffa200',\n					lineWidth: 2,\n					marker: {\n		                enabled: false\n		            }\n				},\n				series: {\n					marker : {\n						enabled : false,\n						states : {\n							hover : {\n								enabled : false\n							}\n						},\n						zIndex : 10000\n					}\n				}\n			},series : [{\n				color: '#ffe048',\n				fillOpacity: '1',\n				name : '',\n				type: 'area',\n				data : [],\n				threshold: null,\n				marker : {\n					enabled: false\n				}\n			}],yAxis: {\n				labels: {\n					style: labelStyle,\n					format: '{value:.3f}'\n				},\n				gridLineWidth: 1,\n				gridLineColor: '#2c2f35',\n				tickInterval : 0.002,\n				tickWidth : 0,\n				lineColor: '#2c2f35',\n				lineWidth: 1,\n				title: {\n					text : null\n				}\n			},xAxis: {\n				labels: {\n					style: labelStyle\n				},\n				minPadding: 0,\n				gridLineWidth: 1,\n				gridLineColor: '#2c2f35',\n				dateTimeLabelFormats: {\n					second: '%H:%M',\n					minute: '%H:%M',\n					hour: '%H:%M:%S',\n					day: '%e. %b %H:%M',\n					week: '%e. %b %H:%M'\n				},\n				ordinal : false,\n				tickInterval : '300000',\n				tickWidth : 0,\n				type: 'datetime',\n				lineColor: 'transparent'\n			},title: {\n				text: ''\n			},\n			tooltip : {\n				enabled: false\n			},\n			subtitle: {\n				text: ''\n			}\n		});\n	}\n}",
+			"file": "common/scripts/src/highlow-graph.js",
+			"file_size": 10600,
+			"file_write_time": 1414250239000000,
+			"settings":
+			{
+				"buffer_size": 10607,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "Searching 12 files for \"expiry-time\" (case sensitive)\n\n/Users/apham/development/highlow/highlow-app/common/scripts/src/highlow-market-simulator.js:\n  224  		if(model.type.indexOf('on-demand') < 0) {\n  225  			var view = $(model.uid),\n  226: 			remainingTimeDisplay = $(view.find('.expiry-time')),\n  227  			currentTime = new Date().getTime(),\n  228  			remainingTimeText = \"\",\n\n1 match in 1 file\n\n\nSearching 12 files for \"opacity\" (case sensitive)\n\n0 matches across 0 files\n\n\nSearching 12 files for \"high-win-expired\" (case sensitive)\n\n0 matches across 0 files\n\n\nSearching 12 files for \"win-expire\" (case sensitive)\n\n0 matches across 0 files\n\n\nSearching 12 files for \"current-rate\" (case sensitive)\n\n/Users/apham/development/highlow/highlow-app/common/scripts/src/highlow-market-simulator.js:\n  522  \n  523  				if(model.active) {\n  524: 					var mainViewRateDisplay = $('#' + model.getMainViewId() + ' .current-rate');\n  525  					\n  526  					if (model.currentRate>model.previousRate) {\n\n1 match in 1 file\n",
+			"settings":
+			{
+				"buffer_size": 1008,
+				"line_ending": "Unix",
+				"name": "Find Results",
+				"scratch": true
+			}
+		},
+		{
+			"file": "common/scripts/src/highlow-market-simulator.js",
+			"settings":
+			{
+				"buffer_size": 16243,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"settings":
+			{
+				"buffer_size": 0,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "common/scripts/src/highlow-bet.js",
+			"settings":
+			{
+				"buffer_size": 8138,
 				"line_ending": "Unix"
 			}
 		},
@@ -323,23 +464,55 @@
 			"file": "templates/index.liquid",
 			"settings":
 			{
-				"buffer_size": 100800,
+				"buffer_size": 26577,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "common/less/demo.less",
+			"file": "common/scripts/highlow-main.js.bak",
 			"settings":
 			{
-				"buffer_size": 1363,
+				"buffer_size": 42100,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "common/less/components/message.less",
+			"file": "common/scripts/src/highlow-tab.js",
 			"settings":
 			{
-				"buffer_size": 2870,
+				"buffer_size": 663,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "common/scripts/src/highlow-instrument-panel-selector.js",
+			"settings":
+			{
+				"buffer_size": 1220,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "common/less/components/tab-view.less",
+			"settings":
+			{
+				"buffer_size": 2549,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "common/less/app/instrument-selector-widget.less",
+			"settings":
+			{
+				"buffer_size": 2991,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "common/less/main.less",
+			"settings":
+			{
+				"buffer_size": 840,
 				"line_ending": "Unix"
 			}
 		},
@@ -347,7 +520,71 @@
 			"file": "common/less/spritesheet.less",
 			"settings":
 			{
-				"buffer_size": 19344,
+				"buffer_size": 21726,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "common/less/app/trading-platform.less",
+			"settings":
+			{
+				"buffer_size": 5502,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "common/less/components/popup.less",
+			"settings":
+			{
+				"buffer_size": 1958,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "common/less/components/panel.less",
+			"settings":
+			{
+				"buffer_size": 1076,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "common/less/base/rotate.less",
+			"settings":
+			{
+				"buffer_size": 583,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "common/less/components/btn.less",
+			"settings":
+			{
+				"buffer_size": 1240,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "common/less/app/investment-table.less",
+			"settings":
+			{
+				"buffer_size": 2969,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "common/less/base/colors.less",
+			"settings":
+			{
+				"buffer_size": 507,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "common/less/components/table.less",
+			"settings":
+			{
+				"buffer_size": 1753,
 				"line_ending": "Unix"
 			}
 		}
@@ -392,6 +629,28 @@
 	},
 	"file_history":
 	[
+		"/Users/apham/development/highlow/highlow-app/common/scripts/src/highlow-one-click.js",
+		"/Users/apham/development/highlow/highlow-app/Gruntfile.js",
+		"/Users/apham/development/highlow/highlow-app/common/scripts/highlow-system-messages.js",
+		"/Users/apham/development/highlow/highlow-app/common/scripts/highlow-tab.js",
+		"/Users/apham/development/highlow/highlow-app/common/less/components/dropdown.less",
+		"/Users/apham/development/highlow/highlow-app/common/less/components/instrument-panel.less",
+		"/Users/apham/development/highlow/highlow-app/common/less/components/tab-view.less",
+		"/Users/apham/development/highlow/highlow-app/common/less/app/instrument-selector-widget.less",
+		"/Users/apham/development/highlow/highlow-app/common/scripts/src/highlow-instrument-panel-collapser.js",
+		"/Users/apham/development/highlow/highlow-app/common/scripts/highlow-main.js",
+		"/Users/apham/development/highlow/highlow-app/common/less/components/common.less",
+		"/Users/apham/development/highlow/highlow-app/common/scripts/src/highlow-base.js",
+		"/Users/apham/development/highlow/highlow-app/common/scripts/highlow-base.js",
+		"/Users/apham/development/highlow/highlow-app/common/less/demo.less",
+		"/Users/apham/development/highlow/highlow-app/common/less/components/message.less",
+		"/Users/apham/development/highlow/highlow-app/common/less/spritesheet.less",
+		"/Users/apham/development/highlow/highlow-app/common/less/components/panel.less",
+		"/Users/apham/development/highlow/highlow-app/common/scripts/components/Init",
+		"/Users/apham/development/highlow/highlow-app/common/less/app/trading-app.less",
+		"/Users/apham/development/highlow/highlow-app/common/less/app/trading-platform.less",
+		"/Users/apham/development/highlow/highlow-app/common/scripts/src/highlow-instrument-panel-slider.js",
+		"/Users/apham/development/highlow/highlow-app/common/scripts/highlow-main.js.bak",
 		"/Users/apham/development/highlow/affiliate-project/assets/scripts/highlow-affiliate.js",
 		"/Users/apham/development/highlow/affiliate-project/assets/less/jp/hero.less",
 		"/Users/apham/development/highlow/affiliate-project/html/jp/index.html",
@@ -478,13 +737,8 @@
 		"/Users/apham/development/highlow/affiliate-project/assets/less/highlow/mixins.less",
 		"/Users/apham/development/highlow/affiliate/affiliate/less/buttons.less",
 		"/Users/apham/development/highlow/highlow-app/templates/index.liquid",
-		"/Users/apham/development/highlow/highlow-app/common/less/app/instrument-selector-widget.less",
-		"/Users/apham/development/highlow/highlow-app/common/scripts/highlow-main.js",
-		"/Users/apham/development/highlow/highlow-app/common/less/app/trading-app.less",
 		"/Users/apham/development/highlow/highlow-app/common/less/app/investment-table.less",
 		"/Users/apham/development/highlow/highlow-app/common/less/main.less",
-		"/Users/apham/development/highlow/highlow-app/common/less/demo.less",
-		"/Users/apham/development/highlow/highlow-app/common/less/spritesheet.less",
 		"/Users/apham/development/highlow/highlow-app/common/less/app/live-graph.less",
 		"/Users/apham/development/highlow/highlow-app/common/less/base/mixins.less",
 		"/Users/apham/development/highlow/highlow-app/common/less/base/rotate.less",
@@ -502,24 +756,7 @@
 		"/Users/apham/development/Project Xaam/examixer/packages/system/public/assets/css/less/app.less",
 		"/Users/apham/development/Project Xaam/examixer/bower_components/angular-dragdrop/draganddrop.js",
 		"/Users/apham/development/Project Xaam/examixer/packages/system/public/controllers/index.js",
-		"/Users/apham/development/Project Xaam/examixer/packages/system/public/assets/css/less/form.less",
-		"/Users/apham/development/Project Xaam/examixer/packages/system/public/services/menus.js",
-		"/Users/apham/development/Project Xaam/examixer/packages/system/public/views/index.html",
-		"/Users/apham/development/Project Xaam/examixer/packages/system/public/assets/css/less/variables.less",
-		"/Users/apham/development/Project Xaam/examixer/packages/system/server/views/includes/head.html",
-		"/Users/apham/development/Project Xaam/examixer/packages/system/public/views/header.html",
-		"/Users/apham/development/Project Xaam/examixer/packages/system/server/views/layouts/default.html",
-		"/Users/apham/development/Project Xaam/examixer/data/seed/questions.json",
-		"/Users/apham/development/Project Xaam/examixer/packages/questions/server/models/questions.js",
-		"/Users/apham/development/Project Xaam/examixer/packages/questions/server/controllers/questions.js",
-		"/Users/apham/development/Project Xaam/examixer/packages/questions/server/routes/questions.js",
-		"/Users/apham/development/Project Xaam/examixer/config/env/development.js",
-		"/Users/apham/development/Project Xaam/examixer/Gruntfile.js",
-		"/Users/apham/development/Project Xaam/examixer/packages/system/public/assets/css/common.css",
-		"/Users/apham/development/Project Xaam/examixer/packages/examixer/server/config/assets.json",
-		"/Users/apham/development/Project Xaam/examixer/packages/articles/server/routes/articles.js",
-		"/Users/apham/development/Project Xaam/examixer/packages/system/server/views/index.html",
-		"/Users/apham/development/Project Xaam/examixer/packages/system/public/routes/system.js"
+		"/Users/apham/development/Project Xaam/examixer/packages/system/public/assets/css/less/form.less"
 	],
 	"find":
 	{
@@ -527,9 +764,11 @@
 	},
 	"find_in_files":
 	{
-		"height": 0.0,
+		"height": 93.0,
 		"where_history":
 		[
+			"/Users/apham/development/highlow/highlow-app/common/scripts/src",
+			"/Users/apham/development/highlow/highlow-app/common/less",
 			"/Users/apham/development/highlow/affiliate-project/assets/less/highlow",
 			"/Users/apham/development/highlow/affiliate-project/assets/less/affiliate",
 			"/Users/apham/development/Project Xaam/examixer",
@@ -542,6 +781,98 @@
 		"case_sensitive": true,
 		"find_history":
 		[
+			"updateMainView",
+			"main-view",
+			"loading..",
+			"updateRemainingTime",
+			"endif",
+			"finishText",
+			"placeBet",
+			"finishTextLabel",
+			"finishLabelId",
+			"finishText",
+			"text",
+			"14",
+			"updateBet",
+			"INVEST",
+			"payout",
+			"popup",
+			"data-uid",
+			"close",
+			".close",
+			"one-",
+			"trading-platform-instrument-title",
+			"main-view",
+			"popup",
+			"current-rate",
+			"duration-value",
+			"placeBet",
+			"placeBEt",
+			"placeBet",
+			"finishText",
+			"updateEx",
+			"labelX",
+			"updateBetStatus",
+			"renderer.image",
+			"marker",
+			"selectThis",
+			"xAxis",
+			"placeBet",
+			"focused",
+			"placeBet",
+			"updateBet",
+			"placeBet",
+			"win-expire",
+			"high-win-expired",
+			"expired",
+			"{\n",
+			"on-demand",
+			"opacity",
+			"expiry-time",
+			"closing",
+			"addPoint",
+			"expired",
+			"update",
+			"addPoint",
+			"setExtremes",
+			"{% if",
+			"active",
+			"highlow-high",
+			"instrument-panel ",
+			"instrument-panel",
+			"\"Z",
+			"slide",
+			"assign",
+			"slider",
+			"tab-view-tab-selectors-container-wrapper",
+			"type:",
+			"type",
+			"labelStyle",
+			"finishText",
+			"updateBetStatus",
+			"selectThisBet",
+			"createBetEntry",
+			"finishTextId",
+			"'#'+bet",
+			"expired",
+			"sell-popup",
+			"trading-platform'",
+			"trading-platform\"",
+			"trading-platform",
+			"\"trading-pl",
+			"trading-plafor",
+			"trigger",
+			"trading-platform-investments",
+			"triggerSell",
+			"selectInstrument",
+			"investment-sell-btn",
+			"triggerSell",
+			"trigger",
+			"triggerSell",
+			"trading-platform-sell-popup",
+			"triggerSell",
+			"investment-sell",
+			"sell",
 			"title",
 			"form-signin",
 			"href=\"asse",
@@ -577,99 +908,7 @@
 			"animated",
 			"ee7045",
 			"btn",
-			"returnToMainPage",
-			"margin-top",
-			"public/js/",
-			"href=\"affiliate",
-			"src=\"affiliate",
-			"href=\"affiliate",
-			"public/js/",
-			"href=\"affiliate",
-			"src=\"affiliate",
-			"\"affiliate",
-			"public/js/",
-			"\"affiliate",
-			"public/js/",
-			"\"affiliate",
-			"public/js",
-			"f08461",
-			"body {",
-			"jq-ui-bootstrap",
-			"\"@bootstrap-path",
-			"on-demand",
-			"ondemand",
-			"trading-platform-investments-list",
-			"append(",
-			"console.log",
-			"14",
-			"bet.finishTextId",
-			"on('click",
-			"destroy",
-			"expireLine",
-			"updateBetStatus",
-			"addBettingButtons",
-			"slide",
-			"spread",
-			"selected",
-			"bet-high.spread",
-			"displayError",
-			"displaySuccess",
-			"bounceIn",
-			"opacity",
-			"onDragEnter",
-			"shadow",
-			"box-shadow",
-			"margin",
-			"sessionCollection",
-			"db",
-			"article",
-			"articles",
-			"Article",
-			"article",
-			"Article",
-			"aggregated.js",
-			"module",
-			"less",
-			"\"",
-			"@media",
-			";\n",
-			"type",
-			"type-calendar",
-			"\"",
-			"frames",
-			"resource",
-			"margin-left 0.2s ease {{dot.delay}}ms,",
-			"left 0.2",
-			"placeBet",
-			"direction",
-			"placeBEt",
-			"addClass('concealed",
-			"sell-popup",
-			"index",
-			"triggerSell",
-			"investment-sell-btn",
-			"updateBetStatus",
-			"createBetEntry",
-			"console.log",
-			"instrument-selector-widget-instruments-container",
-			"instrument",
-			"createBetEntry",
-			"placeBet",
-			"popup",
-			"placebet(",
-			"direction",
-			"highlow",
-			"placeBet",
-			"updateBetStatus",
-			"placeBet",
-			"updateBetStatus",
-			"placeBet",
-			"INVEST</div",
-			"trading-platform-main-controls-place-bet",
-			"confirmBet",
-			"addBettingButton",
-			"trading-platform-main-controls-select-direction",
-			"margin-bottom: 3px"
+			"returnToMainPage"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -677,6 +916,8 @@
 		"regex": false,
 		"replace_history":
 		[
+			"label:",
+			"label",
 			"src=\"../asse",
 			"src=\"../",
 			"<span class=\"punct\">、</span>",
@@ -759,7 +1000,7 @@
 	"groups":
 	[
 		{
-			"selected": 4,
+			"selected": 19,
 			"sheets":
 			[
 				{
@@ -767,15 +1008,15 @@
 					"file": "common/scripts/highlow-main.js",
 					"settings":
 					{
-						"buffer_size": 44202,
+						"buffer_size": 44846,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								43780,
-								43780
+								44177,
+								44177
 							]
 						],
 						"settings":
@@ -784,25 +1025,25 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 32304.0,
+						"translation.y": 23237.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 1,
-					"file": "templates/index.liquid",
+					"file": "templates/includes/layout.liquid",
 					"settings":
 					{
-						"buffer_size": 100800,
+						"buffer_size": 1063,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								100476,
-								100476
+								364,
+								364
 							]
 						],
 						"settings":
@@ -811,51 +1052,52 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 44850.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 2,
-					"file": "common/less/demo.less",
+					"file": "Gruntfile.js",
 					"settings":
 					{
-						"buffer_size": 1363,
+						"buffer_size": 15634,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								973,
-								973
+								944,
+								944
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/LESS/LESS.tmLanguage"
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 654.0,
+						"translation.y": 847.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 3,
-					"file": "common/less/components/message.less",
+					"file": "common/less/app/live-graph.less",
 					"settings":
 					{
-						"buffer_size": 2870,
+						"buffer_size": 128,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2323,
-								2323
+								126,
+								126
 							]
 						],
 						"settings":
@@ -863,30 +1105,748 @@
 							"syntax": "Packages/LESS/LESS.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 1857.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 4,
-					"file": "common/less/spritesheet.less",
+					"file": "common/scripts/src/highlow-system-messages.js",
 					"settings":
 					{
-						"buffer_size": 19344,
+						"buffer_size": 3191,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								843,
-								843
+								1224,
+								1269
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "common/scripts/src/highlow-app-util.js",
+					"settings":
+					{
+						"buffer_size": 335,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								270,
+								251
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "common/scripts/src/highlow-instrument-panel-slider.js",
+					"settings":
+					{
+						"buffer_size": 2453,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								980,
+								980
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 219.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "common/scripts/src/highlow-popup.js",
+					"settings":
+					{
+						"buffer_size": 420,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								41,
+								41
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"file": "build/common/scripts/highcharts.src.js",
+					"settings":
+					{
+						"buffer_size": 471988,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								10450,
+								10450
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 5353.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 9,
+					"file": "/Users/apham/Documents/GA-class/Note 1",
+					"settings":
+					{
+						"buffer_size": 0,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"auto_name": "Experience is the stories you tell after all you b",
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 10,
+					"file": "common/scripts/src/highlow-graph.js",
+					"settings":
+					{
+						"buffer_size": 10607,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3585,
+								3585
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 2107.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 11,
+					"settings":
+					{
+						"buffer_size": 1008,
+						"regions":
+						{
+							"match":
+							{
+								"flags": 112,
+								"regions":
+								[
+									[
+										281,
+										292
+									],
+									[
+										904,
+										916
+									]
+								],
+								"scope": ""
+							}
+						},
+						"selection":
+						[
+							[
+								644,
+								644
+							]
+						],
+						"settings":
+						{
+							"detect_indentation": false,
+							"output_tag": 5,
+							"result_base_dir": "",
+							"result_file_regex": "^([A-Za-z\\\\/<].*):$",
+							"result_line_regex": "^ +([0-9]+):",
+							"scroll_past_end": true,
+							"syntax": "Packages/Default/Find Results.hidden-tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 12,
+					"file": "common/scripts/src/highlow-market-simulator.js",
+					"settings":
+					{
+						"buffer_size": 16243,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								13819,
+								13819
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false,
+							"word_wrap": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 6698.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 13,
+					"settings":
+					{
+						"buffer_size": 0,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"default_dir": "/Users/apham/development/highlow/highlow-app/common/scripts/src",
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 14,
+					"file": "common/scripts/src/highlow-bet.js",
+					"settings":
+					{
+						"buffer_size": 8138,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								438,
+								438
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 15,
+					"file": "templates/index.liquid",
+					"settings":
+					{
+						"buffer_size": 26577,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								18944,
+								18913
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Liquid/Syntaxes/HTML Liquid.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 5359.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 16,
+					"file": "common/scripts/highlow-main.js.bak",
+					"settings":
+					{
+						"buffer_size": 42100,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								7345,
+								7391
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 23432.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 17,
+					"file": "common/scripts/src/highlow-tab.js",
+					"settings":
+					{
+						"buffer_size": 663,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								652,
+								652
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 18,
+					"file": "common/scripts/src/highlow-instrument-panel-selector.js",
+					"settings":
+					{
+						"buffer_size": 1220,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								70,
+								36
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 19,
+					"file": "common/less/components/tab-view.less",
+					"settings":
+					{
+						"buffer_size": 2549,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								836,
+								836
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/LESS/LESS.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 64.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 20,
+					"file": "common/less/app/instrument-selector-widget.less",
+					"settings":
+					{
+						"buffer_size": 2991,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1381,
+								1381
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/LESS/LESS.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 256.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 21,
+					"file": "common/less/main.less",
+					"settings":
+					{
+						"buffer_size": 840,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
 							]
 						],
 						"settings":
 						{
 							"syntax": "Packages/LESS/LESS.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 22,
+					"file": "common/less/spritesheet.less",
+					"settings":
+					{
+						"buffer_size": 21726,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3732,
+								3732
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/LESS/LESS.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 926.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 23,
+					"file": "common/less/app/trading-platform.less",
+					"settings":
+					{
+						"buffer_size": 5502,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								5100,
+								5100
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/LESS/LESS.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 2200.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 24,
+					"file": "common/less/components/popup.less",
+					"settings":
+					{
+						"buffer_size": 1958,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1187,
+								1187
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/LESS/LESS.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 188.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 25,
+					"file": "common/less/components/panel.less",
+					"settings":
+					{
+						"buffer_size": 1076,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/LESS/LESS.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 26,
+					"file": "common/less/base/rotate.less",
+					"settings":
+					{
+						"buffer_size": 583,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/LESS/LESS.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 27,
+					"file": "common/less/components/btn.less",
+					"settings":
+					{
+						"buffer_size": 1240,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								711,
+								711
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/LESS/LESS.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 71.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 28,
+					"file": "common/less/app/investment-table.less",
+					"settings":
+					{
+						"buffer_size": 2969,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								413,
+								413
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/LESS/LESS.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 366.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 29,
+					"file": "common/less/base/colors.less",
+					"settings":
+					{
+						"buffer_size": 507,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								458,
+								451
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/LESS/LESS.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 30,
+					"file": "common/less/components/table.less",
+					"settings":
+					{
+						"buffer_size": 1753,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1374,
+								1374
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/LESS/LESS.tmLanguage",
+							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -953,6 +1913,6 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 178.0,
+	"side_bar_width": 298.0,
 	"status_bar_visible": true
 }

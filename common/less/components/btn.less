@@ -28,13 +28,23 @@
 	}
 	.btn-positive {
 		background-color: @positive-color;
+		&:hover {
+			background-color: lighten(@positive-color, 5%)!important;
+		}
 	}
 	.btn-negative {
 		background-color: @negative-color;
+		&:hover {
+			background-color: lighten(@negative-color, 5%)!important;
+		}
 	}
 	.btn-highlight {
 		background-color: @orange-juice;
 		color: @night;
+		&:hover {
+			background-color: lighten(@orange-juice,5%);
+			color: lighten(@night,4%);
+		}
 	}
 	.btn-extruded {
 		border-bottom-width: 0.1875em;

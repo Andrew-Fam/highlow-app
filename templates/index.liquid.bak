@@ -1,0 +1,2578 @@
+{% extends layout %}
+{% block content %}
+<div class="tab-view tab-view-alternate trading-app-root">
+	<div class="tab-view-tab-selectors-container-wrapper trading-app-root-mode-selector-container-wrapper">
+		<div class="tab-view-tab-selectors-container font-m tab-full-width trading-app-container">
+			<ul class="tab-view-tab-selectors">
+				<li class="tab-view-tab-selector active trading-mode-highlow-selector" data-target="#highlow-mode">
+					HighLow
+				</li>
+				<li class="tab-view-tab-selector trading-mode-spread-selector" data-target="#spread-mode">
+					Spread HighLow
+				</li>
+				<li class="tab-view-tab-selector trading-mode-on-demand-selector" data-target="#on-demand-mode">
+					On Demand
+				</li>
+			</ul>
+		</div>
+	</div>
+	<div class="tab-view-body-wrapper">
+		<div class="tab-view-body">
+
+
+			<div class="tab-view-panel active" id="highlow-mode">
+				<div class="trading-app-container">
+					<div class="clearfix">
+						<div class="pull-left tab-view tab-view-default instrument-selector-widget">
+							<div class="instrument-selector-widget-duration-selectors-container tab-view-tab-selectors-container-wrapper">
+								<div class="instrument-selector-widget-instrument-filter pull-right">
+									<ul class="dropdown dropdown-default pull-left" tabindex="0">
+										<li class="dropdown-item active">
+											<input id="all-currency" checked name="instrument-filter" type="radio" value=""/>
+											<label for="all-currency" data-label="Filter Currencies">
+												Filter Currencies
+											</label>
+										</li>
+										<li class="dropdown-item">
+											<input id="nzd-jpy" name="instrument-filter" type="radio" value="nzd-jpy"/>
+											<label for="nzd-jpy" data-label="NZD/JPY">
+												NZD/JPY
+											</label>
+										</li>
+										<li class="dropdown-item">
+											<input id="nzd-aud" name="instrument-filter" type="radio" value="nzd-aud"/>
+											<label for="nzd-aud" data-label="NZD/AUD">
+												NZD/AUD
+											</label>
+										</li>
+										<li class="dropdown-item">
+											<input id="aud-jpy" name="instrument-filter" type="radio" value="aud-jpy"/>
+											<label for="aud-jpy" data-label="AUD/JPY">
+												AUD/JPY
+											</label>
+										</li>
+									</ul>
+								</div>
+								<div class="instrument-selector-widget-collapse-toggle">
+								</div>
+								<div class="tab-view-tab-selectors-container font-m">
+									<ul class="tab-view-tab-selectors instrument-selector-widget-duration-selectors">
+										<li class="tab-view-tab-selector instrument-selector-widget-duration-selector">
+											ALL
+										</li>
+										<li class="tab-view-tab-selector instrument-selector-widget-duration-selector active" data-target="#fifteen-min">
+											15 MIN
+										</li>
+										<li class="tab-view-tab-selector instrument-selector-widget-duration-selector" data-target="#one-hour">
+											1 HOUR
+										</li>
+										<li class="tab-view-tab-selector instrument-selector-widget-duration-selector" data-target="#one-day">
+											1 DAY
+										</li>
+									</ul>
+								</div>
+							</div>
+							<div class="tab-view-body-wrapper">
+								<div class="tab-view-body instrument-selector-widget-instruments-container">
+									<a class="instrument-selector-widget-instruments-slider page-slider backward" data-target="#fifteen-min-pages">
+									</a>
+									<a class="instrument-selector-widget-instruments-slider page-slider forward" data-target="#fifteen-min-pages">
+									</a>
+									<div class="tab-view-panel active" id="fifteen-min">
+										<div class="page-container" id="fifteen-min-pages">
+											<div class="slider-fade-left">
+
+											</div>
+											<div class="slider-fade-right">
+
+											</div>
+											<div class="pages-wrapper">
+												<div class="page active">
+													<div class="instrument-panel">
+														<div class="instrument-panel-header">
+															<div class="instrument-panel-title">
+																NZD/JPY
+															</div>
+															<div class="instrument-panel-duration font-l">
+																15m
+															</div>
+														</div>
+														<div class="instrument-panel-body">
+															<div class="clearfix">
+																<div class="pull-right clearfix">
+																	<div class="font-sb">
+																		Market
+																	</div>
+																	<div class="instrument-panel-rate highlow-high">
+																		102.227
+																	</div>
+																</div>
+																<div class="pull-left clearfix">
+																	<div class="font-sb">
+																		Payout
+																	</div>
+																	<div class="instrument-panel-payout">
+																		$1.85
+																	</div>
+																</div>
+															</div>
+															<div>
+																<div class="instrument-panel-closing font-l">
+																	Closing: <span class="expiry-time">12.45</span>
+																</div>
+															</div>
+														</div>
+													</div>
+													<div class="instrument-panel">
+														<div class="instrument-panel-header">
+															<div class="instrument-panel-title">
+																AUD/JPY
+															</div>
+															<div class="instrument-panel-duration font-l">
+																15m
+															</div>
+														</div>
+														<div class="instrument-panel-body">
+															<div class="clearfix">
+																<div class="pull-right clearfix">
+																	<div class="font-sb">
+																		Market
+																	</div>
+																	<div class="instrument-panel-rate highlow-high">
+																		102.227
+																	</div>
+																</div>
+																<div class="pull-left clearfix">
+																	<div class="font-sb">
+																		Payout
+																	</div>
+																	<div class="instrument-panel-payout">
+																		$1.85
+																	</div>
+																</div>
+															</div>
+															<div>
+																<div class="instrument-panel-closing font-l">
+																	Closing: <span class="expiry-time">12.45</span>
+																</div>
+															</div>
+														</div>
+													</div>
+													<div class="instrument-panel instrument-panel-active">
+														<div class="instrument-panel-header">
+															<div class="instrument-panel-title">
+																USD/JPY
+															</div>
+															<div class="instrument-panel-duration font-l">
+																15m
+															</div>
+														</div>
+														<div class="instrument-panel-body">
+															<div class="clearfix">
+																<div class="pull-right clearfix">
+																	<div class="font-sb">
+																		Market
+																	</div>
+																	<div class="instrument-panel-rate highlow-high current-rate-highlow">
+																		102.227
+																	</div>
+																</div>
+																<div class="pull-left clearfix">
+																	<div class="font-sb">
+																		Payout
+																	</div>
+																	<div class="instrument-panel-payout">
+																		$1.85
+																	</div>
+																</div>
+															</div>
+															<div>
+																<div class="instrument-panel-closing font-l">
+																	Closing: <span class="expiry-time">12.45</span>
+																</div>
+															</div>
+														</div>
+													</div>
+													<div class="instrument-panel">
+														<div class="instrument-panel-header">
+															<div class="instrument-panel-title">
+																JPY/AUD
+															</div>
+															<div class="instrument-panel-duration font-l">
+																15m
+															</div>
+														</div>
+														<div class="instrument-panel-body">
+															<div class="clearfix">
+																<div class="pull-right clearfix">
+																	<div class="font-sb">
+																		Market
+																	</div>
+																	<div class="instrument-panel-rate highlow-high">
+																		102.227
+																	</div>
+																</div>
+																<div class="pull-left clearfix">
+																	<div class="font-sb">
+																		Payout
+																	</div>
+																	<div class="instrument-panel-payout">
+																		$1.85
+																	</div>
+																</div>
+															</div>
+															<div>
+																<div class="instrument-panel-closing font-l">
+																	Closing: <span class="expiry-time">12.45</span>
+																</div>
+															</div>
+														</div>
+													</div>
+													<div class="instrument-panel">
+														<div class="instrument-panel-header">
+															<div class="instrument-panel-title">
+																NZD/AUD
+															</div>
+															<div class="instrument-panel-duration font-l">
+																15m
+															</div>
+														</div>
+														<div class="instrument-panel-body">
+															<div class="clearfix">
+																<div class="pull-right clearfix">
+																	<div class="font-sb">
+																		Market
+																	</div>
+																	<div class="instrument-panel-rate highlow-high">
+																		102.227
+																	</div>
+																</div>
+																<div class="pull-left clearfix">
+																	<div class="font-sb">
+																		Payout
+																	</div>
+																	<div class="instrument-panel-payout">
+																		$1.85
+																	</div>
+																</div>
+															</div>
+															<div>
+																<div class="instrument-panel-closing font-l">
+																	Closing: <span class="expiry-time">12.45</span>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+												<div class="page">
+													<div class="instrument-panel">
+														<div class="instrument-panel-header">
+															<div class="instrument-panel-title">
+																NZD/JPY
+															</div>
+															<div class="instrument-panel-duration font-l">
+																15m
+															</div>
+														</div>
+														<div class="instrument-panel-body">
+															<div class="clearfix">
+																<div class="pull-right clearfix">
+																	<div class="font-sb">
+																		Market
+																	</div>
+																	<div class="instrument-panel-rate highlow-high">
+																		102.227
+																	</div>
+																</div>
+																<div class="pull-left clearfix">
+																	<div class="font-sb">
+																		Payout
+																	</div>
+																	<div class="instrument-panel-payout">
+																		$1.85
+																	</div>
+																</div>
+															</div>
+															<div>
+																<div class="instrument-panel-closing font-l">
+																	Closing: <span class="expiry-time">12.45</span>
+																</div>
+															</div>
+														</div>
+													</div>
+													<div class="instrument-panel">
+														<div class="instrument-panel-header">
+															<div class="instrument-panel-title">
+																AUD/JPY
+															</div>
+															<div class="instrument-panel-duration font-l">
+																15m
+															</div>
+														</div>
+														<div class="instrument-panel-body">
+															<div class="clearfix">
+																<div class="pull-right clearfix">
+																	<div class="font-sb">
+																		Market
+																	</div>
+																	<div class="instrument-panel-rate highlow-high">
+																		102.227
+																	</div>
+																</div>
+																<div class="pull-left clearfix">
+																	<div class="font-sb">
+																		Payout
+																	</div>
+																	<div class="instrument-panel-payout">
+																		$1.85
+																	</div>
+																</div>
+															</div>
+															<div>
+																<div class="instrument-panel-closing font-l">
+																	Closing: <span class="expiry-time">12.45</span>
+																</div>
+															</div>
+														</div>
+													</div>
+													<div class="instrument-panel">
+														<div class="instrument-panel-header">
+															<div class="instrument-panel-title">
+																USD/JPY
+															</div>
+															<div class="instrument-panel-duration font-l">
+																15m
+															</div>
+														</div>
+														<div class="instrument-panel-body">
+															<div class="clearfix">
+																<div class="pull-right clearfix">
+																	<div class="font-sb">
+																		Market
+																	</div>
+																	<div class="instrument-panel-rate highlow-high">
+																		102.227
+																	</div>
+																</div>
+																<div class="pull-left clearfix">
+																	<div class="font-sb">
+																		Payout
+																	</div>
+																	<div class="instrument-panel-payout">
+																		$1.85
+																	</div>
+																</div>
+															</div>
+															<div>
+																<div class="instrument-panel-closing font-l">
+																	Closing: <span class="expiry-time">12.45</span>
+																</div>
+															</div>
+														</div>
+													</div>
+													<div class="instrument-panel">
+														<div class="instrument-panel-header">
+															<div class="instrument-panel-title">
+																JPY/AUD
+															</div>
+															<div class="instrument-panel-duration font-l">
+																15m
+															</div>
+														</div>
+														<div class="instrument-panel-body">
+															<div class="clearfix">
+																<div class="pull-right clearfix">
+																	<div class="font-sb">
+																		Market
+																	</div>
+																	<div class="instrument-panel-rate highlow-high">
+																		102.227
+																	</div>
+																</div>
+																<div class="pull-left clearfix">
+																	<div class="font-sb">
+																		Payout
+																	</div>
+																	<div class="instrument-panel-payout">
+																		$1.85
+																	</div>
+																</div>
+															</div>
+															<div>
+																<div class="instrument-panel-closing font-l">
+																	Closing: <span class="expiry-time">12.45</span>
+																</div>
+															</div>
+														</div>
+													</div>
+													<div class="instrument-panel">
+														<div class="instrument-panel-header">
+															<div class="instrument-panel-title">
+																NZD/AUD
+															</div>
+															<div class="instrument-panel-duration font-l">
+																15m
+															</div>
+														</div>
+														<div class="instrument-panel-body">
+															<div class="clearfix">
+																<div class="pull-right clearfix">
+																	<div class="font-sb">
+																		Market
+																	</div>
+																	<div class="instrument-panel-rate highlow-high">
+																		102.227
+																	</div>
+																</div>
+																<div class="pull-left clearfix">
+																	<div class="font-sb">
+																		Payout
+																	</div>
+																	<div class="instrument-panel-payout">
+																		$1.85
+																	</div>
+																</div>
+															</div>
+															<div>
+																<div class="instrument-panel-closing font-l">
+																	Closing: <span class="expiry-time">12.45</span>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+												<div class="page">
+													<div class="instrument-panel">
+														<div class="instrument-panel-header">
+															<div class="instrument-panel-title">
+																NZD/JPY
+															</div>
+															<div class="instrument-panel-duration font-l">
+																15m
+															</div>
+														</div>
+														<div class="instrument-panel-body">
+															<div class="clearfix">
+																<div class="pull-right clearfix">
+																	<div class="font-sb">
+																		Market
+																	</div>
+																	<div class="instrument-panel-rate highlow-high">
+																		102.227
+																	</div>
+																</div>
+																<div class="pull-left clearfix">
+																	<div class="font-sb">
+																		Payout
+																	</div>
+																	<div class="instrument-panel-payout">
+																		$1.85
+																	</div>
+																</div>
+															</div>
+															<div>
+																<div class="instrument-panel-closing font-l">
+																	Closing: <span class="expiry-time">12.45</span>
+																</div>
+															</div>
+														</div>
+													</div>
+													<div class="instrument-panel">
+														<div class="instrument-panel-header">
+															<div class="instrument-panel-title">
+																AUD/JPY
+															</div>
+															<div class="instrument-panel-duration font-l">
+																15m
+															</div>
+														</div>
+														<div class="instrument-panel-body">
+															<div class="clearfix">
+																<div class="pull-right clearfix">
+																	<div class="font-sb">
+																		Market
+																	</div>
+																	<div class="instrument-panel-rate highlow-high">
+																		102.227
+																	</div>
+																</div>
+																<div class="pull-left clearfix">
+																	<div class="font-sb">
+																		Payout
+																	</div>
+																	<div class="instrument-panel-payout">
+																		$1.85
+																	</div>
+																</div>
+															</div>
+															<div>
+																<div class="instrument-panel-closing font-l">
+																	Closing: <span class="expiry-time">12.45</span>
+																</div>
+															</div>
+														</div>
+													</div>
+													<div class="instrument-panel">
+														<div class="instrument-panel-header">
+															<div class="instrument-panel-title">
+																USD/JPY
+															</div>
+															<div class="instrument-panel-duration font-l">
+																15m
+															</div>
+														</div>
+														<div class="instrument-panel-body">
+															<div class="clearfix">
+																<div class="pull-right clearfix">
+																	<div class="font-sb">
+																		Market
+																	</div>
+																	<div class="instrument-panel-rate highlow-high">
+																		102.227
+																	</div>
+																</div>
+																<div class="pull-left clearfix">
+																	<div class="font-sb">
+																		Payout
+																	</div>
+																	<div class="instrument-panel-payout">
+																		$1.85
+																	</div>
+																</div>
+															</div>
+															<div>
+																<div class="instrument-panel-closing font-l">
+																	Closing: <span class="expiry-time">12.45</span>
+																</div>
+															</div>
+														</div>
+													</div>
+													<div class="instrument-panel">
+														<div class="instrument-panel-header">
+															<div class="instrument-panel-title">
+																JPY/AUD
+															</div>
+															<div class="instrument-panel-duration font-l">
+																15m
+															</div>
+														</div>
+														<div class="instrument-panel-body">
+															<div class="clearfix">
+																<div class="pull-right clearfix">
+																	<div class="font-sb">
+																		Market
+																	</div>
+																	<div class="instrument-panel-rate highlow-high">
+																		102.227
+																	</div>
+																</div>
+																<div class="pull-left clearfix">
+																	<div class="font-sb">
+																		Payout
+																	</div>
+																	<div class="instrument-panel-payout">
+																		$1.85
+																	</div>
+																</div>
+															</div>
+															<div>
+																<div class="instrument-panel-closing font-l">
+																	Closing: <span class="expiry-time">12.45</span>
+																</div>
+															</div>
+														</div>
+													</div>
+													<div class="instrument-panel">
+														<div class="instrument-panel-header">
+															<div class="instrument-panel-title">
+																NZD/AUD
+															</div>
+															<div class="instrument-panel-duration font-l">
+																15m
+															</div>
+														</div>
+														<div class="instrument-panel-body">
+															<div class="clearfix">
+																<div class="pull-right clearfix">
+																	<div class="font-sb">
+																		Market
+																	</div>
+																	<div class="instrument-panel-rate highlow-high">
+																		102.227
+																	</div>
+																</div>
+																<div class="pull-left clearfix">
+																	<div class="font-sb">
+																		Payout
+																	</div>
+																	<div class="instrument-panel-payout">
+																		$1.85
+																	</div>
+																</div>
+															</div>
+															<div>
+																<div class="instrument-panel-closing font-l">
+																	Closing: <span class="expiry-time">12.45</span>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>	
+						</div>
+					</div>
+					<!-- <div class="message-wrapper error">
+						<div class="message">
+							Please select an option (High or Low)!
+						</div>
+						<div class="close">
+						</div>
+					</div> -->
+					<div class="panel panel-default trading-platform">
+						<div class="panel-header">
+							<div class="pull-left">
+								<span class="trading-platform-instrument-title font-sb">
+									USD/JPY
+								</span>
+								<span class="trading-platform-instrument-rate highlow-high current-rate-highlow">
+									102.277
+								</span>
+							</div>
+							<div class="pull-right">
+								<span class="trading-platform-instrument-duration">
+									15 mins
+								</span>
+								<span class="trading-platform-instrument-time-left time-to-expiry">
+									loading...
+								</span>
+								<a class="trading-platform-instrument-one-click-toggler">
+								</a>
+							</div>
+						</div>
+						<div class="clearfix">
+							<div class="highlow demo-message message-wrapper">
+								<div class="message">
+									This is indicative of a <span class="demo-message-type"></span> dialogue
+								</div>
+								<div class="close">
+
+								</div>
+							</div>
+						</div>
+						<div class="panel-body">
+							<div class="trading-platform-live-graph">
+								<div id="highlow-graph"></div>
+							</div>
+							<div class="trading-platform-main-controls ">
+								<div class="trading-platform-main-controls-instrument-title font-sb">
+									USD/JPY
+								</div>
+								<div class="trading-platform-main-controls-live-rate">
+									<div class="pull-left font-sb">
+										Market
+									</div>
+									<div class="pull-right font-l highlow-high current-rate-highlow">
+										102.77
+									</div>
+								</div>
+								<div class="trading-platform-main-controls-investment form-control">
+									$<input type="text" id="investment-value-input" value="500"/>
+								</div>
+								<div class="clearfix trading-platform-main-controls-common-amount">
+									<!-- I've used div as button here because button deosn't get :focus style on click for Firefox and Safari on MAc OSX -->
+
+									<div class="btn btn-default btn-md-pad" tabindex="0" onclick="document.getElementById('investment-value-input-popup').value = this.getAttribute('data-value'); document.getElementById('investment-value-input').value = this.getAttribute('data-value');" data-value="50">$50</div>
+									<div class="btn btn-default btn-md-pad" tabindex="0" onclick="document.getElementById('investment-value-input-popup').value = this.getAttribute('data-value'); document.getElementById('investment-value-input').value = this.getAttribute('data-value');" data-value="100">$100</div>
+									<div class="btn btn-default btn-md-pad active" tabindex="0" onclick="document.getElementById('investment-value-input-popup').value = this.getAttribute('data-value'); document.getElementById('investment-value-input').value = this.getAttribute('data-value');" data-value="500">$500</div>
+								</div>
+								<div class="trading-platform-main-controls-options one-click-control">
+									<div class="btn btn-positive btn-extruded font-m btn-md-pad bet-high highlow highlow-up">
+										HIGH
+									</div>
+									<div class="btn btn-negative btn-extruded font-m btn-md-pad bet-low highlow highlow-down">
+										LOW
+									</div>
+								</div>
+								<div class="clearfix trading-platform-main-controls-options none-one-click-control">
+									<div class="trading-platform-main-controls-select-direction">
+										<label for="trading-platform-main-controls-select-direction-up-highlow" class="btn btn-extruded font-m btn-sm-pad btn-positive highlow-up trading-select-direction-highlow-high">
+											HIGH
+										</label>
+										<input type="radio" id="trading-platform-main-controls-select-direction-up-highlow" name="selectedDirectionHighlow" value="high"/>
+										<label for="trading-platform-main-controls-select-direction-down-highlow" class="btn btn-extruded btn-negative font-m btn-sm-pad highlow-down trading-select-direction-highlow-up">
+											LOW
+										</label>
+										<input type="radio" id="trading-platform-main-controls-select-direction-down-highlow" name="selectedDirectionHighlow" value="low"/>
+									</div>
+									<div class="btn btn-highlight btn-extruded font-m btn-lg-pad trading-platform-main-controls-place-bet highlow" data-direction="selectedDirectionHighlow">INVEST</div>
+								</div>
+								<div class="trading-platform-main-controls-payout">
+									<div class="pull-left font-sb">
+										Payout
+									</div>
+									<div class="pull-right font-l">
+										$ <span class="trading-platform-main-controls-payout-rate">1.85</span>
+									</div>
+								</div>
+								<div class="trading-platform-main-controls-return">
+									<div class="pull-left font-sb">
+										Return
+									</div>
+									<div class="pull-right font-l">
+										$925.00
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="trading-platform-popup-wrapper trading-platform-invest-popup highlow concealed">
+					<div class="trading-platform-popup">
+						<div class="trading-platform-popup-content-wrapper">
+							<div class="trading-platform-popup-content">
+								<div class="trading-platform-popup-content-inner-wrap">
+									<div class="trading-platform-popup-header">
+										INVEST
+										<div class="trading-platform-popup-close close"></div>
+									</div>
+									<div class="trading-platform-popup-body">
+										<div class="trading-platform-invest-popup-live-rate">
+											<div class="trading-platform-main-controls-instrument-title pull-left font-sb">
+												USD/JPY
+											</div>
+											<div class="pull-right font-l highlow-high current-rate-highlow">
+												102.77
+											</div>
+										</div>
+										<div class="trading-platform-invest-popup-payout">
+											<div class="pull-left font-sb">
+												Payout
+											</div>
+											<div class="pull-right font-l">
+												$ <span class="trading-platform-main-controls-payout-rate">1.85</span>
+											</div>
+										</div>
+										<div class="trading-platform-main-controls-investment form-control">
+											$<input type="text" id="investment-value-input-popup" value="500"/>
+										</div>
+										<div class="clearfix trading-platform-main-controls-common-amount">
+											<!-- I've used div as button here because button deosn't get :focus style on click for Firefox and Safari on MAc OSX -->
+
+											<div class="btn btn-default btn-md-pad" tabindex="0" onclick="document.getElementById('investment-value-input-popup').value = this.getAttribute('data-value'); document.getElementById('investment-value-input').value = this.getAttribute('data-value');" data-value="50">$50</div>
+											<div class="btn btn-default btn-md-pad" tabindex="0" onclick="document.getElementById('investment-value-input-popup').value = this.getAttribute('data-value'); document.getElementById('investment-value-input').value = this.getAttribute('data-value');" data-value="100">$100</div>
+											<div class="btn btn-default btn-md-pad active" tabindex="0" onclick="document.getElementById('investment-value-input-popup').value = this.getAttribute('data-value'); document.getElementById('investment-value-input').value = this.getAttribute('data-value');" data-value="500">$500</div>
+										</div>
+										<div class="clearfix trading-platform-main-controls-options none-one-click-control">
+											<div class="trading-platform-main-controls-select-direction">
+												<label for="trading-platform-main-controls-select-direction-up-highlow-popup" class="btn btn-extruded font-m btn-sm-pad btn-positive highlow-up trading-select-direction-highlow-high">
+													HIGH
+												</label>
+												<input type="radio" id="trading-platform-main-controls-select-direction-up-highlow-popup" name="selectedDirectionHighlowPopup" value="high"/>
+												<label for="trading-platform-main-controls-select-direction-down-highlow-popup" class="btn btn-extruded btn-negative font-m btn-sm-pad highlow-down trading-select-direction-highlow-low">
+													LOW
+												</label>
+												<input type="radio" id="trading-platform-main-controls-select-direction-down-highlow-popup" name="selectedDirectionHighlowPopup" value="low"/>
+											</div>
+											<div class="btn btn-highlight btn-extruded font-m btn-lg-pad trading-platform-main-controls-place-bet highlow" data-direction="selectedDirectionHighlowPopup">INVEST</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="tab-view-panel" id="spread-mode">
+				<div class="trading-app-container">
+					<div class="clearfix">
+						<div class="pull-left tab-view tab-view-default instrument-selector-widget">
+							<div class="instrument-selector-widget-duration-selectors-container tab-view-tab-selectors-container-wrapper">
+								<div class="instrument-selector-widget-instrument-filter pull-right">
+									<ul class="dropdown dropdown-default pull-left" tabindex="0">
+										<li class="dropdown-item active">
+											<input id="spread-filter-all-currency" checked name="spread-instrument-filter" type="radio" value=""/>
+											<label for="spread-filter-all-currency" data-label="Filter Currencies">
+												Filter Currencies
+											</label>
+										</li>
+										<li class="dropdown-item">
+											<input id="spread-filter-nzd-jpy" name="spread-instrument-filter" type="radio" value="nzd-jpy"/>
+											<label for="spread-filter-nzd-jpy" data-label="NZD/JPY">
+												NZD/JPY
+											</label>
+										</li>
+										<li class="dropdown-item">
+											<input id="spread-filter-nzd-aud" name="spread-instrument-filter" type="radio" value="nzd-aud"/>
+											<label for="spread-filter-nzd-aud" data-label="NZD/AUD">
+												NZD/AUD
+											</label>
+										</li>
+										<li class="dropdown-item">
+											<input id="spread-filter-aud-jpy" name="spread-instrument-filter" type="radio" value="aud-jpy"/>
+											<label for="spread-filter-aud-jpy" data-label="AUD/JPY">
+												AUD/JPY
+											</label>
+										</li>
+									</ul>
+								</div>
+								<div class="instrument-selector-widget-collapse-toggle">
+								</div>
+								<div class="tab-view-tab-selectors-container font-m">
+									<ul class="tab-view-tab-selectors instrument-selector-widget-duration-selectors">
+										<li class="tab-view-tab-selector instrument-selector-widget-duration-selector">
+											ALL
+										</li>
+										<li class="tab-view-tab-selector instrument-selector-widget-duration-selector active" data-target="#fifteen-min-spread">
+											15 MIN
+										</li>
+										<li class="tab-view-tab-selector instrument-selector-widget-duration-selector" data-target="#one-hour-spread">
+											1 HOUR
+										</li>
+										<li class="tab-view-tab-selector instrument-selector-widget-duration-selector" data-target="#one-day-spread">
+											1 DAY
+										</li>
+									</ul>
+								</div>
+							</div>
+							<div class="tab-view-body-wrapper">
+								<div class="tab-view-body instrument-selector-widget-instruments-container">
+									<a class="instrument-selector-widget-instruments-slider page-slider backward" data-target="#fifteen-min-spread-pages">
+									</a>
+									<a class="instrument-selector-widget-instruments-slider page-slider forward" data-target="#fifteen-min-spread-pages">
+									</a>
+									<div class="tab-view-panel active" id="fifteen-min-spread">
+										<div class="page-container" id="fifteen-min-spread-pages">
+											<div class="slider-fade-left">
+
+											</div>
+											<div class="slider-fade-right">
+
+											</div>
+											<div class="pages-wrapper">
+												<div class="page active">
+													<div class="instrument-panel instrument-spread-panel">
+														<div class="instrument-panel-header">
+															<div class="instrument-panel-title">
+																NZD/JPY
+															</div>
+															<div class="instrument-panel-duration font-l">
+																15m
+															</div>
+														</div>
+														<div class="instrument-panel-body">
+															<div class="clearfix">
+																<div class="pull-right clearfix">
+																	<div class="font-sb">
+																		Market
+																	</div>
+																	<div class="instrument-panel-rate highlow-high">
+																		102.257
+																	</div>
+																	<div class="instrument-panel-rate highlow-low">
+																		102.177
+																	</div>
+																</div>
+																<div class="pull-left clearfix">
+																	<div class="font-sb">
+																		Payout
+																	</div>
+																	<div class="instrument-panel-payout">
+																		$2.00
+																	</div>
+																	<div class="instrument-panel-closing font-l">
+																		Closing: <span class="expiry-time">12.45</span>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+													<div class="instrument-panel instrument-spread-panel">
+														<div class="instrument-panel-header">
+															<div class="instrument-panel-title">
+																AUD/JPY
+															</div>
+															<div class="instrument-panel-duration font-l">
+																15m
+															</div>
+														</div>
+														<div class="instrument-panel-body">
+															<div class="clearfix">
+																<div class="pull-right clearfix">
+																	<div class="font-sb">
+																		Market
+																	</div>
+																	<div class="instrument-panel-rate highlow-high">
+																		102.257
+																	</div>
+																	<div class="instrument-panel-rate highlow-low">
+																		102.177
+																	</div>
+																</div>
+																<div class="pull-left clearfix">
+																	<div class="font-sb">
+																		Payout
+																	</div>
+																	<div class="instrument-panel-payout">
+																		$2.00
+																	</div>
+																	<div class="instrument-panel-closing font-l">
+																		Closing: <span class="expiry-time">12.45</span>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+													<div class="instrument-panel instrument-spread-panel instrument-panel-active">
+														<div class="instrument-panel-header">
+															<div class="instrument-panel-title">
+																USD/JPY
+															</div>
+															<div class="instrument-panel-duration font-l">
+																15m
+															</div>
+														</div>
+														<div class="instrument-panel-body">
+															<div class="clearfix">
+																<div class="pull-right clearfix">
+																	<div class="font-sb">
+																		Market
+																	</div>
+																	<div class="instrument-panel-rate highlow-high current-rate-spread-plus">
+																		102.257
+																	</div>
+																	<div class="instrument-panel-rate highlow-low current-rate-spread-take">
+																		102.177
+																	</div>
+																</div>
+																<div class="pull-left clearfix">
+																	<div class="font-sb">
+																		Payout
+																	</div>
+																	<div class="instrument-panel-payout">
+																		$2.00
+																	</div>
+																	<div class="instrument-panel-closing font-l">
+																		Closing: <span class="expiry-time">12.45</span>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+													<div class="instrument-panel instrument-spread-panel">
+														<div class="instrument-panel-header">
+															<div class="instrument-panel-title">
+																JPY/AUD
+															</div>
+															<div class="instrument-panel-duration font-l">
+																15m
+															</div>
+														</div>
+														<div class="instrument-panel-body">
+															<div class="clearfix">
+																<div class="pull-right clearfix">
+																	<div class="font-sb">
+																		Market
+																	</div>
+																	<div class="instrument-panel-rate highlow-high">
+																		102.227
+																	</div>
+																	<div class="instrument-panel-rate highlow-low">
+																		102.177
+																	</div>
+																</div>
+																<div class="pull-left clearfix">
+																	<div class="font-sb">
+																		Payout
+																	</div>
+																	<div class="instrument-panel-payout">
+																		$2.00
+																	</div>
+																	<div class="instrument-panel-closing font-l">
+																		Closing: <span class="expiry-time">12.45</span>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+													<div class="instrument-panel instrument-spread-panel">
+														<div class="instrument-panel-header">
+															<div class="instrument-panel-title">
+																NZD/AUD
+															</div>
+															<div class="instrument-panel-duration font-l">
+																15m
+															</div>
+														</div>
+														<div class="instrument-panel-body">
+															<div class="clearfix">
+																<div class="pull-right clearfix">
+																	<div class="font-sb">
+																		Market
+																	</div>
+																	<div class="instrument-panel-rate highlow-high">
+																		102.227
+																	</div>
+																	<div class="instrument-panel-rate highlow-low">
+																		102.177
+																	</div>
+																</div>
+																<div class="pull-left clearfix">
+																	<div class="font-sb">
+																		Payout
+																	</div>
+																	<div class="instrument-panel-payout">
+																		$1.85
+																	</div>
+																	<div class="instrument-panel-closing font-l">
+																		Closing: <span class="expiry-time">12.45</span>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+												<div class="page">
+													<div class="instrument-panel instrument-spread-panel">
+														<div class="instrument-panel-header">
+															<div class="instrument-panel-title">
+																NZD/JPY
+															</div>
+															<div class="instrument-panel-duration font-l">
+																15m
+															</div>
+														</div>
+														<div class="instrument-panel-body">
+															<div class="clearfix">
+																<div class="pull-right clearfix">
+																	<div class="font-sb">
+																		Market
+																	</div>
+																	<div class="instrument-panel-rate highlow-high">
+																		102.257
+																	</div>
+																	<div class="instrument-panel-rate highlow-low">
+																		102.177
+																	</div>
+																</div>
+																<div class="pull-left clearfix">
+																	<div class="font-sb">
+																		Payout
+																	</div>
+																	<div class="instrument-panel-payout">
+																		$2.00
+																	</div>
+																	<div class="instrument-panel-closing font-l">
+																		Closing: <span class="expiry-time">12.45</span>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+													<div class="instrument-panel instrument-spread-panel">
+														<div class="instrument-panel-header">
+															<div class="instrument-panel-title">
+																AUD/JPY
+															</div>
+															<div class="instrument-panel-duration font-l">
+																15m
+															</div>
+														</div>
+														<div class="instrument-panel-body">
+															<div class="clearfix">
+																<div class="pull-right clearfix">
+																	<div class="font-sb">
+																		Market
+																	</div>
+																	<div class="instrument-panel-rate highlow-high">
+																		102.257
+																	</div>
+																	<div class="instrument-panel-rate highlow-low">
+																		102.177
+																	</div>
+																</div>
+																<div class="pull-left clearfix">
+																	<div class="font-sb">
+																		Payout
+																	</div>
+																	<div class="instrument-panel-payout">
+																		$2.00
+																	</div>
+																	<div class="instrument-panel-closing font-l">
+																		Closing: <span class="expiry-time">12.45</span>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+													<div class="instrument-panel instrument-spread-panel">
+														<div class="instrument-panel-header">
+															<div class="instrument-panel-title">
+																JPY/AUD
+															</div>
+															<div class="instrument-panel-duration font-l">
+																15m
+															</div>
+														</div>
+														<div class="instrument-panel-body">
+															<div class="clearfix">
+																<div class="pull-right clearfix">
+																	<div class="font-sb">
+																		Market
+																	</div>
+																	<div class="instrument-panel-rate highlow-high">
+																		102.227
+																	</div>
+																	<div class="instrument-panel-rate highlow-low">
+																		102.177
+																	</div>
+																</div>
+																<div class="pull-left clearfix">
+																	<div class="font-sb">
+																		Payout
+																	</div>
+																	<div class="instrument-panel-payout">
+																		$2.00
+																	</div>
+																	<div class="instrument-panel-closing font-l">
+																		Closing: <span class="expiry-time">12.45</span>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+													<div class="instrument-panel instrument-spread-panel">
+														<div class="instrument-panel-header">
+															<div class="instrument-panel-title">
+																NZD/AUD
+															</div>
+															<div class="instrument-panel-duration font-l">
+																15m
+															</div>
+														</div>
+														<div class="instrument-panel-body">
+															<div class="clearfix">
+																<div class="pull-right clearfix">
+																	<div class="font-sb">
+																		Market
+																	</div>
+																	<div class="instrument-panel-rate highlow-high">
+																		102.227
+																	</div>
+																	<div class="instrument-panel-rate highlow-low">
+																		102.177
+																	</div>
+																</div>
+																<div class="pull-left clearfix">
+																	<div class="font-sb">
+																		Payout
+																	</div>
+																	<div class="instrument-panel-payout">
+																		$1.85
+																	</div>
+																	<div class="instrument-panel-closing font-l">
+																		Closing: <span class="expiry-time">12.45</span>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+													<div class="instrument-panel instrument-spread-panel">
+														<div class="instrument-panel-header">
+															<div class="instrument-panel-title">
+																JPY/AUD
+															</div>
+															<div class="instrument-panel-duration font-l">
+																15m
+															</div>
+														</div>
+														<div class="instrument-panel-body">
+															<div class="clearfix">
+																<div class="pull-right clearfix">
+																	<div class="font-sb">
+																		Market
+																	</div>
+																	<div class="instrument-panel-rate highlow-high">
+																		102.227
+																	</div>
+																	<div class="instrument-panel-rate highlow-low">
+																		102.177
+																	</div>
+																</div>
+																<div class="pull-left clearfix">
+																	<div class="font-sb">
+																		Payout
+																	</div>
+																	<div class="instrument-panel-payout">
+																		$2.00
+																	</div>
+																	<div class="instrument-panel-closing font-l">
+																		Closing: <span class="expiry-time">12.45</span>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+												<div class="page">
+													<div class="instrument-panel instrument-spread-panel">
+														<div class="instrument-panel-header">
+															<div class="instrument-panel-title">
+																JPY/AUD
+															</div>
+															<div class="instrument-panel-duration font-l">
+																15m
+															</div>
+														</div>
+														<div class="instrument-panel-body">
+															<div class="clearfix">
+																<div class="pull-right clearfix">
+																	<div class="font-sb">
+																		Market
+																	</div>
+																	<div class="instrument-panel-rate highlow-high">
+																		102.227
+																	</div>
+																	<div class="instrument-panel-rate highlow-low">
+																		102.177
+																	</div>
+																</div>
+																<div class="pull-left clearfix">
+																	<div class="font-sb">
+																		Payout
+																	</div>
+																	<div class="instrument-panel-payout">
+																		$2.00
+																	</div>
+																	<div class="instrument-panel-closing font-l">
+																		Closing: <span class="expiry-time">12.45</span>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+													<div class="instrument-panel instrument-spread-panel">
+														<div class="instrument-panel-header">
+															<div class="instrument-panel-title">
+																NZD/AUD
+															</div>
+															<div class="instrument-panel-duration font-l">
+																15m
+															</div>
+														</div>
+														<div class="instrument-panel-body">
+															<div class="clearfix">
+																<div class="pull-right clearfix">
+																	<div class="font-sb">
+																		Market
+																	</div>
+																	<div class="instrument-panel-rate highlow-high">
+																		102.227
+																	</div>
+																	<div class="instrument-panel-rate highlow-low">
+																		102.177
+																	</div>
+																</div>
+																<div class="pull-left clearfix">
+																	<div class="font-sb">
+																		Payout
+																	</div>
+																	<div class="instrument-panel-payout">
+																		$1.85
+																	</div>
+																	<div class="instrument-panel-closing font-l">
+																		Closing: <span class="expiry-time">12.45</span>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+													<div class="instrument-panel instrument-spread-panel">
+														<div class="instrument-panel-header">
+															<div class="instrument-panel-title">
+																NZD/AUD
+															</div>
+															<div class="instrument-panel-duration font-l">
+																15m
+															</div>
+														</div>
+														<div class="instrument-panel-body">
+															<div class="clearfix">
+																<div class="pull-right clearfix">
+																	<div class="font-sb">
+																		Market
+																	</div>
+																	<div class="instrument-panel-rate highlow-high">
+																		102.227
+																	</div>
+																	<div class="instrument-panel-rate highlow-low">
+																		102.177
+																	</div>
+																</div>
+																<div class="pull-left clearfix">
+																	<div class="font-sb">
+																		Payout
+																	</div>
+																	<div class="instrument-panel-payout">
+																		$1.85
+																	</div>
+																	<div class="instrument-panel-closing font-l">
+																		Closing: <span class="expiry-time">12.45</span>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+													<div class="instrument-panel instrument-spread-panel">
+														<div class="instrument-panel-header">
+															<div class="instrument-panel-title">
+																JPY/AUD
+															</div>
+															<div class="instrument-panel-duration font-l">
+																15m
+															</div>
+														</div>
+														<div class="instrument-panel-body">
+															<div class="clearfix">
+																<div class="pull-right clearfix">
+																	<div class="font-sb">
+																		Market
+																	</div>
+																	<div class="instrument-panel-rate highlow-high">
+																		102.227
+																	</div>
+																	<div class="instrument-panel-rate highlow-low">
+																		102.177
+																	</div>
+																</div>
+																<div class="pull-left clearfix">
+																	<div class="font-sb">
+																		Payout
+																	</div>
+																	<div class="instrument-panel-payout">
+																		$2.00
+																	</div>
+																	<div class="instrument-panel-closing font-l">
+																		Closing: <span class="expiry-time">12.45</span>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+													<div class="instrument-panel instrument-spread-panel">
+														<div class="instrument-panel-header">
+															<div class="instrument-panel-title">
+																NZD/AUD
+															</div>
+															<div class="instrument-panel-duration font-l">
+																15m
+															</div>
+														</div>
+														<div class="instrument-panel-body">
+															<div class="clearfix">
+																<div class="pull-right clearfix">
+																	<div class="font-sb">
+																		Market
+																	</div>
+																	<div class="instrument-panel-rate highlow-high">
+																		102.227
+																	</div>
+																	<div class="instrument-panel-rate highlow-low">
+																		102.177
+																	</div>
+																</div>
+																<div class="pull-left clearfix">
+																	<div class="font-sb">
+																		Payout
+																	</div>
+																	<div class="instrument-panel-payout">
+																		$1.85
+																	</div>
+																	<div class="instrument-panel-closing font-l">
+																		Closing: <span class="expiry-time">12.45</span>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>	
+						</div>
+					</div>
+					<div class="panel panel-default trading-platform">
+						<div class="panel-header">
+							<div class="pull-left">
+								<span class="trading-platform-instrument-title font-sb">
+									USD/JPY
+								</span>
+								<span class="trading-platform-instrument-rate highlow-high current-rate-spread">
+									102.277
+								</span>
+								<span class="trading-platform-instrument-spread-range">
+									+/- 0.005
+								</span>
+							</div>
+							<div class="pull-right">
+								<span class="trading-platform-instrument-duration">
+									15 mins
+								</span>
+								<span class="trading-platform-instrument-time-left time-to-expiry">
+									loading...
+								</span>
+								<a class="trading-platform-instrument-one-click-toggler">
+								</a>
+							</div>
+						</div>
+						<div class="clearfix">
+							<div class="highlow demo-message message-wrapper">
+								<div class="message">
+									This is indicative of a <span class="demo-message-type"></span> dialogue
+								</div>
+								<div class="close">
+
+								</div>
+							</div>
+						</div>
+						<div class="panel-body">
+							<div class="trading-platform-live-graph">
+								<div id="spread-graph"></div>
+							</div>
+							<div class="trading-platform-main-controls ">
+								<div class="trading-platform-main-controls-instrument-title font-sb">
+									USD/JPY
+								</div>
+								<div class="trading-platform-main-controls-live-rate">
+									<div class="pull-left font-sb">
+										Market
+									</div>
+									<div class="pull-right font-l">
+										<span class="current-rate-spread">102.77 </span>
+										<span class="trading-platform-main-control-instrument-spread-range">
+											+/- 0.005
+										</span>
+									</div>
+								</div>
+								<div class="trading-platform-main-controls-investment form-control">
+									$<input type="text" id="investment-value-input-spread" value="500"/>
+								</div>
+								<div class="clearfix trading-platform-main-controls-common-amount">
+									<!-- I've used div as button here because button deosn't get :focus style on click for Firefox and Safari on MAc OSX -->
+
+									<div class="btn btn-default btn-md-pad" tabindex="0" onclick="document.getElementById('investment-value-input-popup-spread').value = this.getAttribute('data-value'); document.getElementById('investment-value-input-spread').value = this.getAttribute('data-value');" data-value="50">$50</div>
+									<div class="btn btn-default btn-md-pad" tabindex="0" onclick="document.getElementById('investment-value-input-popup-spread').value = this.getAttribute('data-value'); document.getElementById('investment-value-input-spread').value = this.getAttribute('data-value');" data-value="100">$100</div>
+									<div class="btn btn-default btn-md-pad active" tabindex="0" onclick="document.getElementById('investment-value-input-popup-spread').value = this.getAttribute('data-value'); document.getElementById('investment-value-input-spread').value = this.getAttribute('data-value');" data-value="500">$500</div>
+								</div>
+								<div class="trading-platform-main-controls-options one-click-control">
+									<div class="btn btn-positive btn-extruded font-m btn-md-pad bet-high spread highlow-up">
+										HIGH
+									</div>
+									<div class="btn btn-negative btn-extruded font-m btn-md-pad bet-low spread highlow-down">
+										LOW
+									</div>
+								</div>
+								<div class="clearfix trading-platform-main-controls-options none-one-click-control">
+									<div class="trading-platform-main-controls-select-direction">
+										<label for="trading-platform-main-controls-select-direction-up-spread" class="btn btn-extruded font-m btn-sm-pad btn-positive highlow-up trading-select-direction-spread-high">
+											HIGH
+										</label>
+										<input type="radio" id="trading-platform-main-controls-select-direction-up-spread" name="selectedDirectionSpread" value="high"/>
+										<label for="trading-platform-main-controls-select-direction-down-spread" class="btn btn-extruded btn-negative font-m btn-sm-pad highlow-down trading-select-direction-spread-low">
+											LOW
+										</label>
+										<input type="radio" id="trading-platform-main-controls-select-direction-down-spread" name="selectedDirectionSpread" value="low"/>
+									</div>
+									<div class="btn btn-highlight btn-extruded font-m btn-lg-pad trading-platform-main-controls-place-bet spread" data-direction="selectedDirectionSpread">INVEST</div>
+								</div>
+								<div class="trading-platform-main-controls-payout">
+									<div class="pull-left font-sb">
+										Payout
+									</div>
+									<div class="pull-right font-l">
+										$ <span class="trading-platform-main-controls-payout-rate">1.85</span>
+									</div>
+								</div>
+								<div class="trading-platform-main-controls-return">
+									<div class="pull-left font-sb">
+										Return
+									</div>
+									<div class="pull-right font-l">
+										$925.00
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="trading-platform-popup-wrapper trading-platform-invest-popup spread concealed">
+					<div class="trading-platform-popup">
+						<div class="trading-platform-popup-content-wrapper">
+							<div class="trading-platform-popup-content">
+								<div class="trading-platform-popup-content-inner-wrap">
+									<div class="trading-platform-popup-header">
+										INVEST
+										<div class="trading-platform-popup-close close"></div>
+									</div>
+									<div class="trading-platform-popup-body">
+										<div class="trading-platform-invest-popup-live-rate">
+											<div class="trading-platform-main-controls-instrument-title pull-left font-sb">
+												USD/JPY
+											</div>
+											<div class="pull-right font-l">
+												<span class="current-rate-spread">
+													102.77 
+												</span>
+												<span class="trading-platform-main-control-instrument-spread-range">
+													+/- 0.005
+												</span>
+											</div>
+										</div>
+										<div class="trading-platform-invest-popup-payout">
+											<div class="pull-left font-sb">
+												Payout
+											</div>
+											<div class="pull-right font-l">
+												$ <span class="trading-platform-main-controls-payout-rate">1.85</span>
+											</div>
+										</div>
+										<div class="trading-platform-main-controls-investment form-control">
+											$<input type="text" id="investment-value-input-popup-spread" value="500"/>
+										</div>
+										<div class="clearfix trading-platform-main-controls-common-amount">
+											<!-- I've used div as button here because button deosn't get :focus style on click for Firefox and Safari on MAc OSX -->
+
+											<div class="btn btn-default btn-md-pad" tabindex="0" onclick="document.getElementById('investment-value-input-popup-spread').value = this.getAttribute('data-value'); document.getElementById('investment-value-input-spread').value = this.getAttribute('data-value');" data-value="50">$50</div>
+											<div class="btn btn-default btn-md-pad" tabindex="0" onclick="document.getElementById('investment-value-input-popup-spread').value = this.getAttribute('data-value'); document.getElementById('investment-value-input-spread').value = this.getAttribute('data-value');" data-value="100">$100</div>
+											<div class="btn btn-default btn-md-pad active" tabindex="0" onclick="document.getElementById('investment-value-input-popup-spread').value = this.getAttribute('data-value'); document.getElementById('investment-value-input-spread').value = this.getAttribute('data-value');" data-value="500">$500</div>
+										</div>
+										<div class="clearfix trading-platform-main-controls-options none-one-click-control">
+											<div class="trading-platform-main-controls-select-direction">
+												<label for="trading-platform-main-controls-select-direction-up-spread-popup" class="btn btn-extruded font-m btn-sm-pad btn-positive highlow-up current-rate-spread-plus trading-select-direction-spread-high">
+													HIGH
+												</label>
+												<input type="radio" id="trading-platform-main-controls-select-direction-up-spread-popup" name="selectedDirectionSpreadPopup" value="high"/>
+												<label for="trading-platform-main-controls-select-direction-down-spread-popup" class="btn btn-extruded btn-negative font-m btn-sm-pad highlow-down current-rate-spread-take trading-select-direction-spread-low">
+													LOW
+												</label>
+												<input type="radio" id="trading-platform-main-controls-select-direction-down-spread-popup" name="selectedDirectionSpreadPopup" value="low"/>
+											</div>
+											<div class="btn btn-highlight btn-extruded font-m btn-lg-pad trading-platform-main-controls-place-bet spread" data-direction="selectedDirectionSpreadPopup">INVEST</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="tab-view-panel" id="on-demand-mode">
+				<div class="trading-app-container">
+					<div class="clearfix">
+						<div class="pull-left tab-view tab-view-default instrument-selector-widget">
+							<div class="instrument-selector-widget-duration-selectors-container tab-view-tab-selectors-container-wrapper">
+								<div class="instrument-selector-widget-instrument-filter pull-right">
+									<ul class="dropdown dropdown-default pull-left" tabindex="0">
+										<li class="dropdown-item active">
+											<input id="all-currency-on-demand" checked name="instrument-on-demand-filter" type="radio" value=""/>
+											<label for="all-currency-on-demand" data-label="Filter Currencies">
+												Filter Currencies
+											</label>
+										</li>
+										<li class="dropdown-item">
+											<input id="nzd-jpy-on-demand" name="instrument-on-demand-filter" type="radio" value="nzd-jpy"/>
+											<label for="nzd-jpy-on-demand" data-label="NZD/JPY">
+												NZD/JPY
+											</label>
+										</li>
+										<li class="dropdown-item">
+											<input id="nzd-aud-on-demand" name="instrument-on-demand-filter" type="radio" value="nzd-aud"/>
+											<label for="nzd-aud-on-demand" data-label="NZD/AUD">
+												NZD/AUD
+											</label>
+										</li>
+										<li class="dropdown-item">
+											<input id="aud-jpy-on-demand" name="instrument-on-demand-filter" type="radio" value="aud-jpy"/>
+											<label for="aud-jpy-on-demand" data-label="AUD/JPY">
+												AUD/JPY
+											</label>
+										</li>
+									</ul>
+								</div>
+								<div class="instrument-selector-widget-collapse-toggle">
+								</div>
+								<!-- <div class="tab-view-tab-selectors-container font-m">
+									<ul class="tab-view-tab-selectors instrument-selector-widget-duration-selectors">
+										<li class="tab-view-tab-selector instrument-selector-widget-duration-selector">
+											ALL
+										</li>
+										<li class="tab-view-tab-selector instrument-selector-widget-duration-selector active" data-target="#fifteen-min">
+											15 MIN
+										</li>
+										<li class="tab-view-tab-selector instrument-selector-widget-duration-selector" data-target="#one-hour">
+											1 HOUR
+										</li>
+										<li class="tab-view-tab-selector instrument-selector-widget-duration-selector" data-target="#one-day">
+											1 DAY
+										</li>
+									</ul>
+								</div> -->
+							</div>
+							<div class="tab-view-body-wrapper">
+								<div class="tab-view-body instrument-selector-widget-instruments-container">
+									<a class="instrument-selector-widget-instruments-slider page-slider backward" data-target="#on-demand-pages">
+									</a>
+									<a class="instrument-selector-widget-instruments-slider page-slider forward" data-target="#on-demand-pages">
+									</a>
+									<div class="tab-view-panel active" id="on-demand-page-container">
+										<div class="page-container" id="on-demand-pages">
+											<div class="slider-fade-left">
+
+											</div>
+											<div class="slider-fade-right">
+
+											</div>
+											<div class="pages-wrapper" >
+												<div class="page active">
+													<div class="instrument-panel">
+														<div class="instrument-panel-header">
+															<div class="instrument-panel-title">
+																NZD/JPY
+															</div>
+															<div class="instrument-panel-duration font-l">
+																3m
+															</div>
+														</div>
+														<div class="instrument-panel-body">
+															<div class="clearfix">
+																<div class="pull-right clearfix">
+																	<div class="font-sb">
+																		Market
+																	</div>
+																	<div class="instrument-panel-rate highlow-high">
+																		102.227
+																	</div>
+																</div>
+																<div class="pull-left clearfix">
+																	<div class="font-sb">
+																		Payout
+																	</div>
+																	<div class="instrument-panel-payout">
+																		$1.85
+																	</div>
+																</div>
+															</div>
+															<div>
+																<div class="instrument-panel-closing font-l">
+																	Closing: <span class="expiry-time">12.45</span>
+																</div>
+															</div>
+														</div>
+													</div>
+													<div class="instrument-panel">
+														<div class="instrument-panel-header">
+															<div class="instrument-panel-title">
+																AUD/JPY
+															</div>
+															<div class="instrument-panel-duration font-l">
+																3m
+															</div>
+														</div>
+														<div class="instrument-panel-body">
+															<div class="clearfix">
+																<div class="pull-right clearfix">
+																	<div class="font-sb">
+																		Market
+																	</div>
+																	<div class="instrument-panel-rate highlow-high">
+																		102.227
+																	</div>
+																</div>
+																<div class="pull-left clearfix">
+																	<div class="font-sb">
+																		Payout
+																	</div>
+																	<div class="instrument-panel-payout">
+																		$1.85
+																	</div>
+																</div>
+															</div>
+															<div>
+																<div class="instrument-panel-closing font-l">
+																	Closing: <span class="expiry-time">12.45</span>
+																</div>
+															</div>
+														</div>
+													</div>
+													<div class="instrument-panel instrument-panel-active">
+														<div class="instrument-panel-header">
+															<div class="instrument-panel-title">
+																USD/JPY
+															</div>
+															<div class="instrument-panel-duration font-l">
+																3m
+															</div>
+														</div>
+														<div class="instrument-panel-body">
+															<div class="clearfix">
+																<div class="pull-right clearfix">
+																	<div class="font-sb">
+																		Market
+																	</div>
+																	<div class="instrument-panel-rate highlow-high current-rate-on-demand">
+																		102.227
+																	</div>
+																</div>
+																<div class="pull-left clearfix">
+																	<div class="font-sb">
+																		Payout
+																	</div>
+																	<div class="instrument-panel-payout">
+																		$1.85
+																	</div>
+																</div>
+															</div>
+															<div>
+																<div class="instrument-panel-closing font-l">
+																	Closing: <span class="expiry-time">12.45</span>
+																</div>
+															</div>
+														</div>
+													</div>
+													<div class="instrument-panel">
+														<div class="instrument-panel-header">
+															<div class="instrument-panel-title">
+																JPY/AUD
+															</div>
+															<div class="instrument-panel-duration font-l">
+																3m
+															</div>
+														</div>
+														<div class="instrument-panel-body">
+															<div class="clearfix">
+																<div class="pull-right clearfix">
+																	<div class="font-sb">
+																		Market
+																	</div>
+																	<div class="instrument-panel-rate highlow-high">
+																		102.227
+																	</div>
+																</div>
+																<div class="pull-left clearfix">
+																	<div class="font-sb">
+																		Payout
+																	</div>
+																	<div class="instrument-panel-payout">
+																		$1.85
+																	</div>
+																</div>
+															</div>
+															<div>
+																<div class="instrument-panel-closing font-l">
+																	Closing: <span class="expiry-time">12.45</span>
+																</div>
+															</div>
+														</div>
+													</div>
+													<div class="instrument-panel">
+														<div class="instrument-panel-header">
+															<div class="instrument-panel-title">
+																NZD/AUD
+															</div>
+															<div class="instrument-panel-duration font-l">
+																3m
+															</div>
+														</div>
+														<div class="instrument-panel-body">
+															<div class="clearfix">
+																<div class="pull-right clearfix">
+																	<div class="font-sb">
+																		Market
+																	</div>
+																	<div class="instrument-panel-rate highlow-high">
+																		102.227
+																	</div>
+																</div>
+																<div class="pull-left clearfix">
+																	<div class="font-sb">
+																		Payout
+																	</div>
+																	<div class="instrument-panel-payout">
+																		$1.85
+																	</div>
+																</div>
+															</div>
+															<div>
+																<div class="instrument-panel-closing font-l">
+																	Closing: <span class="expiry-time">12.45</span>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+												<div class="page">
+													<div class="instrument-panel">
+														<div class="instrument-panel-header">
+															<div class="instrument-panel-title">
+																NZD/JPY
+															</div>
+															<div class="instrument-panel-duration font-l">
+																3m
+															</div>
+														</div>
+														<div class="instrument-panel-body">
+															<div class="clearfix">
+																<div class="pull-right clearfix">
+																	<div class="font-sb">
+																		Market
+																	</div>
+																	<div class="instrument-panel-rate highlow-high">
+																		102.227
+																	</div>
+																</div>
+																<div class="pull-left clearfix">
+																	<div class="font-sb">
+																		Payout
+																	</div>
+																	<div class="instrument-panel-payout">
+																		$1.85
+																	</div>
+																</div>
+															</div>
+															<div>
+																<div class="instrument-panel-closing font-l">
+																	Closing: <span class="expiry-time">12.45</span>
+																</div>
+															</div>
+														</div>
+													</div>
+													<div class="instrument-panel">
+														<div class="instrument-panel-header">
+															<div class="instrument-panel-title">
+																AUD/JPY
+															</div>
+															<div class="instrument-panel-duration font-l">
+																3m
+															</div>
+														</div>
+														<div class="instrument-panel-body">
+															<div class="clearfix">
+																<div class="pull-right clearfix">
+																	<div class="font-sb">
+																		Market
+																	</div>
+																	<div class="instrument-panel-rate highlow-high">
+																		102.227
+																	</div>
+																</div>
+																<div class="pull-left clearfix">
+																	<div class="font-sb">
+																		Payout
+																	</div>
+																	<div class="instrument-panel-payout">
+																		$1.85
+																	</div>
+																</div>
+															</div>
+															<div>
+																<div class="instrument-panel-closing font-l">
+																	Closing: <span class="expiry-time">12.45</span>
+																</div>
+															</div>
+														</div>
+													</div>
+													<div class="instrument-panel">
+														<div class="instrument-panel-header">
+															<div class="instrument-panel-title">
+																USD/JPY
+															</div>
+															<div class="instrument-panel-duration font-l">
+																3m
+															</div>
+														</div>
+														<div class="instrument-panel-body">
+															<div class="clearfix">
+																<div class="pull-right clearfix">
+																	<div class="font-sb">
+																		Market
+																	</div>
+																	<div class="instrument-panel-rate highlow-high">
+																		102.227
+																	</div>
+																</div>
+																<div class="pull-left clearfix">
+																	<div class="font-sb">
+																		Payout
+																	</div>
+																	<div class="instrument-panel-payout">
+																		$1.85
+																	</div>
+																</div>
+															</div>
+															<div>
+																<div class="instrument-panel-closing font-l">
+																	Closing: <span class="expiry-time">12.45</span>
+																</div>
+															</div>
+														</div>
+													</div>
+													<div class="instrument-panel">
+														<div class="instrument-panel-header">
+															<div class="instrument-panel-title">
+																JPY/AUD
+															</div>
+															<div class="instrument-panel-duration font-l">
+																3m
+															</div>
+														</div>
+														<div class="instrument-panel-body">
+															<div class="clearfix">
+																<div class="pull-right clearfix">
+																	<div class="font-sb">
+																		Market
+																	</div>
+																	<div class="instrument-panel-rate highlow-high">
+																		102.227
+																	</div>
+																</div>
+																<div class="pull-left clearfix">
+																	<div class="font-sb">
+																		Payout
+																	</div>
+																	<div class="instrument-panel-payout">
+																		$1.85
+																	</div>
+																</div>
+															</div>
+															<div>
+																<div class="instrument-panel-closing font-l">
+																	Closing: <span class="expiry-time">12.45</span>
+																</div>
+															</div>
+														</div>
+													</div>
+													<div class="instrument-panel">
+														<div class="instrument-panel-header">
+															<div class="instrument-panel-title">
+																NZD/AUD
+															</div>
+															<div class="instrument-panel-duration font-l">
+																3m
+															</div>
+														</div>
+														<div class="instrument-panel-body">
+															<div class="clearfix">
+																<div class="pull-right clearfix">
+																	<div class="font-sb">
+																		Market
+																	</div>
+																	<div class="instrument-panel-rate highlow-high">
+																		102.227
+																	</div>
+																</div>
+																<div class="pull-left clearfix">
+																	<div class="font-sb">
+																		Payout
+																	</div>
+																	<div class="instrument-panel-payout">
+																		$1.85
+																	</div>
+																</div>
+															</div>
+															<div>
+																<div class="instrument-panel-closing font-l">
+																	Closing: <span class="expiry-time">12.45</span>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+												<div class="page">
+													<div class="instrument-panel">
+														<div class="instrument-panel-header">
+															<div class="instrument-panel-title">
+																NZD/JPY
+															</div>
+															<div class="instrument-panel-duration font-l">
+																3m
+															</div>
+														</div>
+														<div class="instrument-panel-body">
+															<div class="clearfix">
+																<div class="pull-right clearfix">
+																	<div class="font-sb">
+																		Market
+																	</div>
+																	<div class="instrument-panel-rate highlow-high">
+																		102.227
+																	</div>
+																</div>
+																<div class="pull-left clearfix">
+																	<div class="font-sb">
+																		Payout
+																	</div>
+																	<div class="instrument-panel-payout">
+																		$1.85
+																	</div>
+																</div>
+															</div>
+															<div>
+																<div class="instrument-panel-closing font-l">
+																	Closing: <span class="expiry-time">12.45</span>
+																</div>
+															</div>
+														</div>
+													</div>
+													<div class="instrument-panel">
+														<div class="instrument-panel-header">
+															<div class="instrument-panel-title">
+																AUD/JPY
+															</div>
+															<div class="instrument-panel-duration font-l">
+																3m
+															</div>
+														</div>
+														<div class="instrument-panel-body">
+															<div class="clearfix">
+																<div class="pull-right clearfix">
+																	<div class="font-sb">
+																		Market
+																	</div>
+																	<div class="instrument-panel-rate highlow-high">
+																		102.227
+																	</div>
+																</div>
+																<div class="pull-left clearfix">
+																	<div class="font-sb">
+																		Payout
+																	</div>
+																	<div class="instrument-panel-payout">
+																		$1.85
+																	</div>
+																</div>
+															</div>
+															<div>
+																<div class="instrument-panel-closing font-l">
+																	Closing: <span class="expiry-time">12.45</span>
+																</div>
+															</div>
+														</div>
+													</div>
+													<div class="instrument-panel">
+														<div class="instrument-panel-header">
+															<div class="instrument-panel-title">
+																USD/JPY
+															</div>
+															<div class="instrument-panel-duration font-l">
+																3m
+															</div>
+														</div>
+														<div class="instrument-panel-body">
+															<div class="clearfix">
+																<div class="pull-right clearfix">
+																	<div class="font-sb">
+																		Market
+																	</div>
+																	<div class="instrument-panel-rate highlow-high">
+																		102.227
+																	</div>
+																</div>
+																<div class="pull-left clearfix">
+																	<div class="font-sb">
+																		Payout
+																	</div>
+																	<div class="instrument-panel-payout">
+																		$1.85
+																	</div>
+																</div>
+															</div>
+															<div>
+																<div class="instrument-panel-closing font-l">
+																	Closing: <span class="expiry-time">12.45</span>
+																</div>
+															</div>
+														</div>
+													</div>
+													<div class="instrument-panel">
+														<div class="instrument-panel-header">
+															<div class="instrument-panel-title">
+																JPY/AUD
+															</div>
+															<div class="instrument-panel-duration font-l">
+																3m
+															</div>
+														</div>
+														<div class="instrument-panel-body">
+															<div class="clearfix">
+																<div class="pull-right clearfix">
+																	<div class="font-sb">
+																		Market
+																	</div>
+																	<div class="instrument-panel-rate highlow-high">
+																		102.227
+																	</div>
+																</div>
+																<div class="pull-left clearfix">
+																	<div class="font-sb">
+																		Payout
+																	</div>
+																	<div class="instrument-panel-payout">
+																		$1.85
+																	</div>
+																</div>
+															</div>
+															<div>
+																<div class="instrument-panel-closing font-l">
+																	Closing: <span class="expiry-time">12.45</span>
+																</div>
+															</div>
+														</div>
+													</div>
+													<div class="instrument-panel">
+														<div class="instrument-panel-header">
+															<div class="instrument-panel-title">
+																NZD/AUD
+															</div>
+															<div class="instrument-panel-duration font-l">
+																3m
+															</div>
+														</div>
+														<div class="instrument-panel-body">
+															<div class="clearfix">
+																<div class="pull-right clearfix">
+																	<div class="font-sb">
+																		Market
+																	</div>
+																	<div class="instrument-panel-rate highlow-high">
+																		102.227
+																	</div>
+																</div>
+																<div class="pull-left clearfix">
+																	<div class="font-sb">
+																		Payout
+																	</div>
+																	<div class="instrument-panel-payout">
+																		$1.85
+																	</div>
+																</div>
+															</div>
+															<div>
+																<div class="instrument-panel-closing font-l">
+																	Closing: <span class="expiry-time">12.45</span>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>	
+						</div>
+					</div>
+					<div class="panel panel-default trading-platform">
+						<div class="panel-header">
+							<div class="pull-left">
+								<span class="trading-platform-instrument-title font-sb">
+									USD/JPY
+								</span>
+								<span class="trading-platform-instrument-rate highlow-high current-rate-on-demand">
+									102.277
+								</span>
+								<!-- <span class="trading-platform-instrument-spread-range">
+									+/- 0.005
+								</span> -->
+							</div>
+							<div class="pull-right">
+								<span class="trading-platform-instrument-duration">
+									3 mins
+								</span>
+								<span class="trading-platform-instrument-time-left time-to-expiry">
+									loading...
+								</span>
+								<a class="trading-platform-instrument-one-click-toggler">
+								</a>
+							</div>
+						</div>
+						<div class="clearfix">
+							<div class="highlow demo-message message-wrapper">
+								<div class="message">
+									This is indicative of a <span class="demo-message-type"></span> dialogue
+								</div>
+								<div class="close">
+
+								</div>
+							</div>
+						</div>
+						<div class="panel-body">
+							<div class="trading-platform-live-graph">
+								<div id="on-demand-graph"></div>
+							</div>
+							<div class="trading-platform-main-controls ">
+								<div class="trading-platform-main-controls-instrument-title font-sb">
+									USD/JPY
+								</div>
+								<div class="trading-platform-main-controls-live-rate">
+									<div class="pull-left font-sb">
+										Market
+									</div>
+									<div class="pull-right font-l">
+										<span class="current-rate-on-demand">102.77 </span>
+										<!-- <span class="trading-platform-main-control-instrument-on-demand-range">
+											+/- 0.005
+										</span> -->
+									</div>
+								</div>
+								<div class="trading-platform-main-controls-investment form-control">
+									$<input type="text" id="investment-value-input-on-demand" value="500"/>
+								</div>
+								<div class="clearfix trading-platform-main-controls-common-amount">
+									<!-- I've used div as button here because button deosn't get :focus style on click for Firefox and Safari on MAc OSX -->
+
+									<div class="btn btn-default btn-md-pad" tabindex="0" onclick="document.getElementById('investment-value-input-popup-on-demand').value = this.getAttribute('data-value'); document.getElementById('investment-value-input-on-demand').value = this.getAttribute('data-value');" data-value="50">$50</div>
+									<div class="btn btn-default btn-md-pad" tabindex="0" onclick="document.getElementById('investment-value-input-popup-on-demand').value = t= this.getAttribute('data-value'); document.getElementById('investment-value-input-on-demand').value = this.getAttribute('data-value');" data-value="100">$100</div>
+									<div class="btn btn-default btn-md-pad active" tabindex="0" onclick="document.getElementById('investment-value-input-popup-on-demand').value = this.getAttribute('data-value'); document.getElementById('investment-value-input-on-demand').value = this.getAttribute('data-value');" data-value="500">$500</div>
+								</div>
+								<div class="trading-platform-main-controls-options one-click-control">
+									<div class="btn btn-positive btn-extruded font-m btn-md-pad bet-high on-demand highlow-up">
+										HIGH
+									</div>
+									<div class="btn btn-negative btn-extruded font-m btn-md-pad bet-low on-demand highlow-down">
+										LOW
+									</div>
+								</div>
+								<div class="clearfix trading-platform-main-controls-options none-one-click-control">
+									<div class="trading-platform-main-controls-select-direction">
+										<label for="trading-platform-main-controls-select-direction-up-on-demand" class="btn btn-extruded font-m btn-sm-pad btn-positive highlow-up trading-select-direction-on-demand-high">
+											HIGH
+										</label>
+										<input type="radio" id="trading-platform-main-controls-select-direction-up-on-demand" name="selectedDirectionOnDemand" value="high"/>
+										<label for="trading-platform-main-controls-select-direction-down-on-demand" class="btn btn-extruded btn-negative font-m btn-sm-pad highlow-down trading-select-direction-on-demand-low">
+											LOW
+										</label>
+										<input type="radio" id="trading-platform-main-controls-select-direction-down-on-demand" name="selectedDirectionOnDemand" value="low"/>
+									</div>
+									<div class="btn btn-highlight btn-extruded font-m btn-lg-pad trading-platform-main-controls-place-bet on-demand" data-direction="selectedDirectionOnDemand">INVEST</div>
+								</div>
+								<div class="trading-platform-main-controls-payout">
+									<div class="pull-left font-sb">
+										Payout
+									</div>
+									<div class="pull-right font-l">
+										$ <span class="trading-platform-main-controls-payout-rate">1.85</span>
+									</div>
+								</div>
+								<div class="trading-platform-main-controls-return">
+									<div class="pull-left font-sb">
+										Return
+									</div>
+									<div class="pull-right font-l">
+										$925.00
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="trading-platform-popup-wrapper trading-platform-invest-popup on-demand concealed">
+					<div class="trading-platform-popup">
+						<div class="trading-platform-popup-content-wrapper">
+							<div class="trading-platform-popup-content">
+								<div class="trading-platform-popup-content-inner-wrap">
+									<div class="trading-platform-popup-header">
+										INVEST
+										<div class="trading-platform-popup-close close"></div>
+									</div>
+									<div class="trading-platform-popup-body">
+										<div class="trading-platform-invest-popup-live-rate">
+											<div class="trading-platform-main-controls-instrument-title pull-left font-sb">
+												USD/JPY
+											</div>
+											<div class="pull-right font-l">
+												<span class="current-rate-on-demand">
+													102.77 
+												</span><!-- 
+												<span class="trading-platform-main-control-instrument-on-demand-range">
+													+/- 0.005
+												</span> -->
+											</div>
+										</div>
+										<div class="trading-platform-invest-popup-payout">
+											<div class="pull-left font-sb">
+												Payout
+											</div>
+											<div class="pull-right font-l">
+												$ <span class="trading-platform-main-controls-payout-rate">1.85</span>
+											</div>
+										</div>
+										<div class="trading-platform-main-controls-investment form-control">
+											$<input type="text" id="investment-value-input-popup-on-demand" value="500"/>
+										</div>
+										<div class="clearfix trading-platform-main-controls-common-amount">
+											<!-- I've used div as button here because button deosn't get :focus style on click for Firefox and Safari on MAc OSX -->
+
+											<div class="btn btn-default btn-md-pad" tabindex="0" onclick="document.getElementById('investment-value-input-popup-on-demand').value = this.getAttribute('data-value'); document.getElementById('investment-value-input-on-demand').value = this.getAttribute('data-value');" data-value="50">$50</div>
+											<div class="btn btn-default btn-md-pad" tabindex="0" onclick="document.getElementById('investment-value-input-popup-on-demand').value = this.getAttribute('data-value'); document.getElementById('investment-value-input-on-demand').value = this.getAttribute('data-value');" data-value="100">$100</div>
+											<div class="btn btn-default btn-md-pad active" tabindex="0" onclick="document.getElementById('investment-value-input-popup-on-demand').value = this.getAttribute('data-value'); document.getElementById('investment-value-input-on-demand').value = this.getAttribute('data-value');" data-value="500">$500</div>
+										</div>
+										<div class="clearfix trading-platform-main-controls-options none-one-click-control">
+											<div class="trading-platform-main-controls-select-direction">
+												<label for="trading-platform-main-controls-select-direction-up-on-demand-popup" class="btn btn-extruded font-m btn-sm-pad btn-positive highlow-up current-rate-on-demand-plus trading-select-direction-on-demand-high">
+													HIGH
+												</label>
+												<input type="radio" id="trading-platform-main-controls-select-direction-up-on-demand-popup" name="selectedDirectionOnDemandPopup" value="high"/>
+												<label for="trading-platform-main-controls-select-direction-down-on-demand-popup" class="btn btn-extruded btn-negative font-m btn-sm-pad highlow-down current-rate-on-demand-take trading-select-direction-on-demand-low">
+													LOW
+												</label>
+												<input type="radio" id="trading-platform-main-controls-select-direction-down-on-demand-popup" name="selectedDirectionOnDemandPopup" value="low"/>
+											</div>
+											<div class="btn btn-highlight btn-extruded font-m btn-lg-pad trading-platform-main-controls-place-bet on-demand" data-direction="selectedDirectionOnDemandPopup">INVEST</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+			</div>
+
+
+		</div>
+	</div>
+	
+	<div class="trading-platform-popup-wrapper trading-platform-sell-popup highlow concealed">
+		<div class="trading-platform-popup">
+			<div class="trading-platform-popup-content-wrapper">
+				<div class="trading-platform-popup-content">
+					<div class="trading-platform-popup-content-inner-wrap">
+						<div class="trading-platform-popup-header">
+							TAKE PAYOUT
+							<div class="trading-platform-popup-close close"></div>
+						</div>
+						<div class="trading-platform-popup-body">
+							<div class="panel trading-platform-sell-popup-details">
+								<div class="panel-header">
+									<div class="trading-platform-sell-popup-instrument pull-left font-sb">
+										USD/JPY
+									</div>
+									<div class="trading-platform-sell-popup-rate pull-right highlow-high current-rate-highlow">
+										102.77
+									</div>
+								</div>
+								<div class="panel-body">
+									<div class="trading-platform-sell-popup-investment">
+										<div class="pull-left font-sb">
+											Investment
+										</div>
+										<div class="trading-platform-invevstment-value pull-right font-l">
+											$<span class="investment">500</span>
+										</div>
+									</div>
+									<div class="trading-platform-sell-popup-return-rate">
+										<div class="pull-left font-sb">
+											Return rate [%]
+										</div>
+										<div class="trading-platform-return-rate-value pull-right font-l">
+											$<span class="rate">0.6834</span>
+										</div>
+									</div>
+									<div class="trading-platform-sell-popup-pay-out">
+										<div class="pull-left font-sb">
+											Payout
+										</div>
+										<div class="trading-platform-pay-out-value pull-right font-l">
+											$<span class="value">344.35</span>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="btn btn-highlight btn-extruded full-width font-m btn-lg-pad trading-platform-sell-popup-sell">SELL</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="trading-platform-popup-wrapper trading-platform-sell-popup on-demand concealed">
+		<div class="trading-platform-popup">
+			<div class="trading-platform-popup-content-wrapper">
+				<div class="trading-platform-popup-content">
+					<div class="trading-platform-popup-content-inner-wrap">
+						<div class="trading-platform-popup-header">
+							TAKE PAYOUT
+							<div class="trading-platform-popup-close close"></div>
+						</div>
+						<div class="trading-platform-popup-body">
+							<div class="panel trading-platform-sell-popup-details">
+								<div class="panel-header">
+									<div class="trading-platform-sell-popup-instrument pull-left font-sb">
+										USD/JPY
+									</div>
+									<div class="trading-platform-sell-popup-rate pull-right highlow-high current-rate-on-demand">
+										102.77
+									</div>
+								</div>
+								<div class="panel-body">
+									<div class="trading-platform-sell-popup-investment">
+										<div class="pull-left font-sb">
+											Investment
+										</div>
+										<div class="trading-platform-investment-value pull-right font-l">
+											$<span class="investment">500</span>
+										</div>
+									</div>
+									<div class="trading-platform-sell-popup-return-rate">
+										<div class="pull-left font-sb">
+											Return rate [%]
+										</div>
+										<div class="trading-platform-return-rate-value pull-right font-l">
+											$<span class="rate">0.6834</span>
+										</div>
+									</div>
+									<div class="trading-platform-sell-popup-pay-out">
+										<div class="pull-left font-sb">
+											Payout
+										</div>
+										<div class="trading-platform-pay-out-value pull-right font-l">
+											$<span class="value">344.35</span>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="btn btn-highlight btn-extruded full-width font-m btn-lg-pad trading-platform-sell-popup-sell">SELL</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="trading-platform-popup-wrapper trading-platform-sell-popup spread concealed">
+		<div class="trading-platform-popup">
+			<div class="trading-platform-popup-content-wrapper">
+				<div class="trading-platform-popup-content">
+					<div class="trading-platform-popup-content-inner-wrap">
+						<div class="trading-platform-popup-header">
+							TAKE PAYOUT
+							<div class="trading-platform-popup-close close"></div>
+						</div>
+						<div class="trading-platform-popup-body">
+							<div class="panel trading-platform-sell-popup-details">
+								<div class="panel-header">
+									<div class="trading-platform-sell-popup-instrument pull-left font-sb">
+										USD/JPY
+									</div>
+									<div class="trading-platform-sell-popup-rate pull-right highlow-high current-rate-highlow">
+										102.77
+									</div>
+								</div>
+								<div class="panel-body">
+									<div class="trading-platform-sell-popup-investment">
+										<div class="pull-left font-sb">
+											Investment
+										</div>
+										<div class="trading-platform-investment-value pull-right font-l">
+											$<span class="investment">500</span>
+										</div>
+									</div>
+									<div class="trading-platform-sell-popup-return-rate">
+										<div class="pull-left font-sb">
+											Return rate [%]
+										</div>
+										<div class="trading-platform-return-rate-value pull-right font-l">
+											$<span class="rate">0.6834</span>
+										</div>
+									</div>
+									<div class="trading-platform-sell-popup-pay-out">
+										<div class="pull-left font-sb">
+											Payout
+										</div>
+										<div class="trading-platform-pay-out-value pull-right font-l">
+											$<span class="value">344.35</span>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="btn btn-highlight btn-extruded full-width font-m btn-lg-pad trading-platform-sell-popup-sell">SELL</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="panel panel-default trading-app-container trading-platform">
+		<div class="panel-header">
+			<div class="pull-left">
+				<div class="font-m">
+					CURRENT ACTIVITY
+				</div>
+			</div>
+			<div class="pull-right">
+				
+			</div>
+		</div>
+		<div class="panel-body">
+			<div class="trading-platform-investments">
+				<table class="table table-stripped table-fluid-width">
+					<thead>
+						<tr>
+							<th>
+								Select
+							</th>
+							<th>
+								Type
+							</th>
+							<th>
+								Asset
+							</th>
+							<th>
+								Strike
+							</th>
+							<th>
+								Start time
+							</th>
+							<th>
+								Expiry
+							</th>
+							<th>
+								Status
+							</th>
+							<th>
+								Closing rate
+							</th>
+							<th>
+								Investment
+							</th>
+							<th>
+								Payout
+							</th>
+							<th>
+								Take payout
+							</th>
+						</tr>
+					</thead>
+					<tbody class="trading-platform-investments-list">
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="message-triggers">
+	<div class="toggle"></div>
+	<div class="wrapper">
+	</div>
+</div>
+{% endblock %}
+{% block script %}
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+	<script src="http://code.highcharts.com/highcharts.js"></script>
+	<script src="common/scripts/highlow-main.js"></script>
+{% endblock %}

@@ -1,11 +1,11 @@
 @import "instrument-panel.variables.less";
-@instrument-panel-transition: all 0.2s ease;
+@instrument-panel-transition-duration: 0.25s;
+@instrument-panel-transition: @instrument-panel-transition-duration ease, border-width @instrument-panel-transition-duration ease,background-color @instrument-panel-transition-duration ease, color @instrument-panel-transition-duration ease, border-color @instrument-panel-transition-duration ease;
 .instrument-panel {
-	border-top: @instrument-panel-border;
-	border-bottom: @instrument-panel-border;
+	border: @instrument-panel-border;
 	cursor: pointer;
-	display: inline-block;
-	margin-right: 3px;
+	display: block;
+	float: left;
 	height: 140px;
 	overflow: hidden;
 	position: relative;
@@ -15,9 +15,8 @@
 		margin-right: 0px;
 	}
 	&.collapsed {
-		height: 36px;
-		border-top-width: 0px;
-		border-bottom-width: 0px;
+		// height: 36px;
+		top: -@instrument-panel-active-border-width;
 	}
 }
 	.instrument-panel-header {
@@ -26,7 +25,7 @@
 		font-size: @instrument-panel-font-size;
 		padding: @instrument-panel-header-padding;
 		background: @instrument-panel-header-background;
-		transition: @instrument-panel-hover-transition;
+		.transition(@instrument-panel-transition);
 
 		.clearfix();
 	}
@@ -35,6 +34,7 @@
 			line-height: inherit;
 			text-transform: uppercase;
 			color: @instrument-panel-font-color-highlight;
+			.transition(@instrument-panel-transition);
 			float: left;
 			&:extend(.font-sb);
 		}
@@ -57,7 +57,7 @@
 		line-height: 1.43em;
 		font-size: @instrument-panel-font-size;
 		padding: @instrument-panel-body-padding;
-		transition: @instrument-panel-hover-transition;
+		.transition(@instrument-panel-transition);
 	}
 		.instrument-panel-payout {
 
@@ -109,7 +109,7 @@
 .instrument-panel-active,
 .instrument-panel-active:hover {
 	border: @instrument-panel-active-border;
-	width: (@instrument-panel-active-border-width*2) + @instrument-panel-max-width;
+	width: @instrument-panel-max-width;
 	border-radius: @instrument-panel-active-border-radius;
 	height: 140px;
 	&.collapsed {

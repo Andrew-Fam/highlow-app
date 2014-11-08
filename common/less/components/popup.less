@@ -62,8 +62,12 @@
 						.trading-platform-popup-close {
 							cursor: pointer;
 							float: right;
+							.opacity(100);
 							.inline-icon();
 							.sprite(@close);
+							&:hover {
+								.sprite(@close-hover);
+							}
 						}
 
 					.trading-platform-popup-body {
