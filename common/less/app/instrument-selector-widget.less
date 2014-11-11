@@ -64,22 +64,36 @@
 						.sprite(@clock-yellow);
 					}
 				}
+
+				&.favourite {
+					&:before {
+						.sprite(@favourite);
+						margin-bottom: -3px;
+						position: relative;
+						top: -1px;
+					}
+					&.active {
+						&:before {
+							.sprite(@favourite-active);
+						}
+					}
+				}
 			}
 
 	.instrument-selector-widget-instruments-container {
 		.page-container {
-			// height: 180px;
+			height: 140px;
 		}
 		.slider-fade-left,.slider-fade-right {
 			height: 100%;
 			.opacity(00);
-			//.transition(opacity 0.2s ease);
+			.transition(opacity 0.2s ease);
 			position: absolute;
 			top: 0;
-			z-index: 10;
-
+			z-index: -1;
 			&.in {
 				.opacity(100);
+				z-index: 10;
 			}
 		}
 		.slider-fade-left {
@@ -89,6 +103,9 @@
 		.slider-fade-right {
 			.sprite(@slider-fade-right);
 			right: 0;
+		}
+		.no-data {
+			color: @light-grey;
 		}
 	}		
 

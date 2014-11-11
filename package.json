@@ -12,6 +12,7 @@
     "grunt-contrib-requirejs": "latest",
     "grunt-contrib-uglify": "^0.5.1",
     "grunt-contrib-watch": "latest",
+    "grunt-copy-part-of-file": "^0.1.2",
     "grunt-liquid": "^2.0.0",
     "grunt-newer": "^0.7.0",
     "grunt-spritesmith": "^2.1.1",

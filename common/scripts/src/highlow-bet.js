@@ -14,7 +14,7 @@ highlowApp.betSystem = {
 				'<td class="investment-asset">'+ //Asset
 				bet.model.label+
 				'</td>'+
-				'<td class="investment-strike highlow-'+bet+'"> '+ //Strike
+				'<td class="investment-strike highlow-'+bet.direction+'"> '+ //Strike
 				strike+
 				'</td>'+
 				'<td class="investment-time">'+ // Bet time
@@ -32,7 +32,7 @@ highlowApp.betSystem = {
 				'<span class="investment-value">'+$('#'+type+'-investment-value-input').val()+
 				'</span>'+
 				'</td>'+
-				'<td class="investment-payout">'+ // Payout
+				'<td class="investment-payout font-b">'+ // Payout
 				'</td>'+
 				'<td class="investment-sell"><button data-investment="'+$('#investment-value-input').val()+'" class="investment-sell-btn '+type+' btn font-m btn-sm-pad">SELL</button>'+
 				'</td>'+
@@ -188,25 +188,25 @@ highlowApp.betSystem = {
 			bets[type] = [];
 		}
 
-		if(bet!="high" && bet!="low") {
-			highlowApp.systemMessages.displayMessage("fail","Investment error. Please select Up or Down");
-			return;
-		}
+		// if(bet!="high" && bet!="low") {
+		// 	highlowApp.systemMessages.displayMessage("fail","Investment error. Please select Up or Down");
+		// 	return;
+		// }
 
 		var investmentValue = $('#'+type+'-investment-value-input').val();
 
-		if(investmentValue=="" ||investmentValue==undefined || !highlowApp.isNumber(investmentValue)) {
-			highlowApp.systemMessages.displayMessage("fail","Investment error. Please insert correct investment amount");
-			return;
-		}
+		// if(investmentValue=="" ||investmentValue==undefined || !highlowApp.isNumber(investmentValue)) {
+		// 	highlowApp.systemMessages.displayMessage("fail","Investment error. Please insert correct investment amount");
+		// 	return;
+		// }
 
-		if(investmentValue>500) {
-			highlowApp.systemMessages.displayMessage("warning","Investment amount is out of the allowed range");
-			return;
-		}
+		// if(investmentValue>500) {
+		// 	highlowApp.systemMessages.displayMessage("warning","Investment amount is out of the allowed range");
+		// 	return;
+		// }
 
 
-		highlowApp.systemMessages.displayMessage("success","Success");
+		// highlowApp.systemMessages.displayMessage("success","Success");
 
 		var strike = parseFloat(model.currentRate).toFixed(3);
 
@@ -246,9 +246,6 @@ highlowApp.betSystem = {
 				model.focusedBet = bet;
 				model.focusedBet.focused = true;
 				highlowApp.marketSimulator.updateBetStatus(model);
-
-
-				
 				
 			}
 		}

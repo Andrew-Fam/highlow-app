@@ -1,10 +1,11 @@
 highlowApp.marketSimulator = {
 	instruments : [],
 	spread: 0.005,
-	rounding: 4,
+	rounding: 3,
 	minInterval: 1000,
 	maxInterval: 1500,
 	maxChange: 0.0008,
+	modelDataName: 'instrumentModel',
 	start: function() {
 		var self = this;
 		for (var i = 0; i < this.instruments.length; i++) {
@@ -18,10 +19,43 @@ highlowApp.marketSimulator = {
 		var self = this;
 	
 		var deviation = highlowApp.randomValue(0,self.maxChange,4);
-		var variation = Math.random() >= 0.5 ? deviation : -deviation;
+
+		// if the market has been moving up, there's more chance it's gonna go down this time
+
+		var coefficient = 0.0016;
+
+
+
+		var splitChance = 0.5;
+
+		if(instrument.absoluteChange>0) {
+			splitChance+=0.1;
+		} else if(instrument.absoluteChange<0) {
+			splitChance-=0.1;
+		}
+
+		if(instrument.absoluteChange>0.002) {
+			splitChance+=0.3;
+		} else if(instrument.absoluteChange<0.002) {
+			splitChance-=0.3;
+		}
+
+
+		// console.log(splitChance);
+
+		var variation = Math.random() >= splitChance ? deviation : -deviation;
+
+
+
+
 
 		instrument.previousRate = parseFloat(instrument.currentRate);
 		instrument.currentRate = parseFloat(instrument.currentRate + variation);
+
+
+
+
+		instrument.absoluteChange += parseFloat(variation);
 
 		if (instrument.type === 'spread') {
 			instrument.upperRate = parseFloat(parseFloat(instrument.currentRate) + self.spread);
@@ -239,10 +273,10 @@ highlowApp.marketSimulator = {
 					
 						var x = point.plotX, 
 							labelX = Math.floor(xAxis.toPixels(bet.expireAt)-17),
-							label = renderer.rect(labelX,43,17,177,0);
+							label = renderer.rect(labelX,52,17,177,0);
 
-						var textX = labelX+5,
-							textY = 132;
+						var textX = labelX+4,
+							textY = 141;
 
 						if(bet.finishLabel == undefined) {
 
@@ -501,7 +535,7 @@ highlowApp.marketSimulator = {
 		// Generate past data.
 
 			instrumentModel.startingPoint = currentTime - (15*60*1000);
-
+			instrumentModel.absoluteChange = 0;
 			instrumentModel.data = [];
 
 			// seed highlow data array with a value
@@ -523,7 +557,30 @@ highlowApp.marketSimulator = {
 
 				var deviation = highlowApp.randomValue(0,marketSimulator.maxChange,4);
 
-				var variation = Math.random() >= 0.5 ? deviation : -deviation;
+
+
+				// if the market has been moving up, there's more chance it's gonna go down this time
+
+				var splitChance = 0.5;
+
+				if(instrumentModel.absoluteChange>0) {
+					splitChance+=0.1;
+				} else if(instrumentModel.absoluteChange<0) {
+					splitChance-=0.1;
+				}
+
+				if(instrumentModel.absoluteChange>0.002) {
+					splitChance+=0.3;
+				} else if(instrumentModel.absoluteChange<-0.002) {
+					splitChance-=0.3;
+				}
+
+				
+
+				var variation = Math.random() >= splitChance ? deviation : -deviation;
+
+				instrumentModel.absoluteChange += parseFloat(variation);
+
 
 				// next value calculated from variation deinfed above and previous value
 
@@ -551,10 +608,14 @@ highlowApp.marketSimulator = {
 				var model = instrumentModel;
 				var mainViewId  = model.getMainViewId();
 
-				$('#'+mainViewId).data('instrumentModel',instrumentModel);
+				$('#'+mainViewId).data(marketSimulator.modelDataName,instrumentModel);
 
 				
+
+
 				$('#'+mainViewId+" .trading-platform-instrument-duration").html(" " + model.durationLabel);
+
+				$('#'+mainViewId+" .trading-platform-instrument-closing-time").html(" "+ highlowApp.timeToText(model.expireAt));
 
 				$('#'+model.type+"-mode .trading-platform-main-controls-payout-rate").html(model.payoutRate);
 
@@ -563,7 +624,7 @@ highlowApp.marketSimulator = {
 					'.trading-platform-invest-popup.'+model.type+' .trading-platform-main-controls-instrument-title').html(" " + model.label);
 
 
-				$('#'+mainViewId+" .trading-platform-maximum-return").html("$"+parseFloat(model.payoutRate*$('#'+model.type+'-investment-value-input').val()).toFixed(2));
+				$('#'+mainViewId+" .trading-platform-maximum-return").html("$ "+parseFloat(model.payoutRate*$('#'+model.type+'-investment-value-input').val()).toFixed(2));
 
 				if(model.active) {
 					var mainViewRateDisplay = $('#' + model.getMainViewId() + ' .current-rate'),
@@ -617,7 +678,7 @@ highlowApp.marketSimulator = {
 
 			//attach the model to the UI
 
-			$('[data-uid="'+self.data('uid')+'"]').data('instrumentModel',instrumentModel);
+			$('[data-uid="'+self.data('uid')+'"]').data(marketSimulator.modelDataName,instrumentModel);
 
 			// update closing time to instrument panel
 

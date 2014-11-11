@@ -21,6 +21,9 @@ highlowApp.instrumentPanelSelector = {
 
 	},
 	selectInstrument: function (e) {
+
+
+
 		var label = e.data('instrumentLabel'),
 			duration = e.data('instrumentDuration'),
 			type = e.data('tradingType'),
@@ -28,20 +31,23 @@ highlowApp.instrumentPanelSelector = {
 
 		// update active instrument here.
 
-		if (highlowApp.currentInstrument[type]!=undefined) {
-			highlowApp.currentInstrument[type].active = false;
+		if(model) {
+
+			if (highlowApp.currentInstrument[type]!=undefined) {
+				highlowApp.currentInstrument[type].active = false;
+			}
+
+			model.active = true;
+
+			highlowApp.currentInstrument[type] = model;
+
+
+			model.updateMainView();
+
+			// change graph to display this instrument data
+
+			highlowApp.graph.loadInstrument(model);
 		}
-
-		model.active = true;
-
-		highlowApp.currentInstrument[type] = model;
-
-
-		model.updateMainView();
-
-		// change graph to display this instrument data
-
-		highlowApp.graph.loadInstrument(model);
 
 	}
 }

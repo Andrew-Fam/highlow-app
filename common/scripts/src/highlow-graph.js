@@ -17,10 +17,12 @@ highlowApp.graph = {
 		this.prepareGraph('#highlow-graph');
 		this.prepareGraph('#spread-graph');
 		this.prepareGraph('#on-demand-graph',2*60*1000);
+		this.prepareGraph('#spread-on-demand-graph',2*60*1000);
 
 		this.graphs['highlow'] = Highcharts.charts[$("#highlow-graph").data('highchartsChart')];
 		this.graphs['spread'] = Highcharts.charts[$("#spread-graph").data('highchartsChart')];
 		this.graphs['on-demand'] = Highcharts.charts[$("#on-demand-graph").data('highchartsChart')];
+		this.graphs['spread-on-demand'] = Highcharts.charts[$("#spread-on-demand-graph").data('highchartsChart')];
 	},
 	indexOfPointByXRecursive: function(points, x, lowerBoundary, upperBoundary) {
 
@@ -58,12 +60,41 @@ highlowApp.graph = {
 
 		// add graph closing line;
 
-		var closingLine = renderer.path(['M', 830, 6, 'L', 830, 255])
-		.attr({
-			'stroke-width': 1,
-			stroke: '#2c2f35'
-		}).add();
+		var resize = $('#'+model.type+"-graph").closest('.trading-platform-live-graph').hasClass('pushed');
 
+		if(resize) {
+			var closingLine = renderer.path(['M', 789, 6, 'L', 789, 274])
+			.attr({
+				'stroke-width': 1,
+				stroke: '#252323'
+			}).add();
+			
+
+			// add graph bottom line;
+
+			var bottomLine = renderer.path(['M', 49, 275, 'L', 789, 275])
+			.attr({
+				'stroke-width': 1,
+				stroke: '#252323'
+			}).add();
+		} else {
+			var closingLine = renderer.path(['M', 830, 6, 'L', 830, 274])
+			.attr({
+				'stroke-width': 1,
+				stroke: '#252323'
+			}).add();
+			
+
+			// add graph bottom line;
+
+			var bottomLine = renderer.path(['M', 49, 275, 'L', 830, 275])
+			.attr({
+				'stroke-width': 1,
+				stroke: '#252323'
+			}).add();
+			}
+
+		
 
 		var series = graph.series[0];
 
@@ -93,7 +124,7 @@ highlowApp.graph = {
 			xAxis.removePlotBand(plotBandId);
 			
 			xAxis.addPlotBand({
-				color: 'rgba(77,81,88,0.55)',
+				color: 'rgba(255,255,255,0.08)',
 				from: model.openAt, 
 				to: model.expireAt,
 				zIndex: 2,
@@ -250,7 +281,6 @@ highlowApp.graph = {
 
 		var currentYExtremes = yAxis.getExtremes();
 
-		console.log(currentYExtremes);
 
 		var bottomExtreme = currentYExtremes.min,
 		topExtreme = currentYExtremes.max;
@@ -265,7 +295,7 @@ highlowApp.graph = {
 		var newTopExtreme = topExtreme,
 		newBottomExtreme = bottomExtreme;
 
-		console.log(yMiddle);
+	
 
 
 
@@ -273,28 +303,23 @@ highlowApp.graph = {
 
 		if( point.y>yMiddle) {
 			// check if point is too close to top edge
-			console.log(topExtreme-point.y);
+			
 
 			if(topExtreme - point.y < safeZone) {
 
 				newTopExtreme  += safeZone - (topExtreme-point.y);
 				newBottomExtreme = newTopExtreme - interval*tickCount;
 
-				console.log(newBottomExtreme+":"+newTopExtreme);
-
 				yAxis.setExtremes(newBottomExtreme,newTopExtreme,true);
 
 			} 
 		} else {
 			// check if point is too close to bottom edge
-			console.log(point.y-bottomExtreme);
 
 			if(point.y - bottomExtreme < safeZone) {
 
 				newBottomExtreme -= safeZone-(point.y-bottomExtreme);
 				newTopExtreme = newBottomExtreme + interval*tickCount;
-
-				console.log(newBottomExtreme+":"+newTopExtreme);
 
 				yAxis.setExtremes(newBottomExtreme,newTopExtreme,true);
 
@@ -502,7 +527,7 @@ highlowApp.graph = {
 	},
 	prepareGraph: function (id,xInterval) {
 		var labelStyle = {
-			fontFamily: '"Open Sans","Helvetica Neue",Helvetica, Arial, sans-serif',
+			fontFamily: '"Roboto","Helvetica Neue",Helvetica, Arial, sans-serif',
 			fontSize: '10px',
 			color: 'white'
 		};
@@ -518,12 +543,12 @@ highlowApp.graph = {
 			chart: {
 				type: 'area',
 				animation: false,
-				backgroundColor : '#3e424a',
+				backgroundColor : '#353535',
 				marginTop: 6,
 				marginLeft: 50,
 				renderTo: 'container',
 				style : {
-					fontFamily: '"Open Sans","Helvetica Neue",Helvetica, Arial, sans-serif',
+					fontFamily: '"Roboto","Helvetica Neue",Helvetica, Arial, sans-serif',
 					fontSize: '10px',
 					color: 'white',
 					overflow: 'visible'
@@ -554,7 +579,13 @@ highlowApp.graph = {
 					}
 				}
 			},series : [{
-				color: '#ffe048',
+				color: {
+				    linearGradient: { x1: 0, x2: 0, y1: 0, y2: 1 },
+				    stops: [
+				        [0, '#ffe048'],
+				        [1, '#ffc539']
+				    ]
+				},
 				fillOpacity: '1',
 				name : '',
 				type: 'area',
@@ -569,10 +600,10 @@ highlowApp.graph = {
 					format: '{value:.3f}'
 				},
 				gridLineWidth: 1,
-				gridLineColor: '#2c2f35',
+				gridLineColor: '#252323',
 				tickInterval : 0.002,
 				tickWidth : 0,
-				lineColor: '#2c2f35',
+				lineColor: '#252323',
 				lineWidth: 1,
 				startOnTick: false,
 				endOnTick: true,
@@ -585,7 +616,7 @@ highlowApp.graph = {
 				},
 				minPadding: 0,
 				gridLineWidth: 1,
-				gridLineColor: '#2c2f35',
+				gridLineColor: '#252323',
 				dateTimeLabelFormats: {
 					second: '%H:%M',
 					minute: '%H:%M',
@@ -594,6 +625,8 @@ highlowApp.graph = {
 					week: '%e. %b %H:%M'
 				},
 				ordinal : false,
+				lineColor: '#252323',
+				lineWidth: 1,
 				tickInterval : xTickInterval,
 				tickWidth : 0,
 				type: 'datetime',

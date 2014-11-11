@@ -11,7 +11,7 @@
 @panel-header-padding: @panel-header-padding-top @panel-header-padding-right @panel-header-padding-bottom @panel-header-padding-left;
 
 
-@panel-body-padding-top: 32px;
+@panel-body-padding-top: 24px;
 @panel-body-padding-bottom: 24px;
 @panel-body-padding-left: @panel-header-padding-left;
 @panel-body-padding-right: @panel-header-padding-right;
@@ -19,19 +19,20 @@
 @panel-body-padding: @panel-body-padding-top @panel-body-padding-right @panel-body-padding-bottom @panel-body-padding-left;
 
 .panel {
+	margin-bottom: 0;
 
-}
-	.panel-header {
+	> .panel-header {
 		padding: @panel-header-padding;
 		position: relative;
 		z-index: 1000;
 		.clearfix();
 	}
-	.panel-body {
+	> .panel-body {
 		padding: @panel-body-padding;
 		
 		.clearfix();
 	}
+}
 
 .panel.panel-default {
 	.panel-header {

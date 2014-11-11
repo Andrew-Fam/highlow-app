@@ -1,6 +1,6 @@
 @trading-platform-popup-border: 10px solid rgba(red(@real-dark), green(@real-dark), blue(@real-dark),0.4);
 
-@trading-platform-popup-header-bg: @dark-charcoal;
+@trading-platform-popup-header-bg: @ink;
 @trading-platform-popup-header-fg: white;
 @trading-platform-popup-header-font-size: 20px;
 @trading-platform-popup-header-padding: 30px;
@@ -21,7 +21,7 @@
 	top: 0;
 	z-index: 10000;
 	.opacity(100);
-	//.transition(@trading-platform-popup-transition);
+	.transition(@trading-platform-popup-transition);
 	&.concealed {
 		.opacity(00);
 		z-index: -1;
@@ -66,6 +66,7 @@
 							.inline-icon();
 							.sprite(@close);
 							&:hover {
+								.opacity(100);
 								.sprite(@close-hover);
 							}
 						}

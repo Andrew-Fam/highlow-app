@@ -24,13 +24,14 @@
 @table-stripped-even-bg: @elephant;
 @table-stripped-hover-bg: @mud;
 .table {
+	font-weight: 400;
 	> thead {
 		background-color: @table-header-bg;
 		color: @table-header-fg;
 		> tr {
 			> th {
 				&:extend(.font-sb);
-				color: inherit;
+				color: @light-mid-grey;
 				font-size: @table-row-font-size;
 				line-height: @table-row-line-height;
 				padding: @table-header-padding;
@@ -42,7 +43,6 @@
 		> tr {
 			> td {
 				color: @table-row-fg;
-				font-weight: 400;
 				font-size: @table-row-font-size;
 				line-height: @table-row-line-height;
 				padding: @table-row-padding;

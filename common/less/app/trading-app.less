@@ -20,9 +20,23 @@
 				font-size: 16px;
 				line-height: 32px;
 				padding: @trading-app-root-mode-selector-padding;
+				width: 25%;
 				&:before {
 					margin-right: 3px;
 					vertical-align: middle;
+				}
+
+				&.active {
+					&:after {
+						content: "";
+						display: block;
+						height: 3px;
+						width: 100%;
+						background-color: @orange-juice;
+						position: absolute;
+						top: 0;
+						left: 0;
+					}
 				}
 
 				&.highlow {
@@ -55,6 +69,18 @@
 					&.active {
 						&:before {
 							.sprite(@on-demand-active);
+						}
+					}
+				}
+
+				&.spread-on-demand {
+					&:before {
+						.inline-icon();
+						.sprite(@spread-on-demand);
+					}
+					&.active {
+						&:before {
+							.sprite(@spread-on-demand-active);
 						}
 					}
 				}

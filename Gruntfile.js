@@ -691,6 +691,127 @@ module.exports = function(grunt) {
 							}
 						]
 					}
+					,{
+						label: "Spread On Demand",
+						id: "spread-on-demand",
+						default: false,
+						range: false,
+						instruments: [
+							{
+								label: "AUD/JPY",
+								id: "aud-jpy"
+							},
+							{
+								label:"AUD/USD",
+								id: "aud-usd"
+							},
+							{
+								label:"EUR/JPY",
+								id: "eur-jpy"
+							},
+							{
+								label:"EUR/USD",
+								id: "eur-usd"
+							},
+							{
+								label:"GBP/JPY",
+								id: "gbp-jpy"
+							},
+							{
+								label:"GBP/USD",
+								id: "gbp-usd"
+							},
+							{
+								label:"NZD/JPY",
+								id: "nzd-jpy"
+							},
+							{
+								label:"NZD/USD",
+								id: "nzd-usd"
+							},
+							{
+								label:"USD/JPY",
+								id: "usd-jpy"
+							}
+						],
+						intervals: [
+							{
+								id: "3min",
+								label: "",
+								value: 3*60*1000,
+								shortLabel: "3m",
+								mediumLabel: "3 mins",
+								instruments: [
+									{
+										label:"AUD/USD",
+										id: "aud-usd",
+										payout: "1.80",
+										rate: "115.45"
+									},
+									{
+										label:"EUR/JPY",
+										id: "eur-jpy",
+										payout: "1.80",
+										rate: "98.442"
+									},
+									{
+										label:"EUR/USD",
+										id: "eur-usd",
+										payout: "1.80",
+										rate: "111.24"
+									},
+									{
+										label:"GBP/JPY",
+										id: "gbp-jpy",
+										payout: "1.80",
+										rate: "224.86"
+									},
+									{
+										label:"EUR/JPY",
+										id: "eur-jpy",
+										payout: "1.80",
+										rate: "123.54"
+									},
+									{
+										label:"EUR/USD",
+										id: "eur-usd",
+										payout: "1.80",
+										rate: "167.27"
+									},
+									{
+										label:"GBP/JPY",
+										id: "gbp-jpy",
+										payout: "1.80",
+										rate: "145.15"
+									},
+									{
+										label:"GBP/USD",
+										id: "gbp-usd",
+										payout: "1.80",
+										rate: "165.52"
+									},
+									{
+										label:"NZD/JPY",
+										id: "nzd-jpy",
+										payout: "1.80",
+										rate: "135.59"
+									},
+									{
+										label:"NZD/USD",
+										id: "nzd-usd",
+										payout: "1.80",
+										rate: "115.54"
+									},
+									{
+										label:"USD/JPY",
+										id: "usd-jpy",
+										payout: "1.80",
+										rate: "112.43"
+									}
+								]
+							}
+						]
+					}
 				]
 			},
 			pages: {
@@ -741,7 +862,7 @@ module.exports = function(grunt) {
 			}
 		},
 		replace: {
-		  integrate: {
+		  jsURL: {
 		    src: ['../public-page/public/trade-platform/scripts/highlow-main.js'],
 		    overwrite: true,                 // overwrite matched source files
 		    replacements: [{
@@ -749,6 +870,19 @@ module.exports = function(grunt) {
 		      to: "public/trade-platform/images"
 		    }]
 		  }
+		},
+		'copy-part-of-file': {
+			copyPlatform: {
+			  options: {
+			      sourceFileStartPattern: '<!-- start-platform -->',
+			      sourceFileEndPattern: '<!-- end-platform -->',
+			      destinationFileStartPattern: '<!-- start-platform -->',
+			      destinationFileEndPattern: '<!-- end-platform -->'
+			  },	
+			  files: {
+			      '../public-page/templates/trade-platform.liquid': ['build/index.html']
+			  }
+			}
 		},
 		watch: {
 			styles: {
@@ -761,14 +895,14 @@ module.exports = function(grunt) {
 			},
 			sprite: {
 				files: ['common/images/sprite-src/*.*'],
-				task: ['sprite','less'],
+				task: ['sprite','less','copy'],
 				options: {
 					livereload: true
 				}
 			},
 			js: {
 				files: ['common/scripts/**/*.js'],
-				tasks: ['newer:concat:js'],
+				tasks: ['newer:concat:js','replace'],
 				options: {
 					livereload: true
 				}
@@ -788,7 +922,7 @@ module.exports = function(grunt) {
 			},
 			copy: {
 				files: ['common/**/*.*','templates/**/*.*'],
-				tasks: ['newer:copy']
+				tasks: ['newer:copy','copy-part-of-file']
 			}
 		},
 		concurrent: {
@@ -801,6 +935,6 @@ module.exports = function(grunt) {
 		}
 	});
 
-	grunt.registerTask('default', ['sprite', 'newer:less', 'newer:concat', 'newer:liquid', 'newer:copy', 'replace','concurrent:all']);
-	grunt.registerTask('build', ['sprite', 'newer:less', 'newer:concat', 'newer:liquid', 'newer:copy']);
+	grunt.registerTask('default', ['sprite', 'newer:less', 'newer:concat', 'newer:liquid', 'newer:copy', 'replace','copy-part-of-file','concurrent:all']);
+	grunt.registerTask('build', ['sprite', 'newer:less', 'newer:concat', 'newer:liquid', 'newer:copy', 'replace','copy-part-of-file']);
 };

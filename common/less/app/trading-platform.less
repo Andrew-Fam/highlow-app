@@ -1,4 +1,4 @@
-@trading-platform-title-font-size: 24px;
+@trading-platform-title-font-size: 23px;
 @trading-platform-rate-font-size: 20px;
 @trading-platform-duration-font-size: 16px;
 @trading-platform-time-left-font-size: @trading-platform-duration-font-size;
@@ -43,12 +43,13 @@
 	.trading-platform-instrument-title {
 		display: inline-block;
 		font-size: @trading-platform-title-font-size;
+		width: 4em;
 	}
 	.trading-platform-instrument-rate {
 		display: inline-block;
 		font-size: @trading-platform-rate-font-size;
-		margin-left: @trading-platform-rate-font-size*2 + @trading-platform-duration-font-size;
-		width: @trading-platform-rate-font-size*5;
+		margin-left: 36px;
+		width: @trading-platform-rate-font-size*6;
 		&:before {
 			margin-bottom: 1px;
 		}
@@ -64,6 +65,16 @@
 		&:before {
 			.inline-icon();
 			.sprite(@clock-white-md);
+		}
+	}
+	.trading-platform-instrument-closing-time {
+		display: inline-block;
+		font-size: @trading-platform-duration-font-size;
+		margin-right: @trading-platform-duration-font-size*1.54;
+		vertical-align: sub;
+		&:before {
+			.inline-icon();
+			.sprite(@closing-time);
 		}
 	}
 	.trading-platform-instrument-time-left {
@@ -104,6 +115,9 @@
 		min-height: 290px;
 		float: left;
 		position: relative;
+		&.pushed {
+			width: 799px;
+		}
 	}
 	.trading-platform-main-controls {
 		display: block;
@@ -128,6 +142,8 @@
 			margin-bottom: 3px;
 			max-width: 100%;
 			height: auto;
+			padding-top: 4px;
+			padding-bottom: 4px;
 			line-height: normal;
 			input {
 				background: none;
@@ -193,7 +209,9 @@
 				margin-right: 11px;
 				text-align: center;
 				width: 116px;
-
+				&.btn-negative {
+					background-color: @xoi-gac;
+				}
 				&:last-child {
 					margin-right: 0px;
 				}
@@ -221,6 +239,7 @@
 			float: left;
 			font-size: 16px!important;
 			width: 116px;
+			font-weight: 400!important;
 		}
 		.trading-platform-main-controls-payout {
 			font-size: @trading-platform-payout-font-size;

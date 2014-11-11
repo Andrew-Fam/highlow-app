@@ -1,13 +1,14 @@
 @instrument-panel-font-size: 14px;
+@instrument-panel-rate-font-size: 16px;
 @instrument-panel-small-font-size: 11px;
 @instrument-panel-big-font-size: 22px;
 
 
 @instrument-panel-max-width: 216px;
-@instrument-panel-header-padding: 13px 21px 12px;
+@instrument-panel-header-padding: 13px 14px 12px 21px;
 @instrument-panel-body-padding: 13px 21px 12px;
 
-@instrument-panel-body-font-color: @rainy-cloud;
+@instrument-panel-body-font-color: @light-grey;
 @instrument-panel-font-color: @light-grey;
 @instrument-panel-font-color-highlight: white;
 @instrument-panel-header-background: @ink;
@@ -18,16 +19,17 @@
 
 @instrument-panel-active-body-font-color: white;
 @instrument-panel-active-font-color: @ink;
-@instrument-panel-active-font-color-highlight: @ink;
+@instrument-panel-active-font-color-highlight: @dark-grey;
 @instrument-panel-active-header-background: @orange-juice;
-@instrument-panel-active-body-background: @charcoal;
+@instrument-panel-active-body-background: @dead-grey;
+@instrument-panel-active-payout-color: @orange-juice;
 
 @instrument-panel-active-border-width: 4px;
-@instrument-panel-active-border: @instrument-panel-active-border-width solid @instrument-panel-active-header-background;
+@instrument-panel-active-border: @instrument-panel-active-border-width solid transparent;
 
 @instrument-panel-active-border-radius: @instrument-panel-active-border-width/4;
 
-@instrument-panel-border: @instrument-panel-active-border-width solid @tab-view-default-active-selector-bg;
+@instrument-panel-border: @instrument-panel-active-border-width solid transparent;
 
 @instrument-panel-hover-lighten-factor: 5%;
 @instrument-panel-hover-header-background: lighten(@instrument-panel-header-background, @instrument-panel-hover-lighten-factor);

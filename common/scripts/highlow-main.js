@@ -6,7 +6,7 @@ $(function () {
 
 	
 	highlowApp.tab.init();
-	highlowApp.systemMessages.init();
+	//highlowApp.systemMessages.init();
 	highlowApp.graph.init();
 	highlowApp.marketSimulator.init();
 	highlowApp.oneClick.init();
@@ -15,6 +15,8 @@ $(function () {
 	highlowApp.instrumentPanelSlider.init();
 	highlowApp.instrumentPanelSelector.init();
 	highlowApp.betSystem.init();
+	highlowApp.favourite.init();
+	highlowApp.heatmap.init();
 });
 ;
 highlowApp.randomValue = function(from, to, decimal) {
@@ -91,7 +93,7 @@ highlowApp.betSystem = {
 				'<td class="investment-asset">'+ //Asset
 				bet.model.label+
 				'</td>'+
-				'<td class="investment-strike highlow-'+bet+'"> '+ //Strike
+				'<td class="investment-strike highlow-'+bet.direction+'"> '+ //Strike
 				strike+
 				'</td>'+
 				'<td class="investment-time">'+ // Bet time
@@ -109,7 +111,7 @@ highlowApp.betSystem = {
 				'<span class="investment-value">'+$('#'+type+'-investment-value-input').val()+
 				'</span>'+
 				'</td>'+
-				'<td class="investment-payout">'+ // Payout
+				'<td class="investment-payout font-b">'+ // Payout
 				'</td>'+
 				'<td class="investment-sell"><button data-investment="'+$('#investment-value-input').val()+'" class="investment-sell-btn '+type+' btn font-m btn-sm-pad">SELL</button>'+
 				'</td>'+
@@ -265,25 +267,25 @@ highlowApp.betSystem = {
 			bets[type] = [];
 		}
 
-		if(bet!="high" && bet!="low") {
-			highlowApp.systemMessages.displayMessage("fail","Investment error. Please select Up or Down");
-			return;
-		}
+		// if(bet!="high" && bet!="low") {
+		// 	highlowApp.systemMessages.displayMessage("fail","Investment error. Please select Up or Down");
+		// 	return;
+		// }
 
 		var investmentValue = $('#'+type+'-investment-value-input').val();
 
-		if(investmentValue=="" ||investmentValue==undefined || !highlowApp.isNumber(investmentValue)) {
-			highlowApp.systemMessages.displayMessage("fail","Investment error. Please insert correct investment amount");
-			return;
-		}
+		// if(investmentValue=="" ||investmentValue==undefined || !highlowApp.isNumber(investmentValue)) {
+		// 	highlowApp.systemMessages.displayMessage("fail","Investment error. Please insert correct investment amount");
+		// 	return;
+		// }
 
-		if(investmentValue>500) {
-			highlowApp.systemMessages.displayMessage("warning","Investment amount is out of the allowed range");
-			return;
-		}
+		// if(investmentValue>500) {
+		// 	highlowApp.systemMessages.displayMessage("warning","Investment amount is out of the allowed range");
+		// 	return;
+		// }
 
 
-		highlowApp.systemMessages.displayMessage("success","Success");
+		// highlowApp.systemMessages.displayMessage("success","Success");
 
 		var strike = parseFloat(model.currentRate).toFixed(3);
 
@@ -323,9 +325,6 @@ highlowApp.betSystem = {
 				model.focusedBet = bet;
 				model.focusedBet.focused = true;
 				highlowApp.marketSimulator.updateBetStatus(model);
-
-
-				
 				
 			}
 		}
@@ -379,6 +378,254 @@ highlowApp.betSystem = {
 	}
 }
 ;
+highlowApp.favourite = {
+	favourite: {},
+	itemPerPage: 5,
+	init: function() {
+		var duration = 0;
+		var module = this;
+		//collapser
+
+		$('.instrument-panel').on('click','.instrument-panel-favourite',function(event){
+			var self = $(this);
+
+			var $parent = $(self.closest('.instrument-panel'));
+
+			var model = $parent.data(highlowApp.marketSimulator.modelDataName);
+
+
+			event.stopPropagation();
+
+			if(self.hasClass('faved')) {
+
+				module.unFavorItem(self, model);
+			
+			} else {
+				module.favorItem(self, model);
+			}
+
+		});
+	},
+	unFavorItem: function(el,model) { 
+		el.removeClass('faved');
+
+		var self = this;
+
+
+		if(!self.favourite[model.type]) {
+			return;
+		}
+
+		if(!self.favourite[model.type].map[model.uid]) {
+			return;
+		} 
+
+
+		model.favourite = false;
+		
+		self.favourite[model.type].array.splice(self.favourite[model.type].array.indexOf(model),1);
+
+		self.removeFromFavouriteTab(model);
+
+		delete self.favourite[model.type].map[model.uid];
+
+		self.rerender(model);
+
+	},
+	favorItem: function(el,model) {
+		el.addClass('faved');
+		var self = this;
+
+		if(!self.favourite[model.type]) {
+			self.favourite[model.type] = {
+				map: {},
+				array: []
+			};
+		}
+		model.favourite = true;
+		self.favourite[model.type].map[model.uid] = model;
+		self.favourite[model.type].array.push(model);
+
+		self.addToFavouriteTab(model);
+	},
+	addToFavouriteTab: function(model) {
+
+		var $container = $('#'+model.type+'-favourite-pages .pages-wrapper');
+
+		var $originalView = $('#'+model.type+"-"+model.durationId+"-pages [data-uid='"+model.uid+"']");
+
+
+
+		var $view = $originalView.clone(true,true);
+
+		$view.data(highlowApp.marketSimulator.modelDataName, $originalView.data(highlowApp.marketSimulator.modelDataName));
+
+
+		$view.removeClass('instrument-panel-active');
+
+		var $activePage = $('#'+model.type+'-favourite-pages .page.active');
+
+		var activePageIndex = $activePage.index();
+
+		var $pages = $('#'+model.type+'-favourite-pages .pages-wrapper .page');
+
+		var $panel;
+
+		if ($pages.length>0) {
+			$panels = $($($pages[$pages.length-1]).find('.instrument-panel'));
+		}
+
+		var $page;
+
+		//if favourite is empty
+
+		if($pages.length<=0 || $panels.length>=5) {
+
+			$page = $('<div class="page"></div>');
+
+			if($pages.length<=0) {
+				$page.addClass('active');
+			} else {
+
+			}
+			
+		} else {
+
+			$page = $($pages[$pages.length-1]);
+		}
+
+		$page.append($view);
+
+		$container.append($page);
+
+		$activePage = $('#'+model.type+'-favourite-pages .page.active');
+				
+		$activePage.next().addClass('next');
+
+		$activePage.prev().addClass('prev');
+
+
+		$('#'+model.type+'-favourite-pages .no-data').addClass('hidden');
+		$('.instrument-panel[data-uid="'+model.uid+'"] .instrument-panel-favourite').addClass('faved');
+
+	},
+	removeFromFavouriteTab: function(model) {
+
+		var self = this;
+
+		var $view = $('#'+model.type+"-favourite-pages [data-uid='"+model.uid+"']");
+
+		// toggle original instrument panel
+
+		$('#'+model.type+"-"+model.durationId+"-pages [data-uid='"+model.uid+"'] .instrument-panel-favourite").removeClass("faved");
+
+		$('#'+model.type+"-all-pages [data-uid='"+model.uid+"'] .instrument-panel-favourite").removeClass("faved");
+
+
+		// remove the copied instrument panel from favourite tab
+
+		$view.remove();
+
+		//this.rerender(model);
+
+	},
+	rerender: function(model) {
+
+		var self = this;
+		
+		var $views = $('#'+model.type+'-favourite-pages .pages-wrapper .instrument-panel');
+
+		var $container = $('#'+model.type+'-favourite-pages .pages-wrapper');
+
+		$views.detach();
+
+
+		var activePageIndex = $('#'+model.type+'-favourite-pages .page.active').index();
+
+		if(!activePageIndex) {
+			activePageIndex = 0;
+		}
+
+		var $pages = $('#'+model.type+'-favourite-pages .page');
+
+		var $page;
+
+
+		for(var i=0; i< $views.length; i++) {
+
+			if(i%self.itemPerPage==0) {
+
+				if(i/self.itemPerPage>=$pages.length-1) {
+
+					$page = $('<div class="page"></div>');
+				} else {
+					$page = $($pages[i/self.itemPerPage]);
+				}
+
+				if(i/self.itemPerPage==activePageIndex) {
+					$page.addClass('active');
+				}
+
+			
+
+			}
+
+
+			var $view = $($views[i]);
+
+			$page.append($view);
+
+
+			if(i/self.itemPerPage>=$pages.length-1) {
+				$container.append($page);
+			}
+
+
+		}
+
+
+
+
+
+		var numberOfPages = $views.length/self.itemPerPage;
+
+		//remove empty page
+
+		if(numberOfPages<$pages.length) {
+			for (var i = $pages.length; i > numberOfPages; i--) {
+				$($pages[i-1]).remove();
+			}
+		}
+
+		//set active Page
+
+		$pages = $('#'+model.type+'-favourite-pages .page');
+
+		if(activePageIndex<$pages.length) {
+
+			$($pages[activePageIndex]).addClass('active').removeClass('prev').removeClass('next').css({left: '0px'});
+
+		} else {
+
+			$($pages[activePageIndex-1]).addClass('active').removeClass('prev').removeClass('next').css({left: '0px'});
+		}
+
+		
+
+
+
+
+		var $activePage = $('#'+model.type+'-favourite-pages .page.active');
+
+		$activePage.next().addClass('next');
+		$activePage.prev().addClass('prev');
+
+		if($views.length == 0) {
+			$('#'+model.type+'-favourite-pages .no-data').removeClass('hidden');
+		}
+	}
+}
+;
 highlowApp.graph = {
 	graphs : {},
 	onGraphUI : {},
@@ -398,10 +645,12 @@ highlowApp.graph = {
 		this.prepareGraph('#highlow-graph');
 		this.prepareGraph('#spread-graph');
 		this.prepareGraph('#on-demand-graph',2*60*1000);
+		this.prepareGraph('#spread-on-demand-graph',2*60*1000);
 
 		this.graphs['highlow'] = Highcharts.charts[$("#highlow-graph").data('highchartsChart')];
 		this.graphs['spread'] = Highcharts.charts[$("#spread-graph").data('highchartsChart')];
 		this.graphs['on-demand'] = Highcharts.charts[$("#on-demand-graph").data('highchartsChart')];
+		this.graphs['spread-on-demand'] = Highcharts.charts[$("#spread-on-demand-graph").data('highchartsChart')];
 	},
 	indexOfPointByXRecursive: function(points, x, lowerBoundary, upperBoundary) {
 
@@ -439,12 +688,41 @@ highlowApp.graph = {
 
 		// add graph closing line;
 
-		var closingLine = renderer.path(['M', 830, 6, 'L', 830, 255])
-		.attr({
-			'stroke-width': 1,
-			stroke: '#2c2f35'
-		}).add();
+		var resize = $('#'+model.type+"-graph").closest('.trading-platform-live-graph').hasClass('pushed');
 
+		if(resize) {
+			var closingLine = renderer.path(['M', 789, 6, 'L', 789, 274])
+			.attr({
+				'stroke-width': 1,
+				stroke: '#252323'
+			}).add();
+			
+
+			// add graph bottom line;
+
+			var bottomLine = renderer.path(['M', 49, 275, 'L', 789, 275])
+			.attr({
+				'stroke-width': 1,
+				stroke: '#252323'
+			}).add();
+		} else {
+			var closingLine = renderer.path(['M', 830, 6, 'L', 830, 274])
+			.attr({
+				'stroke-width': 1,
+				stroke: '#252323'
+			}).add();
+			
+
+			// add graph bottom line;
+
+			var bottomLine = renderer.path(['M', 49, 275, 'L', 830, 275])
+			.attr({
+				'stroke-width': 1,
+				stroke: '#252323'
+			}).add();
+			}
+
+		
 
 		var series = graph.series[0];
 
@@ -474,7 +752,7 @@ highlowApp.graph = {
 			xAxis.removePlotBand(plotBandId);
 			
 			xAxis.addPlotBand({
-				color: 'rgba(77,81,88,0.55)',
+				color: 'rgba(255,255,255,0.08)',
 				from: model.openAt, 
 				to: model.expireAt,
 				zIndex: 2,
@@ -631,7 +909,6 @@ highlowApp.graph = {
 
 		var currentYExtremes = yAxis.getExtremes();
 
-		console.log(currentYExtremes);
 
 		var bottomExtreme = currentYExtremes.min,
 		topExtreme = currentYExtremes.max;
@@ -646,7 +923,7 @@ highlowApp.graph = {
 		var newTopExtreme = topExtreme,
 		newBottomExtreme = bottomExtreme;
 
-		console.log(yMiddle);
+	
 
 
 
@@ -654,28 +931,23 @@ highlowApp.graph = {
 
 		if( point.y>yMiddle) {
 			// check if point is too close to top edge
-			console.log(topExtreme-point.y);
+			
 
 			if(topExtreme - point.y < safeZone) {
 
 				newTopExtreme  += safeZone - (topExtreme-point.y);
 				newBottomExtreme = newTopExtreme - interval*tickCount;
 
-				console.log(newBottomExtreme+":"+newTopExtreme);
-
 				yAxis.setExtremes(newBottomExtreme,newTopExtreme,true);
 
 			} 
 		} else {
 			// check if point is too close to bottom edge
-			console.log(point.y-bottomExtreme);
 
 			if(point.y - bottomExtreme < safeZone) {
 
 				newBottomExtreme -= safeZone-(point.y-bottomExtreme);
 				newTopExtreme = newBottomExtreme + interval*tickCount;
-
-				console.log(newBottomExtreme+":"+newTopExtreme);
 
 				yAxis.setExtremes(newBottomExtreme,newTopExtreme,true);
 
@@ -883,7 +1155,7 @@ highlowApp.graph = {
 	},
 	prepareGraph: function (id,xInterval) {
 		var labelStyle = {
-			fontFamily: '"Open Sans","Helvetica Neue",Helvetica, Arial, sans-serif',
+			fontFamily: '"Roboto","Helvetica Neue",Helvetica, Arial, sans-serif',
 			fontSize: '10px',
 			color: 'white'
 		};
@@ -899,12 +1171,12 @@ highlowApp.graph = {
 			chart: {
 				type: 'area',
 				animation: false,
-				backgroundColor : '#3e424a',
+				backgroundColor : '#353535',
 				marginTop: 6,
 				marginLeft: 50,
 				renderTo: 'container',
 				style : {
-					fontFamily: '"Open Sans","Helvetica Neue",Helvetica, Arial, sans-serif',
+					fontFamily: '"Roboto","Helvetica Neue",Helvetica, Arial, sans-serif',
 					fontSize: '10px',
 					color: 'white',
 					overflow: 'visible'
@@ -935,7 +1207,13 @@ highlowApp.graph = {
 					}
 				}
 			},series : [{
-				color: '#ffe048',
+				color: {
+				    linearGradient: { x1: 0, x2: 0, y1: 0, y2: 1 },
+				    stops: [
+				        [0, '#ffe048'],
+				        [1, '#ffc539']
+				    ]
+				},
 				fillOpacity: '1',
 				name : '',
 				type: 'area',
@@ -950,10 +1228,10 @@ highlowApp.graph = {
 					format: '{value:.3f}'
 				},
 				gridLineWidth: 1,
-				gridLineColor: '#2c2f35',
+				gridLineColor: '#252323',
 				tickInterval : 0.002,
 				tickWidth : 0,
-				lineColor: '#2c2f35',
+				lineColor: '#252323',
 				lineWidth: 1,
 				startOnTick: false,
 				endOnTick: true,
@@ -966,7 +1244,7 @@ highlowApp.graph = {
 				},
 				minPadding: 0,
 				gridLineWidth: 1,
-				gridLineColor: '#2c2f35',
+				gridLineColor: '#252323',
 				dateTimeLabelFormats: {
 					second: '%H:%M',
 					minute: '%H:%M',
@@ -975,6 +1253,8 @@ highlowApp.graph = {
 					week: '%e. %b %H:%M'
 				},
 				ordinal : false,
+				lineColor: '#252323',
+				lineWidth: 1,
 				tickInterval : xTickInterval,
 				tickWidth : 0,
 				type: 'datetime',
@@ -987,6 +1267,47 @@ highlowApp.graph = {
 			},
 			subtitle: {
 				text: ''
+			}
+		});
+	}
+}
+;
+highlowApp.heatmap = {
+	init: function() {
+		
+		$('.heatmap').on('click','.expander',function(){
+			var $e  = $($(this).closest('.heatmap'));
+			var $target = $('#'+$e.data('target'));
+			if($e.hasClass('collapsed')) {
+				$e.removeClass('collapsed');
+				$target.animate({
+					left: '56px'
+				},150);
+
+				$('.trading-platform-live-graph').addClass('pushed');
+
+				var model = $($e.closest('.main-view')).data(highlowApp.marketSimulator.modelDataName);
+
+				highlowApp.graph.loadInstrument(model);
+				
+			}
+		});
+
+		$('.heatmap').on('click','.toggle',function(){
+			var $e  = $($(this).closest('.heatmap'));
+			var $target = $('#'+$e.data('target'));
+			if(!$e.hasClass('collapsed')) {
+				$e.addClass('collapsed');
+
+				$target.animate({
+					left: '0px'
+				},150);
+
+				$('.trading-platform-live-graph').removeClass('pushed');
+
+				var model = $($e.closest('.main-view')).data(highlowApp.marketSimulator.modelDataName);
+
+				highlowApp.graph.loadInstrument(model);
 			}
 		});
 	}
@@ -1058,6 +1379,9 @@ highlowApp.instrumentPanelSelector = {
 
 	},
 	selectInstrument: function (e) {
+
+
+
 		var label = e.data('instrumentLabel'),
 			duration = e.data('instrumentDuration'),
 			type = e.data('tradingType'),
@@ -1065,20 +1389,23 @@ highlowApp.instrumentPanelSelector = {
 
 		// update active instrument here.
 
-		if (highlowApp.currentInstrument[type]!=undefined) {
-			highlowApp.currentInstrument[type].active = false;
+		if(model) {
+
+			if (highlowApp.currentInstrument[type]!=undefined) {
+				highlowApp.currentInstrument[type].active = false;
+			}
+
+			model.active = true;
+
+			highlowApp.currentInstrument[type] = model;
+
+
+			model.updateMainView();
+
+			// change graph to display this instrument data
+
+			highlowApp.graph.loadInstrument(model);
 		}
-
-		model.active = true;
-
-		highlowApp.currentInstrument[type] = model;
-
-
-		model.updateMainView();
-
-		// change graph to display this instrument data
-
-		highlowApp.graph.loadInstrument(model);
 
 	}
 }
@@ -1185,10 +1512,11 @@ highlowApp.instrumentPanelSlider = {
 highlowApp.marketSimulator = {
 	instruments : [],
 	spread: 0.005,
-	rounding: 4,
+	rounding: 3,
 	minInterval: 1000,
 	maxInterval: 1500,
 	maxChange: 0.0008,
+	modelDataName: 'instrumentModel',
 	start: function() {
 		var self = this;
 		for (var i = 0; i < this.instruments.length; i++) {
@@ -1202,10 +1530,43 @@ highlowApp.marketSimulator = {
 		var self = this;
 	
 		var deviation = highlowApp.randomValue(0,self.maxChange,4);
-		var variation = Math.random() >= 0.5 ? deviation : -deviation;
+
+		// if the market has been moving up, there's more chance it's gonna go down this time
+
+		var coefficient = 0.0016;
+
+
+
+		var splitChance = 0.5;
+
+		if(instrument.absoluteChange>0) {
+			splitChance+=0.1;
+		} else if(instrument.absoluteChange<0) {
+			splitChance-=0.1;
+		}
+
+		if(instrument.absoluteChange>0.002) {
+			splitChance+=0.3;
+		} else if(instrument.absoluteChange<0.002) {
+			splitChance-=0.3;
+		}
+
+
+		// console.log(splitChance);
+
+		var variation = Math.random() >= splitChance ? deviation : -deviation;
+
+
+
+
 
 		instrument.previousRate = parseFloat(instrument.currentRate);
 		instrument.currentRate = parseFloat(instrument.currentRate + variation);
+
+
+
+
+		instrument.absoluteChange += parseFloat(variation);
 
 		if (instrument.type === 'spread') {
 			instrument.upperRate = parseFloat(parseFloat(instrument.currentRate) + self.spread);
@@ -1423,10 +1784,10 @@ highlowApp.marketSimulator = {
 					
 						var x = point.plotX, 
 							labelX = Math.floor(xAxis.toPixels(bet.expireAt)-17),
-							label = renderer.rect(labelX,43,17,177,0);
+							label = renderer.rect(labelX,52,17,177,0);
 
-						var textX = labelX+5,
-							textY = 132;
+						var textX = labelX+4,
+							textY = 141;
 
 						if(bet.finishLabel == undefined) {
 
@@ -1685,7 +2046,7 @@ highlowApp.marketSimulator = {
 		// Generate past data.
 
 			instrumentModel.startingPoint = currentTime - (15*60*1000);
-
+			instrumentModel.absoluteChange = 0;
 			instrumentModel.data = [];
 
 			// seed highlow data array with a value
@@ -1707,7 +2068,30 @@ highlowApp.marketSimulator = {
 
 				var deviation = highlowApp.randomValue(0,marketSimulator.maxChange,4);
 
-				var variation = Math.random() >= 0.5 ? deviation : -deviation;
+
+
+				// if the market has been moving up, there's more chance it's gonna go down this time
+
+				var splitChance = 0.5;
+
+				if(instrumentModel.absoluteChange>0) {
+					splitChance+=0.1;
+				} else if(instrumentModel.absoluteChange<0) {
+					splitChance-=0.1;
+				}
+
+				if(instrumentModel.absoluteChange>0.002) {
+					splitChance+=0.3;
+				} else if(instrumentModel.absoluteChange<-0.002) {
+					splitChance-=0.3;
+				}
+
+				
+
+				var variation = Math.random() >= splitChance ? deviation : -deviation;
+
+				instrumentModel.absoluteChange += parseFloat(variation);
+
 
 				// next value calculated from variation deinfed above and previous value
 
@@ -1735,10 +2119,14 @@ highlowApp.marketSimulator = {
 				var model = instrumentModel;
 				var mainViewId  = model.getMainViewId();
 
-				$('#'+mainViewId).data('instrumentModel',instrumentModel);
+				$('#'+mainViewId).data(marketSimulator.modelDataName,instrumentModel);
 
 				
+
+
 				$('#'+mainViewId+" .trading-platform-instrument-duration").html(" " + model.durationLabel);
+
+				$('#'+mainViewId+" .trading-platform-instrument-closing-time").html(" "+ highlowApp.timeToText(model.expireAt));
 
 				$('#'+model.type+"-mode .trading-platform-main-controls-payout-rate").html(model.payoutRate);
 
@@ -1747,7 +2135,7 @@ highlowApp.marketSimulator = {
 					'.trading-platform-invest-popup.'+model.type+' .trading-platform-main-controls-instrument-title').html(" " + model.label);
 
 
-				$('#'+mainViewId+" .trading-platform-maximum-return").html("$"+parseFloat(model.payoutRate*$('#'+model.type+'-investment-value-input').val()).toFixed(2));
+				$('#'+mainViewId+" .trading-platform-maximum-return").html("$ "+parseFloat(model.payoutRate*$('#'+model.type+'-investment-value-input').val()).toFixed(2));
 
 				if(model.active) {
 					var mainViewRateDisplay = $('#' + model.getMainViewId() + ' .current-rate'),
@@ -1801,7 +2189,7 @@ highlowApp.marketSimulator = {
 
 			//attach the model to the UI
 
-			$('[data-uid="'+self.data('uid')+'"]').data('instrumentModel',instrumentModel);
+			$('[data-uid="'+self.data('uid')+'"]').data(marketSimulator.modelDataName,instrumentModel);
 
 			// update closing time to instrument panel
 
