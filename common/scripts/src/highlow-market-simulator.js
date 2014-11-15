@@ -615,7 +615,7 @@ highlowApp.marketSimulator = {
 
 				$('#'+mainViewId+" .trading-platform-instrument-duration").html(" " + model.durationLabel);
 
-				$('#'+mainViewId+" .trading-platform-instrument-closing-time").html(" "+ highlowApp.timeToText(model.expireAt));
+
 
 				$('#'+model.type+"-mode .trading-platform-main-controls-payout-rate").html(model.payoutRate);
 
@@ -624,14 +624,20 @@ highlowApp.marketSimulator = {
 					'.trading-platform-invest-popup.'+model.type+' .trading-platform-main-controls-instrument-title').html(" " + model.label);
 
 
-				$('#'+mainViewId+" .trading-platform-maximum-return").html("$ "+parseFloat(model.payoutRate*$('#'+model.type+'-investment-value-input').val()).toFixed(2));
+				$('#'+mainViewId+" .trading-platform-maximum-return").html("$"+parseFloat(model.payoutRate*$('#'+model.type+'-investment-value-input').val()).toFixed(2));
 
 				if(model.active) {
 					var mainViewRateDisplay = $('#' + model.getMainViewId() + ' .current-rate'),
 					popupRateDisplay = $('.trading-platform-invest-popup.'+model.type+' .current-rate'),
 					sellPopupRateDisplay = $('.trading-platform-sell-popup.'+model.type+' .current-rate');
 					
-
+					if(model.type.indexOf('on-demand')<0) {
+						$('#'+mainViewId+" .trading-platform-instrument-closing-time").html(" "+ highlowApp.timeToText(model.expireAt));
+					} else {
+						if(model.focusedBet) {
+							$('#'+mainViewId+" .trading-platform-instrument-closing-time").html(" "+ highlowApp.timeToText(model.focusedBet.expireAt));
+						}
+					}
 
 					if (model.currentRate>model.previousRate) {
 						mainViewRateDisplay.removeClass('highlow-low').addClass('highlow-high');

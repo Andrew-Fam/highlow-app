@@ -301,7 +301,7 @@ module.exports = function(grunt) {
 							}
 						]
 					},{
-						label: "Spread HighLow",
+						label: "Spread",
 						id: "spread",
 						range: 0.005,
 						default: false,
@@ -571,7 +571,7 @@ module.exports = function(grunt) {
 							}
 						]
 					},{
-						label: "On Demand",
+						label: "onDemand",
 						id: "on-demand",
 						default: false,
 						range: false,
@@ -692,7 +692,7 @@ module.exports = function(grunt) {
 						]
 					}
 					,{
-						label: "Spread On Demand",
+						label: "Spread onDemand",
 						id: "spread-on-demand",
 						default: false,
 						range: false,

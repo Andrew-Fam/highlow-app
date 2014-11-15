@@ -691,7 +691,7 @@ highlowApp.graph = {
 		var resize = $('#'+model.type+"-graph").closest('.trading-platform-live-graph').hasClass('pushed');
 
 		if(resize) {
-			var closingLine = renderer.path(['M', 789, 6, 'L', 789, 274])
+			var closingLine = renderer.path(['M', 790, 5, 'L', 790, 272])
 			.attr({
 				'stroke-width': 1,
 				stroke: '#252323'
@@ -700,13 +700,13 @@ highlowApp.graph = {
 
 			// add graph bottom line;
 
-			var bottomLine = renderer.path(['M', 49, 275, 'L', 789, 275])
+			var bottomLine = renderer.path(['M', 49, 272, 'L', 790, 272])
 			.attr({
 				'stroke-width': 1,
 				stroke: '#252323'
 			}).add();
 		} else {
-			var closingLine = renderer.path(['M', 830, 6, 'L', 830, 274])
+			var closingLine = renderer.path(['M', 840, 5, 'L', 840, 272])
 			.attr({
 				'stroke-width': 1,
 				stroke: '#252323'
@@ -715,7 +715,7 @@ highlowApp.graph = {
 
 			// add graph bottom line;
 
-			var bottomLine = renderer.path(['M', 49, 275, 'L', 830, 275])
+			var bottomLine = renderer.path(['M', 49, 272, 'L', 840, 272])
 			.attr({
 				'stroke-width': 1,
 				stroke: '#252323'
@@ -743,7 +743,7 @@ highlowApp.graph = {
 		
 		} else {
 			
-			xAxis.setExtremes(model.openAt-5*60*1000,model.openAt+20*60*1000,true);
+			xAxis.setExtremes(model.openAt-5*60*1000,model.openAt+15*60*1000,true);
 			
 			var plotBandId = model.type+"-plot-band";
 			var startLineId = model.type+"-start-plot-line";
@@ -901,7 +901,7 @@ highlowApp.graph = {
 
 			// set graph range
 
-			xAxis.setExtremes(point.x-10*60*1000,point.x+12*60*1000,true);
+			//xAxis.setExtremes(point.x-10*60*1000,point.x+12*60*1000,true);
 
 		}
 
@@ -1089,7 +1089,7 @@ highlowApp.graph = {
 		// if(betObject.type.indexOf('on-demand')<0) {
 			switch(betObject.direction) {
 				case 'high' : {
-					var img = renderer.image('common/images/high-level.png',pointX+40,pointY-24,21,28);
+					var img = renderer.image('common/images/high-lose.png',pointX+40,pointY-24,21,28);
 
 					img.on('click', betObject.focus);
 
@@ -1105,7 +1105,7 @@ highlowApp.graph = {
 					break;
 				}
 				case 'low' : {
-					var img = renderer.image('common/images/low-level.png',pointX+40,pointY-24,21,28);
+					var img = renderer.image('common/images/low-lose.png',pointX+40,pointY-24,21,28);
 
 					img.on('click', betObject.focus);
 
@@ -1281,7 +1281,7 @@ highlowApp.heatmap = {
 			if($e.hasClass('collapsed')) {
 				$e.removeClass('collapsed');
 				$target.animate({
-					left: '56px'
+					left: '50px'
 				},150);
 
 				$('.trading-platform-live-graph').addClass('pushed');
@@ -1330,13 +1330,13 @@ highlowApp.instrumentPanelCollapser = {
 				// $instrumentPanels.removeClass('collapsed');
 				
 				$instrumentPanelsWrapper.animate({
-					height: '140px',
+					height: '137px',
 					top: '0px'
 				},duration,function(){
 					$instrumentPanels.removeClass('collapsed');
 				});
 				$instrumentSliders.animate({
-					'line-height' : '188px'
+					'line-height' : '190px'
 				},duration);
 			} else {
 				self.addClass('on');
@@ -2126,7 +2126,7 @@ highlowApp.marketSimulator = {
 
 				$('#'+mainViewId+" .trading-platform-instrument-duration").html(" " + model.durationLabel);
 
-				$('#'+mainViewId+" .trading-platform-instrument-closing-time").html(" "+ highlowApp.timeToText(model.expireAt));
+
 
 				$('#'+model.type+"-mode .trading-platform-main-controls-payout-rate").html(model.payoutRate);
 
@@ -2135,14 +2135,20 @@ highlowApp.marketSimulator = {
 					'.trading-platform-invest-popup.'+model.type+' .trading-platform-main-controls-instrument-title').html(" " + model.label);
 
 
-				$('#'+mainViewId+" .trading-platform-maximum-return").html("$ "+parseFloat(model.payoutRate*$('#'+model.type+'-investment-value-input').val()).toFixed(2));
+				$('#'+mainViewId+" .trading-platform-maximum-return").html("$"+parseFloat(model.payoutRate*$('#'+model.type+'-investment-value-input').val()).toFixed(2));
 
 				if(model.active) {
 					var mainViewRateDisplay = $('#' + model.getMainViewId() + ' .current-rate'),
 					popupRateDisplay = $('.trading-platform-invest-popup.'+model.type+' .current-rate'),
 					sellPopupRateDisplay = $('.trading-platform-sell-popup.'+model.type+' .current-rate');
 					
-
+					if(model.type.indexOf('on-demand')<0) {
+						$('#'+mainViewId+" .trading-platform-instrument-closing-time").html(" "+ highlowApp.timeToText(model.expireAt));
+					} else {
+						if(model.focusedBet) {
+							$('#'+mainViewId+" .trading-platform-instrument-closing-time").html(" "+ highlowApp.timeToText(model.focusedBet.expireAt));
+						}
+					}
 
 					if (model.currentRate>model.previousRate) {
 						mainViewRateDisplay.removeClass('highlow-low').addClass('highlow-high');

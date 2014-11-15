@@ -70,7 +70,8 @@
 	.trading-platform-instrument-closing-time {
 		display: inline-block;
 		font-size: @trading-platform-duration-font-size;
-		margin-right: @trading-platform-duration-font-size*1.54;
+		margin-right: 19px;
+		width: 4.5em;
 		vertical-align: sub;
 		&:before {
 			.inline-icon();
@@ -80,7 +81,8 @@
 	.trading-platform-instrument-time-left {
 		display: inline-block;
 		font-size: @trading-platform-time-left-font-size;
-		width: @trading-platform-duration-font-size*5.75;
+		width: 99px;
+		margin-right: 32px;
 		vertical-align: sub;
 		&:before {
 
@@ -111,7 +113,7 @@
 	}
 	.trading-platform-live-graph {
 		display: block;
-		width: 840px;
+		width: 850px;
 		min-height: 290px;
 		float: left;
 		position: relative;
@@ -121,8 +123,8 @@
 	}
 	.trading-platform-main-controls {
 		display: block;
-		width: 274px;
-		padding-left: 31px;
+		width: 260px;
+		padding-left: 18px;
 		float: right;
 		position: relative;
 	}
@@ -139,11 +141,11 @@
 		}
 		.trading-platform-main-controls-investment {
 			font-size: @trading-platform-input-font-size;
-			margin-bottom: 3px;
+			margin-bottom: 4px;
 			max-width: 100%;
 			height: auto;
-			padding-top: 4px;
-			padding-bottom: 4px;
+			padding-top: 10px;
+			padding-bottom: 10px;
 			line-height: normal;
 			input {
 				background: none;
@@ -170,11 +172,11 @@
 				display: block;
 				float: left;
 				font-size: @trading-platform-common-amount-font-size;
-				margin-right: 3px;
+				margin-right: 4px;
 				padding: @trading-platform-duration-font-size/1.5 @trading-platform-duration-font-size; 
 				text-align: center;
-				width: 79px;
-				//.transition(all 0.2s ease);
+				width: 78px;
+				.transition(all 0.2s ease);
 				&:hover {
 					color: white;
 				}
@@ -189,13 +191,13 @@
 			}
 		}
 		.trading-platform-main-controls-options {
-			margin-bottom: 20px;
+			margin-bottom: 16px;
 
 			&.none-one-click-control {
 				margin-bottom: 3px;
 				.btn {
 					font-size: 12px;
-					margin-bottom: 4px;
+					margin-bottom: 5px;
 				}
 			}
 
@@ -206,7 +208,7 @@
 				float: left;
 				font-weight: 700;
 				font-size: @trading-platform-options-font-size;
-				margin-right: 11px;
+				margin-right: 10px;
 				text-align: center;
 				width: 116px;
 				&.btn-negative {

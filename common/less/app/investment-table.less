@@ -23,12 +23,14 @@
 			> tr {
 				cursor: pointer;
 				border: none;
+				.transition(background-color 0.2s ease);
 				>td {
 					border: none;
 					vertical-align: top;
+					.transition(background-color 0.2s ease);
 					.investment-sell-btn {
 						&:extend(.btn-negative);
-						//.transition(all 0.2s ease);
+						.transition(background-color 0.2s ease);
 						font-size: @investment-sell-btn-font-size;
 						display: block;
 						width: 100%;

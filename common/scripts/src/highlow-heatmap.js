@@ -7,7 +7,7 @@ highlowApp.heatmap = {
 			if($e.hasClass('collapsed')) {
 				$e.removeClass('collapsed');
 				$target.animate({
-					left: '56px'
+					left: '50px'
 				},150);
 
 				$('.trading-platform-live-graph').addClass('pushed');

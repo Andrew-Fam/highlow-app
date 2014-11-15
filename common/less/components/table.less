@@ -1,9 +1,9 @@
 @table-header-bg: @night;
 @table-header-fg: @light-grey;
-@table-header-padding-top: 16px;
-@table-header-padding-left: 10px;
+@table-header-padding-top: 9px;
+@table-header-padding-left: 8px;
 @table-header-padding-right: 0px;
-@table-header-padding-bottom: 11px;
+@table-header-padding-bottom: 8px;
 @table-header-padding: @table-header-padding-top @table-header-padding-right @table-header-padding-bottom @table-header-padding-left;
 @table-header-font-size: 14px;
 @table-header-line-height: 1em;
@@ -25,10 +25,13 @@
 @table-stripped-hover-bg: @mud;
 .table {
 	font-weight: 400;
-	> thead {
+	margin-bottom: 0px;
+	> thead,
+	> thead:first-child {
 		background-color: @table-header-bg;
 		color: @table-header-fg;
-		> tr {
+		> tr,
+		> tr:first-child {
 			> th {
 				&:extend(.font-sb);
 				color: @light-mid-grey;
