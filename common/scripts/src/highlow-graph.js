@@ -263,7 +263,7 @@ highlowApp.graph = {
 
 
 
-		if(model.type==="on-demand") {
+		if(type.indexOf("on-demand")>=0) {
 
 			// set graph range
 
@@ -273,7 +273,7 @@ highlowApp.graph = {
 
 			// set graph range
 
-			//xAxis.setExtremes(point.x-10*60*1000,point.x+12*60*1000,true);
+			// xAxis.setExtremes(point.x-5*60*1000,point.x+15*60*1000,true);
 
 		}
 
@@ -349,11 +349,12 @@ highlowApp.graph = {
 			}
 		}
 
+
 		// now render the 2 buttons
 
 		var high = renderer.image('common/images/graph-up.png',highX,highY, 27, 27);
 
-		if(type=="spread") {
+		if(type.indexOf("spread")>=0) {
 			high = renderer.image('common/images/graph-up-spread.png',highX,highY, 96, 27);
 		}
 
@@ -380,7 +381,7 @@ highlowApp.graph = {
 
 		var low = renderer.image('common/images/graph-down.png',lowX,lowY, 27, 27);
 
-		if(type=="spread") {
+		if(type.indexOf("spread")>=0) {
 			low = renderer.image('common/images/graph-down-spread.png',lowX,lowY, 96, 27);
 		}
 
@@ -403,7 +404,7 @@ highlowApp.graph = {
 
 		symbols[type].lowButton = low;
 
-		if(type=="spread") {
+		if(type.indexOf("spread")>=0) {
 			var highRate = renderer.text('<div class="on-graph-button">'+(point.y+0.005).toFixed(3)+'</div>',highX+27,highY+19);
 			highRate.on('click', function () {
 				highlowApp.betSystem.confirmBet('high',point,model.type);
@@ -455,47 +456,140 @@ highlowApp.graph = {
 			betObject.marker.destroy();
 		}
 
-		var pointX = betObject.point.plotX,
-		pointY = betObject.point.plotY;
+		var pointX = parseInt(""+betObject.point.plotX),
+		pointY = parseInt(""+betObject.point.plotY);
+
+
+		
+		var highX = pointX+40,
+		highY = pointY-24,
+		lowX = highX,
+		lowY = pointY+4,
+		labelHighX = pointX+28,
+		labelHighY = pointY-44,
+		labelLowX = pointX+28,
+		labelLowY = pointY+36,
+		textHighX = labelHighX+21,
+		textHighY = labelHighY+10,
+		textLowX = labelLowX+21,
+		textLowY = labelLowY+10,
+		hoverDuration = 150;
+
 
 		// if(betObject.type.indexOf('on-demand')<0) {
-			switch(betObject.direction) {
-				case 'high' : {
-					var img = renderer.image('common/images/high-lose.png',pointX+40,pointY-24,21,28);
+		switch(betObject.direction) {
+			case 'high' : {
+				var img = renderer.image('common/images/high-lose.png',highX,highY,21,28);
 
-					img.on('click', betObject.focus);
+				img.on('click', betObject.focus);
 
-					img.css({
-						'cursor' : 'pointer'
-					});
+				img.css({
+					'cursor' : 'pointer'
+				});
 
-					img.attr({
-						zIndex : 10
-					});
-					img.add();
-					betObject.marker = img;
-					break;
-				}
-				case 'low' : {
-					var img = renderer.image('common/images/low-lose.png',pointX+40,pointY-24,21,28);
+				img.attr({
+					zIndex : 10
+				});
+				img.add();
 
-					img.on('click', betObject.focus);
 
-					img.css({
-						'cursor' : 'pointer'
-					});
+				var markerValueLabel = renderer.rect(labelHighX,labelHighY,42,14,0);
 
-					img.attr({
-						zIndex : 10
-					});
-					img.add();
-					betObject.marker = img;
-					break;
-				}
-				default : {
-					break;
-				}
+				var markerValueText = renderer.text(betObject.strike,textHighX,textHighY);
+				
+
+				
+				break;
 			}
+			case 'low' : {
+				var img = renderer.image('common/images/low-lose.png',lowX,lowY,21,28);
+
+				img.on('click', betObject.focus);
+
+				img.css({
+					'cursor' : 'pointer'
+				});
+
+				img.attr({
+					zIndex : 10
+				});
+				img.add();
+
+				var markerValueLabel = renderer.rect(labelLowX,labelLowY,42,14,0);
+
+				var markerValueText = renderer.text(betObject.strike,textLowX,textLowY);
+
+				break;
+			}
+			default : {
+				break;
+			}
+		}
+
+		markerValueLabel.attr({
+			opacity: 0,
+			zIndex: 14
+		});
+		markerValueText.attr({
+			opacity: 0,
+			zIndex: 14
+		});
+
+		markerValueText.attr({
+			width: '42px',
+			'text-anchor': 'middle'
+		});
+
+		img.on('mouseover', function() {
+
+			markerValueLabel.animate({
+				opacity: 1
+			},{
+				duration: hoverDuration
+			});
+
+			markerValueText.animate({
+				opacity: 1
+			},{
+				duration: hoverDuration
+			});
+		});
+		img.on('mouseout', function() {
+
+			markerValueLabel.animate({
+				opacity: 0
+			},{
+				duration: hoverDuration
+			});
+
+			markerValueText.animate({
+				opacity: 0
+			},{
+				duration: hoverDuration
+			});
+		});
+
+		markerValueLabel.attr({
+			zIndex : 10
+		});
+
+		markerValueLabel.attr({
+			fill : "#161515"
+		});
+
+		markerValueText.attr({
+			zIndex : 11
+		});
+
+		markerValueLabel.add();
+
+		markerValueText.add();
+
+		betObject.markerValueLabel = markerValueLabel;
+
+		betObject.markerValueText = markerValueText;
+
+		betObject.marker = img;
 
 		// } else {
 
@@ -519,6 +613,7 @@ highlowApp.graph = {
 		});
 
 		series.addPoint(point,true,false,false);
+
 
 
 		this.updateOnGraphUI(model,series.points[series.points.length-1]);

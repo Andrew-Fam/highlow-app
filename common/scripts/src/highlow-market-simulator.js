@@ -148,10 +148,26 @@ highlowApp.marketSimulator = {
 				var marker = bet.marker;
 
 
-				marker.attr({
-					x : point.plotX+39,
-					y : point.plotY-24
-				});
+				switch(bet.direction) {
+					case 'high': {
+						marker.attr({
+							x : point.plotX+39,
+							y : point.plotY-24
+						});
+						break;
+					};
+					case 'low': {
+						marker.attr({
+							x : point.plotX+39,
+							y : point.plotY+4
+						});
+						break;
+					}
+				}
+
+				
+
+
 
 				// only update marker image if the bet is not expired yet
 
@@ -168,25 +184,26 @@ highlowApp.marketSimulator = {
 								
 								winning = true;
 
-							} else if (rate < strike) { // losing
+							} else if (rate <= strike) { // losing
 								marker.attr({
 									'href':"common/images/high-lose"+(nonActive?'-expired':"")+".png",
 									'zIndex' : 11
 								});
 
 
-							} else { // tie
-								marker.attr({
-									'href':"common/images/high-level"+(nonActive?'-expired':"")+".png",
-									'zIndex' : 10
-								});
+							} 
+							// else { // tie
+							// 	marker.attr({
+							// 		'href':"common/images/high-level"+(nonActive?'-expired':"")+".png",
+							// 		'zIndex' : 10
+							// 	});
 
-								tie = true;
-							}
+							// 	tie = true;
+							// }
 							break;
 						}
 						case 'low' : {
-							if (rate > strike) { //losing
+							if (rate >= strike) { //losing
 								marker.attr({
 									'href':"common/images/low-lose"+(nonActive?'-expired':"")+".png",
 									'zIndex' : 10
@@ -199,14 +216,15 @@ highlowApp.marketSimulator = {
 
 								
 								winning = true;
-							} else { // tie
-								marker.attr({
-									'href':"common/images/low-level"+(nonActive?'-expired':"")+".png",
-									'zIndex' : 10
-								});
+							} 
+							// else { // tie
+							// 	marker.attr({
+							// 		'href':"common/images/low-level"+(nonActive?'-expired':"")+".png",
+							// 		'zIndex' : 10
+							// 	});
 
-								tie = true;
-							}
+							// 	tie = true;
+							// }
 							break;
 						}
 						default : break;
