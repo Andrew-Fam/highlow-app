@@ -9,5 +9,10 @@ highlowApp.popup = {
 				$(this).addClass('concealed');
 			}
 		});
+
+		$('.trading-platform-sell-popup-sell').on('click', function(){
+			$('.trading-platform-sell-popup').addClass('concealed');
+
+		})
 	}
 }

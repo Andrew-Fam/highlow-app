@@ -13,8 +13,6 @@
 			</ul>
 		</div>
 	</div>
-	{% assign testValue = "0" %}
-	{{testValue}}
 	<div class="tab-view-body-wrapper">
 		<div class="tab-view-body">
 			{% for type in tradingTypes %}
@@ -56,7 +54,7 @@
 										{% endfor %}
 									{% endif %}
 										<li class="tab-view-tab-selector instrument-selector-widget-duration-selector favourite" data-target="#{{type.id}}-favourite">
-											FAVOURITE
+											FAVOURITES
 										</li>
 									</ul>
 								</div>
@@ -359,7 +357,7 @@
 												<div class="pages-wrapper">
 													
 												</div>
-												<div class="no-data">You don't have any favourite {{type.label}} instrument.</div>
+												<div class="no-data">You currently have no favourites</div>
 											</div>
 										</div>
 
@@ -392,6 +390,14 @@
 									{% if type.id != 'on-demand' %}loading...{% else %}n/a{% endif %} 
 								</span>
 								<a class="trading-platform-instrument-one-click-toggler">
+									<div class="tooltip one-touch">
+										<div class="title">
+											One Touch Trading
+										</div>
+										<div class="content">
+											Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+										</div>
+									</div>
 								</a>
 							</div>
 						</div>
@@ -423,6 +429,14 @@
 									
 								</div>
 								<div class="expander">
+								</div>
+								<div class="tooltip trader-choice">
+									<div class="title">
+										Traders Choice
+									</div>
+									<div class="content">
+										Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+									</div>
 								</div>
 							</div>
 							<div class="trading-platform-live-graph">
@@ -493,114 +507,6 @@
 						</div>
 					</div>
 				</div>
-				<div class="trading-platform-popup-wrapper trading-platform-sell-popup {{type.id}} concealed">
-					<div class="trading-platform-popup">
-						<div class="trading-platform-popup-content-wrapper">
-							<div class="trading-platform-popup-content">
-								<div class="trading-platform-popup-content-inner-wrap">
-									<div class="trading-platform-popup-header">
-										TAKE PAYOUT
-										<div class="trading-platform-popup-close close"></div>
-									</div>
-									<div class="trading-platform-popup-body">
-										<div class="panel trading-platform-sell-popup-details">
-											<div class="panel-header">
-												<div class="trading-platform-sell-popup-instrument pull-left font-sb">
-													USD/JPY
-												</div>
-												<div class="trading-platform-sell-popup-rate pull-right highlow-high current-rate">
-													102.77
-												</div>
-											</div>
-											<div class="panel-body">
-												<div class="trading-platform-sell-popup-investment">
-													<div class="pull-left font-sb">
-														Investment
-													</div>
-													<div class="trading-platform-invevstment-value pull-right">
-														
-													</div>
-												</div>
-												<div class="trading-platform-sell-popup-return-rate">
-													<div class="pull-left font-sb">
-														Return rate [%]
-													</div>
-													<div class="trading-platform-return-rate-value pull-right">
-														<span class="rate">0.6834</span>
-													</div>
-												</div>
-												<div class="trading-platform-sell-popup-pay-out">
-													<div class="pull-left font-sb">
-														Payout
-													</div>
-													<div class="trading-platform-pay-out-value pull-right">
-														
-													</div>
-												</div>
-											</div>
-										</div>
-										<div class="btn btn-highlight btn-extruded full-width font-m btn-lg-pad trading-platform-sell-popup-sell">SELL</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="trading-platform-popup-wrapper trading-platform-invest-popup {{type.id}} concealed">
-					<div class="trading-platform-popup">
-						<div class="trading-platform-popup-content-wrapper">
-							<div class="trading-platform-popup-content">
-								<div class="trading-platform-popup-content-inner-wrap">
-									<div class="trading-platform-popup-header">
-										INVEST
-										<div class="trading-platform-popup-close close"></div>
-									</div>
-									<div class="trading-platform-popup-body">
-										<div class="trading-platform-invest-popup-live-rate">
-											<div class="trading-platform-main-controls-instrument-title pull-left font-sb">
-												USD/JPY
-											</div>
-											<div class="pull-right highlow-high current-rate">
-												102.77
-											</div>
-										</div>
-										<div class="trading-platform-invest-popup-payout">
-											<div class="pull-left font-sb">
-												Payout
-											</div>
-											<div class="pull-right">
-												$ <span class="trading-platform-main-controls-payout-rate">1.85</span>
-											</div>
-										</div>
-										<div class="trading-platform-main-controls-investment font-m form-control">
-											$<input type="text" id="{{type.id}}-investment-value-input-popup" onchange="document.getElementById('{{type.id}}-investment-value-input').value = this.value;" value="500"/>
-										</div>
-										<div class="clearfix trading-platform-main-controls-common-amount">
-											<!-- I've used div as button here because button deosn't get :focus style on click for Firefox and Safari on MAc OSX -->
-
-											<div class="btn btn-md-pad font-m" tabindex="0" onclick="document.getElementById('{{type.id}}-investment-value-input-popup').value = this.getAttribute('data-value'); document.getElementById('{{type.id}}-investment-value-input').value = this.getAttribute('data-value');" data-value="50">$50</div>
-											<div class="btn btn-md-pad font-m" tabindex="0" onclick="document.getElementById('{{type.id}}-investment-value-input-popup').value = this.getAttribute('data-value'); document.getElementById('{{type.id}}-investment-value-input').value = this.getAttribute('data-value');" data-value="100">$100</div>
-											<div class="btn btn-md-pad font-m active" tabindex="0" onclick="document.getElementById('{{type.id}}-investment-value-input-popup').value = this.getAttribute('data-value'); document.getElementById('{{type.id}}-investment-value-input').value = this.getAttribute('data-value');" data-value="500">$500</div>
-										</div>
-										<div class="clearfix trading-platform-main-controls-options none-one-click-control">
-											<div class="trading-platform-main-controls-select-direction">
-												<label for="trading-platform-main-controls-select-direction-up-{{type.id}}-popup" class="btn btn-extruded font-m btn-sm-pad btn-positive highlow-up trading-select-direction-{{type.id}}-high">
-													HIGH
-												</label>
-												<input type="radio" id="trading-platform-main-controls-select-direction-up-{{type.id}}-popup" name="selectedDirection{{type.id}}Popup" value="high"/>
-												<label for="trading-platform-main-controls-select-direction-down-{{type.id}}-popup" class="btn btn-extruded btn-negative font-m btn-sm-pad highlow-down trading-select-direction-{{type.id}}-low">
-													LOW
-												</label>
-												<input type="radio" id="trading-platform-main-controls-select-direction-down-{{type.id}}-popup" name="selectedDirection{{type.id}}Popup" value="low"/>
-											</div>
-											<div class="btn btn-highlight btn-extruded font-m btn-lg-pad trading-platform-main-controls-place-bet {{type.id}}" data-type="{{type.id}}" data-direction="selectedDirection{{type.id}}Popup">INVEST</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
 			</div>
 			{% endfor %}
 		</div>
@@ -617,7 +523,10 @@
 			</div>
 		</div>
 		<div class="panel-body">
-			<div class="trading-platform-investments">
+			<div class="trading-platform-investments no-data">
+				<div class="trading-platform-investments-list-no-data">
+					You have no active trades
+				</div>
 				<table class="table table-stripped table-fluid-width">
 					<thead>
 						<tr>
@@ -657,17 +566,123 @@
 						</tr>
 					</thead>
 					<tbody class="trading-platform-investments-list">
-						<tr class="trading-platform-investments-list-no-data">
-							<td colspan="11">
-								No investment.
-							</td>
-						</tr>
+						
 					</tbody>
 				</table>
 			</div>
 		</div>
 	</div>
 </div>
+{% for type in tradingTypes %}
+<div class="trading-platform-popup-wrapper trading-platform-sell-popup {{type.id}} concealed">
+	<div class="trading-platform-popup">
+		<div class="trading-platform-popup-content-wrapper">
+			<div class="trading-platform-popup-content">
+				<div class="trading-platform-popup-content-inner-wrap">
+					<div class="trading-platform-popup-header">
+						TAKE PAYOUT
+						<div class="trading-platform-popup-close close"></div>
+					</div>
+					<div class="trading-platform-popup-body">
+						<div class="panel trading-platform-sell-popup-details">
+							<div class="panel-header">
+								<div class="trading-platform-sell-popup-instrument pull-left font-sb">
+									USD/JPY
+								</div>
+								<div class="trading-platform-sell-popup-rate pull-right highlow-high current-rate">
+									102.77
+								</div>
+							</div>
+							<div class="panel-body">
+								<div class="trading-platform-sell-popup-investment">
+									<div class="pull-left font-sb">
+										Investment
+									</div>
+									<div class="trading-platform-invevstment-value pull-right">
+										
+									</div>
+								</div>
+								<div class="trading-platform-sell-popup-return-rate">
+									<div class="pull-left font-sb">
+										Return rate [%]
+									</div>
+									<div class="trading-platform-return-rate-value pull-right">
+										<span class="rate">0.6834</span>
+									</div>
+								</div>
+								<div class="trading-platform-sell-popup-pay-out">
+									<div class="pull-left font-sb">
+										Payout
+									</div>
+									<div class="trading-platform-pay-out-value pull-right">
+										
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="btn btn-highlight btn-extruded full-width font-m btn-lg-pad trading-platform-sell-popup-sell">SELL</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="trading-platform-popup-wrapper trading-platform-invest-popup {{type.id}} concealed">
+	<div class="trading-platform-popup">
+		<div class="trading-platform-popup-content-wrapper">
+			<div class="trading-platform-popup-content">
+				<div class="trading-platform-popup-content-inner-wrap">
+					<div class="trading-platform-popup-header">
+						INVEST
+						<div class="trading-platform-popup-close close"></div>
+					</div>
+					<div class="trading-platform-popup-body">
+						<div class="trading-platform-invest-popup-live-rate">
+							<div class="trading-platform-main-controls-instrument-title pull-left font-sb">
+								USD/JPY
+							</div>
+							<div class="pull-right highlow-high current-rate">
+								102.77
+							</div>
+						</div>
+						<div class="trading-platform-invest-popup-payout">
+							<div class="pull-left font-sb">
+								Payout
+							</div>
+							<div class="pull-right">
+								$ <span class="trading-platform-main-controls-payout-rate">1.85</span>
+							</div>
+						</div>
+						<div class="trading-platform-main-controls-investment font-m form-control">
+							$<input type="text" id="{{type.id}}-investment-value-input-popup" onchange="document.getElementById('{{type.id}}-investment-value-input').value = this.value;" value="500"/>
+						</div>
+						<div class="clearfix trading-platform-main-controls-common-amount">
+							<!-- I've used div as button here because button deosn't get :focus style on click for Firefox and Safari on MAc OSX -->
+
+							<div class="btn btn-md-pad font-m" tabindex="0" onclick="document.getElementById('{{type.id}}-investment-value-input-popup').value = this.getAttribute('data-value'); document.getElementById('{{type.id}}-investment-value-input').value = this.getAttribute('data-value');" data-value="50">$50</div>
+							<div class="btn btn-md-pad font-m" tabindex="0" onclick="document.getElementById('{{type.id}}-investment-value-input-popup').value = this.getAttribute('data-value'); document.getElementById('{{type.id}}-investment-value-input').value = this.getAttribute('data-value');" data-value="100">$100</div>
+							<div class="btn btn-md-pad font-m active" tabindex="0" onclick="document.getElementById('{{type.id}}-investment-value-input-popup').value = this.getAttribute('data-value'); document.getElementById('{{type.id}}-investment-value-input').value = this.getAttribute('data-value');" data-value="500">$500</div>
+						</div>
+						<div class="clearfix trading-platform-main-controls-options none-one-click-control">
+							<div class="trading-platform-main-controls-select-direction">
+								<label for="trading-platform-main-controls-select-direction-up-{{type.id}}-popup" class="btn btn-extruded font-m btn-sm-pad btn-positive highlow-up trading-select-direction-{{type.id}}-high">
+									HIGH
+								</label>
+								<input type="radio" id="trading-platform-main-controls-select-direction-up-{{type.id}}-popup" name="selectedDirection{{type.id}}Popup" value="high"/>
+								<label for="trading-platform-main-controls-select-direction-down-{{type.id}}-popup" class="btn btn-extruded btn-negative font-m btn-sm-pad highlow-down trading-select-direction-{{type.id}}-low">
+									LOW
+								</label>
+								<input type="radio" id="trading-platform-main-controls-select-direction-down-{{type.id}}-popup" name="selectedDirection{{type.id}}Popup" value="low"/>
+							</div>
+							<div class="btn btn-highlight btn-extruded font-m btn-lg-pad trading-platform-main-controls-place-bet {{type.id}}" data-type="{{type.id}}" data-direction="selectedDirection{{type.id}}Popup">INVEST</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{% endfor %}
 <!-- <div class="message-triggers tucked-away">
 	<div class="toggle"></div>
 	<div class="wrapper">
@@ -676,10 +691,8 @@
 <!-- end-platform -->
 {% endblock %}
 {% block script %}
-	<!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
-	<script src="http://code.highcharts.com/highcharts.js"></script> -->
-
 	<script src="common/scripts/jquery-1.8.3.min.js"></script>
-	<script src="common/scripts/highcharts.src.js"></script>	
+	<script src="common/scripts/highcharts.src.js"></script>
+	<script src="common/scripts/pattern-fill.js"></script>		
 	<script src="common/scripts/highlow-main.js"></script>
 {% endblock %}

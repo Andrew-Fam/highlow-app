@@ -54,6 +54,8 @@ highlowApp.graph = {
 
 		this.graphs[model.type] = $('#'+model.type+"-graph").highcharts();
 
+
+
 		var graph = this.graphs[model.type];
 
 		var renderer = graph.renderer;
@@ -92,7 +94,7 @@ highlowApp.graph = {
 				'stroke-width': 1,
 				stroke: '#252323'
 			}).add();
-			}
+		}
 
 		
 
@@ -109,25 +111,92 @@ highlowApp.graph = {
 
 
 
-		if(model.type==="on-demand") {
+		if(model.type.indexOf("on-demand")>=0) {
 			
-			xAxis.setExtremes(currentTime-10*60*1000,currentTime+3*60*1000,true);
+			xAxis.setExtremes(currentTime-15*60*1000,currentTime+3.2*60*1000,true);
+
+			var expiryHintLineId = model.type+"-expiry-hint-line";
+
+			var expiryHintTextId = model.type+"-expiry-hint-text";
+
+			xAxis.removePlotLine(expiryHintLineId);
+
+			if(model.bets.length>0) {
+
+				if(model.onDemandHintText!=undefined) {
+
+					model.onDemandHintText.destroy();
+					model.onDemandHintText = undefined;
+				}
+
+
+			} else {
+				
+
+				xAxis.addPlotLine({
+					color: '#606060',
+					value: currentTime+3*60*1000,
+					width: 1,
+					zIndex: 1000,
+					id: expiryHintLineId
+				});
+
+				var textX = xAxis.toPixels(currentTime+3*60*1000)-6,
+				textY = 141;
+
+				text = renderer.text('NEXT EXPIRY IN 60 SECS',textX,textY);
+
+				text.css({
+					"font-family":"Montserrat",
+					"font-size" : "10px;",
+					"color" : "white"
+				});
+
+				text.attr({
+					zIndex: 6,
+					id: expiryHintTextId,
+					transform: 'translate(0,0) rotate(270 '+textX+' '+textY+')',
+					width: '177px',
+					'text-anchor': 'middle'
+				});
+
+				text.add();
+
+				model.onDemandHintText = text;
+			}
+			
 		
 		} else {
 			
-			xAxis.setExtremes(model.openAt-5*60*1000,model.openAt+15*60*1000,true);
+
+			var extremeMin = 10*60*1000;
+
+			if(model.duration>15*60*1000) {
+				extremeMin = 30*60*1000;
+			}
+
+			if(model.duration>60*60*1000) {
+				extremeMin = 3*60*60*1000;
+			}
+
+
+			xAxis.setExtremes(model.openAt-extremeMin,model.expireAt,true);
 			
 			var plotBandId = model.type+"-plot-band";
 			var startLineId = model.type+"-start-plot-line";
 			var endLineId = model.type+"-end-plot-line";
+			var deadZoneLineId = model.type+"-dead-zone-line";
+			var deadZoneBandId = model.type+"-dead-zone-band";
+			var startTextId = model.type+"-start-text";
+			var deadTextId = model.type+"-dead-zone-text";
+
 
 			xAxis.removePlotBand(plotBandId);
-			
+
 			xAxis.addPlotBand({
-				color: 'rgba(255,255,255,0.08)',
+				color: 'rgba(20,20,20,0.3)',
 				from: model.openAt, 
 				to: model.expireAt,
-				zIndex: 2,
 				id: plotBandId
 			});
 
@@ -150,6 +219,61 @@ highlowApp.graph = {
 				zIndex: 1000,
 				id: endLineId
 			});
+
+
+			xAxis.removePlotBand(deadZoneBandId);
+
+			xAxis.addPlotBand({
+				from: model.deadzone,
+				to: model.expireAt,
+				color: {
+					pattern: 'common/images/deadzone-bg.png',
+               		width: 4,
+                	height: 4
+				},
+				id: deadZoneBandId
+			});
+
+			xAxis.removePlotLine(deadZoneLineId);
+
+			xAxis.addPlotLine({
+				color: 'rgba(255,255,255,0.4)',
+				value:  model.deadzone, 
+				width: 1,
+				zIndex: 3,
+				id: deadZoneLineId
+			});
+
+			var textY = 10,
+			startTextX = xAxis.toPixels(model.openAt)-70,
+			deadTextX = xAxis.toPixels(model.deadzone)-70;
+
+
+			if(model.startTimeText) {
+				model.startTimeText.element.remove();
+			}
+
+			if(model.deadTimeText) {
+				model.deadTimeText.element.remove();
+			}
+
+			model.startTimeText = renderer.text('Start: '+highlowApp.timeToText(model.openAt),startTextX,24);
+			model.deadTimeText = renderer.text('Stop: '+highlowApp.timeToText(model.deadzone),deadTextX,24);
+
+
+			model.startTimeText.css({
+				color: '#838383',
+				zIndex: 10
+			});
+
+			model.deadTimeText.css({
+				color: '#838383',
+				zIndex: 11
+			});
+
+			model.startTimeText.add();
+			model.deadTimeText.add();
+
 
 		}
 
@@ -211,6 +335,21 @@ highlowApp.graph = {
 		}
 
 
+		var tickInterval = 5*60*1000;
+
+		if(model.duration>15*60*1000) {
+			tickInterval = 15*60*1000;
+		}
+
+		if(model.duration>60*60*1000) {
+			tickInterval = 4*60*60*1000;
+		}
+
+		graph.xAxis[0].update({
+			tickInterval : tickInterval
+		});
+
+
 	},
 	updateOnGraphUI: function (model,point) {
 
@@ -222,21 +361,28 @@ highlowApp.graph = {
 		}
 
 		// remove old button added with the last data point
+
+		
 		if(symbols[type].highButton) {
 			symbols[type].highButton.destroy();
+			symbols[type].highButton = undefined;
 		}
 		
 		if(symbols[type].lowButton) {
 			symbols[type].lowButton.destroy();
+			symbols[type].lowButton = undefined;
 		}
 
 		if(symbols[type].lowRate) {
 			symbols[type].lowRate.destroy();
+			symbols[type].lowRate = undefined;
 		}
 
 		if(symbols[type].highRate) {
 			symbols[type].highRate.destroy();
+			symbols[type].highRate = undefined;
 		}
+		
 
 		var graph = this.graphs[model.type];
 
@@ -267,7 +413,31 @@ highlowApp.graph = {
 
 			// set graph range
 
-			xAxis.setExtremes(point.x-7*60*1000,point.x+3*60*1000,true);
+			xAxis.setExtremes(point.x-15*60*1000,point.x+3.2*60*1000,true);
+
+
+			var expiryLineId = model.type+"-expiry-hint-line";
+
+			xAxis.removePlotLine(expiryLineId);
+
+			if(model.bets.length>0) {
+
+				if(model.onDemandHintText!=undefined) {
+					model.onDemandHintText.destroy();
+					model.onDemandHintText = undefined;
+				}
+
+			} else {
+				xAxis.addPlotLine({
+					color: '#606060',
+					value: point.x+3*60*1000,
+					width: 1,
+					zIndex: 1000,
+					id: expiryLineId
+				});
+			}
+
+			
 
 		} else {
 
@@ -350,97 +520,104 @@ highlowApp.graph = {
 		}
 
 
-		// now render the 2 buttons
 
-		var high = renderer.image('common/images/graph-up.png',highX,highY, 27, 27);
+		// only render button if the instrument is not dead yet
 
-		if(type.indexOf("spread")>=0) {
-			high = renderer.image('common/images/graph-up-spread.png',highX,highY, 96, 27);
-		}
+		if(!model.dead) {
 
-		high.attr({
-			zIndex:'10',
-			id:'in-chart-high-bet'
-		});
+			// now render the 2 buttons
 
-		high.on('click', function () {
-			highlowApp.betSystem.confirmBet('high',point,model.type);
-		})
+			var high = renderer.image('common/images/graph-up.png',highX,highY, 27, 27);
 
-		// add click handler
+			if(type.indexOf("spread")>=0) {
+				high = renderer.image('common/images/graph-up-spread.png',highX,highY, 96, 27);
+			}
 
-		high.add();
+			high.attr({
+				zIndex:'10',
+				id:'in-chart-high-bet'
+			});
 
-		high.css({
-			"cursor" : "pointer"
-		});
-
-		symbols[type].highButton = high;
-
-		// 
-
-		var low = renderer.image('common/images/graph-down.png',lowX,lowY, 27, 27);
-
-		if(type.indexOf("spread")>=0) {
-			low = renderer.image('common/images/graph-down-spread.png',lowX,lowY, 96, 27);
-		}
-
-		low.attr({
-			zIndex:'10',
-			id:'in-chart-low-bet'
-		});
-
-		low.on('click', function () {
-			highlowApp.betSystem.confirmBet('low',point,model.type);
-		})
-
-		// add click handler
-
-		low.add();
-
-		low.css({
-			"cursor" : "pointer"
-		});
-
-		symbols[type].lowButton = low;
-
-		if(type.indexOf("spread")>=0) {
-			var highRate = renderer.text('<div class="on-graph-button">'+(point.y+0.005).toFixed(3)+'</div>',highX+27,highY+19);
-			highRate.on('click', function () {
+			high.on('click', function () {
 				highlowApp.betSystem.confirmBet('high',point,model.type);
 			})
-			highRate.attr({
-				zIndex:'10',
-				id:'in-chart-spread-high-bet-rate'
-			});
-			highRate.css({
-				"cursor" : "pointer",
-				"font-size" : "16px;",
-				"color" : "white"
-			});
-			highRate.add();
 
-			var lowRate = renderer.text('<div class="on-graph-button">'+(point.y-0.005).toFixed(3)+'</div>',lowX+27,lowY+19);
-			lowRate.on('click', function () {
+			// add click handler
+
+			high.add();
+
+			high.css({
+				"cursor" : "pointer"
+			});
+
+			symbols[type].highButton = high;
+
+			// 
+
+			var low = renderer.image('common/images/graph-down.png',lowX,lowY, 27, 27);
+
+			if(type.indexOf("spread")>=0) {
+				low = renderer.image('common/images/graph-down-spread.png',lowX,lowY, 96, 27);
+			}
+
+			low.attr({
+				zIndex:'10',
+				id:'in-chart-low-bet'
+			});
+
+			low.on('click', function () {
 				highlowApp.betSystem.confirmBet('low',point,model.type);
-			});
-			lowRate.css({
-				"cursor" : "pointer",
-				"font-size" : "16px;",
-				"color" : "white"
-			});
-			lowRate.attr({
-				zIndex:'10',
-				id:'in-chart-spread-low-bet-rate'
+			})
+
+			// add click handler
+
+			low.add();
+
+			low.css({
+				"cursor" : "pointer"
 			});
 
-			lowRate.add();
+			symbols[type].lowButton = low;
 
-			symbols[type].highRate = highRate;
+			if(type.indexOf("spread")>=0) {
+				var highRate = renderer.text('<div class="on-graph-button">'+(point.y+0.005).toFixed(3)+'</div>',highX+27,highY+19);
+				highRate.on('click', function () {
+					highlowApp.betSystem.confirmBet('high',point,model.type);
+				})
+				highRate.attr({
+					zIndex:'10',
+					id:'in-chart-spread-high-bet-rate'
+				});
+				highRate.css({
+					"cursor" : "pointer",
+					"font-size" : "16px;",
+					"color" : "white"
+				});
+				highRate.add();
 
-			symbols[type].lowRate = lowRate;
+				var lowRate = renderer.text('<div class="on-graph-button">'+(point.y-0.005).toFixed(3)+'</div>',lowX+27,lowY+19);
+				lowRate.on('click', function () {
+					highlowApp.betSystem.confirmBet('low',point,model.type);
+				});
+				lowRate.css({
+					"cursor" : "pointer",
+					"font-size" : "16px;",
+					"color" : "white"
+				});
+				lowRate.attr({
+					zIndex:'10',
+					id:'in-chart-spread-low-bet-rate'
+				});
+
+				lowRate.add();
+
+				symbols[type].highRate = highRate;
+
+				symbols[type].lowRate = lowRate;
+			}
+
+
 		}
-
 
 
 	},
@@ -452,12 +629,14 @@ highlowApp.graph = {
 
 		var renderer = graph.renderer;
 
+		var xAxis = graph.xAxis[0];
+
 		if(betObject.marker!=undefined) {
 			betObject.marker.destroy();
 		}
 
-		var pointX = parseInt(""+betObject.point.plotX),
-		pointY = parseInt(""+betObject.point.plotY);
+		var pointX = betObject.point.plotX,
+		pointY = betObject.point.plotY;
 
 
 		
@@ -470,9 +649,9 @@ highlowApp.graph = {
 		labelLowX = pointX+28,
 		labelLowY = pointY+36,
 		textHighX = labelHighX+21,
-		textHighY = labelHighY+10,
+		textHighY = labelHighY+12,
 		textLowX = labelLowX+21,
-		textLowY = labelLowY+10,
+		textLowY = labelLowY+12,
 		hoverDuration = 150;
 
 
@@ -480,8 +659,6 @@ highlowApp.graph = {
 		switch(betObject.direction) {
 			case 'high' : {
 				var img = renderer.image('common/images/high-lose.png',highX,highY,21,28);
-
-				img.on('click', betObject.focus);
 
 				img.css({
 					'cursor' : 'pointer'
@@ -493,7 +670,7 @@ highlowApp.graph = {
 				img.add();
 
 
-				var markerValueLabel = renderer.rect(labelHighX,labelHighY,42,14,0);
+				var markerValueLabel = renderer.rect(labelHighX,labelHighY,43,16,0);
 
 				var markerValueText = renderer.text(betObject.strike,textHighX,textHighY);
 				
@@ -504,8 +681,6 @@ highlowApp.graph = {
 			case 'low' : {
 				var img = renderer.image('common/images/low-lose.png',lowX,lowY,21,28);
 
-				img.on('click', betObject.focus);
-
 				img.css({
 					'cursor' : 'pointer'
 				});
@@ -515,7 +690,7 @@ highlowApp.graph = {
 				});
 				img.add();
 
-				var markerValueLabel = renderer.rect(labelLowX,labelLowY,42,14,0);
+				var markerValueLabel = renderer.rect(labelLowX,labelLowY,43,16,0);
 
 				var markerValueText = renderer.text(betObject.strike,textLowX,textLowY);
 
@@ -527,13 +702,20 @@ highlowApp.graph = {
 		}
 
 		markerValueLabel.attr({
-			opacity: 0,
 			zIndex: 14
 		});
+
+		markerValueLabel.css({
+			display:'none'
+		})
+
 		markerValueText.attr({
-			opacity: 0,
 			zIndex: 14
 		});
+
+		markerValueText.css({
+			display:'none'
+		})
 
 		markerValueText.attr({
 			width: '42px',
@@ -542,31 +724,27 @@ highlowApp.graph = {
 
 		img.on('mouseover', function() {
 
-			markerValueLabel.animate({
-				opacity: 1
-			},{
-				duration: hoverDuration
-			});
+			if (betObject.model.type.indexOf('on-demand')>=0 && !betObject.expired) {
+				betObject.hover = true;
+				betObject.model.hoveredBet = betObject;
+				highlowApp.marketSimulator.updateBetStatus(betObject.model);
+			} 
 
-			markerValueText.animate({
-				opacity: 1
-			},{
-				duration: hoverDuration
-			});
+			markerValueLabel.css({display:'block'});
+
+			markerValueText.css({display:'block'});
 		});
 		img.on('mouseout', function() {
 
-			markerValueLabel.animate({
-				opacity: 0
-			},{
-				duration: hoverDuration
-			});
+			if (betObject.model.type.indexOf('on-demand')>=0) {
+				betObject.hover = false;
+				betObject.model.hoveredBet = undefined;
+				highlowApp.marketSimulator.updateBetStatus(betObject.model);
+			} 
 
-			markerValueText.animate({
-				opacity: 0
-			},{
-				duration: hoverDuration
-			});
+			markerValueLabel.css({display:'none'});
+
+			markerValueText.css({display:'none'});
 		});
 
 		markerValueLabel.attr({
@@ -591,10 +769,26 @@ highlowApp.graph = {
 
 		betObject.marker = img;
 
-		// } else {
+		var model = betObject.model;
+		
+		if(model.type.indexOf("on-demand")>=0) {
 
+			var expiryHintLineId = model.type+"-expiry-hint-line";
 
-		// }
+			var expiryHintTextId = model.type+"-expiry-hint-text";
+
+			xAxis.removePlotLine(expiryHintLineId);
+
+			
+
+			if(model.onDemandHintText!=undefined) {
+
+				model.onDemandHintText.destroy();
+				model.onDemandHintText = undefined;
+			}
+			
+		}
+
 
 
 	},
@@ -646,7 +840,8 @@ highlowApp.graph = {
 					fontFamily: '"Roboto","Helvetica Neue",Helvetica, Arial, sans-serif',
 					fontSize: '10px',
 					color: 'white',
-					overflow: 'visible'
+					overflow: 'visible',
+					zIndex: '4'
 				},
 				startOnTick: false,
 				endOnTick: false
@@ -695,10 +890,10 @@ highlowApp.graph = {
 					format: '{value:.3f}'
 				},
 				gridLineWidth: 1,
-				gridLineColor: '#252323',
+				gridLineColor: '#202020',
 				tickInterval : 0.002,
 				tickWidth : 0,
-				lineColor: '#252323',
+				lineColor: '#202020',
 				lineWidth: 1,
 				startOnTick: false,
 				endOnTick: true,
@@ -711,16 +906,16 @@ highlowApp.graph = {
 				},
 				minPadding: 0,
 				gridLineWidth: 1,
-				gridLineColor: '#252323',
+				gridLineColor: '#202020',
 				dateTimeLabelFormats: {
 					second: '%H:%M',
 					minute: '%H:%M',
 					hour: '%H:%M:%S',
-					day: '%e. %b %H:%M',
-					week: '%e. %b %H:%M'
+					day: '%H:%M',
+					week: '%H:%M'
 				},
 				ordinal : false,
-				lineColor: '#252323',
+				lineColor: '#202020',
 				lineWidth: 1,
 				tickInterval : xTickInterval,
 				tickWidth : 0,

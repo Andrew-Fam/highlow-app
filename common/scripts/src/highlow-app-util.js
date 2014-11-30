@@ -11,7 +11,13 @@ highlowApp.randomValue = function(from, to, decimal) {
 
 	return Math.floor(Math.random() * (to-from+1)+from)/factor;
 }
-
+highlowApp.expiring = function() {
+	if(window.location.href.indexOf('?expiring')>=0) {
+		return true;
+	} else {
+		return false;
+	}
+}
 highlowApp.isNumber = function(n) {
   return !isNaN(parseFloat(n)) && isFinite(n);
 }
@@ -30,7 +36,7 @@ highlowApp.durationToText = function(stamp) {
 	if(remainingSecond<0 & remainingMinute==0 & remainingHour == 0) {
 		remainingTimeText = ' expired';
 	} else if(remainingHour > 0) {
-		remainingTimeText = " "+(remainingHour<10?"0"+remainingHour:remainingHour)+":"+(remainingMinute<10?"0"+remainingMinute:remainingMinute);
+		remainingTimeText = " "+(remainingHour<10?"0"+remainingHour:remainingHour)+":"+(remainingMinute<10?"0"+remainingMinute:remainingMinute)+":"+(remainingSecond<10?"0"+remainingSecond:remainingSecond);
 	} else {
 		remainingTimeText = " "+(remainingMinute<10?"0"+remainingMinute:remainingMinute)+":"+(remainingSecond<10?"0"+remainingSecond:remainingSecond);
 	}

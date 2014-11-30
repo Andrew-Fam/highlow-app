@@ -13,10 +13,24 @@
 .trading-platform-investments {
 	position: relative;
 	z-index: 100;
-	.trading-platform-investments-list-no-data {
-		td {
-			text-align: center;
+
+	&.no-data {
+		table {
+			display: none;
 		}
+		.trading-platform-investments-list-no-data {
+			display: block;
+		}
+	}
+	.trading-platform-investments-list-no-data {
+		color: @mortar-l;
+		text-align: center;
+		line-height: 22px;
+		font-weight: 300;
+		font-size: 22px;
+		margin-top: 9px;
+		margin-bottom: 20px;
+		display: none;
 	}
 	table {
 		> tbody {
@@ -24,6 +38,11 @@
 				cursor: pointer;
 				border: none;
 				.transition(background-color 0.2s ease);
+				&:hover {
+					> td {
+						background: #686868!important;
+					}
+				}
 				>td {
 					border: none;
 					vertical-align: top;

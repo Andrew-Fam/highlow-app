@@ -40,7 +40,7 @@ highlowApp.betSystem = {
 				);
 		
 		row.on('click',function(){
-			betObject.focus();
+			// betObject.focus();
 
 			// switch view to selected object
 
@@ -101,7 +101,7 @@ highlowApp.betSystem = {
 
 		$('.trading-platform-investments-list').append(row);
 
-		$('.trading-platform-investments-list-no-data').remove();
+		$('.trading-platform-investments').removeClass('no-data');
 	},
 	updateBetEntry : function (bet,model) {
 		var entryId = '[data-uid="'+bet.uid+'"]',
@@ -252,8 +252,6 @@ highlowApp.betSystem = {
 
 		
 		bet.focus();
-		
-		
 
 		model.bets.push(bet);
 
