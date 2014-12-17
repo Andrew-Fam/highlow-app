@@ -9,6 +9,18 @@
 @investment-sell-btn-win-fg: white;
 .view-all-trade-actions {
 	font-size: 12px;
+	a {
+		text-decoration: none!important;
+		&:hover,
+		&:active,
+		&:focus {
+			color: white;
+		}
+	}
+	.transition(color 0.2s ease);
+	&:hover {
+		color: white;
+	}
 }
 .trading-platform-investments {
 	position: relative;
@@ -40,7 +52,7 @@
 				.transition(background-color 0.2s ease);
 				&:hover {
 					> td {
-						background: #686868!important;
+						background: #525252!important;
 					}
 				}
 				>td {

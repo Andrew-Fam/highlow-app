@@ -6,7 +6,7 @@ $(function () {
 
 	
 	highlowApp.tab.init();
-	//highlowApp.systemMessages.init();
+	highlowApp.systemMessages.init();
 	highlowApp.graph.init();
 	highlowApp.marketSimulator.init();
 	highlowApp.oneClick.init();
@@ -17,4 +17,6 @@ $(function () {
 	highlowApp.betSystem.init();
 	highlowApp.favourite.init();
 	highlowApp.heatmap.init();
+	highlowApp.tooltip.init(1000);
+	highlowApp.numberOnly.init();
 });

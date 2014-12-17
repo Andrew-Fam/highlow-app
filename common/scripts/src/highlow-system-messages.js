@@ -70,7 +70,6 @@ highlowApp.systemMessages = {
 					var message = typeGroup[i].length<=35?typeGroup[i]:(typeGroup[i].substr(0,34)+'&hellip;');
 					typeMarkup.append($("<div class='message-trigger' data-type='"+type+"' data-message='"+typeGroup[i]+"'>"+message+"</div>"));
 				}
-
 				$messageTriggers.append(typeMarkup);
 			}
 		}
@@ -90,9 +89,13 @@ highlowApp.systemMessages = {
 			.removeClass('generic')
 			.removeClass('warning');
 			setTimeout(function(){
-
 				$('.demo-message .message').html(message);
 				$('.demo-message').addClass(type).addClass('display');	
+
+				setTimeout(function(){
+					$('.demo-message').removeClass('display');
+				},5000);
+
 			},100);
 
 		});

@@ -50,6 +50,32 @@
 		}
 	}
 
+	.instrument-panel-favourite & {
+		left: 50%;
+		margin-left: -@tooltip-padding - 10px;
+		top: auto;
+		bottom: 100%;
+		margin-bottom: 20px;
+		&:after,
+		&:before {
+			bottom: -20px;
+			top: auto;
+			left: @tooltip-padding;
+			right: auto;
+			border-color: transparent;
+		}
+
+		&:after {
+			border-top-color: @tooltip-bg;
+		}
+		&:before {
+			border-top-color: @tooltip-shadow;
+			margin: 0;
+			bottom: -24px;
+			margin-left: 4px;
+			}
+	}
+
 	&.one-touch {
 		top: -@tooltip-padding;
 		left: -176px;
@@ -58,9 +84,7 @@
 	&:hover {
 		display: block;
 	}
-	*:hover > & {
-		display: block;
-	}
+	
 	&:after,
 	&:before {
 		top: @tooltip-padding;

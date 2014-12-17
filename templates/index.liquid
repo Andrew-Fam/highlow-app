@@ -102,7 +102,7 @@
 																		<div class="instrument-panel-title">
 																			{{instrumentItem.label}}
 																		</div>
-																		<div class="instrument-panel-favourite"></div>
+																		<a title="Add To Favourites" class="instrument-panel-favourite"></a>
 																		<div class="instrument-panel-duration">
 																			{{interval.shortLabel}}
 																		</div>
@@ -115,7 +115,7 @@
 																						Payout
 																					</div>
 																					<div class="instrument-panel-payout">
-																						${{instrumentItem.payout}}
+																						{{instrumentItem.payout}}
 																					</div>
 																				</div>
 																				<div class="pull-left clearfix">
@@ -134,21 +134,24 @@
 																					Closing: <span class="closing-at"></span>
 																				</div>
 																			</div>
-																		{% elsif type.id == 'spread' %}
+																		{% elsif type.id == 'spread' or type.id == 'spread-on-demand' %}
 																			<div class="clearfix">
 																				<div class="instrument-panel-payout-wrap pull-left clearfix">
 																					<div class="font-sb">
 																						Payout
 																					</div>
 																					<div class="instrument-panel-payout">
-																						${{instrumentItem.payout}}
+																						{{instrumentItem.payout}}
 																					</div>
-																					<!-- <div class="instrument-panel-closing font-l">
-																						Closing: <span class="expiry-time">loading...</span>
-																					</div> -->
+																				{% if type.id == 'spread' %}
 																					<div class="instrument-panel-closing">
 																						Closing: <span class="closing-at"></span>
 																					</div>
+																				{% else %}
+																					<div class="instrument-panel-closing first-child last-child">
+																						Closes at: 02:00
+																					</div>
+																				{% endif %}
 																				</div>
 																				<div class="pull-left clearfix">
 																					<div class="font-sb">
@@ -167,7 +170,10 @@
 																						Payout
 																					</div>
 																					<div class="instrument-panel-payout">
-																						${{instrumentItem.payout}}
+																						{{instrumentItem.payout}}
+																					</div>
+																					<div class="instrument-panel-closing first-child last-child">
+																						Closes at: 02:00
 																					</div>
 																				</div>
 																				<div class="pull-left clearfix">
@@ -204,7 +210,6 @@
 												</div>
 											</div>
 										</div>
-
 										{% for interval in type.intervals %}
 										<div class="tab-view-panel" id="{{type.id}}-{{interval.id}}">
 											<a class="instrument-selector-widget-instruments-slider page-slider backward" data-target="#{{type.id}}-{{interval.id}}-pages">
@@ -213,10 +218,8 @@
 											</a>
 											<div class="page-container" id="{{type.id}}-{{interval.id}}-pages">
 												<div class="slider-fade-left">
-
 												</div>
 												<div class="slider-fade-right">
-
 												</div>
 												<div class="pages-wrapper">
 													{% for instrumentItem in interval.instruments %}
@@ -240,7 +243,9 @@
 																<div class="instrument-panel-title">
 																	{{instrumentItem.label}}
 																</div>
-																<div class="instrument-panel-favourite"></div>
+																<a title="Add To Favourites" class="instrument-panel-favourite">
+
+																</a>
 																<div class="instrument-panel-duration">
 																	{{interval.shortLabel}}
 																</div>
@@ -253,7 +258,7 @@
 																				Payout
 																			</div>
 																			<div class="instrument-panel-payout">
-																				${{instrumentItem.payout}}
+																				{{instrumentItem.payout}}
 																			</div>
 																		</div>
 																		<div class="pull-left clearfix">
@@ -272,7 +277,7 @@
 																			Closing: <span class="closing-at"></span>
 																		</div>
 																	</div>
-																{% elsif type.id == 'spread' %}
+																{% elsif type.id == 'spread' or type.id == 'spread-on-demand' %}
 																	<div class="clearfix">
 																		<div class="instrument-panel-payout-wrap pull-left clearfix">
 																			<div class="font-sb">
@@ -281,12 +286,15 @@
 																			<div class="instrument-panel-payout">
 																				${{instrumentItem.payout}}
 																			</div>
-																			<!-- <div class="instrument-panel-closing">
-																				Closing: <span class="expiry-time">loading...</span>
-																			</div> -->
+																		{% if type.id == 'spread' %}
 																			<div class="instrument-panel-closing">
 																				Closing: <span class="closing-at"></span>
 																			</div>
+																		{% else %}
+																			<div class="instrument-panel-closing first-child last-child">
+																				Closes at: 02:00
+																			</div>
+																		{% endif %}
 																		</div>
 																		<div class="pull-left clearfix">
 																			<div class="font-sb">
@@ -305,7 +313,10 @@
 																				Payout
 																			</div>
 																			<div class="instrument-panel-payout">
-																				${{instrumentItem.payout}}
+																				{{instrumentItem.payout}}
+																			</div>
+																			<div class="instrument-panel-closing first-child last-child">
+																				Closes at: 02:00
 																			</div>
 																		</div>
 																		<div class="pull-left clearfix">
@@ -383,13 +394,19 @@
 								{% endif %}
 							</div>
 							<div class="pull-right">
+							{% if type.id != 'on-demand' and type.id != 'spread-on-demand' %}
 								<span class="trading-platform-instrument-closing-time">
 									
 								</span>
 								<span class="trading-platform-instrument-time-left time-to-expiry">
-									{% if type.id != 'on-demand' %}loading...{% else %}n/a{% endif %} 
+									loading...
 								</span>
-								<a class="trading-platform-instrument-one-click-toggler">
+							{% else %}
+								<span class="trading-platform-instrument-market-close-time">
+									Market closes at 02:00
+								</span>
+							{% endif %}
+								<a class="trading-platform-instrument-one-click-toggler tooltip-container">
 									<div class="tooltip one-touch">
 										<div class="title">
 											One Touch Trading
@@ -406,13 +423,13 @@
 								<div class="message">
 									This is indicative of a <span class="demo-message-type"></span> dialogue
 								</div>
-								<div class="close">
+								<!-- <div class="close">
 
-								</div>
+								</div> -->
 							</div>
 						</div>
 						<div class="panel-body">
-							<div class="heatmap collapsed" id="{{type.id}}-heatmap" data-target="{{type.id}}-graph">
+							<div class="heatmap collapsed tooltip-container" id="{{type.id}}-heatmap" data-target="{{type.id}}-graph">
 								<div class="label high">
 									31%
 								</div>
@@ -450,12 +467,22 @@
 									<div class="pull-left font-sb">
 										Market
 									</div>
-									<div class="pull-right highlow-high current-rate">
-										102.77
+									<div class="pull-right">
+										
+										<span class="highlow-high current-rate">
+											102.77 
+										</span>
+
+										{% if type.range %}
+										<span class="trading-platform-instrument-spread-range">
+											+/- {{type.range}}
+										</span>
+										{% endif %}
 									</div>
+
 								</div>
 								<div class="trading-platform-main-controls-investment font-m form-control">
-									$<input type="text" id="{{type.id}}-investment-value-input" value="500"/>
+									$<input type="text" class="number-only" id="{{type.id}}-investment-value-input" value="500"/>
 								</div>
 								<div class="clearfix trading-platform-main-controls-common-amount">
 									<!-- I've used div as button here because button deosn't get :focus style on click for Firefox and Safari on MAc OSX -->
@@ -492,7 +519,7 @@
 										Payout
 									</div>
 									<div class="pull-right">
-										$<span class="trading-platform-main-controls-payout-rate">1.85</span>
+										<span class="trading-platform-main-controls-payout-rate">1.85</span>
 									</div>
 								</div>
 								<div class="trading-platform-main-controls-return">
@@ -519,7 +546,7 @@
 				</div>
 			</div>
 			<div class="pull-right font-sb view-all-trade-actions">
-				View all Trade Actions &nbsp;<span class="icon-magnifier"></span>
+				<a class="popup-link" href="trading-activity-popup.html" target="_blank"> View all Trade Actions &nbsp;<span class="icon-magnifier"></span></a>
 			</div>
 		</div>
 		<div class="panel-body">
@@ -650,11 +677,11 @@
 								Payout
 							</div>
 							<div class="pull-right">
-								$ <span class="trading-platform-main-controls-payout-rate">1.85</span>
+								<span class="trading-platform-main-controls-payout-rate">1.85</span>
 							</div>
 						</div>
 						<div class="trading-platform-main-controls-investment font-m form-control">
-							$<input type="text" id="{{type.id}}-investment-value-input-popup" onchange="document.getElementById('{{type.id}}-investment-value-input').value = this.value;" value="500"/>
+							$<input type="text" class="number-only" id="{{type.id}}-investment-value-input-popup" onchange="document.getElementById('{{type.id}}-investment-value-input').value = this.value;" value="500"/>
 						</div>
 						<div class="clearfix trading-platform-main-controls-common-amount">
 							<!-- I've used div as button here because button deosn't get :focus style on click for Firefox and Safari on MAc OSX -->
@@ -662,6 +689,16 @@
 							<div class="btn btn-md-pad font-m" tabindex="0" onclick="document.getElementById('{{type.id}}-investment-value-input-popup').value = this.getAttribute('data-value'); document.getElementById('{{type.id}}-investment-value-input').value = this.getAttribute('data-value');" data-value="50">$50</div>
 							<div class="btn btn-md-pad font-m" tabindex="0" onclick="document.getElementById('{{type.id}}-investment-value-input-popup').value = this.getAttribute('data-value'); document.getElementById('{{type.id}}-investment-value-input').value = this.getAttribute('data-value');" data-value="100">$100</div>
 							<div class="btn btn-md-pad font-m active" tabindex="0" onclick="document.getElementById('{{type.id}}-investment-value-input-popup').value = this.getAttribute('data-value'); document.getElementById('{{type.id}}-investment-value-input').value = this.getAttribute('data-value');" data-value="500">$500</div>
+						</div>
+						<div class="trading-platform-main-controls-options one-click-control">
+							<div class="btn btn-positive btn-extruded font-m btn-md-pad one-touch-bet bet-high {{type.id}} highlow-up"
+								data-type="{{type.id}}" data-direction="high">
+								HIGH
+							</div>
+							<div class="btn btn-negative btn-extruded font-m btn-md-pad one-touch-bet bet-low {{type.id}} highlow-down"
+								data-type="{{type.id}}" data-direction="low">
+								LOW
+							</div>
 						</div>
 						<div class="clearfix trading-platform-main-controls-options none-one-click-control">
 							<div class="trading-platform-main-controls-select-direction">
@@ -683,11 +720,11 @@
 	</div>
 </div>
 {% endfor %}
-<!-- <div class="message-triggers tucked-away">
+<div class="message-triggers tucked-away">
 	<div class="toggle"></div>
 	<div class="wrapper">
 	</div>
-</div> -->
+</div>
 <!-- end-platform -->
 {% endblock %}
 {% block script %}

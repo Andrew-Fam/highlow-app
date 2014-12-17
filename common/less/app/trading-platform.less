@@ -49,7 +49,7 @@
 		display: inline-block;
 		font-size: @trading-platform-rate-font-size;
 		margin-left: 36px;
-		width: @trading-platform-rate-font-size*6;
+		width: @trading-platform-rate-font-size*5.2;
 		&:before {
 			margin-bottom: 1px;
 		}
@@ -78,6 +78,11 @@
 			.sprite(@closing-time);
 		}
 	}
+
+	.trading-platform-instrument-market-close-time {
+		margin-right: 81px;
+	}
+
 	.trading-platform-instrument-time-left {
 		display: inline-block;
 		font-size: @trading-platform-time-left-font-size;
@@ -142,6 +147,13 @@
 		float: right;
 		position: relative;
 
+		.trading-platform-instrument-spread-range {
+			font-size: 12px;
+			float: right;
+			position: relative;
+			top: 3px;
+			margin-left: 8px;
+		}
 
 		.dead & {
 			* {
@@ -253,6 +265,8 @@
 				.btn {
 					font-size: 12px;
 					margin-bottom: 5px;
+					backface-visibility: none;
+					-webkit-backface-visibility: none;
 				}
 			}
 
@@ -320,7 +334,20 @@
 					color: white;
 				}
 				&.active {
-					.opacity(100);		
+					&.btn-positive {
+						background-color: #69a707;
+						border-color: @positive-color;
+						&:hover {
+							background-color: @positive-color!important;
+						}
+					}
+					&.btn-negative {
+						background-color: #d52f15;
+						border-color: @negative-color;
+						&:hover {
+							background-color: @negative-color!important;
+						}
+					}
 				}
 			}
 		}

@@ -24,6 +24,11 @@ highlowApp.graph = {
 		this.graphs['on-demand'] = Highcharts.charts[$("#on-demand-graph").data('highchartsChart')];
 		this.graphs['spread-on-demand'] = Highcharts.charts[$("#spread-on-demand-graph").data('highchartsChart')];
 	},
+	isOneClick: function(model) {
+		var $mainView = $("#"+model.type+"-main-view");
+
+		return $mainView.hasClass(highlowApp.oneClick.className);
+	},
 	indexOfPointByXRecursive: function(points, x, lowerBoundary, upperBoundary) {
 
 		// Fool check...
@@ -113,7 +118,7 @@ highlowApp.graph = {
 
 		if(model.type.indexOf("on-demand")>=0) {
 			
-			xAxis.setExtremes(currentTime-15*60*1000,currentTime+3.2*60*1000,true);
+			xAxis.setExtremes(currentTime-10*60*1000,currentTime+3*60*1000,true);
 
 			var expiryHintLineId = model.type+"-expiry-hint-line";
 
@@ -413,7 +418,7 @@ highlowApp.graph = {
 
 			// set graph range
 
-			xAxis.setExtremes(point.x-15*60*1000,point.x+3.2*60*1000,true);
+			xAxis.setExtremes(point.x-10*60*1000,point.x+3*60*1000,true);
 
 
 			var expiryLineId = model.type+"-expiry-hint-line";
@@ -525,6 +530,9 @@ highlowApp.graph = {
 
 		if(!model.dead) {
 
+
+			
+
 			// now render the 2 buttons
 
 			var high = renderer.image('common/images/graph-up.png',highX,highY, 27, 27);
@@ -539,7 +547,11 @@ highlowApp.graph = {
 			});
 
 			high.on('click', function () {
-				highlowApp.betSystem.confirmBet('high',point,model.type);
+				// if(!highlowApp.graph.isOneClick(model)) {
+					highlowApp.betSystem.confirmBet('high',point,model.type);
+				// } else {
+				// 	highlowApp.betSystem.placeBet('high',model.type);
+				// }
 			})
 
 			// add click handler
@@ -566,7 +578,11 @@ highlowApp.graph = {
 			});
 
 			low.on('click', function () {
-				highlowApp.betSystem.confirmBet('low',point,model.type);
+				// if(!highlowApp.graph.isOneClick(model)) {
+					highlowApp.betSystem.confirmBet('low',point,model.type);
+				// } else {
+				// 	highlowApp.betSystem.placeBet('low',model.type);
+				// }
 			})
 
 			// add click handler
@@ -582,7 +598,11 @@ highlowApp.graph = {
 			if(type.indexOf("spread")>=0) {
 				var highRate = renderer.text('<div class="on-graph-button">'+(point.y+0.005).toFixed(3)+'</div>',highX+27,highY+19);
 				highRate.on('click', function () {
-					highlowApp.betSystem.confirmBet('high',point,model.type);
+					// if(!highlowApp.graph.isOneClick(model)) {
+						highlowApp.betSystem.confirmBet('high',point,model.type);
+					// } else {
+					// 	highlowApp.betSystem.placeBet('high',model.type);
+					// }
 				})
 				highRate.attr({
 					zIndex:'10',
@@ -597,7 +617,11 @@ highlowApp.graph = {
 
 				var lowRate = renderer.text('<div class="on-graph-button">'+(point.y-0.005).toFixed(3)+'</div>',lowX+27,lowY+19);
 				lowRate.on('click', function () {
-					highlowApp.betSystem.confirmBet('low',point,model.type);
+					// if(!highlowApp.graph.isOneClick(model)) {
+						highlowApp.betSystem.confirmBet('low',point,model.type);
+					// } else {
+					// 	highlowApp.betSystem.placeBet('low',model.type);
+					// }
 				});
 				lowRate.css({
 					"cursor" : "pointer",
@@ -645,9 +669,9 @@ highlowApp.graph = {
 		lowX = highX,
 		lowY = pointY+4,
 		labelHighX = pointX+28,
-		labelHighY = pointY-44,
+		labelHighY = pointY-48,
 		labelLowX = pointX+28,
-		labelLowY = pointY+36,
+		labelLowY = pointY+40,
 		textHighX = labelHighX+21,
 		textHighY = labelHighY+12,
 		textLowX = labelLowX+21,
@@ -722,6 +746,12 @@ highlowApp.graph = {
 			'text-anchor': 'middle'
 		});
 
+		img.on('click', function(){
+			if(!betObject.expired) {
+				highlowApp.betSystem.sellPopup(betObject);
+			}
+		});
+
 		img.on('mouseover', function() {
 
 			if (betObject.model.type.indexOf('on-demand')>=0 && !betObject.expired) {
@@ -729,6 +759,31 @@ highlowApp.graph = {
 				betObject.model.hoveredBet = betObject;
 				highlowApp.marketSimulator.updateBetStatus(betObject.model);
 			} 
+
+			if(betObject.direction == "high") {
+				img.css({
+					'-ms-transform-origin': "center bottom",
+					'transform-origin': "center bottom",
+					'-moz-transform-origin': "center bottom",
+					'-webkit-transform-origin': "center bottom",
+					'-ms-transform': "scale(1.1,1.1)",
+					'-webkit-transform': "scale(1.1,1.1)",
+					'-moz-transform': "scale(1.1,1.1)",
+					'transform': "scale(1.1,1.1)",
+				});
+			} else {
+				img.css({
+					'transform-origin': "center top",
+					'-moz-transform-origin': "center top",
+					'-webkit-transform-origin': "center top",
+					'-ms-transform': "scale(1.1,1.1)",
+					'-webkit-transform': "scale(1.1,1.1)",
+					'-moz-transform': "scale(1.1,1.1)",
+					'transform': "scale(1.1,1.1)",
+				});
+			}
+
+			
 
 			markerValueLabel.css({display:'block'});
 
@@ -741,6 +796,13 @@ highlowApp.graph = {
 				betObject.model.hoveredBet = undefined;
 				highlowApp.marketSimulator.updateBetStatus(betObject.model);
 			} 
+
+			img.css({
+				'-ms-transform': "scale(1,1)",
+				'transform': "scale(1,1)",
+				'-webkit-transform': "scale(1,1)",
+				'-moz-transform': "scale(1,1)"
+			});
 
 			markerValueLabel.css({display:'none'});
 

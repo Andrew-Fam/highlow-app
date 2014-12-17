@@ -1,15 +1,17 @@
 highlowApp.oneClick = {
+	className: 'one-click',
 	init: function() {
 		$('.trading-platform-instrument-one-click-toggler').click(function(){
 			var self = $(this),
-			$platform = $('.trading-platform');
+			$platform = $('.trading-platform, .trading-platform-invest-popup');
+
 
 			if(self.hasClass('active')) {
-				self.removeClass('active');
-				$platform.removeClass('one-click');
+				$('.trading-platform-instrument-one-click-toggler').removeClass('active');
+				$platform.removeClass(highlowApp.oneClick.className);
 			} else {
-				self.addClass('active');
-				$platform.addClass('one-click');
+				$('.trading-platform-instrument-one-click-toggler').addClass('active');
+				$platform.addClass(highlowApp.oneClick.className);
 			}
 		});
 	}

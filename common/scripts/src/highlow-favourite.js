@@ -28,6 +28,7 @@ highlowApp.favourite = {
 	},
 	unFavorItem: function(el,model) { 
 		el.removeClass('faved');
+		el.attr('title','Add to Favourites');
 
 		var self = this;
 
@@ -54,6 +55,7 @@ highlowApp.favourite = {
 	},
 	favorItem: function(el,model) {
 		el.addClass('faved');
+		el.attr('title','Remove from Favourites');
 		var self = this;
 
 		if(!self.favourite[model.type]) {

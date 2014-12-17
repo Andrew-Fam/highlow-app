@@ -615,11 +615,161 @@ module.exports = function(grunt) {
 						],
 						intervals: [
 							{
+								id: "1min",
+								label: "1 MIN",
+								value: 1*60*1000,
+								shortLabel: "1m",
+								mediumLabel: "1 min",
+								instruments: [
+									{
+										label:"AUD/USD",
+										id: "aud-usd",
+										payout: "1.80",
+										rate: "115.45"
+									},
+									{
+										label:"EUR/JPY",
+										id: "eur-jpy",
+										payout: "1.80",
+										rate: "98.442"
+									},
+									{
+										label:"EUR/USD",
+										id: "eur-usd",
+										payout: "1.80",
+										rate: "111.24"
+									},
+									{
+										label:"GBP/JPY",
+										id: "gbp-jpy",
+										payout: "1.80",
+										rate: "224.86"
+									},
+									{
+										label:"EUR/JPY",
+										id: "eur-jpy",
+										payout: "1.80",
+										rate: "123.54"
+									},
+									{
+										label:"EUR/USD",
+										id: "eur-usd",
+										payout: "1.80",
+										rate: "167.27"
+									},
+									{
+										label:"GBP/JPY",
+										id: "gbp-jpy",
+										payout: "1.80",
+										rate: "145.15"
+									},
+									{
+										label:"GBP/USD",
+										id: "gbp-usd",
+										payout: "1.80",
+										rate: "165.52"
+									},
+									{
+										label:"NZD/JPY",
+										id: "nzd-jpy",
+										payout: "1.80",
+										rate: "135.59"
+									},
+									{
+										label:"NZD/USD",
+										id: "nzd-usd",
+										payout: "1.80",
+										rate: "115.54"
+									},
+									{
+										label:"USD/JPY",
+										id: "usd-jpy",
+										payout: "1.80",
+										rate: "112.43"
+									}
+								]
+							},
+							{
 								id: "3min",
-								label: "",
+								label: "3 MIN",
 								value: 3*60*1000,
 								shortLabel: "3m",
-								mediumLabel: "3 mins",
+								mediumLabel: "3 min",
+								instruments: [
+									{
+										label:"AUD/USD",
+										id: "aud-usd",
+										payout: "1.80",
+										rate: "115.45"
+									},
+									{
+										label:"EUR/JPY",
+										id: "eur-jpy",
+										payout: "1.80",
+										rate: "98.442"
+									},
+									{
+										label:"EUR/USD",
+										id: "eur-usd",
+										payout: "1.80",
+										rate: "111.24"
+									},
+									{
+										label:"GBP/JPY",
+										id: "gbp-jpy",
+										payout: "1.80",
+										rate: "224.86"
+									},
+									{
+										label:"EUR/JPY",
+										id: "eur-jpy",
+										payout: "1.80",
+										rate: "123.54"
+									},
+									{
+										label:"EUR/USD",
+										id: "eur-usd",
+										payout: "1.80",
+										rate: "167.27"
+									},
+									{
+										label:"GBP/JPY",
+										id: "gbp-jpy",
+										payout: "1.80",
+										rate: "145.15"
+									},
+									{
+										label:"GBP/USD",
+										id: "gbp-usd",
+										payout: "1.80",
+										rate: "165.52"
+									},
+									{
+										label:"NZD/JPY",
+										id: "nzd-jpy",
+										payout: "1.80",
+										rate: "135.59"
+									},
+									{
+										label:"NZD/USD",
+										id: "nzd-usd",
+										payout: "1.80",
+										rate: "115.54"
+									},
+									{
+										label:"USD/JPY",
+										id: "usd-jpy",
+										payout: "1.80",
+										rate: "112.43"
+									}
+								]
+							},
+							{
+								id: "5min",
+								label: "5 MIN",
+								value: 5*60*1000,
+								shortLabel: "5m",
+								mediumLabel: "5 min",
 								instruments: [
 									{
 										label:"AUD/USD",
@@ -736,11 +886,161 @@ module.exports = function(grunt) {
 						],
 						intervals: [
 							{
+								id: "1min",
+								label: "1 MIN",
+								value: 1*60*1000,
+								shortLabel: "1m",
+								mediumLabel: "1 min",
+								instruments: [
+									{
+										label:"AUD/USD",
+										id: "aud-usd",
+										payout: "1.80",
+										rate: "115.45"
+									},
+									{
+										label:"EUR/JPY",
+										id: "eur-jpy",
+										payout: "1.80",
+										rate: "98.442"
+									},
+									{
+										label:"EUR/USD",
+										id: "eur-usd",
+										payout: "1.80",
+										rate: "111.24"
+									},
+									{
+										label:"GBP/JPY",
+										id: "gbp-jpy",
+										payout: "1.80",
+										rate: "224.86"
+									},
+									{
+										label:"EUR/JPY",
+										id: "eur-jpy",
+										payout: "1.80",
+										rate: "123.54"
+									},
+									{
+										label:"EUR/USD",
+										id: "eur-usd",
+										payout: "1.80",
+										rate: "167.27"
+									},
+									{
+										label:"GBP/JPY",
+										id: "gbp-jpy",
+										payout: "1.80",
+										rate: "145.15"
+									},
+									{
+										label:"GBP/USD",
+										id: "gbp-usd",
+										payout: "1.80",
+										rate: "165.52"
+									},
+									{
+										label:"NZD/JPY",
+										id: "nzd-jpy",
+										payout: "1.80",
+										rate: "135.59"
+									},
+									{
+										label:"NZD/USD",
+										id: "nzd-usd",
+										payout: "1.80",
+										rate: "115.54"
+									},
+									{
+										label:"USD/JPY",
+										id: "usd-jpy",
+										payout: "1.80",
+										rate: "112.43"
+									}
+								]
+							},
+							{
 								id: "3min",
-								label: "",
+								label: "3 MIN",
 								value: 3*60*1000,
 								shortLabel: "3m",
-								mediumLabel: "3 mins",
+								mediumLabel: "3 min",
+								instruments: [
+									{
+										label:"AUD/USD",
+										id: "aud-usd",
+										payout: "1.80",
+										rate: "115.45"
+									},
+									{
+										label:"EUR/JPY",
+										id: "eur-jpy",
+										payout: "1.80",
+										rate: "98.442"
+									},
+									{
+										label:"EUR/USD",
+										id: "eur-usd",
+										payout: "1.80",
+										rate: "111.24"
+									},
+									{
+										label:"GBP/JPY",
+										id: "gbp-jpy",
+										payout: "1.80",
+										rate: "224.86"
+									},
+									{
+										label:"EUR/JPY",
+										id: "eur-jpy",
+										payout: "1.80",
+										rate: "123.54"
+									},
+									{
+										label:"EUR/USD",
+										id: "eur-usd",
+										payout: "1.80",
+										rate: "167.27"
+									},
+									{
+										label:"GBP/JPY",
+										id: "gbp-jpy",
+										payout: "1.80",
+										rate: "145.15"
+									},
+									{
+										label:"GBP/USD",
+										id: "gbp-usd",
+										payout: "1.80",
+										rate: "165.52"
+									},
+									{
+										label:"NZD/JPY",
+										id: "nzd-jpy",
+										payout: "1.80",
+										rate: "135.59"
+									},
+									{
+										label:"NZD/USD",
+										id: "nzd-usd",
+										payout: "1.80",
+										rate: "115.54"
+									},
+									{
+										label:"USD/JPY",
+										id: "usd-jpy",
+										payout: "1.80",
+										rate: "112.43"
+									}
+								]
+							},
+							{
+								id: "5min",
+								label: "5 MIN",
+								value: 5*60*1000,
+								shortLabel: "5m",
+								mediumLabel: "5 min",
 								instruments: [
 									{
 										label:"AUD/USD",
@@ -850,7 +1150,6 @@ module.exports = function(grunt) {
 					dest: 'build/common/scripts/jquery.min.map'
 				}]
 			}
-
 		},
 		sprite: {
 			all: {
@@ -881,6 +1180,17 @@ module.exports = function(grunt) {
 			  },	
 			  files: {
 			      '../public-page/templates/trade-platform.liquid': ['build/index.html']
+			  }
+			},
+			copyTradingActivityPopup: {
+				options: {
+			      sourceFileStartPattern: '<!-- trading-activity-popup -->',
+			      sourceFileEndPattern: '<!-- end-trading-activity-popup -->',
+			      destinationFileStartPattern: '<!-- trading-activity-popup -->',
+			      destinationFileEndPattern: '<!-- end-trading-activity-popup -->'
+			  },	
+			  files: {
+			      '../public-page/templates/trading-activity-popup.liquid': ['build/trading-activity-popup.html']
 			  }
 			}
 		},

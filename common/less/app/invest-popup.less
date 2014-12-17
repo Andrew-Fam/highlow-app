@@ -6,6 +6,26 @@
 		margin: 0 auto;
 		width: @invest-popup-width;
 	}
+
+	.none-one-click-control {
+		.btn {
+			padding-bottom: 6px;
+			&:last-child {
+				padding-bottom: 20px;
+			}
+		}
+	}
+	.one-click-control {
+		display: none!important;
+	}
+	&.one-click {
+		.one-click-control {
+			display: block!important;
+		}
+		.none-one-click-control {
+			display: none!important;
+		}
+	}
 }
 	.trading-platform-invest-popup-live-rate {
 		.clearfix();

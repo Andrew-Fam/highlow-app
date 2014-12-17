@@ -57,7 +57,7 @@ highlowApp.marketSimulator = {
 
 		instrument.absoluteChange += parseFloat(variation);
 
-		if (instrument.type === 'spread') {
+		if (instrument.type.indexOf('spread')>=0) {
 			instrument.upperRate = parseFloat(parseFloat(instrument.currentRate) + self.spread);
 			instrument.lowerRate = parseFloat(parseFloat(instrument.currentRate) - self.spread);
 		}
@@ -140,7 +140,7 @@ highlowApp.marketSimulator = {
 				nonActive = false;
 
 			if(bet.expireAt!=undefined) {
-				if (bet.expireAt < currentTime && bet.closingRate==undefined) {
+				if (bet.expireAt < currentTime && !bet.expired) {
 					expired = true;
 					bet.expired = true;
 					bet.closingRate = rate;
@@ -148,9 +148,6 @@ highlowApp.marketSimulator = {
 			}
 
 			nonActive = (expired || !bet.focused);
-
-			
-
 
 			if(model.active) {
 
@@ -166,9 +163,9 @@ highlowApp.marketSimulator = {
 				var markerValueText = bet.markerValueText;
 
 				var labelHighX = pointX+28,
-				labelHighY = pointY-44,
+				labelHighY = pointY-48,
 				labelLowX = pointX+28,
-				labelLowY = pointY+36,
+				labelLowY = pointY+40,
 				textHighX = labelHighX+21,
 				textHighY = labelHighY+12,
 				textLowX = labelLowX+21,
@@ -221,7 +218,7 @@ highlowApp.marketSimulator = {
 
 				// only update marker image if the bet is not expired yet
 
-				if(!expired) {
+				if(!bet.expired) {
 
 					switch(bet.direction) {
 						case 'high' : {
@@ -230,7 +227,6 @@ highlowApp.marketSimulator = {
 									'href':"common/images/high-win.png",
 									'zIndex' : 10
 								});
-
 								
 								winning = true;
 
@@ -314,11 +310,7 @@ highlowApp.marketSimulator = {
 					xAxis.removePlotLine(endLineId);
 				
 
-					
-
-					if(bet.focused || bet.hover) {
-
-
+					if((bet.focused || bet.hover) && !bet.expired) {
 
 						var x = point.plotX, 
 							labelX = Math.floor(xAxis.toPixels(bet.expireAt)-17),
@@ -511,7 +503,7 @@ highlowApp.marketSimulator = {
 
 		var currentTime = new Date().getTime();
 
-		if (model.type === 'spread') {
+		if (model.type.indexOf('spread')>=0) {
 
 			var highDisplay = $(view.find('.instrument-panel-rate.highlow-high')),
 			lowDisplay = $(view.find('.instrument-panel-rate.highlow-low'));
@@ -604,7 +596,7 @@ highlowApp.marketSimulator = {
 					message += second>1?" SECS ":" SEC ";
 				}
 
-				if(currentTime > bet.expireAt) {
+				if(currentTime >= bet.expireAt || (second<=0 && minute <=0)) {
 					message = "EXPIRED";
 					remainingTimeText = "expired";
 				}
@@ -674,7 +666,16 @@ highlowApp.marketSimulator = {
 				}
 
 				instrumentModel.expireAt = instrumentModel.openAt+instrumentModel.duration;
-				instrumentModel.deadzone = instrumentModel.expireAt - 2 * 60 * 1000;
+
+				if(instrumentModel.duration == 15*60*1000) {
+					instrumentModel.deadzone = instrumentModel.expireAt - 2 * 60 * 1000;
+				} else if(instrumentModel.duration == 60*60*1000) {
+					instrumentModel.deadzone = instrumentModel.expireAt - 5 * 60 * 1000;
+				} else if(instrumentModel.duration == 24*60*60*1000) {
+					instrumentModel.deadzone = instrumentModel.expireAt - 15 * 60 * 1000;
+				}
+
+				
 			}
 
 

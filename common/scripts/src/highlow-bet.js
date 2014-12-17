@@ -1,5 +1,11 @@
 highlowApp.betSystem = {
 	bets : {},
+	sellPopup: function(bet){
+		$('.trading-platform-sell-popup'+'.'+bet.type).removeClass('concealed');
+		$('.trading-platform-sell-popup.'+bet.type+' .trading-platform-sell-popup-instrument').html(bet.model.label);
+		$('.trading-platform-sell-popup.'+bet.type+' .trading-platform-invevstment-value').html("$"+bet.amount);
+		$('.trading-platform-sell-popup.'+bet.type+' .trading-platform-pay-out-value').html("$"+parseFloat(bet.amount*parseFloat($('.trading-platform-sell-popup.'+bet.	type+' .trading-platform-return-rate-value .rate').html())).toFixed(2));
+	},
 	createBetEntry : function (bet, point, uid, type, betObject, clickHandler) {
 		var time = new Date(point.x),
 		expiry = new Date(betObject.expireAt),
@@ -93,10 +99,7 @@ highlowApp.betSystem = {
 
 		row.on('click','.investment-sell-btn', function(e) {
 			e.preventDefault();
-			$('.trading-platform-sell-popup'+'.'+type).removeClass('concealed');
-			$('.trading-platform-sell-popup.'+type+' .trading-platform-sell-popup-instrument').html(bet.model.label);
-			$('.trading-platform-sell-popup.'+type+' .trading-platform-invevstment-value').html("$"+bet.amount);
-			$('.trading-platform-sell-popup.'+type+' .trading-platform-pay-out-value').html("$"+parseFloat(bet.amount*parseFloat($('.trading-platform-sell-popup.'+type+' .trading-platform-return-rate-value .rate').html())).toFixed(2));
+			highlowApp.betSystem.sellPopup(bet);
 		})
 
 		$('.trading-platform-investments-list').append(row);
@@ -166,11 +169,12 @@ highlowApp.betSystem = {
 
 	},
 	confirmBet : function (bet,point,type){
-
 		$('.trading-select-direction-'+type+'-'+bet).click();
 		$('.trading-platform-invest-popup'+'.'+type).removeClass('concealed');
 	},
 	placeBet : function (bet,type) {
+
+		$('.trading-platform-invest-popup').addClass('concealed');
 
 		var betAt = new Date().getTime();
 
@@ -281,8 +285,18 @@ highlowApp.betSystem = {
 			var direction = $('input:radio[name="'+$(this).data('direction')+'"]:checked').val();
 			var type = $(this).data('type');
 
+			if(!direction || direction =="") {
+				console.log('Please select high or low');
+				return;
+			}
+
 			self.placeBet(direction,type);
 			$('.trading-platform-invest-popup.'+type).addClass('concealed');
+
+			$('.trading-platform-main-controls-select-direction .btn').removeClass('active');
+
+			$('input:radio[name="'+$(this).data('direction')+'"]:checked').prop('checked', false);
+
 		});
 
 		// one-touch button

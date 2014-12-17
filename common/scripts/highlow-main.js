@@ -6,7 +6,7 @@ $(function () {
 
 	
 	highlowApp.tab.init();
-	//highlowApp.systemMessages.init();
+	highlowApp.systemMessages.init();
 	highlowApp.graph.init();
 	highlowApp.marketSimulator.init();
 	highlowApp.oneClick.init();
@@ -17,6 +17,8 @@ $(function () {
 	highlowApp.betSystem.init();
 	highlowApp.favourite.init();
 	highlowApp.heatmap.init();
+	highlowApp.tooltip.init(1000);
+	highlowApp.numberOnly.init();
 });
 ;
 highlowApp.randomValue = function(from, to, decimal) {
@@ -85,6 +87,12 @@ highlowApp.timeToText  = function(stamp) {
 ;
 highlowApp.betSystem = {
 	bets : {},
+	sellPopup: function(bet){
+		$('.trading-platform-sell-popup'+'.'+bet.type).removeClass('concealed');
+		$('.trading-platform-sell-popup.'+bet.type+' .trading-platform-sell-popup-instrument').html(bet.model.label);
+		$('.trading-platform-sell-popup.'+bet.type+' .trading-platform-invevstment-value').html("$"+bet.amount);
+		$('.trading-platform-sell-popup.'+bet.type+' .trading-platform-pay-out-value').html("$"+parseFloat(bet.amount*parseFloat($('.trading-platform-sell-popup.'+bet.	type+' .trading-platform-return-rate-value .rate').html())).toFixed(2));
+	},
 	createBetEntry : function (bet, point, uid, type, betObject, clickHandler) {
 		var time = new Date(point.x),
 		expiry = new Date(betObject.expireAt),
@@ -178,10 +186,7 @@ highlowApp.betSystem = {
 
 		row.on('click','.investment-sell-btn', function(e) {
 			e.preventDefault();
-			$('.trading-platform-sell-popup'+'.'+type).removeClass('concealed');
-			$('.trading-platform-sell-popup.'+type+' .trading-platform-sell-popup-instrument').html(bet.model.label);
-			$('.trading-platform-sell-popup.'+type+' .trading-platform-invevstment-value').html("$"+bet.amount);
-			$('.trading-platform-sell-popup.'+type+' .trading-platform-pay-out-value').html("$"+parseFloat(bet.amount*parseFloat($('.trading-platform-sell-popup.'+type+' .trading-platform-return-rate-value .rate').html())).toFixed(2));
+			highlowApp.betSystem.sellPopup(bet);
 		})
 
 		$('.trading-platform-investments-list').append(row);
@@ -251,11 +256,12 @@ highlowApp.betSystem = {
 
 	},
 	confirmBet : function (bet,point,type){
-
 		$('.trading-select-direction-'+type+'-'+bet).click();
 		$('.trading-platform-invest-popup'+'.'+type).removeClass('concealed');
 	},
 	placeBet : function (bet,type) {
+
+		$('.trading-platform-invest-popup').addClass('concealed');
 
 		var betAt = new Date().getTime();
 
@@ -366,8 +372,18 @@ highlowApp.betSystem = {
 			var direction = $('input:radio[name="'+$(this).data('direction')+'"]:checked').val();
 			var type = $(this).data('type');
 
+			if(!direction || direction =="") {
+				console.log('Please select high or low');
+				return;
+			}
+
 			self.placeBet(direction,type);
 			$('.trading-platform-invest-popup.'+type).addClass('concealed');
+
+			$('.trading-platform-main-controls-select-direction .btn').removeClass('active');
+
+			$('input:radio[name="'+$(this).data('direction')+'"]:checked').prop('checked', false);
+
 		});
 
 		// one-touch button
@@ -412,6 +428,7 @@ highlowApp.favourite = {
 	},
 	unFavorItem: function(el,model) { 
 		el.removeClass('faved');
+		el.attr('title','Add to Favourites');
 
 		var self = this;
 
@@ -438,6 +455,7 @@ highlowApp.favourite = {
 	},
 	favorItem: function(el,model) {
 		el.addClass('faved');
+		el.attr('title','Remove from Favourites');
 		var self = this;
 
 		if(!self.favourite[model.type]) {
@@ -656,6 +674,11 @@ highlowApp.graph = {
 		this.graphs['on-demand'] = Highcharts.charts[$("#on-demand-graph").data('highchartsChart')];
 		this.graphs['spread-on-demand'] = Highcharts.charts[$("#spread-on-demand-graph").data('highchartsChart')];
 	},
+	isOneClick: function(model) {
+		var $mainView = $("#"+model.type+"-main-view");
+
+		return $mainView.hasClass(highlowApp.oneClick.className);
+	},
 	indexOfPointByXRecursive: function(points, x, lowerBoundary, upperBoundary) {
 
 		// Fool check...
@@ -745,7 +768,7 @@ highlowApp.graph = {
 
 		if(model.type.indexOf("on-demand")>=0) {
 			
-			xAxis.setExtremes(currentTime-15*60*1000,currentTime+3.2*60*1000,true);
+			xAxis.setExtremes(currentTime-10*60*1000,currentTime+3*60*1000,true);
 
 			var expiryHintLineId = model.type+"-expiry-hint-line";
 
@@ -1045,7 +1068,7 @@ highlowApp.graph = {
 
 			// set graph range
 
-			xAxis.setExtremes(point.x-15*60*1000,point.x+3.2*60*1000,true);
+			xAxis.setExtremes(point.x-10*60*1000,point.x+3*60*1000,true);
 
 
 			var expiryLineId = model.type+"-expiry-hint-line";
@@ -1157,6 +1180,9 @@ highlowApp.graph = {
 
 		if(!model.dead) {
 
+
+			
+
 			// now render the 2 buttons
 
 			var high = renderer.image('common/images/graph-up.png',highX,highY, 27, 27);
@@ -1171,7 +1197,11 @@ highlowApp.graph = {
 			});
 
 			high.on('click', function () {
-				highlowApp.betSystem.confirmBet('high',point,model.type);
+				// if(!highlowApp.graph.isOneClick(model)) {
+					highlowApp.betSystem.confirmBet('high',point,model.type);
+				// } else {
+				// 	highlowApp.betSystem.placeBet('high',model.type);
+				// }
 			})
 
 			// add click handler
@@ -1198,7 +1228,11 @@ highlowApp.graph = {
 			});
 
 			low.on('click', function () {
-				highlowApp.betSystem.confirmBet('low',point,model.type);
+				// if(!highlowApp.graph.isOneClick(model)) {
+					highlowApp.betSystem.confirmBet('low',point,model.type);
+				// } else {
+				// 	highlowApp.betSystem.placeBet('low',model.type);
+				// }
 			})
 
 			// add click handler
@@ -1214,7 +1248,11 @@ highlowApp.graph = {
 			if(type.indexOf("spread")>=0) {
 				var highRate = renderer.text('<div class="on-graph-button">'+(point.y+0.005).toFixed(3)+'</div>',highX+27,highY+19);
 				highRate.on('click', function () {
-					highlowApp.betSystem.confirmBet('high',point,model.type);
+					// if(!highlowApp.graph.isOneClick(model)) {
+						highlowApp.betSystem.confirmBet('high',point,model.type);
+					// } else {
+					// 	highlowApp.betSystem.placeBet('high',model.type);
+					// }
 				})
 				highRate.attr({
 					zIndex:'10',
@@ -1229,7 +1267,11 @@ highlowApp.graph = {
 
 				var lowRate = renderer.text('<div class="on-graph-button">'+(point.y-0.005).toFixed(3)+'</div>',lowX+27,lowY+19);
 				lowRate.on('click', function () {
-					highlowApp.betSystem.confirmBet('low',point,model.type);
+					// if(!highlowApp.graph.isOneClick(model)) {
+						highlowApp.betSystem.confirmBet('low',point,model.type);
+					// } else {
+					// 	highlowApp.betSystem.placeBet('low',model.type);
+					// }
 				});
 				lowRate.css({
 					"cursor" : "pointer",
@@ -1277,9 +1319,9 @@ highlowApp.graph = {
 		lowX = highX,
 		lowY = pointY+4,
 		labelHighX = pointX+28,
-		labelHighY = pointY-44,
+		labelHighY = pointY-48,
 		labelLowX = pointX+28,
-		labelLowY = pointY+36,
+		labelLowY = pointY+40,
 		textHighX = labelHighX+21,
 		textHighY = labelHighY+12,
 		textLowX = labelLowX+21,
@@ -1354,6 +1396,12 @@ highlowApp.graph = {
 			'text-anchor': 'middle'
 		});
 
+		img.on('click', function(){
+			if(!betObject.expired) {
+				highlowApp.betSystem.sellPopup(betObject);
+			}
+		});
+
 		img.on('mouseover', function() {
 
 			if (betObject.model.type.indexOf('on-demand')>=0 && !betObject.expired) {
@@ -1361,6 +1409,31 @@ highlowApp.graph = {
 				betObject.model.hoveredBet = betObject;
 				highlowApp.marketSimulator.updateBetStatus(betObject.model);
 			} 
+
+			if(betObject.direction == "high") {
+				img.css({
+					'-ms-transform-origin': "center bottom",
+					'transform-origin': "center bottom",
+					'-moz-transform-origin': "center bottom",
+					'-webkit-transform-origin': "center bottom",
+					'-ms-transform': "scale(1.1,1.1)",
+					'-webkit-transform': "scale(1.1,1.1)",
+					'-moz-transform': "scale(1.1,1.1)",
+					'transform': "scale(1.1,1.1)",
+				});
+			} else {
+				img.css({
+					'transform-origin': "center top",
+					'-moz-transform-origin': "center top",
+					'-webkit-transform-origin': "center top",
+					'-ms-transform': "scale(1.1,1.1)",
+					'-webkit-transform': "scale(1.1,1.1)",
+					'-moz-transform': "scale(1.1,1.1)",
+					'transform': "scale(1.1,1.1)",
+				});
+			}
+
+			
 
 			markerValueLabel.css({display:'block'});
 
@@ -1373,6 +1446,13 @@ highlowApp.graph = {
 				betObject.model.hoveredBet = undefined;
 				highlowApp.marketSimulator.updateBetStatus(betObject.model);
 			} 
+
+			img.css({
+				'-ms-transform': "scale(1,1)",
+				'transform': "scale(1,1)",
+				'-webkit-transform': "scale(1,1)",
+				'-moz-transform': "scale(1,1)"
+			});
 
 			markerValueLabel.css({display:'none'});
 
@@ -1862,7 +1942,7 @@ highlowApp.marketSimulator = {
 
 		instrument.absoluteChange += parseFloat(variation);
 
-		if (instrument.type === 'spread') {
+		if (instrument.type.indexOf('spread')>=0) {
 			instrument.upperRate = parseFloat(parseFloat(instrument.currentRate) + self.spread);
 			instrument.lowerRate = parseFloat(parseFloat(instrument.currentRate) - self.spread);
 		}
@@ -1945,7 +2025,7 @@ highlowApp.marketSimulator = {
 				nonActive = false;
 
 			if(bet.expireAt!=undefined) {
-				if (bet.expireAt < currentTime && bet.closingRate==undefined) {
+				if (bet.expireAt < currentTime && !bet.expired) {
 					expired = true;
 					bet.expired = true;
 					bet.closingRate = rate;
@@ -1953,9 +2033,6 @@ highlowApp.marketSimulator = {
 			}
 
 			nonActive = (expired || !bet.focused);
-
-			
-
 
 			if(model.active) {
 
@@ -1971,9 +2048,9 @@ highlowApp.marketSimulator = {
 				var markerValueText = bet.markerValueText;
 
 				var labelHighX = pointX+28,
-				labelHighY = pointY-44,
+				labelHighY = pointY-48,
 				labelLowX = pointX+28,
-				labelLowY = pointY+36,
+				labelLowY = pointY+40,
 				textHighX = labelHighX+21,
 				textHighY = labelHighY+12,
 				textLowX = labelLowX+21,
@@ -2026,7 +2103,7 @@ highlowApp.marketSimulator = {
 
 				// only update marker image if the bet is not expired yet
 
-				if(!expired) {
+				if(!bet.expired) {
 
 					switch(bet.direction) {
 						case 'high' : {
@@ -2035,7 +2112,6 @@ highlowApp.marketSimulator = {
 									'href':"common/images/high-win.png",
 									'zIndex' : 10
 								});
-
 								
 								winning = true;
 
@@ -2119,11 +2195,7 @@ highlowApp.marketSimulator = {
 					xAxis.removePlotLine(endLineId);
 				
 
-					
-
-					if(bet.focused || bet.hover) {
-
-
+					if((bet.focused || bet.hover) && !bet.expired) {
 
 						var x = point.plotX, 
 							labelX = Math.floor(xAxis.toPixels(bet.expireAt)-17),
@@ -2316,7 +2388,7 @@ highlowApp.marketSimulator = {
 
 		var currentTime = new Date().getTime();
 
-		if (model.type === 'spread') {
+		if (model.type.indexOf('spread')>=0) {
 
 			var highDisplay = $(view.find('.instrument-panel-rate.highlow-high')),
 			lowDisplay = $(view.find('.instrument-panel-rate.highlow-low'));
@@ -2409,7 +2481,7 @@ highlowApp.marketSimulator = {
 					message += second>1?" SECS ":" SEC ";
 				}
 
-				if(currentTime > bet.expireAt) {
+				if(currentTime >= bet.expireAt || (second<=0 && minute <=0)) {
 					message = "EXPIRED";
 					remainingTimeText = "expired";
 				}
@@ -2479,7 +2551,16 @@ highlowApp.marketSimulator = {
 				}
 
 				instrumentModel.expireAt = instrumentModel.openAt+instrumentModel.duration;
-				instrumentModel.deadzone = instrumentModel.expireAt - 2 * 60 * 1000;
+
+				if(instrumentModel.duration == 15*60*1000) {
+					instrumentModel.deadzone = instrumentModel.expireAt - 2 * 60 * 1000;
+				} else if(instrumentModel.duration == 60*60*1000) {
+					instrumentModel.deadzone = instrumentModel.expireAt - 5 * 60 * 1000;
+				} else if(instrumentModel.duration == 24*60*60*1000) {
+					instrumentModel.deadzone = instrumentModel.expireAt - 15 * 60 * 1000;
+				}
+
+				
 			}
 
 
@@ -2674,18 +2755,40 @@ highlowApp.marketSimulator = {
 	}
 }
 ;
+highlowApp.numberOnly = {
+    init: function() {
+        $('.number-only').keydown(function (e) {
+            // Allow: backspace, delete, tab, escape, enter and .
+            if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110, 190]) !== -1 ||
+                 // Allow: Ctrl+A
+                (e.keyCode == 65 && e.ctrlKey === true) || 
+                 // Allow: home, end, left, right, down, up
+                (e.keyCode >= 35 && e.keyCode <= 40)) {
+                     // let it happen, don't do anything
+                     return;
+            }
+            // Ensure that it is a number and stop the keypress
+            if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
+                e.preventDefault();
+            }
+        });
+    }
+}
+;
 highlowApp.oneClick = {
+	className: 'one-click',
 	init: function() {
 		$('.trading-platform-instrument-one-click-toggler').click(function(){
 			var self = $(this),
-			$platform = $('.trading-platform');
+			$platform = $('.trading-platform, .trading-platform-invest-popup');
+
 
 			if(self.hasClass('active')) {
-				self.removeClass('active');
-				$platform.removeClass('one-click');
+				$('.trading-platform-instrument-one-click-toggler').removeClass('active');
+				$platform.removeClass(highlowApp.oneClick.className);
 			} else {
-				self.addClass('active');
-				$platform.addClass('one-click');
+				$('.trading-platform-instrument-one-click-toggler').addClass('active');
+				$platform.addClass(highlowApp.oneClick.className);
 			}
 		});
 	}
@@ -2693,6 +2796,7 @@ highlowApp.oneClick = {
 ;
 highlowApp.popup = {
 	init : function() {
+		console.log('popup init');
 		$('.trading-platform-popup-wrapper').on('click','.close', function(event) {
 			$(event.target).closest('.trading-platform-popup-wrapper').addClass('concealed');
 		});
@@ -2706,7 +2810,15 @@ highlowApp.popup = {
 		$('.trading-platform-sell-popup-sell').on('click', function(){
 			$('.trading-platform-sell-popup').addClass('concealed');
 
-		})
+		});
+
+		$('.popup-link').click(function(){
+			window.open($(this).attr('href'), "_blank", "scrollbars=yes, resizable=yes, top="+(($(window).height()-540)/2)+", left="+(($(window).width()-966)/2)+" width=966, height=540");
+		});
+
+		$('.trading-activity-popup-root').on('click','.investment-sell-btn', function() {
+			$('.trading-platform-sell-popup').removeClass('concealed');
+		});
 	}
 }
 ;
@@ -2782,7 +2894,6 @@ highlowApp.systemMessages = {
 					var message = typeGroup[i].length<=35?typeGroup[i]:(typeGroup[i].substr(0,34)+'&hellip;');
 					typeMarkup.append($("<div class='message-trigger' data-type='"+type+"' data-message='"+typeGroup[i]+"'>"+message+"</div>"));
 				}
-
 				$messageTriggers.append(typeMarkup);
 			}
 		}
@@ -2802,9 +2913,13 @@ highlowApp.systemMessages = {
 			.removeClass('generic')
 			.removeClass('warning');
 			setTimeout(function(){
-
 				$('.demo-message .message').html(message);
 				$('.demo-message').addClass(type).addClass('display');	
+
+				setTimeout(function(){
+					$('.demo-message').removeClass('display');
+				},5000);
+
 			},100);
 
 		});
@@ -2838,5 +2953,45 @@ highlowApp.tab = {
 		$('.tab-view.instrument-selector-widget').on('click','.tab-view-tab-selector', function(e) {
 			highlowApp.instrumentPanelSelector.selectInstrument($($(this).data('target')+' .instrument-panel-active'));
 		})
+	}
+}
+;
+highlowApp.tooltip = {
+	init: function(delay) {
+		$('.tooltip-container').each(function(){
+			var $e = $(this);
+			var $tooltip = $($e.children('.tooltip'));
+
+			$tooltip.css({
+				display: 'none',
+				opacity: 0
+			});
+			var timeout;
+
+			$e.on('mouseover',function(){
+				timeout = setTimeout(function(){
+					$tooltip.css({
+						display: 'block'
+					});
+
+
+					$tooltip.animate({
+						opacity: 1
+					},250);
+
+				},delay);
+			}).on('mouseout',function(){
+				
+				clearTimeout(timeout);
+
+				$tooltip.animate({
+					opacity: 0
+				},250,function(){
+					$tooltip.css({
+						display: 'none'
+					});
+				});
+			});
+		});
 	}
 }
