@@ -271,11 +271,18 @@ highlowApp.betSystem = {
 		var self = this;
 
 		$('.trading-platform-main-controls-select-direction .btn').click(function(){
-			$('.trading-platform-main-controls-select-direction .btn').removeClass('active');
+			$('.trading-platform-main-controls-select-direction .btn').removeClass('active').addClass('in-active');
+
+
+
 			if($(this).hasClass('active')) {
 				$(this).removeClass('active');
 			} else {
-				$(this).addClass('active');
+				if($(this).hasClass('highlow-up')) {
+					$('.trading-platform-main-controls-select-direction .btn.highlow-up').addClass('active').removeClass('in-active');
+				} else {
+					$('.trading-platform-main-controls-select-direction .btn.highlow-down').addClass('active').removeClass('in-active');
+				}
 			}
 		});
 
@@ -293,7 +300,7 @@ highlowApp.betSystem = {
 			self.placeBet(direction,type);
 			$('.trading-platform-invest-popup.'+type).addClass('concealed');
 
-			$('.trading-platform-main-controls-select-direction .btn').removeClass('active');
+			$('.trading-platform-main-controls-select-direction .btn').removeClass('active').removeClass('in-active');
 
 			$('input:radio[name="'+$(this).data('direction')+'"]:checked').prop('checked', false);
 

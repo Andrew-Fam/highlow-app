@@ -358,11 +358,18 @@ highlowApp.betSystem = {
 		var self = this;
 
 		$('.trading-platform-main-controls-select-direction .btn').click(function(){
-			$('.trading-platform-main-controls-select-direction .btn').removeClass('active');
+			$('.trading-platform-main-controls-select-direction .btn').removeClass('active').addClass('in-active');
+
+
+
 			if($(this).hasClass('active')) {
 				$(this).removeClass('active');
 			} else {
-				$(this).addClass('active');
+				if($(this).hasClass('highlow-up')) {
+					$('.trading-platform-main-controls-select-direction .btn.highlow-up').addClass('active').removeClass('in-active');
+				} else {
+					$('.trading-platform-main-controls-select-direction .btn.highlow-down').addClass('active').removeClass('in-active');
+				}
 			}
 		});
 
@@ -380,7 +387,7 @@ highlowApp.betSystem = {
 			self.placeBet(direction,type);
 			$('.trading-platform-invest-popup.'+type).addClass('concealed');
 
-			$('.trading-platform-main-controls-select-direction .btn').removeClass('active');
+			$('.trading-platform-main-controls-select-direction .btn').removeClass('active').removeClass('in-active');
 
 			$('input:radio[name="'+$(this).data('direction')+'"]:checked').prop('checked', false);
 
@@ -1180,20 +1187,40 @@ highlowApp.graph = {
 
 		if(!model.dead) {
 
+			var high = {},
+			low = {};
+			
+
+			var highButtonId = 'in-chart-'+type+'-high-bet',
+			lowButtonId = 'in-chart-'+type+'-low-bet';
+
+		
+			// now render the 2 buttons
+
+
+
+
+			if(symbols.highBetButtonHover) {
+				if(type.indexOf("spread")>=0) {
+					high = renderer.image('common/images/graph-up-spread-hover.png',highX,highY, 96, 27);
+				} else {
+					high = renderer.image('common/images/graph-up-hover.png',highX,highY, 27, 27);
+				}
+			} else {
+				if(type.indexOf("spread")>=0) {
+					high = renderer.image('common/images/graph-up-spread.png',highX,highY, 96, 27);
+				} else {
+					high = renderer.image('common/images/graph-up.png',highX,highY, 27, 27);
+				}
+			}
+
+		
 
 			
 
-			// now render the 2 buttons
-
-			var high = renderer.image('common/images/graph-up.png',highX,highY, 27, 27);
-
-			if(type.indexOf("spread")>=0) {
-				high = renderer.image('common/images/graph-up-spread.png',highX,highY, 96, 27);
-			}
-
 			high.attr({
 				zIndex:'10',
-				id:'in-chart-high-bet'
+				id: highButtonId
 			});
 
 			high.on('click', function () {
@@ -1202,7 +1229,27 @@ highlowApp.graph = {
 				// } else {
 				// 	highlowApp.betSystem.placeBet('high',model.type);
 				// }
-			})
+
+			});
+
+
+			high.on('mouseover', function () {
+				symbols.highBetButtonHover = true;
+				if(type.indexOf("spread")>=0) {
+					$('#'+highButtonId).attr('href','common/images/graph-up-spread-hover.png');
+				} else {
+					$('#'+highButtonId).attr('href','common/images/graph-up-hover.png');
+				}
+			});
+
+			high.on('mouseout', function () {
+				symbols.highBetButtonHover = false;
+				if(type.indexOf("spread")>=0) {
+					$('#'+highButtonId).attr('href','common/images/graph-up-spread.png');
+				} else {
+					$('#'+highButtonId).attr('href','common/images/graph-up.png');
+				}
+			});
 
 			// add click handler
 
@@ -1216,15 +1263,30 @@ highlowApp.graph = {
 
 			// 
 
-			var low = renderer.image('common/images/graph-down.png',lowX,lowY, 27, 27);
-
-			if(type.indexOf("spread")>=0) {
-				low = renderer.image('common/images/graph-down-spread.png',lowX,lowY, 96, 27);
+			if(symbols.lowBetButtonHover) {
+				
+				if(type.indexOf("spread")>=0) {
+					low = renderer.image('common/images/graph-down-spread-hover.png',lowX,lowY, 96, 27);
+				} else {
+					low = renderer.image('common/images/graph-down-hover.png',lowX,lowY, 27, 27);
+				}
+			} else {
+				if(type.indexOf("spread")>=0) {
+					low = renderer.image('common/images/graph-down-spread.png',lowX,lowY, 96, 27);
+				} else {
+					low = renderer.image('common/images/graph-down.png',lowX,lowY, 27, 27);
+				}
 			}
+
+
+
+			
+
+
 
 			low.attr({
 				zIndex:'10',
-				id:'in-chart-low-bet'
+				id: lowButtonId
 			});
 
 			low.on('click', function () {
@@ -1234,6 +1296,24 @@ highlowApp.graph = {
 				// 	highlowApp.betSystem.placeBet('low',model.type);
 				// }
 			})
+
+			low.on('mouseover', function () {
+				symbols.lowBetButtonHover = true;
+				if(type.indexOf("spread")>=0) {
+					$('#'+lowButtonId).attr('href','common/images/graph-down-spread-hover.png');
+				} else {
+					$('#'+lowButtonId).attr('href','common/images/graph-down-hover.png');
+				}
+			});
+
+			low.on('mouseout', function () {
+				symbols.lowBetButtonHover = false;
+				if(type.indexOf("spread")>=0) {
+					$('#'+lowButtonId).attr('href','common/images/graph-down-spread.png');
+				} else {
+					$('#'+lowButtonId).attr('href','common/images/graph-down.png');
+				}
+			});
 
 			// add click handler
 

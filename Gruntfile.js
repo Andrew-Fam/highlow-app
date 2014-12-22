@@ -1232,7 +1232,7 @@ module.exports = function(grunt) {
 			},
 			copy: {
 				files: ['common/**/*.*','templates/**/*.*'],
-				tasks: ['newer:copy','copy-part-of-file']
+				tasks: ['newer:copy','newer:copy-part-of-file']
 			}
 		},
 		concurrent: {
@@ -1246,5 +1246,5 @@ module.exports = function(grunt) {
 	});
 
 	grunt.registerTask('default', ['sprite', 'newer:less', 'newer:concat', 'newer:liquid', 'newer:copy', 'replace','copy-part-of-file','concurrent:all']);
-	grunt.registerTask('build', ['sprite', 'newer:less', 'newer:concat', 'newer:liquid', 'newer:copy', 'replace','copy-part-of-file']);
+	grunt.registerTask('build', ['sprite', 'less', 'newer:concat', 'newer:liquid', 'newer:copy', 'replace','copy-part-of-file']);
 };

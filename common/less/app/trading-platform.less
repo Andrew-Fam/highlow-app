@@ -325,30 +325,222 @@
 			
 
 
+
+
 			input[type="radio"] {
 				display: none;
 			}
+
+
+			/* ver 2 */
 			.btn {
 				width: 100%;
+				.transition(all 0s);
+				
+
 				&:hover {
 					color: white;
-				}
-				&.active {
 					&.btn-positive {
-						background-color: #69a707;
-						border-color: @positive-color;
-						&:hover {
-							background-color: @positive-color!important;
-						}
+						color: white;
 					}
 					&.btn-negative {
-						background-color: #d52f15;
-						border-color: @negative-color;
-						&:hover {
-							background-color: @negative-color!important;
+						color: white;
+					}
+					&.highlow-up {
+						&:before {
+							.sprite(@highlow-up);
+						}
+					}
+					&.highlow-down {
+						&:before {
+							.sprite(@highlow-down);
 						}
 					}
 				}
+
+
+				.dead & {
+					background: @disable-bg!important;
+					border-color: @disable-border!important;
+					color: @disable-fg!important;
+					&.highlow-up {
+						&:before {
+							.sprite(@highlow-up-dead);
+						}
+					}
+					&.highlow-down {
+						&:before {
+							.sprite(@highlow-down-dead);
+						}
+					}
+
+				}
+
+				&.in-active {
+					// &.btn-positive {
+					// 	color: #638728;
+					// }
+
+					// &.highlow-up {
+					// 	&:before {
+					// 		.sprite(@up-in-active);
+					// 	}
+					// }
+					// &.highlow-down {
+					// 	&:before {
+					// 		.sprite(@down-in-active);
+					// 	}
+					// }
+
+					// &.btn-negative {
+					// 	color: #b32610;
+					// }
+				}
+
+				&.active,
+				&:active {
+					&.btn-positive,
+					&.btn-positive:hover,
+					&.btn-positive:active,
+					&.btn-positive:focus {
+						background: #4b9300!important;
+						border-bottom: none;
+						border-top: 2px solid #8fc33c;
+						color: white;
+					}
+					&.btn-negative,
+					&.btn-negative:hover,
+					&.btn-negative:active,
+					&.btn-negative:focus  {
+						background: #d6422b!important;
+						border-bottom: none;
+						border-top: 2px solid #fa8667;
+						color: white;
+					}
+					&.highlow-up {
+						&:before {
+							.sprite(@highlow-up);
+						}
+					}
+					&.highlow-down {
+						&:before {
+							.sprite(@highlow-down);
+						}
+					}
+
+					.dead & {
+						background: @disable-bg!important;
+						border-color: @disable-border!important;
+						color: @disable-fg!important;
+						&.highlow-up {
+							&:before {
+								.sprite(@highlow-up-dead);
+							}
+						}
+						&.highlow-down {
+							&:before {
+								.sprite(@highlow-down-dead);
+							}
+						}
+
+					}
+					// &.btn-positive {
+					// 	background-color: #69a707;
+					// 	border-color: @positive-color;
+					// 	&:hover {
+					// 		background-color: @positive-color!important;
+					// 	}
+					// }
+					// &.btn-negative {
+					// 	background-color: #d52f15;
+					// 	border-color: @negative-color;
+					// 	&:hover {
+					// 		background-color: @negative-color!important;
+					// 	}
+					// }
+				}
+
+				 /* ver 1: FAIL */
+				// &.btn-positive,
+				// &.btn-negative {
+				// 	background-color: #1B1B1B;
+				// 	border-bottom-color: #101010;
+				// }
+
+				// &.highlow-up {
+				// 	&:before {
+				// 		.sprite(@up);
+				// 	}
+				// }
+				// &.highlow-down {
+				// 	&:before {
+				// 		.sprite(@down);
+				// 	}
+				// }
+
+				// &.btn-positive {
+				// 	color: @positive-color;
+				// }
+				// &.btn-negative {
+				// 	color: @negative-color;
+				// }
+				// &:hover {
+				// 	color: white;
+				// 	&.btn-positive {
+				// 		color: white;
+				// 	}
+				// 	&.btn-negative {
+				// 		color: white;
+				// 	}
+				// 	&.highlow-up {
+				// 		&:before {
+				// 			.sprite(@highlow-up);
+				// 		}
+				// 	}
+				// 	&.highlow-down {
+				// 		&:before {
+				// 			.sprite(@highlow-down);
+				// 		}
+				// 	}
+				// }
+				// &.active {
+				// 	&.btn-positive,
+				// 	&.btn-positive:hover {
+				// 		background: @positive-color!important;
+				// 		border-bottom-color: @positive-shadow!important;
+				// 		color: white;
+				// 	}
+				// 	&.btn-negative,
+				// 	&.btn-negative:hover  {
+				// 		background: @negative-color!important;
+				// 		border-bottom-color: @negative-shadow!important;
+				// 		color: white;
+				// 	}
+				// 	&.highlow-up {
+				// 		&:before {
+				// 			.sprite(@highlow-up);
+				// 		}
+				// 	}
+				// 	&.highlow-down {
+				// 		&:before {
+				// 			.sprite(@highlow-down);
+				// 		}
+				// 	}
+				// 	// &.btn-positive {
+				// 	// 	background-color: #69a707;
+				// 	// 	border-color: @positive-color;
+				// 	// 	&:hover {
+				// 	// 		background-color: @positive-color!important;
+				// 	// 	}
+				// 	// }
+				// 	// &.btn-negative {
+				// 	// 	background-color: #d52f15;
+				// 	// 	border-color: @negative-color;
+				// 	// 	&:hover {
+				// 	// 		background-color: @negative-color!important;
+				// 	// 	}
+				// 	// }
+				// }
 			}
 		}
 		.trading-platform-main-controls-place-bet {
