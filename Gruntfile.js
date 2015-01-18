@@ -1141,7 +1141,7 @@ module.exports = function(grunt) {
 					flatten: false,
 					cwd: 'common/',
 					src: ['**/*.*'],
-					dest: '../public-page/public/trade-platform/'
+					dest: '../highlow-public-page/public/trade-platform/'
 				}]
 			},
 			map: {
@@ -1162,7 +1162,7 @@ module.exports = function(grunt) {
 		},
 		replace: {
 		  jsURL: {
-		    src: ['../public-page/public/trade-platform/scripts/highlow-main.js'],
+		    src: ['../highlow-public-page/public/trade-platform/scripts/highlow-main.js'],
 		    overwrite: true,                 // overwrite matched source files
 		    replacements: [{
 		      from: 'common/images',		      
@@ -1179,7 +1179,7 @@ module.exports = function(grunt) {
 			      destinationFileEndPattern: '<!-- end-platform -->'
 			  },	
 			  files: {
-			      '../public-page/templates/trade-platform.liquid': ['build/index.html']
+			      '../highlow-public-page/templates/trade-platform.liquid': ['build/index.html']
 			  }
 			},
 			copyTradingActivityPopup: {
@@ -1190,7 +1190,7 @@ module.exports = function(grunt) {
 			      destinationFileEndPattern: '<!-- end-trading-activity-popup -->'
 			  },	
 			  files: {
-			      '../public-page/templates/trading-activity-popup.liquid': ['build/trading-activity-popup.html']
+			      '../highlow-public-page/templates/trading-activity-popup.liquid': ['build/trading-activity-popup.html']
 			  }
 			}
 		},
