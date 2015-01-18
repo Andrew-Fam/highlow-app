@@ -4,9 +4,15 @@ highlowApp.tab = {
 
 			$($(event.target).closest('.tab-view').find('> .tab-view-body-wrapper > .tab-view-body > .tab-view-panel')).removeClass('active');
 			$($(event.target).closest('.tab-view-tab-selectors').find('.tab-view-tab-selector')).removeClass('active');
+
 			
+
 			$($(this).data('target')).addClass('active');
 			$(this).addClass('active');
+
+
+
+			$('.trading-platform-main-controls-select-direction .btn').removeClass('active').removeClass('in-active');
 		});
 
 

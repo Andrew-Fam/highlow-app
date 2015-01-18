@@ -23,5 +23,9 @@ highlowApp.popup = {
 		$('.trading-activity-popup-root').on('click','.investment-sell-btn', function() {
 			$('.trading-platform-sell-popup').removeClass('concealed');
 		});
+
+		$('#account-balance .btn').click(function(){
+			$('.trading-platform-widget-popup').removeClass('concealed');
+		});
 	}
 }

@@ -15,13 +15,13 @@ highlowApp.instrumentPanelCollapser = {
 				// $instrumentPanels.removeClass('collapsed');
 				
 				$instrumentPanelsWrapper.animate({
-					height: '137px',
+					height: '134px',
 					top: '0px'
 				},duration,function(){
 					$instrumentPanels.removeClass('collapsed');
 				});
 				$instrumentSliders.animate({
-					'line-height' : '190px'
+					'line-height' : '187px'
 				},duration);
 			} else {
 				self.addClass('on');

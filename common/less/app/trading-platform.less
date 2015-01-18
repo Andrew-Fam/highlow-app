@@ -301,7 +301,6 @@
 							.sprite(@highlow-down-dead);
 						}
 					}
-
 				}
 			}
 		}
@@ -336,7 +335,7 @@
 			.btn {
 				width: 100%;
 				.transition(all 0s);
-				
+				padding: 0.625em 1.4em 0.625em;
 
 				&:hover {
 					color: white;
@@ -395,28 +394,74 @@
 					// &.btn-negative {
 					// 	color: #b32610;
 					// }
+
+					background: @disable-bg;
+					border-color: @disable-border;
+					color: @disable-fg;
+
+					&.highlow-up {
+						&:before {
+							.sprite(@highlow-up-dead);
+						}
+					}
+					&.highlow-down {
+						&:before {
+							.sprite(@highlow-down-dead);
+						}
+					}
+
+					&:hover {
+						&.highlow-up {
+							&:before {
+								.sprite(@highlow-up-in-active);
+								.opacity(90);
+							}
+						}
+						&.highlow-down {
+							&:before {
+								.sprite(@highlow-down-in-active );
+								.opacity(90);
+							}
+						}
+					}
+
+					&.btn-positive:hover,
+					&.btn-negative:hover {
+						color: #686867!important;
+						//border-color: lighten(@disable-border,5%);
+						background-color: #595858!important;
+					}
 				}
 
-				&.active,
-				&:active {
-					&.btn-positive,
-					&.btn-positive:hover,
-					&.btn-positive:active,
-					&.btn-positive:focus {
+				&.active {
+					&.btn-positive {
 						background: #4b9300!important;
 						border-bottom: none;
 						border-top: 2px solid #8fc33c;
 						color: white;
 					}
-					&.btn-negative,
-					&.btn-negative:hover,
-					&.btn-negative:active,
-					&.btn-negative:focus  {
+
+					&.btn-positive:hover,
+					&.btn-positive:active,
+					&.btn-positive:focus {
+						background: #4f9a01!important;
+						border-top: 2px solid lighten(#8fc33c,5%);
+					}
+
+					&.btn-negative {
 						background: #d6422b!important;
 						border-bottom: none;
 						border-top: 2px solid #fa8667;
 						color: white;
 					}
+
+					&.btn-negative:hover,
+					&.btn-negative:active,
+					&.btn-negative:focus  {
+						background: #dc4730!important;
+						border-top: 2px solid lighten(#fa8667,5%);
+					}
+
 					&.highlow-up {
 						&:before {
 							.sprite(@highlow-up);
@@ -459,88 +504,6 @@
 					// 	}
 					// }
 				}
-
-				 /* ver 1: FAIL */
-				// &.btn-positive,
-				// &.btn-negative {
-				// 	background-color: #1B1B1B;
-				// 	border-bottom-color: #101010;
-				// }
-
-				// &.highlow-up {
-				// 	&:before {
-				// 		.sprite(@up);
-				// 	}
-				// }
-				// &.highlow-down {
-				// 	&:before {
-				// 		.sprite(@down);
-				// 	}
-				// }
-
-				// &.btn-positive {
-				// 	color: @positive-color;
-				// }
-				// &.btn-negative {
-				// 	color: @negative-color;
-				// }
-				// &:hover {
-				// 	color: white;
-				// 	&.btn-positive {
-				// 		color: white;
-				// 	}
-				// 	&.btn-negative {
-				// 		color: white;
-				// 	}
-				// 	&.highlow-up {
-				// 		&:before {
-				// 			.sprite(@highlow-up);
-				// 		}
-				// 	}
-				// 	&.highlow-down {
-				// 		&:before {
-				// 			.sprite(@highlow-down);
-				// 		}
-				// 	}
-				// }
-				// &.active {
-				// 	&.btn-positive,
-				// 	&.btn-positive:hover {
-				// 		background: @positive-color!important;
-				// 		border-bottom-color: @positive-shadow!important;
-				// 		color: white;
-				// 	}
-				// 	&.btn-negative,
-				// 	&.btn-negative:hover  {
-				// 		background: @negative-color!important;
-				// 		border-bottom-color: @negative-shadow!important;
-				// 		color: white;
-				// 	}
-				// 	&.highlow-up {
-				// 		&:before {
-				// 			.sprite(@highlow-up);
-				// 		}
-				// 	}
-				// 	&.highlow-down {
-				// 		&:before {
-				// 			.sprite(@highlow-down);
-				// 		}
-				// 	}
-				// 	// &.btn-positive {
-				// 	// 	background-color: #69a707;
-				// 	// 	border-color: @positive-color;
-				// 	// 	&:hover {
-				// 	// 		background-color: @positive-color!important;
-				// 	// 	}
-				// 	// }
-				// 	// &.btn-negative {
-				// 	// 	background-color: #d52f15;
-				// 	// 	border-color: @negative-color;
-				// 	// 	&:hover {
-				// 	// 		background-color: @negative-color!important;
-				// 	// 	}
-				// 	// }
-				// }
 			}
 		}
 		.trading-platform-main-controls-place-bet {

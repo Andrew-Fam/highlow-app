@@ -4,6 +4,10 @@
 		"selected_items":
 		[
 			[
+				"highlow",
+				"highlow-up"
+			],
+			[
 				"high",
 				"highcharts"
 			],
@@ -371,38 +375,41 @@
 			"file": "common/less/main.less",
 			"settings":
 			{
-				"buffer_size": 974,
+				"buffer_size": 1009,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "common/scripts/src/highlow-market-simulator.js",
+			"contents": "Searching 16 files for \"addClass('active')\" (case sensitive)\n\n/Users/apham/development/highlow/highlow-app/common/scripts/src/highlow-bet.js:\n  276  				$(this).removeClass('active');\n  277  			} else {\n  278: 				$(this).addClass('active');\n  279  			}\n  280  		});\n\n/Users/apham/development/highlow/highlow-app/common/scripts/src/highlow-favourite.js:\n  107  \n  108  			if($pages.length<=0) {\n  109: 				$page.addClass('active');\n  110  			} else {\n  111  \n  ...\n  186  \n  187  				if(i/self.itemPerPage==activePageIndex) {\n  188: 					$page.addClass('active');\n  189  				}\n  190  \n  ...\n  226  		if(activePageIndex<$pages.length) {\n  227  \n  228: 			$($pages[activePageIndex]).addClass('active').removeClass('prev').removeClass('next').css({left: '0px'});\n  229  \n  230  		} else {\n  231  \n  232: 			$($pages[activePageIndex-1]).addClass('active').removeClass('prev').removeClass('next').css({left: '0px'});\n  233  		}\n  234  \n\n/Users/apham/development/highlow/highlow-app/common/scripts/src/highlow-instrument-panel-slider.js:\n   43  				duration: highlowApp.instrumentPanelSlider.slidingTime,\n   44  				complete: function () {\n   45: 					$(this).addClass('active').removeClass('next');\n   46  					$(this).next('.page').addClass('next');\n   47  				}\n   ..\n   79  				duration: highlowApp.instrumentPanelSlider.slidingTime,\n   80  				complete: function () {\n   81: 					$(this).addClass('active').removeClass('prev');\n   82  					$(this).prev('.page').addClass('prev');\n   83  				}\n\n/Users/apham/development/highlow/highlow-app/common/scripts/src/highlow-one-click.js:\n   11  				$platform.removeClass(highlowApp.oneClick.className);\n   12  			} else {\n   13: 				$('.trading-platform-instrument-one-click-toggler').addClass('active');\n   14  				$platform.addClass(highlowApp.oneClick.className);\n   15  			}\n\n/Users/apham/development/highlow/highlow-app/common/scripts/src/highlow-tab.js:\n    6  			$($(event.target).closest('.tab-view-tab-selectors').find('.tab-view-tab-selector')).removeClass('active');\n    7  			\n    8: 			$($(this).data('target')).addClass('active');\n    9: 			$(this).addClass('active');\n   10  		});\n   11  \n\n10 matches across 5 files\n",
 			"settings":
 			{
-				"buffer_size": 17961,
+				"buffer_size": 2172,
+				"line_ending": "Unix",
+				"name": "Find Results",
+				"scratch": true
+			}
+		},
+		{
+			"file": "common/scripts/src/highlow-bet.js",
+			"settings":
+			{
+				"buffer_size": 8983,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "templates/index.liquid",
+			"file": "common/scripts/src/highlow-graph.js",
 			"settings":
 			{
-				"buffer_size": 29456,
+				"buffer_size": 24468,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "common/less/app/instrument-selector-widget.less",
+			"file": "common/less/app/trading-platform.less",
 			"settings":
 			{
-				"buffer_size": 3276,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"settings":
-			{
-				"buffer_size": 0,
+				"buffer_size": 11721,
 				"line_ending": "Unix"
 			}
 		}
@@ -447,10 +454,23 @@
 	},
 	"file_history":
 	[
+		"/Users/apham/development/highlow/highlow-app/common/scripts/src/highlow-favourite.js",
+		"/Users/apham/development/highlow/highlow-app/common/scripts/src/highlow-market-simulator.js",
+		"/Users/apham/development/highlow/highlow-app/templates/index.liquid",
+		"/Users/apham/development/highlow/highlow-app/common/less/app/instrument-selector-widget.less",
+		"/Users/apham/development/highlow/highlow-app/Gruntfile.js",
+		"/Users/apham/development/highlow/highlow-app/common/less/app/sell-popup.less",
+		"/Users/apham/development/highlow/highlow-app/common/less/base/typography.less",
+		"/Users/apham/development/highlow/highlow-app/common/scripts/src/highlow-bet.js",
+		"/Users/apham/development/highlow/highlow-app/common/less/components/common.less",
+		"/Users/apham/development/highlow/highlow-app/common/scripts/src/highlow-number-only.js",
+		"/Users/apham/development/highlow/highlow-app/common/less/components/btn.less",
+		"/Users/apham/development/highlow/highlow-app/common/scripts/src/highlow-heatmap.js",
+		"/Users/apham/development/highlow/highlow-app/build/common/less/main.less",
+		"/Users/apham/development/highlow/highlow-app/build/common/less/app/trading-platform.less",
 		"/Users/apham/development/highlow/public-page/public/css/highlow.less",
 		"/Users/apham/development/highlow/highlow-app/common/less/app/trading-app.less",
 		"/Users/apham/development/highlow/highlow-app/common/less/components/tab-view.variables.less",
-		"/Users/apham/development/highlow/highlow-app/common/less/app/instrument-selector-widget.less",
 		"/Users/apham/development/highlow/highlow-app/common/less/spritesheet.less",
 		"/Users/apham/development/highlow/highlow-app/common/less/components/instrument-panel.less",
 		"/Users/apham/development/highlow/highlow-app/common/less/components/instrument-panel.variables.less",
@@ -458,24 +478,17 @@
 		"/Users/apham/development/highlow/highlow-app/common/less/app/trading-platform.less",
 		"/Users/apham/development/highlow/highlow-app/common/less/app/live-graph.less",
 		"/Users/apham/development/highlow/highlow-app/common/scripts/src/highlow-graph.js",
-		"/Users/apham/development/highlow/highlow-app/common/scripts/src/highlow-heatmap.js",
-		"/Users/apham/development/highlow/highlow-app/common/scripts/src/highlow-bet.js",
 		"/Users/apham/development/highlow/highlow-app/common/less/components/table.less",
-		"/Users/apham/development/highlow/highlow-app/templates/index.liquid",
 		"/Users/apham/development/highlow/highlow-app/common/less/base/inline-icon.less",
 		"/Users/apham/development/highlow/public-page/templates/includes/main-navigation.liquid",
 		"/Users/apham/development/highlow/retainer-edm/html/japanese-5k.html",
 		"/Users/apham/development/highlow/highlow-app/common/less/app/investment-table.less",
 		"/Users/apham/development/highlow/highlow-app/common/less/components/tab-view.less",
 		"/Users/apham/development/highlow/highlow-app/common/less/main.less",
-		"/Users/apham/development/highlow/highlow-app/Gruntfile.js",
 		"/Users/apham/development/highlow/highlow-app/common/scripts/src/highlow-instrument-panel-collapser.js",
 		"/Users/apham/development/highlow/highlow-app/common/less/app/heatmap.less",
 		"/Users/apham/development/highlow/highlow-app/common/scripts/src/highlow-base.js",
-		"/Users/apham/development/highlow/highlow-app/common/scripts/src/highlow-market-simulator.js",
-		"/Users/apham/development/highlow/highlow-app/common/scripts/src/highlow-favourite.js",
 		"/Users/apham/Desktop/Two Melodies V",
-		"/Users/apham/development/highlow/highlow-app/common/less/app/sell-popup.less",
 		"/Users/apham/development/highlow/highlow-app/common/less/app/invest-popup.less",
 		"/Users/apham/development/highlow/highlow-app/common/less/base/colors.less",
 		"/Users/apham/development/highlow/public-page/templates/includes/faq.liquid",
@@ -483,10 +496,8 @@
 		"/Users/apham/development/highlow/highlow-app/common/scripts/src/highlow-instrument-panel-selector.js",
 		"/Users/apham/development/highlow/public-page/templates/includes/common-nav.liquid",
 		"/Users/apham/development/highlow/public-page/templates/includes/footer.liquid",
-		"/Users/apham/development/highlow/highlow-app/common/less/components/btn.less",
 		"/Users/apham/development/highlow/highlow-app/common/less/components/popup.less",
 		"/Users/apham/development/highlow/public-page/templates/trade-platform.liquid",
-		"/Users/apham/development/highlow/highlow-app/common/less/base/typography.less",
 		"/Users/apham/development/highlow/highlow-app/common/less/base/transition.less",
 		"/Users/apham/development/highlow/highlow-app/common/scripts/src/highlow-app-util.js",
 		"/Users/apham/development/highlow/highlow-app/common/less/components/dropdown.less",
@@ -504,7 +515,6 @@
 		"/Users/apham/development/highlow/highlow-app/common/scripts/src/highlow-one-click.js",
 		"/Users/apham/development/highlow/highlow-app/common/scripts/highlow-system-messages.js",
 		"/Users/apham/development/highlow/highlow-app/common/scripts/highlow-tab.js",
-		"/Users/apham/development/highlow/highlow-app/common/less/components/common.less",
 		"/Users/apham/development/highlow/highlow-app/common/scripts/highlow-base.js",
 		"/Users/apham/development/highlow/highlow-app/common/less/demo.less",
 		"/Users/apham/development/highlow/highlow-app/common/less/components/message.less",
@@ -571,10 +581,7 @@
 		"/Users/apham/development/highlow/affiliate/signup.html",
 		"/Users/apham/development/highlow/affiliate-project/build/assets/scripts/highlow-affiliate.js",
 		"/Users/apham/development/highlow/affiliate-project/assets/less/highlow/app-download.less",
-		"/Users/apham/development/highlow/affiliate-project/assets/less/highlow/kapitall-strip.less",
-		"/Users/apham/development/highlow/affiliate-project/assets/less/highlow/feature-row.less",
-		"/Users/apham/development/highlow/affiliate-project/assets/less/highlow/navbar.less",
-		"/Users/apham/development/highlow/affiliate-project/assets/less/highlow/modal.less"
+		"/Users/apham/development/highlow/affiliate-project/assets/less/highlow/kapitall-strip.less"
 	],
 	"find":
 	{
@@ -585,6 +592,8 @@
 		"height": 0.0,
 		"where_history":
 		[
+			"/Users/apham/development/highlow/highlow-app/common/scripts/src",
+			"/Users/apham/development/highlow/highlow-app/common/scripts",
 			"/Users/apham/development/highlow/highlow-app/common/less",
 			"/Users/apham/development/highlow/highlow-app/common/scripts/src",
 			"/Users/apham/development/highlow/highlow-app/common/less",
@@ -602,6 +611,16 @@
 		"case_sensitive": true,
 		"find_history":
 		[
+			"dead",
+			"console.log",
+			"up",
+			"removeClass('active",
+			"placeBet",
+			"addClass('active')",
+			"expiring",
+			".dead",
+			"down",
+			".highlow-low",
 			"Payout",
 			"margin-bottom: 4px;",
 			"margin-bottom: 3px;",
@@ -719,17 +738,7 @@
 			"finishTextLabel",
 			"finishLabelId",
 			"finishText",
-			"text",
-			"14",
-			"updateBet",
-			"INVEST",
-			"payout",
-			"popup",
-			"data-uid",
-			"close",
-			".close",
-			"one-",
-			"trading-platform-instrument-title"
+			"text"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -826,7 +835,7 @@
 	"groups":
 	[
 		{
-			"selected": 3,
+			"selected": 1,
 			"sheets":
 			[
 				{
@@ -834,15 +843,15 @@
 					"file": "common/less/main.less",
 					"settings":
 					{
-						"buffer_size": 974,
+						"buffer_size": 1009,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								203,
-								203
+								349,
+								349
 							]
 						],
 						"settings":
@@ -857,18 +866,97 @@
 				},
 				{
 					"buffer": 1,
-					"file": "common/scripts/src/highlow-market-simulator.js",
 					"settings":
 					{
-						"buffer_size": 17961,
+						"buffer_size": 2172,
+						"regions":
+						{
+							"match":
+							{
+								"flags": 112,
+								"regions":
+								[
+									[
+										222,
+										240
+									],
+									[
+										412,
+										430
+									],
+									[
+										544,
+										562
+									],
+									[
+										681,
+										699
+									],
+									[
+										833,
+										851
+									],
+									[
+										1154,
+										1172
+									],
+									[
+										1387,
+										1405
+									],
+									[
+										1726,
+										1744
+									],
+									[
+										2066,
+										2084
+									],
+									[
+										2104,
+										2122
+									]
+								],
+								"scope": ""
+							}
+						},
+						"selection":
+						[
+							[
+								464,
+								464
+							]
+						],
+						"settings":
+						{
+							"detect_indentation": false,
+							"output_tag": 1,
+							"result_base_dir": "",
+							"result_file_regex": "^([A-Za-z\\\\/<].*):$",
+							"result_line_regex": "^ +([0-9]+):",
+							"scroll_past_end": true,
+							"syntax": "Packages/Default/Find Results.hidden-tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "common/scripts/src/highlow-bet.js",
+					"settings":
+					{
+						"buffer_size": 8983,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								14608,
-								14608
+								7757,
+								7757
 							]
 						],
 						"settings":
@@ -877,61 +965,34 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 7820.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "templates/index.liquid",
-					"settings":
-					{
-						"buffer_size": 29456,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								21612,
-								21612
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Liquid/Syntaxes/HTML Liquid.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 6256.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 3,
-					"file": "common/less/app/instrument-selector-widget.less",
+					"file": "common/scripts/src/highlow-graph.js",
 					"settings":
 					{
-						"buffer_size": 3276,
+						"buffer_size": 24468,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								113,
-								113
+								16926,
+								16960
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/LESS/LESS.tmLanguage",
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 9734.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -944,25 +1005,27 @@
 			[
 				{
 					"buffer": 4,
+					"file": "common/less/app/trading-platform.less",
 					"settings":
 					{
-						"buffer_size": 0,
+						"buffer_size": 11721,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								2907,
+								2907
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Text/Plain text.tmLanguage"
+							"syntax": "Packages/LESS/LESS.tmLanguage",
+							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 1570.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -998,7 +1061,7 @@
 		"cols":
 		[
 			0.0,
-			0.602236283362,
+			0.435559581371,
 			1.0
 		],
 		"rows":
@@ -1033,6 +1096,6 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 298.0,
+	"side_bar_width": 432.0,
 	"status_bar_visible": true
 }

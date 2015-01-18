@@ -19,4 +19,5 @@ $(function () {
 	highlowApp.heatmap.init();
 	highlowApp.tooltip.init(1000);
 	highlowApp.numberOnly.init();
+	highlowApp.balanceWidget.init();
 });

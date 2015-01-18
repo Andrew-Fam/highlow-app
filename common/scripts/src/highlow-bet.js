@@ -170,6 +170,16 @@ highlowApp.betSystem = {
 	},
 	confirmBet : function (bet,point,type){
 		$('.trading-select-direction-'+type+'-'+bet).click();
+
+
+		if(bet=='high') {
+			$('.trading-platform-main-controls-select-direction .btn.highlow-up').addClass('active').removeClass('in-active');
+			$('.trading-platform-main-controls-select-direction .btn.highlow-down').removeClass('active').addClass('in-active');
+		} else {
+			$('.trading-platform-main-controls-select-direction .btn.highlow-down').addClass('active').removeClass('in-active');
+			$('.trading-platform-main-controls-select-direction .btn.highlow-up').removeClass('active').addClass('in-active');
+		}
+		
 		$('.trading-platform-invest-popup'+'.'+type).removeClass('concealed');
 	},
 	placeBet : function (bet,type) {
@@ -270,18 +280,24 @@ highlowApp.betSystem = {
 
 		var self = this;
 
-		$('.trading-platform-main-controls-select-direction .btn').click(function(){
-			$('.trading-platform-main-controls-select-direction .btn').removeClass('active').addClass('in-active');
-
-
+		$('.trading-platform-main-controls-select-direction .btn').on('mousedown',function(){
+			
 
 			if($(this).hasClass('active')) {
-				$(this).removeClass('active');
+				$('.trading-platform-main-controls-select-direction .btn').removeClass('active').removeClass('in-active');
+
+				$('.trading-platform-main-controls-place-bet').data("disabled",true);
+
 			} else {
+
+				$('.trading-platform-main-controls-place-bet').data("disabled",false);
+
 				if($(this).hasClass('highlow-up')) {
 					$('.trading-platform-main-controls-select-direction .btn.highlow-up').addClass('active').removeClass('in-active');
+					$('.trading-platform-main-controls-select-direction .btn.highlow-down').removeClass('active').addClass('in-active');
 				} else {
 					$('.trading-platform-main-controls-select-direction .btn.highlow-down').addClass('active').removeClass('in-active');
+					$('.trading-platform-main-controls-select-direction .btn.highlow-up').removeClass('active').addClass('in-active');
 				}
 			}
 		});
@@ -292,7 +308,7 @@ highlowApp.betSystem = {
 			var direction = $('input:radio[name="'+$(this).data('direction')+'"]:checked').val();
 			var type = $(this).data('type');
 
-			if(!direction || direction =="") {
+			if($(this).data('disabled') || !direction || direction =="") {
 				console.log('Please select high or low');
 				return;
 			}

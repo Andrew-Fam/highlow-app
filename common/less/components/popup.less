@@ -21,6 +21,11 @@
 	z-index: 999999;
 	.opacity(100);
 	.transition(@trading-platform-popup-transition);
+	&.overlay {
+		height: 100%;
+		width: 100%;
+		background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAAtJREFUCNdjYLgGAADZANeBDv3/AAAAAElFTkSuQmCC);
+	}
 	&.concealed {
 		.opacity(00);
 		z-index: -1;

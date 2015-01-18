@@ -42,3 +42,34 @@ h5 {
 footer {
 	padding-bottom: 6em;
 }
+
+#account-menu-bar {
+	#account-balance {
+		&.open {
+			.dropdown-menu {
+				.btn-group {
+					.deposit {
+						&:before {
+							.sprite(@deposit);
+						}
+						&:hover {
+							&:before {
+								.sprite(@deposit-hover);
+							}
+						}
+					}
+					.withdraw {
+						&:before {
+							.sprite(@withdraw);
+						}
+						&:hover {
+							&:before {
+								.sprite(@withdraw-hover);
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}

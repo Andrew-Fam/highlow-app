@@ -23,6 +23,15 @@ highlowApp.graph = {
 		this.graphs['spread'] = Highcharts.charts[$("#spread-graph").data('highchartsChart')];
 		this.graphs['on-demand'] = Highcharts.charts[$("#on-demand-graph").data('highchartsChart')];
 		this.graphs['spread-on-demand'] = Highcharts.charts[$("#spread-on-demand-graph").data('highchartsChart')];
+
+
+
+		this.mouse = {x:0,y:0};
+		var self = this;
+		$(document).on('mousemove', function(e){
+			self.mouse.x = e.clientX || e.pageX; 
+    		self.mouse.y = e.clientY || e.pageY;
+		});
 	},
 	isOneClick: function(model) {
 		var $mainView = $("#"+model.type+"-main-view");
@@ -49,8 +58,26 @@ highlowApp.graph = {
 	},
 	loadInstrument: function (model) {
 
+		$('.trading-platform-main-controls-select-direction .btn').removeClass('active').removeClass('in-active');
+		
 		var currentTime = new Date().getTime();
+		var type = model.type;
 
+		var symbols = this.onGraphUI;
+		
+		// remove old button added with the last data point
+
+		if(symbols[type]) {
+			if(symbols[type].highButton) {
+				symbols[type].highButton.destroy();
+				symbols[type].highButton = undefined;
+			}
+			
+			if(symbols[type].lowButton) {
+				symbols[type].lowButton.destroy();
+				symbols[type].lowButton = undefined;
+			}
+		}
 		
 
 		$('#'+model.type+"-graph").highcharts().destroy();
@@ -368,15 +395,15 @@ highlowApp.graph = {
 		// remove old button added with the last data point
 
 		
-		if(symbols[type].highButton) {
-			symbols[type].highButton.destroy();
-			symbols[type].highButton = undefined;
-		}
+		// if(symbols[type].highButton) {
+		// 	symbols[type].highButton.destroy();
+		// 	symbols[type].highButton = undefined;
+		// }
 		
-		if(symbols[type].lowButton) {
-			symbols[type].lowButton.destroy();
-			symbols[type].lowButton = undefined;
-		}
+		// if(symbols[type].lowButton) {
+		// 	symbols[type].lowButton.destroy();
+		// 	symbols[type].lowButton = undefined;
+		// }
 
 		if(symbols[type].lowRate) {
 			symbols[type].lowRate.destroy();
@@ -524,149 +551,164 @@ highlowApp.graph = {
 			}
 		}
 
+		var highButtonId = 'in-chart-'+type+'-high-bet',
+				lowButtonId = 'in-chart-'+type+'-low-bet';
 
 
 		// only render button if the instrument is not dead yet
 
 		if(!model.dead) {
 
-			var high = {},
-			low = {};
-			
-
-			var highButtonId = 'in-chart-'+type+'-high-bet',
-			lowButtonId = 'in-chart-'+type+'-low-bet';
-
-		
-			// now render the 2 buttons
-
-
-
-
-			if(symbols.highBetButtonHover) {
-				if(type.indexOf("spread")>=0) {
-					high = renderer.image('common/images/graph-up-spread-hover.png',highX,highY, 96, 27);
-				} else {
-					high = renderer.image('common/images/graph-up-hover.png',highX,highY, 27, 27);
-				}
-			} else {
-				if(type.indexOf("spread")>=0) {
-					high = renderer.image('common/images/graph-up-spread.png',highX,highY, 96, 27);
-				} else {
-					high = renderer.image('common/images/graph-up.png',highX,highY, 27, 27);
-				}
-			}
-
-		
-
-			
-
-			high.attr({
-				zIndex:'10',
-				id: highButtonId
-			});
-
-			high.on('click', function () {
-				// if(!highlowApp.graph.isOneClick(model)) {
-					highlowApp.betSystem.confirmBet('high',point,model.type);
-				// } else {
-				// 	highlowApp.betSystem.placeBet('high',model.type);
-				// }
-
-			});
-
-
-			high.on('mouseover', function () {
-				symbols.highBetButtonHover = true;
-				if(type.indexOf("spread")>=0) {
-					$('#'+highButtonId).attr('href','common/images/graph-up-spread-hover.png');
-				} else {
-					$('#'+highButtonId).attr('href','common/images/graph-up-hover.png');
-				}
-			});
-
-			high.on('mouseout', function () {
-				symbols.highBetButtonHover = false;
-				if(type.indexOf("spread")>=0) {
-					$('#'+highButtonId).attr('href','common/images/graph-up-spread.png');
-				} else {
-					$('#'+highButtonId).attr('href','common/images/graph-up.png');
-				}
-			});
-
-			// add click handler
-
-			high.add();
-
-			high.css({
-				"cursor" : "pointer"
-			});
-
-			symbols[type].highButton = high;
-
-			// 
-
-			if(symbols.lowBetButtonHover) {
+			if(!symbols[type].highButton) {
+				console.log('recreate on graph buttons');
+				var high = {},
+				low = {};
 				
-				if(type.indexOf("spread")>=0) {
-					low = renderer.image('common/images/graph-down-spread-hover.png',lowX,lowY, 96, 27);
-				} else {
-					low = renderer.image('common/images/graph-down-hover.png',lowX,lowY, 27, 27);
-				}
-			} else {
-				if(type.indexOf("spread")>=0) {
-					low = renderer.image('common/images/graph-down-spread.png',lowX,lowY, 96, 27);
-				} else {
-					low = renderer.image('common/images/graph-down.png',lowX,lowY, 27, 27);
-				}
-			}
+
+				
+
+				// now render the 2 buttons
 
 
+
+
+				if(symbols.highBetButtonHover) {
+					if(type.indexOf("spread")>=0) {
+						high = renderer.image('common/images/graph-up-spread-hover.png',highX,highY, 96, 27);
+					} else {
+						high = renderer.image('common/images/graph-up-hover.png',highX,highY, 27, 27);
+					}
+				} else {
+					if(type.indexOf("spread")>=0) {
+						high = renderer.image('common/images/graph-up-spread.png',highX,highY, 96, 27);
+					} else {
+						high = renderer.image('common/images/graph-up.png',highX,highY, 27, 27);
+					}
+				}
 
 			
 
+				
+
+				high.attr({
+					zIndex:'10',
+					id: highButtonId
+				});
+
+				high.on('click', function () {
+					// if(!highlowApp.graph.isOneClick(model)) {
+						highlowApp.betSystem.confirmBet('high',point,model.type);
+					// } else {
+					// 	highlowApp.betSystem.placeBet('high',model.type);
+					// }
+
+				});
 
 
-			low.attr({
-				zIndex:'10',
-				id: lowButtonId
-			});
+				high.on('mouseover', function () {
+					symbols.highBetButtonHover = true;
+					if(type.indexOf("spread")>=0) {
+						$('#'+highButtonId).attr('href','common/images/graph-up-spread-hover.png');
+					} else {
+						$('#'+highButtonId).attr('href','common/images/graph-up-hover.png');
+					}
+				});
 
-			low.on('click', function () {
-				// if(!highlowApp.graph.isOneClick(model)) {
-					highlowApp.betSystem.confirmBet('low',point,model.type);
-				// } else {
-				// 	highlowApp.betSystem.placeBet('low',model.type);
-				// }
-			})
+				high.on('mouseleave', function () {
+					symbols.highBetButtonHover = false;
+					if(type.indexOf("spread")>=0) {
+						$('#'+highButtonId).attr('href','common/images/graph-up-spread.png');
+					} else {
+						$('#'+highButtonId).attr('href','common/images/graph-up.png');
+					}
+				});
 
-			low.on('mouseover', function () {
-				symbols.lowBetButtonHover = true;
-				if(type.indexOf("spread")>=0) {
-					$('#'+lowButtonId).attr('href','common/images/graph-down-spread-hover.png');
+				// add click handler
+
+				high.add();
+
+				high.css({
+					"cursor" : "pointer"
+				});
+
+				symbols[type].highButton = high;
+
+				// 
+
+				if(symbols.lowBetButtonHover) {
+					
+					if(type.indexOf("spread")>=0) {
+						low = renderer.image('common/images/graph-down-spread-hover.png',lowX,lowY, 96, 27);
+					} else {
+						low = renderer.image('common/images/graph-down-hover.png',lowX,lowY, 27, 27);
+					}
 				} else {
-					$('#'+lowButtonId).attr('href','common/images/graph-down-hover.png');
+					if(type.indexOf("spread")>=0) {
+						low = renderer.image('common/images/graph-down-spread.png',lowX,lowY, 96, 27);
+					} else {
+						low = renderer.image('common/images/graph-down.png',lowX,lowY, 27, 27);
+					}
 				}
-			});
 
-			low.on('mouseout', function () {
-				symbols.lowBetButtonHover = false;
-				if(type.indexOf("spread")>=0) {
-					$('#'+lowButtonId).attr('href','common/images/graph-down-spread.png');
-				} else {
-					$('#'+lowButtonId).attr('href','common/images/graph-down.png');
-				}
-			});
 
-			// add click handler
 
-			low.add();
+				
 
-			low.css({
-				"cursor" : "pointer"
-			});
 
-			symbols[type].lowButton = low;
+
+				low.attr({
+					zIndex:'10',
+					id: lowButtonId
+				});
+
+				low.on('click', function () {
+					// if(!highlowApp.graph.isOneClick(model)) {
+						highlowApp.betSystem.confirmBet('low',point,model.type);
+					// } else {
+					// 	highlowApp.betSystem.placeBet('low',model.type);
+					// }
+				})
+
+				low.on('mouseover', function () {
+					symbols.lowBetButtonHover = true;
+					if(type.indexOf("spread")>=0) {
+						$('#'+lowButtonId).attr('href','common/images/graph-down-spread-hover.png');
+					} else {
+						$('#'+lowButtonId).attr('href','common/images/graph-down-hover.png');
+					}
+				});
+
+				low.on('mouseleave', function () {
+					symbols.lowBetButtonHover = false;
+					if(type.indexOf("spread")>=0) {
+						$('#'+lowButtonId).attr('href','common/images/graph-down-spread.png');
+					} else {
+						$('#'+lowButtonId).attr('href','common/images/graph-down.png');
+					}
+				});
+
+				// add click handler
+
+				low.add();
+
+				low.css({
+					"cursor" : "pointer"
+				});
+
+				symbols[type].lowButton = low;
+			} else {
+				symbols[type].lowButton.attr({
+					x: lowX,
+					y: lowY
+				});
+				symbols[type].highButton.attr({
+					x: highX,
+					y: highY
+				});
+			}
+
+
+			
 
 			if(type.indexOf("spread")>=0) {
 				var highRate = renderer.text('<div class="on-graph-button">'+(point.y+0.005).toFixed(3)+'</div>',highX+27,highY+19);
@@ -677,6 +719,23 @@ highlowApp.graph = {
 					// 	highlowApp.betSystem.placeBet('high',model.type);
 					// }
 				})
+				highRate.on('mouseover', function () {
+					symbols.highBetButtonHover = true;
+					if(type.indexOf("spread")>=0) {
+						$('#'+highButtonId).attr('href','common/images/graph-up-spread-hover.png');
+					} else {
+						$('#'+highButtonId).attr('href','common/images/graph-up-hover.png');
+					}
+				});
+
+				highRate.on('mouseleave', function () {
+					symbols.highBetButtonHover = false;
+					if(type.indexOf("spread")>=0) {
+						$('#'+highButtonId).attr('href','common/images/graph-up-spread.png');
+					} else {
+						$('#'+highButtonId).attr('href','common/images/graph-up.png');
+					}
+				});
 				highRate.attr({
 					zIndex:'10',
 					id:'in-chart-spread-high-bet-rate'
@@ -696,6 +755,23 @@ highlowApp.graph = {
 					// 	highlowApp.betSystem.placeBet('low',model.type);
 					// }
 				});
+				lowRate.on('mouseover', function () {
+					symbols.lowBetButtonHover = true;
+					if(type.indexOf("spread")>=0) {
+						$('#'+lowButtonId).attr('href','common/images/graph-down-spread-hover.png');
+					} else {
+						$('#'+lowButtonId).attr('href','common/images/graph-down-hover.png');
+					}
+				});
+
+				lowRate.on('mouseleave', function () {
+					symbols.lowBetButtonHover = false;
+					if(type.indexOf("spread")>=0) {
+						$('#'+lowButtonId).attr('href','common/images/graph-down-spread.png');
+					} else {
+						$('#'+lowButtonId).attr('href','common/images/graph-down.png');
+					}
+				});
 				lowRate.css({
 					"cursor" : "pointer",
 					"font-size" : "16px;",
@@ -714,6 +790,16 @@ highlowApp.graph = {
 			}
 
 
+		} else {
+			if(symbols[type].highButton) {
+				symbols[type].highButton.destroy();
+				symbols[type].highButton = undefined;
+			}
+			
+			if(symbols[type].lowButton) {
+				symbols[type].lowButton.destroy();
+				symbols[type].lowButton = undefined;
+			}
 		}
 
 
