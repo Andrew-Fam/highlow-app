@@ -1,0 +1,135 @@
+@orange-juice: #ffe048;
+@watermelon: #e55858;
+@melon: #68c093;
+
+@message-body-padding: 25px 48px 24px;
+.animated {
+  -webkit-animation-duration: 0.5s;
+          animation-duration: 0.5s;
+  -webkit-animation-fill-mode: both;
+          animation-fill-mode: both;
+}
+@-webkit-keyframes shake {
+  0%, 100% {
+    -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+  }
+
+  40%, 80% {
+    -webkit-transform: translate3d(-5px, 0, 0);
+            transform: translate3d(-5px, 0, 0);
+  }
+
+  20%, 60% {
+    -webkit-transform: translate3d(5px, 0, 0);
+            transform: translate3d(5px, 0, 0);
+  }
+}
+
+@keyframes shake {
+  0%, 100% {
+    -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+  }
+
+  40%, 80% {
+    -webkit-transform: translate3d(-5px, 0, 0);
+            transform: translate3d(-5px, 0, 0);
+  }
+
+  20%, 60% {
+    -webkit-transform: translate3d(5px, 0, 0);
+            transform: translate3d(5px, 0, 0);
+  }
+}
+
+.shake {
+  -webkit-animation-name: shake;
+          animation-name: shake;
+}
+
+.message-wrapper {
+
+	.clearfix();
+
+	height: 58px;
+	line-height: 58px;
+	position: absolute;
+	top: 0;
+	color: white;
+	text-align: right;
+	width: 591px;
+	left: 280px;
+	.opacity(00);
+	transition: all 0.2s cubic-bezier(.59,0,.25,1.47);
+	-webkit-transition: all 0.2s cubic-bezier(.59,0,.25,1);
+	-webkit-transition: all 0.2s cubic-bezier(.59,0,.25,1.47);
+
+	-webkit-backface-visibility: hidden; /* Chrome, Safari, Opera */
+   	backface-visibility: hidden;
+-webkit-perspective: 1000;
+perspective: 1000;
+	.message {
+		display: inline-block;
+		font-size: 14px;
+		font-weight: 400;
+		&:before {
+			content: "";
+			display: inline-block;
+			margin-right: 10px;
+		}
+	}
+	.close {
+		position: absolute;
+		right: 0px;
+		top: 8px;
+		cursor: pointer;
+		z-index: 1;
+		.opacity(100);
+		.block-icon();
+	}
+
+	&.display {
+		margin-top: 0;
+		z-index: 1;
+		.opacity(100);
+	}
+
+	&.fail {
+		color: @watermelon;
+		&:extend(.animated);
+		&:extend(.shake);
+		.close {
+			.sprite(@error-close);
+		}
+		.message {
+			&:before {
+				.sprite(@error-icon);
+			}
+		}
+	}
+	&.warning {
+		color: @orange-juice;
+		&:extend(.animated);
+		&:extend(.shake);
+		.close {
+			.sprite(@warning-close);
+		}
+		.message {
+			&:before {
+				.sprite(@warning-icon);
+			}
+		}
+	}
+	&.success {
+		color: @melon;
+		.close {
+			.sprite(@success-close);
+		}
+		.message {
+			&:before {
+				.sprite(@success-icon);
+			}
+		}
+	}
+}

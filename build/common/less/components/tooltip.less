@@ -1,0 +1,114 @@
+@tooltip-bg: @elephant;
+@tooltip-shadow: black;
+@tooltip-shadow-opacity: 0.1;
+@tooltip-padding: 15px;
+@tooltip-shadow-distance: 4px;
+.tooltip {
+	position: absolute;
+	display: none;
+	width: 156px;
+	left: -166px;
+	background-color: @tooltip-bg;
+	padding: @tooltip-padding;
+	font-size: 11px;
+	line-height: 15px;
+	box-shadow: @tooltip-shadow-distance @tooltip-shadow-distance 0px 0px rgba(red(@tooltip-shadow), green(@tooltip-shadow), blue(@tooltip-shadow),@tooltip-shadow-opacity);
+	z-index: 99999;
+	.title {
+		font-size: 13px;
+		line-height: auto;
+		font-weight: bold;
+		margin-bottom: 4px;
+	}
+
+
+	&.trader-choice {
+		@media (max-width: 1466px) {
+			left: 50%;
+			margin-left: -@tooltip-padding - 10px;
+			top: auto;
+			bottom: 100%;
+			margin-bottom: 20px;
+			&:after,
+			&:before {
+				bottom: -20px;
+				top: auto;
+				left: @tooltip-padding;
+				right: auto;
+				border-color: transparent;
+			}
+
+			&:after {
+				border-top-color: @tooltip-bg;
+			}
+			&:before {
+				border-top-color: @tooltip-shadow;
+				margin: 0;
+				bottom: -24px;
+				margin-left: 4px;
+			}
+		}
+	}
+
+	.instrument-panel-favourite & {
+		left: 50%;
+		margin-left: -@tooltip-padding - 10px;
+		top: auto;
+		bottom: 100%;
+		margin-bottom: 20px;
+		&:after,
+		&:before {
+			bottom: -20px;
+			top: auto;
+			left: @tooltip-padding;
+			right: auto;
+			border-color: transparent;
+		}
+
+		&:after {
+			border-top-color: @tooltip-bg;
+		}
+		&:before {
+			border-top-color: @tooltip-shadow;
+			margin: 0;
+			bottom: -24px;
+			margin-left: 4px;
+			}
+	}
+
+	&.one-touch {
+		top: -@tooltip-padding;
+		left: -176px;
+	}
+
+	&:hover {
+		display: block;
+	}
+	
+	&:after,
+	&:before {
+		top: @tooltip-padding;
+		right: -20px;
+		position: absolute;
+		content: "";
+		display: block;
+		height: 0;
+		width: 0;
+		border-width: 10px;
+		border-style: solid;
+		border-color: transparent;
+	}
+
+	&:after {
+		z-index: 2;
+		border-left-color: @tooltip-bg;
+	}
+
+	&:before {
+		z-index: 1;
+		.opacity(@tooltip-shadow-opacity*100);
+		border-left-color: @tooltip-shadow;
+		margin-right: -@tooltip-shadow-distance;
+		margin-top: @tooltip-shadow-distance;
+	}
+}

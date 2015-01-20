@@ -1,0 +1,32 @@
+.page-container {
+	display: block;
+	overflow: hidden;
+	position: relative;
+}
+	.pages-wrapper {
+		position: relative;
+		top: 0;
+		width: 100%;
+	}
+		.page {
+			display: none;
+			left: 0;
+			position: absolute;
+			top: 0;
+			&.active {
+				display: block;
+				left: 0%;
+				position: relative;
+				width: 100%;
+			}
+			&.prev {
+				display: block;
+				left: -100%;
+				position: absolute;
+			}
+			&.next {
+				display: block;
+				left: 100%;
+				position: absolute;
+			}
+		}

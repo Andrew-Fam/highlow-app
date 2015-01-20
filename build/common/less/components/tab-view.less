@@ -1,0 +1,126 @@
+@import "tab-view.variables.less";
+
+.tab-view {
+	display: block;
+	position: relative;
+	>.tab-view-tab-selectors-container-wrapper {
+		position: relative;
+		z-index: 1;
+		.clearfix();
+		> .tab-view-tab-selectors-container {
+			display: table;
+			position: relative;
+			border-spacing: 0;
+    		border-collapse: collapse;
+		
+			> .tab-view-tab-selectors {
+				display: table-row;
+				padding: 0px;
+				position: relative;
+			}
+				.tab-view-tab-selector {
+					border-right: 0.27em solid transparent;
+					cursor: pointer;
+					display: table-cell;
+					font-size: @tab-view-selector-font-size;
+					line-height: 1em;
+					min-width: 12.72em;
+					padding: @tab-view-selector-padding;
+					position: relative;
+					text-align: center;
+					vertical-align: middle;
+					.transition(all 0.2s ease);
+					&:last-child {
+						border-right: none;
+					}
+				}
+		}
+	}
+		
+	> .tab-view-body-wrapper {
+		position: relative;
+		.clearfix();
+		> .tab-view-body {
+			display: block;
+			position: relative;
+			.clearfix();
+			> .tab-view-panel {
+				.clearfix();
+				.transition(all 0.2s ease);
+				.opacity(00);
+				width: 100%;
+				padding: @tab-view-default-body-padding;
+				position: absolute;
+				top: 0;
+				z-index: -1;
+				&.active {
+					.opacity(100);
+					position: relative;
+					z-index: 0;
+				}
+			}
+		}
+	}
+}
+
+.tab-view-tab-selectors-container.tab-full-width {
+	width: 100%;
+}
+
+.tab-view.tab-view-default {
+	> .tab-view-tab-selectors-container-wrapper {
+		> .tab-view-tab-selectors-container {
+			background: none;
+		 	.tab-view-tab-selectors {
+				background: none;
+				.tab-view-tab-selector {
+					background-color: @tab-view-default-selector-bg;
+					color: @tab-view-default-selector-fg;
+					&:hover {
+						color: white;
+					}
+					&.active {
+						background-color: @tab-view-default-active-selector-bg;
+						color: @tab-view-default-active-selector-fg;
+					}
+				}
+			}
+		}
+	}
+	
+	> .tab-view-body-wrapper {
+		> .tab-view-body {
+			background-color: @tab-view-default-body-bg;
+		}
+	}
+}
+
+.tab-view.tab-view-alternate {
+	> .tab-view-tab-selectors-container-wrapper {
+		background-color: @charcoal;
+		> .tab-view-tab-selectors-container {
+			background: @charcoal;
+			> .tab-view-tab-selectors {
+				background: none;
+				> .tab-view-tab-selector {
+					background-color: @elephant;
+					color: @light-grey;
+					&.active {
+						background-color: @night;
+						color: white;
+					}
+					&:hover {
+						color: white;
+					}
+				}
+			}
+		}
+	}
+		
+	> .tab-view-body-wrapper { 
+		> .tab-view-body {
+			background-color: @night;
+		}
+	}
+}
+

@@ -1,0 +1,86 @@
+html {
+	background-color: @night;
+}
+
+.message-triggers {
+	position: absolute;
+	width: 200px;
+	top: 20%;
+	height: 60%;
+	left: 0;
+	background: white;
+	z-index: 1000;
+	background-color: @night;
+	box-shadow: 0 0 1 0 @ink;
+	transition: left 0.2s ease;
+	color: #868686;
+	.wrapper {
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		top: 0;
+		left: 0;
+		overflow: auto;
+	}
+	.toggle {
+		position: absolute;
+		top: 0;
+		right: -(@arrow-left-width+20px);
+		height: @arrow-left-height+20px;
+		width: @arrow-left-width+20px;
+		padding: 10px;
+		background-color: @night;
+		cursor: pointer;
+		&:hover {
+			background-color: lighten(@night, 2%);
+		}
+		&:before {
+			content: "";
+			display: inline-block;
+			.sprite(@arrow-left);
+		}
+	}
+	&.tucked-away {
+		left: -200px;
+		.toggle {
+
+			&:before {
+				content: "";
+				display: inline-block;
+				.sprite(@arrow-right);
+			}
+			
+		}
+	}
+}
+
+.message-trigger-type {
+	padding: 10px;
+
+}
+	.message-trigger-type-title {
+		text-transform: uppercase;
+		padding: 10px;
+		margin-bottom: 2px;
+		.fail & {
+			background-color: @watermelon;
+		}
+
+		.warning & {
+			background-color: @orange-juice;
+		}
+
+		.success & {
+			background-color: @melon;
+		}
+	}
+		.message-trigger {
+			background-color: lighten(@night,4%);
+			padding: 10px;
+			cursor: pointer;
+			margin-bottom: 2px;
+			&:hover {
+				background-color: lighten(@night, 6%);
+				color: white;
+			}
+		}	

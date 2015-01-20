@@ -1,0 +1,39 @@
+@invest-popup-width: 323px;
+@invest-popup-color: white;
+
+.trading-platform-invest-popup {
+	.trading-platform-popup {
+		margin: 0 auto;
+		width: @invest-popup-width;
+	}
+
+	.none-one-click-control {
+		.btn {
+			padding-bottom: 6px;
+			&:last-child {
+				padding-bottom: 20px;
+			}
+		}
+	}
+	.one-click-control {
+		display: none!important;
+	}
+	&.one-click {
+		.one-click-control {
+			display: block!important;
+		}
+		.none-one-click-control {
+			display: none!important;
+		}
+	}
+}
+	.trading-platform-invest-popup-live-rate {
+		.clearfix();
+		font-size: 16px;
+		line-height: 30px;
+	}
+	.trading-platform-invest-popup-payout {
+		.clearfix();
+
+		margin-bottom: 12px;
+	}

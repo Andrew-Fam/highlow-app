@@ -1,0 +1,75 @@
+@import "base/reset.less";
+@import "base/variables.less";
+@import "base/typography.less";
+@import "spritesheet.less";
+@import "base/helper.less";
+/* mixins */
+
+@import "base/mixins.less";
+
+/* components */
+
+@import "components/common.less";
+@import "components/instrument-panel.less";
+@import "components/tab-view.less";
+@import "components/dropdown.less";
+@import "components/panel.less";
+@import "components/btn.less";
+@import "components/table.less";
+@import "components/popup.less";
+@import "components/page.less";
+@import "components/message.less";
+@import "components/tooltip.less";
+/* app style */
+
+@import "app/instrument-selector-widget.less";
+@import "app/trading-platform.less";
+@import "app/trading-app.less";
+@import "app/live-graph.less";
+@import "app/investment-table.less";
+@import "app/invest-popup.less";
+@import "app/sell-popup.less";
+@import "app/heatmap.less";
+@import "demo.less";
+
+
+/* fix for integration into public */
+
+h5 {
+	margin-bottom: 0.723em;
+}
+
+footer {
+	padding-bottom: 6em;
+}
+
+#account-menu-bar {
+	#account-balance {
+		&.open {
+			.dropdown-menu {
+				.btn-group {
+					.deposit {
+						&:before {
+							.sprite(@deposit);
+						}
+						&:hover {
+							&:before {
+								.sprite(@deposit-hover);
+							}
+						}
+					}
+					.withdraw {
+						&:before {
+							.sprite(@withdraw);
+						}
+						&:hover {
+							&:before {
+								.sprite(@withdraw-hover);
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}

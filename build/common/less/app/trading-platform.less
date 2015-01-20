@@ -1,0 +1,529 @@
+@trading-platform-title-font-size: 23px;
+@trading-platform-rate-font-size: 20px;
+@trading-platform-duration-font-size: 16px;
+@trading-platform-time-left-font-size: @trading-platform-duration-font-size;
+@trading-platform-width: 1170px;
+
+@trading-platform-main-controls-title-font-size: @trading-platform-rate-font-size;
+
+@trading-platform-fg: white;
+@trading-platform-input-font-size: 25px;
+
+@trading-platform-common-amount-bg: @elephant;
+@trading-platform-common-amount-focus-bg: @mortar;
+
+@trading-platform-common-amount-font-size: 13px;
+@trading-platform-common-amount-fg: @light-grey;
+
+@trading-platform-options-font-size: @trading-platform-duration-font-size;
+
+@trading-platform-payout-font-size: 14px;
+@trading-platform-return-font-size: 14px;
+
+@spread-range-fg: @orange-juice;
+@spread-range-main-control-font-size: 12px;
+.trading-platform {
+	line-height: @trading-platform-title-font-size;
+	width: @trading-platform-width;
+	z-index: 0;
+	position: relative;
+	background-color: @ink;
+	.one-click-control {
+		display: none!important;
+	}
+	&.one-click {
+		.one-click-control {
+			display: block!important;
+		}
+		.none-one-click-control {
+			display: none!important;
+		}
+	}
+}
+	.trading-platform-instrument-title {
+		display: inline-block;
+		font-size: @trading-platform-title-font-size;
+		width: 4em;
+	}
+	.trading-platform-instrument-rate {
+		display: inline-block;
+		font-size: @trading-platform-rate-font-size;
+		margin-left: 36px;
+		width: @trading-platform-rate-font-size*5.2;
+		&:before {
+			margin-bottom: 1px;
+		}
+	}
+	.trading-platform-instrument-spread-range {
+		color: @spread-range-fg;
+	}
+	.trading-platform-instrument-duration {
+		display: inline-block;
+		font-size: @trading-platform-duration-font-size;
+		margin-right: @trading-platform-duration-font-size*1.54;
+		vertical-align: sub;
+		&:before {
+			.inline-icon();
+			.sprite(@clock-white-md);
+		}
+	}
+	.trading-platform-instrument-closing-time {
+		display: inline-block;
+		font-size: @trading-platform-duration-font-size;
+		margin-right: 19px;
+		width: 4.5em;
+		vertical-align: sub;
+		&:before {
+			.inline-icon();
+			.sprite(@closing-time);
+		}
+	}
+
+	.trading-platform-instrument-market-close-time {
+		margin-right: 81px;
+	}
+
+	.trading-platform-instrument-time-left {
+		display: inline-block;
+		font-size: @trading-platform-time-left-font-size;
+		width: 99px;
+		margin-right: 32px;
+		vertical-align: sub;
+
+		&:before {
+
+			.inline-icon();
+			.sprite(@timer);
+		}
+
+		.dead & {
+			color: @xoi-gac;
+
+			&:before {
+
+				.sprite(@timer-dead);
+			}
+		}
+
+		
+	}
+	.trading-platform-instrument-one-click-toggler {
+		cursor: pointer;
+		display: inline-block;
+		font-size: @trading-platform-time-left-font-size;
+		vertical-align: top;
+		position: relative;
+		right: 4px;
+		&:before {
+			margin-bottom: -9px;
+			.inline-icon();
+			.sprite(@one-click-inactive);
+		}
+		&:hover {
+			&:before {
+				.sprite(@one-click-hover);
+			}
+		}
+		&.active {
+			&:before {
+				.sprite(@one-click);
+			}
+		}
+	}
+	.trading-platform-live-graph {
+		display: block;
+		width: 850px;
+		min-height: 290px;
+		float: left;
+		position: relative;
+		&.pushed {
+			width: 799px;
+		}
+	}
+	.trading-platform-main-controls {
+		display: block;
+		width: 260px;
+		padding-left: 18px;
+		float: right;
+		position: relative;
+
+		.trading-platform-instrument-spread-range {
+			font-size: 12px;
+			float: right;
+			position: relative;
+			top: 3px;
+			margin-left: 8px;
+		}
+
+		.dead & {
+			* {
+				cursor: not-allowed;
+			}
+			&:before {
+				content: "";
+				display: block;
+				width: 100%;
+				height: 100%;
+				position: absolute;
+				top: 0;
+				left: 0;
+				z-index: 10;
+			}
+		}
+	}
+		.trading-platform-main-controls-instrument-title {
+			font-size: @trading-platform-main-controls-title-font-size;
+			line-height: @trading-platform-title-font-size;
+			margin-bottom: @trading-platform-main-controls-title-font-size/3;
+		}
+		.trading-platform-main-controls-live-rate {
+			font-size: @trading-platform-duration-font-size;
+			line-height: @trading-platform-title-font-size;
+			margin-bottom: @trading-platform-input-font-size/1.5;
+			.clearfix();
+		}
+		.trading-platform-main-controls-investment {
+			font-size: @trading-platform-input-font-size;
+			margin-bottom: 4px;
+			max-width: 100%;
+			height: auto;
+			padding-top: 10px;
+			padding-bottom: 10px;
+			line-height: normal;
+			input {
+				background: none;
+				border: none;
+				color: inherit;
+				display: inline-block;
+				outline: none;
+				-webkit-appearance: none;
+				width: 80%;
+			}
+
+			.dead & {
+				background: @disable-bg;
+				border-color: @disable-fg;
+				color: @disable-fg;
+			}
+		}
+		.trading-platform-main-control-instrument-spread-range {
+			color: @spread-range-fg;
+			font-size: @spread-range-main-control-font-size;
+			.dead & {
+				color: @disable-fg;
+			}
+		}
+		.trading-platform-main-controls-common-amount {
+			margin-bottom: 10px;
+			.clearfix();
+			.btn {
+
+
+				background-color: @trading-platform-common-amount-bg;
+				color: @trading-platform-common-amount-fg;
+				display: block;
+				float: left;
+				font-size: @trading-platform-common-amount-font-size;
+				margin-right: 4px;
+				padding: @trading-platform-duration-font-size/1.5 @trading-platform-duration-font-size; 
+				text-align: center;
+				width: 78px;
+				.transition(all 0.2s ease);
+				&:hover {
+					color: white;
+					.dead & {
+						background: @disable-bg;
+						color: @disable-fg-highlight;
+					}
+				}
+				&:focus {
+					background-color: @trading-platform-common-amount-focus-bg;
+					color: white;
+
+					.dead & {
+						background: @disable-bg;
+						color: @disable-fg-highlight;
+					}
+				}
+
+				.dead & {
+					background: @disable-border;
+					color: @disable-fg;
+				}
+
+
+				&:last-child {
+					margin-right: 0px;
+				}
+			}
+		}
+		.trading-platform-main-controls-options {
+			margin-bottom: 16px;
+
+			&.none-one-click-control {
+				margin-bottom: 3px;
+				.btn {
+					font-size: 12px;
+					margin-bottom: 5px;
+					backface-visibility: none;
+					-webkit-backface-visibility: none;
+				}
+			}
+
+			.clearfix();
+
+			.btn {
+				display: block;
+				float: left;
+				font-weight: 700;
+				font-size: @trading-platform-options-font-size;
+				margin-right: 10px;
+				text-align: center;
+				width: 116px;
+				&.btn-negative {
+					background-color: @xoi-gac;
+				}
+				&:last-child {
+					margin-right: 0px;
+				}
+
+				.dead & {
+					background: @disable-bg!important;
+					border-color: @disable-border!important;
+					color: @disable-fg!important;
+					&.highlow-up {
+						&:before {
+							.sprite(@highlow-up-dead);
+						}
+					}
+					&.highlow-down {
+						&:before {
+							.sprite(@highlow-down-dead);
+						}
+					}
+				}
+			}
+		}
+		.trading-platform-main-controls-select-direction {
+			width: 116px;
+			float: left;
+			margin-right: 10px;
+
+			.dead & {
+				&.highlow-up {
+					&:before {
+						.sprite(@highlow-up-dead);
+					}
+				}
+				&.highlow-down {
+					&:before {
+						.sprite(@highlow-down-dead);
+					}
+				}
+			}
+			
+
+
+
+
+			input[type="radio"] {
+				display: none;
+			}
+
+
+			/* ver 2 */
+			.btn {
+				width: 100%;
+				.transition(all 0s);
+				padding: 0.625em 1.4em 0.625em;
+
+				&:hover {
+					color: white;
+					&.btn-positive {
+						color: white;
+					}
+					&.btn-negative {
+						color: white;
+					}
+					&.highlow-up {
+						&:before {
+							.sprite(@highlow-up);
+						}
+					}
+					&.highlow-down {
+						&:before {
+							.sprite(@highlow-down);
+						}
+					}
+				}
+
+
+				.dead & {
+					background: @disable-bg!important;
+					border-color: @disable-border!important;
+					color: @disable-fg!important;
+					&.highlow-up {
+						&:before {
+							.sprite(@highlow-up-dead);
+						}
+					}
+					&.highlow-down {
+						&:before {
+							.sprite(@highlow-down-dead);
+						}
+					}
+
+				}
+
+				&.in-active {
+					// &.btn-positive {
+					// 	color: #638728;
+					// }
+
+					// &.highlow-up {
+					// 	&:before {
+					// 		.sprite(@up-in-active);
+					// 	}
+					// }
+					// &.highlow-down {
+					// 	&:before {
+					// 		.sprite(@down-in-active);
+					// 	}
+					// }
+
+					// &.btn-negative {
+					// 	color: #b32610;
+					// }
+
+					background: @disable-bg;
+					border-color: @disable-border;
+					color: @disable-fg;
+
+					&.highlow-up {
+						&:before {
+							.sprite(@highlow-up-dead);
+						}
+					}
+					&.highlow-down {
+						&:before {
+							.sprite(@highlow-down-dead);
+						}
+					}
+
+					&:hover {
+						&.highlow-up {
+							&:before {
+								.sprite(@highlow-up-in-active);
+								.opacity(90);
+							}
+						}
+						&.highlow-down {
+							&:before {
+								.sprite(@highlow-down-in-active );
+								.opacity(90);
+							}
+						}
+					}
+
+					&.btn-positive:hover,
+					&.btn-negative:hover {
+						color: #686867!important;
+						//border-color: lighten(@disable-border,5%);
+						background-color: #595858!important;
+					}
+				}
+
+				&.active {
+					&.btn-positive {
+						background: #4b9300!important;
+						border-bottom: none;
+						border-top: 2px solid #8fc33c;
+						color: white;
+					}
+
+					&.btn-positive:hover,
+					&.btn-positive:active,
+					&.btn-positive:focus {
+						background: #4f9a01!important;
+						border-top: 2px solid lighten(#8fc33c,5%);
+					}
+
+					&.btn-negative {
+						background: #d6422b!important;
+						border-bottom: none;
+						border-top: 2px solid #fa8667;
+						color: white;
+					}
+
+					&.btn-negative:hover,
+					&.btn-negative:active,
+					&.btn-negative:focus  {
+						background: #dc4730!important;
+						border-top: 2px solid lighten(#fa8667,5%);
+					}
+
+					&.highlow-up {
+						&:before {
+							.sprite(@highlow-up);
+						}
+					}
+					&.highlow-down {
+						&:before {
+							.sprite(@highlow-down);
+						}
+					}
+
+					.dead & {
+						background: @disable-bg!important;
+						border-color: @disable-border!important;
+						color: @disable-fg!important;
+						&.highlow-up {
+							&:before {
+								.sprite(@highlow-up-dead);
+							}
+						}
+						&.highlow-down {
+							&:before {
+								.sprite(@highlow-down-dead);
+							}
+						}
+
+					}
+					// &.btn-positive {
+					// 	background-color: #69a707;
+					// 	border-color: @positive-color;
+					// 	&:hover {
+					// 		background-color: @positive-color!important;
+					// 	}
+					// }
+					// &.btn-negative {
+					// 	background-color: #d52f15;
+					// 	border-color: @negative-color;
+					// 	&:hover {
+					// 		background-color: @negative-color!important;
+					// 	}
+					// }
+				}
+			}
+		}
+		.trading-platform-main-controls-place-bet {
+			float: left;
+			font-size: 16px!important;
+			width: 116px;
+			font-weight: 400!important;
+		}
+		.trading-platform-main-controls-payout {
+			font-size: @trading-platform-payout-font-size;
+			.dead & {
+				color: @disable-fg;
+			}
+
+			.clearfix();
+		}
+		.trading-platform-main-controls-return {
+			font-size: @trading-platform-payout-font-size;
+			.dead & {
+				color: @disable-fg;
+			}
+			.clearfix();
+		}

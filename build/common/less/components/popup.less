@@ -1,0 +1,82 @@
+@trading-platform-popup-border: 10px solid rgba(red(@real-dark), green(@real-dark), blue(@real-dark),0.4);
+
+@trading-platform-popup-header-bg: @ink;
+@trading-platform-popup-header-fg: white;
+@trading-platform-popup-header-font-size: 20px;
+@trading-platform-popup-header-padding: 30px;
+
+
+@trading-platform-popup-body-bg: @charcoal;
+@trading-platform-popup-body-fg: white;
+@trading-platform-popup-body-padding: @trading-platform-popup-header-padding;
+
+@trading-platform-popup-transition: opacity 0.1s ease-in;
+.trading-platform-popup-wrapper {
+	bottom: 0;
+	left: 0;
+	overflow: auto;
+	position: fixed;
+	right: 0;
+	top: 0;
+	z-index: 999999;
+	.opacity(100);
+	.transition(@trading-platform-popup-transition);
+	&.overlay {
+		height: 100%;
+		width: 100%;
+		background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAAtJREFUCNdjYLgGAADZANeBDv3/AAAAAElFTkSuQmCC);
+	}
+	&.concealed {
+		.opacity(00);
+		z-index: -1;
+		position: absolute;
+	}
+
+}
+	.trading-platform-popup {
+		position: relative;
+		display: table;
+		height: 100%;
+		width: 100%;
+	}
+		.trading-platform-popup-content-wrapper {
+			display: table-row;
+		}
+			.trading-platform-popup-content {
+				display: table-cell;
+				vertical-align: middle;
+			}
+				.trading-platform-popup-content-inner-wrap {
+					border: @trading-platform-popup-border;
+				}
+					.trading-platform-overlay {
+						position: relative;
+						display: block
+					}
+
+					.trading-platform-popup-header {
+
+						&:extend(.font-m);
+						background-color: @trading-platform-popup-header-bg;
+						color: @trading-platform-popup-header-fg;
+						font-size: @trading-platform-popup-header-font-size;
+						letter-spacing: 0.2em;
+						padding: @trading-platform-popup-header-padding;
+					}
+						.trading-platform-popup-close {
+							cursor: pointer;
+							float: right;
+							.opacity(100);
+							.inline-icon();
+							.sprite(@close);
+							&:hover {
+								.opacity(100);
+								.sprite(@close-hover);
+							}
+						}
+
+					.trading-platform-popup-body {
+						background-color: @trading-platform-popup-body-bg;
+						color: @trading-platform-popup-body-fg;
+						padding: @trading-platform-popup-body-padding;
+					}

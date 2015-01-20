@@ -1,0 +1,111 @@
+@trading-app-root-mode-selector-container-wrapper-padding: 25px 0px 0px;
+@trading-app-root-mode-selector-padding: 12px 0 11px;
+.trading-app-container {
+	max-width: 1170px;
+	margin: 0 auto;
+	&> .panel-header {
+		padding: 15px 27px 12px 31px;
+	}
+	&> .panel-body {
+		padding-top: 30px;
+		padding-bottom: 24px;
+	}
+}
+
+.trading-activity-popup-root {
+	overflow: scroll;
+	background-color: @night;
+	min-width: 966px;
+	.trading-platform-popup-wrapper {
+		background-color: rgba(0,0,0,0.6);
+	}
+}
+
+
+.trading-app-root {
+	overflow: hidden;
+	background-color: @night;
+	padding-bottom: 80px;
+	
+	.trading-app-body {
+		background-color: @ink;
+	}
+	> .trading-app-root-mode-selector-container-wrapper {
+		&:extend(.font-m);
+		.logged-in &{
+			padding: @trading-app-root-mode-selector-container-wrapper-padding;
+		}
+		.tab-view-tab-selectors {
+			.tab-view-tab-selector {
+				font-size: 15px;
+				letter-spacing: 0;
+				line-height: 35px;
+				padding: @trading-app-root-mode-selector-padding;
+				width: 25%;
+				&:before {
+					margin-right: 8px;
+					vertical-align: middle;
+				}
+
+				&.active {
+					&:after {
+						content: "";
+						display: block;
+						height: 3px;
+						width: 100%;
+						background-color: @orange-juice;
+						position: absolute;
+						top: 0;
+						left: 0;
+					}
+				}
+
+				&.highlow {
+					&:before {
+						.inline-icon();
+						.sprite(@highlow);
+					}
+					&.active {
+						&:before {
+							.sprite(@highlow-active);
+						}
+					}
+				}
+				&.spread {
+					&:before {
+						.inline-icon();
+						.sprite(@spread);
+					}
+					&.active {
+						&:before {
+							.sprite(@spread-active);
+						}
+					}
+				}
+				&.on-demand {
+					&:before {
+						.inline-icon();
+						.sprite(@on-demand);
+					}
+					&.active {
+						&:before {
+							.sprite(@on-demand-active);
+						}
+					}
+				}
+
+				&.spread-on-demand {
+					&:before {
+						.inline-icon();
+						.sprite(@spread-on-demand);
+					}
+					&.active {
+						&:before {
+							.sprite(@spread-on-demand-active);
+						}
+					}
+				}
+			}
+		}
+	}	
+}
