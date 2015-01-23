@@ -178,6 +178,9 @@
 		}
 		.trading-platform-main-controls-live-rate {
 			font-size: @trading-platform-duration-font-size;
+			.jap-word {
+				font-size: 14px;
+			}
 			line-height: @trading-platform-title-font-size;
 			margin-bottom: @trading-platform-input-font-size/1.5;
 			.clearfix();
@@ -189,6 +192,10 @@
 			height: auto;
 			padding-top: 10px;
 			padding-bottom: 10px;
+			&.jap {
+				padding-left: 14px;
+				padding-right: 10px;
+			}
 			line-height: normal;
 			input {
 				background: none;
@@ -254,6 +261,13 @@
 
 				&:last-child {
 					margin-right: 0px;
+				}
+			}
+
+			&.jap {
+				.btn {
+					font-size: 12px;
+					padding: @trading-platform-duration-font-size/1.5 0;
 				}
 			}
 		}
@@ -509,11 +523,18 @@
 		.trading-platform-main-controls-place-bet {
 			float: left;
 			font-size: 16px!important;
+			&.jap-word {
+				font-size: 14px!important;
+				line-height: 22px;
+			}
 			width: 116px;
 			font-weight: 400!important;
 		}
 		.trading-platform-main-controls-payout {
 			font-size: @trading-platform-payout-font-size;
+			.jap-word {
+				font-size: 12px;
+			}
 			.dead & {
 				color: @disable-fg;
 			}
@@ -522,6 +543,9 @@
 		}
 		.trading-platform-main-controls-return {
 			font-size: @trading-platform-payout-font-size;
+			.jap-word {
+				font-size: 12px;
+			}
 			.dead & {
 				color: @disable-fg;
 			}

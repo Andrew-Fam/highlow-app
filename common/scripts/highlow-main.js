@@ -2,7 +2,11 @@ var highlowApp = {};
 
 $(function () {
 
+	highlowApp.jap = false;
 	
+	if($('.jap-word').length>0) {
+		highlowApp.jap = true;
+	}
 
 	
 	highlowApp.tab.init();
@@ -148,8 +152,8 @@ highlowApp.betSystem = {
 	sellPopup: function(bet){
 		$('.trading-platform-sell-popup'+'.'+bet.type).removeClass('concealed');
 		$('.trading-platform-sell-popup.'+bet.type+' .trading-platform-sell-popup-instrument').html(bet.model.label);
-		$('.trading-platform-sell-popup.'+bet.type+' .trading-platform-invevstment-value').html("$"+bet.amount);
-		$('.trading-platform-sell-popup.'+bet.type+' .trading-platform-pay-out-value').html("$"+parseFloat(bet.amount*parseFloat($('.trading-platform-sell-popup.'+bet.	type+' .trading-platform-return-rate-value .rate').html())).toFixed(2));
+		$('.trading-platform-sell-popup.'+bet.type+' .trading-platform-invevstment-value').html((highlowApp.jap?'¥':'$')+bet.amount);
+		$('.trading-platform-sell-popup.'+bet.type+' .trading-platform-pay-out-value').html((highlowApp.jap?'¥':'$')+parseFloat(bet.amount*parseFloat($('.trading-platform-sell-popup.'+bet.	type+' .trading-platform-return-rate-value .rate').html())).toFixed(2));
 	},
 	createBetEntry : function (bet, point, uid, type, betObject, clickHandler) {
 		var time = new Date(point.x),
@@ -179,13 +183,13 @@ highlowApp.betSystem = {
 				'<td class="investment-closing-rate">-'+ // Closing rate
 				'</td>'+
 				'<td>'+ // Investment value
-				'$'+
+				(highlowApp.jap?'¥':'$')+
 				'<span class="investment-value">'+$('#'+type+'-investment-value-input').val()+
 				'</span>'+
 				'</td>'+
 				'<td class="investment-payout font-b">'+ // Payout
 				'</td>'+
-				'<td class="investment-sell"><button data-investment="'+$('#investment-value-input').val()+'" class="investment-sell-btn '+type+' btn font-m btn-sm-pad">SELL</button>'+
+				'<td class="investment-sell"><button data-investment="'+$('#investment-value-input').val()+'" class="investment-sell-btn '+type+' btn font-m btn-sm-pad">'+(highlowApp.jap?'転売':'SELL')+'</button>'+
 				'</td>'+
 				'</tr>'
 				);
@@ -242,6 +246,8 @@ highlowApp.betSystem = {
 
 		});
 
+console.log(row);
+
 		row.on('click','.investment-sell-btn', function(e) {
 			e.preventDefault();
 			highlowApp.betSystem.sellPopup(bet);
@@ -297,13 +303,13 @@ highlowApp.betSystem = {
 		if(!bet.expired) {
 			if (status===winning) {
 				$("tr"+entryId).removeClass().addClass('investment-winning');
-				$("tr"+entryId+" .investment-payout").html('$'+Math.floor(bet.amount*bet.model.payoutRate));
+				$("tr"+entryId+" .investment-payout").html((highlowApp.jap?'¥':'$')+Math.floor(bet.amount*bet.model.payoutRate));
 			} else if (status===losing) {
 				$("tr"+entryId).removeClass().addClass('investment-losing');
-				$("tr"+entryId+" .investment-payout").html('$0');
+				$("tr"+entryId+" .investment-payout").html((highlowApp.jap?'¥':'$')+'0');
 			} else {
 				$("tr"+entryId).removeClass().addClass('investment-tying');
-				$("tr"+entryId+" .investment-payout").html('$'+bet.amount);
+				$("tr"+entryId+" .investment-payout").html((highlowApp.jap?'¥':'$')+bet.amount);
 			}
 
 		}else {
@@ -904,24 +910,47 @@ highlowApp.graph = {
 					id: expiryHintLineId
 				});
 
-				var textX = xAxis.toPixels(currentTime+3*60*1000)-6,
-				textY = 141;
+				
 
-				text = renderer.text('NEXT EXPIRY IN 60 SECS',textX,textY);
+				if(highlowApp.jap) {
 
-				text.css({
-					"font-family":"Montserrat",
-					"font-size" : "10px;",
-					"color" : "white"
-				});
+					var textX = xAxis.toPixels(currentTime+3*60*1000)-12,
+					textY = 66;
 
-				text.attr({
-					zIndex: 6,
-					id: expiryHintTextId,
-					transform: 'translate(0,0) rotate(270 '+textX+' '+textY+')',
-					width: '177px',
-					'text-anchor': 'middle'
-				});
+					text = renderer.text('次<br/>回<br/>の<br/>判<br/>定<br/>時<br/>刻<br/>ま<br/>で<br/>60<br/>秒',textX,textY);
+
+					text.css({
+						"font-family":'"Hiragino Kaku Gothic Pro","ヒラギノ角ゴ Pro W3","メイリオ",Meiryo,"ＭＳ Ｐゴシック",Helvetica,Arial,Verdana,sans-serif',
+						"font-size" : '12px',
+						"color" : "white"
+					});
+
+					text.attr({
+						zIndex: 6,
+						id: expiryHintTextId,
+						width: '18px',
+						'text-anchor': 'middle'
+					});
+
+				
+				} else {
+					var textX = xAxis.toPixels(currentTime+3*60*1000)-6,
+					textY = 141;
+
+					text = renderer.text('NEXT EXPIRY IN 60 SECS',textX,textY);
+					text.css({
+						"font-family": 'Montserrat',
+						"font-size" : '10px;',
+						"color" : "white"
+					});
+					text.attr({
+						zIndex: 6,
+						id: expiryHintTextId,
+						transform: 'translate(0,0) rotate(270 '+textX+' '+textY+')',
+						width: '177px',
+						'text-anchor': 'middle'
+					});
+				}
 
 				text.add();
 
@@ -2438,18 +2467,43 @@ highlowApp.marketSimulator = {
 					if((bet.focused || bet.hover) && !bet.expired) {
 
 						var x = point.plotX, 
-							labelX = Math.floor(xAxis.toPixels(bet.expireAt)-17),
-							label = renderer.rect(labelX,52,17,177,0);
+							labelX = Math.floor(xAxis.toPixels(bet.expireAt)-17);
+
+
 
 						var textX = labelX+12,
 							textY = 141;
-						
-						var textAttribute = {
-							id: bet.finishTextId,
-							transform: 'translate(0,0) rotate(270 '+textX+' '+textY+')',
-							width: '177px',
-							'text-anchor': 'middle'
-						};
+						var textAttribute = {};
+
+						if(highlowApp.jap) {
+
+							labelX = labelX -5;
+
+							var label = renderer.rect(labelX,52,22,177,0);
+
+
+							textX = labelX+11;
+							textY = 85;
+
+							textAttribute = {
+								id: bet.finishTextId,
+								width: '20px',
+								'text-anchor': 'middle'
+							};
+						} else {
+
+							var label = renderer.rect(labelX,52,17,177,0);
+
+							textAttribute = {
+								id: bet.finishTextId,
+								transform: 'translate(0,0) rotate(270 '+textX+' '+textY+')',
+								width: '177px',
+								'text-anchor': 'middle'
+							};
+						}
+
+
+
 
 						var labelAttribute = {
 							fill: '#f8f7f5'
@@ -2547,14 +2601,27 @@ highlowApp.marketSimulator = {
 
 							bet.finishTextId = finishTextId;
 
-							text = renderer.text('loading...',textX,textY);
+							if(highlowApp.jap) {
+								text = renderer.text('お<br/>待<br/>ち<br/>く<br/>だ<br/>さ<br/>い',textX,textY);
 
-							text.css({
-								"font-family":"Montserrat",
-								"font-size" : "10px;",
-								"color" : "#4d5158"
-							});
+								text.css({
+									"font-family":'"Hiragino Kaku Gothic Pro","ヒラギノ角ゴ Pro W3","メイリオ",Meiryo,"ＭＳ Ｐゴシック",Helvetica,Arial,Verdana,sans-serif',
+									"font-size" : "11px;",
+									"color" : "#424242"
+								});
 
+								text.attr({
+									y: 92
+								});
+							} else {
+								text = renderer.text('loading...',textX,textY);
+
+								text.css({
+									"font-family":"Montserrat",
+									"font-size" : "10px;",
+									"color" : "#4d5158"
+								});
+							}
 
 							
 
@@ -2566,11 +2633,18 @@ highlowApp.marketSimulator = {
 							bet.finishText = text;
 
 						} else {
-
-							bet.finishText.attr({
-								x: textX,
-								'transform': 'translate(0,0) rotate(270 '+textX+' '+textY+')'
-							});
+							if(highlowApp.jap) {
+								bet.finishText.attr({
+									x: textX,
+									y: 85
+								});
+							} else {
+								bet.finishText.attr({
+									x: textX,
+									y: 85,
+									'transform': 'translate(0,0) rotate(270 '+textX+' '+textY+')'
+								});
+							}
 						}
 
 						if(bet.focused && !bet.hover && model.hoveredBet) {
@@ -2711,6 +2785,8 @@ highlowApp.marketSimulator = {
 					message += minute>1?" MINS ":" MIN ";
 				} else {
 					remainingTimeText += "0:";
+
+					message += "0 MIN ";
 				}
 
 				if(second>0 || minute>0) {
@@ -2727,9 +2803,15 @@ highlowApp.marketSimulator = {
 				}
 
 				
+				if(highlowApp.jap) {
+					message = message.replace('EXPIRY: ','判<br/>定<br/>時<br/>刻<br/>：<br/>').replace(' MINS ','<br/>分<br/>').replace(' MIN ','<br/>分<br/>').replace(' SECS ','<br/>秒<br/>').replace(' SEC ','<br/>秒<br/>');
+				}
+
+
 				if(bet.finishText!=undefined) {
 					bet.finishText.attr({
-						text: message
+						text: message,
+						y: 85
 					});
 				}
 
@@ -2913,7 +2995,7 @@ highlowApp.marketSimulator = {
 					'.trading-platform-invest-popup.'+model.type+' .trading-platform-main-controls-instrument-title').html(" " + model.label);
 
 
-				$('#'+mainViewId+" .trading-platform-maximum-return").html("$"+parseFloat(model.payoutRate*$('#'+model.type+'-investment-value-input').val()).toFixed(2));
+				$('#'+mainViewId+" .trading-platform-maximum-return").html((highlowApp.jap?'¥':'$')+parseFloat(model.payoutRate*$('#'+model.type+'-investment-value-input').val()).toFixed(2));
 
 				if(model.active) {
 

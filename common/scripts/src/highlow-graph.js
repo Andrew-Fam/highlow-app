@@ -173,24 +173,47 @@ highlowApp.graph = {
 					id: expiryHintLineId
 				});
 
-				var textX = xAxis.toPixels(currentTime+3*60*1000)-6,
-				textY = 141;
+				
 
-				text = renderer.text('NEXT EXPIRY IN 60 SECS',textX,textY);
+				if(highlowApp.jap) {
 
-				text.css({
-					"font-family":"Montserrat",
-					"font-size" : "10px;",
-					"color" : "white"
-				});
+					var textX = xAxis.toPixels(currentTime+3*60*1000)-12,
+					textY = 66;
 
-				text.attr({
-					zIndex: 6,
-					id: expiryHintTextId,
-					transform: 'translate(0,0) rotate(270 '+textX+' '+textY+')',
-					width: '177px',
-					'text-anchor': 'middle'
-				});
+					text = renderer.text('次<br/>回<br/>の<br/>判<br/>定<br/>時<br/>刻<br/>ま<br/>で<br/>60<br/>秒',textX,textY);
+
+					text.css({
+						"font-family":'"Hiragino Kaku Gothic Pro","ヒラギノ角ゴ Pro W3","メイリオ",Meiryo,"ＭＳ Ｐゴシック",Helvetica,Arial,Verdana,sans-serif',
+						"font-size" : '12px',
+						"color" : "white"
+					});
+
+					text.attr({
+						zIndex: 6,
+						id: expiryHintTextId,
+						width: '18px',
+						'text-anchor': 'middle'
+					});
+
+				
+				} else {
+					var textX = xAxis.toPixels(currentTime+3*60*1000)-6,
+					textY = 141;
+
+					text = renderer.text('NEXT EXPIRY IN 60 SECS',textX,textY);
+					text.css({
+						"font-family": 'Montserrat',
+						"font-size" : '10px;',
+						"color" : "white"
+					});
+					text.attr({
+						zIndex: 6,
+						id: expiryHintTextId,
+						transform: 'translate(0,0) rotate(270 '+textX+' '+textY+')',
+						width: '177px',
+						'text-anchor': 'middle'
+					});
+				}
 
 				text.add();
 

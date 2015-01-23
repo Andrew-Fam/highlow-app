@@ -36,6 +36,9 @@
 		display: block;
 		line-height: 1em;
 		font-size: @instrument-panel-font-size;
+		.jap-word {
+			font-size: 12px;
+		}
 		padding: @instrument-panel-header-padding;
 		background: @instrument-panel-header-background;
 		.transition(@instrument-panel-transition);
@@ -58,6 +61,8 @@
 			line-height: inherit;
 			position: absolute;
 			left: 109px;
+
+
 
 			&:before {
 				.inline-icon();
@@ -102,6 +107,9 @@
 		color: @instrument-panel-body-font-color;
 		line-height: 1.43em;
 		font-size: @instrument-panel-font-size;
+		.jap-word {
+			font-size: 12px;
+		}
 		padding: @instrument-panel-body-padding;
 		height: 90px;
 		.transition(@instrument-panel-transition);
@@ -130,6 +138,10 @@
 		}
 		.instrument-panel-closing {
 			font-size: @instrument-panel-small-font-size;
+			.jap-word {
+				font-size: 10px;
+				letter-spacing: 0.025em;
+			}
 			position: relative;
 			top: 4px;
 		}

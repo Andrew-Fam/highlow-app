@@ -2,7 +2,11 @@ var highlowApp = {};
 
 $(function () {
 
+	highlowApp.jap = false;
 	
+	if($('.jap-word').length>0) {
+		highlowApp.jap = true;
+	}
 
 	
 	highlowApp.tab.init();

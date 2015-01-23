@@ -3,8 +3,8 @@ highlowApp.betSystem = {
 	sellPopup: function(bet){
 		$('.trading-platform-sell-popup'+'.'+bet.type).removeClass('concealed');
 		$('.trading-platform-sell-popup.'+bet.type+' .trading-platform-sell-popup-instrument').html(bet.model.label);
-		$('.trading-platform-sell-popup.'+bet.type+' .trading-platform-invevstment-value').html("$"+bet.amount);
-		$('.trading-platform-sell-popup.'+bet.type+' .trading-platform-pay-out-value').html("$"+parseFloat(bet.amount*parseFloat($('.trading-platform-sell-popup.'+bet.	type+' .trading-platform-return-rate-value .rate').html())).toFixed(2));
+		$('.trading-platform-sell-popup.'+bet.type+' .trading-platform-invevstment-value').html((highlowApp.jap?'¥':'$')+bet.amount);
+		$('.trading-platform-sell-popup.'+bet.type+' .trading-platform-pay-out-value').html((highlowApp.jap?'¥':'$')+parseFloat(bet.amount*parseFloat($('.trading-platform-sell-popup.'+bet.	type+' .trading-platform-return-rate-value .rate').html())).toFixed(2));
 	},
 	createBetEntry : function (bet, point, uid, type, betObject, clickHandler) {
 		var time = new Date(point.x),
@@ -34,13 +34,13 @@ highlowApp.betSystem = {
 				'<td class="investment-closing-rate">-'+ // Closing rate
 				'</td>'+
 				'<td>'+ // Investment value
-				'$'+
+				(highlowApp.jap?'¥':'$')+
 				'<span class="investment-value">'+$('#'+type+'-investment-value-input').val()+
 				'</span>'+
 				'</td>'+
 				'<td class="investment-payout font-b">'+ // Payout
 				'</td>'+
-				'<td class="investment-sell"><button data-investment="'+$('#investment-value-input').val()+'" class="investment-sell-btn '+type+' btn font-m btn-sm-pad">SELL</button>'+
+				'<td class="investment-sell"><button data-investment="'+$('#investment-value-input').val()+'" class="investment-sell-btn '+type+' btn font-m btn-sm-pad">'+(highlowApp.jap?'転売':'SELL')+'</button>'+
 				'</td>'+
 				'</tr>'
 				);
@@ -97,6 +97,8 @@ highlowApp.betSystem = {
 
 		});
 
+console.log(row);
+
 		row.on('click','.investment-sell-btn', function(e) {
 			e.preventDefault();
 			highlowApp.betSystem.sellPopup(bet);
@@ -152,13 +154,13 @@ highlowApp.betSystem = {
 		if(!bet.expired) {
 			if (status===winning) {
 				$("tr"+entryId).removeClass().addClass('investment-winning');
-				$("tr"+entryId+" .investment-payout").html('$'+Math.floor(bet.amount*bet.model.payoutRate));
+				$("tr"+entryId+" .investment-payout").html((highlowApp.jap?'¥':'$')+Math.floor(bet.amount*bet.model.payoutRate));
 			} else if (status===losing) {
 				$("tr"+entryId).removeClass().addClass('investment-losing');
-				$("tr"+entryId+" .investment-payout").html('$0');
+				$("tr"+entryId+" .investment-payout").html((highlowApp.jap?'¥':'$')+'0');
 			} else {
 				$("tr"+entryId).removeClass().addClass('investment-tying');
-				$("tr"+entryId+" .investment-payout").html('$'+bet.amount);
+				$("tr"+entryId+" .investment-payout").html((highlowApp.jap?'¥':'$')+bet.amount);
 			}
 
 		}else {

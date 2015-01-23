@@ -50,6 +50,7 @@ module.exports = function(grunt) {
 				tradingTypes: [
 					{
 						label: "HighLow",
+						jaLabel: "HighLow",
 						id: "highlow",
 						range: false,
 						default: true,
@@ -95,8 +96,10 @@ module.exports = function(grunt) {
 							{
 								id: "15min",
 								label: "15 MIN",
+								jaLabel: "15<span class='jap-word'>分</span>",
 								value: 15*60*1000,
 								shortLabel: "15m",
+								jaShortLabel: "15<span class='jap-word'>分</span>",
 								mediumLabel: "15 mins",
 								instruments: [
 									{
@@ -176,9 +179,11 @@ module.exports = function(grunt) {
 							{
 								id: "1hour",
 								label: "1 HOUR",
+								jaLabel: "1<span class='jap-word'>時間</span>",
 								mediumLabel: "60 mins",
 								value: 60*60*1000,
 								shortLabel: "1h",
+								jaShortLabel: "1<span class='jap-word'>時間</span>",
 								instruments: [
 									{
 										label: "AUD/JPY",
@@ -239,9 +244,11 @@ module.exports = function(grunt) {
 							{
 								id: "1day",
 								label: "1 DAY",
+								jaLabel: "1<span class='jap-word'>日</span>",
 								mediumLabel: "24 hours",
 								value: 24*60*60*1000,
 								shortLabel: "24h",
+								jaShortLabel: "24<span class='jap-word'>時間</span>",
 								instruments: [
 									{
 										label: "AUD/JPY",
@@ -302,6 +309,7 @@ module.exports = function(grunt) {
 						]
 					},{
 						label: "Spread",
+						jaLabel: "<span class='jap-word'>スプレッド</span>HighLow",
 						id: "spread",
 						range: 0.005,
 						default: false,
@@ -347,8 +355,10 @@ module.exports = function(grunt) {
 							{
 								id: "15min",
 								label: "15 MIN",
+								jaLabel: "15<span class='jap-word'>分</span>",
 								value: 15*60*1000,
 								shortLabel: "15m",
+								jaShortLabel: "15<span class='jap-word'>分</span>",
 								mediumLabel: "15 mins",
 								instruments: [
 									{
@@ -422,9 +432,11 @@ module.exports = function(grunt) {
 							{
 								id: "1hour",
 								label: "1 HOUR",
+								jaLabel: "1<span class='jap-word'>時間</span>",
 								mediumLabel: "60 mins",
 								value: 60*60*1000,
 								shortLabel: "1h",
+								jaShortLabel: "1<span class='jap-word'>時間</span>",
 								instruments: [
 									{
 										label:"AUD/USD",
@@ -497,9 +509,11 @@ module.exports = function(grunt) {
 							{
 								id: "1day",
 								label: "1 DAY",
+								jaLabel: "1<span class='jap-word'>日</span>",
 								mediumLabel: "24 hours",
 								value: 24*60*60*1000,
 								shortLabel: "24h",
+								jaShortLabel: "24<span class='jap-word'>時間</span>",
 								instruments: [
 									{
 										label:"AUD/USD",
@@ -572,6 +586,7 @@ module.exports = function(grunt) {
 						]
 					},{
 						label: "onDemand",
+						jaLabel: "onDemand",
 						id: "on-demand",
 						default: false,
 						range: false,
@@ -617,8 +632,10 @@ module.exports = function(grunt) {
 							{
 								id: "1min",
 								label: "1 MIN",
+								jaLabel: "1<span class='jap-word'>分</span>",
 								value: 1*60*1000,
 								shortLabel: "1m",
+								jaShortLabel: "1<span class='jap-word'>分</span>",
 								mediumLabel: "1 min",
 								instruments: [
 									{
@@ -692,8 +709,10 @@ module.exports = function(grunt) {
 							{
 								id: "3min",
 								label: "3 MIN",
+								jaLabel: "3<span class='jap-word'>分</span>",
 								value: 3*60*1000,
 								shortLabel: "3m",
+								jaShortLabel: "3<span class='jap-word'>分</span>",
 								mediumLabel: "3 min",
 								instruments: [
 									{
@@ -767,8 +786,10 @@ module.exports = function(grunt) {
 							{
 								id: "5min",
 								label: "5 MIN",
+								jaLabel: "5<span class='jap-word'>分</span>",
 								value: 5*60*1000,
 								shortLabel: "5m",
+								jaShortLabel: "5<span class='jap-word'>分</span>",
 								mediumLabel: "5 min",
 								instruments: [
 									{
@@ -843,6 +864,7 @@ module.exports = function(grunt) {
 					}
 					,{
 						label: "Spread onDemand",
+						jaLabel: "<span class='jap-word'>スプレッド</span>onDemand",
 						id: "spread-on-demand",
 						default: false,
 						range: false,
@@ -888,8 +910,10 @@ module.exports = function(grunt) {
 							{
 								id: "1min",
 								label: "1 MIN",
+								jaLabel: "1<span class='jap-word'>分</span>",
 								value: 1*60*1000,
 								shortLabel: "1m",
+								jaShortLabel: "1<span class='jap-word'>分</span>",
 								mediumLabel: "1 min",
 								instruments: [
 									{
@@ -963,8 +987,10 @@ module.exports = function(grunt) {
 							{
 								id: "3min",
 								label: "3 MIN",
+								jaLabel: "3<span class='jap-word'>分</span>",
 								value: 3*60*1000,
 								shortLabel: "3m",
+								jaShortLabel: "3<span class='jap-word'>分</span>",
 								mediumLabel: "3 min",
 								instruments: [
 									{
@@ -1038,8 +1064,10 @@ module.exports = function(grunt) {
 							{
 								id: "5min",
 								label: "5 MIN",
+								jaLabel: "5<span class='jap-word'>分</span>",
 								value: 5*60*1000,
 								shortLabel: "5m",
+								jaShortLabel: "5<span class='jap-word'>分</span>",
 								mediumLabel: "5 min",
 								instruments: [
 									{
@@ -1179,7 +1207,8 @@ module.exports = function(grunt) {
 			      destinationFileEndPattern: '<!-- end-platform -->'
 			  },	
 			  files: {
-			      '../highlow-public-page/templates/trade-platform.liquid': ['build/index.html']
+			      '../highlow-public-page/templates/trade-platform.liquid': ['build/index.html'],
+			      '../highlow-public-page/templates/ja-trade-platform.liquid': ['build/ja-index.html']
 			  }
 			},
 			copyTradingActivityPopup: {
@@ -1190,7 +1219,8 @@ module.exports = function(grunt) {
 			      destinationFileEndPattern: '<!-- end-trading-activity-popup -->'
 			  },	
 			  files: {
-			      '../highlow-public-page/templates/trading-activity-popup.liquid': ['build/trading-activity-popup.html']
+			      '../highlow-public-page/templates/trading-activity-popup.liquid': ['build/trading-activity-popup.html'],
+			      '../highlow-public-page/templates/ja-trading-activity-popup.liquid': ['build/ja-trading-activity-popup.html']
 			  }
 			}
 		},
