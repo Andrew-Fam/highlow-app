@@ -1049,19 +1049,25 @@ highlowApp.graph = {
 				model.deadTimeText.element.remove();
 			}
 
-			model.startTimeText = renderer.text('Start: '+highlowApp.timeToText(model.openAt),startTextX,24);
-			model.deadTimeText = renderer.text('Stop: '+highlowApp.timeToText(model.deadzone),deadTextX,24);
+			model.startTimeText = renderer.text((highlowApp.jap?'開始: ':'Start: ')+highlowApp.timeToText(model.openAt),startTextX,24);
+			model.deadTimeText = renderer.text((highlowApp.jap?'切: ':'Stop: ')+highlowApp.timeToText(model.deadzone),deadTextX,24);
 
 
-			model.startTimeText.css({
-				color: '#838383',
-				zIndex: 10
-			});
+			if(highlowApp.jap) {
+				model.startTimeText.css({
+					color: '#838383',
+					fontSize: '12',
+					zIndex: 10
+				});
 
-			model.deadTimeText.css({
-				color: '#838383',
-				zIndex: 11
-			});
+				model.deadTimeText.css({
+					color: '#838383',
+					fontSize: '12',
+					zIndex: 11
+				});
+			}
+
+			
 
 			model.startTimeText.add();
 			model.deadTimeText.add();
@@ -2471,7 +2477,7 @@ highlowApp.marketSimulator = {
 
 
 
-						var textX = labelX+12,
+						var textX = labelX+68,
 							textY = 141;
 						var textAttribute = {};
 
@@ -2620,6 +2626,10 @@ highlowApp.marketSimulator = {
 									"font-family":"Montserrat",
 									"font-size" : "10px;",
 									"color" : "#4d5158"
+								});
+
+								text.attr({
+									y: 85
 								});
 							}
 

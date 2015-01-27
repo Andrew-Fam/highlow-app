@@ -317,7 +317,7 @@ highlowApp.marketSimulator = {
 
 
 
-						var textX = labelX+12,
+						var textX = labelX+68,
 							textY = 141;
 						var textAttribute = {};
 
@@ -466,6 +466,10 @@ highlowApp.marketSimulator = {
 									"font-family":"Montserrat",
 									"font-size" : "10px;",
 									"color" : "#4d5158"
+								});
+
+								text.attr({
+									y: 85
 								});
 							}
 
