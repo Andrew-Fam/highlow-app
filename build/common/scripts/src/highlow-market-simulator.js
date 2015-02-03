@@ -845,7 +845,7 @@ highlowApp.marketSimulator = {
 					'.trading-platform-invest-popup.'+model.type+' .trading-platform-main-controls-instrument-title').html(" " + model.label);
 
 
-				$('#'+mainViewId+" .trading-platform-maximum-return").html((highlowApp.jap?'¥':'$')+parseFloat(model.payoutRate*$('#'+model.type+'-investment-value-input').val()).toFixed(2));
+				$('#'+mainViewId+" .trading-platform-maximum-return").html((highlowApp.jap?'¥':'$')+highlowApp.getDisplayMoney(parseFloat(model.payoutRate*$('#'+model.type+'-investment-value-input').val()).toFixed(2)));
 
 				if(model.active) {
 

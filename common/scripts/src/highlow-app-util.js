@@ -22,6 +22,18 @@ highlowApp.isNumber = function(n) {
   return !isNaN(parseFloat(n)) && isFinite(n);
 }
 
+highlowApp.getDisplayMoney = function(n) {
+
+	var displayString = n+"";
+
+	if(highlowApp.jap) {
+		displayString = displayString.replace('.00','').replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+	} else {
+	}
+
+	return displayString;
+}
+
 highlowApp.durationToText = function(stamp) {
 
 	var remainingTime = stamp,

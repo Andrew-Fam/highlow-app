@@ -313,7 +313,7 @@ highlowApp.graph = {
 			}
 
 			model.startTimeText = renderer.text((highlowApp.jap?'開始: ':'Start: ')+highlowApp.timeToText(model.openAt),startTextX,24);
-			model.deadTimeText = renderer.text((highlowApp.jap?'切: ':'Stop: ')+highlowApp.timeToText(model.deadzone),deadTextX,24);
+			model.deadTimeText = renderer.text((highlowApp.jap?'締切: ':'Stop: ')+highlowApp.timeToText(model.deadzone),deadTextX,24);
 
 
 			if(highlowApp.jap) {
