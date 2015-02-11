@@ -3164,8 +3164,15 @@ highlowApp.popup = {
 			$('.trading-platform-sell-popup').removeClass('concealed');
 		});
 
-		$('#account-balance .btn').click(function(){
-			$('.trading-platform-widget-popup').removeClass('concealed');
+		$('#account-balance .btn.deposit').click(function(){
+			$('#make-deposit-popup').removeClass('concealed');
+		});
+		$('#account-balance .btn.withdraw').click(function(){
+			$('#make-withdrawal-popup').removeClass('concealed');
+		});
+
+		$('#make-deposit-popup, #make-withdrawal-popup').on('click','.close',function(event){
+			$('#account-balance .toggle').click();
 		});
 	}
 }
