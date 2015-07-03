@@ -26,28 +26,29 @@
 	overflow: hidden;
 	background-color: @night;
 	padding-bottom: 80px;
-	
+
 	.trading-app-body {
 		background-color: @ink;
 	}
 	> .trading-app-root-mode-selector-container-wrapper {
-		&:extend(.font-m);
 		.logged-in &{
 			padding: @trading-app-root-mode-selector-container-wrapper-padding;
 		}
 		.tab-view-tab-selectors {
 			.tab-view-tab-selector {
-				font-size: 15px;
+				font-size: 16px;
+				font-weight: 400;
 				.jap-word {
 					font-size: 13px;
 				}
 				letter-spacing: 0;
-				line-height: 35px;
+				line-height: 32px;
 				padding: @trading-app-root-mode-selector-padding;
-				width: 25%;
 				&:before {
-					margin-right: 8px;
+					margin-right: 6px;
 					vertical-align: middle;
+					position: relative;
+					margin-top: -2px;
 				}
 
 				&.active {
@@ -56,7 +57,7 @@
 						display: block;
 						height: 3px;
 						width: 100%;
-						background-color: @orange-juice;
+						background-color: #ffc539;
 						position: absolute;
 						top: 0;
 						left: 0;
@@ -88,11 +89,11 @@
 				&.on-demand {
 					&:before {
 						.inline-icon();
-						.sprite(@on-demand);
+						.sprite(@turbo-grey-sm);
 					}
 					&.active {
 						&:before {
-							.sprite(@on-demand-active);
+							.sprite(@turbo-red-sm);
 						}
 					}
 				}
@@ -100,15 +101,75 @@
 				&.spread-on-demand {
 					&:before {
 						.inline-icon();
-						.sprite(@spread-on-demand);
+						.sprite(@spread-turbo-grey-sm);
 					}
 					&.active {
 						&:before {
-							.sprite(@spread-on-demand-active);
+							.sprite(@spread-turbo-red-sm);
+						}
+					}
+				}
+				&.turbo {
+					&:before {
+						.inline-icon();
+						.sprite(@turbo-grey-sm);
+					}
+					&.active {
+						&:before {
+							.sprite(@turbo-red-sm);
 						}
 					}
 				}
 			}
 		}
 	}	
+}
+
+.closed {
+	.trading-app-root {
+		.tab-view-tab-selector {
+			.closed-icon {
+				display: inline-block;
+				font-size: 8px;
+				margin-left: 12px;
+				position: relative;
+				top: -2px;
+				&:before {
+					content: "CLOSED";
+					color: #353535;
+					height: 16px;
+  					line-height: 16px;
+					width: 48px;
+					text-align: center;
+					background: #5c5c5c;
+					display: block;
+					font-family: 'Montserrat', Helvetica, Arial, sans-serif;
+					.transition(all 0.2s ease);
+				}
+				&:after {
+					content: "";
+					display: block;
+					position: absolute;
+					left: -9px;
+					top: 50%;
+					margin-top: -3px;
+					border: 3px solid transparent;
+					border-right: 6px solid #5c5c5c;
+					.transition(all 0.2s ease);
+				}
+			}
+
+			&.active {
+				.closed-icon {
+					&:before {
+						background-color: #ffdf47;
+						color: #232323;
+					}
+					&:after {
+						border-right: 6px solid #ffdf47;
+					}
+				}
+			}
+		}
+	}
 }

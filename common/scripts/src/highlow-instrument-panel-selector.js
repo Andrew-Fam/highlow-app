@@ -23,7 +23,6 @@ highlowApp.instrumentPanelSelector = {
 	selectInstrument: function (e) {
 
 
-
 		var label = e.data('instrumentLabel'),
 			duration = e.data('instrumentDuration'),
 			type = e.data('tradingType'),
@@ -31,23 +30,47 @@ highlowApp.instrumentPanelSelector = {
 
 		// update active instrument here.
 
-		if(model) {
+		$('.main-view .panel-header .loading-icon').css({
+			opacity: 0,
+			display: 'inline-block'
+		}).animate({
+			opacity: 1
+		},125);
 
-			if (highlowApp.currentInstrument[type]!=undefined) {
-				highlowApp.currentInstrument[type].active = false;
+		setTimeout(function(){
+			if(model) {
+
+				if (highlowApp.currentInstrument[type]!=undefined) {
+					highlowApp.currentInstrument[type].active = false;
+				}
+
+				model.active = true;
+
+				highlowApp.currentInstrument[type] = model;
+
+
+				model.updateMainView();
+
+				// change graph to display this instrument data
+
+				/* display graph loading screen */
+
+				/* end display graph loading screen */
+				
+				highlowApp.graph.loadInstrument(model);
 			}
 
-			model.active = true;
 
-			highlowApp.currentInstrument[type] = model;
+			$('.main-view .panel-header .loading-icon').animate({
+				opacity: 0
+			},125, function(){
+				$('.main-view .panel-header .loading-icon').css({
+					display: 'none'
+				});
+			});
 
 
-			model.updateMainView();
-
-			// change graph to display this instrument data
-
-			highlowApp.graph.loadInstrument(model);
-		}
+		},1000);
 
 	}
 }

@@ -1,38 +1,41 @@
 highlowApp.balanceWidget = {
-	init: function() {
+	close: function() {
+		var widget = $('#account-balance');
+		var menu = $('#account-balance .dropdown-menu');
+		widget.removeClass('open');
+		menu.hide();
+	},
+	display: function() {
 		var widget = $('#account-balance');
 		var menu = $('#account-balance .dropdown-menu');
 		var _window = $(window);
+		menu.show();
+		widget.addClass('open');
+
+		// get position of widget at time of open
+
+		widget.data('opened-position',_window.scrollTop());
+
+		menu.css({
+			opacity: 0
+		});
+
+		menu.animate({
+			opacity: 1
+		},200);
+	},
+	initWithdrawDeposit: function() {
+		var widget = $('#account-balance');
+		var _window = $(window);
 		var widgetPositionReset = {};
 
-		// $('#account-balance').on('mouseleave',function(){
-		// 	if(widget.hasClass('open')) {
-		// 		menu.toggle();
-		// 		widget.removeClass('open');
-		// 	}
-		// });
-
 		$('#account-balance .toggle').click(function(){
-			menu.toggle();
 			if(widget.hasClass('open')) {
-				widget.removeClass('open');
-				// console.log('close');
+				highlowApp.balanceWidget.close();
 				
 			} else {
-				widget.addClass('open');
 
-				// get position of widget at time of open
-
-				widget.data('opened-position',_window.scrollTop());
-
-				menu.css({
-					opacity: 0
-				});
-
-				menu.animate({
-					opacity: 1
-				},200);
-				// console.log('open');
+				highlowApp.balanceWidget.display();
 			}
 		});
 
@@ -50,6 +53,16 @@ highlowApp.balanceWidget = {
 					menu.toggle();
 					widget.removeClass('open');
 				}
+			}
+		});
+	},
+	init: function() {
+		var depositPopup = $('#make-deposit-popup')
+		$('#account-balance .toggle').click(function(){
+			if(depositPopup.hasClass('concealed')) {
+				highlowApp.popup.displayPopup(depositPopup);
+			} else {
+				highlowApp.popup.hidePopup(depositPopup);
 			}
 		});
 	}

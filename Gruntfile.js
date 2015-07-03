@@ -56,8 +56,8 @@ module.exports = function(grunt) {
 						default: true,
 						instruments: [
 							{
-								label: "AUD/JPY",
-								id: "aud-jpy"
+								label:"USD/JPY",
+								id: "usd-jpy"
 							},
 							{
 								label:"AUD/USD",
@@ -88,8 +88,8 @@ module.exports = function(grunt) {
 								id: "nzd-usd"
 							},
 							{
-								label:"USD/JPY",
-								id: "usd-jpy"
+								label: "AUD/JPY",
+								id: "aud-jpy"
 							}
 						],
 						intervals: [
@@ -102,6 +102,12 @@ module.exports = function(grunt) {
 								jaShortLabel: "15<span class='jap-word'>分</span>",
 								mediumLabel: "15 mins",
 								instruments: [
+									{
+										label:"USD/JPY",
+										id: "usd-jpy",
+										payout: "2.00",
+										rate: "118.62"
+									},
 									{
 										label: "AUD/JPY",
 										id: "aud-jpy",
@@ -167,12 +173,6 @@ module.exports = function(grunt) {
 										id: "nzd-usd",
 										payout: "1.80",
 										rate: "114.76"
-									},
-									{
-										label:"USD/JPY",
-										id: "usd-jpy",
-										payout: "1.75",
-										rate: "118.62"
 									}
 								]
 							},
@@ -186,6 +186,12 @@ module.exports = function(grunt) {
 								jaShortLabel: "1<span class='jap-word'>時間</span>",
 								instruments: [
 									{
+										label:"USD/JPY",
+										id: "usd-jpy",
+										payout: "1.80",
+										rate: "114.45"
+									},
+									{
 										label: "AUD/JPY",
 										id: "aud-jpy",
 										payout: "1.85",
@@ -232,12 +238,6 @@ module.exports = function(grunt) {
 										id: "nzd-usd",
 										payout: "1.85",
 										rate: "111.56"
-									},
-									{
-										label:"USD/JPY",
-										id: "usd-jpy",
-										payout: "1.80",
-										rate: "114.45"
 									}
 								]
 							},
@@ -251,6 +251,12 @@ module.exports = function(grunt) {
 								jaShortLabel: "24<span class='jap-word'>時間</span>",
 								instruments: [
 									{
+										label:"USD/JPY",
+										id: "usd-jpy",
+										payout: "1.80",
+										rate: "114.45"
+									},
+									{
 										label: "AUD/JPY",
 										id: "aud-jpy",
 										payout: "1.85",
@@ -297,12 +303,6 @@ module.exports = function(grunt) {
 										id: "nzd-usd",
 										payout: "1.85",
 										rate: "111.56"
-									},
-									{
-										label:"USD/JPY",
-										id: "usd-jpy",
-										payout: "1.80",
-										rate: "114.45"
 									}
 								]
 							}
@@ -585,8 +585,8 @@ module.exports = function(grunt) {
 							}
 						]
 					},{
-						label: "onDemand",
-						jaLabel: "onDemand",
+						label: "Turbo",
+						jaLabel: "Turbo",
 						id: "on-demand",
 						default: false,
 						range: false,
@@ -861,13 +861,12 @@ module.exports = function(grunt) {
 								]
 							}
 						]
-					}
-					,{
-						label: "Spread onDemand",
-						jaLabel: "<span class='jap-word'>スプレッド</span>onDemand",
+					},{
+						label: "Turbo Spread",
+						jaLabel: "Spread <span class='jap-word'>スプレッド</span>x",
 						id: "spread-on-demand",
 						default: false,
-						range: false,
+						range: 0.005,
 						instruments: [
 							{
 								label: "AUD/JPY",
@@ -1172,6 +1171,15 @@ module.exports = function(grunt) {
 					dest: '../highlow-public-page/public/trade-platform/'
 				}]
 			},
+			integrateInToNewSite: {
+				files: [{
+					expand: true,
+					flatten: false,
+					cwd: 'common/',
+					src: ['**/*.*'],
+					dest: '../hl-my-account/common/trade-platform/'
+				}]
+			},
 			map: {
 				files: [{
 					src: ['bower_components/jquery/dist/jquery.min.map'],
@@ -1196,6 +1204,25 @@ module.exports = function(grunt) {
 		      from: 'common/images',		      
 		      to: "public/trade-platform/images"
 		    }]
+		  },
+		  jsURLNewSite: {
+		    src: ['../hl-my-account/common/trade-platform/scripts/highlow-main.js'],
+		    overwrite: true,                 // overwrite matched source files
+		    replacements: [{
+		      from: 'common/images',		      
+		      to: "common/trade-platform/images"
+		    }]
+		  },
+		  htmlURLNewSite: {
+		    src: [
+		    	'../hl-my-account/templates/includes/trade-platform.liquid',
+		    	'../hl-my-account/templates/includes/ja-trade-platform.liquid'
+		    ],
+		    overwrite: true,                 // overwrite matched source files
+		    replacements: [{
+		      from: 'public/trade-platform/images/',		      
+		      to: 'common/trade-platform/images/'
+		    }]
 		  }
 		},
 		'copy-part-of-file': {
@@ -1209,6 +1236,18 @@ module.exports = function(grunt) {
 			  files: {
 			      '../highlow-public-page/templates/trade-platform.liquid': ['build/index.html'],
 			      '../highlow-public-page/templates/ja-trade-platform.liquid': ['build/ja-index.html']
+			  }
+			},
+			copyPlatformToNewSite: {
+			  options: {
+			      sourceFileStartPattern: '<!-- start-platform -->',
+			      sourceFileEndPattern: '<!-- end-platform -->',
+			      destinationFileStartPattern: '<!-- start-platform -->',
+			      destinationFileEndPattern: '<!-- end-platform -->'
+			  },	
+			  files: {
+			      '../hl-my-account/templates/includes/trade-platform.liquid': ['build/index.html'],
+			      '../hl-my-account/templates/includes/ja-trade-platform.liquid': ['build/ja-index.html']
 			  }
 			},
 			copyTradingActivityPopup: {
@@ -1276,5 +1315,5 @@ module.exports = function(grunt) {
 	});
 
 	grunt.registerTask('default', ['sprite', 'newer:less', 'newer:concat', 'newer:liquid', 'newer:copy', 'replace','copy-part-of-file','concurrent:all']);
-	grunt.registerTask('build', ['sprite', 'less', 'newer:concat', 'newer:liquid', 'newer:copy', 'replace','copy-part-of-file']);
+	grunt.registerTask('build', ['sprite', 'less', 'newer:concat', 'newer:liquid', 'newer:copy', 'copy-part-of-file','replace']);
 };

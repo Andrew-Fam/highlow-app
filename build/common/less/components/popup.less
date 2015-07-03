@@ -12,20 +12,12 @@
 
 @trading-platform-popup-transition: opacity 0.1s ease-in;
 .trading-platform-popup-wrapper {
-	bottom: 0;
-	left: 0;
 	overflow: auto;
-	position: fixed;
-	right: 0;
-	top: 0;
+	position: absolute;
+	display: inline-block;
 	z-index: 999999;
 	.opacity(100);
 	.transition(@trading-platform-popup-transition);
-	&.overlay {
-		height: 100%;
-		width: 100%;
-		background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAAtJREFUCNdjYLgGAADZANeBDv3/AAAAAElFTkSuQmCC);
-	}
 	&.concealed {
 		.opacity(00);
 		z-index: -1;
@@ -62,7 +54,7 @@
 						font-size: @trading-platform-popup-header-font-size;
 						letter-spacing: 0.2em;
 						padding: @trading-platform-popup-header-padding;
-
+						cursor:move!important;
 
 						.jap-word {
 							font-weight: 700;

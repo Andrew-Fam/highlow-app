@@ -1,10 +1,13 @@
 highlowApp.betSystem = {
 	bets : {},
 	sellPopup: function(bet){
-		$('.trading-platform-sell-popup'+'.'+bet.type).removeClass('concealed');
+
 		$('.trading-platform-sell-popup.'+bet.type+' .trading-platform-sell-popup-instrument').html(bet.model.label);
-		$('.trading-platform-sell-popup.'+bet.type+' .trading-platform-invevstment-value').html((highlowApp.jap?'¥':'$')+highlowApp.getDisplayMoney(bet.amount));
-		$('.trading-platform-sell-popup.'+bet.type+' .trading-platform-pay-out-value').html((highlowApp.jap?'¥':'$')+highlowApp.getDisplayMoney(parseFloat(bet.amount*parseFloat($('.trading-platform-sell-popup.'+bet.	type+' .trading-platform-return-rate-value .rate').html())).toFixed(2)));
+		$('.trading-platform-sell-popup.'+bet.type+' .trading-platform-investment-value').html((highlowApp.jap?'¥':'$')+highlowApp.getDisplayMoney(bet.amount));
+		$('.trading-platform-sell-popup.'+bet.type+' .trading-platform-strike-value').addClass("highlow-"+bet.direction).html(bet.strike);
+
+		highlowApp.popup.displayPopup($('.trading-platform-sell-popup.'+bet.type));
+		
 	},
 	createBetEntry : function (bet, point, uid, type, betObject, clickHandler) {
 		var time = new Date(point.x),
@@ -97,11 +100,27 @@ highlowApp.betSystem = {
 
 		});
 
-console.log(row);
-
 		row.on('click','.investment-sell-btn', function(e) {
+			var self = $(this);
 			e.preventDefault();
-			highlowApp.betSystem.sellPopup(bet);
+			if(self.hasClass('clicked')) {
+				$('.trading-platform-sell-popup.'+bet.type).addClass('concealed');
+				$('.investment-sell-btn').removeClass('clicked');
+				$('.investment-sell-btn').html((highlowApp.jap?'転売':'SELL'));
+			} else {
+				if($('.trading-platform-sell-popup.'+bet.type).hasClass('concealed')) {
+					self.addClass('clicked');
+					highlowApp.betSystem.sellPopup(bet);
+					self.html((highlowApp.jap?'取り消す':'CANCEL'));
+				} else {
+					$('.investment-sell-btn').removeClass('clicked');
+					$('.investment-sell-btn').html((highlowApp.jap?'転売':'SELL'));
+					self.addClass('clicked');
+					highlowApp.betSystem.sellPopup(bet);
+					self.html((highlowApp.jap?'取り消す':'CANCEL'));
+				}
+			}
+			
 		})
 
 		$('.trading-platform-investments-list').append(row);
@@ -182,7 +201,7 @@ console.log(row);
 			$('.trading-platform-main-controls-select-direction .btn.highlow-up').removeClass('active').addClass('in-active');
 		}
 		
-		$('.trading-platform-invest-popup'+'.'+type).removeClass('concealed');
+		highlowApp.popup.displayPopup($('.trading-platform-invest-popup'+'.'+type));
 	},
 	placeBet : function (bet,type) {
 
@@ -237,7 +256,7 @@ console.log(row);
 
 		var expireAt = model.expireAt;
 
-		if ( type.indexOf('on-demand') >= 0 ) {
+		if ( type.indexOf('on-demand') >= 0 || type.indexOf('turbo') >= 0) {
 			expireAt = betAt+3*60*1000;
 		}
 
@@ -311,7 +330,7 @@ console.log(row);
 			var type = $(this).data('type');
 
 			if($(this).data('disabled') || !direction || direction =="") {
-				console.log('Please select high or low');
+				highlowApp.systemMessages.displayMessage('fail','Please select High or Low');
 				return;
 			}
 

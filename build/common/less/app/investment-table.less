@@ -47,6 +47,9 @@
 			font-size: 20px;
 		}
 	}
+	.investment-type-header {
+		text-align: center!important;
+	}
 	table {
 		> tbody {
 			> tr {
@@ -84,6 +87,7 @@
 						}
 
 						&.investment-type.highlow {
+							text-align: center;
 							&:before {
 								.inline-icon();
 								.sprite(@highlow-gold);
@@ -91,6 +95,7 @@
 						}
 
 						&.investment-type.spread {
+							text-align: center;
 							&:before {
 								.inline-icon();
 								.sprite(@spread-win);
@@ -98,9 +103,18 @@
 						}
 
 						&.investment-type.on-demand {
+							text-align: center;
 							&:before {
 								.inline-icon();
 								.sprite(@on-demand-win);
+							}
+						}
+
+						&.investment-type.spread-on-demand {
+							text-align: center;
+							&:before {
+								.inline-icon();
+								.sprite(@spread-on-demand-win);
 							}
 						}
 
@@ -120,21 +134,31 @@
 						}
 
 						&.investment-type.highlow {
+							text-align: center;
 							&:before {
 								.inline-icon();
 								.sprite(@highlow-white);
 							}
 						}
 						&.investment-type.spread {
+							text-align: center;
 							&:before {
 								.inline-icon();
 								.sprite(@spread-lose);
 							}
 						}
 						&.investment-type.on-demand {
+							text-align: center;
 							&:before {
 								.inline-icon();
 								.sprite(@on-demand-lose);
+							}
+						}
+						&.investment-type.spread-on-demand {
+							text-align: center;
+							&:before {
+								.inline-icon();
+								.sprite(@spread-on-demand-lose);
 							}
 						}
 					}
@@ -150,21 +174,31 @@
 							}
 						}
 						&.investment-type.highlow {
+							text-align: center;
 							&:before {
 								.inline-icon();
 								.sprite(@highlow-grey);
 							}
 						}
 						&.investment-type.spread {
+							text-align: center;
 							&:before {
 								.inline-icon();
 								.sprite(@spread-tie);
 							}
 						}
 						&.investment-type.on-demand {
+							text-align: center;
 							&:before {
 								.inline-icon();
 								.sprite(@on-demand-tie);
+							}
+						}
+						&.investment-type.spread-on-demand {
+							text-align: center;
+							&:before {
+								.inline-icon();
+								.sprite(@spread-on-demand-tie);
 							}
 						}
 

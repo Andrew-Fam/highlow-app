@@ -192,6 +192,9 @@
 			height: auto;
 			padding-top: 10px;
 			padding-bottom: 10px;
+			font-family: 'Roboto',Helvetica, Arial, sans-serif;
+			font-weight: 400;
+
 			&.jap {
 				padding-left: 14px;
 				padding-right: 10px;
@@ -225,7 +228,7 @@
 			.clearfix();
 			.btn {
 
-
+				font-family: "Roboto", "Helvetica", "Arial", sans-serif!important;
 				background-color: @trading-platform-common-amount-bg;
 				color: @trading-platform-common-amount-fg;
 				display: block;
@@ -235,6 +238,7 @@
 				padding: @trading-platform-duration-font-size/1.5 @trading-platform-duration-font-size; 
 				text-align: center;
 				width: 78px;
+				letter-spacing: .07em;
 				.transition(all 0.2s ease);
 				&:hover {
 					color: white;
@@ -281,6 +285,10 @@
 					margin-bottom: 5px;
 					backface-visibility: none;
 					-webkit-backface-visibility: none;
+					&.btn-negative,
+					&.btn-positive {
+						height: 29px;
+					}
 				}
 			}
 
@@ -296,6 +304,12 @@
 				width: 116px;
 				&.btn-negative {
 					background-color: @xoi-gac;
+				}
+				&.btn-negative,
+				&.btn-positive {
+					height: 49px;
+					padding-left: 6px;
+					padding-right: 6px;
 				}
 				&:last-child {
 					margin-right: 0px;

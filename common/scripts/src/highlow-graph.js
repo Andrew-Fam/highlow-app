@@ -3,6 +3,55 @@ highlowApp.graph = {
 	onGraphUI : {},
 	init : function (){
 
+		/* start loading screen */
+
+		var loadingScreen = $('.platform-loading-screen'),
+			loadingBar = $('.platform-loading-screen .loading-bar .fill');
+
+		var progress = 0;
+
+		function animateLoadingBar() {
+			if(progress<=100) {
+				loadingBar.animate({
+					width: progress+'%'
+				},50);
+
+				progress += highlowApp.randomValue(1,15);
+
+				setTimeout(animateLoadingBar,highlowApp.randomValue(30, 120));
+			} else {
+
+				console.log('whuut');
+
+				progress = 100;
+
+				loadingBar.animate({
+					width: progress+'%'
+				},125);
+
+				setTimeout(finishLoadingBar,500);
+			}
+			
+		}
+
+		function finishLoadingBar() {
+			loadingScreen.animate({
+				opacity: 0
+			},125, function(){
+				loadingScreen.css({
+					display: 'none'
+				});
+			});
+		}
+
+
+		
+
+
+
+		/* end loading screen code */
+
+
 		Highcharts.setOptions({
 		    plotOptions: {
 		        series: {
@@ -18,12 +67,13 @@ highlowApp.graph = {
 		this.prepareGraph('#spread-graph');
 		this.prepareGraph('#on-demand-graph',2*60*1000);
 		this.prepareGraph('#spread-on-demand-graph',2*60*1000);
+		this.prepareGraph('#turbo-graph',2*60*1000);
 
 		this.graphs['highlow'] = Highcharts.charts[$("#highlow-graph").data('highchartsChart')];
 		this.graphs['spread'] = Highcharts.charts[$("#spread-graph").data('highchartsChart')];
 		this.graphs['on-demand'] = Highcharts.charts[$("#on-demand-graph").data('highchartsChart')];
 		this.graphs['spread-on-demand'] = Highcharts.charts[$("#spread-on-demand-graph").data('highchartsChart')];
-
+		this.graphs['turbo-demand'] = Highcharts.charts[$("#turbo-graph").data('highchartsChart')];
 
 
 		this.mouse = {x:0,y:0};
@@ -32,6 +82,9 @@ highlowApp.graph = {
 			self.mouse.x = e.clientX || e.pageX; 
     		self.mouse.y = e.clientY || e.pageY;
 		});
+
+		animateLoadingBar();
+
 	},
 	isOneClick: function(model) {
 		var $mainView = $("#"+model.type+"-main-view");
@@ -57,6 +110,9 @@ highlowApp.graph = {
 	        return mid;
 	},
 	loadInstrument: function (model) {
+
+		
+
 
 		$('.trading-platform-main-controls-select-direction .btn').removeClass('active').removeClass('in-active');
 		
@@ -143,7 +199,7 @@ highlowApp.graph = {
 
 
 
-		if(model.type.indexOf("on-demand")>=0) {
+		if(model.type.indexOf("on-demand")>=0 || model.type.indexOf("turbo")>=0) {
 			
 			xAxis.setExtremes(currentTime-10*60*1000,currentTime+3*60*1000,true);
 
@@ -182,6 +238,10 @@ highlowApp.graph = {
 
 					text = renderer.text('次<br/>回<br/>の<br/>判<br/>定<br/>時<br/>刻<br/>ま<br/>で<br/>60<br/>秒',textX,textY);
 
+					if(model.type.indexOf("turbo")>=0) {
+						text = renderer.text('次<br/>回<br/>の<br/>判<br/>定<br/>時<br/>刻<br/>ま<br/>で<br/>30<br/>秒',textX,textY);
+					}
+
 					text.css({
 						"font-family":'"Hiragino Kaku Gothic Pro","ヒラギノ角ゴ Pro W3","メイリオ",Meiryo,"ＭＳ Ｐゴシック",Helvetica,Arial,Verdana,sans-serif',
 						"font-size" : '12px',
@@ -201,6 +261,11 @@ highlowApp.graph = {
 					textY = 141;
 
 					text = renderer.text('NEXT EXPIRY IN 60 SECS',textX,textY);
+
+					if(model.type.indexOf("turbo")>=0) {
+						text = renderer.text('NEXT EXPIRY IN 30 SECS',textX,textY);
+					}
+
 					text.css({
 						"font-family": 'Montserrat',
 						"font-size" : '10px;',
@@ -342,7 +407,8 @@ highlowApp.graph = {
 			marker : {
 				enabled : true,
 				symbol : "url(common/images/graph-marker.png)",
-				zIndex : 1000
+				zIndex : 1000,
+				id: "strike-marker"
 			},
 			states: {
 				hover: {
@@ -380,7 +446,7 @@ highlowApp.graph = {
 
 			// reset finish text for on-demand bets
 
-			if(model.type.indexOf('on-demand')>=0) {
+			if(model.type.indexOf("on-demand")>=0 || model.type.indexOf("turbo")>=0) {
 				bet.finishLabel = undefined;
 				bet.finishText = undefined;
 			}
@@ -411,6 +477,9 @@ highlowApp.graph = {
 		});
 
 
+		/* hide loading screen */
+
+		
 	},
 	updateOnGraphUI: function (model,point) {
 
@@ -470,7 +539,7 @@ highlowApp.graph = {
 
 
 
-		if(type.indexOf("on-demand")>=0) {
+		if(type.indexOf("on-demand")>=0 || type.indexOf("turbo")>=0) {
 
 			// set graph range
 
@@ -835,6 +904,11 @@ highlowApp.graph = {
 	},
 	placeBet : function(betObject) {
 
+		highlowApp.systemMessages.hideMessage();
+		$('.main-view .processing').animate({
+			opacity: 1
+		},250);
+
 		var graph = $('#'+betObject.type+"-graph").highcharts();
 
 		var series = graph.series[0];
@@ -942,7 +1016,7 @@ highlowApp.graph = {
 
 		img.on('mouseover', function() {
 
-			if (betObject.model.type.indexOf('on-demand')>=0 && !betObject.expired) {
+			if ((betObject.model.type.indexOf("on-demand")>=0 || betObject.model.type.indexOf("turbo")>=0) && !betObject.expired) {
 				betObject.hover = true;
 				betObject.model.hoveredBet = betObject;
 				highlowApp.marketSimulator.updateBetStatus(betObject.model);
@@ -979,7 +1053,7 @@ highlowApp.graph = {
 		});
 		img.on('mouseout', function() {
 
-			if (betObject.model.type.indexOf('on-demand')>=0) {
+			if (betObject.model.type.indexOf("on-demand")>=0 || betObject.model.type.indexOf("turbo")>=0) {
 				betObject.hover = false;
 				betObject.model.hoveredBet = undefined;
 				highlowApp.marketSimulator.updateBetStatus(betObject.model);
@@ -1021,7 +1095,7 @@ highlowApp.graph = {
 
 		var model = betObject.model;
 		
-		if(model.type.indexOf("on-demand")>=0) {
+		if(model.type.indexOf("on-demand")>=0 || model.type.indexOf("turbo")>=0) {
 
 			var expiryHintLineId = model.type+"-expiry-hint-line";
 
@@ -1039,7 +1113,12 @@ highlowApp.graph = {
 			
 		}
 
-
+		setTimeout(function(){
+			$('.main-view .processing').animate({
+				opacity: 0
+			},250);
+			highlowApp.systemMessages.displayMessage('success','success!');
+		},1250);
 
 	},
 	addPoint: function (model,point) {

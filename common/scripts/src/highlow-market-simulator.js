@@ -4,16 +4,36 @@ highlowApp.marketSimulator = {
 	rounding: 3,
 	minInterval: 1000,
 	maxInterval: 1500,
-	maxChange: 0.0008,
+	maxChange: 0.0006,
 	modelDataName: 'instrumentModel',
 	start: function() {
 		var self = this;
 		for (var i = 0; i < this.instruments.length; i++) {
 			var instrument  = this.instruments[i];
-
 			instrument.update();
 			instrument.updateTime();
 		}
+	},
+	pause: function(instrument) {
+		instrument.pause = true;
+		var currentTime = new Date().getTime();
+		instrument.lastPause = currentTime;
+	},
+	resume: function(instrument) {
+
+		var currentTime = new Date().getTime();
+		instrument.pauseOffset += currentTime - instrument.lastPause;
+		instrument.pause = false;
+		instrument.update();
+		instrument.updateTime();
+	},
+	reset: function(instrument,minutesIntoGame) {
+		instrument.pause = true;
+
+		highlowApp.marketSimulator.initInstrument(instrument,minutesIntoGame);
+		highlowApp.graph.loadInstrument(instrument);
+
+		instrument.pause = false;
 	},
 	simulate: function(instrument) {
 		var self = this;
@@ -21,10 +41,6 @@ highlowApp.marketSimulator = {
 		var deviation = highlowApp.randomValue(0,self.maxChange,4);
 
 		// if the market has been moving up, there's more chance it's gonna go down this time
-
-		var coefficient = 0.0016;
-
-
 
 		var splitChance = 0.5;
 
@@ -36,24 +52,16 @@ highlowApp.marketSimulator = {
 
 		if(instrument.absoluteChange>0.002) {
 			splitChance+=0.3;
-		} else if(instrument.absoluteChange<0.002) {
+		} else if(instrument.absoluteChange<-0.002) {
 			splitChance-=0.3;
 		}
-
 
 		// console.log(splitChance);
 
 		var variation = Math.random() >= splitChance ? deviation : -deviation;
 
-
-
-
-
 		instrument.previousRate = parseFloat(instrument.currentRate);
 		instrument.currentRate = parseFloat(instrument.currentRate + variation);
-
-
-
 
 		instrument.absoluteChange += parseFloat(variation);
 
@@ -62,16 +70,14 @@ highlowApp.marketSimulator = {
 			instrument.lowerRate = parseFloat(parseFloat(instrument.currentRate) - self.spread);
 		}
 
-
-
 		var currentTime = new Date().getTime();
 
 
 		// test if instrument has gone into deadzone or not (only applicable to none on-demand types)
 
-		if (instrument.type.indexOf('on-demand')<0) {
+		if (instrument.type.indexOf('on-demand')<0 && instrument.type.indexOf('turbo')<0) {
 
-			if(currentTime>=instrument.expireAt-2*60*1000) {
+			if(currentTime-instrument.pauseOffset>=instrument.expireAt-2*60*1000) {
 				instrument.dead = true;
 			}
 
@@ -84,7 +90,7 @@ highlowApp.marketSimulator = {
 			.addPoint(
 				instrument,
 				{
-	  				x : currentTime,
+	  				x : currentTime-instrument.pauseOffset,
 	  				y : instrument.currentRate,
 	  				marker : {
 	  					enabled : true,
@@ -98,16 +104,15 @@ highlowApp.marketSimulator = {
 	  				zIndex: 10
 	  			}
   			);
-		} 
+		}
 
 		instrument.data.push({
-			x: currentTime,
+			x: currentTime-instrument.pauseOffset,
 			y: instrument.currentRate,
 			marker : {
 				enabled: false
 			}
 		});
-
 
 		self.updateUI(instrument.uid,instrument);
 
@@ -289,7 +294,7 @@ highlowApp.marketSimulator = {
 				}
 
 
-				if(model.type.indexOf('on-demand')>=0) {
+				if(model.type.indexOf('on-demand')>=0 || model.type.indexOf('turbo')>=0) {
 					
 
 					var plotBandId = model.type+"-plot-band-"+model.uid+"-"+i;
@@ -531,7 +536,28 @@ highlowApp.marketSimulator = {
 
 				
 				
-				
+				// calculate fake payout rate to display on sell popup (I just made this up, it's not the real algorithm, just to simulate changing rate)
+				bet.payoutRateModifier = bet.direction=="high"?-1:1;
+
+				var difference = (parseFloat(bet.model.currentRate).toFixed(3) - parseFloat(bet.strike).toFixed(3));
+
+				var basePayoutRate = 0.500;
+
+				var maxPayoutRate = bet.model.payoutRate;
+
+				var payoutRateMultiplier = 75;
+
+				var payoutRateAdjustment = (maxPayoutRate - basePayoutRate) * 1/(1-1/(difference * bet.payoutRateModifier * payoutRateMultiplier));
+
+
+				bet.payoutRate = parseFloat(basePayoutRate+payoutRateAdjustment).toFixed(3);
+
+				bet.payout = bet.amount*bet.payoutRate;
+
+				$('.trading-platform-return-rate-value.'+bet.type).html(bet.payoutRate);
+
+				$('.trading-platform-sell-popup.'+bet.type+' .trading-platform-pay-out-value').html((highlowApp.jap?'¥':'$')+highlowApp.getDisplayMoney(parseFloat(bet.payout).toFixed(2)));
+
 			}
 
 			
@@ -555,11 +581,19 @@ highlowApp.marketSimulator = {
 		if (model.type.indexOf('spread')>=0) {
 
 			var highDisplay = $(view.find('.instrument-panel-rate.highlow-high')),
-			lowDisplay = $(view.find('.instrument-panel-rate.highlow-low'));
+			lowDisplay = $(view.find('.instrument-panel-rate.highlow-low')),
+			spreadHighDisplay = $('.spread-high'),
+			spreadLowDisplay = $('.spread-low');
 
 			highDisplay.html(" "+parseFloat(model.upperRate).toFixed(marketSimulator.rounding));
-
 			lowDisplay.html(" "+parseFloat(model.lowerRate).toFixed(marketSimulator.rounding));
+
+			if(model.active) {
+				spreadHighDisplay.html(" "+parseFloat(model.upperRate).toFixed(marketSimulator.rounding));
+				spreadLowDisplay.html(" "+parseFloat(model.lowerRate).toFixed(marketSimulator.rounding));
+			}
+
+			
 
 		} else {
 			var rateDisplay = $(view.find('.instrument-panel-rate'));
@@ -574,7 +608,7 @@ highlowApp.marketSimulator = {
 
 	},
 	updateRemainingTime : function (model) {
-		if(model.type.indexOf('on-demand') < 0) {
+		if(model.type.indexOf('on-demand') < 0 && model.type.indexOf('turbo') < 0) {
 			var view = $('[data-uid="'+model.uid+'"]'),
 			remainingTimeDisplay = $(view.find('.expiry-time')),
 			currentTime = new Date().getTime(),
@@ -686,6 +720,232 @@ highlowApp.marketSimulator = {
 			}
 		}
 	},
+	initInstrument: function(instrumentModel,minutesIntoGame) {
+
+
+
+
+		var currentTime = new Date().getTime();
+
+		var marketSimulator = this;
+
+		//get seed data from html markup
+		instrumentModel.pauseOffset = 0;
+		instrumentModel.label = instrumentModel.domElement.data('instrumentLabel');
+		instrumentModel.type = instrumentModel.domElement.data('tradingType');
+		instrumentModel.durationLabel = instrumentModel.domElement.data('instrumentDuration');
+		instrumentModel.durationId = instrumentModel.domElement.data('instrumentDurationId');
+		instrumentModel.duration = instrumentModel.domElement.data('instrumentDurationValue');
+		instrumentModel.seedRate = instrumentModel.domElement.data('instrumentSeedRate');
+		instrumentModel.payoutRate = instrumentModel.domElement.data('instrumentPayoutRate');
+		instrumentModel.currentRate = parseFloat(instrumentModel.seedRate).toFixed(marketSimulator.rounding);
+		instrumentModel.previousrate = instrumentModel.currentRate;
+		instrumentModel.bets = [];
+		instrumentModel.uid = instrumentModel.domElement.data('uid');
+
+		// Now let's assume that the open time is 5 minutes ago (round to closest minute), or 14 minute ago when there is 'deadzone' in the url query for testing purpose
+		// except for on-demand type, which doesn't have a fixed open time
+
+		if(instrumentModel.type.indexOf('on-demand') < 0 && instrumentModel.type.indexOf('turbo') < 0) {
+
+
+			if(highlowApp.expiring()) {
+				instrumentModel.openAt = currentTime - 1000*60*13;
+			} else {
+				if(minutesIntoGame && minutesIntoGame>0) {
+					instrumentModel.openAt = currentTime - 1000*60*minutesIntoGame;
+				} else {
+					instrumentModel.openAt = (Math.round(currentTime / (1000 * 60 * 2))-1) * 1000 * 60 * 2;
+				}
+			}
+
+			instrumentModel.expireAt = instrumentModel.openAt+instrumentModel.duration;
+
+			if(instrumentModel.duration == 15*60*1000) {
+				instrumentModel.deadzone = instrumentModel.expireAt - 2 * 60 * 1000;
+			} else if(instrumentModel.duration == 60*60*1000) {
+				instrumentModel.deadzone = instrumentModel.expireAt - 5 * 60 * 1000;
+			} else if(instrumentModel.duration == 24*60*60*1000) {
+				instrumentModel.deadzone = instrumentModel.expireAt - 15 * 60 * 1000;
+			}
+
+			
+		}
+
+	// Generate past data.
+
+		var startingPointFromNow = (40*60*1000),
+		minInterval = 1000,
+		maxInterval = 5000;
+
+		if(instrumentModel.duration>15*60*1000) {
+			startingPointFromNow = 60*60*1000,
+			minInterval = 10000,
+			maxInterval = 50000;
+		}
+
+		if(instrumentModel.duration>60*60*1000) {
+			startingPointFromNow = 4*60*60*1000
+			minInterval = 40000,
+			maxInterval = 200000;
+		}
+
+		instrumentModel.startingPoint = currentTime - startingPointFromNow;
+		instrumentModel.absoluteChange = 0;
+		instrumentModel.data = [];
+
+		// seed highlow data array with a value
+
+		instrumentModel.data.push({
+			x :	instrumentModel.startingPoint,
+			y : instrumentModel.seedRate
+		});
+
+		// generate mock data from starting from 20 minutes ago
+		// assuming updates every 1 - 2 seconds
+
+		for (var i = instrumentModel.startingPoint,j = 1; i < currentTime; i+=highlowApp.randomValue(minInterval, maxInterval), j++) {
+
+			// 50% of going up or down by 0 to 0.003;
+
+			var deviation = highlowApp.randomValue(0,marketSimulator.maxChange,4);
+
+			// if the market has been moving up, there's more chance it's gonna go down this time
+
+			var splitChance = 0.5;
+
+			if(instrumentModel.absoluteChange>0) {
+				splitChance+=0.1;
+			} else if(instrumentModel.absoluteChange<0) {
+				splitChance-=0.1;
+			}
+
+			if(instrumentModel.absoluteChange>0.002) {
+				splitChance+=0.3;
+			} else if(instrumentModel.absoluteChange<-0.002) {
+				splitChance-=0.3;
+			}
+
+			var variation = Math.random() >= splitChance ? deviation : -deviation;
+
+			instrumentModel.absoluteChange += parseFloat(variation);
+
+			// next value calculated from variation deinfed above and previous value
+
+			var point = { 
+				x : i ,
+				y : instrumentModel.data[j-1]['y'] + variation
+			};
+
+			instrumentModel.data.push(point);
+
+			instrumentModel.previousRate = instrumentModel.currentRate;
+			instrumentModel.currentRate = point.y;
+		}
+
+		if (instrumentModel.type === 'spread') {
+			instrumentModel.upperRate = parseFloat(instrumentModel.currentRate + marketSimulator.spread).toFixed(marketSimulator.rounding);
+			instrumentModel.lowerRate = parseFloat(instrumentModel.currentRate - marketSimulator.spread).toFixed(marketSimulator.rounding);
+		}
+
+		instrumentModel.getMainViewId = function() {
+			return instrumentModel.type+"-main-view";
+		}
+
+		instrumentModel.updateMainView = function() {
+			var model = instrumentModel;
+			var mainViewId  = model.getMainViewId();
+
+			$('#'+mainViewId).data(marketSimulator.modelDataName,instrumentModel);
+
+			$('#'+mainViewId+" .trading-platform-instrument-duration").html(" " + model.durationLabel);
+
+			$('#'+model.type+"-mode .trading-platform-main-controls-payout-rate").html(model.payoutRate);
+
+			$('#'+mainViewId+" .trading-platform-instrument-title, "+
+				"#"+model.type+"-mode .trading-platform-main-controls-instrument-title, "+
+				'.trading-platform-invest-popup.'+model.type+' .trading-platform-main-controls-instrument-title').html(" " + model.label);
+
+			$('#'+mainViewId+" .trading-platform-maximum-return").html((highlowApp.jap?'¥':'$')+highlowApp.getDisplayMoney(parseFloat(model.payoutRate*$('#'+model.type+'-investment-value-input').val()).toFixed(2)));
+
+			if(model.active) {
+
+				if(model.dead) {
+					$('#' + model.getMainViewId()).addClass('dead');
+				} else {
+					$('#' + model.getMainViewId()).removeClass('dead');
+				}
+
+				var mainViewRateDisplay = $('#' + model.getMainViewId() + ' .current-rate'),
+				popupRateDisplay = $('.trading-platform-invest-popup.'+model.type+' .current-rate'),
+				sellPopupRateDisplay = $('.trading-platform-sell-popup.'+model.type+' .current-rate');
+				
+				if(model.type.indexOf('on-demand')<0 && model.type.indexOf('turbo')<0) {
+					$('#'+mainViewId+" .trading-platform-instrument-closing-time").html(" "+ highlowApp.timeToText(model.expireAt));
+				} else {
+					if(model.focusedBet) {
+						$('#'+mainViewId+" .trading-platform-instrument-closing-time").html(" "+ highlowApp.timeToText(model.focusedBet.expireAt));
+					}
+				}
+
+				if (model.currentRate>model.previousRate) {
+					mainViewRateDisplay.removeClass('highlow-low').addClass('highlow-high');
+					popupRateDisplay.removeClass('highlow-low').addClass('highlow-high');
+					sellPopupRateDisplay.removeClass('highlow-low').addClass('highlow-high');
+				} else if(model.currentRate<model.previousRate) {
+					mainViewRateDisplay.removeClass('highlow-high').addClass('highlow-low');
+					popupRateDisplay.removeClass('highlow-high').addClass('highlow-low');
+					sellPopupRateDisplay.removeClass('highlow-high').addClass('highlow-low');
+				}
+
+				mainViewRateDisplay.html(" " + parseFloat(model.currentRate).toFixed(marketSimulator.rounding));
+				popupRateDisplay.html(" " + parseFloat(model.currentRate).toFixed(marketSimulator.rounding));
+				sellPopupRateDisplay.html(" " + parseFloat(model.currentRate).toFixed(marketSimulator.rounding));
+			}
+		}
+
+		instrumentModel.update = function(){
+			var self = instrumentModel;
+			if(!instrumentModel.pause) {
+				
+				marketSimulator.simulate(self);
+				if(self.active) {
+					self.updateMainView();
+				}
+				if(instrumentModel.expired) {
+
+					if(instrumentModel.type.indexOf('on-demand') < 0 && instrumentModel.type.indexOf('turbo') < 0) {
+						instrumentModel.openAt = (Math.round(currentTime / (1000 * 60 * 5))-1) * 1000 * 60 * 5;
+						instrumentModel.expireAt = instrumentModel.openAt+instrumentModel.duration;
+					}
+				} 
+				setTimeout(self.update,Math.floor(highlowApp.randomValue(marketSimulator.minInterval, marketSimulator.maxInterval)));
+			}
+			
+		}
+
+		instrumentModel.updateTime = function() {
+			var self = instrumentModel;
+			if(!instrumentModel.pause) {
+				
+
+				marketSimulator.updateRemainingTime(self);
+
+				if(instrumentModel.expired) {
+					return;	
+				}
+				setTimeout(self.updateTime,1000);
+			}
+		}
+
+		//attach the model to the UI
+
+		$('[data-uid="'+instrumentModel.domElement.data('uid')+'"]').data(marketSimulator.modelDataName,instrumentModel);
+
+		// update closing time to instrument panel
+
+		$('[data-uid="'+instrumentModel.domElement.data('uid')+'"] .closing-at').html(highlowApp.timeToText(instrumentModel.expireAt));
+	},
 	init: function() {
 		var marketSimulator = this;
 		// iterate through every instrument panel in the UI.
@@ -694,231 +954,12 @@ highlowApp.marketSimulator = {
 			var instrumentModel = {},
 			self = $(this);
 
-			//get seed data from html markup
+			
 
-			var currentTime = new Date().getTime();
 
-			instrumentModel.label = self.data('instrumentLabel');
-			instrumentModel.type = self.data('tradingType');
-			instrumentModel.durationLabel = self.data('instrumentDuration');
-			instrumentModel.durationId = self.data('instrumentDurationId');
-			instrumentModel.duration = self.data('instrumentDurationValue');
-			instrumentModel.seedRate = self.data('instrumentSeedRate');
-			instrumentModel.payoutRate = self.data('instrumentPayoutRate');
-			instrumentModel.currentRate = parseFloat(instrumentModel.seedRate).toFixed(marketSimulator.rounding);
-			instrumentModel.previousrate = instrumentModel.currentRate;
-			instrumentModel.bets = [];
-			instrumentModel.uid = self.data('uid');
+			instrumentModel.domElement = self;
 
-			// Now let's assume that the open time is 5 minutes ago (round to closest minute), or 14 minute ago when there is 'deadzone' in the url query for testing purpose
-			// except for on-demand type, which doesn't have a fixed open time
-
-			if(instrumentModel.type.indexOf('on-demand') < 0) {
-
-
-				if(highlowApp.expiring()) {
-					instrumentModel.openAt = currentTime - 1000*60*13;
-				} else {
-					instrumentModel.openAt = (Math.round(currentTime / (1000 * 60 * 5))-1) * 1000 * 60 * 5;
-				}
-
-				instrumentModel.expireAt = instrumentModel.openAt+instrumentModel.duration;
-
-				if(instrumentModel.duration == 15*60*1000) {
-					instrumentModel.deadzone = instrumentModel.expireAt - 2 * 60 * 1000;
-				} else if(instrumentModel.duration == 60*60*1000) {
-					instrumentModel.deadzone = instrumentModel.expireAt - 5 * 60 * 1000;
-				} else if(instrumentModel.duration == 24*60*60*1000) {
-					instrumentModel.deadzone = instrumentModel.expireAt - 15 * 60 * 1000;
-				}
-
-				
-			}
-
-
-		// Generate past data.
-
-
-			var startingPointFromNow = (40*60*1000),
-			minInterval = 1000,
-			maxInterval = 5000;
-
-			if(instrumentModel.duration>15*60*1000) {
-				startingPointFromNow = 60*60*1000,
-				minInterval = 10000,
-				maxInterval = 50000;
-			}
-
-			if(instrumentModel.duration>60*60*1000) {
-				startingPointFromNow = 4*60*60*1000
-				minInterval = 40000,
-				maxInterval = 200000;
-			}
-
-			instrumentModel.startingPoint = currentTime - startingPointFromNow;
-			instrumentModel.absoluteChange = 0;
-			instrumentModel.data = [];
-
-			// seed highlow data array with a value
-
-
-			instrumentModel.data.push({
-				x :	instrumentModel.startingPoint,
-				y : instrumentModel.seedRate
-			});
-
-			// generate mock data from starting from 20 minutes ago
-			// assuming updates every 1 - 2 seconds
-
-			for (var i = instrumentModel.startingPoint,j = 1; i < currentTime; i+=highlowApp.randomValue(minInterval, maxInterval), j++) {
-
-
-
-				// 50% of going up or down by 0 to 0.003;
-
-				var deviation = highlowApp.randomValue(0,marketSimulator.maxChange,4);
-
-
-
-				// if the market has been moving up, there's more chance it's gonna go down this time
-
-				var splitChance = 0.5;
-
-				if(instrumentModel.absoluteChange>0) {
-					splitChance+=0.1;
-				} else if(instrumentModel.absoluteChange<0) {
-					splitChance-=0.1;
-				}
-
-				if(instrumentModel.absoluteChange>0.002) {
-					splitChance+=0.3;
-				} else if(instrumentModel.absoluteChange<-0.002) {
-					splitChance-=0.3;
-				}
-
-				
-
-				var variation = Math.random() >= splitChance ? deviation : -deviation;
-
-				instrumentModel.absoluteChange += parseFloat(variation);
-
-
-				// next value calculated from variation deinfed above and previous value
-
-				var point = { 
-					x : i ,
-					y : instrumentModel.data[j-1]['y'] + variation
-				};
-
-				instrumentModel.data.push(point);
-
-				instrumentModel.previousRate = instrumentModel.currentRate;
-				instrumentModel.currentRate = point.y;
-			}
-
-			if (instrumentModel.type === 'spread') {
-				instrumentModel.upperRate = parseFloat(instrumentModel.currentRate + marketSimulator.spread).toFixed(marketSimulator.rounding);
-				instrumentModel.lowerRate = parseFloat(instrumentModel.currentRate - marketSimulator.spread).toFixed(marketSimulator.rounding);
-			}
-
-			instrumentModel.getMainViewId = function() {
-				return instrumentModel.type+"-main-view";
-			}
-
-			instrumentModel.updateMainView = function() {
-				var model = instrumentModel;
-				var mainViewId  = model.getMainViewId();
-
-				$('#'+mainViewId).data(marketSimulator.modelDataName,instrumentModel);
-
-				
-
-
-				$('#'+mainViewId+" .trading-platform-instrument-duration").html(" " + model.durationLabel);
-
-
-
-				$('#'+model.type+"-mode .trading-platform-main-controls-payout-rate").html(model.payoutRate);
-
-				$('#'+mainViewId+" .trading-platform-instrument-title, "+
-					"#"+model.type+"-mode .trading-platform-main-controls-instrument-title, "+
-					'.trading-platform-invest-popup.'+model.type+' .trading-platform-main-controls-instrument-title').html(" " + model.label);
-
-
-				$('#'+mainViewId+" .trading-platform-maximum-return").html((highlowApp.jap?'¥':'$')+highlowApp.getDisplayMoney(parseFloat(model.payoutRate*$('#'+model.type+'-investment-value-input').val()).toFixed(2)));
-
-				if(model.active) {
-
-
-					if(model.dead) {
-						$('#' + model.getMainViewId()).addClass('dead');
-					} else {
-						$('#' + model.getMainViewId()).removeClass('dead');
-					}
-
-
-					var mainViewRateDisplay = $('#' + model.getMainViewId() + ' .current-rate'),
-					popupRateDisplay = $('.trading-platform-invest-popup.'+model.type+' .current-rate'),
-					sellPopupRateDisplay = $('.trading-platform-sell-popup.'+model.type+' .current-rate');
-					
-					if(model.type.indexOf('on-demand')<0) {
-						$('#'+mainViewId+" .trading-platform-instrument-closing-time").html(" "+ highlowApp.timeToText(model.expireAt));
-					} else {
-						if(model.focusedBet) {
-							$('#'+mainViewId+" .trading-platform-instrument-closing-time").html(" "+ highlowApp.timeToText(model.focusedBet.expireAt));
-						}
-					}
-
-					if (model.currentRate>model.previousRate) {
-						mainViewRateDisplay.removeClass('highlow-low').addClass('highlow-high');
-						popupRateDisplay.removeClass('highlow-low').addClass('highlow-high');
-						sellPopupRateDisplay.removeClass('highlow-low').addClass('highlow-high');
-					} else if(model.currentRate<model.previousRate) {
-						mainViewRateDisplay.removeClass('highlow-high').addClass('highlow-low');
-						popupRateDisplay.removeClass('highlow-high').addClass('highlow-low');
-						sellPopupRateDisplay.removeClass('highlow-high').addClass('highlow-low');
-					}
-
-					mainViewRateDisplay.html(" " + parseFloat(model.currentRate).toFixed(marketSimulator.rounding));
-					popupRateDisplay.html(" " + parseFloat(model.currentRate).toFixed(marketSimulator.rounding));
-					sellPopupRateDisplay.html(" " + parseFloat(model.currentRate).toFixed(marketSimulator.rounding));
-				}
-			}
-
-			instrumentModel.update = function(){
-				var self = instrumentModel;
-				marketSimulator.simulate(self);
-				if(self.active) {
-					self.updateMainView();
-				}
-				if(instrumentModel.expired) {
-
-					if(instrumentModel.type.indexOf('on-demand') < 0) {
-						instrumentModel.openAt = (Math.round(currentTime / (1000 * 60 * 5))-1) * 1000 * 60 * 5;
-						instrumentModel.expireAt = instrumentModel.openAt+instrumentModel.duration;
-					}
-				} 
-				setTimeout(self.update,Math.floor(highlowApp.randomValue(marketSimulator.minInterval, marketSimulator.maxInterval)));
-			}
-
-			instrumentModel.updateTime = function() {
-				var self = instrumentModel;
-
-				marketSimulator.updateRemainingTime(self);
-
-				if(instrumentModel.expired) {
-					return;
-				} 
-				setTimeout(self.updateTime,1000);
-			}
-
-			//attach the model to the UI
-
-			$('[data-uid="'+self.data('uid')+'"]').data(marketSimulator.modelDataName,instrumentModel);
-
-			// update closing time to instrument panel
-
-			$('[data-uid="'+self.data('uid')+'"] .closing-at').html(highlowApp.timeToText(instrumentModel.expireAt));
+			marketSimulator.initInstrument(instrumentModel);
 
 			marketSimulator.instruments.push(instrumentModel);
 		});

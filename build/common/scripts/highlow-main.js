@@ -103,40 +103,43 @@ highlowApp.timeToText  = function(stamp) {
 }
 ;
 highlowApp.balanceWidget = {
-	init: function() {
+	close: function() {
+		var widget = $('#account-balance');
+		var menu = $('#account-balance .dropdown-menu');
+		widget.removeClass('open');
+		menu.hide();
+	},
+	display: function() {
 		var widget = $('#account-balance');
 		var menu = $('#account-balance .dropdown-menu');
 		var _window = $(window);
+		menu.show();
+		widget.addClass('open');
+
+		// get position of widget at time of open
+
+		widget.data('opened-position',_window.scrollTop());
+
+		menu.css({
+			opacity: 0
+		});
+
+		menu.animate({
+			opacity: 1
+		},200);
+	},
+	initWithdrawDeposit: function() {
+		var widget = $('#account-balance');
+		var _window = $(window);
 		var widgetPositionReset = {};
 
-		// $('#account-balance').on('mouseleave',function(){
-		// 	if(widget.hasClass('open')) {
-		// 		menu.toggle();
-		// 		widget.removeClass('open');
-		// 	}
-		// });
-
 		$('#account-balance .toggle').click(function(){
-			menu.toggle();
 			if(widget.hasClass('open')) {
-				widget.removeClass('open');
-				// console.log('close');
+				highlowApp.balanceWidget.close();
 				
 			} else {
-				widget.addClass('open');
 
-				// get position of widget at time of open
-
-				widget.data('opened-position',_window.scrollTop());
-
-				menu.css({
-					opacity: 0
-				});
-
-				menu.animate({
-					opacity: 1
-				},200);
-				// console.log('open');
+				highlowApp.balanceWidget.display();
 			}
 		});
 
@@ -156,16 +159,29 @@ highlowApp.balanceWidget = {
 				}
 			}
 		});
+	},
+	init: function() {
+		var depositPopup = $('#make-deposit-popup')
+		$('#account-balance .toggle').click(function(){
+			if(depositPopup.hasClass('concealed')) {
+				highlowApp.popup.displayPopup(depositPopup);
+			} else {
+				highlowApp.popup.hidePopup(depositPopup);
+			}
+		});
 	}
 }
 ;
 highlowApp.betSystem = {
 	bets : {},
 	sellPopup: function(bet){
-		$('.trading-platform-sell-popup'+'.'+bet.type).removeClass('concealed');
+
 		$('.trading-platform-sell-popup.'+bet.type+' .trading-platform-sell-popup-instrument').html(bet.model.label);
-		$('.trading-platform-sell-popup.'+bet.type+' .trading-platform-invevstment-value').html((highlowApp.jap?'¥':'$')+highlowApp.getDisplayMoney(bet.amount));
-		$('.trading-platform-sell-popup.'+bet.type+' .trading-platform-pay-out-value').html((highlowApp.jap?'¥':'$')+highlowApp.getDisplayMoney(parseFloat(bet.amount*parseFloat($('.trading-platform-sell-popup.'+bet.	type+' .trading-platform-return-rate-value .rate').html())).toFixed(2)));
+		$('.trading-platform-sell-popup.'+bet.type+' .trading-platform-investment-value').html((highlowApp.jap?'¥':'$')+highlowApp.getDisplayMoney(bet.amount));
+		$('.trading-platform-sell-popup.'+bet.type+' .trading-platform-strike-value').addClass("highlow-"+bet.direction).html(bet.strike);
+
+		highlowApp.popup.displayPopup($('.trading-platform-sell-popup.'+bet.type));
+		
 	},
 	createBetEntry : function (bet, point, uid, type, betObject, clickHandler) {
 		var time = new Date(point.x),
@@ -258,11 +274,27 @@ highlowApp.betSystem = {
 
 		});
 
-console.log(row);
-
 		row.on('click','.investment-sell-btn', function(e) {
+			var self = $(this);
 			e.preventDefault();
-			highlowApp.betSystem.sellPopup(bet);
+			if(self.hasClass('clicked')) {
+				$('.trading-platform-sell-popup.'+bet.type).addClass('concealed');
+				$('.investment-sell-btn').removeClass('clicked');
+				$('.investment-sell-btn').html((highlowApp.jap?'転売':'SELL'));
+			} else {
+				if($('.trading-platform-sell-popup.'+bet.type).hasClass('concealed')) {
+					self.addClass('clicked');
+					highlowApp.betSystem.sellPopup(bet);
+					self.html((highlowApp.jap?'取り消す':'CANCEL'));
+				} else {
+					$('.investment-sell-btn').removeClass('clicked');
+					$('.investment-sell-btn').html((highlowApp.jap?'転売':'SELL'));
+					self.addClass('clicked');
+					highlowApp.betSystem.sellPopup(bet);
+					self.html((highlowApp.jap?'取り消す':'CANCEL'));
+				}
+			}
+			
 		})
 
 		$('.trading-platform-investments-list').append(row);
@@ -343,7 +375,7 @@ console.log(row);
 			$('.trading-platform-main-controls-select-direction .btn.highlow-up').removeClass('active').addClass('in-active');
 		}
 		
-		$('.trading-platform-invest-popup'+'.'+type).removeClass('concealed');
+		highlowApp.popup.displayPopup($('.trading-platform-invest-popup'+'.'+type));
 	},
 	placeBet : function (bet,type) {
 
@@ -398,7 +430,7 @@ console.log(row);
 
 		var expireAt = model.expireAt;
 
-		if ( type.indexOf('on-demand') >= 0 ) {
+		if ( type.indexOf('on-demand') >= 0 || type.indexOf('turbo') >= 0) {
 			expireAt = betAt+3*60*1000;
 		}
 
@@ -472,7 +504,7 @@ console.log(row);
 			var type = $(this).data('type');
 
 			if($(this).data('disabled') || !direction || direction =="") {
-				console.log('Please select high or low');
+				highlowApp.systemMessages.displayMessage('fail','Please select High or Low');
 				return;
 			}
 
@@ -752,6 +784,55 @@ highlowApp.graph = {
 	onGraphUI : {},
 	init : function (){
 
+		/* start loading screen */
+
+		var loadingScreen = $('.platform-loading-screen'),
+			loadingBar = $('.platform-loading-screen .loading-bar .fill');
+
+		var progress = 0;
+
+		function animateLoadingBar() {
+			if(progress<=100) {
+				loadingBar.animate({
+					width: progress+'%'
+				},50);
+
+				progress += highlowApp.randomValue(1,15);
+
+				setTimeout(animateLoadingBar,highlowApp.randomValue(30, 120));
+			} else {
+
+				console.log('whuut');
+
+				progress = 100;
+
+				loadingBar.animate({
+					width: progress+'%'
+				},125);
+
+				setTimeout(finishLoadingBar,500);
+			}
+			
+		}
+
+		function finishLoadingBar() {
+			loadingScreen.animate({
+				opacity: 0
+			},125, function(){
+				loadingScreen.css({
+					display: 'none'
+				});
+			});
+		}
+
+
+		
+
+
+
+		/* end loading screen code */
+
+
 		Highcharts.setOptions({
 		    plotOptions: {
 		        series: {
@@ -767,12 +848,13 @@ highlowApp.graph = {
 		this.prepareGraph('#spread-graph');
 		this.prepareGraph('#on-demand-graph',2*60*1000);
 		this.prepareGraph('#spread-on-demand-graph',2*60*1000);
+		this.prepareGraph('#turbo-graph',2*60*1000);
 
 		this.graphs['highlow'] = Highcharts.charts[$("#highlow-graph").data('highchartsChart')];
 		this.graphs['spread'] = Highcharts.charts[$("#spread-graph").data('highchartsChart')];
 		this.graphs['on-demand'] = Highcharts.charts[$("#on-demand-graph").data('highchartsChart')];
 		this.graphs['spread-on-demand'] = Highcharts.charts[$("#spread-on-demand-graph").data('highchartsChart')];
-
+		this.graphs['turbo-demand'] = Highcharts.charts[$("#turbo-graph").data('highchartsChart')];
 
 
 		this.mouse = {x:0,y:0};
@@ -781,6 +863,9 @@ highlowApp.graph = {
 			self.mouse.x = e.clientX || e.pageX; 
     		self.mouse.y = e.clientY || e.pageY;
 		});
+
+		animateLoadingBar();
+
 	},
 	isOneClick: function(model) {
 		var $mainView = $("#"+model.type+"-main-view");
@@ -806,6 +891,9 @@ highlowApp.graph = {
 	        return mid;
 	},
 	loadInstrument: function (model) {
+
+		
+
 
 		$('.trading-platform-main-controls-select-direction .btn').removeClass('active').removeClass('in-active');
 		
@@ -892,7 +980,7 @@ highlowApp.graph = {
 
 
 
-		if(model.type.indexOf("on-demand")>=0) {
+		if(model.type.indexOf("on-demand")>=0 || model.type.indexOf("turbo")>=0) {
 			
 			xAxis.setExtremes(currentTime-10*60*1000,currentTime+3*60*1000,true);
 
@@ -931,6 +1019,10 @@ highlowApp.graph = {
 
 					text = renderer.text('次<br/>回<br/>の<br/>判<br/>定<br/>時<br/>刻<br/>ま<br/>で<br/>60<br/>秒',textX,textY);
 
+					if(model.type.indexOf("turbo")>=0) {
+						text = renderer.text('次<br/>回<br/>の<br/>判<br/>定<br/>時<br/>刻<br/>ま<br/>で<br/>30<br/>秒',textX,textY);
+					}
+
 					text.css({
 						"font-family":'"Hiragino Kaku Gothic Pro","ヒラギノ角ゴ Pro W3","メイリオ",Meiryo,"ＭＳ Ｐゴシック",Helvetica,Arial,Verdana,sans-serif',
 						"font-size" : '12px',
@@ -950,6 +1042,11 @@ highlowApp.graph = {
 					textY = 141;
 
 					text = renderer.text('NEXT EXPIRY IN 60 SECS',textX,textY);
+
+					if(model.type.indexOf("turbo")>=0) {
+						text = renderer.text('NEXT EXPIRY IN 30 SECS',textX,textY);
+					}
+
 					text.css({
 						"font-family": 'Montserrat',
 						"font-size" : '10px;',
@@ -1091,7 +1188,8 @@ highlowApp.graph = {
 			marker : {
 				enabled : true,
 				symbol : "url(common/images/graph-marker.png)",
-				zIndex : 1000
+				zIndex : 1000,
+				id: "strike-marker"
 			},
 			states: {
 				hover: {
@@ -1129,7 +1227,7 @@ highlowApp.graph = {
 
 			// reset finish text for on-demand bets
 
-			if(model.type.indexOf('on-demand')>=0) {
+			if(model.type.indexOf("on-demand")>=0 || model.type.indexOf("turbo")>=0) {
 				bet.finishLabel = undefined;
 				bet.finishText = undefined;
 			}
@@ -1160,6 +1258,9 @@ highlowApp.graph = {
 		});
 
 
+		/* hide loading screen */
+
+		
 	},
 	updateOnGraphUI: function (model,point) {
 
@@ -1219,7 +1320,7 @@ highlowApp.graph = {
 
 
 
-		if(type.indexOf("on-demand")>=0) {
+		if(type.indexOf("on-demand")>=0 || type.indexOf("turbo")>=0) {
 
 			// set graph range
 
@@ -1584,6 +1685,11 @@ highlowApp.graph = {
 	},
 	placeBet : function(betObject) {
 
+		highlowApp.systemMessages.hideMessage();
+		$('.main-view .processing').animate({
+			opacity: 1
+		},250);
+
 		var graph = $('#'+betObject.type+"-graph").highcharts();
 
 		var series = graph.series[0];
@@ -1691,7 +1797,7 @@ highlowApp.graph = {
 
 		img.on('mouseover', function() {
 
-			if (betObject.model.type.indexOf('on-demand')>=0 && !betObject.expired) {
+			if ((betObject.model.type.indexOf("on-demand")>=0 || betObject.model.type.indexOf("turbo")>=0) && !betObject.expired) {
 				betObject.hover = true;
 				betObject.model.hoveredBet = betObject;
 				highlowApp.marketSimulator.updateBetStatus(betObject.model);
@@ -1728,7 +1834,7 @@ highlowApp.graph = {
 		});
 		img.on('mouseout', function() {
 
-			if (betObject.model.type.indexOf('on-demand')>=0) {
+			if (betObject.model.type.indexOf("on-demand")>=0 || betObject.model.type.indexOf("turbo")>=0) {
 				betObject.hover = false;
 				betObject.model.hoveredBet = undefined;
 				highlowApp.marketSimulator.updateBetStatus(betObject.model);
@@ -1770,7 +1876,7 @@ highlowApp.graph = {
 
 		var model = betObject.model;
 		
-		if(model.type.indexOf("on-demand")>=0) {
+		if(model.type.indexOf("on-demand")>=0 || model.type.indexOf("turbo")>=0) {
 
 			var expiryHintLineId = model.type+"-expiry-hint-line";
 
@@ -1788,7 +1894,12 @@ highlowApp.graph = {
 			
 		}
 
-
+		setTimeout(function(){
+			$('.main-view .processing').animate({
+				opacity: 0
+			},250);
+			highlowApp.systemMessages.displayMessage('success','success!');
+		},1250);
 
 	},
 	addPoint: function (model,point) {
@@ -2042,7 +2153,6 @@ highlowApp.instrumentPanelSelector = {
 	selectInstrument: function (e) {
 
 
-
 		var label = e.data('instrumentLabel'),
 			duration = e.data('instrumentDuration'),
 			type = e.data('tradingType'),
@@ -2050,23 +2160,47 @@ highlowApp.instrumentPanelSelector = {
 
 		// update active instrument here.
 
-		if(model) {
+		$('.main-view .panel-header .loading-icon').css({
+			opacity: 0,
+			display: 'inline-block'
+		}).animate({
+			opacity: 1
+		},125);
 
-			if (highlowApp.currentInstrument[type]!=undefined) {
-				highlowApp.currentInstrument[type].active = false;
+		setTimeout(function(){
+			if(model) {
+
+				if (highlowApp.currentInstrument[type]!=undefined) {
+					highlowApp.currentInstrument[type].active = false;
+				}
+
+				model.active = true;
+
+				highlowApp.currentInstrument[type] = model;
+
+
+				model.updateMainView();
+
+				// change graph to display this instrument data
+
+				/* display graph loading screen */
+
+				/* end display graph loading screen */
+				
+				highlowApp.graph.loadInstrument(model);
 			}
 
-			model.active = true;
 
-			highlowApp.currentInstrument[type] = model;
+			$('.main-view .panel-header .loading-icon').animate({
+				opacity: 0
+			},125, function(){
+				$('.main-view .panel-header .loading-icon').css({
+					display: 'none'
+				});
+			});
 
 
-			model.updateMainView();
-
-			// change graph to display this instrument data
-
-			highlowApp.graph.loadInstrument(model);
-		}
+		},1000);
 
 	}
 }
@@ -2176,16 +2310,36 @@ highlowApp.marketSimulator = {
 	rounding: 3,
 	minInterval: 1000,
 	maxInterval: 1500,
-	maxChange: 0.0008,
+	maxChange: 0.0006,
 	modelDataName: 'instrumentModel',
 	start: function() {
 		var self = this;
 		for (var i = 0; i < this.instruments.length; i++) {
 			var instrument  = this.instruments[i];
-
 			instrument.update();
 			instrument.updateTime();
 		}
+	},
+	pause: function(instrument) {
+		instrument.pause = true;
+		var currentTime = new Date().getTime();
+		instrument.lastPause = currentTime;
+	},
+	resume: function(instrument) {
+
+		var currentTime = new Date().getTime();
+		instrument.pauseOffset += currentTime - instrument.lastPause;
+		instrument.pause = false;
+		instrument.update();
+		instrument.updateTime();
+	},
+	reset: function(instrument,minutesIntoGame) {
+		instrument.pause = true;
+
+		highlowApp.marketSimulator.initInstrument(instrument,minutesIntoGame);
+		highlowApp.graph.loadInstrument(instrument);
+
+		instrument.pause = false;
 	},
 	simulate: function(instrument) {
 		var self = this;
@@ -2193,10 +2347,6 @@ highlowApp.marketSimulator = {
 		var deviation = highlowApp.randomValue(0,self.maxChange,4);
 
 		// if the market has been moving up, there's more chance it's gonna go down this time
-
-		var coefficient = 0.0016;
-
-
 
 		var splitChance = 0.5;
 
@@ -2208,24 +2358,16 @@ highlowApp.marketSimulator = {
 
 		if(instrument.absoluteChange>0.002) {
 			splitChance+=0.3;
-		} else if(instrument.absoluteChange<0.002) {
+		} else if(instrument.absoluteChange<-0.002) {
 			splitChance-=0.3;
 		}
-
 
 		// console.log(splitChance);
 
 		var variation = Math.random() >= splitChance ? deviation : -deviation;
 
-
-
-
-
 		instrument.previousRate = parseFloat(instrument.currentRate);
 		instrument.currentRate = parseFloat(instrument.currentRate + variation);
-
-
-
 
 		instrument.absoluteChange += parseFloat(variation);
 
@@ -2234,16 +2376,14 @@ highlowApp.marketSimulator = {
 			instrument.lowerRate = parseFloat(parseFloat(instrument.currentRate) - self.spread);
 		}
 
-
-
 		var currentTime = new Date().getTime();
 
 
 		// test if instrument has gone into deadzone or not (only applicable to none on-demand types)
 
-		if (instrument.type.indexOf('on-demand')<0) {
+		if (instrument.type.indexOf('on-demand')<0 && instrument.type.indexOf('turbo')<0) {
 
-			if(currentTime>=instrument.expireAt-2*60*1000) {
+			if(currentTime-instrument.pauseOffset>=instrument.expireAt-2*60*1000) {
 				instrument.dead = true;
 			}
 
@@ -2256,7 +2396,7 @@ highlowApp.marketSimulator = {
 			.addPoint(
 				instrument,
 				{
-	  				x : currentTime,
+	  				x : currentTime-instrument.pauseOffset,
 	  				y : instrument.currentRate,
 	  				marker : {
 	  					enabled : true,
@@ -2270,16 +2410,15 @@ highlowApp.marketSimulator = {
 	  				zIndex: 10
 	  			}
   			);
-		} 
+		}
 
 		instrument.data.push({
-			x: currentTime,
+			x: currentTime-instrument.pauseOffset,
 			y: instrument.currentRate,
 			marker : {
 				enabled: false
 			}
 		});
-
 
 		self.updateUI(instrument.uid,instrument);
 
@@ -2461,7 +2600,7 @@ highlowApp.marketSimulator = {
 				}
 
 
-				if(model.type.indexOf('on-demand')>=0) {
+				if(model.type.indexOf('on-demand')>=0 || model.type.indexOf('turbo')>=0) {
 					
 
 					var plotBandId = model.type+"-plot-band-"+model.uid+"-"+i;
@@ -2703,7 +2842,28 @@ highlowApp.marketSimulator = {
 
 				
 				
-				
+				// calculate fake payout rate to display on sell popup (I just made this up, it's not the real algorithm, just to simulate changing rate)
+				bet.payoutRateModifier = bet.direction=="high"?-1:1;
+
+				var difference = (parseFloat(bet.model.currentRate).toFixed(3) - parseFloat(bet.strike).toFixed(3));
+
+				var basePayoutRate = 0.500;
+
+				var maxPayoutRate = bet.model.payoutRate;
+
+				var payoutRateMultiplier = 75;
+
+				var payoutRateAdjustment = (maxPayoutRate - basePayoutRate) * 1/(1-1/(difference * bet.payoutRateModifier * payoutRateMultiplier));
+
+
+				bet.payoutRate = parseFloat(basePayoutRate+payoutRateAdjustment).toFixed(3);
+
+				bet.payout = bet.amount*bet.payoutRate;
+
+				$('.trading-platform-return-rate-value.'+bet.type).html(bet.payoutRate);
+
+				$('.trading-platform-sell-popup.'+bet.type+' .trading-platform-pay-out-value').html((highlowApp.jap?'¥':'$')+highlowApp.getDisplayMoney(parseFloat(bet.payout).toFixed(2)));
+
 			}
 
 			
@@ -2727,11 +2887,19 @@ highlowApp.marketSimulator = {
 		if (model.type.indexOf('spread')>=0) {
 
 			var highDisplay = $(view.find('.instrument-panel-rate.highlow-high')),
-			lowDisplay = $(view.find('.instrument-panel-rate.highlow-low'));
+			lowDisplay = $(view.find('.instrument-panel-rate.highlow-low')),
+			spreadHighDisplay = $('.spread-high'),
+			spreadLowDisplay = $('.spread-low');
 
 			highDisplay.html(" "+parseFloat(model.upperRate).toFixed(marketSimulator.rounding));
-
 			lowDisplay.html(" "+parseFloat(model.lowerRate).toFixed(marketSimulator.rounding));
+
+			if(model.active) {
+				spreadHighDisplay.html(" "+parseFloat(model.upperRate).toFixed(marketSimulator.rounding));
+				spreadLowDisplay.html(" "+parseFloat(model.lowerRate).toFixed(marketSimulator.rounding));
+			}
+
+			
 
 		} else {
 			var rateDisplay = $(view.find('.instrument-panel-rate'));
@@ -2746,7 +2914,7 @@ highlowApp.marketSimulator = {
 
 	},
 	updateRemainingTime : function (model) {
-		if(model.type.indexOf('on-demand') < 0) {
+		if(model.type.indexOf('on-demand') < 0 && model.type.indexOf('turbo') < 0) {
 			var view = $('[data-uid="'+model.uid+'"]'),
 			remainingTimeDisplay = $(view.find('.expiry-time')),
 			currentTime = new Date().getTime(),
@@ -2858,6 +3026,232 @@ highlowApp.marketSimulator = {
 			}
 		}
 	},
+	initInstrument: function(instrumentModel,minutesIntoGame) {
+
+
+
+
+		var currentTime = new Date().getTime();
+
+		var marketSimulator = this;
+
+		//get seed data from html markup
+		instrumentModel.pauseOffset = 0;
+		instrumentModel.label = instrumentModel.domElement.data('instrumentLabel');
+		instrumentModel.type = instrumentModel.domElement.data('tradingType');
+		instrumentModel.durationLabel = instrumentModel.domElement.data('instrumentDuration');
+		instrumentModel.durationId = instrumentModel.domElement.data('instrumentDurationId');
+		instrumentModel.duration = instrumentModel.domElement.data('instrumentDurationValue');
+		instrumentModel.seedRate = instrumentModel.domElement.data('instrumentSeedRate');
+		instrumentModel.payoutRate = instrumentModel.domElement.data('instrumentPayoutRate');
+		instrumentModel.currentRate = parseFloat(instrumentModel.seedRate).toFixed(marketSimulator.rounding);
+		instrumentModel.previousrate = instrumentModel.currentRate;
+		instrumentModel.bets = [];
+		instrumentModel.uid = instrumentModel.domElement.data('uid');
+
+		// Now let's assume that the open time is 5 minutes ago (round to closest minute), or 14 minute ago when there is 'deadzone' in the url query for testing purpose
+		// except for on-demand type, which doesn't have a fixed open time
+
+		if(instrumentModel.type.indexOf('on-demand') < 0 && instrumentModel.type.indexOf('turbo') < 0) {
+
+
+			if(highlowApp.expiring()) {
+				instrumentModel.openAt = currentTime - 1000*60*13;
+			} else {
+				if(minutesIntoGame && minutesIntoGame>0) {
+					instrumentModel.openAt = currentTime - 1000*60*minutesIntoGame;
+				} else {
+					instrumentModel.openAt = (Math.round(currentTime / (1000 * 60 * 2))-1) * 1000 * 60 * 2;
+				}
+			}
+
+			instrumentModel.expireAt = instrumentModel.openAt+instrumentModel.duration;
+
+			if(instrumentModel.duration == 15*60*1000) {
+				instrumentModel.deadzone = instrumentModel.expireAt - 2 * 60 * 1000;
+			} else if(instrumentModel.duration == 60*60*1000) {
+				instrumentModel.deadzone = instrumentModel.expireAt - 5 * 60 * 1000;
+			} else if(instrumentModel.duration == 24*60*60*1000) {
+				instrumentModel.deadzone = instrumentModel.expireAt - 15 * 60 * 1000;
+			}
+
+			
+		}
+
+	// Generate past data.
+
+		var startingPointFromNow = (40*60*1000),
+		minInterval = 1000,
+		maxInterval = 5000;
+
+		if(instrumentModel.duration>15*60*1000) {
+			startingPointFromNow = 60*60*1000,
+			minInterval = 10000,
+			maxInterval = 50000;
+		}
+
+		if(instrumentModel.duration>60*60*1000) {
+			startingPointFromNow = 4*60*60*1000
+			minInterval = 40000,
+			maxInterval = 200000;
+		}
+
+		instrumentModel.startingPoint = currentTime - startingPointFromNow;
+		instrumentModel.absoluteChange = 0;
+		instrumentModel.data = [];
+
+		// seed highlow data array with a value
+
+		instrumentModel.data.push({
+			x :	instrumentModel.startingPoint,
+			y : instrumentModel.seedRate
+		});
+
+		// generate mock data from starting from 20 minutes ago
+		// assuming updates every 1 - 2 seconds
+
+		for (var i = instrumentModel.startingPoint,j = 1; i < currentTime; i+=highlowApp.randomValue(minInterval, maxInterval), j++) {
+
+			// 50% of going up or down by 0 to 0.003;
+
+			var deviation = highlowApp.randomValue(0,marketSimulator.maxChange,4);
+
+			// if the market has been moving up, there's more chance it's gonna go down this time
+
+			var splitChance = 0.5;
+
+			if(instrumentModel.absoluteChange>0) {
+				splitChance+=0.1;
+			} else if(instrumentModel.absoluteChange<0) {
+				splitChance-=0.1;
+			}
+
+			if(instrumentModel.absoluteChange>0.002) {
+				splitChance+=0.3;
+			} else if(instrumentModel.absoluteChange<-0.002) {
+				splitChance-=0.3;
+			}
+
+			var variation = Math.random() >= splitChance ? deviation : -deviation;
+
+			instrumentModel.absoluteChange += parseFloat(variation);
+
+			// next value calculated from variation deinfed above and previous value
+
+			var point = { 
+				x : i ,
+				y : instrumentModel.data[j-1]['y'] + variation
+			};
+
+			instrumentModel.data.push(point);
+
+			instrumentModel.previousRate = instrumentModel.currentRate;
+			instrumentModel.currentRate = point.y;
+		}
+
+		if (instrumentModel.type === 'spread') {
+			instrumentModel.upperRate = parseFloat(instrumentModel.currentRate + marketSimulator.spread).toFixed(marketSimulator.rounding);
+			instrumentModel.lowerRate = parseFloat(instrumentModel.currentRate - marketSimulator.spread).toFixed(marketSimulator.rounding);
+		}
+
+		instrumentModel.getMainViewId = function() {
+			return instrumentModel.type+"-main-view";
+		}
+
+		instrumentModel.updateMainView = function() {
+			var model = instrumentModel;
+			var mainViewId  = model.getMainViewId();
+
+			$('#'+mainViewId).data(marketSimulator.modelDataName,instrumentModel);
+
+			$('#'+mainViewId+" .trading-platform-instrument-duration").html(" " + model.durationLabel);
+
+			$('#'+model.type+"-mode .trading-platform-main-controls-payout-rate").html(model.payoutRate);
+
+			$('#'+mainViewId+" .trading-platform-instrument-title, "+
+				"#"+model.type+"-mode .trading-platform-main-controls-instrument-title, "+
+				'.trading-platform-invest-popup.'+model.type+' .trading-platform-main-controls-instrument-title').html(" " + model.label);
+
+			$('#'+mainViewId+" .trading-platform-maximum-return").html((highlowApp.jap?'¥':'$')+highlowApp.getDisplayMoney(parseFloat(model.payoutRate*$('#'+model.type+'-investment-value-input').val()).toFixed(2)));
+
+			if(model.active) {
+
+				if(model.dead) {
+					$('#' + model.getMainViewId()).addClass('dead');
+				} else {
+					$('#' + model.getMainViewId()).removeClass('dead');
+				}
+
+				var mainViewRateDisplay = $('#' + model.getMainViewId() + ' .current-rate'),
+				popupRateDisplay = $('.trading-platform-invest-popup.'+model.type+' .current-rate'),
+				sellPopupRateDisplay = $('.trading-platform-sell-popup.'+model.type+' .current-rate');
+				
+				if(model.type.indexOf('on-demand')<0 && model.type.indexOf('turbo')<0) {
+					$('#'+mainViewId+" .trading-platform-instrument-closing-time").html(" "+ highlowApp.timeToText(model.expireAt));
+				} else {
+					if(model.focusedBet) {
+						$('#'+mainViewId+" .trading-platform-instrument-closing-time").html(" "+ highlowApp.timeToText(model.focusedBet.expireAt));
+					}
+				}
+
+				if (model.currentRate>model.previousRate) {
+					mainViewRateDisplay.removeClass('highlow-low').addClass('highlow-high');
+					popupRateDisplay.removeClass('highlow-low').addClass('highlow-high');
+					sellPopupRateDisplay.removeClass('highlow-low').addClass('highlow-high');
+				} else if(model.currentRate<model.previousRate) {
+					mainViewRateDisplay.removeClass('highlow-high').addClass('highlow-low');
+					popupRateDisplay.removeClass('highlow-high').addClass('highlow-low');
+					sellPopupRateDisplay.removeClass('highlow-high').addClass('highlow-low');
+				}
+
+				mainViewRateDisplay.html(" " + parseFloat(model.currentRate).toFixed(marketSimulator.rounding));
+				popupRateDisplay.html(" " + parseFloat(model.currentRate).toFixed(marketSimulator.rounding));
+				sellPopupRateDisplay.html(" " + parseFloat(model.currentRate).toFixed(marketSimulator.rounding));
+			}
+		}
+
+		instrumentModel.update = function(){
+			var self = instrumentModel;
+			if(!instrumentModel.pause) {
+				
+				marketSimulator.simulate(self);
+				if(self.active) {
+					self.updateMainView();
+				}
+				if(instrumentModel.expired) {
+
+					if(instrumentModel.type.indexOf('on-demand') < 0 && instrumentModel.type.indexOf('turbo') < 0) {
+						instrumentModel.openAt = (Math.round(currentTime / (1000 * 60 * 5))-1) * 1000 * 60 * 5;
+						instrumentModel.expireAt = instrumentModel.openAt+instrumentModel.duration;
+					}
+				} 
+				setTimeout(self.update,Math.floor(highlowApp.randomValue(marketSimulator.minInterval, marketSimulator.maxInterval)));
+			}
+			
+		}
+
+		instrumentModel.updateTime = function() {
+			var self = instrumentModel;
+			if(!instrumentModel.pause) {
+				
+
+				marketSimulator.updateRemainingTime(self);
+
+				if(instrumentModel.expired) {
+					return;	
+				}
+				setTimeout(self.updateTime,1000);
+			}
+		}
+
+		//attach the model to the UI
+
+		$('[data-uid="'+instrumentModel.domElement.data('uid')+'"]').data(marketSimulator.modelDataName,instrumentModel);
+
+		// update closing time to instrument panel
+
+		$('[data-uid="'+instrumentModel.domElement.data('uid')+'"] .closing-at').html(highlowApp.timeToText(instrumentModel.expireAt));
+	},
 	init: function() {
 		var marketSimulator = this;
 		// iterate through every instrument panel in the UI.
@@ -2866,231 +3260,12 @@ highlowApp.marketSimulator = {
 			var instrumentModel = {},
 			self = $(this);
 
-			//get seed data from html markup
+			
 
-			var currentTime = new Date().getTime();
 
-			instrumentModel.label = self.data('instrumentLabel');
-			instrumentModel.type = self.data('tradingType');
-			instrumentModel.durationLabel = self.data('instrumentDuration');
-			instrumentModel.durationId = self.data('instrumentDurationId');
-			instrumentModel.duration = self.data('instrumentDurationValue');
-			instrumentModel.seedRate = self.data('instrumentSeedRate');
-			instrumentModel.payoutRate = self.data('instrumentPayoutRate');
-			instrumentModel.currentRate = parseFloat(instrumentModel.seedRate).toFixed(marketSimulator.rounding);
-			instrumentModel.previousrate = instrumentModel.currentRate;
-			instrumentModel.bets = [];
-			instrumentModel.uid = self.data('uid');
+			instrumentModel.domElement = self;
 
-			// Now let's assume that the open time is 5 minutes ago (round to closest minute), or 14 minute ago when there is 'deadzone' in the url query for testing purpose
-			// except for on-demand type, which doesn't have a fixed open time
-
-			if(instrumentModel.type.indexOf('on-demand') < 0) {
-
-
-				if(highlowApp.expiring()) {
-					instrumentModel.openAt = currentTime - 1000*60*13;
-				} else {
-					instrumentModel.openAt = (Math.round(currentTime / (1000 * 60 * 5))-1) * 1000 * 60 * 5;
-				}
-
-				instrumentModel.expireAt = instrumentModel.openAt+instrumentModel.duration;
-
-				if(instrumentModel.duration == 15*60*1000) {
-					instrumentModel.deadzone = instrumentModel.expireAt - 2 * 60 * 1000;
-				} else if(instrumentModel.duration == 60*60*1000) {
-					instrumentModel.deadzone = instrumentModel.expireAt - 5 * 60 * 1000;
-				} else if(instrumentModel.duration == 24*60*60*1000) {
-					instrumentModel.deadzone = instrumentModel.expireAt - 15 * 60 * 1000;
-				}
-
-				
-			}
-
-
-		// Generate past data.
-
-
-			var startingPointFromNow = (40*60*1000),
-			minInterval = 1000,
-			maxInterval = 5000;
-
-			if(instrumentModel.duration>15*60*1000) {
-				startingPointFromNow = 60*60*1000,
-				minInterval = 10000,
-				maxInterval = 50000;
-			}
-
-			if(instrumentModel.duration>60*60*1000) {
-				startingPointFromNow = 4*60*60*1000
-				minInterval = 40000,
-				maxInterval = 200000;
-			}
-
-			instrumentModel.startingPoint = currentTime - startingPointFromNow;
-			instrumentModel.absoluteChange = 0;
-			instrumentModel.data = [];
-
-			// seed highlow data array with a value
-
-
-			instrumentModel.data.push({
-				x :	instrumentModel.startingPoint,
-				y : instrumentModel.seedRate
-			});
-
-			// generate mock data from starting from 20 minutes ago
-			// assuming updates every 1 - 2 seconds
-
-			for (var i = instrumentModel.startingPoint,j = 1; i < currentTime; i+=highlowApp.randomValue(minInterval, maxInterval), j++) {
-
-
-
-				// 50% of going up or down by 0 to 0.003;
-
-				var deviation = highlowApp.randomValue(0,marketSimulator.maxChange,4);
-
-
-
-				// if the market has been moving up, there's more chance it's gonna go down this time
-
-				var splitChance = 0.5;
-
-				if(instrumentModel.absoluteChange>0) {
-					splitChance+=0.1;
-				} else if(instrumentModel.absoluteChange<0) {
-					splitChance-=0.1;
-				}
-
-				if(instrumentModel.absoluteChange>0.002) {
-					splitChance+=0.3;
-				} else if(instrumentModel.absoluteChange<-0.002) {
-					splitChance-=0.3;
-				}
-
-				
-
-				var variation = Math.random() >= splitChance ? deviation : -deviation;
-
-				instrumentModel.absoluteChange += parseFloat(variation);
-
-
-				// next value calculated from variation deinfed above and previous value
-
-				var point = { 
-					x : i ,
-					y : instrumentModel.data[j-1]['y'] + variation
-				};
-
-				instrumentModel.data.push(point);
-
-				instrumentModel.previousRate = instrumentModel.currentRate;
-				instrumentModel.currentRate = point.y;
-			}
-
-			if (instrumentModel.type === 'spread') {
-				instrumentModel.upperRate = parseFloat(instrumentModel.currentRate + marketSimulator.spread).toFixed(marketSimulator.rounding);
-				instrumentModel.lowerRate = parseFloat(instrumentModel.currentRate - marketSimulator.spread).toFixed(marketSimulator.rounding);
-			}
-
-			instrumentModel.getMainViewId = function() {
-				return instrumentModel.type+"-main-view";
-			}
-
-			instrumentModel.updateMainView = function() {
-				var model = instrumentModel;
-				var mainViewId  = model.getMainViewId();
-
-				$('#'+mainViewId).data(marketSimulator.modelDataName,instrumentModel);
-
-				
-
-
-				$('#'+mainViewId+" .trading-platform-instrument-duration").html(" " + model.durationLabel);
-
-
-
-				$('#'+model.type+"-mode .trading-platform-main-controls-payout-rate").html(model.payoutRate);
-
-				$('#'+mainViewId+" .trading-platform-instrument-title, "+
-					"#"+model.type+"-mode .trading-platform-main-controls-instrument-title, "+
-					'.trading-platform-invest-popup.'+model.type+' .trading-platform-main-controls-instrument-title').html(" " + model.label);
-
-
-				$('#'+mainViewId+" .trading-platform-maximum-return").html((highlowApp.jap?'¥':'$')+highlowApp.getDisplayMoney(parseFloat(model.payoutRate*$('#'+model.type+'-investment-value-input').val()).toFixed(2)));
-
-				if(model.active) {
-
-
-					if(model.dead) {
-						$('#' + model.getMainViewId()).addClass('dead');
-					} else {
-						$('#' + model.getMainViewId()).removeClass('dead');
-					}
-
-
-					var mainViewRateDisplay = $('#' + model.getMainViewId() + ' .current-rate'),
-					popupRateDisplay = $('.trading-platform-invest-popup.'+model.type+' .current-rate'),
-					sellPopupRateDisplay = $('.trading-platform-sell-popup.'+model.type+' .current-rate');
-					
-					if(model.type.indexOf('on-demand')<0) {
-						$('#'+mainViewId+" .trading-platform-instrument-closing-time").html(" "+ highlowApp.timeToText(model.expireAt));
-					} else {
-						if(model.focusedBet) {
-							$('#'+mainViewId+" .trading-platform-instrument-closing-time").html(" "+ highlowApp.timeToText(model.focusedBet.expireAt));
-						}
-					}
-
-					if (model.currentRate>model.previousRate) {
-						mainViewRateDisplay.removeClass('highlow-low').addClass('highlow-high');
-						popupRateDisplay.removeClass('highlow-low').addClass('highlow-high');
-						sellPopupRateDisplay.removeClass('highlow-low').addClass('highlow-high');
-					} else if(model.currentRate<model.previousRate) {
-						mainViewRateDisplay.removeClass('highlow-high').addClass('highlow-low');
-						popupRateDisplay.removeClass('highlow-high').addClass('highlow-low');
-						sellPopupRateDisplay.removeClass('highlow-high').addClass('highlow-low');
-					}
-
-					mainViewRateDisplay.html(" " + parseFloat(model.currentRate).toFixed(marketSimulator.rounding));
-					popupRateDisplay.html(" " + parseFloat(model.currentRate).toFixed(marketSimulator.rounding));
-					sellPopupRateDisplay.html(" " + parseFloat(model.currentRate).toFixed(marketSimulator.rounding));
-				}
-			}
-
-			instrumentModel.update = function(){
-				var self = instrumentModel;
-				marketSimulator.simulate(self);
-				if(self.active) {
-					self.updateMainView();
-				}
-				if(instrumentModel.expired) {
-
-					if(instrumentModel.type.indexOf('on-demand') < 0) {
-						instrumentModel.openAt = (Math.round(currentTime / (1000 * 60 * 5))-1) * 1000 * 60 * 5;
-						instrumentModel.expireAt = instrumentModel.openAt+instrumentModel.duration;
-					}
-				} 
-				setTimeout(self.update,Math.floor(highlowApp.randomValue(marketSimulator.minInterval, marketSimulator.maxInterval)));
-			}
-
-			instrumentModel.updateTime = function() {
-				var self = instrumentModel;
-
-				marketSimulator.updateRemainingTime(self);
-
-				if(instrumentModel.expired) {
-					return;
-				} 
-				setTimeout(self.updateTime,1000);
-			}
-
-			//attach the model to the UI
-
-			$('[data-uid="'+self.data('uid')+'"]').data(marketSimulator.modelDataName,instrumentModel);
-
-			// update closing time to instrument panel
-
-			$('[data-uid="'+self.data('uid')+'"] .closing-at').html(highlowApp.timeToText(instrumentModel.expireAt));
+			marketSimulator.initInstrument(instrumentModel);
 
 			marketSimulator.instruments.push(instrumentModel);
 		});
@@ -3140,20 +3315,21 @@ highlowApp.oneClick = {
 ;
 highlowApp.popup = {
 	init : function() {
-		console.log('popup init');
+
+
 		$('.trading-platform-popup-wrapper').on('click','.close', function(event) {
-			$(event.target).closest('.trading-platform-popup-wrapper').addClass('concealed');
+			highlowApp.popup.hidePopup($(event.target).closest('.trading-platform-popup-wrapper'));
 		});
 		
 		$('.trading-platform-popup-wrapper').on('click',function(event) {
 			if (!$(event.target).closest('.trading-platform-popup-content-inner-wrap').length) {
-				$(this).addClass('concealed');
+				highlowApp.popup.hidePopup($(this)).addClass('concealed');
 			}
 		});
 
 		$('.trading-platform-sell-popup-sell').on('click', function(){
-			$('.trading-platform-sell-popup').addClass('concealed');
 
+			$('.trading-platform-sell-popup').addClass('concealed');
 		});
 
 		$('.popup-link').click(function(){
@@ -3161,24 +3337,81 @@ highlowApp.popup = {
 		});
 
 		$('.trading-activity-popup-root').on('click','.investment-sell-btn', function() {
-			$('.trading-platform-sell-popup').removeClass('concealed');
+			highlowApp.popup.displayPopup($('.trading-platform-sell-popup'));
 		});
 
 		$('#account-balance .btn.deposit').click(function(){
-			$('#make-deposit-popup').removeClass('concealed');
+			highlowApp.popup.displayPopup($('#make-deposit-popup'));
 		});
 		$('#account-balance .btn.withdraw').click(function(){
-			$('#make-withdrawal-popup').removeClass('concealed');
+			highlowApp.popup.displayPopup($('#make-withdrawal-popup'));
 		});
 
 		$('#make-deposit-popup, #make-withdrawal-popup').on('click','.close',function(event){
-			$('#account-balance .toggle').click();
+			highlowApp.balanceWidget.close();
 		});
+
+
+
+		// read memorized position
+
+		$(".trading-platform-popup-wrapper").each(function(){
+			var self = $(this),
+			id = self.attr('id');
+			self.data('memorizedLeft',$.cookie(id+'-left'));
+			self.data('memorizedTop',$.cookie(id+'-top'));
+		});
+
+
+		$(".trading-platform-popup-wrapper").each(function(){
+			var self = $(this);
+
+			self.draggable({
+				handle: ".trading-platform-popup-header",
+				stop: function() { // remember position
+					$.cookie(self.attr('id')+'-left',self.css('left'));
+					$.cookie(self.attr('id')+'-top',self.css('top'));
+					self.data('memorizedLeft',self.css('left'));
+					self.data('memorizedTop',self.css('top'));
+				}
+			});
+		});
+
+
+	},
+	hidePopup: function(element) {
+		element.addClass('concealed');
+	},
+	displayPopup: function(element) {
+
+		var memorizedTop = element.data('memorizedTop'),
+			memorizedLeft = element.data('memorizedLeft'),
+			$window = $(window),
+			$mainView = $('.main-view');
+
+		var top = memorizedTop || $mainView.offset().top+40,
+		left = memorizedLeft || $mainView.offset().left+70;
+
+		console.log(parseInt(top)+","+$window.scrollTop());
+
+		if(parseInt(top) < parseInt($window.scrollTop()) + parseInt($('#account-menu-bar').outerHeight())) {
+			top = parseInt($window.scrollTop()) + parseInt($('#account-menu-bar').outerHeight())+'px';
+		}
+
+		element.css({
+			top: top,
+			left: left
+		});
+
+		element.removeClass('concealed');
 	}
 }
 ;
 highlowApp.systemMessages = {
 	clearMessageTimeout : {},
+	hideMessage: function() {
+		$('.message-wrapper').removeClass('display');
+	},
 	displayMessage: function(type,message) {
 
 
@@ -3297,6 +3530,17 @@ highlowApp.tab = {
 	init: function() {
 		$('.tab-view').on('click','.tab-view-tab-selector', function(event){
 
+			/* display graph loading screen */
+
+			$('.chart-loading-screen').css({
+				opacity: 0,
+				display: 'block'
+			}).animate({
+				opacity: 1
+			},125);
+
+			/* end display graph loading screen */
+
 			$($(event.target).closest('.tab-view').find('> .tab-view-body-wrapper > .tab-view-body > .tab-view-panel')).removeClass('active');
 			$($(event.target).closest('.tab-view-tab-selectors').find('.tab-view-tab-selector')).removeClass('active');
 
@@ -3308,6 +3552,18 @@ highlowApp.tab = {
 
 
 			$('.trading-platform-main-controls-select-direction .btn').removeClass('active').removeClass('in-active');
+
+			/* hide loading screen */
+
+			setTimeout(function(){
+				$('.chart-loading-screen').animate({
+					opacity: 0
+				},125, function(){
+					$('.chart-loading-screen').css({
+						display: 'none'
+					});
+				})
+			}, 1500);
 		});
 
 

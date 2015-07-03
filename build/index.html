@@ -23,23 +23,23 @@
 <!-- start-platform -->
 <div class="tab-view tab-view-alternate trading-app-root">
 	<div class="tab-view-tab-selectors-container-wrapper trading-app-root-mode-selector-container-wrapper">
-		<div class="tab-view-tab-selectors-container font-m tab-full-width trading-app-container">
+		<div class="tab-view-tab-selectors-container tab-full-width trading-app-container">
 			<ul class="tab-view-tab-selectors">
 				
-				<li class="tab-view-tab-selector font-m  active  highlow" data-target="#highlow-mode">
+				<li class="tab-view-tab-selector  active  highlow" data-target="#highlow-mode">
 					HighLow
 				</li>
 				
-				<li class="tab-view-tab-selector font-m  spread" data-target="#spread-mode">
+				<li class="tab-view-tab-selector  spread" data-target="#spread-mode">
 					Spread
 				</li>
 				
-				<li class="tab-view-tab-selector font-m  on-demand" data-target="#on-demand-mode">
-					onDemand
+				<li class="tab-view-tab-selector  on-demand" data-target="#on-demand-mode">
+					Turbo
 				</li>
 				
-				<li class="tab-view-tab-selector font-m  spread-on-demand" data-target="#spread-on-demand-mode">
-					Spread onDemand
+				<li class="tab-view-tab-selector  spread-on-demand" data-target="#spread-on-demand-mode">
+					Turbo Spread
 				</li>
 				
 			</ul>
@@ -63,9 +63,9 @@
 										</li>
 										
 										<li class="dropdown-item">
-											<input id="highlow-aud-jpy" name="highlow-instrument-filter" type="radio" value="aud-jpy"/>
-											<label for="highlow-aud-jpy" data-label="AUD/JPY">
-												AUD/JPY
+											<input id="highlow-usd-jpy" name="highlow-instrument-filter" type="radio" value="usd-jpy"/>
+											<label for="highlow-usd-jpy" data-label="USD/JPY">
+												USD/JPY
 											</label>
 										</li>
 										
@@ -119,9 +119,9 @@
 										</li>
 										
 										<li class="dropdown-item">
-											<input id="highlow-usd-jpy" name="highlow-instrument-filter" type="radio" value="usd-jpy"/>
-											<label for="highlow-usd-jpy" data-label="USD/JPY">
-												USD/JPY
+											<input id="highlow-aud-jpy" name="highlow-instrument-filter" type="radio" value="aud-jpy"/>
+											<label for="highlow-aud-jpy" data-label="AUD/JPY">
+												AUD/JPY
 											</label>
 										</li>
 										
@@ -134,7 +134,7 @@
 										<li class="tab-view-tab-selector instrument-selector-widget-duration-selector active" data-target="#highlow-interval-all">
 											ALL
 										</li>
-									 
+									
 										
 										<li class="tab-view-tab-selector instrument-selector-widget-duration-selector" data-target="#highlow-15min">
 											15 MIN
@@ -185,7 +185,68 @@
 																<div 
 																	class="instrument-panel instrument-panel-active instrument-highlow-panel" 
 
-																	data-uid="highlow-aud-jpy-15min-0"
+																	data-uid="highlow-usd-jpy-15min-0"
+																	data-trading-type="highlow" 
+																	data-instrument-label="USD/JPY"
+																	data-instrument-payout-rate="2.00"  
+																	data-instrument-duration="15 mins"
+																	data-instrument-duration-id="15min"
+																	data-instrument-duration-value="900000" 
+																	data-instrument-seed-rate="118.62"
+																>
+																	<div class="instrument-panel-header">
+																		<div class="instrument-panel-title">
+																			USD/JPY
+																		</div>
+																		<a title="Add To Favourites" class="instrument-panel-favourite"></a>
+																		<div class="instrument-panel-duration">
+																			15m
+																		</div>
+																	</div>
+																	<div class="instrument-panel-body">
+																		
+																			<div class="clearfix">
+																				<div class="instrument-panel-payout-wrap pull-left clearfix">
+																					<div class="font-sb">
+																						Payout
+																					</div>
+																					<div class="instrument-panel-payout">
+																						2.00
+																					</div>
+																				</div>
+																				<div class="pull-left clearfix">
+																					<div class="font-sb">
+																						Market
+																					</div>
+																					<div class="instrument-panel-rate highlow-high">
+																					</div>
+																				</div>
+																			</div>
+																			<div>
+																				<!-- <div class="instrument-panel-closing">
+																					Closing: <span class="expiry-time">loading...</span>
+																				</div> -->
+																				<div class="instrument-panel-closing">
+																					Closing: <span class="closing-at"></span>
+																				</div>
+																			</div>
+																		
+																		
+																	</div>
+																</div>
+
+															
+
+															
+															
+														
+															
+															
+
+																<div 
+																	class="instrument-panel  instrument-highlow-panel" 
+
+																	data-uid="highlow-aud-jpy-15min-1"
 																	data-trading-type="highlow" 
 																	data-instrument-label="AUD/JPY"
 																	data-instrument-payout-rate="1.80"  
@@ -246,7 +307,7 @@
 																<div 
 																	class="instrument-panel  instrument-highlow-panel" 
 
-																	data-uid="highlow-aud-usd-15min-1"
+																	data-uid="highlow-aud-usd-15min-2"
 																	data-trading-type="highlow" 
 																	data-instrument-label="AUD/USD"
 																	data-instrument-payout-rate="1.80"  
@@ -307,7 +368,7 @@
 																<div 
 																	class="instrument-panel  instrument-highlow-panel" 
 
-																	data-uid="highlow-eur-jpy-15min-2"
+																	data-uid="highlow-eur-jpy-15min-3"
 																	data-trading-type="highlow" 
 																	data-instrument-label="EUR/JPY"
 																	data-instrument-payout-rate="1.75"  
@@ -368,7 +429,7 @@
 																<div 
 																	class="instrument-panel  instrument-highlow-panel" 
 
-																	data-uid="highlow-eur-usd-15min-3"
+																	data-uid="highlow-eur-usd-15min-4"
 																	data-trading-type="highlow" 
 																	data-instrument-label="EUR/USD"
 																	data-instrument-payout-rate="1.75"  
@@ -419,17 +480,21 @@
 																</div>
 
 															
+															</div>
+															
 
 															
 															
 														
 															
 															
+																<div class="page ">
+															
 
 																<div 
 																	class="instrument-panel  instrument-highlow-panel" 
 
-																	data-uid="highlow-gbp-jpy-15min-4"
+																	data-uid="highlow-gbp-jpy-15min-5"
 																	data-trading-type="highlow" 
 																	data-instrument-label="GBP/JPY"
 																	data-instrument-payout-rate="1.80"  
@@ -480,21 +545,17 @@
 																</div>
 
 															
-															</div>
-															
 
 															
 															
 														
 															
 															
-																<div class="page ">
-															
 
 																<div 
 																	class="instrument-panel  instrument-highlow-panel" 
 
-																	data-uid="highlow-eur-jpy-15min-5"
+																	data-uid="highlow-eur-jpy-15min-6"
 																	data-trading-type="highlow" 
 																	data-instrument-label="EUR/JPY"
 																	data-instrument-payout-rate="1.75"  
@@ -555,7 +616,7 @@
 																<div 
 																	class="instrument-panel  instrument-highlow-panel" 
 
-																	data-uid="highlow-eur-usd-15min-6"
+																	data-uid="highlow-eur-usd-15min-7"
 																	data-trading-type="highlow" 
 																	data-instrument-label="EUR/USD"
 																	data-instrument-payout-rate="1.75"  
@@ -616,7 +677,7 @@
 																<div 
 																	class="instrument-panel  instrument-highlow-panel" 
 
-																	data-uid="highlow-gbp-jpy-15min-7"
+																	data-uid="highlow-gbp-jpy-15min-8"
 																	data-trading-type="highlow" 
 																	data-instrument-label="GBP/JPY"
 																	data-instrument-payout-rate="1.80"  
@@ -677,7 +738,7 @@
 																<div 
 																	class="instrument-panel  instrument-highlow-panel" 
 
-																	data-uid="highlow-gbp-usd-15min-8"
+																	data-uid="highlow-gbp-usd-15min-9"
 																	data-trading-type="highlow" 
 																	data-instrument-label="GBP/USD"
 																	data-instrument-payout-rate="1.80"  
@@ -728,17 +789,21 @@
 																</div>
 
 															
+															</div>
+															
 
 															
 															
 														
 															
 															
+																<div class="page ">
+															
 
 																<div 
 																	class="instrument-panel  instrument-highlow-panel" 
 
-																	data-uid="highlow-nzd-jpy-15min-9"
+																	data-uid="highlow-nzd-jpy-15min-10"
 																	data-trading-type="highlow" 
 																	data-instrument-label="NZD/JPY"
 																	data-instrument-payout-rate="1.75"  
@@ -789,21 +854,17 @@
 																</div>
 
 															
-															</div>
-															
 
 															
 															
 														
 															
 															
-																<div class="page ">
-															
 
 																<div 
 																	class="instrument-panel  instrument-highlow-panel" 
 
-																	data-uid="highlow-nzd-usd-15min-10"
+																	data-uid="highlow-nzd-usd-15min-11"
 																	data-trading-type="highlow" 
 																	data-instrument-label="NZD/USD"
 																	data-instrument-payout-rate="1.80"  
@@ -858,20 +919,24 @@
 															
 															
 														
+													
+
+														
+														
 															
 															
 
 																<div 
 																	class="instrument-panel  instrument-highlow-panel" 
 
-																	data-uid="highlow-usd-jpy-15min-11"
+																	data-uid="highlow-usd-jpy-1hour-0"
 																	data-trading-type="highlow" 
 																	data-instrument-label="USD/JPY"
-																	data-instrument-payout-rate="1.75"  
-																	data-instrument-duration="15 mins"
-																	data-instrument-duration-id="15min"
-																	data-instrument-duration-value="900000" 
-																	data-instrument-seed-rate="118.62"
+																	data-instrument-payout-rate="1.80"  
+																	data-instrument-duration="60 mins"
+																	data-instrument-duration-id="1hour"
+																	data-instrument-duration-value="3600000" 
+																	data-instrument-seed-rate="114.45"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -879,7 +944,7 @@
 																		</div>
 																		<a title="Add To Favourites" class="instrument-panel-favourite"></a>
 																		<div class="instrument-panel-duration">
-																			15m
+																			1h
 																		</div>
 																	</div>
 																	<div class="instrument-panel-body">
@@ -890,7 +955,7 @@
 																						Payout
 																					</div>
 																					<div class="instrument-panel-payout">
-																						1.75
+																						1.80
 																					</div>
 																				</div>
 																				<div class="pull-left clearfix">
@@ -919,17 +984,13 @@
 															
 															
 														
-													
-
-														
-														
 															
 															
 
 																<div 
 																	class="instrument-panel  instrument-highlow-panel" 
 
-																	data-uid="highlow-aud-jpy-1hour-0"
+																	data-uid="highlow-aud-jpy-1hour-1"
 																	data-trading-type="highlow" 
 																	data-instrument-label="AUD/JPY"
 																	data-instrument-payout-rate="1.85"  
@@ -990,7 +1051,7 @@
 																<div 
 																	class="instrument-panel  instrument-highlow-panel" 
 
-																	data-uid="highlow-aud-usd-1hour-1"
+																	data-uid="highlow-aud-usd-1hour-2"
 																	data-trading-type="highlow" 
 																	data-instrument-label="AUD/USD"
 																	data-instrument-payout-rate="1.85"  
@@ -1002,67 +1063,6 @@
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
 																			AUD/USD
-																		</div>
-																		<a title="Add To Favourites" class="instrument-panel-favourite"></a>
-																		<div class="instrument-panel-duration">
-																			1h
-																		</div>
-																	</div>
-																	<div class="instrument-panel-body">
-																		
-																			<div class="clearfix">
-																				<div class="instrument-panel-payout-wrap pull-left clearfix">
-																					<div class="font-sb">
-																						Payout
-																					</div>
-																					<div class="instrument-panel-payout">
-																						1.85
-																					</div>
-																				</div>
-																				<div class="pull-left clearfix">
-																					<div class="font-sb">
-																						Market
-																					</div>
-																					<div class="instrument-panel-rate highlow-high">
-																					</div>
-																				</div>
-																			</div>
-																			<div>
-																				<!-- <div class="instrument-panel-closing">
-																					Closing: <span class="expiry-time">loading...</span>
-																				</div> -->
-																				<div class="instrument-panel-closing">
-																					Closing: <span class="closing-at"></span>
-																				</div>
-																			</div>
-																		
-																		
-																	</div>
-																</div>
-
-															
-
-															
-															
-														
-															
-															
-
-																<div 
-																	class="instrument-panel  instrument-highlow-panel" 
-
-																	data-uid="highlow-eur-jpy-1hour-2"
-																	data-trading-type="highlow" 
-																	data-instrument-label="EUR/JPY"
-																	data-instrument-payout-rate="1.85"  
-																	data-instrument-duration="60 mins"
-																	data-instrument-duration-id="1hour"
-																	data-instrument-duration-value="3600000" 
-																	data-instrument-seed-rate="127.12"
-																>
-																	<div class="instrument-panel-header">
-																		<div class="instrument-panel-title">
-																			EUR/JPY
 																		</div>
 																		<a title="Add To Favourites" class="instrument-panel-favourite"></a>
 																		<div class="instrument-panel-duration">
@@ -1116,7 +1116,68 @@
 																<div 
 																	class="instrument-panel  instrument-highlow-panel" 
 
-																	data-uid="highlow-eur-usd-1hour-3"
+																	data-uid="highlow-eur-jpy-1hour-3"
+																	data-trading-type="highlow" 
+																	data-instrument-label="EUR/JPY"
+																	data-instrument-payout-rate="1.85"  
+																	data-instrument-duration="60 mins"
+																	data-instrument-duration-id="1hour"
+																	data-instrument-duration-value="3600000" 
+																	data-instrument-seed-rate="127.12"
+																>
+																	<div class="instrument-panel-header">
+																		<div class="instrument-panel-title">
+																			EUR/JPY
+																		</div>
+																		<a title="Add To Favourites" class="instrument-panel-favourite"></a>
+																		<div class="instrument-panel-duration">
+																			1h
+																		</div>
+																	</div>
+																	<div class="instrument-panel-body">
+																		
+																			<div class="clearfix">
+																				<div class="instrument-panel-payout-wrap pull-left clearfix">
+																					<div class="font-sb">
+																						Payout
+																					</div>
+																					<div class="instrument-panel-payout">
+																						1.85
+																					</div>
+																				</div>
+																				<div class="pull-left clearfix">
+																					<div class="font-sb">
+																						Market
+																					</div>
+																					<div class="instrument-panel-rate highlow-high">
+																					</div>
+																				</div>
+																			</div>
+																			<div>
+																				<!-- <div class="instrument-panel-closing">
+																					Closing: <span class="expiry-time">loading...</span>
+																				</div> -->
+																				<div class="instrument-panel-closing">
+																					Closing: <span class="closing-at"></span>
+																				</div>
+																			</div>
+																		
+																		
+																	</div>
+																</div>
+
+															
+
+															
+															
+														
+															
+															
+
+																<div 
+																	class="instrument-panel  instrument-highlow-panel" 
+
+																	data-uid="highlow-eur-usd-1hour-4"
 																	data-trading-type="highlow" 
 																	data-instrument-label="EUR/USD"
 																	data-instrument-payout-rate="1.80"  
@@ -1177,7 +1238,7 @@
 																<div 
 																	class="instrument-panel  instrument-highlow-panel" 
 
-																	data-uid="highlow-gbp-jpy-1hour-4"
+																	data-uid="highlow-gbp-jpy-1hour-5"
 																	data-trading-type="highlow" 
 																	data-instrument-label="GBP/JPY"
 																	data-instrument-payout-rate="1.85"  
@@ -1238,7 +1299,7 @@
 																<div 
 																	class="instrument-panel  instrument-highlow-panel" 
 
-																	data-uid="highlow-gbp-usd-1hour-5"
+																	data-uid="highlow-gbp-usd-1hour-6"
 																	data-trading-type="highlow" 
 																	data-instrument-label="GBP/USD"
 																	data-instrument-payout-rate="1.85"  
@@ -1299,7 +1360,7 @@
 																<div 
 																	class="instrument-panel  instrument-highlow-panel" 
 
-																	data-uid="highlow-nzd-jpy-1hour-6"
+																	data-uid="highlow-nzd-jpy-1hour-7"
 																	data-trading-type="highlow" 
 																	data-instrument-label="NZD/JPY"
 																	data-instrument-payout-rate="1.80"  
@@ -1350,17 +1411,21 @@
 																</div>
 
 															
+															</div>
+															
 
 															
 															
 														
 															
 															
+																<div class="page ">
+															
 
 																<div 
 																	class="instrument-panel  instrument-highlow-panel" 
 
-																	data-uid="highlow-nzd-usd-1hour-7"
+																	data-uid="highlow-nzd-usd-1hour-8"
 																	data-trading-type="highlow" 
 																	data-instrument-label="NZD/USD"
 																	data-instrument-payout-rate="1.85"  
@@ -1411,27 +1476,27 @@
 																</div>
 
 															
-															</div>
-															
 
 															
 															
 														
+													
+
+														
+														
 															
-															
-																<div class="page ">
 															
 
 																<div 
 																	class="instrument-panel  instrument-highlow-panel" 
 
-																	data-uid="highlow-usd-jpy-1hour-8"
+																	data-uid="highlow-usd-jpy-1day-0"
 																	data-trading-type="highlow" 
 																	data-instrument-label="USD/JPY"
 																	data-instrument-payout-rate="1.80"  
-																	data-instrument-duration="60 mins"
-																	data-instrument-duration-id="1hour"
-																	data-instrument-duration-value="3600000" 
+																	data-instrument-duration="24 hours"
+																	data-instrument-duration-id="1day"
+																	data-instrument-duration-value="86400000" 
 																	data-instrument-seed-rate="114.45"
 																>
 																	<div class="instrument-panel-header">
@@ -1440,7 +1505,7 @@
 																		</div>
 																		<a title="Add To Favourites" class="instrument-panel-favourite"></a>
 																		<div class="instrument-panel-duration">
-																			1h
+																			24h
 																		</div>
 																	</div>
 																	<div class="instrument-panel-body">
@@ -1480,17 +1545,13 @@
 															
 															
 														
-													
-
-														
-														
 															
 															
 
 																<div 
 																	class="instrument-panel  instrument-highlow-panel" 
 
-																	data-uid="highlow-aud-jpy-1day-0"
+																	data-uid="highlow-aud-jpy-1day-1"
 																	data-trading-type="highlow" 
 																	data-instrument-label="AUD/JPY"
 																	data-instrument-payout-rate="1.85"  
@@ -1551,7 +1612,7 @@
 																<div 
 																	class="instrument-panel  instrument-highlow-panel" 
 
-																	data-uid="highlow-aud-usd-1day-1"
+																	data-uid="highlow-aud-usd-1day-2"
 																	data-trading-type="highlow" 
 																	data-instrument-label="AUD/USD"
 																	data-instrument-payout-rate="1.85"  
@@ -1612,7 +1673,7 @@
 																<div 
 																	class="instrument-panel  instrument-highlow-panel" 
 
-																	data-uid="highlow-eur-jpy-1day-2"
+																	data-uid="highlow-eur-jpy-1day-3"
 																	data-trading-type="highlow" 
 																	data-instrument-label="EUR/JPY"
 																	data-instrument-payout-rate="1.85"  
@@ -1663,17 +1724,21 @@
 																</div>
 
 															
+															</div>
+															
 
 															
 															
 														
 															
 															
+																<div class="page ">
+															
 
 																<div 
 																	class="instrument-panel  instrument-highlow-panel" 
 
-																	data-uid="highlow-eur-usd-1day-3"
+																	data-uid="highlow-eur-usd-1day-4"
 																	data-trading-type="highlow" 
 																	data-instrument-label="EUR/USD"
 																	data-instrument-payout-rate="1.80"  
@@ -1724,21 +1789,17 @@
 																</div>
 
 															
-															</div>
-															
 
 															
 															
 														
 															
 															
-																<div class="page ">
-															
 
 																<div 
 																	class="instrument-panel  instrument-highlow-panel" 
 
-																	data-uid="highlow-gbp-jpy-1day-4"
+																	data-uid="highlow-gbp-jpy-1day-5"
 																	data-trading-type="highlow" 
 																	data-instrument-label="GBP/JPY"
 																	data-instrument-payout-rate="1.85"  
@@ -1799,7 +1860,7 @@
 																<div 
 																	class="instrument-panel  instrument-highlow-panel" 
 
-																	data-uid="highlow-gbp-usd-1day-5"
+																	data-uid="highlow-gbp-usd-1day-6"
 																	data-trading-type="highlow" 
 																	data-instrument-label="GBP/USD"
 																	data-instrument-payout-rate="1.85"  
@@ -1860,7 +1921,7 @@
 																<div 
 																	class="instrument-panel  instrument-highlow-panel" 
 
-																	data-uid="highlow-nzd-jpy-1day-6"
+																	data-uid="highlow-nzd-jpy-1day-7"
 																	data-trading-type="highlow" 
 																	data-instrument-label="NZD/JPY"
 																	data-instrument-payout-rate="1.80"  
@@ -1921,7 +1982,7 @@
 																<div 
 																	class="instrument-panel  instrument-highlow-panel" 
 
-																	data-uid="highlow-nzd-usd-1day-7"
+																	data-uid="highlow-nzd-usd-1day-8"
 																	data-trading-type="highlow" 
 																	data-instrument-label="NZD/USD"
 																	data-instrument-payout-rate="1.85"  
@@ -1948,67 +2009,6 @@
 																					</div>
 																					<div class="instrument-panel-payout">
 																						1.85
-																					</div>
-																				</div>
-																				<div class="pull-left clearfix">
-																					<div class="font-sb">
-																						Market
-																					</div>
-																					<div class="instrument-panel-rate highlow-high">
-																					</div>
-																				</div>
-																			</div>
-																			<div>
-																				<!-- <div class="instrument-panel-closing">
-																					Closing: <span class="expiry-time">loading...</span>
-																				</div> -->
-																				<div class="instrument-panel-closing">
-																					Closing: <span class="closing-at"></span>
-																				</div>
-																			</div>
-																		
-																		
-																	</div>
-																</div>
-
-															
-
-															
-															
-														
-															
-															
-
-																<div 
-																	class="instrument-panel  instrument-highlow-panel" 
-
-																	data-uid="highlow-usd-jpy-1day-8"
-																	data-trading-type="highlow" 
-																	data-instrument-label="USD/JPY"
-																	data-instrument-payout-rate="1.80"  
-																	data-instrument-duration="24 hours"
-																	data-instrument-duration-id="1day"
-																	data-instrument-duration-value="86400000" 
-																	data-instrument-seed-rate="114.45"
-																>
-																	<div class="instrument-panel-header">
-																		<div class="instrument-panel-title">
-																			USD/JPY
-																		</div>
-																		<a title="Add To Favourites" class="instrument-panel-favourite"></a>
-																		<div class="instrument-panel-duration">
-																			24h
-																		</div>
-																	</div>
-																	<div class="instrument-panel-body">
-																		
-																			<div class="clearfix">
-																				<div class="instrument-panel-payout-wrap pull-left clearfix">
-																					<div class="font-sb">
-																						Payout
-																					</div>
-																					<div class="instrument-panel-payout">
-																						1.80
 																					</div>
 																				</div>
 																				<div class="pull-left clearfix">
@@ -2063,7 +2063,65 @@
 													
 															
 														<div class="instrument-panel js-instrument-panel-original  instrument-panel-active  instrument-highlow-panel" 
-															data-uid="highlow-aud-jpy-15min-0" 
+															data-uid="highlow-usd-jpy-15min-0" 
+															data-trading-type="highlow" 
+															data-instrument-label="USD/JPY"
+															data-instrument-payout-rate="2.00"   
+															data-instrument-duration="15 mins"
+															data-instrument-duration-id="15min"
+															data-instrument-duration-value="900000" 
+															data-instrument-seed-rate="118.62"
+														>
+															<div class="instrument-panel-header">
+																<div class="instrument-panel-title">
+																	USD/JPY
+																</div>
+																<a title="Add To Favourites" class="instrument-panel-favourite">
+
+																</a>
+																<div class="instrument-panel-duration">
+																	15m
+																</div>
+															</div>
+															<div class="instrument-panel-body">
+																
+																	<div class="clearfix">
+																		<div class="instrument-panel-payout-wrap pull-left clearfix">
+																			<div class="font-sb">
+																				Payout
+																			</div>
+																			<div class="instrument-panel-payout">
+																				2.00
+																			</div>
+																		</div>
+																		<div class="pull-left clearfix">
+																			<div class="font-sb">
+																				Market
+																			</div>
+																			<div class="instrument-panel-rate highlow-high">
+																			</div>
+																		</div>
+																	</div>
+																	<div>
+																		<!-- <div class="instrument-panel-closing">
+																			Closing: <span class="expiry-time">loading...</span>
+																		</div> -->
+																		<div class="instrument-panel-closing">
+																			Closing: <span class="closing-at"></span>
+																		</div>
+																	</div>
+																
+															</div>
+														</div>
+
+													
+												
+													
+													
+													
+															
+														<div class="instrument-panel js-instrument-panel-original  instrument-highlow-panel" 
+															data-uid="highlow-aud-jpy-15min-1" 
 															data-trading-type="highlow" 
 															data-instrument-label="AUD/JPY"
 															data-instrument-payout-rate="1.80"   
@@ -2121,7 +2179,7 @@
 													
 															
 														<div class="instrument-panel js-instrument-panel-original  instrument-highlow-panel" 
-															data-uid="highlow-aud-usd-15min-1" 
+															data-uid="highlow-aud-usd-15min-2" 
 															data-trading-type="highlow" 
 															data-instrument-label="AUD/USD"
 															data-instrument-payout-rate="1.80"   
@@ -2179,7 +2237,7 @@
 													
 															
 														<div class="instrument-panel js-instrument-panel-original  instrument-highlow-panel" 
-															data-uid="highlow-eur-jpy-15min-2" 
+															data-uid="highlow-eur-jpy-15min-3" 
 															data-trading-type="highlow" 
 															data-instrument-label="EUR/JPY"
 															data-instrument-payout-rate="1.75"   
@@ -2237,7 +2295,7 @@
 													
 															
 														<div class="instrument-panel js-instrument-panel-original  instrument-highlow-panel" 
-															data-uid="highlow-eur-usd-15min-3" 
+															data-uid="highlow-eur-usd-15min-4" 
 															data-trading-type="highlow" 
 															data-instrument-label="EUR/USD"
 															data-instrument-payout-rate="1.75"   
@@ -2289,13 +2347,17 @@
 														</div>
 
 													
+														</div>
+													
 												
 													
 													
 													
+													<div class="page ">
+													
 															
 														<div class="instrument-panel js-instrument-panel-original  instrument-highlow-panel" 
-															data-uid="highlow-gbp-jpy-15min-4" 
+															data-uid="highlow-gbp-jpy-15min-5" 
 															data-trading-type="highlow" 
 															data-instrument-label="GBP/JPY"
 															data-instrument-payout-rate="1.80"   
@@ -2347,17 +2409,13 @@
 														</div>
 
 													
-														</div>
-													
 												
 													
 													
 													
-													<div class="page ">
-													
 															
 														<div class="instrument-panel js-instrument-panel-original  instrument-highlow-panel" 
-															data-uid="highlow-eur-jpy-15min-5" 
+															data-uid="highlow-eur-jpy-15min-6" 
 															data-trading-type="highlow" 
 															data-instrument-label="EUR/JPY"
 															data-instrument-payout-rate="1.75"   
@@ -2415,7 +2473,7 @@
 													
 															
 														<div class="instrument-panel js-instrument-panel-original  instrument-highlow-panel" 
-															data-uid="highlow-eur-usd-15min-6" 
+															data-uid="highlow-eur-usd-15min-7" 
 															data-trading-type="highlow" 
 															data-instrument-label="EUR/USD"
 															data-instrument-payout-rate="1.75"   
@@ -2473,7 +2531,7 @@
 													
 															
 														<div class="instrument-panel js-instrument-panel-original  instrument-highlow-panel" 
-															data-uid="highlow-gbp-jpy-15min-7" 
+															data-uid="highlow-gbp-jpy-15min-8" 
 															data-trading-type="highlow" 
 															data-instrument-label="GBP/JPY"
 															data-instrument-payout-rate="1.80"   
@@ -2531,7 +2589,7 @@
 													
 															
 														<div class="instrument-panel js-instrument-panel-original  instrument-highlow-panel" 
-															data-uid="highlow-gbp-usd-15min-8" 
+															data-uid="highlow-gbp-usd-15min-9" 
 															data-trading-type="highlow" 
 															data-instrument-label="GBP/USD"
 															data-instrument-payout-rate="1.80"   
@@ -2583,13 +2641,17 @@
 														</div>
 
 													
+														</div>
+													
 												
 													
 													
 													
+													<div class="page ">
+													
 															
 														<div class="instrument-panel js-instrument-panel-original  instrument-highlow-panel" 
-															data-uid="highlow-nzd-jpy-15min-9" 
+															data-uid="highlow-nzd-jpy-15min-10" 
 															data-trading-type="highlow" 
 															data-instrument-label="NZD/JPY"
 															data-instrument-payout-rate="1.75"   
@@ -2641,17 +2703,13 @@
 														</div>
 
 													
-														</div>
-													
 												
 													
 													
 													
-													<div class="page ">
-													
 															
 														<div class="instrument-panel js-instrument-panel-original  instrument-highlow-panel" 
-															data-uid="highlow-nzd-usd-15min-10" 
+															data-uid="highlow-nzd-usd-15min-11" 
 															data-trading-type="highlow" 
 															data-instrument-label="NZD/USD"
 															data-instrument-payout-rate="1.80"   
@@ -2703,64 +2761,6 @@
 														</div>
 
 													
-												
-													
-													
-													
-															
-														<div class="instrument-panel js-instrument-panel-original  instrument-highlow-panel" 
-															data-uid="highlow-usd-jpy-15min-11" 
-															data-trading-type="highlow" 
-															data-instrument-label="USD/JPY"
-															data-instrument-payout-rate="1.75"   
-															data-instrument-duration="15 mins"
-															data-instrument-duration-id="15min"
-															data-instrument-duration-value="900000" 
-															data-instrument-seed-rate="118.62"
-														>
-															<div class="instrument-panel-header">
-																<div class="instrument-panel-title">
-																	USD/JPY
-																</div>
-																<a title="Add To Favourites" class="instrument-panel-favourite">
-
-																</a>
-																<div class="instrument-panel-duration">
-																	15m
-																</div>
-															</div>
-															<div class="instrument-panel-body">
-																
-																	<div class="clearfix">
-																		<div class="instrument-panel-payout-wrap pull-left clearfix">
-																			<div class="font-sb">
-																				Payout
-																			</div>
-																			<div class="instrument-panel-payout">
-																				1.75
-																			</div>
-																		</div>
-																		<div class="pull-left clearfix">
-																			<div class="font-sb">
-																				Market
-																			</div>
-																			<div class="instrument-panel-rate highlow-high">
-																			</div>
-																		</div>
-																	</div>
-																	<div>
-																		<!-- <div class="instrument-panel-closing">
-																			Closing: <span class="expiry-time">loading...</span>
-																		</div> -->
-																		<div class="instrument-panel-closing">
-																			Closing: <span class="closing-at"></span>
-																		</div>
-																	</div>
-																
-															</div>
-														</div>
-
-													
 														</div>
 													
 												
@@ -2787,7 +2787,65 @@
 													
 															
 														<div class="instrument-panel js-instrument-panel-original  instrument-panel-active  instrument-highlow-panel" 
-															data-uid="highlow-aud-jpy-1hour-0" 
+															data-uid="highlow-usd-jpy-1hour-0" 
+															data-trading-type="highlow" 
+															data-instrument-label="USD/JPY"
+															data-instrument-payout-rate="1.80"   
+															data-instrument-duration="60 mins"
+															data-instrument-duration-id="1hour"
+															data-instrument-duration-value="3600000" 
+															data-instrument-seed-rate="114.45"
+														>
+															<div class="instrument-panel-header">
+																<div class="instrument-panel-title">
+																	USD/JPY
+																</div>
+																<a title="Add To Favourites" class="instrument-panel-favourite">
+
+																</a>
+																<div class="instrument-panel-duration">
+																	1h
+																</div>
+															</div>
+															<div class="instrument-panel-body">
+																
+																	<div class="clearfix">
+																		<div class="instrument-panel-payout-wrap pull-left clearfix">
+																			<div class="font-sb">
+																				Payout
+																			</div>
+																			<div class="instrument-panel-payout">
+																				1.80
+																			</div>
+																		</div>
+																		<div class="pull-left clearfix">
+																			<div class="font-sb">
+																				Market
+																			</div>
+																			<div class="instrument-panel-rate highlow-high">
+																			</div>
+																		</div>
+																	</div>
+																	<div>
+																		<!-- <div class="instrument-panel-closing">
+																			Closing: <span class="expiry-time">loading...</span>
+																		</div> -->
+																		<div class="instrument-panel-closing">
+																			Closing: <span class="closing-at"></span>
+																		</div>
+																	</div>
+																
+															</div>
+														</div>
+
+													
+												
+													
+													
+													
+															
+														<div class="instrument-panel js-instrument-panel-original  instrument-highlow-panel" 
+															data-uid="highlow-aud-jpy-1hour-1" 
 															data-trading-type="highlow" 
 															data-instrument-label="AUD/JPY"
 															data-instrument-payout-rate="1.85"   
@@ -2845,7 +2903,7 @@
 													
 															
 														<div class="instrument-panel js-instrument-panel-original  instrument-highlow-panel" 
-															data-uid="highlow-aud-usd-1hour-1" 
+															data-uid="highlow-aud-usd-1hour-2" 
 															data-trading-type="highlow" 
 															data-instrument-label="AUD/USD"
 															data-instrument-payout-rate="1.85"   
@@ -2903,7 +2961,7 @@
 													
 															
 														<div class="instrument-panel js-instrument-panel-original  instrument-highlow-panel" 
-															data-uid="highlow-eur-jpy-1hour-2" 
+															data-uid="highlow-eur-jpy-1hour-3" 
 															data-trading-type="highlow" 
 															data-instrument-label="EUR/JPY"
 															data-instrument-payout-rate="1.85"   
@@ -2961,7 +3019,7 @@
 													
 															
 														<div class="instrument-panel js-instrument-panel-original  instrument-highlow-panel" 
-															data-uid="highlow-eur-usd-1hour-3" 
+															data-uid="highlow-eur-usd-1hour-4" 
 															data-trading-type="highlow" 
 															data-instrument-label="EUR/USD"
 															data-instrument-payout-rate="1.80"   
@@ -3013,13 +3071,17 @@
 														</div>
 
 													
+														</div>
+													
 												
 													
 													
 													
+													<div class="page ">
+													
 															
 														<div class="instrument-panel js-instrument-panel-original  instrument-highlow-panel" 
-															data-uid="highlow-gbp-jpy-1hour-4" 
+															data-uid="highlow-gbp-jpy-1hour-5" 
 															data-trading-type="highlow" 
 															data-instrument-label="GBP/JPY"
 															data-instrument-payout-rate="1.85"   
@@ -3071,17 +3133,13 @@
 														</div>
 
 													
-														</div>
-													
 												
 													
 													
 													
-													<div class="page ">
-													
 															
 														<div class="instrument-panel js-instrument-panel-original  instrument-highlow-panel" 
-															data-uid="highlow-gbp-usd-1hour-5" 
+															data-uid="highlow-gbp-usd-1hour-6" 
 															data-trading-type="highlow" 
 															data-instrument-label="GBP/USD"
 															data-instrument-payout-rate="1.85"   
@@ -3139,7 +3197,7 @@
 													
 															
 														<div class="instrument-panel js-instrument-panel-original  instrument-highlow-panel" 
-															data-uid="highlow-nzd-jpy-1hour-6" 
+															data-uid="highlow-nzd-jpy-1hour-7" 
 															data-trading-type="highlow" 
 															data-instrument-label="NZD/JPY"
 															data-instrument-payout-rate="1.80"   
@@ -3197,7 +3255,7 @@
 													
 															
 														<div class="instrument-panel js-instrument-panel-original  instrument-highlow-panel" 
-															data-uid="highlow-nzd-usd-1hour-7" 
+															data-uid="highlow-nzd-usd-1hour-8" 
 															data-trading-type="highlow" 
 															data-instrument-label="NZD/USD"
 															data-instrument-payout-rate="1.85"   
@@ -3226,64 +3284,6 @@
 																			</div>
 																			<div class="instrument-panel-payout">
 																				1.85
-																			</div>
-																		</div>
-																		<div class="pull-left clearfix">
-																			<div class="font-sb">
-																				Market
-																			</div>
-																			<div class="instrument-panel-rate highlow-high">
-																			</div>
-																		</div>
-																	</div>
-																	<div>
-																		<!-- <div class="instrument-panel-closing">
-																			Closing: <span class="expiry-time">loading...</span>
-																		</div> -->
-																		<div class="instrument-panel-closing">
-																			Closing: <span class="closing-at"></span>
-																		</div>
-																	</div>
-																
-															</div>
-														</div>
-
-													
-												
-													
-													
-													
-															
-														<div class="instrument-panel js-instrument-panel-original  instrument-highlow-panel" 
-															data-uid="highlow-usd-jpy-1hour-8" 
-															data-trading-type="highlow" 
-															data-instrument-label="USD/JPY"
-															data-instrument-payout-rate="1.80"   
-															data-instrument-duration="60 mins"
-															data-instrument-duration-id="1hour"
-															data-instrument-duration-value="3600000" 
-															data-instrument-seed-rate="114.45"
-														>
-															<div class="instrument-panel-header">
-																<div class="instrument-panel-title">
-																	USD/JPY
-																</div>
-																<a title="Add To Favourites" class="instrument-panel-favourite">
-
-																</a>
-																<div class="instrument-panel-duration">
-																	1h
-																</div>
-															</div>
-															<div class="instrument-panel-body">
-																
-																	<div class="clearfix">
-																		<div class="instrument-panel-payout-wrap pull-left clearfix">
-																			<div class="font-sb">
-																				Payout
-																			</div>
-																			<div class="instrument-panel-payout">
-																				1.80
 																			</div>
 																		</div>
 																		<div class="pull-left clearfix">
@@ -3333,7 +3333,65 @@
 													
 															
 														<div class="instrument-panel js-instrument-panel-original  instrument-panel-active  instrument-highlow-panel" 
-															data-uid="highlow-aud-jpy-1day-0" 
+															data-uid="highlow-usd-jpy-1day-0" 
+															data-trading-type="highlow" 
+															data-instrument-label="USD/JPY"
+															data-instrument-payout-rate="1.80"   
+															data-instrument-duration="24 hours"
+															data-instrument-duration-id="1day"
+															data-instrument-duration-value="86400000" 
+															data-instrument-seed-rate="114.45"
+														>
+															<div class="instrument-panel-header">
+																<div class="instrument-panel-title">
+																	USD/JPY
+																</div>
+																<a title="Add To Favourites" class="instrument-panel-favourite">
+
+																</a>
+																<div class="instrument-panel-duration">
+																	24h
+																</div>
+															</div>
+															<div class="instrument-panel-body">
+																
+																	<div class="clearfix">
+																		<div class="instrument-panel-payout-wrap pull-left clearfix">
+																			<div class="font-sb">
+																				Payout
+																			</div>
+																			<div class="instrument-panel-payout">
+																				1.80
+																			</div>
+																		</div>
+																		<div class="pull-left clearfix">
+																			<div class="font-sb">
+																				Market
+																			</div>
+																			<div class="instrument-panel-rate highlow-high">
+																			</div>
+																		</div>
+																	</div>
+																	<div>
+																		<!-- <div class="instrument-panel-closing">
+																			Closing: <span class="expiry-time">loading...</span>
+																		</div> -->
+																		<div class="instrument-panel-closing">
+																			Closing: <span class="closing-at"></span>
+																		</div>
+																	</div>
+																
+															</div>
+														</div>
+
+													
+												
+													
+													
+													
+															
+														<div class="instrument-panel js-instrument-panel-original  instrument-highlow-panel" 
+															data-uid="highlow-aud-jpy-1day-1" 
 															data-trading-type="highlow" 
 															data-instrument-label="AUD/JPY"
 															data-instrument-payout-rate="1.85"   
@@ -3391,7 +3449,7 @@
 													
 															
 														<div class="instrument-panel js-instrument-panel-original  instrument-highlow-panel" 
-															data-uid="highlow-aud-usd-1day-1" 
+															data-uid="highlow-aud-usd-1day-2" 
 															data-trading-type="highlow" 
 															data-instrument-label="AUD/USD"
 															data-instrument-payout-rate="1.85"   
@@ -3449,7 +3507,7 @@
 													
 															
 														<div class="instrument-panel js-instrument-panel-original  instrument-highlow-panel" 
-															data-uid="highlow-eur-jpy-1day-2" 
+															data-uid="highlow-eur-jpy-1day-3" 
 															data-trading-type="highlow" 
 															data-instrument-label="EUR/JPY"
 															data-instrument-payout-rate="1.85"   
@@ -3507,7 +3565,7 @@
 													
 															
 														<div class="instrument-panel js-instrument-panel-original  instrument-highlow-panel" 
-															data-uid="highlow-eur-usd-1day-3" 
+															data-uid="highlow-eur-usd-1day-4" 
 															data-trading-type="highlow" 
 															data-instrument-label="EUR/USD"
 															data-instrument-payout-rate="1.80"   
@@ -3559,13 +3617,17 @@
 														</div>
 
 													
+														</div>
+													
 												
 													
 													
 													
+													<div class="page ">
+													
 															
 														<div class="instrument-panel js-instrument-panel-original  instrument-highlow-panel" 
-															data-uid="highlow-gbp-jpy-1day-4" 
+															data-uid="highlow-gbp-jpy-1day-5" 
 															data-trading-type="highlow" 
 															data-instrument-label="GBP/JPY"
 															data-instrument-payout-rate="1.85"   
@@ -3617,17 +3679,13 @@
 														</div>
 
 													
-														</div>
-													
 												
 													
 													
 													
-													<div class="page ">
-													
 															
 														<div class="instrument-panel js-instrument-panel-original  instrument-highlow-panel" 
-															data-uid="highlow-gbp-usd-1day-5" 
+															data-uid="highlow-gbp-usd-1day-6" 
 															data-trading-type="highlow" 
 															data-instrument-label="GBP/USD"
 															data-instrument-payout-rate="1.85"   
@@ -3685,7 +3743,7 @@
 													
 															
 														<div class="instrument-panel js-instrument-panel-original  instrument-highlow-panel" 
-															data-uid="highlow-nzd-jpy-1day-6" 
+															data-uid="highlow-nzd-jpy-1day-7" 
 															data-trading-type="highlow" 
 															data-instrument-label="NZD/JPY"
 															data-instrument-payout-rate="1.80"   
@@ -3743,7 +3801,7 @@
 													
 															
 														<div class="instrument-panel js-instrument-panel-original  instrument-highlow-panel" 
-															data-uid="highlow-nzd-usd-1day-7" 
+															data-uid="highlow-nzd-usd-1day-8" 
 															data-trading-type="highlow" 
 															data-instrument-label="NZD/USD"
 															data-instrument-payout-rate="1.85"   
@@ -3772,64 +3830,6 @@
 																			</div>
 																			<div class="instrument-panel-payout">
 																				1.85
-																			</div>
-																		</div>
-																		<div class="pull-left clearfix">
-																			<div class="font-sb">
-																				Market
-																			</div>
-																			<div class="instrument-panel-rate highlow-high">
-																			</div>
-																		</div>
-																	</div>
-																	<div>
-																		<!-- <div class="instrument-panel-closing">
-																			Closing: <span class="expiry-time">loading...</span>
-																		</div> -->
-																		<div class="instrument-panel-closing">
-																			Closing: <span class="closing-at"></span>
-																		</div>
-																	</div>
-																
-															</div>
-														</div>
-
-													
-												
-													
-													
-													
-															
-														<div class="instrument-panel js-instrument-panel-original  instrument-highlow-panel" 
-															data-uid="highlow-usd-jpy-1day-8" 
-															data-trading-type="highlow" 
-															data-instrument-label="USD/JPY"
-															data-instrument-payout-rate="1.80"   
-															data-instrument-duration="24 hours"
-															data-instrument-duration-id="1day"
-															data-instrument-duration-value="86400000" 
-															data-instrument-seed-rate="114.45"
-														>
-															<div class="instrument-panel-header">
-																<div class="instrument-panel-title">
-																	USD/JPY
-																</div>
-																<a title="Add To Favourites" class="instrument-panel-favourite">
-
-																</a>
-																<div class="instrument-panel-duration">
-																	24h
-																</div>
-															</div>
-															<div class="instrument-panel-body">
-																
-																	<div class="clearfix">
-																		<div class="instrument-panel-payout-wrap pull-left clearfix">
-																			<div class="font-sb">
-																				Payout
-																			</div>
-																			<div class="instrument-panel-payout">
-																				1.80
 																			</div>
 																		</div>
 																		<div class="pull-left clearfix">
@@ -3884,8 +3884,6 @@
 										</div>
 
 										<!-- end favourite -->
-
-									
 								</div>
 							</div>
 						</div>
@@ -3899,8 +3897,10 @@
 								<span class="trading-platform-instrument-rate highlow-high current-rate">
 								</span>
 								
+								<img src="public/trade-platform/images/loading.gif" class="loading-icon"/>
 							</div>
 							<div class="pull-right">
+								<img src="public/trade-platform/images/loading.gif" class="processing"/>
 							
 								<span class="trading-platform-instrument-closing-time">
 									
@@ -3993,21 +3993,29 @@
 								<div class="trading-platform-main-controls-options one-click-control">
 									<div class="btn btn-positive btn-extruded font-m btn-md-pad one-touch-bet bet-high highlow highlow-up"
 										data-type="highlow" data-direction="high">
-										HIGH
+										
+											HIGH
+										
 									</div>
 									<div class="btn btn-negative btn-extruded font-m btn-md-pad one-touch-bet bet-low highlow highlow-down"
 										data-type="highlow" data-direction="low">
-										LOW
+										
+											LOW
+										
 									</div>
 								</div>
 								<div class="clearfix trading-platform-main-controls-options none-one-click-control">
 									<div class="trading-platform-main-controls-select-direction">
 										<label for="trading-platform-main-controls-select-direction-up-highlow" class="btn btn-extruded font-m btn-sm-pad btn-positive highlow-up trading-select-direction-highlow-high">
-											HIGH
+											
+												HIGH
+											
 										</label>
 										<input type="radio" id="trading-platform-main-controls-select-direction-up-highlow" name="selectedDirectionhighlow" value="high"/>
 										<label for="trading-platform-main-controls-select-direction-down-highlow" class="btn btn-extruded btn-negative font-m btn-sm-pad highlow-down trading-select-direction-highlow-low">
-											LOW
+											
+												LOW
+											
 										</label>
 										<input type="radio" id="trading-platform-main-controls-select-direction-down-highlow" name="selectedDirectionhighlow" value="low"/>
 									</div>
@@ -4029,6 +4037,10 @@
 										$925.00
 									</div>
 								</div>
+							</div>
+
+							<div class="chart-loading-screen">
+								<img src="public/trade-platform/images/loading-lighter.gif" class="loading-icon"/>
 							</div>
 						</div>
 					</div>
@@ -4121,7 +4133,7 @@
 										<li class="tab-view-tab-selector instrument-selector-widget-duration-selector active" data-target="#spread-interval-all">
 											ALL
 										</li>
-									 
+									
 										
 										<li class="tab-view-tab-selector instrument-selector-widget-duration-selector" data-target="#spread-15min">
 											15 MIN
@@ -6232,7 +6244,7 @@
 																				Payout
 																			</div>
 																			<div class="instrument-panel-payout">
-																				$2.00
+																				2.00
 																			</div>
 																		
 																			<div class="instrument-panel-closing">
@@ -6289,7 +6301,7 @@
 																				Payout
 																			</div>
 																			<div class="instrument-panel-payout">
-																				$2.00
+																				2.00
 																			</div>
 																		
 																			<div class="instrument-panel-closing">
@@ -6346,7 +6358,7 @@
 																				Payout
 																			</div>
 																			<div class="instrument-panel-payout">
-																				$2.00
+																				2.00
 																			</div>
 																		
 																			<div class="instrument-panel-closing">
@@ -6403,7 +6415,7 @@
 																				Payout
 																			</div>
 																			<div class="instrument-panel-payout">
-																				$2.00
+																				2.00
 																			</div>
 																		
 																			<div class="instrument-panel-closing">
@@ -6460,7 +6472,7 @@
 																				Payout
 																			</div>
 																			<div class="instrument-panel-payout">
-																				$2.00
+																				2.00
 																			</div>
 																		
 																			<div class="instrument-panel-closing">
@@ -6521,7 +6533,7 @@
 																				Payout
 																			</div>
 																			<div class="instrument-panel-payout">
-																				$2.00
+																				2.00
 																			</div>
 																		
 																			<div class="instrument-panel-closing">
@@ -6578,7 +6590,7 @@
 																				Payout
 																			</div>
 																			<div class="instrument-panel-payout">
-																				$2.00
+																				2.00
 																			</div>
 																		
 																			<div class="instrument-panel-closing">
@@ -6635,7 +6647,7 @@
 																				Payout
 																			</div>
 																			<div class="instrument-panel-payout">
-																				$2.00
+																				2.00
 																			</div>
 																		
 																			<div class="instrument-panel-closing">
@@ -6692,7 +6704,7 @@
 																				Payout
 																			</div>
 																			<div class="instrument-panel-payout">
-																				$2.00
+																				2.00
 																			</div>
 																		
 																			<div class="instrument-panel-closing">
@@ -6749,7 +6761,7 @@
 																				Payout
 																			</div>
 																			<div class="instrument-panel-payout">
-																				$2.00
+																				2.00
 																			</div>
 																		
 																			<div class="instrument-panel-closing">
@@ -6810,7 +6822,7 @@
 																				Payout
 																			</div>
 																			<div class="instrument-panel-payout">
-																				$2.00
+																				2.00
 																			</div>
 																		
 																			<div class="instrument-panel-closing">
@@ -6887,7 +6899,7 @@
 																				Payout
 																			</div>
 																			<div class="instrument-panel-payout">
-																				$2.00
+																				2.00
 																			</div>
 																		
 																			<div class="instrument-panel-closing">
@@ -6944,7 +6956,7 @@
 																				Payout
 																			</div>
 																			<div class="instrument-panel-payout">
-																				$2.00
+																				2.00
 																			</div>
 																		
 																			<div class="instrument-panel-closing">
@@ -7001,7 +7013,7 @@
 																				Payout
 																			</div>
 																			<div class="instrument-panel-payout">
-																				$2.00
+																				2.00
 																			</div>
 																		
 																			<div class="instrument-panel-closing">
@@ -7058,7 +7070,7 @@
 																				Payout
 																			</div>
 																			<div class="instrument-panel-payout">
-																				$2.00
+																				2.00
 																			</div>
 																		
 																			<div class="instrument-panel-closing">
@@ -7115,7 +7127,7 @@
 																				Payout
 																			</div>
 																			<div class="instrument-panel-payout">
-																				$2.00
+																				2.00
 																			</div>
 																		
 																			<div class="instrument-panel-closing">
@@ -7176,7 +7188,7 @@
 																				Payout
 																			</div>
 																			<div class="instrument-panel-payout">
-																				$2.00
+																				2.00
 																			</div>
 																		
 																			<div class="instrument-panel-closing">
@@ -7233,7 +7245,7 @@
 																				Payout
 																			</div>
 																			<div class="instrument-panel-payout">
-																				$2.00
+																				2.00
 																			</div>
 																		
 																			<div class="instrument-panel-closing">
@@ -7290,7 +7302,7 @@
 																				Payout
 																			</div>
 																			<div class="instrument-panel-payout">
-																				$2.00
+																				2.00
 																			</div>
 																		
 																			<div class="instrument-panel-closing">
@@ -7347,7 +7359,7 @@
 																				Payout
 																			</div>
 																			<div class="instrument-panel-payout">
-																				$2.00
+																				2.00
 																			</div>
 																		
 																			<div class="instrument-panel-closing">
@@ -7404,7 +7416,7 @@
 																				Payout
 																			</div>
 																			<div class="instrument-panel-payout">
-																				$2.00
+																				2.00
 																			</div>
 																		
 																			<div class="instrument-panel-closing">
@@ -7465,7 +7477,7 @@
 																				Payout
 																			</div>
 																			<div class="instrument-panel-payout">
-																				$2.00
+																				2.00
 																			</div>
 																		
 																			<div class="instrument-panel-closing">
@@ -7542,7 +7554,7 @@
 																				Payout
 																			</div>
 																			<div class="instrument-panel-payout">
-																				$2.00
+																				2.00
 																			</div>
 																		
 																			<div class="instrument-panel-closing">
@@ -7599,7 +7611,7 @@
 																				Payout
 																			</div>
 																			<div class="instrument-panel-payout">
-																				$2.00
+																				2.00
 																			</div>
 																		
 																			<div class="instrument-panel-closing">
@@ -7656,7 +7668,7 @@
 																				Payout
 																			</div>
 																			<div class="instrument-panel-payout">
-																				$2.00
+																				2.00
 																			</div>
 																		
 																			<div class="instrument-panel-closing">
@@ -7713,7 +7725,7 @@
 																				Payout
 																			</div>
 																			<div class="instrument-panel-payout">
-																				$2.00
+																				2.00
 																			</div>
 																		
 																			<div class="instrument-panel-closing">
@@ -7770,7 +7782,7 @@
 																				Payout
 																			</div>
 																			<div class="instrument-panel-payout">
-																				$2.00
+																				2.00
 																			</div>
 																		
 																			<div class="instrument-panel-closing">
@@ -7831,7 +7843,7 @@
 																				Payout
 																			</div>
 																			<div class="instrument-panel-payout">
-																				$2.00
+																				2.00
 																			</div>
 																		
 																			<div class="instrument-panel-closing">
@@ -7888,7 +7900,7 @@
 																				Payout
 																			</div>
 																			<div class="instrument-panel-payout">
-																				$2.00
+																				2.00
 																			</div>
 																		
 																			<div class="instrument-panel-closing">
@@ -7945,7 +7957,7 @@
 																				Payout
 																			</div>
 																			<div class="instrument-panel-payout">
-																				$2.00
+																				2.00
 																			</div>
 																		
 																			<div class="instrument-panel-closing">
@@ -8002,7 +8014,7 @@
 																				Payout
 																			</div>
 																			<div class="instrument-panel-payout">
-																				$2.00
+																				2.00
 																			</div>
 																		
 																			<div class="instrument-panel-closing">
@@ -8059,7 +8071,7 @@
 																				Payout
 																			</div>
 																			<div class="instrument-panel-payout">
-																				$2.00
+																				2.00
 																			</div>
 																		
 																			<div class="instrument-panel-closing">
@@ -8120,7 +8132,7 @@
 																				Payout
 																			</div>
 																			<div class="instrument-panel-payout">
-																				$2.00
+																				2.00
 																			</div>
 																		
 																			<div class="instrument-panel-closing">
@@ -8193,8 +8205,10 @@
 									+/- 0.005
 								</span>
 								
+								<img src="public/trade-platform/images/loading.gif" class="loading-icon"/>
 							</div>
 							<div class="pull-right">
+								<img src="public/trade-platform/images/loading.gif" class="processing"/>
 							
 								<span class="trading-platform-instrument-closing-time">
 									
@@ -8291,21 +8305,29 @@
 								<div class="trading-platform-main-controls-options one-click-control">
 									<div class="btn btn-positive btn-extruded font-m btn-md-pad one-touch-bet bet-high spread highlow-up"
 										data-type="spread" data-direction="high">
-										HIGH
+										
+											<span class="spread-high"></span>
+										
 									</div>
 									<div class="btn btn-negative btn-extruded font-m btn-md-pad one-touch-bet bet-low spread highlow-down"
 										data-type="spread" data-direction="low">
-										LOW
+										
+											<span class="spread-low"></span>
+										
 									</div>
 								</div>
 								<div class="clearfix trading-platform-main-controls-options none-one-click-control">
 									<div class="trading-platform-main-controls-select-direction">
 										<label for="trading-platform-main-controls-select-direction-up-spread" class="btn btn-extruded font-m btn-sm-pad btn-positive highlow-up trading-select-direction-spread-high">
-											HIGH
+											
+												<span class="spread-high"></span>
+											
 										</label>
 										<input type="radio" id="trading-platform-main-controls-select-direction-up-spread" name="selectedDirectionspread" value="high"/>
 										<label for="trading-platform-main-controls-select-direction-down-spread" class="btn btn-extruded btn-negative font-m btn-sm-pad highlow-down trading-select-direction-spread-low">
-											LOW
+											
+												<span class="spread-low"></span>
+											
 										</label>
 										<input type="radio" id="trading-platform-main-controls-select-direction-down-spread" name="selectedDirectionspread" value="low"/>
 									</div>
@@ -8327,6 +8349,10 @@
 										$925.00
 									</div>
 								</div>
+							</div>
+
+							<div class="chart-loading-screen">
+								<img src="public/trade-platform/images/loading-lighter.gif" class="loading-icon"/>
 							</div>
 						</div>
 					</div>
@@ -8419,7 +8445,7 @@
 										<li class="tab-view-tab-selector instrument-selector-widget-duration-selector active" data-target="#on-demand-interval-all">
 											ALL
 										</li>
-									 
+									
 										
 										<li class="tab-view-tab-selector instrument-selector-widget-duration-selector" data-target="#on-demand-1min">
 											1 MIN
@@ -12751,8 +12777,10 @@
 								<span class="trading-platform-instrument-rate highlow-high current-rate">
 								</span>
 								
+								<img src="public/trade-platform/images/loading.gif" class="loading-icon"/>
 							</div>
 							<div class="pull-right">
+								<img src="public/trade-platform/images/loading.gif" class="processing"/>
 							
 								<span class="trading-platform-instrument-market-close-time">
 									Market closes at 02:00
@@ -12842,21 +12870,29 @@
 								<div class="trading-platform-main-controls-options one-click-control">
 									<div class="btn btn-positive btn-extruded font-m btn-md-pad one-touch-bet bet-high on-demand highlow-up"
 										data-type="on-demand" data-direction="high">
-										HIGH
+										
+											HIGH
+										
 									</div>
 									<div class="btn btn-negative btn-extruded font-m btn-md-pad one-touch-bet bet-low on-demand highlow-down"
 										data-type="on-demand" data-direction="low">
-										LOW
+										
+											LOW
+										
 									</div>
 								</div>
 								<div class="clearfix trading-platform-main-controls-options none-one-click-control">
 									<div class="trading-platform-main-controls-select-direction">
 										<label for="trading-platform-main-controls-select-direction-up-on-demand" class="btn btn-extruded font-m btn-sm-pad btn-positive highlow-up trading-select-direction-on-demand-high">
-											HIGH
+											
+												HIGH
+											
 										</label>
 										<input type="radio" id="trading-platform-main-controls-select-direction-up-on-demand" name="selectedDirectionon-demand" value="high"/>
 										<label for="trading-platform-main-controls-select-direction-down-on-demand" class="btn btn-extruded btn-negative font-m btn-sm-pad highlow-down trading-select-direction-on-demand-low">
-											LOW
+											
+												LOW
+											
 										</label>
 										<input type="radio" id="trading-platform-main-controls-select-direction-down-on-demand" name="selectedDirectionon-demand" value="low"/>
 									</div>
@@ -12878,6 +12914,10 @@
 										$925.00
 									</div>
 								</div>
+							</div>
+
+							<div class="chart-loading-screen">
+								<img src="public/trade-platform/images/loading-lighter.gif" class="loading-icon"/>
 							</div>
 						</div>
 					</div>
@@ -12970,7 +13010,7 @@
 										<li class="tab-view-tab-selector instrument-selector-widget-duration-selector active" data-target="#spread-on-demand-interval-all">
 											ALL
 										</li>
-									 
+									
 										
 										<li class="tab-view-tab-selector instrument-selector-widget-duration-selector" data-target="#spread-on-demand-1min">
 											1 MIN
@@ -15081,7 +15121,7 @@
 																				Payout
 																			</div>
 																			<div class="instrument-panel-payout">
-																				$1.80
+																				1.80
 																			</div>
 																		
 																			<div class="instrument-panel-closing first-child last-child">
@@ -15138,7 +15178,7 @@
 																				Payout
 																			</div>
 																			<div class="instrument-panel-payout">
-																				$1.80
+																				1.80
 																			</div>
 																		
 																			<div class="instrument-panel-closing first-child last-child">
@@ -15195,7 +15235,7 @@
 																				Payout
 																			</div>
 																			<div class="instrument-panel-payout">
-																				$1.80
+																				1.80
 																			</div>
 																		
 																			<div class="instrument-panel-closing first-child last-child">
@@ -15252,7 +15292,7 @@
 																				Payout
 																			</div>
 																			<div class="instrument-panel-payout">
-																				$1.80
+																				1.80
 																			</div>
 																		
 																			<div class="instrument-panel-closing first-child last-child">
@@ -15309,7 +15349,7 @@
 																				Payout
 																			</div>
 																			<div class="instrument-panel-payout">
-																				$1.80
+																				1.80
 																			</div>
 																		
 																			<div class="instrument-panel-closing first-child last-child">
@@ -15370,7 +15410,7 @@
 																				Payout
 																			</div>
 																			<div class="instrument-panel-payout">
-																				$1.80
+																				1.80
 																			</div>
 																		
 																			<div class="instrument-panel-closing first-child last-child">
@@ -15427,7 +15467,7 @@
 																				Payout
 																			</div>
 																			<div class="instrument-panel-payout">
-																				$1.80
+																				1.80
 																			</div>
 																		
 																			<div class="instrument-panel-closing first-child last-child">
@@ -15484,7 +15524,7 @@
 																				Payout
 																			</div>
 																			<div class="instrument-panel-payout">
-																				$1.80
+																				1.80
 																			</div>
 																		
 																			<div class="instrument-panel-closing first-child last-child">
@@ -15541,7 +15581,7 @@
 																				Payout
 																			</div>
 																			<div class="instrument-panel-payout">
-																				$1.80
+																				1.80
 																			</div>
 																		
 																			<div class="instrument-panel-closing first-child last-child">
@@ -15598,7 +15638,7 @@
 																				Payout
 																			</div>
 																			<div class="instrument-panel-payout">
-																				$1.80
+																				1.80
 																			</div>
 																		
 																			<div class="instrument-panel-closing first-child last-child">
@@ -15659,7 +15699,7 @@
 																				Payout
 																			</div>
 																			<div class="instrument-panel-payout">
-																				$1.80
+																				1.80
 																			</div>
 																		
 																			<div class="instrument-panel-closing first-child last-child">
@@ -15736,7 +15776,7 @@
 																				Payout
 																			</div>
 																			<div class="instrument-panel-payout">
-																				$1.80
+																				1.80
 																			</div>
 																		
 																			<div class="instrument-panel-closing first-child last-child">
@@ -15793,7 +15833,7 @@
 																				Payout
 																			</div>
 																			<div class="instrument-panel-payout">
-																				$1.80
+																				1.80
 																			</div>
 																		
 																			<div class="instrument-panel-closing first-child last-child">
@@ -15850,7 +15890,7 @@
 																				Payout
 																			</div>
 																			<div class="instrument-panel-payout">
-																				$1.80
+																				1.80
 																			</div>
 																		
 																			<div class="instrument-panel-closing first-child last-child">
@@ -15907,7 +15947,7 @@
 																				Payout
 																			</div>
 																			<div class="instrument-panel-payout">
-																				$1.80
+																				1.80
 																			</div>
 																		
 																			<div class="instrument-panel-closing first-child last-child">
@@ -15964,7 +16004,7 @@
 																				Payout
 																			</div>
 																			<div class="instrument-panel-payout">
-																				$1.80
+																				1.80
 																			</div>
 																		
 																			<div class="instrument-panel-closing first-child last-child">
@@ -16025,7 +16065,7 @@
 																				Payout
 																			</div>
 																			<div class="instrument-panel-payout">
-																				$1.80
+																				1.80
 																			</div>
 																		
 																			<div class="instrument-panel-closing first-child last-child">
@@ -16082,7 +16122,7 @@
 																				Payout
 																			</div>
 																			<div class="instrument-panel-payout">
-																				$1.80
+																				1.80
 																			</div>
 																		
 																			<div class="instrument-panel-closing first-child last-child">
@@ -16139,7 +16179,7 @@
 																				Payout
 																			</div>
 																			<div class="instrument-panel-payout">
-																				$1.80
+																				1.80
 																			</div>
 																		
 																			<div class="instrument-panel-closing first-child last-child">
@@ -16196,7 +16236,7 @@
 																				Payout
 																			</div>
 																			<div class="instrument-panel-payout">
-																				$1.80
+																				1.80
 																			</div>
 																		
 																			<div class="instrument-panel-closing first-child last-child">
@@ -16253,7 +16293,7 @@
 																				Payout
 																			</div>
 																			<div class="instrument-panel-payout">
-																				$1.80
+																				1.80
 																			</div>
 																		
 																			<div class="instrument-panel-closing first-child last-child">
@@ -16314,7 +16354,7 @@
 																				Payout
 																			</div>
 																			<div class="instrument-panel-payout">
-																				$1.80
+																				1.80
 																			</div>
 																		
 																			<div class="instrument-panel-closing first-child last-child">
@@ -16391,7 +16431,7 @@
 																				Payout
 																			</div>
 																			<div class="instrument-panel-payout">
-																				$1.80
+																				1.80
 																			</div>
 																		
 																			<div class="instrument-panel-closing first-child last-child">
@@ -16448,7 +16488,7 @@
 																				Payout
 																			</div>
 																			<div class="instrument-panel-payout">
-																				$1.80
+																				1.80
 																			</div>
 																		
 																			<div class="instrument-panel-closing first-child last-child">
@@ -16505,7 +16545,7 @@
 																				Payout
 																			</div>
 																			<div class="instrument-panel-payout">
-																				$1.80
+																				1.80
 																			</div>
 																		
 																			<div class="instrument-panel-closing first-child last-child">
@@ -16562,7 +16602,7 @@
 																				Payout
 																			</div>
 																			<div class="instrument-panel-payout">
-																				$1.80
+																				1.80
 																			</div>
 																		
 																			<div class="instrument-panel-closing first-child last-child">
@@ -16619,7 +16659,7 @@
 																				Payout
 																			</div>
 																			<div class="instrument-panel-payout">
-																				$1.80
+																				1.80
 																			</div>
 																		
 																			<div class="instrument-panel-closing first-child last-child">
@@ -16680,7 +16720,7 @@
 																				Payout
 																			</div>
 																			<div class="instrument-panel-payout">
-																				$1.80
+																				1.80
 																			</div>
 																		
 																			<div class="instrument-panel-closing first-child last-child">
@@ -16737,7 +16777,7 @@
 																				Payout
 																			</div>
 																			<div class="instrument-panel-payout">
-																				$1.80
+																				1.80
 																			</div>
 																		
 																			<div class="instrument-panel-closing first-child last-child">
@@ -16794,7 +16834,7 @@
 																				Payout
 																			</div>
 																			<div class="instrument-panel-payout">
-																				$1.80
+																				1.80
 																			</div>
 																		
 																			<div class="instrument-panel-closing first-child last-child">
@@ -16851,7 +16891,7 @@
 																				Payout
 																			</div>
 																			<div class="instrument-panel-payout">
-																				$1.80
+																				1.80
 																			</div>
 																		
 																			<div class="instrument-panel-closing first-child last-child">
@@ -16908,7 +16948,7 @@
 																				Payout
 																			</div>
 																			<div class="instrument-panel-payout">
-																				$1.80
+																				1.80
 																			</div>
 																		
 																			<div class="instrument-panel-closing first-child last-child">
@@ -16969,7 +17009,7 @@
 																				Payout
 																			</div>
 																			<div class="instrument-panel-payout">
-																				$1.80
+																				1.80
 																			</div>
 																		
 																			<div class="instrument-panel-closing first-child last-child">
@@ -17038,8 +17078,14 @@
 								<span class="trading-platform-instrument-rate highlow-high current-rate">
 								</span>
 								
+								<span class="trading-platform-instrument-spread-range">
+									+/- 0.005
+								</span>
+								
+								<img src="public/trade-platform/images/loading.gif" class="loading-icon"/>
 							</div>
 							<div class="pull-right">
+								<img src="public/trade-platform/images/loading.gif" class="processing"/>
 							
 								<span class="trading-platform-instrument-market-close-time">
 									Market closes at 02:00
@@ -17113,6 +17159,10 @@
 										</span>
 
 										
+										<span class="trading-platform-instrument-spread-range">
+											+/- 0.005
+										</span>
+										
 									</div>
 
 								</div>
@@ -17129,21 +17179,29 @@
 								<div class="trading-platform-main-controls-options one-click-control">
 									<div class="btn btn-positive btn-extruded font-m btn-md-pad one-touch-bet bet-high spread-on-demand highlow-up"
 										data-type="spread-on-demand" data-direction="high">
-										HIGH
+										
+											<span class="spread-high"></span>
+										
 									</div>
 									<div class="btn btn-negative btn-extruded font-m btn-md-pad one-touch-bet bet-low spread-on-demand highlow-down"
 										data-type="spread-on-demand" data-direction="low">
-										LOW
+										
+											<span class="spread-low"></span>
+										
 									</div>
 								</div>
 								<div class="clearfix trading-platform-main-controls-options none-one-click-control">
 									<div class="trading-platform-main-controls-select-direction">
 										<label for="trading-platform-main-controls-select-direction-up-spread-on-demand" class="btn btn-extruded font-m btn-sm-pad btn-positive highlow-up trading-select-direction-spread-on-demand-high">
-											HIGH
+											
+												<span class="spread-high"></span>
+											
 										</label>
 										<input type="radio" id="trading-platform-main-controls-select-direction-up-spread-on-demand" name="selectedDirectionspread-on-demand" value="high"/>
 										<label for="trading-platform-main-controls-select-direction-down-spread-on-demand" class="btn btn-extruded btn-negative font-m btn-sm-pad highlow-down trading-select-direction-spread-on-demand-low">
-											LOW
+											
+												<span class="spread-low"></span>
+											
 										</label>
 										<input type="radio" id="trading-platform-main-controls-select-direction-down-spread-on-demand" name="selectedDirectionspread-on-demand" value="low"/>
 									</div>
@@ -17166,11 +17224,24 @@
 									</div>
 								</div>
 							</div>
+
+							<div class="chart-loading-screen">
+								<img src="public/trade-platform/images/loading-lighter.gif" class="loading-icon"/>
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 			
+		</div>
+		<div class="platform-loading-screen">
+			<div class="header">
+			 LOADING <img src="public/trade-platform/images/loading.gif" class="loading-icon"/>
+			</div>
+			<div class="loading-bar">
+				<div class="fill">
+				</div>
+			</div>
 		</div>
 	</div>
 	<div class="panel panel-default trading-app-container trading-platform ">
@@ -17195,7 +17266,7 @@
 							<th>
 								Select
 							</th>
-							<th>
+							<th class="investment-type-header">
 								Type
 							</th>
 							<th>
@@ -17236,7 +17307,11 @@
 	</div>
 </div>
 
-<div class="trading-platform-popup-wrapper trading-platform-sell-popup overlay highlow concealed">
+
+
+
+
+<div class="trading-platform-popup-wrapper trading-platform-sell-popup overlay highlow concealed" id="sell-popup-highlow">
 	<div class="trading-platform-popup">
 		<div class="trading-platform-popup-content-wrapper">
 			<div class="trading-platform-popup-content">
@@ -17256,27 +17331,35 @@
 								</div>
 							</div>
 							<div class="panel-body">
+								<div class="trading-platform-sell-popup-strike">
+									<div class="pull-left font-sb">
+										Strike
+									</div>
+									<div class="trading-platform-strike-value pull-right">
+										
+									</div>
+								</div>
 								<div class="trading-platform-sell-popup-investment">
 									<div class="pull-left font-sb">
 										Investment
 									</div>
-									<div class="trading-platform-invevstment-value pull-right">
+									<div class="trading-platform-investment-value pull-right">
 										
 									</div>
 								</div>
 								<div class="trading-platform-sell-popup-return-rate">
 									<div class="pull-left font-sb">
-										Return rate [%]
+										Return rate
 									</div>
-									<div class="trading-platform-return-rate-value pull-right">
-										<span class="rate">0.6834</span>
+									<div class="trading-platform-return-rate-value highlow pull-right">
+										0.6834
 									</div>
 								</div>
 								<div class="trading-platform-sell-popup-pay-out">
 									<div class="pull-left font-sb">
 										Payout
 									</div>
-									<div class="trading-platform-pay-out-value pull-right">
+									<div class="trading-platform-pay-out-value highlow pull-right">
 										
 									</div>
 								</div>
@@ -17289,7 +17372,7 @@
 		</div>
 	</div>
 </div>
-<div class="trading-platform-popup-wrapper trading-platform-invest-popup highlow concealed">
+<div class="trading-platform-popup-wrapper trading-platform-invest-popup highlow concealed" id="invest-popup-highlow">
 	<div class="trading-platform-popup">
 		<div class="trading-platform-popup-content-wrapper">
 			<div class="trading-platform-popup-content">
@@ -17355,7 +17438,7 @@
 	</div>
 </div>
 
-<div class="trading-platform-popup-wrapper trading-platform-sell-popup overlay spread concealed">
+<div class="trading-platform-popup-wrapper trading-platform-sell-popup overlay spread concealed" id="sell-popup-spread">
 	<div class="trading-platform-popup">
 		<div class="trading-platform-popup-content-wrapper">
 			<div class="trading-platform-popup-content">
@@ -17375,27 +17458,35 @@
 								</div>
 							</div>
 							<div class="panel-body">
+								<div class="trading-platform-sell-popup-strike">
+									<div class="pull-left font-sb">
+										Strike
+									</div>
+									<div class="trading-platform-strike-value pull-right">
+										
+									</div>
+								</div>
 								<div class="trading-platform-sell-popup-investment">
 									<div class="pull-left font-sb">
 										Investment
 									</div>
-									<div class="trading-platform-invevstment-value pull-right">
+									<div class="trading-platform-investment-value pull-right">
 										
 									</div>
 								</div>
 								<div class="trading-platform-sell-popup-return-rate">
 									<div class="pull-left font-sb">
-										Return rate [%]
+										Return rate
 									</div>
-									<div class="trading-platform-return-rate-value pull-right">
-										<span class="rate">0.6834</span>
+									<div class="trading-platform-return-rate-value spread pull-right">
+										0.6834
 									</div>
 								</div>
 								<div class="trading-platform-sell-popup-pay-out">
 									<div class="pull-left font-sb">
 										Payout
 									</div>
-									<div class="trading-platform-pay-out-value pull-right">
+									<div class="trading-platform-pay-out-value spread pull-right">
 										
 									</div>
 								</div>
@@ -17408,7 +17499,7 @@
 		</div>
 	</div>
 </div>
-<div class="trading-platform-popup-wrapper trading-platform-invest-popup spread concealed">
+<div class="trading-platform-popup-wrapper trading-platform-invest-popup spread concealed" id="invest-popup-spread">
 	<div class="trading-platform-popup">
 		<div class="trading-platform-popup-content-wrapper">
 			<div class="trading-platform-popup-content">
@@ -17474,7 +17565,7 @@
 	</div>
 </div>
 
-<div class="trading-platform-popup-wrapper trading-platform-sell-popup overlay on-demand concealed">
+<div class="trading-platform-popup-wrapper trading-platform-sell-popup overlay on-demand concealed" id="sell-popup-on-demand">
 	<div class="trading-platform-popup">
 		<div class="trading-platform-popup-content-wrapper">
 			<div class="trading-platform-popup-content">
@@ -17494,27 +17585,35 @@
 								</div>
 							</div>
 							<div class="panel-body">
+								<div class="trading-platform-sell-popup-strike">
+									<div class="pull-left font-sb">
+										Strike
+									</div>
+									<div class="trading-platform-strike-value pull-right">
+										
+									</div>
+								</div>
 								<div class="trading-platform-sell-popup-investment">
 									<div class="pull-left font-sb">
 										Investment
 									</div>
-									<div class="trading-platform-invevstment-value pull-right">
+									<div class="trading-platform-investment-value pull-right">
 										
 									</div>
 								</div>
 								<div class="trading-platform-sell-popup-return-rate">
 									<div class="pull-left font-sb">
-										Return rate [%]
+										Return rate
 									</div>
-									<div class="trading-platform-return-rate-value pull-right">
-										<span class="rate">0.6834</span>
+									<div class="trading-platform-return-rate-value on-demand pull-right">
+										0.6834
 									</div>
 								</div>
 								<div class="trading-platform-sell-popup-pay-out">
 									<div class="pull-left font-sb">
 										Payout
 									</div>
-									<div class="trading-platform-pay-out-value pull-right">
+									<div class="trading-platform-pay-out-value on-demand pull-right">
 										
 									</div>
 								</div>
@@ -17527,7 +17626,7 @@
 		</div>
 	</div>
 </div>
-<div class="trading-platform-popup-wrapper trading-platform-invest-popup on-demand concealed">
+<div class="trading-platform-popup-wrapper trading-platform-invest-popup on-demand concealed" id="invest-popup-on-demand">
 	<div class="trading-platform-popup">
 		<div class="trading-platform-popup-content-wrapper">
 			<div class="trading-platform-popup-content">
@@ -17593,7 +17692,7 @@
 	</div>
 </div>
 
-<div class="trading-platform-popup-wrapper trading-platform-sell-popup overlay spread-on-demand concealed">
+<div class="trading-platform-popup-wrapper trading-platform-sell-popup overlay spread-on-demand concealed" id="sell-popup-spread-on-demand">
 	<div class="trading-platform-popup">
 		<div class="trading-platform-popup-content-wrapper">
 			<div class="trading-platform-popup-content">
@@ -17613,27 +17712,35 @@
 								</div>
 							</div>
 							<div class="panel-body">
+								<div class="trading-platform-sell-popup-strike">
+									<div class="pull-left font-sb">
+										Strike
+									</div>
+									<div class="trading-platform-strike-value pull-right">
+										
+									</div>
+								</div>
 								<div class="trading-platform-sell-popup-investment">
 									<div class="pull-left font-sb">
 										Investment
 									</div>
-									<div class="trading-platform-invevstment-value pull-right">
+									<div class="trading-platform-investment-value pull-right">
 										
 									</div>
 								</div>
 								<div class="trading-platform-sell-popup-return-rate">
 									<div class="pull-left font-sb">
-										Return rate [%]
+										Return rate
 									</div>
-									<div class="trading-platform-return-rate-value pull-right">
-										<span class="rate">0.6834</span>
+									<div class="trading-platform-return-rate-value spread-on-demand pull-right">
+										0.6834
 									</div>
 								</div>
 								<div class="trading-platform-sell-popup-pay-out">
 									<div class="pull-left font-sb">
 										Payout
 									</div>
-									<div class="trading-platform-pay-out-value pull-right">
+									<div class="trading-platform-pay-out-value spread-on-demand pull-right">
 										
 									</div>
 								</div>
@@ -17646,7 +17753,7 @@
 		</div>
 	</div>
 </div>
-<div class="trading-platform-popup-wrapper trading-platform-invest-popup spread-on-demand concealed">
+<div class="trading-platform-popup-wrapper trading-platform-invest-popup spread-on-demand concealed" id="invest-popup-spread-on-demand">
 	<div class="trading-platform-popup">
 		<div class="trading-platform-popup-content-wrapper">
 			<div class="trading-platform-popup-content">
@@ -17758,6 +17865,8 @@
 		<!-- begin javascript -->
 		
 	<script src="common/scripts/jquery-1.8.3.min.js"></script>
+	<script src="common/scripts/jquery-ui.min.js"></script>	
+	<script src="common/scripts/jquery.cookie.min.js"></script>		
 	<script src="common/scripts/highcharts.src.js"></script>
 	<script src="common/scripts/pattern-fill.js"></script>		
 	<script src="common/scripts/highlow-main.js"></script>

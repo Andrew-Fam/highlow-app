@@ -1,5 +1,8 @@
 highlowApp.systemMessages = {
 	clearMessageTimeout : {},
+	hideMessage: function() {
+		$('.message-wrapper').removeClass('display');
+	},
 	displayMessage: function(type,message) {
 
 
