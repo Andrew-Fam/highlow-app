@@ -35,6 +35,9 @@ highlowApp.marketSimulator = {
 
 		instrument.pause = false;
 	},
+	skip: function(instrument,skipAmount) {
+
+	},
 	simulate: function(instrument) {
 		var self = this;
 	
