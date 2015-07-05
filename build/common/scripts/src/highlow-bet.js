@@ -203,11 +203,16 @@ highlowApp.betSystem = {
 		
 		highlowApp.popup.displayPopup($('.trading-platform-invest-popup'+'.'+type));
 	},
-	placeBet : function (bet,type) {
+	placeBet : function (bet,type,forceBetAt,forceStrike) {
 
 		$('.trading-platform-invest-popup').addClass('concealed');
 
 		var betAt = new Date().getTime();
+
+
+		if(forceBetAt!=undefined) {
+			betAt = forceBetAt;
+		}
 
 		var graph = $('#'+type+"-graph").highcharts();
 
@@ -243,14 +248,23 @@ highlowApp.betSystem = {
 
 		// highlowApp.systemMessages.displayMessage("success","Success");
 
-		var strike = parseFloat(model.currentRate).toFixed(3);
+		var strikeValue = parseFloat(model.currentRate);
+
+
+
+		if(forceStrike!=undefined) {
+			strikeValue = parseFloat(forceStrike);
+		}
+
+
+		var strike = strikeValue.toFixed(3);
 
 		if (type=="spread") {
 			if(bet=="high") {
-				strike = (parseFloat(model.currentRate)+highlowApp.marketSimulator.spread).toFixed(3);
+				strike = (strikeValue+highlowApp.marketSimulator.spread).toFixed(3);
 			}
 			if(bet=="low") {
-				strike = (parseFloat(model.currentRate)-highlowApp.marketSimulator.spread).toFixed(3);
+				strike = (strikeValue-highlowApp.marketSimulator.spread).toFixed(3);
 			}
 		}
 

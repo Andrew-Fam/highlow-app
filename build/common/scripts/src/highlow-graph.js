@@ -289,7 +289,7 @@ highlowApp.graph = {
 		} else {
 			
 
-			var extremeMin = 10*60*1000;
+			var extremeMin = 5*60*1000;
 
 			if(model.duration>15*60*1000) {
 				extremeMin = 30*60*1000;
@@ -940,6 +940,7 @@ highlowApp.graph = {
 		textLowY = labelLowY+12,
 		hoverDuration = 150;
 
+		console.log(betObject);
 
 		// if(betObject.type.indexOf('on-demand')<0) {
 		switch(betObject.direction) {

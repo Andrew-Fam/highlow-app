@@ -377,11 +377,16 @@ highlowApp.betSystem = {
 		
 		highlowApp.popup.displayPopup($('.trading-platform-invest-popup'+'.'+type));
 	},
-	placeBet : function (bet,type) {
+	placeBet : function (bet,type,forceBetAt,forceStrike) {
 
 		$('.trading-platform-invest-popup').addClass('concealed');
 
 		var betAt = new Date().getTime();
+
+
+		if(forceBetAt!=undefined) {
+			betAt = forceBetAt;
+		}
 
 		var graph = $('#'+type+"-graph").highcharts();
 
@@ -417,14 +422,23 @@ highlowApp.betSystem = {
 
 		// highlowApp.systemMessages.displayMessage("success","Success");
 
-		var strike = parseFloat(model.currentRate).toFixed(3);
+		var strikeValue = parseFloat(model.currentRate);
+
+
+
+		if(forceStrike!=undefined) {
+			strikeValue = parseFloat(forceStrike);
+		}
+
+
+		var strike = strikeValue.toFixed(3);
 
 		if (type=="spread") {
 			if(bet=="high") {
-				strike = (parseFloat(model.currentRate)+highlowApp.marketSimulator.spread).toFixed(3);
+				strike = (strikeValue+highlowApp.marketSimulator.spread).toFixed(3);
 			}
 			if(bet=="low") {
-				strike = (parseFloat(model.currentRate)-highlowApp.marketSimulator.spread).toFixed(3);
+				strike = (strikeValue-highlowApp.marketSimulator.spread).toFixed(3);
 			}
 		}
 
@@ -1070,7 +1084,7 @@ highlowApp.graph = {
 		} else {
 			
 
-			var extremeMin = 10*60*1000;
+			var extremeMin = 5*60*1000;
 
 			if(model.duration>15*60*1000) {
 				extremeMin = 30*60*1000;
@@ -1721,6 +1735,7 @@ highlowApp.graph = {
 		textLowY = labelLowY+12,
 		hoverDuration = 150;
 
+		console.log(betObject);
 
 		// if(betObject.type.indexOf('on-demand')<0) {
 		switch(betObject.direction) {
@@ -2341,6 +2356,88 @@ highlowApp.marketSimulator = {
 
 		instrument.pause = false;
 	},
+	skip: function(instrument,duration,difference) {
+		var self = this;
+
+		var lastPoint = instrument.data[instrument.data.length-1];
+
+		instrument.skipOffset+=duration;
+
+
+		instrument.previousRate = parseFloat(instrument.currentRate);
+		instrument.currentRate = parseFloat(instrument.currentRate + difference);
+
+		instrument.absoluteChange += parseFloat(difference);
+
+		if (instrument.type.indexOf('spread')>=0) {
+			instrument.upperRate = parseFloat(parseFloat(instrument.currentRate) + self.spread);
+			instrument.lowerRate = parseFloat(parseFloat(instrument.currentRate) - self.spread);
+		}
+
+		if(instrument.active) {
+			// update graph
+			highlowApp
+			.graph
+			.addPoint(
+				instrument,
+				{
+	  				x : lastPoint.x+duration,
+	  				y : lastPoint.y+difference,
+	  				marker : {
+	  					enabled : true,
+	  					symbol : "url(common/images/graph-marker.png)"
+	  				},
+	  				states: {
+	  					hover: {
+	  						enabled: false
+	  					}
+	  				},
+	  				zIndex: 10
+	  			}
+  			);
+		}
+
+		instrument.data.push({
+			x : lastPoint.x+duration,
+	  		y : lastPoint.y+difference,
+			marker : {
+				enabled: false
+			}
+		});
+
+		self.updateUI(instrument.uid,instrument);
+
+		self.updateBetStatus(instrument);
+	},
+	skipSequence: function(sequence,instrument,delay,callback) {
+		
+		var self = this;
+
+		var sequenceTimeout = {};
+
+		var runSequence = function(i) {
+
+			if(i<sequence.length) {
+				var item = sequence[i];
+				self.skip(instrument,item[0],item[1]);
+
+				if(item[2]!=undefined) {
+					highlowApp.betSystem.placeBet(item[2],instrument.type);
+				}
+				
+				sequenceTimeout = setTimeout(function(){
+					runSequence(i+1);
+				},delay);
+
+			} else {
+				if(callback) {
+					callback();
+				}
+			}
+		}
+
+		runSequence(0);
+	},
 	simulate: function(instrument) {
 		var self = this;
 	
@@ -2381,9 +2478,12 @@ highlowApp.marketSimulator = {
 
 		// test if instrument has gone into deadzone or not (only applicable to none on-demand types)
 
+
+		var offsetCurrentTime = currentTime-instrument.pauseOffset+instrument.skipOffset;
+
 		if (instrument.type.indexOf('on-demand')<0 && instrument.type.indexOf('turbo')<0) {
 
-			if(currentTime-instrument.pauseOffset>=instrument.expireAt-2*60*1000) {
+			if(offsetCurrentTime>=instrument.expireAt-2*60*1000) {
 				instrument.dead = true;
 			}
 
@@ -2396,7 +2496,7 @@ highlowApp.marketSimulator = {
 			.addPoint(
 				instrument,
 				{
-	  				x : currentTime-instrument.pauseOffset,
+	  				x : offsetCurrentTime,
 	  				y : instrument.currentRate,
 	  				marker : {
 	  					enabled : true,
@@ -2413,7 +2513,7 @@ highlowApp.marketSimulator = {
 		}
 
 		instrument.data.push({
-			x: currentTime-instrument.pauseOffset,
+			x: offsetCurrentTime,
 			y: instrument.currentRate,
 			marker : {
 				enabled: false
@@ -2462,7 +2562,7 @@ highlowApp.marketSimulator = {
 
 			if(model.active) {
 
-
+				
 				var pointX = point.plotX,
 					pointY = point.plotY;
 
@@ -3037,6 +3137,7 @@ highlowApp.marketSimulator = {
 
 		//get seed data from html markup
 		instrumentModel.pauseOffset = 0;
+		instrumentModel.skipOffset = 0;
 		instrumentModel.label = instrumentModel.domElement.data('instrumentLabel');
 		instrumentModel.type = instrumentModel.domElement.data('tradingType');
 		instrumentModel.durationLabel = instrumentModel.domElement.data('instrumentDuration');
@@ -3058,7 +3159,7 @@ highlowApp.marketSimulator = {
 			if(highlowApp.expiring()) {
 				instrumentModel.openAt = currentTime - 1000*60*13;
 			} else {
-				if(minutesIntoGame && minutesIntoGame>0) {
+				if(minutesIntoGame!=undefined) {
 					instrumentModel.openAt = currentTime - 1000*60*minutesIntoGame;
 				} else {
 					instrumentModel.openAt = (Math.round(currentTime / (1000 * 60 * 2))-1) * 1000 * 60 * 2;
@@ -3080,7 +3181,7 @@ highlowApp.marketSimulator = {
 
 	// Generate past data.
 
-		var startingPointFromNow = (40*60*1000),
+		var startingPointFromNow = (20*60*1000),
 		minInterval = 1000,
 		maxInterval = 5000;
 
@@ -3148,6 +3249,8 @@ highlowApp.marketSimulator = {
 			instrumentModel.previousRate = instrumentModel.currentRate;
 			instrumentModel.currentRate = point.y;
 		}
+
+		instrumentModel.beforeSimulationStrike = instrumentModel.currentRate;
 
 		if (instrumentModel.type === 'spread') {
 			instrumentModel.upperRate = parseFloat(instrumentModel.currentRate + marketSimulator.spread).toFixed(marketSimulator.rounding);
