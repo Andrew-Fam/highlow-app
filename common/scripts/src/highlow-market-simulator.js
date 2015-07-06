@@ -29,9 +29,10 @@ highlowApp.marketSimulator = {
 	},
 	reset: function(instrument,minutesIntoGame) {
 		instrument.pause = true;
-
+		instrument.bets = [];
 		highlowApp.marketSimulator.initInstrument(instrument,minutesIntoGame);
 		highlowApp.graph.loadInstrument(instrument);
+		highlowApp.betSystem.reset();
 
 		instrument.pause = false;
 	},

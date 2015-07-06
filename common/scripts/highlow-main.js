@@ -183,6 +183,10 @@ highlowApp.betSystem = {
 		highlowApp.popup.displayPopup($('.trading-platform-sell-popup.'+bet.type));
 		
 	},
+	reset: function() {
+		$('.trading-platform-investments-list').empty();
+		$('.trading-platform-investments').addClass('no-data');
+	},
 	createBetEntry : function (bet, point, uid, type, betObject, clickHandler) {
 		var time = new Date(point.x),
 		expiry = new Date(betObject.expireAt),
@@ -2350,9 +2354,10 @@ highlowApp.marketSimulator = {
 	},
 	reset: function(instrument,minutesIntoGame) {
 		instrument.pause = true;
-
+		instrument.bets = [];
 		highlowApp.marketSimulator.initInstrument(instrument,minutesIntoGame);
 		highlowApp.graph.loadInstrument(instrument);
+		highlowApp.betSystem.reset();
 
 		instrument.pause = false;
 	},
