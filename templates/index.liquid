@@ -18,26 +18,137 @@
 			{% for type in tradingTypes %}
 			<div class="tab-view-panel {% if type.default %} active {% endif %}" id="{{ type.id }}-mode">
 				<div class="trading-app-container">
-					<div class="clearfix">
+					<div id="options-carousel" class="clearfix walk-through-step">
 						<div class="pull-left tab-view tab-view-default instrument-selector-widget">
 							<div class="instrument-selector-widget-duration-selectors-container tab-view-tab-selectors-container-wrapper">
 								<div class="instrument-selector-widget-instrument-filter pull-right">
-									<ul class="dropdown dropdown-default pull-left" tabindex="0">
-										<li class="dropdown-item active">
-											<input id="{{ type.id }}-all-currency" checked="checked" name="{{ type.id }}-instrument-filter" type="radio" value=""/>
-											<label for="{{ type.id }}-all-currency" data-label="Filter Currencies">
-												Filter Currencies
-											</label>
-										</li>
-										{% for instrument in type.instruments %}
-										<li class="dropdown-item">
-											<input id="{{ type.id }}-{{instrument.id}}" name="{{ type.id }}-instrument-filter" type="radio" value="{{instrument.id}}"/>
-											<label for="{{ type.id }}-{{instrument.id}}" data-label="{{instrument.label}}">
-												{{instrument.label}}
-											</label>
-										</li>
-										{% endfor %}
-									</ul>
+									<div id="{{ type.id }}-asset-filter" class="asset-filter hl-toggler" data-toggle-self-on-disabled="true" data-toggle-off-click="true">
+										<span class="asset-filter--placeholder hl-toggler" data-toggle-target="#{{ type.id }}-asset-filter">
+											Filter assets
+										</span>
+										<div class="asset-filter--category hl-toggler" data-toggle-group="filter-asset-{{ type.id }}">
+											<span class="asset-filter--clear hl-toggler" data-toggle-target="#{{ type.id }}-asset-filter">Clear filter</span>
+										</div>
+										<div class="asset-filter--category indicies">
+											Indicies
+											<div class="asset-filter--assets">
+												<div class="asset-filter--asset hl-toggler" data-toggle-group="filter-asset-{{ type.id }}" data-toggle-self-off-disabled="true" data-toggle-target="#filter-aus200">
+													<span class="asset-filter--asset--label hl-toggler" data-toggle-target="#{{ type.id }}-asset-filter">AUS200</span>
+												</div>
+												<div class="asset-filter--asset hl-toggler" data-toggle-group="filter-asset-{{ type.id }}" data-toggle-self-off-disabled="true"  data-toggle-target="#filter-jpn225">
+													<span class="asset-filter--asset--label hl-toggler" data-toggle-target="#{{ type.id }}-asset-filter">JPN225</span>
+												</div>
+												<div class="asset-filter--asset hl-toggler" data-toggle-group="filter-asset-{{ type.id }}" data-toggle-self-off-disabled="true"  data-toggle-target="#filter-hkg33">
+													<span class="asset-filter--asset--label hl-toggler" data-toggle-target="#{{ type.id }}-asset-filter">HKG33</span>
+												</div>
+												<div class="asset-filter--asset hl-toggler" data-toggle-group="filter-asset-{{ type.id }}" data-toggle-self-off-disabled="true"  data-toggle-target="#filter-uk100">
+													<span class="asset-filter--asset--label hl-toggler" data-toggle-target="#{{ type.id }}-asset-filter">UK100</span>
+												</div>
+												<div class="asset-filter--asset hl-toggler" data-toggle-group="filter-asset-{{ type.id }}" data-toggle-self-off-disabled="true"  data-toggle-target="#filter-us30">
+													<span class="asset-filter--asset--label hl-toggler" data-toggle-target="#{{ type.id }}-asset-filter">US30</span>
+												</div>
+											</div>
+										</div>
+										<div class="asset-filter--category currencies">
+											Currencies
+											<div class="asset-filter--assets">
+												<div class="asset-filter--asset hl-toggler" data-toggle-group="filter-asset-{{ type.id }}" data-toggle-self-off-disabled="true" data-toggle-target="#filter-usd-jpy">
+													<span class="asset-filter--asset--label hl-toggler" data-toggle-target="#{{ type.id }}-asset-filter">USD/JPY</span>
+												</div>
+												<div class="asset-filter--asset hl-toggler" data-toggle-group="filter-asset-{{ type.id }}" data-toggle-self-off-disabled="true"  data-toggle-target="#filter-aud-usd">
+													<span class="asset-filter--asset--label hl-toggler" data-toggle-target="#{{ type.id }}-asset-filter">AUD/USD</span>
+												</div>
+												<div class="asset-filter--asset hl-toggler" data-toggle-group="filter-asset-{{ type.id }}" data-toggle-self-off-disabled="true"  data-toggle-target="#filter-eur-jpy">
+													<span class="asset-filter--asset--label hl-toggler" data-toggle-target="#{{ type.id }}-asset-filter">EUR/JPY</span>
+												</div>
+												<div class="asset-filter--asset hl-toggler" data-toggle-group="filter-asset-{{ type.id }}" data-toggle-self-off-disabled="true"  data-toggle-target="#filter-eur-usd">
+													<span class="asset-filter--asset--label hl-toggler" data-toggle-target="#{{ type.id }}-asset-filter">EUR/USD</span>
+												</div>
+												<div class="asset-filter--asset hl-toggler" data-toggle-group="filter-asset-{{ type.id }}" data-toggle-self-off-disabled="true"  data-toggle-target="#filter-gbp-jpy">
+													<span class="asset-filter--asset--label hl-toggler" data-toggle-target="#{{ type.id }}-asset-filter">GBP/JPY</span>
+												</div>
+												<div class="asset-filter--asset hl-toggler" data-toggle-group="filter-asset-{{ type.id }}" data-toggle-self-off-disabled="true"  data-toggle-target="#filter-gbp-usd">
+													<span class="asset-filter--asset--label hl-toggler" data-toggle-target="#{{ type.id }}-asset-filter">GBP/USD</span>
+												</div>
+												<div class="asset-filter--asset hl-toggler" data-toggle-group="filter-asset-{{ type.id }}" data-toggle-self-off-disabled="true"  data-toggle-target="#filter-nzd-jpy">
+													<span class="asset-filter--asset--label hl-toggler" data-toggle-target="#{{ type.id }}-asset-filter">NZD/JPY</span>
+												</div>
+												<div class="asset-filter--asset hl-toggler" data-toggle-group="filter-asset-{{ type.id }}" data-toggle-self-off-disabled="true"  data-toggle-target="#filter-nzd-usd">
+													<span class="asset-filter--asset--label hl-toggler" data-toggle-target="#{{ type.id }}-asset-filter">NZD/USD</span>
+												</div>
+												<div class="asset-filter--asset hl-toggler" data-toggle-group="filter-asset-{{ type.id }}" data-toggle-self-off-disabled="true"  data-toggle-target="#filter-aud-jpy">
+													<span class="asset-filter--asset--label hl-toggler" data-toggle-target="#{{ type.id }}-asset-filter">AUD/JPY</span>
+												</div>
+											</div>
+										</div>
+										<div class="asset-filter--category commodities">
+											Commodities
+											<div class="asset-filter--assets">
+												<div class="asset-filter--asset hl-toggler" data-toggle-group="filter-asset-{{ type.id }}" data-toggle-self-off-disabled="true" data-toggle-target="#filter-gold">
+													<span class="asset-filter--asset--label hl-toggler" data-toggle-target="#{{ type.id }}-asset-filter">Gold</span>
+												</div>
+												<div class="asset-filter--asset hl-toggler" data-toggle-group="filter-asset-{{ type.id }}" data-toggle-self-off-disabled="true"  data-toggle-target="#filter-silver">
+													<span class="asset-filter--asset--label hl-toggler" data-toggle-target="#{{ type.id }}-asset-filter">Silver</span>
+												</div>
+												<div class="asset-filter--asset hl-toggler" data-toggle-group="filter-asset-{{ type.id }}" data-toggle-self-off-disabled="true"  data-toggle-target="#filter-oil">
+													<span class="asset-filter--asset--label hl-toggler" data-toggle-target="#{{ type.id }}-asset-filter">Oil</span>
+												</div>
+											</div>
+										</div>
+										<div class="asset-filter--display-labels">
+											<div class="asset-filter--display-label" data-toggle-group="filter-asset-{{ type.id }}" id="filter-aus200">
+												AUS200
+											</div>
+											<div class="asset-filter--display-label" data-toggle-group="filter-asset-{{ type.id }}" id="filter-jpn225">
+												JPN225
+											</div>
+											<div class="asset-filter--display-label" data-toggle-group="filter-asset-{{ type.id }}" id="filter-hkg33">
+												HKG33
+											</div>
+											<div class="asset-filter--display-label" data-toggle-group="filter-asset-{{ type.id }}" id="filter-uk100">
+												UK100
+											</div>
+											<div class="asset-filter--display-label" data-toggle-group="filter-asset-{{ type.id }}" id="filter-us30">
+												US30
+											</div>
+											<div class="asset-filter--display-label" data-toggle-group="filter-asset-{{ type.id }}" id="filter-usd-jpy">
+												USD/JPY
+											</div>
+											<div class="asset-filter--display-label" data-toggle-group="filter-asset-{{ type.id }}" id="filter-aud-usd">
+												AUD/USD
+											</div>
+											<div class="asset-filter--display-label" data-toggle-group="filter-asset-{{ type.id }}" id="filter-eur-jpy">
+												EUR/JPY
+											</div>
+											<div class="asset-filter--display-label" data-toggle-group="filter-asset-{{ type.id }}" id="filter-eur-usd">
+												EUR/USD
+											</div>
+											<div class="asset-filter--display-label" data-toggle-group="filter-asset-{{ type.id }}" id="filter-gbp-jpy">
+												GBP/JPY
+											</div>
+											<div class="asset-filter--display-label" data-toggle-group="filter-asset-{{ type.id }}" id="filter-gbp-usd">
+												GBP/USD
+											</div>
+											<div class="asset-filter--display-label" data-toggle-group="filter-asset-{{ type.id }}" id="filter-nzd-jpy">
+												NZD/JPY
+											</div>
+											<div class="asset-filter--display-label" data-toggle-group="filter-asset-{{ type.id }}" id="filter-nzd-usd">
+												NZD/USD
+											</div>
+											<div class="asset-filter--display-label" data-toggle-group="filter-asset-{{ type.id }}" id="filter-aud-jpy">
+												AUD/JPY
+											</div>
+											<div class="asset-filter--display-label" data-toggle-group="filter-asset-{{ type.id }}" id="filter-gold">
+												Gold
+											</div>
+											<div class="asset-filter--display-label" data-toggle-group="filter-asset-{{ type.id }}" id="filter-silver">
+												Silver
+											</div>
+											<div class="asset-filter--display-label" data-toggle-group="filter-asset-{{ type.id }}" id="filter-oil">
+												Oil
+											</div>
+										</div>
+									</div>
 								</div>
 								<div class="instrument-selector-widget-collapse-toggle">
 								</div>
@@ -97,6 +208,7 @@
 																	data-instrument-duration-id="{{interval.id}}"
 																	data-instrument-duration-value="{{interval.value}}" 
 																	data-instrument-seed-rate="{{instrumentItem.rate}}"
+																	data-instrument-pip="{{instrumentItem.pip}}"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -238,6 +350,7 @@
 															data-instrument-duration-id="{{interval.id}}"
 															data-instrument-duration-value="{{interval.value}}" 
 															data-instrument-seed-rate="{{instrumentItem.rate}}"
+															data-instrument-pip="{{instrumentItem.pip}}"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -381,7 +494,7 @@
 					</div>
 					<div class="panel panel-default trading-platform main-view" id="{{type.id}}-main-view">
 						<div class="panel-header">
-							<div class="pull-left">
+							<div class="pull-left chart-panel instrument-details-display walk-through-step">
 								<span class="trading-platform-instrument-title font-sb">
 									
 								</span>
@@ -394,7 +507,7 @@
 								{% endif %}
 								<img src="public/trade-platform/images/loading.gif" class="loading-icon"/>
 							</div>
-							<div class="pull-right">
+							<div class="pull-right time-display chart-control walk-through-step">
 								<img src="public/trade-platform/images/loading.gif" class="processing"/>
 							{% if type.id != 'on-demand' and type.id != 'spread-on-demand' and type.id != 'turbo' %}
 								<span class="trading-platform-instrument-closing-time">
@@ -431,37 +544,39 @@
 							</div>
 						</div>
 						<div class="panel-body">
-							<div class="heatmap collapsed tooltip-container" id="{{type.id}}-heatmap" data-target="{{type.id}}-graph">
-								<div class="label high">
-									31%
-								</div>
-								<div class="meter">
-									<div class="fill high" style="height: 31%;">
+							<span class="chart-panel chart walk-through-step">
+								<div class="heatmap collapsed tooltip-container" id="{{type.id}}-heatmap" data-target="{{type.id}}-graph">
+									<div class="label high">
+										31%
 									</div>
-									<div class="fill low" style="height: 69%;">
+									<div class="meter">
+										<div class="fill high" style="height: 31%;">
+										</div>
+										<div class="fill low" style="height: 69%;">
+										</div>
+									</div>
+									<div class="label low">
+										69%
+									</div>
+									<div class="toggle">
+										
+									</div>
+									<div class="expander">
+									</div>
+									<div class="tooltip trader-choice">
+										<div class="title">
+											Traders Choice
+										</div>
+										<div class="content">
+											Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+										</div>
 									</div>
 								</div>
-								<div class="label low">
-									69%
+								<div class="trading-platform-live-graph">
+									<div id="{{type.id}}-graph" class="live-graph"></div>
 								</div>
-								<div class="toggle">
-									
-								</div>
-								<div class="expander">
-								</div>
-								<div class="tooltip trader-choice">
-									<div class="title">
-										Traders Choice
-									</div>
-									<div class="content">
-										Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-									</div>
-								</div>
-							</div>
-							<div class="trading-platform-live-graph">
-								<div id="{{type.id}}-graph" class="live-graph"></div>
-							</div>
-							<div class="trading-platform-main-controls ">
+							</span>
+							<div class="trading-platform-main-controls chart-control walk-through-step">
 								<div class="trading-platform-main-controls-instrument-title font-sb">
 									USD/JPY
 								</div>
@@ -569,7 +684,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="panel panel-default trading-app-container trading-platform ">
+	<div class="panel panel-default trading-app-container trading-platform walk-through-step current-activity-table">
 		<div class="panel-header light-grey">
 			<div class="pull-left">
 				<div class="font-m-b">

@@ -1,0 +1,139 @@
+.asset-filter {
+	outline: none;
+	position: relative;
+	height: 32px;
+	width: 176px;
+	background-color: #353535;
+	cursor: pointer;
+	font-size: 12px;
+	overflow: hidden;
+	display: none;
+	&:after {
+		content: "";
+		display: inline-block;
+		position: absolute;
+		right: 13px;
+		top: 50%;
+		margin-top: -@dropdown-small-height/2;
+		.sprite(@dropdown-small);
+		z-index: 2;
+	}	
+
+
+	.tab-view-panel.active & {
+		display: block;
+		z-index: 100000;
+	}
+
+	&.active {
+		overflow: visible;
+	}
+}
+
+	.asset-filter--placeholder {
+		color: #a3a3a3;
+		display: block;
+    	padding: 8px 13px;
+	}
+
+	.asset-filter--category {
+		background-color: #424242;
+		color: #fff;
+		padding: 10px 13px;
+		height: 37px;
+		overflow: hidden;
+		&:hover,
+		&:focus {
+			background-color: #353535;
+		}
+
+		.asset-filter.active & {
+			display: block;
+			position: relative;
+			&:hover,
+			&:focus {
+				overflow: visible;
+			}
+		}
+	}
+
+	.asset-filter--clear {
+		.asset-filter.active & {
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			padding: 10px 13px;
+		}
+	}
+
+	.asset-filter--assets {
+		background-color: #424242;
+
+		.asset-filter.active .asset-filter--category {
+			top: 10px;
+		}
+
+		.asset-filter.active & {
+			display: none;
+		}
+
+		.asset-filter.active .asset-filter--category.active &,
+		.asset-filter.active .asset-filter--category:hover & {
+			display: block;
+			position: absolute;
+			top: 0px;
+			width: 176px;
+			left: -176px;
+		}
+	}
+
+	.asset-filter--asset {
+		&:hover,
+		&.active {
+			background-color: #353535;
+		}
+
+		&.active {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+		}
+
+		.asset-filter.active & {
+			&.active {
+				position: relative;
+				top: auto;
+				left: auto;
+			}
+		}
+	}
+
+	.asset-filter--asset--label {
+		display: block;
+		padding: 10px 13px;
+		.asset-filter--asset.active & {
+			padding: 8px 13px;
+		}
+		.asset-filter.active .asset-filter--asset.active & {
+			padding: 10px 13px;
+		}
+	}
+
+	.asset-filter--display-label {
+		display: none;
+		.asset-filter.active & {
+			&.active {
+				position: absolute;
+				top: 0;
+				left: 0;
+				display: block;
+				padding: 8px 13px 7px;
+				color: #fff;
+				background-color: #353535;
+   				width: 100%;
+			}
+		}
+	}

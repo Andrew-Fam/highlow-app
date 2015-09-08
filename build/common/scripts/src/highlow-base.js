@@ -1,5 +1,5 @@
 var highlowApp = {};
-
+var platformAssetUrl = "";
 $(function () {
 
 	highlowApp.jap = false;
@@ -7,6 +7,17 @@ $(function () {
 	if($('.jap-word').length>0) {
 		highlowApp.jap = true;
 	}
+
+	if($('#platform-asset-url').length>0) {
+		platformAssetUrl = $('#platform-asset-url').data('url');
+	} else {
+		platformAssetUrl = "common/images/";
+	}
+
+
+	
+
+
 
 	
 	highlowApp.tab.init();
@@ -24,4 +35,5 @@ $(function () {
 	highlowApp.tooltip.init(1000);
 	highlowApp.numberOnly.init();
 	highlowApp.balanceWidget.init();
+	highlowApp.toggler.init();
 });

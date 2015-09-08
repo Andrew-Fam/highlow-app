@@ -367,14 +367,15 @@ highlowApp.graph = {
 			var textY = 10,
 			startTextX = xAxis.toPixels(model.openAt)-70,
 			deadTextX = xAxis.toPixels(model.deadzone)-70;
+			
 
 
 			if(model.startTimeText) {
-				model.startTimeText.element.remove();
+				$(model.startTimeText.element).remove();
 			}
 
 			if(model.deadTimeText) {
-				model.deadTimeText.element.remove();
+				$(model.deadTimeText.element).remove();
 			}
 
 			model.startTimeText = renderer.text((highlowApp.jap?'開始: ':'Start: ')+highlowApp.timeToText(model.openAt),startTextX,24);
@@ -809,7 +810,7 @@ highlowApp.graph = {
 			
 
 			if(type.indexOf("spread")>=0) {
-				var highRate = renderer.text('<div class="on-graph-button">'+(point.y+0.005).toFixed(3)+'</div>',highX+27,highY+19);
+				var highRate = renderer.text('<div class="on-graph-button">'+(point.y+0.005).toFixed(model.pip)+'</div>',highX+27,highY+19);
 				highRate.on('click', function () {
 					// if(!highlowApp.graph.isOneClick(model)) {
 						highlowApp.betSystem.confirmBet('high',point,model.type);
@@ -845,7 +846,7 @@ highlowApp.graph = {
 				});
 				highRate.add();
 
-				var lowRate = renderer.text('<div class="on-graph-button">'+(point.y-0.005).toFixed(3)+'</div>',lowX+27,lowY+19);
+				var lowRate = renderer.text('<div class="on-graph-button">'+(point.y-0.005).toFixed(model.pip)+'</div>',lowX+27,lowY+19);
 				lowRate.on('click', function () {
 					// if(!highlowApp.graph.isOneClick(model)) {
 						highlowApp.betSystem.confirmBet('low',point,model.type);
@@ -1161,7 +1162,7 @@ highlowApp.graph = {
 		return $(id).highcharts({
 			chart: {
 				type: 'area',
-				animation: false,
+				animation: ($('.walkthrough').length>0?true:false),
 				backgroundColor : '#353535',
 				marginTop: 6,
 				marginLeft: 50,

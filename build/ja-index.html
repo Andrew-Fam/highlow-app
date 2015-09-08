@@ -21,26 +21,25 @@
 		<!-- begin main content -->
 		
 <!-- start-platform -->
-<div class="ja">
 <div class="tab-view tab-view-alternate trading-app-root">
 	<div class="tab-view-tab-selectors-container-wrapper trading-app-root-mode-selector-container-wrapper">
-		<div class="tab-view-tab-selectors-container font-m tab-full-width trading-app-container">
+		<div class="tab-view-tab-selectors-container tab-full-width trading-app-container">
 			<ul class="tab-view-tab-selectors">
 				
-				<li class="tab-view-tab-selector font-m  active  highlow" data-target="#highlow-mode">
+				<li class="tab-view-tab-selector  active  highlow" data-target="#highlow-mode">
 					HighLow
 				</li>
 				
-				<li class="tab-view-tab-selector font-m  spread" data-target="#spread-mode">
-					<span class='jap-word'>スプレッド</span>HighLow
+				<li class="tab-view-tab-selector  spread" data-target="#spread-mode">
+					HighLow <span class='tab-graphic-text'><img class='default' src='public/trade-platform/images/spread-tab.png' alt='スプレッド'/><img class='hover' src='public/trade-platform/images/spread-tab-hover.png' alt='スプレッド'/></span>
 				</li>
 				
-				<li class="tab-view-tab-selector font-m  on-demand" data-target="#on-demand-mode">
+				<li class="tab-view-tab-selector  on-demand" data-target="#on-demand-mode">
 					Turbo
 				</li>
 				
-				<li class="tab-view-tab-selector font-m  spread-on-demand" data-target="#spread-on-demand-mode">
-					Spread <span class='jap-word'>スプレッド</span>x
+				<li class="tab-view-tab-selector  spread-on-demand" data-target="#spread-on-demand-mode">
+					Turbo <span class='tab-graphic-text'><img class='default' src='public/trade-platform/images/spread-tab.png' alt='スプレッド'/><img class='hover' src='public/trade-platform/images/spread-tab-hover.png' alt='スプレッド'/></span>
 				</li>
 				
 			</ul>
@@ -51,7 +50,7 @@
 			
 			<div class="tab-view-panel  active " id="highlow-mode">
 				<div class="trading-app-container">
-					<div class="clearfix">
+					<div id="options-carousel" class="clearfix walk-through-step">
 						<div class="pull-left tab-view tab-view-default instrument-selector-widget">
 							<div class="instrument-selector-widget-duration-selectors-container tab-view-tab-selectors-container-wrapper">
 								<div class="instrument-selector-widget-instrument-filter pull-right">
@@ -194,6 +193,7 @@
 																	data-instrument-duration-id="15min"
 																	data-instrument-duration-value="900000" 
 																	data-instrument-seed-rate="118.62"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -254,7 +254,8 @@
 																	data-instrument-duration="15 mins"
 																	data-instrument-duration-id="15min"
 																	data-instrument-duration-value="900000" 
-																	data-instrument-seed-rate="102.44"
+																	data-instrument-seed-rate="92.439"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -315,7 +316,8 @@
 																	data-instrument-duration="15 mins"
 																	data-instrument-duration-id="15min"
 																	data-instrument-duration-value="900000" 
-																	data-instrument-seed-rate="112.44"
+																	data-instrument-seed-rate="0.75441"
+																	data-instrument-pip="5"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -376,7 +378,8 @@
 																	data-instrument-duration="15 mins"
 																	data-instrument-duration-id="15min"
 																	data-instrument-duration-value="900000" 
-																	data-instrument-seed-rate="92.74"
+																	data-instrument-seed-rate="135.740"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -437,7 +440,8 @@
 																	data-instrument-duration="15 mins"
 																	data-instrument-duration-id="15min"
 																	data-instrument-duration-value="900000" 
-																	data-instrument-seed-rate="102.56"
+																	data-instrument-seed-rate="1.12560"
+																	data-instrument-pip="5"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -503,6 +507,7 @@
 																	data-instrument-duration-id="15min"
 																	data-instrument-duration-value="900000" 
 																	data-instrument-seed-rate="112.44"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -563,7 +568,8 @@
 																	data-instrument-duration="15 mins"
 																	data-instrument-duration-id="15min"
 																	data-instrument-duration-value="900000" 
-																	data-instrument-seed-rate="82.54"
+																	data-instrument-seed-rate="135.740"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -624,7 +630,8 @@
 																	data-instrument-duration="15 mins"
 																	data-instrument-duration-id="15min"
 																	data-instrument-duration-value="900000" 
-																	data-instrument-seed-rate="122.78"
+																	data-instrument-seed-rate="1.12560"
+																	data-instrument-pip="5"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -686,6 +693,7 @@
 																	data-instrument-duration-id="15min"
 																	data-instrument-duration-value="900000" 
 																	data-instrument-seed-rate="123.12"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -747,6 +755,7 @@
 																	data-instrument-duration-id="15min"
 																	data-instrument-duration-value="900000" 
 																	data-instrument-seed-rate="122.44"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -812,6 +821,7 @@
 																	data-instrument-duration-id="15min"
 																	data-instrument-duration-value="900000" 
 																	data-instrument-seed-rate="111.56"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -873,6 +883,7 @@
 																	data-instrument-duration-id="15min"
 																	data-instrument-duration-value="900000" 
 																	data-instrument-seed-rate="114.76"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -938,6 +949,7 @@
 																	data-instrument-duration-id="1hour"
 																	data-instrument-duration-value="3600000" 
 																	data-instrument-seed-rate="114.45"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -998,7 +1010,8 @@
 																	data-instrument-duration="60 mins"
 																	data-instrument-duration-id="1hour"
 																	data-instrument-duration-value="3600000" 
-																	data-instrument-seed-rate="113.56"
+																	data-instrument-seed-rate="92.439"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -1059,7 +1072,8 @@
 																	data-instrument-duration="60 mins"
 																	data-instrument-duration-id="1hour"
 																	data-instrument-duration-value="3600000" 
-																	data-instrument-seed-rate="115.22"
+																	data-instrument-seed-rate="0.75441"
+																	data-instrument-pip="5"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -1124,7 +1138,8 @@
 																	data-instrument-duration="60 mins"
 																	data-instrument-duration-id="1hour"
 																	data-instrument-duration-value="3600000" 
-																	data-instrument-seed-rate="127.12"
+																	data-instrument-seed-rate="135.740"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -1185,7 +1200,8 @@
 																	data-instrument-duration="60 mins"
 																	data-instrument-duration-id="1hour"
 																	data-instrument-duration-value="3600000" 
-																	data-instrument-seed-rate="98.64"
+																	data-instrument-seed-rate="1.12560"
+																	data-instrument-pip="5"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -1247,6 +1263,7 @@
 																	data-instrument-duration-id="1hour"
 																	data-instrument-duration-value="3600000" 
 																	data-instrument-seed-rate="97.35"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -1308,6 +1325,7 @@
 																	data-instrument-duration-id="1hour"
 																	data-instrument-duration-value="3600000" 
 																	data-instrument-seed-rate="97.45"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -1369,6 +1387,7 @@
 																	data-instrument-duration-id="1hour"
 																	data-instrument-duration-value="3600000" 
 																	data-instrument-seed-rate="94.24"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -1434,6 +1453,7 @@
 																	data-instrument-duration-id="1hour"
 																	data-instrument-duration-value="3600000" 
 																	data-instrument-seed-rate="111.56"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -1499,6 +1519,7 @@
 																	data-instrument-duration-id="1day"
 																	data-instrument-duration-value="86400000" 
 																	data-instrument-seed-rate="114.45"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -1559,7 +1580,8 @@
 																	data-instrument-duration="24 hours"
 																	data-instrument-duration-id="1day"
 																	data-instrument-duration-value="86400000" 
-																	data-instrument-seed-rate="113.56"
+																	data-instrument-seed-rate="92.439"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -1620,7 +1642,8 @@
 																	data-instrument-duration="24 hours"
 																	data-instrument-duration-id="1day"
 																	data-instrument-duration-value="86400000" 
-																	data-instrument-seed-rate="115.22"
+																	data-instrument-seed-rate="0.75441"
+																	data-instrument-pip="5"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -1681,7 +1704,8 @@
 																	data-instrument-duration="24 hours"
 																	data-instrument-duration-id="1day"
 																	data-instrument-duration-value="86400000" 
-																	data-instrument-seed-rate="127.12"
+																	data-instrument-seed-rate="135.740"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -1746,7 +1770,8 @@
 																	data-instrument-duration="24 hours"
 																	data-instrument-duration-id="1day"
 																	data-instrument-duration-value="86400000" 
-																	data-instrument-seed-rate="98.64"
+																	data-instrument-seed-rate="1.12560"
+																	data-instrument-pip="5"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -1808,6 +1833,7 @@
 																	data-instrument-duration-id="1day"
 																	data-instrument-duration-value="86400000" 
 																	data-instrument-seed-rate="97.35"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -1869,6 +1895,7 @@
 																	data-instrument-duration-id="1day"
 																	data-instrument-duration-value="86400000" 
 																	data-instrument-seed-rate="97.45"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -1930,6 +1957,7 @@
 																	data-instrument-duration-id="1day"
 																	data-instrument-duration-value="86400000" 
 																	data-instrument-seed-rate="94.24"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -1991,6 +2019,7 @@
 																	data-instrument-duration-id="1day"
 																	data-instrument-duration-value="86400000" 
 																	data-instrument-seed-rate="111.56"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -2072,6 +2101,7 @@
 															data-instrument-duration-id="15min"
 															data-instrument-duration-value="900000" 
 															data-instrument-seed-rate="118.62"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -2129,7 +2159,8 @@
 															data-instrument-duration="15 mins"
 															data-instrument-duration-id="15min"
 															data-instrument-duration-value="900000" 
-															data-instrument-seed-rate="102.44"
+															data-instrument-seed-rate="92.439"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -2187,7 +2218,8 @@
 															data-instrument-duration="15 mins"
 															data-instrument-duration-id="15min"
 															data-instrument-duration-value="900000" 
-															data-instrument-seed-rate="112.44"
+															data-instrument-seed-rate="0.75441"
+															data-instrument-pip="5"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -2245,7 +2277,8 @@
 															data-instrument-duration="15 mins"
 															data-instrument-duration-id="15min"
 															data-instrument-duration-value="900000" 
-															data-instrument-seed-rate="92.74"
+															data-instrument-seed-rate="135.740"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -2303,7 +2336,8 @@
 															data-instrument-duration="15 mins"
 															data-instrument-duration-id="15min"
 															data-instrument-duration-value="900000" 
-															data-instrument-seed-rate="102.56"
+															data-instrument-seed-rate="1.12560"
+															data-instrument-pip="5"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -2366,6 +2400,7 @@
 															data-instrument-duration-id="15min"
 															data-instrument-duration-value="900000" 
 															data-instrument-seed-rate="112.44"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -2423,7 +2458,8 @@
 															data-instrument-duration="15 mins"
 															data-instrument-duration-id="15min"
 															data-instrument-duration-value="900000" 
-															data-instrument-seed-rate="82.54"
+															data-instrument-seed-rate="135.740"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -2481,7 +2517,8 @@
 															data-instrument-duration="15 mins"
 															data-instrument-duration-id="15min"
 															data-instrument-duration-value="900000" 
-															data-instrument-seed-rate="122.78"
+															data-instrument-seed-rate="1.12560"
+															data-instrument-pip="5"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -2540,6 +2577,7 @@
 															data-instrument-duration-id="15min"
 															data-instrument-duration-value="900000" 
 															data-instrument-seed-rate="123.12"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -2598,6 +2636,7 @@
 															data-instrument-duration-id="15min"
 															data-instrument-duration-value="900000" 
 															data-instrument-seed-rate="122.44"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -2660,6 +2699,7 @@
 															data-instrument-duration-id="15min"
 															data-instrument-duration-value="900000" 
 															data-instrument-seed-rate="111.56"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -2718,6 +2758,7 @@
 															data-instrument-duration-id="15min"
 															data-instrument-duration-value="900000" 
 															data-instrument-seed-rate="114.76"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -2796,6 +2837,7 @@
 															data-instrument-duration-id="1hour"
 															data-instrument-duration-value="3600000" 
 															data-instrument-seed-rate="114.45"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -2853,7 +2895,8 @@
 															data-instrument-duration="60 mins"
 															data-instrument-duration-id="1hour"
 															data-instrument-duration-value="3600000" 
-															data-instrument-seed-rate="113.56"
+															data-instrument-seed-rate="92.439"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -2911,7 +2954,8 @@
 															data-instrument-duration="60 mins"
 															data-instrument-duration-id="1hour"
 															data-instrument-duration-value="3600000" 
-															data-instrument-seed-rate="115.22"
+															data-instrument-seed-rate="0.75441"
+															data-instrument-pip="5"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -2969,7 +3013,8 @@
 															data-instrument-duration="60 mins"
 															data-instrument-duration-id="1hour"
 															data-instrument-duration-value="3600000" 
-															data-instrument-seed-rate="127.12"
+															data-instrument-seed-rate="135.740"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -3027,7 +3072,8 @@
 															data-instrument-duration="60 mins"
 															data-instrument-duration-id="1hour"
 															data-instrument-duration-value="3600000" 
-															data-instrument-seed-rate="98.64"
+															data-instrument-seed-rate="1.12560"
+															data-instrument-pip="5"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -3090,6 +3136,7 @@
 															data-instrument-duration-id="1hour"
 															data-instrument-duration-value="3600000" 
 															data-instrument-seed-rate="97.35"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -3148,6 +3195,7 @@
 															data-instrument-duration-id="1hour"
 															data-instrument-duration-value="3600000" 
 															data-instrument-seed-rate="97.45"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -3206,6 +3254,7 @@
 															data-instrument-duration-id="1hour"
 															data-instrument-duration-value="3600000" 
 															data-instrument-seed-rate="94.24"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -3264,6 +3313,7 @@
 															data-instrument-duration-id="1hour"
 															data-instrument-duration-value="3600000" 
 															data-instrument-seed-rate="111.56"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -3342,6 +3392,7 @@
 															data-instrument-duration-id="1day"
 															data-instrument-duration-value="86400000" 
 															data-instrument-seed-rate="114.45"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -3399,7 +3450,8 @@
 															data-instrument-duration="24 hours"
 															data-instrument-duration-id="1day"
 															data-instrument-duration-value="86400000" 
-															data-instrument-seed-rate="113.56"
+															data-instrument-seed-rate="92.439"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -3457,7 +3509,8 @@
 															data-instrument-duration="24 hours"
 															data-instrument-duration-id="1day"
 															data-instrument-duration-value="86400000" 
-															data-instrument-seed-rate="115.22"
+															data-instrument-seed-rate="0.75441"
+															data-instrument-pip="5"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -3515,7 +3568,8 @@
 															data-instrument-duration="24 hours"
 															data-instrument-duration-id="1day"
 															data-instrument-duration-value="86400000" 
-															data-instrument-seed-rate="127.12"
+															data-instrument-seed-rate="135.740"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -3573,7 +3627,8 @@
 															data-instrument-duration="24 hours"
 															data-instrument-duration-id="1day"
 															data-instrument-duration-value="86400000" 
-															data-instrument-seed-rate="98.64"
+															data-instrument-seed-rate="1.12560"
+															data-instrument-pip="5"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -3636,6 +3691,7 @@
 															data-instrument-duration-id="1day"
 															data-instrument-duration-value="86400000" 
 															data-instrument-seed-rate="97.35"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -3694,6 +3750,7 @@
 															data-instrument-duration-id="1day"
 															data-instrument-duration-value="86400000" 
 															data-instrument-seed-rate="97.45"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -3752,6 +3809,7 @@
 															data-instrument-duration-id="1day"
 															data-instrument-duration-value="86400000" 
 															data-instrument-seed-rate="94.24"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -3810,6 +3868,7 @@
 															data-instrument-duration-id="1day"
 															data-instrument-duration-value="86400000" 
 															data-instrument-seed-rate="111.56"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -3893,7 +3952,7 @@
 					</div>
 					<div class="panel panel-default trading-platform main-view" id="highlow-main-view">
 						<div class="panel-header">
-							<div class="pull-left">
+							<div class="pull-left chart-panel instrument-details-display walk-through-step">
 								<span class="trading-platform-instrument-title font-sb">
 									
 								</span>
@@ -3902,7 +3961,7 @@
 								
 								<img src="public/trade-platform/images/loading.gif" class="loading-icon"/>
 							</div>
-							<div class="pull-right">
+							<div class="pull-right time-display chart-control walk-through-step">
 								<img src="public/trade-platform/images/loading.gif" class="processing"/>
 							
 								<span class="trading-platform-instrument-closing-time">
@@ -3935,37 +3994,39 @@
 							</div>
 						</div>
 						<div class="panel-body">
-							<div class="heatmap collapsed tooltip-container" id="highlow-heatmap" data-target="highlow-graph">
-								<div class="label high">
-									31%
-								</div>
-								<div class="meter">
-									<div class="fill high" style="height: 31%;">
+							<span class="chart-panel chart walk-through-step">
+								<div class="heatmap collapsed tooltip-container" id="highlow-heatmap" data-target="highlow-graph">
+									<div class="label high">
+										31%
 									</div>
-									<div class="fill low" style="height: 69%;">
+									<div class="meter">
+										<div class="fill high" style="height: 31%;">
+										</div>
+										<div class="fill low" style="height: 69%;">
+										</div>
+									</div>
+									<div class="label low">
+										69%
+									</div>
+									<div class="toggle">
+										
+									</div>
+									<div class="expander">
+									</div>
+									<div class="tooltip trader-choice">
+										<div class="title jap-word">
+											トレーダーズ<br/>チョイス
+										</div>
+										<div class="content">
+											Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+										</div>
 									</div>
 								</div>
-								<div class="label low">
-									69%
+								<div class="trading-platform-live-graph">
+									<div id="highlow-graph" class="live-graph"></div>
 								</div>
-								<div class="toggle">
-									
-								</div>
-								<div class="expander">
-								</div>
-								<div class="tooltip trader-choice">
-									<div class="title jap-word">
-										トレーダーズ<br/>チョイス
-									</div>
-									<div class="content">
-										Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-									</div>
-								</div>
-							</div>
-							<div class="trading-platform-live-graph">
-								<div id="highlow-graph" class="live-graph"></div>
-							</div>
-							<div class="trading-platform-main-controls ">
+							</span>
+							<div class="trading-platform-main-controls chart-control walk-through-step">
 								<div class="trading-platform-main-controls-instrument-title font-sb">
 									USD/JPY
 								</div>
@@ -4043,7 +4104,7 @@
 			
 			<div class="tab-view-panel " id="spread-mode">
 				<div class="trading-app-container">
-					<div class="clearfix">
+					<div id="options-carousel" class="clearfix walk-through-step">
 						<div class="pull-left tab-view tab-view-default instrument-selector-widget">
 							<div class="instrument-selector-widget-duration-selectors-container tab-view-tab-selectors-container-wrapper">
 								<div class="instrument-selector-widget-instrument-filter pull-right">
@@ -4185,7 +4246,8 @@
 																	data-instrument-duration="15 mins"
 																	data-instrument-duration-id="15min"
 																	data-instrument-duration-value="900000" 
-																	data-instrument-seed-rate="115.45"
+																	data-instrument-seed-rate="0.75441"
+																	data-instrument-pip="5"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -4245,7 +4307,8 @@
 																	data-instrument-duration="15 mins"
 																	data-instrument-duration-id="15min"
 																	data-instrument-duration-value="900000" 
-																	data-instrument-seed-rate="98.442"
+																	data-instrument-seed-rate="135.740"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -4305,7 +4368,8 @@
 																	data-instrument-duration="15 mins"
 																	data-instrument-duration-id="15min"
 																	data-instrument-duration-value="900000" 
-																	data-instrument-seed-rate="111.24"
+																	data-instrument-seed-rate="1.12560"
+																	data-instrument-pip="5"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -4366,6 +4430,7 @@
 																	data-instrument-duration-id="15min"
 																	data-instrument-duration-value="900000" 
 																	data-instrument-seed-rate="224.86"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -4425,7 +4490,8 @@
 																	data-instrument-duration="15 mins"
 																	data-instrument-duration-id="15min"
 																	data-instrument-duration-value="900000" 
-																	data-instrument-seed-rate="123.54"
+																	data-instrument-seed-rate="135.740"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -4489,7 +4555,8 @@
 																	data-instrument-duration="15 mins"
 																	data-instrument-duration-id="15min"
 																	data-instrument-duration-value="900000" 
-																	data-instrument-seed-rate="167.27"
+																	data-instrument-seed-rate="1.12560"
+																	data-instrument-pip="5"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -4550,6 +4617,7 @@
 																	data-instrument-duration-id="15min"
 																	data-instrument-duration-value="900000" 
 																	data-instrument-seed-rate="145.15"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -4610,6 +4678,7 @@
 																	data-instrument-duration-id="15min"
 																	data-instrument-duration-value="900000" 
 																	data-instrument-seed-rate="165.52"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -4670,6 +4739,7 @@
 																	data-instrument-duration-id="15min"
 																	data-instrument-duration-value="900000" 
 																	data-instrument-seed-rate="135.59"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -4730,6 +4800,7 @@
 																	data-instrument-duration-id="15min"
 																	data-instrument-duration-value="900000" 
 																	data-instrument-seed-rate="115.54"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -4794,6 +4865,7 @@
 																	data-instrument-duration-id="15min"
 																	data-instrument-duration-value="900000" 
 																	data-instrument-seed-rate="112.43"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -4857,7 +4929,8 @@
 																	data-instrument-duration="60 mins"
 																	data-instrument-duration-id="1hour"
 																	data-instrument-duration-value="3600000" 
-																	data-instrument-seed-rate="115.45"
+																	data-instrument-seed-rate="0.75441"
+																	data-instrument-pip="5"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -4917,7 +4990,8 @@
 																	data-instrument-duration="60 mins"
 																	data-instrument-duration-id="1hour"
 																	data-instrument-duration-value="3600000" 
-																	data-instrument-seed-rate="98.442"
+																	data-instrument-seed-rate="135.740"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -4977,7 +5051,8 @@
 																	data-instrument-duration="60 mins"
 																	data-instrument-duration-id="1hour"
 																	data-instrument-duration-value="3600000" 
-																	data-instrument-seed-rate="111.24"
+																	data-instrument-seed-rate="1.12560"
+																	data-instrument-pip="5"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -5038,6 +5113,7 @@
 																	data-instrument-duration-id="1hour"
 																	data-instrument-duration-value="3600000" 
 																	data-instrument-seed-rate="224.86"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -5101,7 +5177,8 @@
 																	data-instrument-duration="60 mins"
 																	data-instrument-duration-id="1hour"
 																	data-instrument-duration-value="3600000" 
-																	data-instrument-seed-rate="123.54"
+																	data-instrument-seed-rate="135.740"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -5161,7 +5238,8 @@
 																	data-instrument-duration="60 mins"
 																	data-instrument-duration-id="1hour"
 																	data-instrument-duration-value="3600000" 
-																	data-instrument-seed-rate="167.27"
+																	data-instrument-seed-rate="1.12560"
+																	data-instrument-pip="5"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -5222,6 +5300,7 @@
 																	data-instrument-duration-id="1hour"
 																	data-instrument-duration-value="3600000" 
 																	data-instrument-seed-rate="145.15"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -5282,6 +5361,7 @@
 																	data-instrument-duration-id="1hour"
 																	data-instrument-duration-value="3600000" 
 																	data-instrument-seed-rate="165.52"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -5342,6 +5422,7 @@
 																	data-instrument-duration-id="1hour"
 																	data-instrument-duration-value="3600000" 
 																	data-instrument-seed-rate="135.59"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -5406,6 +5487,7 @@
 																	data-instrument-duration-id="1hour"
 																	data-instrument-duration-value="3600000" 
 																	data-instrument-seed-rate="115.54"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -5466,6 +5548,7 @@
 																	data-instrument-duration-id="1hour"
 																	data-instrument-duration-value="3600000" 
 																	data-instrument-seed-rate="112.43"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -5529,7 +5612,8 @@
 																	data-instrument-duration="24 hours"
 																	data-instrument-duration-id="1day"
 																	data-instrument-duration-value="86400000" 
-																	data-instrument-seed-rate="115.45"
+																	data-instrument-seed-rate="0.75441"
+																	data-instrument-pip="5"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -5589,7 +5673,8 @@
 																	data-instrument-duration="24 hours"
 																	data-instrument-duration-id="1day"
 																	data-instrument-duration-value="86400000" 
-																	data-instrument-seed-rate="98.442"
+																	data-instrument-seed-rate="135.740"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -5649,7 +5734,8 @@
 																	data-instrument-duration="24 hours"
 																	data-instrument-duration-id="1day"
 																	data-instrument-duration-value="86400000" 
-																	data-instrument-seed-rate="111.24"
+																	data-instrument-seed-rate="1.12560"
+																	data-instrument-pip="5"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -5714,6 +5800,7 @@
 																	data-instrument-duration-id="1day"
 																	data-instrument-duration-value="86400000" 
 																	data-instrument-seed-rate="224.86"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -5773,7 +5860,8 @@
 																	data-instrument-duration="24 hours"
 																	data-instrument-duration-id="1day"
 																	data-instrument-duration-value="86400000" 
-																	data-instrument-seed-rate="123.54"
+																	data-instrument-seed-rate="135.740"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -5833,7 +5921,8 @@
 																	data-instrument-duration="24 hours"
 																	data-instrument-duration-id="1day"
 																	data-instrument-duration-value="86400000" 
-																	data-instrument-seed-rate="167.27"
+																	data-instrument-seed-rate="1.12560"
+																	data-instrument-pip="5"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -5894,6 +5983,7 @@
 																	data-instrument-duration-id="1day"
 																	data-instrument-duration-value="86400000" 
 																	data-instrument-seed-rate="145.15"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -5954,6 +6044,7 @@
 																	data-instrument-duration-id="1day"
 																	data-instrument-duration-value="86400000" 
 																	data-instrument-seed-rate="165.52"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -6018,6 +6109,7 @@
 																	data-instrument-duration-id="1day"
 																	data-instrument-duration-value="86400000" 
 																	data-instrument-seed-rate="135.59"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -6078,6 +6170,7 @@
 																	data-instrument-duration-id="1day"
 																	data-instrument-duration-value="86400000" 
 																	data-instrument-seed-rate="115.54"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -6138,6 +6231,7 @@
 																	data-instrument-duration-id="1day"
 																	data-instrument-duration-value="86400000" 
 																	data-instrument-seed-rate="112.43"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -6217,7 +6311,8 @@
 															data-instrument-duration="15 mins"
 															data-instrument-duration-id="15min"
 															data-instrument-duration-value="900000" 
-															data-instrument-seed-rate="115.45"
+															data-instrument-seed-rate="0.75441"
+															data-instrument-pip="5"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -6274,7 +6369,8 @@
 															data-instrument-duration="15 mins"
 															data-instrument-duration-id="15min"
 															data-instrument-duration-value="900000" 
-															data-instrument-seed-rate="98.442"
+															data-instrument-seed-rate="135.740"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -6331,7 +6427,8 @@
 															data-instrument-duration="15 mins"
 															data-instrument-duration-id="15min"
 															data-instrument-duration-value="900000" 
-															data-instrument-seed-rate="111.24"
+															data-instrument-seed-rate="1.12560"
+															data-instrument-pip="5"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -6389,6 +6486,7 @@
 															data-instrument-duration-id="15min"
 															data-instrument-duration-value="900000" 
 															data-instrument-seed-rate="224.86"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -6445,7 +6543,8 @@
 															data-instrument-duration="15 mins"
 															data-instrument-duration-id="15min"
 															data-instrument-duration-value="900000" 
-															data-instrument-seed-rate="123.54"
+															data-instrument-seed-rate="135.740"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -6506,7 +6605,8 @@
 															data-instrument-duration="15 mins"
 															data-instrument-duration-id="15min"
 															data-instrument-duration-value="900000" 
-															data-instrument-seed-rate="167.27"
+															data-instrument-seed-rate="1.12560"
+															data-instrument-pip="5"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -6564,6 +6664,7 @@
 															data-instrument-duration-id="15min"
 															data-instrument-duration-value="900000" 
 															data-instrument-seed-rate="145.15"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -6621,6 +6722,7 @@
 															data-instrument-duration-id="15min"
 															data-instrument-duration-value="900000" 
 															data-instrument-seed-rate="165.52"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -6678,6 +6780,7 @@
 															data-instrument-duration-id="15min"
 															data-instrument-duration-value="900000" 
 															data-instrument-seed-rate="135.59"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -6735,6 +6838,7 @@
 															data-instrument-duration-id="15min"
 															data-instrument-duration-value="900000" 
 															data-instrument-seed-rate="115.54"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -6796,6 +6900,7 @@
 															data-instrument-duration-id="15min"
 															data-instrument-duration-value="900000" 
 															data-instrument-seed-rate="112.43"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -6872,7 +6977,8 @@
 															data-instrument-duration="60 mins"
 															data-instrument-duration-id="1hour"
 															data-instrument-duration-value="3600000" 
-															data-instrument-seed-rate="115.45"
+															data-instrument-seed-rate="0.75441"
+															data-instrument-pip="5"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -6929,7 +7035,8 @@
 															data-instrument-duration="60 mins"
 															data-instrument-duration-id="1hour"
 															data-instrument-duration-value="3600000" 
-															data-instrument-seed-rate="98.442"
+															data-instrument-seed-rate="135.740"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -6986,7 +7093,8 @@
 															data-instrument-duration="60 mins"
 															data-instrument-duration-id="1hour"
 															data-instrument-duration-value="3600000" 
-															data-instrument-seed-rate="111.24"
+															data-instrument-seed-rate="1.12560"
+															data-instrument-pip="5"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -7044,6 +7152,7 @@
 															data-instrument-duration-id="1hour"
 															data-instrument-duration-value="3600000" 
 															data-instrument-seed-rate="224.86"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -7100,7 +7209,8 @@
 															data-instrument-duration="60 mins"
 															data-instrument-duration-id="1hour"
 															data-instrument-duration-value="3600000" 
-															data-instrument-seed-rate="123.54"
+															data-instrument-seed-rate="135.740"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -7161,7 +7271,8 @@
 															data-instrument-duration="60 mins"
 															data-instrument-duration-id="1hour"
 															data-instrument-duration-value="3600000" 
-															data-instrument-seed-rate="167.27"
+															data-instrument-seed-rate="1.12560"
+															data-instrument-pip="5"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -7219,6 +7330,7 @@
 															data-instrument-duration-id="1hour"
 															data-instrument-duration-value="3600000" 
 															data-instrument-seed-rate="145.15"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -7276,6 +7388,7 @@
 															data-instrument-duration-id="1hour"
 															data-instrument-duration-value="3600000" 
 															data-instrument-seed-rate="165.52"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -7333,6 +7446,7 @@
 															data-instrument-duration-id="1hour"
 															data-instrument-duration-value="3600000" 
 															data-instrument-seed-rate="135.59"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -7390,6 +7504,7 @@
 															data-instrument-duration-id="1hour"
 															data-instrument-duration-value="3600000" 
 															data-instrument-seed-rate="115.54"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -7451,6 +7566,7 @@
 															data-instrument-duration-id="1hour"
 															data-instrument-duration-value="3600000" 
 															data-instrument-seed-rate="112.43"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -7527,7 +7643,8 @@
 															data-instrument-duration="24 hours"
 															data-instrument-duration-id="1day"
 															data-instrument-duration-value="86400000" 
-															data-instrument-seed-rate="115.45"
+															data-instrument-seed-rate="0.75441"
+															data-instrument-pip="5"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -7584,7 +7701,8 @@
 															data-instrument-duration="24 hours"
 															data-instrument-duration-id="1day"
 															data-instrument-duration-value="86400000" 
-															data-instrument-seed-rate="98.442"
+															data-instrument-seed-rate="135.740"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -7641,7 +7759,8 @@
 															data-instrument-duration="24 hours"
 															data-instrument-duration-id="1day"
 															data-instrument-duration-value="86400000" 
-															data-instrument-seed-rate="111.24"
+															data-instrument-seed-rate="1.12560"
+															data-instrument-pip="5"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -7699,6 +7818,7 @@
 															data-instrument-duration-id="1day"
 															data-instrument-duration-value="86400000" 
 															data-instrument-seed-rate="224.86"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -7755,7 +7875,8 @@
 															data-instrument-duration="24 hours"
 															data-instrument-duration-id="1day"
 															data-instrument-duration-value="86400000" 
-															data-instrument-seed-rate="123.54"
+															data-instrument-seed-rate="135.740"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -7816,7 +7937,8 @@
 															data-instrument-duration="24 hours"
 															data-instrument-duration-id="1day"
 															data-instrument-duration-value="86400000" 
-															data-instrument-seed-rate="167.27"
+															data-instrument-seed-rate="1.12560"
+															data-instrument-pip="5"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -7874,6 +7996,7 @@
 															data-instrument-duration-id="1day"
 															data-instrument-duration-value="86400000" 
 															data-instrument-seed-rate="145.15"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -7931,6 +8054,7 @@
 															data-instrument-duration-id="1day"
 															data-instrument-duration-value="86400000" 
 															data-instrument-seed-rate="165.52"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -7988,6 +8112,7 @@
 															data-instrument-duration-id="1day"
 															data-instrument-duration-value="86400000" 
 															data-instrument-seed-rate="135.59"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -8045,6 +8170,7 @@
 															data-instrument-duration-id="1day"
 															data-instrument-duration-value="86400000" 
 															data-instrument-seed-rate="115.54"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -8106,6 +8232,7 @@
 															data-instrument-duration-id="1day"
 															data-instrument-duration-value="86400000" 
 															data-instrument-seed-rate="112.43"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -8188,7 +8315,7 @@
 					</div>
 					<div class="panel panel-default trading-platform main-view" id="spread-main-view">
 						<div class="panel-header">
-							<div class="pull-left">
+							<div class="pull-left chart-panel instrument-details-display walk-through-step">
 								<span class="trading-platform-instrument-title font-sb">
 									
 								</span>
@@ -8201,7 +8328,7 @@
 								
 								<img src="public/trade-platform/images/loading.gif" class="loading-icon"/>
 							</div>
-							<div class="pull-right">
+							<div class="pull-right time-display chart-control walk-through-step">
 								<img src="public/trade-platform/images/loading.gif" class="processing"/>
 							
 								<span class="trading-platform-instrument-closing-time">
@@ -8234,37 +8361,39 @@
 							</div>
 						</div>
 						<div class="panel-body">
-							<div class="heatmap collapsed tooltip-container" id="spread-heatmap" data-target="spread-graph">
-								<div class="label high">
-									31%
-								</div>
-								<div class="meter">
-									<div class="fill high" style="height: 31%;">
+							<span class="chart-panel chart walk-through-step">
+								<div class="heatmap collapsed tooltip-container" id="spread-heatmap" data-target="spread-graph">
+									<div class="label high">
+										31%
 									</div>
-									<div class="fill low" style="height: 69%;">
+									<div class="meter">
+										<div class="fill high" style="height: 31%;">
+										</div>
+										<div class="fill low" style="height: 69%;">
+										</div>
+									</div>
+									<div class="label low">
+										69%
+									</div>
+									<div class="toggle">
+										
+									</div>
+									<div class="expander">
+									</div>
+									<div class="tooltip trader-choice">
+										<div class="title jap-word">
+											トレーダーズ<br/>チョイス
+										</div>
+										<div class="content">
+											Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+										</div>
 									</div>
 								</div>
-								<div class="label low">
-									69%
+								<div class="trading-platform-live-graph">
+									<div id="spread-graph" class="live-graph"></div>
 								</div>
-								<div class="toggle">
-									
-								</div>
-								<div class="expander">
-								</div>
-								<div class="tooltip trader-choice">
-									<div class="title jap-word">
-										トレーダーズ<br/>チョイス
-									</div>
-									<div class="content">
-										Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-									</div>
-								</div>
-							</div>
-							<div class="trading-platform-live-graph">
-								<div id="spread-graph" class="live-graph"></div>
-							</div>
-							<div class="trading-platform-main-controls ">
+							</span>
+							<div class="trading-platform-main-controls chart-control walk-through-step">
 								<div class="trading-platform-main-controls-instrument-title font-sb">
 									USD/JPY
 								</div>
@@ -8346,7 +8475,7 @@
 			
 			<div class="tab-view-panel " id="on-demand-mode">
 				<div class="trading-app-container">
-					<div class="clearfix">
+					<div id="options-carousel" class="clearfix walk-through-step">
 						<div class="pull-left tab-view tab-view-default instrument-selector-widget">
 							<div class="instrument-selector-widget-duration-selectors-container tab-view-tab-selectors-container-wrapper">
 								<div class="instrument-selector-widget-instrument-filter pull-right">
@@ -8488,7 +8617,8 @@
 																	data-instrument-duration="1 min"
 																	data-instrument-duration-id="1min"
 																	data-instrument-duration-value="60000" 
-																	data-instrument-seed-rate="115.45"
+																	data-instrument-seed-rate="0.75441"
+																	data-instrument-pip="5"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -8552,7 +8682,8 @@
 																	data-instrument-duration="1 min"
 																	data-instrument-duration-id="1min"
 																	data-instrument-duration-value="60000" 
-																	data-instrument-seed-rate="98.442"
+																	data-instrument-seed-rate="135.740"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -8616,7 +8747,8 @@
 																	data-instrument-duration="1 min"
 																	data-instrument-duration-id="1min"
 																	data-instrument-duration-value="60000" 
-																	data-instrument-seed-rate="111.24"
+																	data-instrument-seed-rate="1.12560"
+																	data-instrument-pip="5"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -8681,6 +8813,7 @@
 																	data-instrument-duration-id="1min"
 																	data-instrument-duration-value="60000" 
 																	data-instrument-seed-rate="224.86"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -8744,7 +8877,8 @@
 																	data-instrument-duration="1 min"
 																	data-instrument-duration-id="1min"
 																	data-instrument-duration-value="60000" 
-																	data-instrument-seed-rate="123.54"
+																	data-instrument-seed-rate="135.740"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -8812,7 +8946,8 @@
 																	data-instrument-duration="1 min"
 																	data-instrument-duration-id="1min"
 																	data-instrument-duration-value="60000" 
-																	data-instrument-seed-rate="167.27"
+																	data-instrument-seed-rate="1.12560"
+																	data-instrument-pip="5"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -8877,6 +9012,7 @@
 																	data-instrument-duration-id="1min"
 																	data-instrument-duration-value="60000" 
 																	data-instrument-seed-rate="145.15"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -8941,6 +9077,7 @@
 																	data-instrument-duration-id="1min"
 																	data-instrument-duration-value="60000" 
 																	data-instrument-seed-rate="165.52"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -9005,6 +9142,7 @@
 																	data-instrument-duration-id="1min"
 																	data-instrument-duration-value="60000" 
 																	data-instrument-seed-rate="135.59"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -9069,6 +9207,7 @@
 																	data-instrument-duration-id="1min"
 																	data-instrument-duration-value="60000" 
 																	data-instrument-seed-rate="115.54"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -9137,6 +9276,7 @@
 																	data-instrument-duration-id="1min"
 																	data-instrument-duration-value="60000" 
 																	data-instrument-seed-rate="112.43"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -9204,7 +9344,8 @@
 																	data-instrument-duration="3 min"
 																	data-instrument-duration-id="3min"
 																	data-instrument-duration-value="180000" 
-																	data-instrument-seed-rate="115.45"
+																	data-instrument-seed-rate="0.75441"
+																	data-instrument-pip="5"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -9268,7 +9409,8 @@
 																	data-instrument-duration="3 min"
 																	data-instrument-duration-id="3min"
 																	data-instrument-duration-value="180000" 
-																	data-instrument-seed-rate="98.442"
+																	data-instrument-seed-rate="135.740"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -9332,7 +9474,8 @@
 																	data-instrument-duration="3 min"
 																	data-instrument-duration-id="3min"
 																	data-instrument-duration-value="180000" 
-																	data-instrument-seed-rate="111.24"
+																	data-instrument-seed-rate="1.12560"
+																	data-instrument-pip="5"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -9397,6 +9540,7 @@
 																	data-instrument-duration-id="3min"
 																	data-instrument-duration-value="180000" 
 																	data-instrument-seed-rate="224.86"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -9464,7 +9608,8 @@
 																	data-instrument-duration="3 min"
 																	data-instrument-duration-id="3min"
 																	data-instrument-duration-value="180000" 
-																	data-instrument-seed-rate="123.54"
+																	data-instrument-seed-rate="135.740"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -9528,7 +9673,8 @@
 																	data-instrument-duration="3 min"
 																	data-instrument-duration-id="3min"
 																	data-instrument-duration-value="180000" 
-																	data-instrument-seed-rate="167.27"
+																	data-instrument-seed-rate="1.12560"
+																	data-instrument-pip="5"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -9593,6 +9739,7 @@
 																	data-instrument-duration-id="3min"
 																	data-instrument-duration-value="180000" 
 																	data-instrument-seed-rate="145.15"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -9657,6 +9804,7 @@
 																	data-instrument-duration-id="3min"
 																	data-instrument-duration-value="180000" 
 																	data-instrument-seed-rate="165.52"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -9721,6 +9869,7 @@
 																	data-instrument-duration-id="3min"
 																	data-instrument-duration-value="180000" 
 																	data-instrument-seed-rate="135.59"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -9789,6 +9938,7 @@
 																	data-instrument-duration-id="3min"
 																	data-instrument-duration-value="180000" 
 																	data-instrument-seed-rate="115.54"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -9853,6 +10003,7 @@
 																	data-instrument-duration-id="3min"
 																	data-instrument-duration-value="180000" 
 																	data-instrument-seed-rate="112.43"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -9920,7 +10071,8 @@
 																	data-instrument-duration="5 min"
 																	data-instrument-duration-id="5min"
 																	data-instrument-duration-value="300000" 
-																	data-instrument-seed-rate="115.45"
+																	data-instrument-seed-rate="0.75441"
+																	data-instrument-pip="5"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -9984,7 +10136,8 @@
 																	data-instrument-duration="5 min"
 																	data-instrument-duration-id="5min"
 																	data-instrument-duration-value="300000" 
-																	data-instrument-seed-rate="98.442"
+																	data-instrument-seed-rate="135.740"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -10048,7 +10201,8 @@
 																	data-instrument-duration="5 min"
 																	data-instrument-duration-id="5min"
 																	data-instrument-duration-value="300000" 
-																	data-instrument-seed-rate="111.24"
+																	data-instrument-seed-rate="1.12560"
+																	data-instrument-pip="5"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -10117,6 +10271,7 @@
 																	data-instrument-duration-id="5min"
 																	data-instrument-duration-value="300000" 
 																	data-instrument-seed-rate="224.86"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -10180,7 +10335,8 @@
 																	data-instrument-duration="5 min"
 																	data-instrument-duration-id="5min"
 																	data-instrument-duration-value="300000" 
-																	data-instrument-seed-rate="123.54"
+																	data-instrument-seed-rate="135.740"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -10244,7 +10400,8 @@
 																	data-instrument-duration="5 min"
 																	data-instrument-duration-id="5min"
 																	data-instrument-duration-value="300000" 
-																	data-instrument-seed-rate="167.27"
+																	data-instrument-seed-rate="1.12560"
+																	data-instrument-pip="5"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -10309,6 +10466,7 @@
 																	data-instrument-duration-id="5min"
 																	data-instrument-duration-value="300000" 
 																	data-instrument-seed-rate="145.15"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -10373,6 +10531,7 @@
 																	data-instrument-duration-id="5min"
 																	data-instrument-duration-value="300000" 
 																	data-instrument-seed-rate="165.52"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -10441,6 +10600,7 @@
 																	data-instrument-duration-id="5min"
 																	data-instrument-duration-value="300000" 
 																	data-instrument-seed-rate="135.59"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -10505,6 +10665,7 @@
 																	data-instrument-duration-id="5min"
 																	data-instrument-duration-value="300000" 
 																	data-instrument-seed-rate="115.54"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -10569,6 +10730,7 @@
 																	data-instrument-duration-id="5min"
 																	data-instrument-duration-value="300000" 
 																	data-instrument-seed-rate="112.43"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -10652,7 +10814,8 @@
 															data-instrument-duration="1 min"
 															data-instrument-duration-id="1min"
 															data-instrument-duration-value="60000" 
-															data-instrument-seed-rate="115.45"
+															data-instrument-seed-rate="0.75441"
+															data-instrument-pip="5"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -10713,7 +10876,8 @@
 															data-instrument-duration="1 min"
 															data-instrument-duration-id="1min"
 															data-instrument-duration-value="60000" 
-															data-instrument-seed-rate="98.442"
+															data-instrument-seed-rate="135.740"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -10774,7 +10938,8 @@
 															data-instrument-duration="1 min"
 															data-instrument-duration-id="1min"
 															data-instrument-duration-value="60000" 
-															data-instrument-seed-rate="111.24"
+															data-instrument-seed-rate="1.12560"
+															data-instrument-pip="5"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -10836,6 +11001,7 @@
 															data-instrument-duration-id="1min"
 															data-instrument-duration-value="60000" 
 															data-instrument-seed-rate="224.86"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -10896,7 +11062,8 @@
 															data-instrument-duration="1 min"
 															data-instrument-duration-id="1min"
 															data-instrument-duration-value="60000" 
-															data-instrument-seed-rate="123.54"
+															data-instrument-seed-rate="135.740"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -10961,7 +11128,8 @@
 															data-instrument-duration="1 min"
 															data-instrument-duration-id="1min"
 															data-instrument-duration-value="60000" 
-															data-instrument-seed-rate="167.27"
+															data-instrument-seed-rate="1.12560"
+															data-instrument-pip="5"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -11023,6 +11191,7 @@
 															data-instrument-duration-id="1min"
 															data-instrument-duration-value="60000" 
 															data-instrument-seed-rate="145.15"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -11084,6 +11253,7 @@
 															data-instrument-duration-id="1min"
 															data-instrument-duration-value="60000" 
 															data-instrument-seed-rate="165.52"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -11145,6 +11315,7 @@
 															data-instrument-duration-id="1min"
 															data-instrument-duration-value="60000" 
 															data-instrument-seed-rate="135.59"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -11206,6 +11377,7 @@
 															data-instrument-duration-id="1min"
 															data-instrument-duration-value="60000" 
 															data-instrument-seed-rate="115.54"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -11271,6 +11443,7 @@
 															data-instrument-duration-id="1min"
 															data-instrument-duration-value="60000" 
 															data-instrument-seed-rate="112.43"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -11351,7 +11524,8 @@
 															data-instrument-duration="3 min"
 															data-instrument-duration-id="3min"
 															data-instrument-duration-value="180000" 
-															data-instrument-seed-rate="115.45"
+															data-instrument-seed-rate="0.75441"
+															data-instrument-pip="5"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -11412,7 +11586,8 @@
 															data-instrument-duration="3 min"
 															data-instrument-duration-id="3min"
 															data-instrument-duration-value="180000" 
-															data-instrument-seed-rate="98.442"
+															data-instrument-seed-rate="135.740"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -11473,7 +11648,8 @@
 															data-instrument-duration="3 min"
 															data-instrument-duration-id="3min"
 															data-instrument-duration-value="180000" 
-															data-instrument-seed-rate="111.24"
+															data-instrument-seed-rate="1.12560"
+															data-instrument-pip="5"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -11535,6 +11711,7 @@
 															data-instrument-duration-id="3min"
 															data-instrument-duration-value="180000" 
 															data-instrument-seed-rate="224.86"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -11595,7 +11772,8 @@
 															data-instrument-duration="3 min"
 															data-instrument-duration-id="3min"
 															data-instrument-duration-value="180000" 
-															data-instrument-seed-rate="123.54"
+															data-instrument-seed-rate="135.740"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -11660,7 +11838,8 @@
 															data-instrument-duration="3 min"
 															data-instrument-duration-id="3min"
 															data-instrument-duration-value="180000" 
-															data-instrument-seed-rate="167.27"
+															data-instrument-seed-rate="1.12560"
+															data-instrument-pip="5"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -11722,6 +11901,7 @@
 															data-instrument-duration-id="3min"
 															data-instrument-duration-value="180000" 
 															data-instrument-seed-rate="145.15"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -11783,6 +11963,7 @@
 															data-instrument-duration-id="3min"
 															data-instrument-duration-value="180000" 
 															data-instrument-seed-rate="165.52"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -11844,6 +12025,7 @@
 															data-instrument-duration-id="3min"
 															data-instrument-duration-value="180000" 
 															data-instrument-seed-rate="135.59"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -11905,6 +12087,7 @@
 															data-instrument-duration-id="3min"
 															data-instrument-duration-value="180000" 
 															data-instrument-seed-rate="115.54"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -11970,6 +12153,7 @@
 															data-instrument-duration-id="3min"
 															data-instrument-duration-value="180000" 
 															data-instrument-seed-rate="112.43"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -12050,7 +12234,8 @@
 															data-instrument-duration="5 min"
 															data-instrument-duration-id="5min"
 															data-instrument-duration-value="300000" 
-															data-instrument-seed-rate="115.45"
+															data-instrument-seed-rate="0.75441"
+															data-instrument-pip="5"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -12111,7 +12296,8 @@
 															data-instrument-duration="5 min"
 															data-instrument-duration-id="5min"
 															data-instrument-duration-value="300000" 
-															data-instrument-seed-rate="98.442"
+															data-instrument-seed-rate="135.740"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -12172,7 +12358,8 @@
 															data-instrument-duration="5 min"
 															data-instrument-duration-id="5min"
 															data-instrument-duration-value="300000" 
-															data-instrument-seed-rate="111.24"
+															data-instrument-seed-rate="1.12560"
+															data-instrument-pip="5"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -12234,6 +12421,7 @@
 															data-instrument-duration-id="5min"
 															data-instrument-duration-value="300000" 
 															data-instrument-seed-rate="224.86"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -12294,7 +12482,8 @@
 															data-instrument-duration="5 min"
 															data-instrument-duration-id="5min"
 															data-instrument-duration-value="300000" 
-															data-instrument-seed-rate="123.54"
+															data-instrument-seed-rate="135.740"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -12359,7 +12548,8 @@
 															data-instrument-duration="5 min"
 															data-instrument-duration-id="5min"
 															data-instrument-duration-value="300000" 
-															data-instrument-seed-rate="167.27"
+															data-instrument-seed-rate="1.12560"
+															data-instrument-pip="5"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -12421,6 +12611,7 @@
 															data-instrument-duration-id="5min"
 															data-instrument-duration-value="300000" 
 															data-instrument-seed-rate="145.15"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -12482,6 +12673,7 @@
 															data-instrument-duration-id="5min"
 															data-instrument-duration-value="300000" 
 															data-instrument-seed-rate="165.52"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -12543,6 +12735,7 @@
 															data-instrument-duration-id="5min"
 															data-instrument-duration-value="300000" 
 															data-instrument-seed-rate="135.59"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -12604,6 +12797,7 @@
 															data-instrument-duration-id="5min"
 															data-instrument-duration-value="300000" 
 															data-instrument-seed-rate="115.54"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -12669,6 +12863,7 @@
 															data-instrument-duration-id="5min"
 															data-instrument-duration-value="300000" 
 															data-instrument-seed-rate="112.43"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -12755,7 +12950,7 @@
 					</div>
 					<div class="panel panel-default trading-platform main-view" id="on-demand-main-view">
 						<div class="panel-header">
-							<div class="pull-left">
+							<div class="pull-left chart-panel instrument-details-display walk-through-step">
 								<span class="trading-platform-instrument-title font-sb">
 									
 								</span>
@@ -12764,7 +12959,7 @@
 								
 								<img src="public/trade-platform/images/loading.gif" class="loading-icon"/>
 							</div>
-							<div class="pull-right">
+							<div class="pull-right time-display chart-control walk-through-step">
 								<img src="public/trade-platform/images/loading.gif" class="processing"/>
 							
 								<span class="trading-platform-instrument-market-close-time">
@@ -12794,37 +12989,39 @@
 							</div>
 						</div>
 						<div class="panel-body">
-							<div class="heatmap collapsed tooltip-container" id="on-demand-heatmap" data-target="on-demand-graph">
-								<div class="label high">
-									31%
-								</div>
-								<div class="meter">
-									<div class="fill high" style="height: 31%;">
+							<span class="chart-panel chart walk-through-step">
+								<div class="heatmap collapsed tooltip-container" id="on-demand-heatmap" data-target="on-demand-graph">
+									<div class="label high">
+										31%
 									</div>
-									<div class="fill low" style="height: 69%;">
+									<div class="meter">
+										<div class="fill high" style="height: 31%;">
+										</div>
+										<div class="fill low" style="height: 69%;">
+										</div>
+									</div>
+									<div class="label low">
+										69%
+									</div>
+									<div class="toggle">
+										
+									</div>
+									<div class="expander">
+									</div>
+									<div class="tooltip trader-choice">
+										<div class="title jap-word">
+											トレーダーズ<br/>チョイス
+										</div>
+										<div class="content">
+											Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+										</div>
 									</div>
 								</div>
-								<div class="label low">
-									69%
+								<div class="trading-platform-live-graph">
+									<div id="on-demand-graph" class="live-graph"></div>
 								</div>
-								<div class="toggle">
-									
-								</div>
-								<div class="expander">
-								</div>
-								<div class="tooltip trader-choice">
-									<div class="title jap-word">
-										トレーダーズ<br/>チョイス
-									</div>
-									<div class="content">
-										Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-									</div>
-								</div>
-							</div>
-							<div class="trading-platform-live-graph">
-								<div id="on-demand-graph" class="live-graph"></div>
-							</div>
-							<div class="trading-platform-main-controls ">
+							</span>
+							<div class="trading-platform-main-controls chart-control walk-through-step">
 								<div class="trading-platform-main-controls-instrument-title font-sb">
 									USD/JPY
 								</div>
@@ -12902,7 +13099,7 @@
 			
 			<div class="tab-view-panel " id="spread-on-demand-mode">
 				<div class="trading-app-container">
-					<div class="clearfix">
+					<div id="options-carousel" class="clearfix walk-through-step">
 						<div class="pull-left tab-view tab-view-default instrument-selector-widget">
 							<div class="instrument-selector-widget-duration-selectors-container tab-view-tab-selectors-container-wrapper">
 								<div class="instrument-selector-widget-instrument-filter pull-right">
@@ -13044,7 +13241,8 @@
 																	data-instrument-duration="1 min"
 																	data-instrument-duration-id="1min"
 																	data-instrument-duration-value="60000" 
-																	data-instrument-seed-rate="115.45"
+																	data-instrument-seed-rate="0.75441"
+																	data-instrument-pip="5"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -13104,7 +13302,8 @@
 																	data-instrument-duration="1 min"
 																	data-instrument-duration-id="1min"
 																	data-instrument-duration-value="60000" 
-																	data-instrument-seed-rate="98.442"
+																	data-instrument-seed-rate="135.740"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -13164,7 +13363,8 @@
 																	data-instrument-duration="1 min"
 																	data-instrument-duration-id="1min"
 																	data-instrument-duration-value="60000" 
-																	data-instrument-seed-rate="111.24"
+																	data-instrument-seed-rate="1.12560"
+																	data-instrument-pip="5"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -13225,6 +13425,7 @@
 																	data-instrument-duration-id="1min"
 																	data-instrument-duration-value="60000" 
 																	data-instrument-seed-rate="224.86"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -13284,7 +13485,8 @@
 																	data-instrument-duration="1 min"
 																	data-instrument-duration-id="1min"
 																	data-instrument-duration-value="60000" 
-																	data-instrument-seed-rate="123.54"
+																	data-instrument-seed-rate="135.740"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -13348,7 +13550,8 @@
 																	data-instrument-duration="1 min"
 																	data-instrument-duration-id="1min"
 																	data-instrument-duration-value="60000" 
-																	data-instrument-seed-rate="167.27"
+																	data-instrument-seed-rate="1.12560"
+																	data-instrument-pip="5"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -13409,6 +13612,7 @@
 																	data-instrument-duration-id="1min"
 																	data-instrument-duration-value="60000" 
 																	data-instrument-seed-rate="145.15"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -13469,6 +13673,7 @@
 																	data-instrument-duration-id="1min"
 																	data-instrument-duration-value="60000" 
 																	data-instrument-seed-rate="165.52"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -13529,6 +13734,7 @@
 																	data-instrument-duration-id="1min"
 																	data-instrument-duration-value="60000" 
 																	data-instrument-seed-rate="135.59"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -13589,6 +13795,7 @@
 																	data-instrument-duration-id="1min"
 																	data-instrument-duration-value="60000" 
 																	data-instrument-seed-rate="115.54"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -13653,6 +13860,7 @@
 																	data-instrument-duration-id="1min"
 																	data-instrument-duration-value="60000" 
 																	data-instrument-seed-rate="112.43"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -13716,7 +13924,8 @@
 																	data-instrument-duration="3 min"
 																	data-instrument-duration-id="3min"
 																	data-instrument-duration-value="180000" 
-																	data-instrument-seed-rate="115.45"
+																	data-instrument-seed-rate="0.75441"
+																	data-instrument-pip="5"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -13776,7 +13985,8 @@
 																	data-instrument-duration="3 min"
 																	data-instrument-duration-id="3min"
 																	data-instrument-duration-value="180000" 
-																	data-instrument-seed-rate="98.442"
+																	data-instrument-seed-rate="135.740"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -13836,7 +14046,8 @@
 																	data-instrument-duration="3 min"
 																	data-instrument-duration-id="3min"
 																	data-instrument-duration-value="180000" 
-																	data-instrument-seed-rate="111.24"
+																	data-instrument-seed-rate="1.12560"
+																	data-instrument-pip="5"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -13897,6 +14108,7 @@
 																	data-instrument-duration-id="3min"
 																	data-instrument-duration-value="180000" 
 																	data-instrument-seed-rate="224.86"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -13960,7 +14172,8 @@
 																	data-instrument-duration="3 min"
 																	data-instrument-duration-id="3min"
 																	data-instrument-duration-value="180000" 
-																	data-instrument-seed-rate="123.54"
+																	data-instrument-seed-rate="135.740"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -14020,7 +14233,8 @@
 																	data-instrument-duration="3 min"
 																	data-instrument-duration-id="3min"
 																	data-instrument-duration-value="180000" 
-																	data-instrument-seed-rate="167.27"
+																	data-instrument-seed-rate="1.12560"
+																	data-instrument-pip="5"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -14081,6 +14295,7 @@
 																	data-instrument-duration-id="3min"
 																	data-instrument-duration-value="180000" 
 																	data-instrument-seed-rate="145.15"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -14141,6 +14356,7 @@
 																	data-instrument-duration-id="3min"
 																	data-instrument-duration-value="180000" 
 																	data-instrument-seed-rate="165.52"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -14201,6 +14417,7 @@
 																	data-instrument-duration-id="3min"
 																	data-instrument-duration-value="180000" 
 																	data-instrument-seed-rate="135.59"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -14265,6 +14482,7 @@
 																	data-instrument-duration-id="3min"
 																	data-instrument-duration-value="180000" 
 																	data-instrument-seed-rate="115.54"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -14325,6 +14543,7 @@
 																	data-instrument-duration-id="3min"
 																	data-instrument-duration-value="180000" 
 																	data-instrument-seed-rate="112.43"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -14388,7 +14607,8 @@
 																	data-instrument-duration="5 min"
 																	data-instrument-duration-id="5min"
 																	data-instrument-duration-value="300000" 
-																	data-instrument-seed-rate="115.45"
+																	data-instrument-seed-rate="0.75441"
+																	data-instrument-pip="5"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -14448,7 +14668,8 @@
 																	data-instrument-duration="5 min"
 																	data-instrument-duration-id="5min"
 																	data-instrument-duration-value="300000" 
-																	data-instrument-seed-rate="98.442"
+																	data-instrument-seed-rate="135.740"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -14508,7 +14729,8 @@
 																	data-instrument-duration="5 min"
 																	data-instrument-duration-id="5min"
 																	data-instrument-duration-value="300000" 
-																	data-instrument-seed-rate="111.24"
+																	data-instrument-seed-rate="1.12560"
+																	data-instrument-pip="5"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -14573,6 +14795,7 @@
 																	data-instrument-duration-id="5min"
 																	data-instrument-duration-value="300000" 
 																	data-instrument-seed-rate="224.86"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -14632,7 +14855,8 @@
 																	data-instrument-duration="5 min"
 																	data-instrument-duration-id="5min"
 																	data-instrument-duration-value="300000" 
-																	data-instrument-seed-rate="123.54"
+																	data-instrument-seed-rate="135.740"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -14692,7 +14916,8 @@
 																	data-instrument-duration="5 min"
 																	data-instrument-duration-id="5min"
 																	data-instrument-duration-value="300000" 
-																	data-instrument-seed-rate="167.27"
+																	data-instrument-seed-rate="1.12560"
+																	data-instrument-pip="5"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -14753,6 +14978,7 @@
 																	data-instrument-duration-id="5min"
 																	data-instrument-duration-value="300000" 
 																	data-instrument-seed-rate="145.15"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -14813,6 +15039,7 @@
 																	data-instrument-duration-id="5min"
 																	data-instrument-duration-value="300000" 
 																	data-instrument-seed-rate="165.52"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -14877,6 +15104,7 @@
 																	data-instrument-duration-id="5min"
 																	data-instrument-duration-value="300000" 
 																	data-instrument-seed-rate="135.59"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -14937,6 +15165,7 @@
 																	data-instrument-duration-id="5min"
 																	data-instrument-duration-value="300000" 
 																	data-instrument-seed-rate="115.54"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -14997,6 +15226,7 @@
 																	data-instrument-duration-id="5min"
 																	data-instrument-duration-value="300000" 
 																	data-instrument-seed-rate="112.43"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -15076,7 +15306,8 @@
 															data-instrument-duration="1 min"
 															data-instrument-duration-id="1min"
 															data-instrument-duration-value="60000" 
-															data-instrument-seed-rate="115.45"
+															data-instrument-seed-rate="0.75441"
+															data-instrument-pip="5"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -15133,7 +15364,8 @@
 															data-instrument-duration="1 min"
 															data-instrument-duration-id="1min"
 															data-instrument-duration-value="60000" 
-															data-instrument-seed-rate="98.442"
+															data-instrument-seed-rate="135.740"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -15190,7 +15422,8 @@
 															data-instrument-duration="1 min"
 															data-instrument-duration-id="1min"
 															data-instrument-duration-value="60000" 
-															data-instrument-seed-rate="111.24"
+															data-instrument-seed-rate="1.12560"
+															data-instrument-pip="5"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -15248,6 +15481,7 @@
 															data-instrument-duration-id="1min"
 															data-instrument-duration-value="60000" 
 															data-instrument-seed-rate="224.86"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -15304,7 +15538,8 @@
 															data-instrument-duration="1 min"
 															data-instrument-duration-id="1min"
 															data-instrument-duration-value="60000" 
-															data-instrument-seed-rate="123.54"
+															data-instrument-seed-rate="135.740"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -15365,7 +15600,8 @@
 															data-instrument-duration="1 min"
 															data-instrument-duration-id="1min"
 															data-instrument-duration-value="60000" 
-															data-instrument-seed-rate="167.27"
+															data-instrument-seed-rate="1.12560"
+															data-instrument-pip="5"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -15423,6 +15659,7 @@
 															data-instrument-duration-id="1min"
 															data-instrument-duration-value="60000" 
 															data-instrument-seed-rate="145.15"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -15480,6 +15717,7 @@
 															data-instrument-duration-id="1min"
 															data-instrument-duration-value="60000" 
 															data-instrument-seed-rate="165.52"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -15537,6 +15775,7 @@
 															data-instrument-duration-id="1min"
 															data-instrument-duration-value="60000" 
 															data-instrument-seed-rate="135.59"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -15594,6 +15833,7 @@
 															data-instrument-duration-id="1min"
 															data-instrument-duration-value="60000" 
 															data-instrument-seed-rate="115.54"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -15655,6 +15895,7 @@
 															data-instrument-duration-id="1min"
 															data-instrument-duration-value="60000" 
 															data-instrument-seed-rate="112.43"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -15731,7 +15972,8 @@
 															data-instrument-duration="3 min"
 															data-instrument-duration-id="3min"
 															data-instrument-duration-value="180000" 
-															data-instrument-seed-rate="115.45"
+															data-instrument-seed-rate="0.75441"
+															data-instrument-pip="5"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -15788,7 +16030,8 @@
 															data-instrument-duration="3 min"
 															data-instrument-duration-id="3min"
 															data-instrument-duration-value="180000" 
-															data-instrument-seed-rate="98.442"
+															data-instrument-seed-rate="135.740"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -15845,7 +16088,8 @@
 															data-instrument-duration="3 min"
 															data-instrument-duration-id="3min"
 															data-instrument-duration-value="180000" 
-															data-instrument-seed-rate="111.24"
+															data-instrument-seed-rate="1.12560"
+															data-instrument-pip="5"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -15903,6 +16147,7 @@
 															data-instrument-duration-id="3min"
 															data-instrument-duration-value="180000" 
 															data-instrument-seed-rate="224.86"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -15959,7 +16204,8 @@
 															data-instrument-duration="3 min"
 															data-instrument-duration-id="3min"
 															data-instrument-duration-value="180000" 
-															data-instrument-seed-rate="123.54"
+															data-instrument-seed-rate="135.740"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -16020,7 +16266,8 @@
 															data-instrument-duration="3 min"
 															data-instrument-duration-id="3min"
 															data-instrument-duration-value="180000" 
-															data-instrument-seed-rate="167.27"
+															data-instrument-seed-rate="1.12560"
+															data-instrument-pip="5"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -16078,6 +16325,7 @@
 															data-instrument-duration-id="3min"
 															data-instrument-duration-value="180000" 
 															data-instrument-seed-rate="145.15"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -16135,6 +16383,7 @@
 															data-instrument-duration-id="3min"
 															data-instrument-duration-value="180000" 
 															data-instrument-seed-rate="165.52"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -16192,6 +16441,7 @@
 															data-instrument-duration-id="3min"
 															data-instrument-duration-value="180000" 
 															data-instrument-seed-rate="135.59"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -16249,6 +16499,7 @@
 															data-instrument-duration-id="3min"
 															data-instrument-duration-value="180000" 
 															data-instrument-seed-rate="115.54"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -16310,6 +16561,7 @@
 															data-instrument-duration-id="3min"
 															data-instrument-duration-value="180000" 
 															data-instrument-seed-rate="112.43"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -16386,7 +16638,8 @@
 															data-instrument-duration="5 min"
 															data-instrument-duration-id="5min"
 															data-instrument-duration-value="300000" 
-															data-instrument-seed-rate="115.45"
+															data-instrument-seed-rate="0.75441"
+															data-instrument-pip="5"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -16443,7 +16696,8 @@
 															data-instrument-duration="5 min"
 															data-instrument-duration-id="5min"
 															data-instrument-duration-value="300000" 
-															data-instrument-seed-rate="98.442"
+															data-instrument-seed-rate="135.740"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -16500,7 +16754,8 @@
 															data-instrument-duration="5 min"
 															data-instrument-duration-id="5min"
 															data-instrument-duration-value="300000" 
-															data-instrument-seed-rate="111.24"
+															data-instrument-seed-rate="1.12560"
+															data-instrument-pip="5"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -16558,6 +16813,7 @@
 															data-instrument-duration-id="5min"
 															data-instrument-duration-value="300000" 
 															data-instrument-seed-rate="224.86"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -16614,7 +16870,8 @@
 															data-instrument-duration="5 min"
 															data-instrument-duration-id="5min"
 															data-instrument-duration-value="300000" 
-															data-instrument-seed-rate="123.54"
+															data-instrument-seed-rate="135.740"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -16675,7 +16932,8 @@
 															data-instrument-duration="5 min"
 															data-instrument-duration-id="5min"
 															data-instrument-duration-value="300000" 
-															data-instrument-seed-rate="167.27"
+															data-instrument-seed-rate="1.12560"
+															data-instrument-pip="5"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -16733,6 +16991,7 @@
 															data-instrument-duration-id="5min"
 															data-instrument-duration-value="300000" 
 															data-instrument-seed-rate="145.15"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -16790,6 +17049,7 @@
 															data-instrument-duration-id="5min"
 															data-instrument-duration-value="300000" 
 															data-instrument-seed-rate="165.52"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -16847,6 +17107,7 @@
 															data-instrument-duration-id="5min"
 															data-instrument-duration-value="300000" 
 															data-instrument-seed-rate="135.59"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -16904,6 +17165,7 @@
 															data-instrument-duration-id="5min"
 															data-instrument-duration-value="300000" 
 															data-instrument-seed-rate="115.54"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -16965,6 +17227,7 @@
 															data-instrument-duration-id="5min"
 															data-instrument-duration-value="300000" 
 															data-instrument-seed-rate="112.43"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -17047,7 +17310,7 @@
 					</div>
 					<div class="panel panel-default trading-platform main-view" id="spread-on-demand-main-view">
 						<div class="panel-header">
-							<div class="pull-left">
+							<div class="pull-left chart-panel instrument-details-display walk-through-step">
 								<span class="trading-platform-instrument-title font-sb">
 									
 								</span>
@@ -17060,7 +17323,7 @@
 								
 								<img src="public/trade-platform/images/loading.gif" class="loading-icon"/>
 							</div>
-							<div class="pull-right">
+							<div class="pull-right time-display chart-control walk-through-step">
 								<img src="public/trade-platform/images/loading.gif" class="processing"/>
 							
 								<span class="trading-platform-instrument-market-close-time">
@@ -17090,37 +17353,39 @@
 							</div>
 						</div>
 						<div class="panel-body">
-							<div class="heatmap collapsed tooltip-container" id="spread-on-demand-heatmap" data-target="spread-on-demand-graph">
-								<div class="label high">
-									31%
-								</div>
-								<div class="meter">
-									<div class="fill high" style="height: 31%;">
+							<span class="chart-panel chart walk-through-step">
+								<div class="heatmap collapsed tooltip-container" id="spread-on-demand-heatmap" data-target="spread-on-demand-graph">
+									<div class="label high">
+										31%
 									</div>
-									<div class="fill low" style="height: 69%;">
+									<div class="meter">
+										<div class="fill high" style="height: 31%;">
+										</div>
+										<div class="fill low" style="height: 69%;">
+										</div>
+									</div>
+									<div class="label low">
+										69%
+									</div>
+									<div class="toggle">
+										
+									</div>
+									<div class="expander">
+									</div>
+									<div class="tooltip trader-choice">
+										<div class="title jap-word">
+											トレーダーズ<br/>チョイス
+										</div>
+										<div class="content">
+											Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+										</div>
 									</div>
 								</div>
-								<div class="label low">
-									69%
+								<div class="trading-platform-live-graph">
+									<div id="spread-on-demand-graph" class="live-graph"></div>
 								</div>
-								<div class="toggle">
-									
-								</div>
-								<div class="expander">
-								</div>
-								<div class="tooltip trader-choice">
-									<div class="title jap-word">
-										トレーダーズ<br/>チョイス
-									</div>
-									<div class="content">
-										Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-									</div>
-								</div>
-							</div>
-							<div class="trading-platform-live-graph">
-								<div id="spread-on-demand-graph" class="live-graph"></div>
-							</div>
-							<div class="trading-platform-main-controls ">
+							</span>
+							<div class="trading-platform-main-controls chart-control walk-through-step">
 								<div class="trading-platform-main-controls-instrument-title font-sb">
 									USD/JPY
 								</div>
@@ -17211,7 +17476,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="panel panel-default trading-app-container trading-platform ">
+	<div class="panel panel-default trading-app-container trading-platform walk-through-step current-activity-table">
 		<div class="panel-header light-grey">
 			<div class="pull-left">
 				<div class="font-m-b jap-word">
@@ -17816,7 +18081,6 @@
 	<div class="toggle"></div>
 	<div class="wrapper">
 	</div>
-</div>
 </div>
 <!-- end-platform -->
 

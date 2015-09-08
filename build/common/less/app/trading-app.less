@@ -39,7 +39,7 @@
 				font-size: 16px;
 				font-weight: 400;
 				.jap-word {
-					font-size: 13px;
+					font-size: 14px;
 				}
 				letter-spacing: 0;
 				line-height: 32px;
@@ -120,9 +120,51 @@
 						}
 					}
 				}
+
+				.tab-graphic-text {
+					position: relative;
+					display: inline-block;
+    				line-height: 13px;
+					img {
+						.transition(opacity 0.125s ease);
+					}
+					.default {
+						.opacity(100);
+					}
+					.hover {
+						position: absolute;
+						top: 0;
+						left: 0;
+						.opacity(0);
+					}
+
+				}
+				&:hover,
+				&.active {
+					.tab-graphic-text {
+						.default {
+							.opacity(0);
+						}
+						.hover {
+							.opacity(100);
+						}
+					}
+				}
 			}
 		}
 	}	
+}
+
+.ja {
+	.trading-app-root {
+		> .trading-app-root-mode-selector-container-wrapper {
+			.tab-view-tab-selectors {
+				.tab-view-tab-selector {
+					//font-weight: 600;
+				}
+			}
+		}
+	}
 }
 
 .closed {

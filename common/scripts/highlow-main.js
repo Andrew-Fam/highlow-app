@@ -1,5 +1,5 @@
 var highlowApp = {};
-
+var platformAssetUrl = "";
 $(function () {
 
 	highlowApp.jap = false;
@@ -7,6 +7,17 @@ $(function () {
 	if($('.jap-word').length>0) {
 		highlowApp.jap = true;
 	}
+
+	if($('#platform-asset-url').length>0) {
+		platformAssetUrl = $('#platform-asset-url').data('url');
+	} else {
+		platformAssetUrl = "common/images/";
+	}
+
+
+	
+
+
 
 	
 	highlowApp.tab.init();
@@ -24,6 +35,7 @@ $(function () {
 	highlowApp.tooltip.init(1000);
 	highlowApp.numberOnly.init();
 	highlowApp.balanceWidget.init();
+	highlowApp.toggler.init();
 });
 ;
 highlowApp.randomValue = function(from, to, decimal) {
@@ -307,8 +319,8 @@ highlowApp.betSystem = {
 	},
 	updateBetEntry : function (bet,model) {
 		var entryId = '[data-uid="'+bet.uid+'"]',
-			strike = parseFloat(bet.strike).toFixed(highlowApp.marketSimulator.rounding),
-			rate = parseFloat(model.currentRate).toFixed(highlowApp.marketSimulator.rounding);
+			strike = parseFloat(bet.strike).toFixed(model.pip),
+			rate = parseFloat(model.currentRate).toFixed(model.pip);
 
 
 		var status,
@@ -435,14 +447,14 @@ highlowApp.betSystem = {
 		}
 
 
-		var strike = strikeValue.toFixed(3);
+		var strike = strikeValue.toFixed(model.pip);
 
 		if (type=="spread") {
 			if(bet=="high") {
-				strike = (strikeValue+highlowApp.marketSimulator.spread).toFixed(3);
+				strike = (strikeValue+highlowApp.marketSimulator.spread).toFixed(model.pip);
 			}
 			if(bet=="low") {
-				strike = (strikeValue-highlowApp.marketSimulator.spread).toFixed(3);
+				strike = (strikeValue-highlowApp.marketSimulator.spread).toFixed(model.pip);
 			}
 		}
 
@@ -1166,14 +1178,15 @@ highlowApp.graph = {
 			var textY = 10,
 			startTextX = xAxis.toPixels(model.openAt)-70,
 			deadTextX = xAxis.toPixels(model.deadzone)-70;
+			
 
 
 			if(model.startTimeText) {
-				model.startTimeText.element.remove();
+				$(model.startTimeText.element).remove();
 			}
 
 			if(model.deadTimeText) {
-				model.deadTimeText.element.remove();
+				$(model.deadTimeText.element).remove();
 			}
 
 			model.startTimeText = renderer.text((highlowApp.jap?'開始: ':'Start: ')+highlowApp.timeToText(model.openAt),startTextX,24);
@@ -1608,7 +1621,7 @@ highlowApp.graph = {
 			
 
 			if(type.indexOf("spread")>=0) {
-				var highRate = renderer.text('<div class="on-graph-button">'+(point.y+0.005).toFixed(3)+'</div>',highX+27,highY+19);
+				var highRate = renderer.text('<div class="on-graph-button">'+(point.y+0.005).toFixed(model.pip)+'</div>',highX+27,highY+19);
 				highRate.on('click', function () {
 					// if(!highlowApp.graph.isOneClick(model)) {
 						highlowApp.betSystem.confirmBet('high',point,model.type);
@@ -1644,7 +1657,7 @@ highlowApp.graph = {
 				});
 				highRate.add();
 
-				var lowRate = renderer.text('<div class="on-graph-button">'+(point.y-0.005).toFixed(3)+'</div>',lowX+27,lowY+19);
+				var lowRate = renderer.text('<div class="on-graph-button">'+(point.y-0.005).toFixed(model.pip)+'</div>',lowX+27,lowY+19);
 				lowRate.on('click', function () {
 					// if(!highlowApp.graph.isOneClick(model)) {
 						highlowApp.betSystem.confirmBet('low',point,model.type);
@@ -1960,7 +1973,7 @@ highlowApp.graph = {
 		return $(id).highcharts({
 			chart: {
 				type: 'area',
-				animation: false,
+				animation: ($('.walkthrough').length>0?true:false),
 				backgroundColor : '#353535',
 				marginTop: 6,
 				marginLeft: 50,
@@ -2361,7 +2374,7 @@ highlowApp.marketSimulator = {
 
 		instrument.pause = false;
 	},
-	skip: function(instrument,duration,difference) {
+	skip: function(instrument,duration,difference,update) {
 		var self = this;
 
 		var lastPoint = instrument.data[instrument.data.length-1];
@@ -2410,9 +2423,10 @@ highlowApp.marketSimulator = {
 			}
 		});
 
-		self.updateUI(instrument.uid,instrument);
-
-		self.updateBetStatus(instrument);
+		if(update) {
+			self.updateUI(instrument.uid,instrument);
+			self.updateBetStatus(instrument);
+		}
 	},
 	skipSequence: function(sequence,instrument,delay,callback) {
 		
@@ -2422,31 +2436,30 @@ highlowApp.marketSimulator = {
 
 		var runSequence = function(i) {
 
-			if(i<sequence.length) {
-				var item = sequence[i];
-				self.skip(instrument,item[0],item[1]);
+			var item = sequence[i];
 
-				if(item[2]!=undefined) {
-					highlowApp.betSystem.placeBet(item[2],instrument.type);
-				}
-				
-				sequenceTimeout = setTimeout(function(){
-					runSequence(i+1);
-				},delay);
-
-			} else {
-				if(callback) {
-					callback();
-				}
+			self.skip(instrument,item[0],item[1],false);
+			
+			if(item[2]!=undefined) {
+				highlowApp.betSystem.placeBet(item[2],instrument.type);
 			}
+			
 		}
 
-		runSequence(0);
+		for (var i=0; i<sequence.length; i++) {
+			runSequence(i);
+		}
+
+
+		self.updateUI(instrument.uid,instrument);
+		self.updateBetStatus(instrument);
+	
+		callback();
 	},
 	simulate: function(instrument) {
 		var self = this;
 	
-		var deviation = highlowApp.randomValue(0,self.maxChange,4);
+		var deviation = highlowApp.randomValue(0,self.maxChange,5);
 
 		// if the market has been moving up, there's more chance it's gonna go down this time
 
@@ -2547,11 +2560,11 @@ highlowApp.marketSimulator = {
 
 			var bet = model.bets[i],
 				marker = bet.marker,
-				rate = parseFloat(model.currentRate).toFixed(this.rounding),
+				rate = parseFloat(model.currentRate).toFixed(model.pip),
 				point = bet.point,
 				winning = false,
 				tie = false,
-				strike = parseFloat(bet.strike).toFixed(this.rounding),
+				strike = parseFloat(bet.strike).toFixed(model.pip),
 				expired = false,
 				nonActive = false;
 
@@ -2764,9 +2777,6 @@ highlowApp.marketSimulator = {
 							};
 						}
 
-
-
-
 						var labelAttribute = {
 							fill: '#f8f7f5'
 						};
@@ -2950,7 +2960,7 @@ highlowApp.marketSimulator = {
 				// calculate fake payout rate to display on sell popup (I just made this up, it's not the real algorithm, just to simulate changing rate)
 				bet.payoutRateModifier = bet.direction=="high"?-1:1;
 
-				var difference = (parseFloat(bet.model.currentRate).toFixed(3) - parseFloat(bet.strike).toFixed(3));
+				var difference = (parseFloat(bet.model.currentRate).toFixed(bet.model.pip) - parseFloat(bet.strike).toFixed(bet.model.pip));
 
 				var basePayoutRate = 0.500;
 
@@ -2961,7 +2971,7 @@ highlowApp.marketSimulator = {
 				var payoutRateAdjustment = (maxPayoutRate - basePayoutRate) * 1/(1-1/(difference * bet.payoutRateModifier * payoutRateMultiplier));
 
 
-				bet.payoutRate = parseFloat(basePayoutRate+payoutRateAdjustment).toFixed(3);
+				bet.payoutRate = parseFloat(basePayoutRate+payoutRateAdjustment).toFixed(bet.model.pip);
 
 				bet.payout = bet.amount*bet.payoutRate;
 
@@ -2996,19 +3006,19 @@ highlowApp.marketSimulator = {
 			spreadHighDisplay = $('.spread-high'),
 			spreadLowDisplay = $('.spread-low');
 
-			highDisplay.html(" "+parseFloat(model.upperRate).toFixed(marketSimulator.rounding));
-			lowDisplay.html(" "+parseFloat(model.lowerRate).toFixed(marketSimulator.rounding));
+			highDisplay.html(" "+parseFloat(model.upperRate).toFixed(model.pip));
+			lowDisplay.html(" "+parseFloat(model.lowerRate).toFixed(model.pip));
 
 			if(model.active) {
-				spreadHighDisplay.html(" "+parseFloat(model.upperRate).toFixed(marketSimulator.rounding));
-				spreadLowDisplay.html(" "+parseFloat(model.lowerRate).toFixed(marketSimulator.rounding));
+				spreadHighDisplay.html(" "+parseFloat(model.upperRate).toFixed(model.pip));
+				spreadLowDisplay.html(" "+parseFloat(model.lowerRate).toFixed(model.pip));
 			}
 
 			
 
 		} else {
 			var rateDisplay = $(view.find('.instrument-panel-rate'));
-			rateDisplay.html(" "+parseFloat(model.currentRate).toFixed(marketSimulator.rounding));
+			rateDisplay.html(" "+parseFloat(model.currentRate).toFixed(model.pip));
 			if (model.currentRate>model.previousRate) {
 				rateDisplay.removeClass('highlow-low').addClass('highlow-high');
 			} else if(model.currentRate<model.previousRate) {
@@ -3030,21 +3040,6 @@ highlowApp.marketSimulator = {
 
 			remainingTime = model.expireAt - currentTime;
 
-			// remainingHour = (remainingTime - remainingTime%(60*60*1000)) / (60*60*1000);
-
-			// remainingMinute = ((remainingTime - remainingHour*(60*60*1000)) - (remainingTime - remainingHour*(60*60*1000))%60000) / 60000;
-
-			// remainingSecond = Math.floor((remainingTime%60000) / 1000);
-
-			// if(remainingSecond<0 & remainingMinute==0 & remainingHour == 0) {
-			// 	remainingTimeText = ' expired';
-			// 	model.expired = true;
-			// } else if(remainingHour > 0) {
-			// 	remainingTimeText = " "+(remainingHour<10?"0"+remainingHour:remainingHour)+":"+(remainingMinute<10?"0"+remainingMinute:remainingMinute);
-			// } else {
-			// 	remainingTimeText = " "+(remainingMinute<10?"0"+remainingMinute:remainingMinute)+":"+(remainingSecond<10?"0"+remainingSecond:remainingSecond);
-			// }
-
 			remainingTimeText = highlowApp.durationToText(remainingTime);
 
 			if(remainingTime<=0) {
@@ -3055,6 +3050,19 @@ highlowApp.marketSimulator = {
 				
 				$('#' + mainViewId + ' .trading-platform-instrument-time-left').html(" " + remainingTimeText);
 
+				var remainingTimeObject = new Date(remainingTime);
+
+				var minutes = remainingTimeObject.getMinutes();
+				var seconds = remainingTimeObject.getSeconds();
+
+
+				if(highlowApp.jap) {
+					$('.walk-through-instrument-time-left.'+ mainViewId).html(minutes+"分と"+seconds+"秒");
+				} else {
+					$('.walk-through-instrument-time-left.'+ mainViewId).html(minutes+" min"+(minutes>1?'s':'')+ " and "+seconds+" second"+(seconds>1?'s':''));
+				}
+
+				
 			}
 
 			// remainingTimeDisplay.html(remainingTimeText);
@@ -3133,9 +3141,6 @@ highlowApp.marketSimulator = {
 	},
 	initInstrument: function(instrumentModel,minutesIntoGame) {
 
-
-
-
 		var currentTime = new Date().getTime();
 
 		var marketSimulator = this;
@@ -3150,10 +3155,15 @@ highlowApp.marketSimulator = {
 		instrumentModel.duration = instrumentModel.domElement.data('instrumentDurationValue');
 		instrumentModel.seedRate = instrumentModel.domElement.data('instrumentSeedRate');
 		instrumentModel.payoutRate = instrumentModel.domElement.data('instrumentPayoutRate');
-		instrumentModel.currentRate = parseFloat(instrumentModel.seedRate).toFixed(marketSimulator.rounding);
+		instrumentModel.pip = instrumentModel.domElement.data('pip') || 3;
+		instrumentModel.currentRate = parseFloat(instrumentModel.seedRate).toFixed(instrumentModel.pip);
 		instrumentModel.previousrate = instrumentModel.currentRate;
 		instrumentModel.bets = [];
 		instrumentModel.uid = instrumentModel.domElement.data('uid');
+
+		if(instrumentModel.pip==5) {
+			console.log(instrumentModel);
+		}
 
 		// Now let's assume that the open time is 5 minutes ago (round to closest minute), or 14 minute ago when there is 'deadzone' in the url query for testing purpose
 		// except for on-demand type, which doesn't have a fixed open time
@@ -3167,7 +3177,7 @@ highlowApp.marketSimulator = {
 				if(minutesIntoGame!=undefined) {
 					instrumentModel.openAt = currentTime - 1000*60*minutesIntoGame;
 				} else {
-					instrumentModel.openAt = (Math.round(currentTime / (1000 * 60 * 2))-1) * 1000 * 60 * 2;
+					instrumentModel.openAt = (Math.round(currentTime / (1000 * 60 * 5))-1) * 1000 * 60 * 5;
 				}
 			}
 
@@ -3258,8 +3268,8 @@ highlowApp.marketSimulator = {
 		instrumentModel.beforeSimulationStrike = instrumentModel.currentRate;
 
 		if (instrumentModel.type === 'spread') {
-			instrumentModel.upperRate = parseFloat(instrumentModel.currentRate + marketSimulator.spread).toFixed(marketSimulator.rounding);
-			instrumentModel.lowerRate = parseFloat(instrumentModel.currentRate - marketSimulator.spread).toFixed(marketSimulator.rounding);
+			instrumentModel.upperRate = parseFloat(instrumentModel.currentRate + marketSimulator.spread).toFixed(instrumentModel.pip);
+			instrumentModel.lowerRate = parseFloat(instrumentModel.currentRate - marketSimulator.spread).toFixed(instrumentModel.pip);
 		}
 
 		instrumentModel.getMainViewId = function() {
@@ -3295,10 +3305,10 @@ highlowApp.marketSimulator = {
 				sellPopupRateDisplay = $('.trading-platform-sell-popup.'+model.type+' .current-rate');
 				
 				if(model.type.indexOf('on-demand')<0 && model.type.indexOf('turbo')<0) {
-					$('#'+mainViewId+" .trading-platform-instrument-closing-time").html(" "+ highlowApp.timeToText(model.expireAt));
+					$('#'+mainViewId+" .trading-platform-instrument-closing-time, .walkthrough-instrument-closing-time."+mainViewId).html(" "+ highlowApp.timeToText(model.expireAt));
 				} else {
 					if(model.focusedBet) {
-						$('#'+mainViewId+" .trading-platform-instrument-closing-time").html(" "+ highlowApp.timeToText(model.focusedBet.expireAt));
+						$('#'+mainViewId+" .trading-platform-instrument-closing-time, .walkthrough-instrument-closing-time."+mainViewId).html(" "+ highlowApp.timeToText(model.focusedBet.expireAt));
 					}
 				}
 
@@ -3312,9 +3322,9 @@ highlowApp.marketSimulator = {
 					sellPopupRateDisplay.removeClass('highlow-high').addClass('highlow-low');
 				}
 
-				mainViewRateDisplay.html(" " + parseFloat(model.currentRate).toFixed(marketSimulator.rounding));
-				popupRateDisplay.html(" " + parseFloat(model.currentRate).toFixed(marketSimulator.rounding));
-				sellPopupRateDisplay.html(" " + parseFloat(model.currentRate).toFixed(marketSimulator.rounding));
+				mainViewRateDisplay.html(" " + parseFloat(model.currentRate).toFixed(model.pip));
+				popupRateDisplay.html(" " + parseFloat(model.currentRate).toFixed(model.pip));
+				sellPopupRateDisplay.html(" " + parseFloat(model.currentRate).toFixed(model.pip));
 			}
 		}
 
@@ -3678,6 +3688,158 @@ highlowApp.tab = {
 		$('.tab-view.instrument-selector-widget').on('click','.tab-view-tab-selector', function(e) {
 			highlowApp.instrumentPanelSelector.selectInstrument($($(this).data('target')+' .instrument-panel-active'));
 		})
+	}
+}
+;
+highlowApp.toggler = {
+	init: function() {
+		$('.hl-toggler').each(function(){
+			var self = $(this),
+			target = $(self.data('toggleTarget')),
+			focusTarget = $(self.data('toggleFocus')),
+			toggleClass = self.data('toggleClass'),
+			toggleGroup = self.data('toggleGroup'),
+			toggleBodyFixedHeight = self.data('toggleBodyFixedHeight'),
+			toggleMatchContainerHeight = self.data('toggleOnActiveMatchHeight'),
+			toggleSelfOffDisabled = self.data('toggleSelfOffDisabled'),
+			toggleSelfOnDisabled = self.data('toggleSelfOnDisabled'),
+			toggleOffClick = self.data('toggleOffClick');
+
+			if(!toggleClass || toggleClass == '') {
+				toggleClass = 'active';
+			}
+
+			if(self.data('toggleTarget')=='self') {
+				target = self;
+			}
+
+
+
+			var off = function() {
+				$('[data-toggle-target="'+self.data('toggleTarget')+'"]').removeClass(toggleClass);
+
+				if(self.hasClass('asset-filter--asset--label')) {
+					console.log('OOOOOFFFF');
+					console.log(target);
+					console.log(toggleClass);
+				}
+
+				target.removeClass(toggleClass);
+
+				if(self.hasClass('asset-filter--asset--label')) {
+					console.log('AFTER OOOOOFFFF');
+					console.log(target);
+				}
+
+				if(toggleBodyFixedHeight) {
+					$('body').removeClass('fixed-height');
+				}
+				self.removeClass(toggleClass);
+			}
+
+			var on = function() {
+				if(toggleGroup && toggleGroup != '') {
+					$('[data-toggle-group="'+toggleGroup+'"]').removeClass(toggleClass);
+				}
+
+				focusTarget.focus();
+				focusTarget.select();
+				self.addClass(toggleClass);
+				console.log("CAI DU ME");
+				console.log(self);
+				
+				target.addClass(toggleClass);
+				if(toggleBodyFixedHeight) {
+					$('body').addClass('fixed-height');
+				}
+				if(toggleMatchContainerHeight) {
+					$(toggleMatchContainerHeight).css({
+						height: target.outerHeight()
+					});
+				}
+			}
+
+			var toggle = function() {
+
+				if(target.hasClass(toggleClass) && !toggleSelfOffDisabled) {
+					if(self.hasClass('asset-filter--asset--label')) {
+						console.log('BEFORE OFFF');
+						console.log(target);
+					}
+					off();
+				} else {
+					if(!toggleSelfOnDisabled) {
+						on();
+					}					
+				}
+			}
+
+			if(self.data('hoverToggle')) {
+
+				var hoverHandler = function(){
+
+					console.log("ATTACH HOVER TOGGLE EVENT");
+
+					self.mouseover(function(){
+						if(!$('body').hasClass('touched')) {
+							on();
+						}
+					});
+					self.mouseout(function(){
+						if(!$('body').hasClass('touched') && !toggleSelfOffDisabled) {
+							off();
+						}
+					});
+
+					$(document).off('mousemove',hoverHandler);
+				}
+
+				$(document).on('mousemove', hoverHandler);
+
+				self.click(function(){
+					if($('body').hasClass('touched')) {
+						toggle();
+					}
+				});
+				
+				
+			} else {
+				self.click(function(){
+					toggle();
+				});
+			}
+
+			if(toggleOffClick) {
+				$(document).on('click', function(e) {
+					if(!$.contains(self.get(0),e.target) && e.target!==self.get(0)) {
+						off();
+					}
+				})
+			}
+		});
+
+		function resize() {
+			$('.hl-toggler.active').each(function(){
+				var self = $(this),
+				target = $(self.data('toggleTarget')),
+				toggleMatchContainerHeight = self.data('toggleOnActiveMatchHeight');
+
+				if(toggleMatchContainerHeight) {
+					$(toggleMatchContainerHeight).css({
+						height: target.outerHeight()
+					});
+				}
+
+			});
+		}
+	
+		$(window).resize(resize);
+
+		resize();
+
+		$('.disable-propagation').click(function(e){
+			e.stopPropagation();
+		});
 	}
 }
 ;

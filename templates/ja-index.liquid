@@ -1,13 +1,12 @@
 {% extends layout %}
 {% block content %}
 <!-- start-platform -->
-<div class="ja">
 <div class="tab-view tab-view-alternate trading-app-root">
 	<div class="tab-view-tab-selectors-container-wrapper trading-app-root-mode-selector-container-wrapper">
-		<div class="tab-view-tab-selectors-container font-m tab-full-width trading-app-container">
+		<div class="tab-view-tab-selectors-container tab-full-width trading-app-container">
 			<ul class="tab-view-tab-selectors">
 				{% for type in tradingTypes %}
-				<li class="tab-view-tab-selector font-m {% if type.default %} active {% endif %} {{ type.id }}" data-target="#{{ type.id }}-mode">
+				<li class="tab-view-tab-selector {% if type.default %} active {% endif %} {{ type.id }}" data-target="#{{ type.id }}-mode">
 					{{type.jaLabel}}
 				</li>
 				{% endfor %}
@@ -19,7 +18,7 @@
 			{% for type in tradingTypes %}
 			<div class="tab-view-panel {% if type.default %} active {% endif %}" id="{{ type.id }}-mode">
 				<div class="trading-app-container">
-					<div class="clearfix">
+					<div id="options-carousel" class="clearfix walk-through-step">
 						<div class="pull-left tab-view tab-view-default instrument-selector-widget">
 							<div class="instrument-selector-widget-duration-selectors-container tab-view-tab-selectors-container-wrapper">
 								<div class="instrument-selector-widget-instrument-filter pull-right">
@@ -98,6 +97,7 @@
 																	data-instrument-duration-id="{{interval.id}}"
 																	data-instrument-duration-value="{{interval.value}}" 
 																	data-instrument-seed-rate="{{instrumentItem.rate}}"
+																	data-instrument-pip="{{instrumentItem.pip}}"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -239,6 +239,7 @@
 															data-instrument-duration-id="{{interval.id}}"
 															data-instrument-duration-value="{{interval.value}}" 
 															data-instrument-seed-rate="{{instrumentItem.rate}}"
+															data-instrument-pip="{{instrumentItem.pip}}"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -382,7 +383,7 @@
 					</div>
 					<div class="panel panel-default trading-platform main-view" id="{{type.id}}-main-view">
 						<div class="panel-header">
-							<div class="pull-left">
+							<div class="pull-left chart-panel instrument-details-display walk-through-step">
 								<span class="trading-platform-instrument-title font-sb">
 									
 								</span>
@@ -395,7 +396,7 @@
 								{% endif %}
 								<img src="public/trade-platform/images/loading.gif" class="loading-icon"/>
 							</div>
-							<div class="pull-right">
+							<div class="pull-right time-display chart-control walk-through-step">
 								<img src="public/trade-platform/images/loading.gif" class="processing"/>
 							{% if type.id != 'on-demand' and type.id != 'spread-on-demand' %}
 								<span class="trading-platform-instrument-closing-time">
@@ -432,37 +433,39 @@
 							</div>
 						</div>
 						<div class="panel-body">
-							<div class="heatmap collapsed tooltip-container" id="{{type.id}}-heatmap" data-target="{{type.id}}-graph">
-								<div class="label high">
-									31%
-								</div>
-								<div class="meter">
-									<div class="fill high" style="height: 31%;">
+							<span class="chart-panel chart walk-through-step">
+								<div class="heatmap collapsed tooltip-container" id="{{type.id}}-heatmap" data-target="{{type.id}}-graph">
+									<div class="label high">
+										31%
 									</div>
-									<div class="fill low" style="height: 69%;">
+									<div class="meter">
+										<div class="fill high" style="height: 31%;">
+										</div>
+										<div class="fill low" style="height: 69%;">
+										</div>
+									</div>
+									<div class="label low">
+										69%
+									</div>
+									<div class="toggle">
+										
+									</div>
+									<div class="expander">
+									</div>
+									<div class="tooltip trader-choice">
+										<div class="title jap-word">
+											トレーダーズ<br/>チョイス
+										</div>
+										<div class="content">
+											Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+										</div>
 									</div>
 								</div>
-								<div class="label low">
-									69%
+								<div class="trading-platform-live-graph">
+									<div id="{{type.id}}-graph" class="live-graph"></div>
 								</div>
-								<div class="toggle">
-									
-								</div>
-								<div class="expander">
-								</div>
-								<div class="tooltip trader-choice">
-									<div class="title jap-word">
-										トレーダーズ<br/>チョイス
-									</div>
-									<div class="content">
-										Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-									</div>
-								</div>
-							</div>
-							<div class="trading-platform-live-graph">
-								<div id="{{type.id}}-graph" class="live-graph"></div>
-							</div>
-							<div class="trading-platform-main-controls ">
+							</span>
+							<div class="trading-platform-main-controls chart-control walk-through-step">
 								<div class="trading-platform-main-controls-instrument-title font-sb">
 									USD/JPY
 								</div>
@@ -553,7 +556,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="panel panel-default trading-app-container trading-platform ">
+	<div class="panel panel-default trading-app-container trading-platform walk-through-step current-activity-table">
 		<div class="panel-header light-grey">
 			<div class="pull-left">
 				<div class="font-m-b jap-word">
@@ -780,7 +783,6 @@
 	<div class="toggle"></div>
 	<div class="wrapper">
 	</div>
-</div>
 </div>
 <!-- end-platform -->
 {% endblock %}

@@ -31,7 +31,7 @@
 				</li>
 				
 				<li class="tab-view-tab-selector  spread" data-target="#spread-mode">
-					Spread
+					HighLow Spread
 				</li>
 				
 				<li class="tab-view-tab-selector  on-demand" data-target="#on-demand-mode">
@@ -50,82 +50,137 @@
 			
 			<div class="tab-view-panel  active " id="highlow-mode">
 				<div class="trading-app-container">
-					<div class="clearfix">
+					<div id="options-carousel" class="clearfix walk-through-step">
 						<div class="pull-left tab-view tab-view-default instrument-selector-widget">
 							<div class="instrument-selector-widget-duration-selectors-container tab-view-tab-selectors-container-wrapper">
 								<div class="instrument-selector-widget-instrument-filter pull-right">
-									<ul class="dropdown dropdown-default pull-left" tabindex="0">
-										<li class="dropdown-item active">
-											<input id="highlow-all-currency" checked="checked" name="highlow-instrument-filter" type="radio" value=""/>
-											<label for="highlow-all-currency" data-label="Filter Currencies">
-												Filter Currencies
-											</label>
-										</li>
-										
-										<li class="dropdown-item">
-											<input id="highlow-usd-jpy" name="highlow-instrument-filter" type="radio" value="usd-jpy"/>
-											<label for="highlow-usd-jpy" data-label="USD/JPY">
+									<div id="highlow-asset-filter" class="asset-filter hl-toggler" data-toggle-self-on-disabled="true" data-toggle-off-click="true">
+										<span class="asset-filter--placeholder hl-toggler" data-toggle-target="#highlow-asset-filter">
+											Filter assets
+										</span>
+										<div class="asset-filter--category hl-toggler" data-toggle-group="filter-asset-highlow">
+											<span class="asset-filter--clear hl-toggler" data-toggle-target="#highlow-asset-filter">Clear filter</span>
+										</div>
+										<div class="asset-filter--category indicies">
+											Indicies
+											<div class="asset-filter--assets">
+												<div class="asset-filter--asset hl-toggler" data-toggle-group="filter-asset-highlow" data-toggle-self-off-disabled="true" data-toggle-target="#filter-aus200">
+													<span class="asset-filter--asset--label hl-toggler" data-toggle-target="#highlow-asset-filter">AUS200</span>
+												</div>
+												<div class="asset-filter--asset hl-toggler" data-toggle-group="filter-asset-highlow" data-toggle-self-off-disabled="true"  data-toggle-target="#filter-jpn225">
+													<span class="asset-filter--asset--label hl-toggler" data-toggle-target="#highlow-asset-filter">JPN225</span>
+												</div>
+												<div class="asset-filter--asset hl-toggler" data-toggle-group="filter-asset-highlow" data-toggle-self-off-disabled="true"  data-toggle-target="#filter-hkg33">
+													<span class="asset-filter--asset--label hl-toggler" data-toggle-target="#highlow-asset-filter">HKG33</span>
+												</div>
+												<div class="asset-filter--asset hl-toggler" data-toggle-group="filter-asset-highlow" data-toggle-self-off-disabled="true"  data-toggle-target="#filter-uk100">
+													<span class="asset-filter--asset--label hl-toggler" data-toggle-target="#highlow-asset-filter">UK100</span>
+												</div>
+												<div class="asset-filter--asset hl-toggler" data-toggle-group="filter-asset-highlow" data-toggle-self-off-disabled="true"  data-toggle-target="#filter-us30">
+													<span class="asset-filter--asset--label hl-toggler" data-toggle-target="#highlow-asset-filter">US30</span>
+												</div>
+											</div>
+										</div>
+										<div class="asset-filter--category currencies">
+											Currencies
+											<div class="asset-filter--assets">
+												<div class="asset-filter--asset hl-toggler" data-toggle-group="filter-asset-highlow" data-toggle-self-off-disabled="true" data-toggle-target="#filter-usd-jpy">
+													<span class="asset-filter--asset--label hl-toggler" data-toggle-target="#highlow-asset-filter">USD/JPY</span>
+												</div>
+												<div class="asset-filter--asset hl-toggler" data-toggle-group="filter-asset-highlow" data-toggle-self-off-disabled="true"  data-toggle-target="#filter-aud-usd">
+													<span class="asset-filter--asset--label hl-toggler" data-toggle-target="#highlow-asset-filter">AUD/USD</span>
+												</div>
+												<div class="asset-filter--asset hl-toggler" data-toggle-group="filter-asset-highlow" data-toggle-self-off-disabled="true"  data-toggle-target="#filter-eur-jpy">
+													<span class="asset-filter--asset--label hl-toggler" data-toggle-target="#highlow-asset-filter">EUR/JPY</span>
+												</div>
+												<div class="asset-filter--asset hl-toggler" data-toggle-group="filter-asset-highlow" data-toggle-self-off-disabled="true"  data-toggle-target="#filter-eur-usd">
+													<span class="asset-filter--asset--label hl-toggler" data-toggle-target="#highlow-asset-filter">EUR/USD</span>
+												</div>
+												<div class="asset-filter--asset hl-toggler" data-toggle-group="filter-asset-highlow" data-toggle-self-off-disabled="true"  data-toggle-target="#filter-gbp-jpy">
+													<span class="asset-filter--asset--label hl-toggler" data-toggle-target="#highlow-asset-filter">GBP/JPY</span>
+												</div>
+												<div class="asset-filter--asset hl-toggler" data-toggle-group="filter-asset-highlow" data-toggle-self-off-disabled="true"  data-toggle-target="#filter-gbp-usd">
+													<span class="asset-filter--asset--label hl-toggler" data-toggle-target="#highlow-asset-filter">GBP/USD</span>
+												</div>
+												<div class="asset-filter--asset hl-toggler" data-toggle-group="filter-asset-highlow" data-toggle-self-off-disabled="true"  data-toggle-target="#filter-nzd-jpy">
+													<span class="asset-filter--asset--label hl-toggler" data-toggle-target="#highlow-asset-filter">NZD/JPY</span>
+												</div>
+												<div class="asset-filter--asset hl-toggler" data-toggle-group="filter-asset-highlow" data-toggle-self-off-disabled="true"  data-toggle-target="#filter-nzd-usd">
+													<span class="asset-filter--asset--label hl-toggler" data-toggle-target="#highlow-asset-filter">NZD/USD</span>
+												</div>
+												<div class="asset-filter--asset hl-toggler" data-toggle-group="filter-asset-highlow" data-toggle-self-off-disabled="true"  data-toggle-target="#filter-aud-jpy">
+													<span class="asset-filter--asset--label hl-toggler" data-toggle-target="#highlow-asset-filter">AUD/JPY</span>
+												</div>
+											</div>
+										</div>
+										<div class="asset-filter--category commodities">
+											Commodities
+											<div class="asset-filter--assets">
+												<div class="asset-filter--asset hl-toggler" data-toggle-group="filter-asset-highlow" data-toggle-self-off-disabled="true" data-toggle-target="#filter-gold">
+													<span class="asset-filter--asset--label hl-toggler" data-toggle-target="#highlow-asset-filter">Gold</span>
+												</div>
+												<div class="asset-filter--asset hl-toggler" data-toggle-group="filter-asset-highlow" data-toggle-self-off-disabled="true"  data-toggle-target="#filter-silver">
+													<span class="asset-filter--asset--label hl-toggler" data-toggle-target="#highlow-asset-filter">Silver</span>
+												</div>
+												<div class="asset-filter--asset hl-toggler" data-toggle-group="filter-asset-highlow" data-toggle-self-off-disabled="true"  data-toggle-target="#filter-oil">
+													<span class="asset-filter--asset--label hl-toggler" data-toggle-target="#highlow-asset-filter">Oil</span>
+												</div>
+											</div>
+										</div>
+										<div class="asset-filter--display-labels">
+											<div class="asset-filter--display-label" data-toggle-group="filter-asset-highlow" id="filter-aus200">
+												AUS200
+											</div>
+											<div class="asset-filter--display-label" data-toggle-group="filter-asset-highlow" id="filter-jpn225">
+												JPN225
+											</div>
+											<div class="asset-filter--display-label" data-toggle-group="filter-asset-highlow" id="filter-hkg33">
+												HKG33
+											</div>
+											<div class="asset-filter--display-label" data-toggle-group="filter-asset-highlow" id="filter-uk100">
+												UK100
+											</div>
+											<div class="asset-filter--display-label" data-toggle-group="filter-asset-highlow" id="filter-us30">
+												US30
+											</div>
+											<div class="asset-filter--display-label" data-toggle-group="filter-asset-highlow" id="filter-usd-jpy">
 												USD/JPY
-											</label>
-										</li>
-										
-										<li class="dropdown-item">
-											<input id="highlow-aud-usd" name="highlow-instrument-filter" type="radio" value="aud-usd"/>
-											<label for="highlow-aud-usd" data-label="AUD/USD">
+											</div>
+											<div class="asset-filter--display-label" data-toggle-group="filter-asset-highlow" id="filter-aud-usd">
 												AUD/USD
-											</label>
-										</li>
-										
-										<li class="dropdown-item">
-											<input id="highlow-eur-jpy" name="highlow-instrument-filter" type="radio" value="eur-jpy"/>
-											<label for="highlow-eur-jpy" data-label="EUR/JPY">
+											</div>
+											<div class="asset-filter--display-label" data-toggle-group="filter-asset-highlow" id="filter-eur-jpy">
 												EUR/JPY
-											</label>
-										</li>
-										
-										<li class="dropdown-item">
-											<input id="highlow-eur-usd" name="highlow-instrument-filter" type="radio" value="eur-usd"/>
-											<label for="highlow-eur-usd" data-label="EUR/USD">
+											</div>
+											<div class="asset-filter--display-label" data-toggle-group="filter-asset-highlow" id="filter-eur-usd">
 												EUR/USD
-											</label>
-										</li>
-										
-										<li class="dropdown-item">
-											<input id="highlow-gbp-jpy" name="highlow-instrument-filter" type="radio" value="gbp-jpy"/>
-											<label for="highlow-gbp-jpy" data-label="GBP/JPY">
+											</div>
+											<div class="asset-filter--display-label" data-toggle-group="filter-asset-highlow" id="filter-gbp-jpy">
 												GBP/JPY
-											</label>
-										</li>
-										
-										<li class="dropdown-item">
-											<input id="highlow-gbp-usd" name="highlow-instrument-filter" type="radio" value="gbp-usd"/>
-											<label for="highlow-gbp-usd" data-label="GBP/USD">
+											</div>
+											<div class="asset-filter--display-label" data-toggle-group="filter-asset-highlow" id="filter-gbp-usd">
 												GBP/USD
-											</label>
-										</li>
-										
-										<li class="dropdown-item">
-											<input id="highlow-nzd-jpy" name="highlow-instrument-filter" type="radio" value="nzd-jpy"/>
-											<label for="highlow-nzd-jpy" data-label="NZD/JPY">
+											</div>
+											<div class="asset-filter--display-label" data-toggle-group="filter-asset-highlow" id="filter-nzd-jpy">
 												NZD/JPY
-											</label>
-										</li>
-										
-										<li class="dropdown-item">
-											<input id="highlow-nzd-usd" name="highlow-instrument-filter" type="radio" value="nzd-usd"/>
-											<label for="highlow-nzd-usd" data-label="NZD/USD">
+											</div>
+											<div class="asset-filter--display-label" data-toggle-group="filter-asset-highlow" id="filter-nzd-usd">
 												NZD/USD
-											</label>
-										</li>
-										
-										<li class="dropdown-item">
-											<input id="highlow-aud-jpy" name="highlow-instrument-filter" type="radio" value="aud-jpy"/>
-											<label for="highlow-aud-jpy" data-label="AUD/JPY">
+											</div>
+											<div class="asset-filter--display-label" data-toggle-group="filter-asset-highlow" id="filter-aud-jpy">
 												AUD/JPY
-											</label>
-										</li>
-										
-									</ul>
+											</div>
+											<div class="asset-filter--display-label" data-toggle-group="filter-asset-highlow" id="filter-gold">
+												Gold
+											</div>
+											<div class="asset-filter--display-label" data-toggle-group="filter-asset-highlow" id="filter-silver">
+												Silver
+											</div>
+											<div class="asset-filter--display-label" data-toggle-group="filter-asset-highlow" id="filter-aud-jpy">
+												Oil
+											</div>
+										</div>
+									</div>
 								</div>
 								<div class="instrument-selector-widget-collapse-toggle">
 								</div>
@@ -193,6 +248,7 @@
 																	data-instrument-duration-id="15min"
 																	data-instrument-duration-value="900000" 
 																	data-instrument-seed-rate="118.62"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -253,7 +309,8 @@
 																	data-instrument-duration="15 mins"
 																	data-instrument-duration-id="15min"
 																	data-instrument-duration-value="900000" 
-																	data-instrument-seed-rate="102.44"
+																	data-instrument-seed-rate="92.439"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -314,7 +371,8 @@
 																	data-instrument-duration="15 mins"
 																	data-instrument-duration-id="15min"
 																	data-instrument-duration-value="900000" 
-																	data-instrument-seed-rate="112.44"
+																	data-instrument-seed-rate="0.75441"
+																	data-instrument-pip="5"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -375,7 +433,8 @@
 																	data-instrument-duration="15 mins"
 																	data-instrument-duration-id="15min"
 																	data-instrument-duration-value="900000" 
-																	data-instrument-seed-rate="92.74"
+																	data-instrument-seed-rate="135.740"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -436,7 +495,8 @@
 																	data-instrument-duration="15 mins"
 																	data-instrument-duration-id="15min"
 																	data-instrument-duration-value="900000" 
-																	data-instrument-seed-rate="102.56"
+																	data-instrument-seed-rate="1.12560"
+																	data-instrument-pip="5"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -502,6 +562,7 @@
 																	data-instrument-duration-id="15min"
 																	data-instrument-duration-value="900000" 
 																	data-instrument-seed-rate="112.44"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -562,7 +623,8 @@
 																	data-instrument-duration="15 mins"
 																	data-instrument-duration-id="15min"
 																	data-instrument-duration-value="900000" 
-																	data-instrument-seed-rate="82.54"
+																	data-instrument-seed-rate="135.740"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -623,7 +685,8 @@
 																	data-instrument-duration="15 mins"
 																	data-instrument-duration-id="15min"
 																	data-instrument-duration-value="900000" 
-																	data-instrument-seed-rate="122.78"
+																	data-instrument-seed-rate="1.12560"
+																	data-instrument-pip="5"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -685,6 +748,7 @@
 																	data-instrument-duration-id="15min"
 																	data-instrument-duration-value="900000" 
 																	data-instrument-seed-rate="123.12"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -746,6 +810,7 @@
 																	data-instrument-duration-id="15min"
 																	data-instrument-duration-value="900000" 
 																	data-instrument-seed-rate="122.44"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -811,6 +876,7 @@
 																	data-instrument-duration-id="15min"
 																	data-instrument-duration-value="900000" 
 																	data-instrument-seed-rate="111.56"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -872,6 +938,7 @@
 																	data-instrument-duration-id="15min"
 																	data-instrument-duration-value="900000" 
 																	data-instrument-seed-rate="114.76"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -937,6 +1004,7 @@
 																	data-instrument-duration-id="1hour"
 																	data-instrument-duration-value="3600000" 
 																	data-instrument-seed-rate="114.45"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -997,7 +1065,8 @@
 																	data-instrument-duration="60 mins"
 																	data-instrument-duration-id="1hour"
 																	data-instrument-duration-value="3600000" 
-																	data-instrument-seed-rate="113.56"
+																	data-instrument-seed-rate="92.439"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -1058,7 +1127,8 @@
 																	data-instrument-duration="60 mins"
 																	data-instrument-duration-id="1hour"
 																	data-instrument-duration-value="3600000" 
-																	data-instrument-seed-rate="115.22"
+																	data-instrument-seed-rate="0.75441"
+																	data-instrument-pip="5"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -1123,7 +1193,8 @@
 																	data-instrument-duration="60 mins"
 																	data-instrument-duration-id="1hour"
 																	data-instrument-duration-value="3600000" 
-																	data-instrument-seed-rate="127.12"
+																	data-instrument-seed-rate="135.740"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -1184,7 +1255,8 @@
 																	data-instrument-duration="60 mins"
 																	data-instrument-duration-id="1hour"
 																	data-instrument-duration-value="3600000" 
-																	data-instrument-seed-rate="98.64"
+																	data-instrument-seed-rate="1.12560"
+																	data-instrument-pip="5"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -1246,6 +1318,7 @@
 																	data-instrument-duration-id="1hour"
 																	data-instrument-duration-value="3600000" 
 																	data-instrument-seed-rate="97.35"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -1307,6 +1380,7 @@
 																	data-instrument-duration-id="1hour"
 																	data-instrument-duration-value="3600000" 
 																	data-instrument-seed-rate="97.45"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -1368,6 +1442,7 @@
 																	data-instrument-duration-id="1hour"
 																	data-instrument-duration-value="3600000" 
 																	data-instrument-seed-rate="94.24"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -1433,6 +1508,7 @@
 																	data-instrument-duration-id="1hour"
 																	data-instrument-duration-value="3600000" 
 																	data-instrument-seed-rate="111.56"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -1498,6 +1574,7 @@
 																	data-instrument-duration-id="1day"
 																	data-instrument-duration-value="86400000" 
 																	data-instrument-seed-rate="114.45"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -1558,7 +1635,8 @@
 																	data-instrument-duration="24 hours"
 																	data-instrument-duration-id="1day"
 																	data-instrument-duration-value="86400000" 
-																	data-instrument-seed-rate="113.56"
+																	data-instrument-seed-rate="92.439"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -1619,7 +1697,8 @@
 																	data-instrument-duration="24 hours"
 																	data-instrument-duration-id="1day"
 																	data-instrument-duration-value="86400000" 
-																	data-instrument-seed-rate="115.22"
+																	data-instrument-seed-rate="0.75441"
+																	data-instrument-pip="5"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -1680,7 +1759,8 @@
 																	data-instrument-duration="24 hours"
 																	data-instrument-duration-id="1day"
 																	data-instrument-duration-value="86400000" 
-																	data-instrument-seed-rate="127.12"
+																	data-instrument-seed-rate="135.740"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -1745,7 +1825,8 @@
 																	data-instrument-duration="24 hours"
 																	data-instrument-duration-id="1day"
 																	data-instrument-duration-value="86400000" 
-																	data-instrument-seed-rate="98.64"
+																	data-instrument-seed-rate="1.12560"
+																	data-instrument-pip="5"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -1807,6 +1888,7 @@
 																	data-instrument-duration-id="1day"
 																	data-instrument-duration-value="86400000" 
 																	data-instrument-seed-rate="97.35"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -1868,6 +1950,7 @@
 																	data-instrument-duration-id="1day"
 																	data-instrument-duration-value="86400000" 
 																	data-instrument-seed-rate="97.45"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -1929,6 +2012,7 @@
 																	data-instrument-duration-id="1day"
 																	data-instrument-duration-value="86400000" 
 																	data-instrument-seed-rate="94.24"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -1990,6 +2074,7 @@
 																	data-instrument-duration-id="1day"
 																	data-instrument-duration-value="86400000" 
 																	data-instrument-seed-rate="111.56"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -2071,6 +2156,7 @@
 															data-instrument-duration-id="15min"
 															data-instrument-duration-value="900000" 
 															data-instrument-seed-rate="118.62"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -2128,7 +2214,8 @@
 															data-instrument-duration="15 mins"
 															data-instrument-duration-id="15min"
 															data-instrument-duration-value="900000" 
-															data-instrument-seed-rate="102.44"
+															data-instrument-seed-rate="92.439"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -2186,7 +2273,8 @@
 															data-instrument-duration="15 mins"
 															data-instrument-duration-id="15min"
 															data-instrument-duration-value="900000" 
-															data-instrument-seed-rate="112.44"
+															data-instrument-seed-rate="0.75441"
+															data-instrument-pip="5"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -2244,7 +2332,8 @@
 															data-instrument-duration="15 mins"
 															data-instrument-duration-id="15min"
 															data-instrument-duration-value="900000" 
-															data-instrument-seed-rate="92.74"
+															data-instrument-seed-rate="135.740"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -2302,7 +2391,8 @@
 															data-instrument-duration="15 mins"
 															data-instrument-duration-id="15min"
 															data-instrument-duration-value="900000" 
-															data-instrument-seed-rate="102.56"
+															data-instrument-seed-rate="1.12560"
+															data-instrument-pip="5"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -2365,6 +2455,7 @@
 															data-instrument-duration-id="15min"
 															data-instrument-duration-value="900000" 
 															data-instrument-seed-rate="112.44"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -2422,7 +2513,8 @@
 															data-instrument-duration="15 mins"
 															data-instrument-duration-id="15min"
 															data-instrument-duration-value="900000" 
-															data-instrument-seed-rate="82.54"
+															data-instrument-seed-rate="135.740"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -2480,7 +2572,8 @@
 															data-instrument-duration="15 mins"
 															data-instrument-duration-id="15min"
 															data-instrument-duration-value="900000" 
-															data-instrument-seed-rate="122.78"
+															data-instrument-seed-rate="1.12560"
+															data-instrument-pip="5"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -2539,6 +2632,7 @@
 															data-instrument-duration-id="15min"
 															data-instrument-duration-value="900000" 
 															data-instrument-seed-rate="123.12"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -2597,6 +2691,7 @@
 															data-instrument-duration-id="15min"
 															data-instrument-duration-value="900000" 
 															data-instrument-seed-rate="122.44"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -2659,6 +2754,7 @@
 															data-instrument-duration-id="15min"
 															data-instrument-duration-value="900000" 
 															data-instrument-seed-rate="111.56"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -2717,6 +2813,7 @@
 															data-instrument-duration-id="15min"
 															data-instrument-duration-value="900000" 
 															data-instrument-seed-rate="114.76"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -2795,6 +2892,7 @@
 															data-instrument-duration-id="1hour"
 															data-instrument-duration-value="3600000" 
 															data-instrument-seed-rate="114.45"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -2852,7 +2950,8 @@
 															data-instrument-duration="60 mins"
 															data-instrument-duration-id="1hour"
 															data-instrument-duration-value="3600000" 
-															data-instrument-seed-rate="113.56"
+															data-instrument-seed-rate="92.439"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -2910,7 +3009,8 @@
 															data-instrument-duration="60 mins"
 															data-instrument-duration-id="1hour"
 															data-instrument-duration-value="3600000" 
-															data-instrument-seed-rate="115.22"
+															data-instrument-seed-rate="0.75441"
+															data-instrument-pip="5"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -2968,7 +3068,8 @@
 															data-instrument-duration="60 mins"
 															data-instrument-duration-id="1hour"
 															data-instrument-duration-value="3600000" 
-															data-instrument-seed-rate="127.12"
+															data-instrument-seed-rate="135.740"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -3026,7 +3127,8 @@
 															data-instrument-duration="60 mins"
 															data-instrument-duration-id="1hour"
 															data-instrument-duration-value="3600000" 
-															data-instrument-seed-rate="98.64"
+															data-instrument-seed-rate="1.12560"
+															data-instrument-pip="5"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -3089,6 +3191,7 @@
 															data-instrument-duration-id="1hour"
 															data-instrument-duration-value="3600000" 
 															data-instrument-seed-rate="97.35"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -3147,6 +3250,7 @@
 															data-instrument-duration-id="1hour"
 															data-instrument-duration-value="3600000" 
 															data-instrument-seed-rate="97.45"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -3205,6 +3309,7 @@
 															data-instrument-duration-id="1hour"
 															data-instrument-duration-value="3600000" 
 															data-instrument-seed-rate="94.24"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -3263,6 +3368,7 @@
 															data-instrument-duration-id="1hour"
 															data-instrument-duration-value="3600000" 
 															data-instrument-seed-rate="111.56"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -3341,6 +3447,7 @@
 															data-instrument-duration-id="1day"
 															data-instrument-duration-value="86400000" 
 															data-instrument-seed-rate="114.45"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -3398,7 +3505,8 @@
 															data-instrument-duration="24 hours"
 															data-instrument-duration-id="1day"
 															data-instrument-duration-value="86400000" 
-															data-instrument-seed-rate="113.56"
+															data-instrument-seed-rate="92.439"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -3456,7 +3564,8 @@
 															data-instrument-duration="24 hours"
 															data-instrument-duration-id="1day"
 															data-instrument-duration-value="86400000" 
-															data-instrument-seed-rate="115.22"
+															data-instrument-seed-rate="0.75441"
+															data-instrument-pip="5"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -3514,7 +3623,8 @@
 															data-instrument-duration="24 hours"
 															data-instrument-duration-id="1day"
 															data-instrument-duration-value="86400000" 
-															data-instrument-seed-rate="127.12"
+															data-instrument-seed-rate="135.740"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -3572,7 +3682,8 @@
 															data-instrument-duration="24 hours"
 															data-instrument-duration-id="1day"
 															data-instrument-duration-value="86400000" 
-															data-instrument-seed-rate="98.64"
+															data-instrument-seed-rate="1.12560"
+															data-instrument-pip="5"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -3635,6 +3746,7 @@
 															data-instrument-duration-id="1day"
 															data-instrument-duration-value="86400000" 
 															data-instrument-seed-rate="97.35"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -3693,6 +3805,7 @@
 															data-instrument-duration-id="1day"
 															data-instrument-duration-value="86400000" 
 															data-instrument-seed-rate="97.45"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -3751,6 +3864,7 @@
 															data-instrument-duration-id="1day"
 															data-instrument-duration-value="86400000" 
 															data-instrument-seed-rate="94.24"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -3809,6 +3923,7 @@
 															data-instrument-duration-id="1day"
 															data-instrument-duration-value="86400000" 
 															data-instrument-seed-rate="111.56"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -3884,13 +3999,15 @@
 										</div>
 
 										<!-- end favourite -->
+
+									
 								</div>
 							</div>
 						</div>
 					</div>
 					<div class="panel panel-default trading-platform main-view" id="highlow-main-view">
 						<div class="panel-header">
-							<div class="pull-left">
+							<div class="pull-left chart-panel instrument-details-display walk-through-step">
 								<span class="trading-platform-instrument-title font-sb">
 									
 								</span>
@@ -3899,7 +4016,7 @@
 								
 								<img src="public/trade-platform/images/loading.gif" class="loading-icon"/>
 							</div>
-							<div class="pull-right">
+							<div class="pull-right time-display chart-control walk-through-step">
 								<img src="public/trade-platform/images/loading.gif" class="processing"/>
 							
 								<span class="trading-platform-instrument-closing-time">
@@ -3932,37 +4049,39 @@
 							</div>
 						</div>
 						<div class="panel-body">
-							<div class="heatmap collapsed tooltip-container" id="highlow-heatmap" data-target="highlow-graph">
-								<div class="label high">
-									31%
-								</div>
-								<div class="meter">
-									<div class="fill high" style="height: 31%;">
+							<span class="chart-panel chart walk-through-step">
+								<div class="heatmap collapsed tooltip-container" id="highlow-heatmap" data-target="highlow-graph">
+									<div class="label high">
+										31%
 									</div>
-									<div class="fill low" style="height: 69%;">
+									<div class="meter">
+										<div class="fill high" style="height: 31%;">
+										</div>
+										<div class="fill low" style="height: 69%;">
+										</div>
+									</div>
+									<div class="label low">
+										69%
+									</div>
+									<div class="toggle">
+										
+									</div>
+									<div class="expander">
+									</div>
+									<div class="tooltip trader-choice">
+										<div class="title">
+											Traders Choice
+										</div>
+										<div class="content">
+											Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+										</div>
 									</div>
 								</div>
-								<div class="label low">
-									69%
+								<div class="trading-platform-live-graph">
+									<div id="highlow-graph" class="live-graph"></div>
 								</div>
-								<div class="toggle">
-									
-								</div>
-								<div class="expander">
-								</div>
-								<div class="tooltip trader-choice">
-									<div class="title">
-										Traders Choice
-									</div>
-									<div class="content">
-										Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-									</div>
-								</div>
-							</div>
-							<div class="trading-platform-live-graph">
-								<div id="highlow-graph" class="live-graph"></div>
-							</div>
-							<div class="trading-platform-main-controls ">
+							</span>
+							<div class="trading-platform-main-controls chart-control walk-through-step">
 								<div class="trading-platform-main-controls-instrument-title font-sb">
 									USD/JPY
 								</div>
@@ -4049,82 +4168,137 @@
 			
 			<div class="tab-view-panel " id="spread-mode">
 				<div class="trading-app-container">
-					<div class="clearfix">
+					<div id="options-carousel" class="clearfix walk-through-step">
 						<div class="pull-left tab-view tab-view-default instrument-selector-widget">
 							<div class="instrument-selector-widget-duration-selectors-container tab-view-tab-selectors-container-wrapper">
 								<div class="instrument-selector-widget-instrument-filter pull-right">
-									<ul class="dropdown dropdown-default pull-left" tabindex="0">
-										<li class="dropdown-item active">
-											<input id="spread-all-currency" checked="checked" name="spread-instrument-filter" type="radio" value=""/>
-											<label for="spread-all-currency" data-label="Filter Currencies">
-												Filter Currencies
-											</label>
-										</li>
-										
-										<li class="dropdown-item">
-											<input id="spread-aud-jpy" name="spread-instrument-filter" type="radio" value="aud-jpy"/>
-											<label for="spread-aud-jpy" data-label="AUD/JPY">
-												AUD/JPY
-											</label>
-										</li>
-										
-										<li class="dropdown-item">
-											<input id="spread-aud-usd" name="spread-instrument-filter" type="radio" value="aud-usd"/>
-											<label for="spread-aud-usd" data-label="AUD/USD">
-												AUD/USD
-											</label>
-										</li>
-										
-										<li class="dropdown-item">
-											<input id="spread-eur-jpy" name="spread-instrument-filter" type="radio" value="eur-jpy"/>
-											<label for="spread-eur-jpy" data-label="EUR/JPY">
-												EUR/JPY
-											</label>
-										</li>
-										
-										<li class="dropdown-item">
-											<input id="spread-eur-usd" name="spread-instrument-filter" type="radio" value="eur-usd"/>
-											<label for="spread-eur-usd" data-label="EUR/USD">
-												EUR/USD
-											</label>
-										</li>
-										
-										<li class="dropdown-item">
-											<input id="spread-gbp-jpy" name="spread-instrument-filter" type="radio" value="gbp-jpy"/>
-											<label for="spread-gbp-jpy" data-label="GBP/JPY">
-												GBP/JPY
-											</label>
-										</li>
-										
-										<li class="dropdown-item">
-											<input id="spread-gbp-usd" name="spread-instrument-filter" type="radio" value="gbp-usd"/>
-											<label for="spread-gbp-usd" data-label="GBP/USD">
-												GBP/USD
-											</label>
-										</li>
-										
-										<li class="dropdown-item">
-											<input id="spread-nzd-jpy" name="spread-instrument-filter" type="radio" value="nzd-jpy"/>
-											<label for="spread-nzd-jpy" data-label="NZD/JPY">
-												NZD/JPY
-											</label>
-										</li>
-										
-										<li class="dropdown-item">
-											<input id="spread-nzd-usd" name="spread-instrument-filter" type="radio" value="nzd-usd"/>
-											<label for="spread-nzd-usd" data-label="NZD/USD">
-												NZD/USD
-											</label>
-										</li>
-										
-										<li class="dropdown-item">
-											<input id="spread-usd-jpy" name="spread-instrument-filter" type="radio" value="usd-jpy"/>
-											<label for="spread-usd-jpy" data-label="USD/JPY">
+									<div id="spread-asset-filter" class="asset-filter hl-toggler" data-toggle-self-on-disabled="true" data-toggle-off-click="true">
+										<span class="asset-filter--placeholder hl-toggler" data-toggle-target="#spread-asset-filter">
+											Filter assets
+										</span>
+										<div class="asset-filter--category hl-toggler" data-toggle-group="filter-asset-spread">
+											<span class="asset-filter--clear hl-toggler" data-toggle-target="#spread-asset-filter">Clear filter</span>
+										</div>
+										<div class="asset-filter--category indicies">
+											Indicies
+											<div class="asset-filter--assets">
+												<div class="asset-filter--asset hl-toggler" data-toggle-group="filter-asset-spread" data-toggle-self-off-disabled="true" data-toggle-target="#filter-aus200">
+													<span class="asset-filter--asset--label hl-toggler" data-toggle-target="#spread-asset-filter">AUS200</span>
+												</div>
+												<div class="asset-filter--asset hl-toggler" data-toggle-group="filter-asset-spread" data-toggle-self-off-disabled="true"  data-toggle-target="#filter-jpn225">
+													<span class="asset-filter--asset--label hl-toggler" data-toggle-target="#spread-asset-filter">JPN225</span>
+												</div>
+												<div class="asset-filter--asset hl-toggler" data-toggle-group="filter-asset-spread" data-toggle-self-off-disabled="true"  data-toggle-target="#filter-hkg33">
+													<span class="asset-filter--asset--label hl-toggler" data-toggle-target="#spread-asset-filter">HKG33</span>
+												</div>
+												<div class="asset-filter--asset hl-toggler" data-toggle-group="filter-asset-spread" data-toggle-self-off-disabled="true"  data-toggle-target="#filter-uk100">
+													<span class="asset-filter--asset--label hl-toggler" data-toggle-target="#spread-asset-filter">UK100</span>
+												</div>
+												<div class="asset-filter--asset hl-toggler" data-toggle-group="filter-asset-spread" data-toggle-self-off-disabled="true"  data-toggle-target="#filter-us30">
+													<span class="asset-filter--asset--label hl-toggler" data-toggle-target="#spread-asset-filter">US30</span>
+												</div>
+											</div>
+										</div>
+										<div class="asset-filter--category currencies">
+											Currencies
+											<div class="asset-filter--assets">
+												<div class="asset-filter--asset hl-toggler" data-toggle-group="filter-asset-spread" data-toggle-self-off-disabled="true" data-toggle-target="#filter-usd-jpy">
+													<span class="asset-filter--asset--label hl-toggler" data-toggle-target="#spread-asset-filter">USD/JPY</span>
+												</div>
+												<div class="asset-filter--asset hl-toggler" data-toggle-group="filter-asset-spread" data-toggle-self-off-disabled="true"  data-toggle-target="#filter-aud-usd">
+													<span class="asset-filter--asset--label hl-toggler" data-toggle-target="#spread-asset-filter">AUD/USD</span>
+												</div>
+												<div class="asset-filter--asset hl-toggler" data-toggle-group="filter-asset-spread" data-toggle-self-off-disabled="true"  data-toggle-target="#filter-eur-jpy">
+													<span class="asset-filter--asset--label hl-toggler" data-toggle-target="#spread-asset-filter">EUR/JPY</span>
+												</div>
+												<div class="asset-filter--asset hl-toggler" data-toggle-group="filter-asset-spread" data-toggle-self-off-disabled="true"  data-toggle-target="#filter-eur-usd">
+													<span class="asset-filter--asset--label hl-toggler" data-toggle-target="#spread-asset-filter">EUR/USD</span>
+												</div>
+												<div class="asset-filter--asset hl-toggler" data-toggle-group="filter-asset-spread" data-toggle-self-off-disabled="true"  data-toggle-target="#filter-gbp-jpy">
+													<span class="asset-filter--asset--label hl-toggler" data-toggle-target="#spread-asset-filter">GBP/JPY</span>
+												</div>
+												<div class="asset-filter--asset hl-toggler" data-toggle-group="filter-asset-spread" data-toggle-self-off-disabled="true"  data-toggle-target="#filter-gbp-usd">
+													<span class="asset-filter--asset--label hl-toggler" data-toggle-target="#spread-asset-filter">GBP/USD</span>
+												</div>
+												<div class="asset-filter--asset hl-toggler" data-toggle-group="filter-asset-spread" data-toggle-self-off-disabled="true"  data-toggle-target="#filter-nzd-jpy">
+													<span class="asset-filter--asset--label hl-toggler" data-toggle-target="#spread-asset-filter">NZD/JPY</span>
+												</div>
+												<div class="asset-filter--asset hl-toggler" data-toggle-group="filter-asset-spread" data-toggle-self-off-disabled="true"  data-toggle-target="#filter-nzd-usd">
+													<span class="asset-filter--asset--label hl-toggler" data-toggle-target="#spread-asset-filter">NZD/USD</span>
+												</div>
+												<div class="asset-filter--asset hl-toggler" data-toggle-group="filter-asset-spread" data-toggle-self-off-disabled="true"  data-toggle-target="#filter-aud-jpy">
+													<span class="asset-filter--asset--label hl-toggler" data-toggle-target="#spread-asset-filter">AUD/JPY</span>
+												</div>
+											</div>
+										</div>
+										<div class="asset-filter--category commodities">
+											Commodities
+											<div class="asset-filter--assets">
+												<div class="asset-filter--asset hl-toggler" data-toggle-group="filter-asset-spread" data-toggle-self-off-disabled="true" data-toggle-target="#filter-gold">
+													<span class="asset-filter--asset--label hl-toggler" data-toggle-target="#spread-asset-filter">Gold</span>
+												</div>
+												<div class="asset-filter--asset hl-toggler" data-toggle-group="filter-asset-spread" data-toggle-self-off-disabled="true"  data-toggle-target="#filter-silver">
+													<span class="asset-filter--asset--label hl-toggler" data-toggle-target="#spread-asset-filter">Silver</span>
+												</div>
+												<div class="asset-filter--asset hl-toggler" data-toggle-group="filter-asset-spread" data-toggle-self-off-disabled="true"  data-toggle-target="#filter-oil">
+													<span class="asset-filter--asset--label hl-toggler" data-toggle-target="#spread-asset-filter">Oil</span>
+												</div>
+											</div>
+										</div>
+										<div class="asset-filter--display-labels">
+											<div class="asset-filter--display-label" data-toggle-group="filter-asset-spread" id="filter-aus200">
+												AUS200
+											</div>
+											<div class="asset-filter--display-label" data-toggle-group="filter-asset-spread" id="filter-jpn225">
+												JPN225
+											</div>
+											<div class="asset-filter--display-label" data-toggle-group="filter-asset-spread" id="filter-hkg33">
+												HKG33
+											</div>
+											<div class="asset-filter--display-label" data-toggle-group="filter-asset-spread" id="filter-uk100">
+												UK100
+											</div>
+											<div class="asset-filter--display-label" data-toggle-group="filter-asset-spread" id="filter-us30">
+												US30
+											</div>
+											<div class="asset-filter--display-label" data-toggle-group="filter-asset-spread" id="filter-usd-jpy">
 												USD/JPY
-											</label>
-										</li>
-										
-									</ul>
+											</div>
+											<div class="asset-filter--display-label" data-toggle-group="filter-asset-spread" id="filter-aud-usd">
+												AUD/USD
+											</div>
+											<div class="asset-filter--display-label" data-toggle-group="filter-asset-spread" id="filter-eur-jpy">
+												EUR/JPY
+											</div>
+											<div class="asset-filter--display-label" data-toggle-group="filter-asset-spread" id="filter-eur-usd">
+												EUR/USD
+											</div>
+											<div class="asset-filter--display-label" data-toggle-group="filter-asset-spread" id="filter-gbp-jpy">
+												GBP/JPY
+											</div>
+											<div class="asset-filter--display-label" data-toggle-group="filter-asset-spread" id="filter-gbp-usd">
+												GBP/USD
+											</div>
+											<div class="asset-filter--display-label" data-toggle-group="filter-asset-spread" id="filter-nzd-jpy">
+												NZD/JPY
+											</div>
+											<div class="asset-filter--display-label" data-toggle-group="filter-asset-spread" id="filter-nzd-usd">
+												NZD/USD
+											</div>
+											<div class="asset-filter--display-label" data-toggle-group="filter-asset-spread" id="filter-aud-jpy">
+												AUD/JPY
+											</div>
+											<div class="asset-filter--display-label" data-toggle-group="filter-asset-spread" id="filter-gold">
+												Gold
+											</div>
+											<div class="asset-filter--display-label" data-toggle-group="filter-asset-spread" id="filter-silver">
+												Silver
+											</div>
+											<div class="asset-filter--display-label" data-toggle-group="filter-asset-spread" id="filter-aud-jpy">
+												Oil
+											</div>
+										</div>
+									</div>
 								</div>
 								<div class="instrument-selector-widget-collapse-toggle">
 								</div>
@@ -4191,7 +4365,8 @@
 																	data-instrument-duration="15 mins"
 																	data-instrument-duration-id="15min"
 																	data-instrument-duration-value="900000" 
-																	data-instrument-seed-rate="115.45"
+																	data-instrument-seed-rate="0.75441"
+																	data-instrument-pip="5"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -4251,7 +4426,8 @@
 																	data-instrument-duration="15 mins"
 																	data-instrument-duration-id="15min"
 																	data-instrument-duration-value="900000" 
-																	data-instrument-seed-rate="98.442"
+																	data-instrument-seed-rate="135.740"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -4311,7 +4487,8 @@
 																	data-instrument-duration="15 mins"
 																	data-instrument-duration-id="15min"
 																	data-instrument-duration-value="900000" 
-																	data-instrument-seed-rate="111.24"
+																	data-instrument-seed-rate="1.12560"
+																	data-instrument-pip="5"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -4372,6 +4549,7 @@
 																	data-instrument-duration-id="15min"
 																	data-instrument-duration-value="900000" 
 																	data-instrument-seed-rate="224.86"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -4431,7 +4609,8 @@
 																	data-instrument-duration="15 mins"
 																	data-instrument-duration-id="15min"
 																	data-instrument-duration-value="900000" 
-																	data-instrument-seed-rate="123.54"
+																	data-instrument-seed-rate="135.740"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -4495,7 +4674,8 @@
 																	data-instrument-duration="15 mins"
 																	data-instrument-duration-id="15min"
 																	data-instrument-duration-value="900000" 
-																	data-instrument-seed-rate="167.27"
+																	data-instrument-seed-rate="1.12560"
+																	data-instrument-pip="5"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -4556,6 +4736,7 @@
 																	data-instrument-duration-id="15min"
 																	data-instrument-duration-value="900000" 
 																	data-instrument-seed-rate="145.15"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -4616,6 +4797,7 @@
 																	data-instrument-duration-id="15min"
 																	data-instrument-duration-value="900000" 
 																	data-instrument-seed-rate="165.52"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -4676,6 +4858,7 @@
 																	data-instrument-duration-id="15min"
 																	data-instrument-duration-value="900000" 
 																	data-instrument-seed-rate="135.59"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -4736,6 +4919,7 @@
 																	data-instrument-duration-id="15min"
 																	data-instrument-duration-value="900000" 
 																	data-instrument-seed-rate="115.54"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -4800,6 +4984,7 @@
 																	data-instrument-duration-id="15min"
 																	data-instrument-duration-value="900000" 
 																	data-instrument-seed-rate="112.43"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -4863,7 +5048,8 @@
 																	data-instrument-duration="60 mins"
 																	data-instrument-duration-id="1hour"
 																	data-instrument-duration-value="3600000" 
-																	data-instrument-seed-rate="115.45"
+																	data-instrument-seed-rate="0.75441"
+																	data-instrument-pip="5"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -4923,7 +5109,8 @@
 																	data-instrument-duration="60 mins"
 																	data-instrument-duration-id="1hour"
 																	data-instrument-duration-value="3600000" 
-																	data-instrument-seed-rate="98.442"
+																	data-instrument-seed-rate="135.740"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -4983,7 +5170,8 @@
 																	data-instrument-duration="60 mins"
 																	data-instrument-duration-id="1hour"
 																	data-instrument-duration-value="3600000" 
-																	data-instrument-seed-rate="111.24"
+																	data-instrument-seed-rate="1.12560"
+																	data-instrument-pip="5"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -5044,6 +5232,7 @@
 																	data-instrument-duration-id="1hour"
 																	data-instrument-duration-value="3600000" 
 																	data-instrument-seed-rate="224.86"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -5107,7 +5296,8 @@
 																	data-instrument-duration="60 mins"
 																	data-instrument-duration-id="1hour"
 																	data-instrument-duration-value="3600000" 
-																	data-instrument-seed-rate="123.54"
+																	data-instrument-seed-rate="135.740"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -5167,7 +5357,8 @@
 																	data-instrument-duration="60 mins"
 																	data-instrument-duration-id="1hour"
 																	data-instrument-duration-value="3600000" 
-																	data-instrument-seed-rate="167.27"
+																	data-instrument-seed-rate="1.12560"
+																	data-instrument-pip="5"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -5228,6 +5419,7 @@
 																	data-instrument-duration-id="1hour"
 																	data-instrument-duration-value="3600000" 
 																	data-instrument-seed-rate="145.15"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -5288,6 +5480,7 @@
 																	data-instrument-duration-id="1hour"
 																	data-instrument-duration-value="3600000" 
 																	data-instrument-seed-rate="165.52"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -5348,6 +5541,7 @@
 																	data-instrument-duration-id="1hour"
 																	data-instrument-duration-value="3600000" 
 																	data-instrument-seed-rate="135.59"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -5412,6 +5606,7 @@
 																	data-instrument-duration-id="1hour"
 																	data-instrument-duration-value="3600000" 
 																	data-instrument-seed-rate="115.54"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -5472,6 +5667,7 @@
 																	data-instrument-duration-id="1hour"
 																	data-instrument-duration-value="3600000" 
 																	data-instrument-seed-rate="112.43"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -5535,7 +5731,8 @@
 																	data-instrument-duration="24 hours"
 																	data-instrument-duration-id="1day"
 																	data-instrument-duration-value="86400000" 
-																	data-instrument-seed-rate="115.45"
+																	data-instrument-seed-rate="0.75441"
+																	data-instrument-pip="5"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -5595,7 +5792,8 @@
 																	data-instrument-duration="24 hours"
 																	data-instrument-duration-id="1day"
 																	data-instrument-duration-value="86400000" 
-																	data-instrument-seed-rate="98.442"
+																	data-instrument-seed-rate="135.740"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -5655,7 +5853,8 @@
 																	data-instrument-duration="24 hours"
 																	data-instrument-duration-id="1day"
 																	data-instrument-duration-value="86400000" 
-																	data-instrument-seed-rate="111.24"
+																	data-instrument-seed-rate="1.12560"
+																	data-instrument-pip="5"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -5720,6 +5919,7 @@
 																	data-instrument-duration-id="1day"
 																	data-instrument-duration-value="86400000" 
 																	data-instrument-seed-rate="224.86"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -5779,7 +5979,8 @@
 																	data-instrument-duration="24 hours"
 																	data-instrument-duration-id="1day"
 																	data-instrument-duration-value="86400000" 
-																	data-instrument-seed-rate="123.54"
+																	data-instrument-seed-rate="135.740"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -5839,7 +6040,8 @@
 																	data-instrument-duration="24 hours"
 																	data-instrument-duration-id="1day"
 																	data-instrument-duration-value="86400000" 
-																	data-instrument-seed-rate="167.27"
+																	data-instrument-seed-rate="1.12560"
+																	data-instrument-pip="5"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -5900,6 +6102,7 @@
 																	data-instrument-duration-id="1day"
 																	data-instrument-duration-value="86400000" 
 																	data-instrument-seed-rate="145.15"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -5960,6 +6163,7 @@
 																	data-instrument-duration-id="1day"
 																	data-instrument-duration-value="86400000" 
 																	data-instrument-seed-rate="165.52"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -6024,6 +6228,7 @@
 																	data-instrument-duration-id="1day"
 																	data-instrument-duration-value="86400000" 
 																	data-instrument-seed-rate="135.59"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -6084,6 +6289,7 @@
 																	data-instrument-duration-id="1day"
 																	data-instrument-duration-value="86400000" 
 																	data-instrument-seed-rate="115.54"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -6144,6 +6350,7 @@
 																	data-instrument-duration-id="1day"
 																	data-instrument-duration-value="86400000" 
 																	data-instrument-seed-rate="112.43"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -6223,7 +6430,8 @@
 															data-instrument-duration="15 mins"
 															data-instrument-duration-id="15min"
 															data-instrument-duration-value="900000" 
-															data-instrument-seed-rate="115.45"
+															data-instrument-seed-rate="0.75441"
+															data-instrument-pip="5"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -6280,7 +6488,8 @@
 															data-instrument-duration="15 mins"
 															data-instrument-duration-id="15min"
 															data-instrument-duration-value="900000" 
-															data-instrument-seed-rate="98.442"
+															data-instrument-seed-rate="135.740"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -6337,7 +6546,8 @@
 															data-instrument-duration="15 mins"
 															data-instrument-duration-id="15min"
 															data-instrument-duration-value="900000" 
-															data-instrument-seed-rate="111.24"
+															data-instrument-seed-rate="1.12560"
+															data-instrument-pip="5"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -6395,6 +6605,7 @@
 															data-instrument-duration-id="15min"
 															data-instrument-duration-value="900000" 
 															data-instrument-seed-rate="224.86"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -6451,7 +6662,8 @@
 															data-instrument-duration="15 mins"
 															data-instrument-duration-id="15min"
 															data-instrument-duration-value="900000" 
-															data-instrument-seed-rate="123.54"
+															data-instrument-seed-rate="135.740"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -6512,7 +6724,8 @@
 															data-instrument-duration="15 mins"
 															data-instrument-duration-id="15min"
 															data-instrument-duration-value="900000" 
-															data-instrument-seed-rate="167.27"
+															data-instrument-seed-rate="1.12560"
+															data-instrument-pip="5"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -6570,6 +6783,7 @@
 															data-instrument-duration-id="15min"
 															data-instrument-duration-value="900000" 
 															data-instrument-seed-rate="145.15"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -6627,6 +6841,7 @@
 															data-instrument-duration-id="15min"
 															data-instrument-duration-value="900000" 
 															data-instrument-seed-rate="165.52"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -6684,6 +6899,7 @@
 															data-instrument-duration-id="15min"
 															data-instrument-duration-value="900000" 
 															data-instrument-seed-rate="135.59"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -6741,6 +6957,7 @@
 															data-instrument-duration-id="15min"
 															data-instrument-duration-value="900000" 
 															data-instrument-seed-rate="115.54"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -6802,6 +7019,7 @@
 															data-instrument-duration-id="15min"
 															data-instrument-duration-value="900000" 
 															data-instrument-seed-rate="112.43"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -6878,7 +7096,8 @@
 															data-instrument-duration="60 mins"
 															data-instrument-duration-id="1hour"
 															data-instrument-duration-value="3600000" 
-															data-instrument-seed-rate="115.45"
+															data-instrument-seed-rate="0.75441"
+															data-instrument-pip="5"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -6935,7 +7154,8 @@
 															data-instrument-duration="60 mins"
 															data-instrument-duration-id="1hour"
 															data-instrument-duration-value="3600000" 
-															data-instrument-seed-rate="98.442"
+															data-instrument-seed-rate="135.740"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -6992,7 +7212,8 @@
 															data-instrument-duration="60 mins"
 															data-instrument-duration-id="1hour"
 															data-instrument-duration-value="3600000" 
-															data-instrument-seed-rate="111.24"
+															data-instrument-seed-rate="1.12560"
+															data-instrument-pip="5"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -7050,6 +7271,7 @@
 															data-instrument-duration-id="1hour"
 															data-instrument-duration-value="3600000" 
 															data-instrument-seed-rate="224.86"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -7106,7 +7328,8 @@
 															data-instrument-duration="60 mins"
 															data-instrument-duration-id="1hour"
 															data-instrument-duration-value="3600000" 
-															data-instrument-seed-rate="123.54"
+															data-instrument-seed-rate="135.740"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -7167,7 +7390,8 @@
 															data-instrument-duration="60 mins"
 															data-instrument-duration-id="1hour"
 															data-instrument-duration-value="3600000" 
-															data-instrument-seed-rate="167.27"
+															data-instrument-seed-rate="1.12560"
+															data-instrument-pip="5"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -7225,6 +7449,7 @@
 															data-instrument-duration-id="1hour"
 															data-instrument-duration-value="3600000" 
 															data-instrument-seed-rate="145.15"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -7282,6 +7507,7 @@
 															data-instrument-duration-id="1hour"
 															data-instrument-duration-value="3600000" 
 															data-instrument-seed-rate="165.52"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -7339,6 +7565,7 @@
 															data-instrument-duration-id="1hour"
 															data-instrument-duration-value="3600000" 
 															data-instrument-seed-rate="135.59"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -7396,6 +7623,7 @@
 															data-instrument-duration-id="1hour"
 															data-instrument-duration-value="3600000" 
 															data-instrument-seed-rate="115.54"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -7457,6 +7685,7 @@
 															data-instrument-duration-id="1hour"
 															data-instrument-duration-value="3600000" 
 															data-instrument-seed-rate="112.43"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -7533,7 +7762,8 @@
 															data-instrument-duration="24 hours"
 															data-instrument-duration-id="1day"
 															data-instrument-duration-value="86400000" 
-															data-instrument-seed-rate="115.45"
+															data-instrument-seed-rate="0.75441"
+															data-instrument-pip="5"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -7590,7 +7820,8 @@
 															data-instrument-duration="24 hours"
 															data-instrument-duration-id="1day"
 															data-instrument-duration-value="86400000" 
-															data-instrument-seed-rate="98.442"
+															data-instrument-seed-rate="135.740"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -7647,7 +7878,8 @@
 															data-instrument-duration="24 hours"
 															data-instrument-duration-id="1day"
 															data-instrument-duration-value="86400000" 
-															data-instrument-seed-rate="111.24"
+															data-instrument-seed-rate="1.12560"
+															data-instrument-pip="5"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -7705,6 +7937,7 @@
 															data-instrument-duration-id="1day"
 															data-instrument-duration-value="86400000" 
 															data-instrument-seed-rate="224.86"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -7761,7 +7994,8 @@
 															data-instrument-duration="24 hours"
 															data-instrument-duration-id="1day"
 															data-instrument-duration-value="86400000" 
-															data-instrument-seed-rate="123.54"
+															data-instrument-seed-rate="135.740"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -7822,7 +8056,8 @@
 															data-instrument-duration="24 hours"
 															data-instrument-duration-id="1day"
 															data-instrument-duration-value="86400000" 
-															data-instrument-seed-rate="167.27"
+															data-instrument-seed-rate="1.12560"
+															data-instrument-pip="5"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -7880,6 +8115,7 @@
 															data-instrument-duration-id="1day"
 															data-instrument-duration-value="86400000" 
 															data-instrument-seed-rate="145.15"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -7937,6 +8173,7 @@
 															data-instrument-duration-id="1day"
 															data-instrument-duration-value="86400000" 
 															data-instrument-seed-rate="165.52"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -7994,6 +8231,7 @@
 															data-instrument-duration-id="1day"
 															data-instrument-duration-value="86400000" 
 															data-instrument-seed-rate="135.59"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -8051,6 +8289,7 @@
 															data-instrument-duration-id="1day"
 															data-instrument-duration-value="86400000" 
 															data-instrument-seed-rate="115.54"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -8112,6 +8351,7 @@
 															data-instrument-duration-id="1day"
 															data-instrument-duration-value="86400000" 
 															data-instrument-seed-rate="112.43"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -8194,7 +8434,7 @@
 					</div>
 					<div class="panel panel-default trading-platform main-view" id="spread-main-view">
 						<div class="panel-header">
-							<div class="pull-left">
+							<div class="pull-left chart-panel instrument-details-display walk-through-step">
 								<span class="trading-platform-instrument-title font-sb">
 									
 								</span>
@@ -8207,7 +8447,7 @@
 								
 								<img src="public/trade-platform/images/loading.gif" class="loading-icon"/>
 							</div>
-							<div class="pull-right">
+							<div class="pull-right time-display chart-control walk-through-step">
 								<img src="public/trade-platform/images/loading.gif" class="processing"/>
 							
 								<span class="trading-platform-instrument-closing-time">
@@ -8240,37 +8480,39 @@
 							</div>
 						</div>
 						<div class="panel-body">
-							<div class="heatmap collapsed tooltip-container" id="spread-heatmap" data-target="spread-graph">
-								<div class="label high">
-									31%
-								</div>
-								<div class="meter">
-									<div class="fill high" style="height: 31%;">
+							<span class="chart-panel chart walk-through-step">
+								<div class="heatmap collapsed tooltip-container" id="spread-heatmap" data-target="spread-graph">
+									<div class="label high">
+										31%
 									</div>
-									<div class="fill low" style="height: 69%;">
+									<div class="meter">
+										<div class="fill high" style="height: 31%;">
+										</div>
+										<div class="fill low" style="height: 69%;">
+										</div>
+									</div>
+									<div class="label low">
+										69%
+									</div>
+									<div class="toggle">
+										
+									</div>
+									<div class="expander">
+									</div>
+									<div class="tooltip trader-choice">
+										<div class="title">
+											Traders Choice
+										</div>
+										<div class="content">
+											Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+										</div>
 									</div>
 								</div>
-								<div class="label low">
-									69%
+								<div class="trading-platform-live-graph">
+									<div id="spread-graph" class="live-graph"></div>
 								</div>
-								<div class="toggle">
-									
-								</div>
-								<div class="expander">
-								</div>
-								<div class="tooltip trader-choice">
-									<div class="title">
-										Traders Choice
-									</div>
-									<div class="content">
-										Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-									</div>
-								</div>
-							</div>
-							<div class="trading-platform-live-graph">
-								<div id="spread-graph" class="live-graph"></div>
-							</div>
-							<div class="trading-platform-main-controls ">
+							</span>
+							<div class="trading-platform-main-controls chart-control walk-through-step">
 								<div class="trading-platform-main-controls-instrument-title font-sb">
 									USD/JPY
 								</div>
@@ -8361,82 +8603,137 @@
 			
 			<div class="tab-view-panel " id="on-demand-mode">
 				<div class="trading-app-container">
-					<div class="clearfix">
+					<div id="options-carousel" class="clearfix walk-through-step">
 						<div class="pull-left tab-view tab-view-default instrument-selector-widget">
 							<div class="instrument-selector-widget-duration-selectors-container tab-view-tab-selectors-container-wrapper">
 								<div class="instrument-selector-widget-instrument-filter pull-right">
-									<ul class="dropdown dropdown-default pull-left" tabindex="0">
-										<li class="dropdown-item active">
-											<input id="on-demand-all-currency" checked="checked" name="on-demand-instrument-filter" type="radio" value=""/>
-											<label for="on-demand-all-currency" data-label="Filter Currencies">
-												Filter Currencies
-											</label>
-										</li>
-										
-										<li class="dropdown-item">
-											<input id="on-demand-aud-jpy" name="on-demand-instrument-filter" type="radio" value="aud-jpy"/>
-											<label for="on-demand-aud-jpy" data-label="AUD/JPY">
-												AUD/JPY
-											</label>
-										</li>
-										
-										<li class="dropdown-item">
-											<input id="on-demand-aud-usd" name="on-demand-instrument-filter" type="radio" value="aud-usd"/>
-											<label for="on-demand-aud-usd" data-label="AUD/USD">
-												AUD/USD
-											</label>
-										</li>
-										
-										<li class="dropdown-item">
-											<input id="on-demand-eur-jpy" name="on-demand-instrument-filter" type="radio" value="eur-jpy"/>
-											<label for="on-demand-eur-jpy" data-label="EUR/JPY">
-												EUR/JPY
-											</label>
-										</li>
-										
-										<li class="dropdown-item">
-											<input id="on-demand-eur-usd" name="on-demand-instrument-filter" type="radio" value="eur-usd"/>
-											<label for="on-demand-eur-usd" data-label="EUR/USD">
-												EUR/USD
-											</label>
-										</li>
-										
-										<li class="dropdown-item">
-											<input id="on-demand-gbp-jpy" name="on-demand-instrument-filter" type="radio" value="gbp-jpy"/>
-											<label for="on-demand-gbp-jpy" data-label="GBP/JPY">
-												GBP/JPY
-											</label>
-										</li>
-										
-										<li class="dropdown-item">
-											<input id="on-demand-gbp-usd" name="on-demand-instrument-filter" type="radio" value="gbp-usd"/>
-											<label for="on-demand-gbp-usd" data-label="GBP/USD">
-												GBP/USD
-											</label>
-										</li>
-										
-										<li class="dropdown-item">
-											<input id="on-demand-nzd-jpy" name="on-demand-instrument-filter" type="radio" value="nzd-jpy"/>
-											<label for="on-demand-nzd-jpy" data-label="NZD/JPY">
-												NZD/JPY
-											</label>
-										</li>
-										
-										<li class="dropdown-item">
-											<input id="on-demand-nzd-usd" name="on-demand-instrument-filter" type="radio" value="nzd-usd"/>
-											<label for="on-demand-nzd-usd" data-label="NZD/USD">
-												NZD/USD
-											</label>
-										</li>
-										
-										<li class="dropdown-item">
-											<input id="on-demand-usd-jpy" name="on-demand-instrument-filter" type="radio" value="usd-jpy"/>
-											<label for="on-demand-usd-jpy" data-label="USD/JPY">
+									<div id="on-demand-asset-filter" class="asset-filter hl-toggler" data-toggle-self-on-disabled="true" data-toggle-off-click="true">
+										<span class="asset-filter--placeholder hl-toggler" data-toggle-target="#on-demand-asset-filter">
+											Filter assets
+										</span>
+										<div class="asset-filter--category hl-toggler" data-toggle-group="filter-asset-on-demand">
+											<span class="asset-filter--clear hl-toggler" data-toggle-target="#on-demand-asset-filter">Clear filter</span>
+										</div>
+										<div class="asset-filter--category indicies">
+											Indicies
+											<div class="asset-filter--assets">
+												<div class="asset-filter--asset hl-toggler" data-toggle-group="filter-asset-on-demand" data-toggle-self-off-disabled="true" data-toggle-target="#filter-aus200">
+													<span class="asset-filter--asset--label hl-toggler" data-toggle-target="#on-demand-asset-filter">AUS200</span>
+												</div>
+												<div class="asset-filter--asset hl-toggler" data-toggle-group="filter-asset-on-demand" data-toggle-self-off-disabled="true"  data-toggle-target="#filter-jpn225">
+													<span class="asset-filter--asset--label hl-toggler" data-toggle-target="#on-demand-asset-filter">JPN225</span>
+												</div>
+												<div class="asset-filter--asset hl-toggler" data-toggle-group="filter-asset-on-demand" data-toggle-self-off-disabled="true"  data-toggle-target="#filter-hkg33">
+													<span class="asset-filter--asset--label hl-toggler" data-toggle-target="#on-demand-asset-filter">HKG33</span>
+												</div>
+												<div class="asset-filter--asset hl-toggler" data-toggle-group="filter-asset-on-demand" data-toggle-self-off-disabled="true"  data-toggle-target="#filter-uk100">
+													<span class="asset-filter--asset--label hl-toggler" data-toggle-target="#on-demand-asset-filter">UK100</span>
+												</div>
+												<div class="asset-filter--asset hl-toggler" data-toggle-group="filter-asset-on-demand" data-toggle-self-off-disabled="true"  data-toggle-target="#filter-us30">
+													<span class="asset-filter--asset--label hl-toggler" data-toggle-target="#on-demand-asset-filter">US30</span>
+												</div>
+											</div>
+										</div>
+										<div class="asset-filter--category currencies">
+											Currencies
+											<div class="asset-filter--assets">
+												<div class="asset-filter--asset hl-toggler" data-toggle-group="filter-asset-on-demand" data-toggle-self-off-disabled="true" data-toggle-target="#filter-usd-jpy">
+													<span class="asset-filter--asset--label hl-toggler" data-toggle-target="#on-demand-asset-filter">USD/JPY</span>
+												</div>
+												<div class="asset-filter--asset hl-toggler" data-toggle-group="filter-asset-on-demand" data-toggle-self-off-disabled="true"  data-toggle-target="#filter-aud-usd">
+													<span class="asset-filter--asset--label hl-toggler" data-toggle-target="#on-demand-asset-filter">AUD/USD</span>
+												</div>
+												<div class="asset-filter--asset hl-toggler" data-toggle-group="filter-asset-on-demand" data-toggle-self-off-disabled="true"  data-toggle-target="#filter-eur-jpy">
+													<span class="asset-filter--asset--label hl-toggler" data-toggle-target="#on-demand-asset-filter">EUR/JPY</span>
+												</div>
+												<div class="asset-filter--asset hl-toggler" data-toggle-group="filter-asset-on-demand" data-toggle-self-off-disabled="true"  data-toggle-target="#filter-eur-usd">
+													<span class="asset-filter--asset--label hl-toggler" data-toggle-target="#on-demand-asset-filter">EUR/USD</span>
+												</div>
+												<div class="asset-filter--asset hl-toggler" data-toggle-group="filter-asset-on-demand" data-toggle-self-off-disabled="true"  data-toggle-target="#filter-gbp-jpy">
+													<span class="asset-filter--asset--label hl-toggler" data-toggle-target="#on-demand-asset-filter">GBP/JPY</span>
+												</div>
+												<div class="asset-filter--asset hl-toggler" data-toggle-group="filter-asset-on-demand" data-toggle-self-off-disabled="true"  data-toggle-target="#filter-gbp-usd">
+													<span class="asset-filter--asset--label hl-toggler" data-toggle-target="#on-demand-asset-filter">GBP/USD</span>
+												</div>
+												<div class="asset-filter--asset hl-toggler" data-toggle-group="filter-asset-on-demand" data-toggle-self-off-disabled="true"  data-toggle-target="#filter-nzd-jpy">
+													<span class="asset-filter--asset--label hl-toggler" data-toggle-target="#on-demand-asset-filter">NZD/JPY</span>
+												</div>
+												<div class="asset-filter--asset hl-toggler" data-toggle-group="filter-asset-on-demand" data-toggle-self-off-disabled="true"  data-toggle-target="#filter-nzd-usd">
+													<span class="asset-filter--asset--label hl-toggler" data-toggle-target="#on-demand-asset-filter">NZD/USD</span>
+												</div>
+												<div class="asset-filter--asset hl-toggler" data-toggle-group="filter-asset-on-demand" data-toggle-self-off-disabled="true"  data-toggle-target="#filter-aud-jpy">
+													<span class="asset-filter--asset--label hl-toggler" data-toggle-target="#on-demand-asset-filter">AUD/JPY</span>
+												</div>
+											</div>
+										</div>
+										<div class="asset-filter--category commodities">
+											Commodities
+											<div class="asset-filter--assets">
+												<div class="asset-filter--asset hl-toggler" data-toggle-group="filter-asset-on-demand" data-toggle-self-off-disabled="true" data-toggle-target="#filter-gold">
+													<span class="asset-filter--asset--label hl-toggler" data-toggle-target="#on-demand-asset-filter">Gold</span>
+												</div>
+												<div class="asset-filter--asset hl-toggler" data-toggle-group="filter-asset-on-demand" data-toggle-self-off-disabled="true"  data-toggle-target="#filter-silver">
+													<span class="asset-filter--asset--label hl-toggler" data-toggle-target="#on-demand-asset-filter">Silver</span>
+												</div>
+												<div class="asset-filter--asset hl-toggler" data-toggle-group="filter-asset-on-demand" data-toggle-self-off-disabled="true"  data-toggle-target="#filter-oil">
+													<span class="asset-filter--asset--label hl-toggler" data-toggle-target="#on-demand-asset-filter">Oil</span>
+												</div>
+											</div>
+										</div>
+										<div class="asset-filter--display-labels">
+											<div class="asset-filter--display-label" data-toggle-group="filter-asset-on-demand" id="filter-aus200">
+												AUS200
+											</div>
+											<div class="asset-filter--display-label" data-toggle-group="filter-asset-on-demand" id="filter-jpn225">
+												JPN225
+											</div>
+											<div class="asset-filter--display-label" data-toggle-group="filter-asset-on-demand" id="filter-hkg33">
+												HKG33
+											</div>
+											<div class="asset-filter--display-label" data-toggle-group="filter-asset-on-demand" id="filter-uk100">
+												UK100
+											</div>
+											<div class="asset-filter--display-label" data-toggle-group="filter-asset-on-demand" id="filter-us30">
+												US30
+											</div>
+											<div class="asset-filter--display-label" data-toggle-group="filter-asset-on-demand" id="filter-usd-jpy">
 												USD/JPY
-											</label>
-										</li>
-										
-									</ul>
+											</div>
+											<div class="asset-filter--display-label" data-toggle-group="filter-asset-on-demand" id="filter-aud-usd">
+												AUD/USD
+											</div>
+											<div class="asset-filter--display-label" data-toggle-group="filter-asset-on-demand" id="filter-eur-jpy">
+												EUR/JPY
+											</div>
+											<div class="asset-filter--display-label" data-toggle-group="filter-asset-on-demand" id="filter-eur-usd">
+												EUR/USD
+											</div>
+											<div class="asset-filter--display-label" data-toggle-group="filter-asset-on-demand" id="filter-gbp-jpy">
+												GBP/JPY
+											</div>
+											<div class="asset-filter--display-label" data-toggle-group="filter-asset-on-demand" id="filter-gbp-usd">
+												GBP/USD
+											</div>
+											<div class="asset-filter--display-label" data-toggle-group="filter-asset-on-demand" id="filter-nzd-jpy">
+												NZD/JPY
+											</div>
+											<div class="asset-filter--display-label" data-toggle-group="filter-asset-on-demand" id="filter-nzd-usd">
+												NZD/USD
+											</div>
+											<div class="asset-filter--display-label" data-toggle-group="filter-asset-on-demand" id="filter-aud-jpy">
+												AUD/JPY
+											</div>
+											<div class="asset-filter--display-label" data-toggle-group="filter-asset-on-demand" id="filter-gold">
+												Gold
+											</div>
+											<div class="asset-filter--display-label" data-toggle-group="filter-asset-on-demand" id="filter-silver">
+												Silver
+											</div>
+											<div class="asset-filter--display-label" data-toggle-group="filter-asset-on-demand" id="filter-aud-jpy">
+												Oil
+											</div>
+										</div>
+									</div>
 								</div>
 								<div class="instrument-selector-widget-collapse-toggle">
 								</div>
@@ -8503,7 +8800,8 @@
 																	data-instrument-duration="1 min"
 																	data-instrument-duration-id="1min"
 																	data-instrument-duration-value="60000" 
-																	data-instrument-seed-rate="115.45"
+																	data-instrument-seed-rate="0.75441"
+																	data-instrument-pip="5"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -8567,7 +8865,8 @@
 																	data-instrument-duration="1 min"
 																	data-instrument-duration-id="1min"
 																	data-instrument-duration-value="60000" 
-																	data-instrument-seed-rate="98.442"
+																	data-instrument-seed-rate="135.740"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -8631,7 +8930,8 @@
 																	data-instrument-duration="1 min"
 																	data-instrument-duration-id="1min"
 																	data-instrument-duration-value="60000" 
-																	data-instrument-seed-rate="111.24"
+																	data-instrument-seed-rate="1.12560"
+																	data-instrument-pip="5"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -8696,6 +8996,7 @@
 																	data-instrument-duration-id="1min"
 																	data-instrument-duration-value="60000" 
 																	data-instrument-seed-rate="224.86"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -8759,7 +9060,8 @@
 																	data-instrument-duration="1 min"
 																	data-instrument-duration-id="1min"
 																	data-instrument-duration-value="60000" 
-																	data-instrument-seed-rate="123.54"
+																	data-instrument-seed-rate="135.740"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -8827,7 +9129,8 @@
 																	data-instrument-duration="1 min"
 																	data-instrument-duration-id="1min"
 																	data-instrument-duration-value="60000" 
-																	data-instrument-seed-rate="167.27"
+																	data-instrument-seed-rate="1.12560"
+																	data-instrument-pip="5"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -8892,6 +9195,7 @@
 																	data-instrument-duration-id="1min"
 																	data-instrument-duration-value="60000" 
 																	data-instrument-seed-rate="145.15"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -8956,6 +9260,7 @@
 																	data-instrument-duration-id="1min"
 																	data-instrument-duration-value="60000" 
 																	data-instrument-seed-rate="165.52"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -9020,6 +9325,7 @@
 																	data-instrument-duration-id="1min"
 																	data-instrument-duration-value="60000" 
 																	data-instrument-seed-rate="135.59"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -9084,6 +9390,7 @@
 																	data-instrument-duration-id="1min"
 																	data-instrument-duration-value="60000" 
 																	data-instrument-seed-rate="115.54"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -9152,6 +9459,7 @@
 																	data-instrument-duration-id="1min"
 																	data-instrument-duration-value="60000" 
 																	data-instrument-seed-rate="112.43"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -9219,7 +9527,8 @@
 																	data-instrument-duration="3 min"
 																	data-instrument-duration-id="3min"
 																	data-instrument-duration-value="180000" 
-																	data-instrument-seed-rate="115.45"
+																	data-instrument-seed-rate="0.75441"
+																	data-instrument-pip="5"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -9283,7 +9592,8 @@
 																	data-instrument-duration="3 min"
 																	data-instrument-duration-id="3min"
 																	data-instrument-duration-value="180000" 
-																	data-instrument-seed-rate="98.442"
+																	data-instrument-seed-rate="135.740"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -9347,7 +9657,8 @@
 																	data-instrument-duration="3 min"
 																	data-instrument-duration-id="3min"
 																	data-instrument-duration-value="180000" 
-																	data-instrument-seed-rate="111.24"
+																	data-instrument-seed-rate="1.12560"
+																	data-instrument-pip="5"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -9412,6 +9723,7 @@
 																	data-instrument-duration-id="3min"
 																	data-instrument-duration-value="180000" 
 																	data-instrument-seed-rate="224.86"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -9479,7 +9791,8 @@
 																	data-instrument-duration="3 min"
 																	data-instrument-duration-id="3min"
 																	data-instrument-duration-value="180000" 
-																	data-instrument-seed-rate="123.54"
+																	data-instrument-seed-rate="135.740"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -9543,7 +9856,8 @@
 																	data-instrument-duration="3 min"
 																	data-instrument-duration-id="3min"
 																	data-instrument-duration-value="180000" 
-																	data-instrument-seed-rate="167.27"
+																	data-instrument-seed-rate="1.12560"
+																	data-instrument-pip="5"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -9608,6 +9922,7 @@
 																	data-instrument-duration-id="3min"
 																	data-instrument-duration-value="180000" 
 																	data-instrument-seed-rate="145.15"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -9672,6 +9987,7 @@
 																	data-instrument-duration-id="3min"
 																	data-instrument-duration-value="180000" 
 																	data-instrument-seed-rate="165.52"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -9736,6 +10052,7 @@
 																	data-instrument-duration-id="3min"
 																	data-instrument-duration-value="180000" 
 																	data-instrument-seed-rate="135.59"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -9804,6 +10121,7 @@
 																	data-instrument-duration-id="3min"
 																	data-instrument-duration-value="180000" 
 																	data-instrument-seed-rate="115.54"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -9868,6 +10186,7 @@
 																	data-instrument-duration-id="3min"
 																	data-instrument-duration-value="180000" 
 																	data-instrument-seed-rate="112.43"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -9935,7 +10254,8 @@
 																	data-instrument-duration="5 min"
 																	data-instrument-duration-id="5min"
 																	data-instrument-duration-value="300000" 
-																	data-instrument-seed-rate="115.45"
+																	data-instrument-seed-rate="0.75441"
+																	data-instrument-pip="5"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -9999,7 +10319,8 @@
 																	data-instrument-duration="5 min"
 																	data-instrument-duration-id="5min"
 																	data-instrument-duration-value="300000" 
-																	data-instrument-seed-rate="98.442"
+																	data-instrument-seed-rate="135.740"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -10063,7 +10384,8 @@
 																	data-instrument-duration="5 min"
 																	data-instrument-duration-id="5min"
 																	data-instrument-duration-value="300000" 
-																	data-instrument-seed-rate="111.24"
+																	data-instrument-seed-rate="1.12560"
+																	data-instrument-pip="5"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -10132,6 +10454,7 @@
 																	data-instrument-duration-id="5min"
 																	data-instrument-duration-value="300000" 
 																	data-instrument-seed-rate="224.86"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -10195,7 +10518,8 @@
 																	data-instrument-duration="5 min"
 																	data-instrument-duration-id="5min"
 																	data-instrument-duration-value="300000" 
-																	data-instrument-seed-rate="123.54"
+																	data-instrument-seed-rate="135.740"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -10259,7 +10583,8 @@
 																	data-instrument-duration="5 min"
 																	data-instrument-duration-id="5min"
 																	data-instrument-duration-value="300000" 
-																	data-instrument-seed-rate="167.27"
+																	data-instrument-seed-rate="1.12560"
+																	data-instrument-pip="5"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -10324,6 +10649,7 @@
 																	data-instrument-duration-id="5min"
 																	data-instrument-duration-value="300000" 
 																	data-instrument-seed-rate="145.15"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -10388,6 +10714,7 @@
 																	data-instrument-duration-id="5min"
 																	data-instrument-duration-value="300000" 
 																	data-instrument-seed-rate="165.52"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -10456,6 +10783,7 @@
 																	data-instrument-duration-id="5min"
 																	data-instrument-duration-value="300000" 
 																	data-instrument-seed-rate="135.59"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -10520,6 +10848,7 @@
 																	data-instrument-duration-id="5min"
 																	data-instrument-duration-value="300000" 
 																	data-instrument-seed-rate="115.54"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -10584,6 +10913,7 @@
 																	data-instrument-duration-id="5min"
 																	data-instrument-duration-value="300000" 
 																	data-instrument-seed-rate="112.43"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -10667,7 +10997,8 @@
 															data-instrument-duration="1 min"
 															data-instrument-duration-id="1min"
 															data-instrument-duration-value="60000" 
-															data-instrument-seed-rate="115.45"
+															data-instrument-seed-rate="0.75441"
+															data-instrument-pip="5"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -10728,7 +11059,8 @@
 															data-instrument-duration="1 min"
 															data-instrument-duration-id="1min"
 															data-instrument-duration-value="60000" 
-															data-instrument-seed-rate="98.442"
+															data-instrument-seed-rate="135.740"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -10789,7 +11121,8 @@
 															data-instrument-duration="1 min"
 															data-instrument-duration-id="1min"
 															data-instrument-duration-value="60000" 
-															data-instrument-seed-rate="111.24"
+															data-instrument-seed-rate="1.12560"
+															data-instrument-pip="5"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -10851,6 +11184,7 @@
 															data-instrument-duration-id="1min"
 															data-instrument-duration-value="60000" 
 															data-instrument-seed-rate="224.86"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -10911,7 +11245,8 @@
 															data-instrument-duration="1 min"
 															data-instrument-duration-id="1min"
 															data-instrument-duration-value="60000" 
-															data-instrument-seed-rate="123.54"
+															data-instrument-seed-rate="135.740"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -10976,7 +11311,8 @@
 															data-instrument-duration="1 min"
 															data-instrument-duration-id="1min"
 															data-instrument-duration-value="60000" 
-															data-instrument-seed-rate="167.27"
+															data-instrument-seed-rate="1.12560"
+															data-instrument-pip="5"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -11038,6 +11374,7 @@
 															data-instrument-duration-id="1min"
 															data-instrument-duration-value="60000" 
 															data-instrument-seed-rate="145.15"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -11099,6 +11436,7 @@
 															data-instrument-duration-id="1min"
 															data-instrument-duration-value="60000" 
 															data-instrument-seed-rate="165.52"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -11160,6 +11498,7 @@
 															data-instrument-duration-id="1min"
 															data-instrument-duration-value="60000" 
 															data-instrument-seed-rate="135.59"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -11221,6 +11560,7 @@
 															data-instrument-duration-id="1min"
 															data-instrument-duration-value="60000" 
 															data-instrument-seed-rate="115.54"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -11286,6 +11626,7 @@
 															data-instrument-duration-id="1min"
 															data-instrument-duration-value="60000" 
 															data-instrument-seed-rate="112.43"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -11366,7 +11707,8 @@
 															data-instrument-duration="3 min"
 															data-instrument-duration-id="3min"
 															data-instrument-duration-value="180000" 
-															data-instrument-seed-rate="115.45"
+															data-instrument-seed-rate="0.75441"
+															data-instrument-pip="5"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -11427,7 +11769,8 @@
 															data-instrument-duration="3 min"
 															data-instrument-duration-id="3min"
 															data-instrument-duration-value="180000" 
-															data-instrument-seed-rate="98.442"
+															data-instrument-seed-rate="135.740"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -11488,7 +11831,8 @@
 															data-instrument-duration="3 min"
 															data-instrument-duration-id="3min"
 															data-instrument-duration-value="180000" 
-															data-instrument-seed-rate="111.24"
+															data-instrument-seed-rate="1.12560"
+															data-instrument-pip="5"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -11550,6 +11894,7 @@
 															data-instrument-duration-id="3min"
 															data-instrument-duration-value="180000" 
 															data-instrument-seed-rate="224.86"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -11610,7 +11955,8 @@
 															data-instrument-duration="3 min"
 															data-instrument-duration-id="3min"
 															data-instrument-duration-value="180000" 
-															data-instrument-seed-rate="123.54"
+															data-instrument-seed-rate="135.740"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -11675,7 +12021,8 @@
 															data-instrument-duration="3 min"
 															data-instrument-duration-id="3min"
 															data-instrument-duration-value="180000" 
-															data-instrument-seed-rate="167.27"
+															data-instrument-seed-rate="1.12560"
+															data-instrument-pip="5"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -11737,6 +12084,7 @@
 															data-instrument-duration-id="3min"
 															data-instrument-duration-value="180000" 
 															data-instrument-seed-rate="145.15"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -11798,6 +12146,7 @@
 															data-instrument-duration-id="3min"
 															data-instrument-duration-value="180000" 
 															data-instrument-seed-rate="165.52"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -11859,6 +12208,7 @@
 															data-instrument-duration-id="3min"
 															data-instrument-duration-value="180000" 
 															data-instrument-seed-rate="135.59"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -11920,6 +12270,7 @@
 															data-instrument-duration-id="3min"
 															data-instrument-duration-value="180000" 
 															data-instrument-seed-rate="115.54"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -11985,6 +12336,7 @@
 															data-instrument-duration-id="3min"
 															data-instrument-duration-value="180000" 
 															data-instrument-seed-rate="112.43"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -12065,7 +12417,8 @@
 															data-instrument-duration="5 min"
 															data-instrument-duration-id="5min"
 															data-instrument-duration-value="300000" 
-															data-instrument-seed-rate="115.45"
+															data-instrument-seed-rate="0.75441"
+															data-instrument-pip="5"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -12126,7 +12479,8 @@
 															data-instrument-duration="5 min"
 															data-instrument-duration-id="5min"
 															data-instrument-duration-value="300000" 
-															data-instrument-seed-rate="98.442"
+															data-instrument-seed-rate="135.740"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -12187,7 +12541,8 @@
 															data-instrument-duration="5 min"
 															data-instrument-duration-id="5min"
 															data-instrument-duration-value="300000" 
-															data-instrument-seed-rate="111.24"
+															data-instrument-seed-rate="1.12560"
+															data-instrument-pip="5"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -12249,6 +12604,7 @@
 															data-instrument-duration-id="5min"
 															data-instrument-duration-value="300000" 
 															data-instrument-seed-rate="224.86"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -12309,7 +12665,8 @@
 															data-instrument-duration="5 min"
 															data-instrument-duration-id="5min"
 															data-instrument-duration-value="300000" 
-															data-instrument-seed-rate="123.54"
+															data-instrument-seed-rate="135.740"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -12374,7 +12731,8 @@
 															data-instrument-duration="5 min"
 															data-instrument-duration-id="5min"
 															data-instrument-duration-value="300000" 
-															data-instrument-seed-rate="167.27"
+															data-instrument-seed-rate="1.12560"
+															data-instrument-pip="5"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -12436,6 +12794,7 @@
 															data-instrument-duration-id="5min"
 															data-instrument-duration-value="300000" 
 															data-instrument-seed-rate="145.15"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -12497,6 +12856,7 @@
 															data-instrument-duration-id="5min"
 															data-instrument-duration-value="300000" 
 															data-instrument-seed-rate="165.52"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -12558,6 +12918,7 @@
 															data-instrument-duration-id="5min"
 															data-instrument-duration-value="300000" 
 															data-instrument-seed-rate="135.59"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -12619,6 +12980,7 @@
 															data-instrument-duration-id="5min"
 															data-instrument-duration-value="300000" 
 															data-instrument-seed-rate="115.54"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -12684,6 +13046,7 @@
 															data-instrument-duration-id="5min"
 															data-instrument-duration-value="300000" 
 															data-instrument-seed-rate="112.43"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -12770,7 +13133,7 @@
 					</div>
 					<div class="panel panel-default trading-platform main-view" id="on-demand-main-view">
 						<div class="panel-header">
-							<div class="pull-left">
+							<div class="pull-left chart-panel instrument-details-display walk-through-step">
 								<span class="trading-platform-instrument-title font-sb">
 									
 								</span>
@@ -12779,7 +13142,7 @@
 								
 								<img src="public/trade-platform/images/loading.gif" class="loading-icon"/>
 							</div>
-							<div class="pull-right">
+							<div class="pull-right time-display chart-control walk-through-step">
 								<img src="public/trade-platform/images/loading.gif" class="processing"/>
 							
 								<span class="trading-platform-instrument-market-close-time">
@@ -12809,37 +13172,39 @@
 							</div>
 						</div>
 						<div class="panel-body">
-							<div class="heatmap collapsed tooltip-container" id="on-demand-heatmap" data-target="on-demand-graph">
-								<div class="label high">
-									31%
-								</div>
-								<div class="meter">
-									<div class="fill high" style="height: 31%;">
+							<span class="chart-panel chart walk-through-step">
+								<div class="heatmap collapsed tooltip-container" id="on-demand-heatmap" data-target="on-demand-graph">
+									<div class="label high">
+										31%
 									</div>
-									<div class="fill low" style="height: 69%;">
+									<div class="meter">
+										<div class="fill high" style="height: 31%;">
+										</div>
+										<div class="fill low" style="height: 69%;">
+										</div>
+									</div>
+									<div class="label low">
+										69%
+									</div>
+									<div class="toggle">
+										
+									</div>
+									<div class="expander">
+									</div>
+									<div class="tooltip trader-choice">
+										<div class="title">
+											Traders Choice
+										</div>
+										<div class="content">
+											Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+										</div>
 									</div>
 								</div>
-								<div class="label low">
-									69%
+								<div class="trading-platform-live-graph">
+									<div id="on-demand-graph" class="live-graph"></div>
 								</div>
-								<div class="toggle">
-									
-								</div>
-								<div class="expander">
-								</div>
-								<div class="tooltip trader-choice">
-									<div class="title">
-										Traders Choice
-									</div>
-									<div class="content">
-										Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-									</div>
-								</div>
-							</div>
-							<div class="trading-platform-live-graph">
-								<div id="on-demand-graph" class="live-graph"></div>
-							</div>
-							<div class="trading-platform-main-controls ">
+							</span>
+							<div class="trading-platform-main-controls chart-control walk-through-step">
 								<div class="trading-platform-main-controls-instrument-title font-sb">
 									USD/JPY
 								</div>
@@ -12926,82 +13291,137 @@
 			
 			<div class="tab-view-panel " id="spread-on-demand-mode">
 				<div class="trading-app-container">
-					<div class="clearfix">
+					<div id="options-carousel" class="clearfix walk-through-step">
 						<div class="pull-left tab-view tab-view-default instrument-selector-widget">
 							<div class="instrument-selector-widget-duration-selectors-container tab-view-tab-selectors-container-wrapper">
 								<div class="instrument-selector-widget-instrument-filter pull-right">
-									<ul class="dropdown dropdown-default pull-left" tabindex="0">
-										<li class="dropdown-item active">
-											<input id="spread-on-demand-all-currency" checked="checked" name="spread-on-demand-instrument-filter" type="radio" value=""/>
-											<label for="spread-on-demand-all-currency" data-label="Filter Currencies">
-												Filter Currencies
-											</label>
-										</li>
-										
-										<li class="dropdown-item">
-											<input id="spread-on-demand-aud-jpy" name="spread-on-demand-instrument-filter" type="radio" value="aud-jpy"/>
-											<label for="spread-on-demand-aud-jpy" data-label="AUD/JPY">
-												AUD/JPY
-											</label>
-										</li>
-										
-										<li class="dropdown-item">
-											<input id="spread-on-demand-aud-usd" name="spread-on-demand-instrument-filter" type="radio" value="aud-usd"/>
-											<label for="spread-on-demand-aud-usd" data-label="AUD/USD">
-												AUD/USD
-											</label>
-										</li>
-										
-										<li class="dropdown-item">
-											<input id="spread-on-demand-eur-jpy" name="spread-on-demand-instrument-filter" type="radio" value="eur-jpy"/>
-											<label for="spread-on-demand-eur-jpy" data-label="EUR/JPY">
-												EUR/JPY
-											</label>
-										</li>
-										
-										<li class="dropdown-item">
-											<input id="spread-on-demand-eur-usd" name="spread-on-demand-instrument-filter" type="radio" value="eur-usd"/>
-											<label for="spread-on-demand-eur-usd" data-label="EUR/USD">
-												EUR/USD
-											</label>
-										</li>
-										
-										<li class="dropdown-item">
-											<input id="spread-on-demand-gbp-jpy" name="spread-on-demand-instrument-filter" type="radio" value="gbp-jpy"/>
-											<label for="spread-on-demand-gbp-jpy" data-label="GBP/JPY">
-												GBP/JPY
-											</label>
-										</li>
-										
-										<li class="dropdown-item">
-											<input id="spread-on-demand-gbp-usd" name="spread-on-demand-instrument-filter" type="radio" value="gbp-usd"/>
-											<label for="spread-on-demand-gbp-usd" data-label="GBP/USD">
-												GBP/USD
-											</label>
-										</li>
-										
-										<li class="dropdown-item">
-											<input id="spread-on-demand-nzd-jpy" name="spread-on-demand-instrument-filter" type="radio" value="nzd-jpy"/>
-											<label for="spread-on-demand-nzd-jpy" data-label="NZD/JPY">
-												NZD/JPY
-											</label>
-										</li>
-										
-										<li class="dropdown-item">
-											<input id="spread-on-demand-nzd-usd" name="spread-on-demand-instrument-filter" type="radio" value="nzd-usd"/>
-											<label for="spread-on-demand-nzd-usd" data-label="NZD/USD">
-												NZD/USD
-											</label>
-										</li>
-										
-										<li class="dropdown-item">
-											<input id="spread-on-demand-usd-jpy" name="spread-on-demand-instrument-filter" type="radio" value="usd-jpy"/>
-											<label for="spread-on-demand-usd-jpy" data-label="USD/JPY">
+									<div id="spread-on-demand-asset-filter" class="asset-filter hl-toggler" data-toggle-self-on-disabled="true" data-toggle-off-click="true">
+										<span class="asset-filter--placeholder hl-toggler" data-toggle-target="#spread-on-demand-asset-filter">
+											Filter assets
+										</span>
+										<div class="asset-filter--category hl-toggler" data-toggle-group="filter-asset-spread-on-demand">
+											<span class="asset-filter--clear hl-toggler" data-toggle-target="#spread-on-demand-asset-filter">Clear filter</span>
+										</div>
+										<div class="asset-filter--category indicies">
+											Indicies
+											<div class="asset-filter--assets">
+												<div class="asset-filter--asset hl-toggler" data-toggle-group="filter-asset-spread-on-demand" data-toggle-self-off-disabled="true" data-toggle-target="#filter-aus200">
+													<span class="asset-filter--asset--label hl-toggler" data-toggle-target="#spread-on-demand-asset-filter">AUS200</span>
+												</div>
+												<div class="asset-filter--asset hl-toggler" data-toggle-group="filter-asset-spread-on-demand" data-toggle-self-off-disabled="true"  data-toggle-target="#filter-jpn225">
+													<span class="asset-filter--asset--label hl-toggler" data-toggle-target="#spread-on-demand-asset-filter">JPN225</span>
+												</div>
+												<div class="asset-filter--asset hl-toggler" data-toggle-group="filter-asset-spread-on-demand" data-toggle-self-off-disabled="true"  data-toggle-target="#filter-hkg33">
+													<span class="asset-filter--asset--label hl-toggler" data-toggle-target="#spread-on-demand-asset-filter">HKG33</span>
+												</div>
+												<div class="asset-filter--asset hl-toggler" data-toggle-group="filter-asset-spread-on-demand" data-toggle-self-off-disabled="true"  data-toggle-target="#filter-uk100">
+													<span class="asset-filter--asset--label hl-toggler" data-toggle-target="#spread-on-demand-asset-filter">UK100</span>
+												</div>
+												<div class="asset-filter--asset hl-toggler" data-toggle-group="filter-asset-spread-on-demand" data-toggle-self-off-disabled="true"  data-toggle-target="#filter-us30">
+													<span class="asset-filter--asset--label hl-toggler" data-toggle-target="#spread-on-demand-asset-filter">US30</span>
+												</div>
+											</div>
+										</div>
+										<div class="asset-filter--category currencies">
+											Currencies
+											<div class="asset-filter--assets">
+												<div class="asset-filter--asset hl-toggler" data-toggle-group="filter-asset-spread-on-demand" data-toggle-self-off-disabled="true" data-toggle-target="#filter-usd-jpy">
+													<span class="asset-filter--asset--label hl-toggler" data-toggle-target="#spread-on-demand-asset-filter">USD/JPY</span>
+												</div>
+												<div class="asset-filter--asset hl-toggler" data-toggle-group="filter-asset-spread-on-demand" data-toggle-self-off-disabled="true"  data-toggle-target="#filter-aud-usd">
+													<span class="asset-filter--asset--label hl-toggler" data-toggle-target="#spread-on-demand-asset-filter">AUD/USD</span>
+												</div>
+												<div class="asset-filter--asset hl-toggler" data-toggle-group="filter-asset-spread-on-demand" data-toggle-self-off-disabled="true"  data-toggle-target="#filter-eur-jpy">
+													<span class="asset-filter--asset--label hl-toggler" data-toggle-target="#spread-on-demand-asset-filter">EUR/JPY</span>
+												</div>
+												<div class="asset-filter--asset hl-toggler" data-toggle-group="filter-asset-spread-on-demand" data-toggle-self-off-disabled="true"  data-toggle-target="#filter-eur-usd">
+													<span class="asset-filter--asset--label hl-toggler" data-toggle-target="#spread-on-demand-asset-filter">EUR/USD</span>
+												</div>
+												<div class="asset-filter--asset hl-toggler" data-toggle-group="filter-asset-spread-on-demand" data-toggle-self-off-disabled="true"  data-toggle-target="#filter-gbp-jpy">
+													<span class="asset-filter--asset--label hl-toggler" data-toggle-target="#spread-on-demand-asset-filter">GBP/JPY</span>
+												</div>
+												<div class="asset-filter--asset hl-toggler" data-toggle-group="filter-asset-spread-on-demand" data-toggle-self-off-disabled="true"  data-toggle-target="#filter-gbp-usd">
+													<span class="asset-filter--asset--label hl-toggler" data-toggle-target="#spread-on-demand-asset-filter">GBP/USD</span>
+												</div>
+												<div class="asset-filter--asset hl-toggler" data-toggle-group="filter-asset-spread-on-demand" data-toggle-self-off-disabled="true"  data-toggle-target="#filter-nzd-jpy">
+													<span class="asset-filter--asset--label hl-toggler" data-toggle-target="#spread-on-demand-asset-filter">NZD/JPY</span>
+												</div>
+												<div class="asset-filter--asset hl-toggler" data-toggle-group="filter-asset-spread-on-demand" data-toggle-self-off-disabled="true"  data-toggle-target="#filter-nzd-usd">
+													<span class="asset-filter--asset--label hl-toggler" data-toggle-target="#spread-on-demand-asset-filter">NZD/USD</span>
+												</div>
+												<div class="asset-filter--asset hl-toggler" data-toggle-group="filter-asset-spread-on-demand" data-toggle-self-off-disabled="true"  data-toggle-target="#filter-aud-jpy">
+													<span class="asset-filter--asset--label hl-toggler" data-toggle-target="#spread-on-demand-asset-filter">AUD/JPY</span>
+												</div>
+											</div>
+										</div>
+										<div class="asset-filter--category commodities">
+											Commodities
+											<div class="asset-filter--assets">
+												<div class="asset-filter--asset hl-toggler" data-toggle-group="filter-asset-spread-on-demand" data-toggle-self-off-disabled="true" data-toggle-target="#filter-gold">
+													<span class="asset-filter--asset--label hl-toggler" data-toggle-target="#spread-on-demand-asset-filter">Gold</span>
+												</div>
+												<div class="asset-filter--asset hl-toggler" data-toggle-group="filter-asset-spread-on-demand" data-toggle-self-off-disabled="true"  data-toggle-target="#filter-silver">
+													<span class="asset-filter--asset--label hl-toggler" data-toggle-target="#spread-on-demand-asset-filter">Silver</span>
+												</div>
+												<div class="asset-filter--asset hl-toggler" data-toggle-group="filter-asset-spread-on-demand" data-toggle-self-off-disabled="true"  data-toggle-target="#filter-oil">
+													<span class="asset-filter--asset--label hl-toggler" data-toggle-target="#spread-on-demand-asset-filter">Oil</span>
+												</div>
+											</div>
+										</div>
+										<div class="asset-filter--display-labels">
+											<div class="asset-filter--display-label" data-toggle-group="filter-asset-spread-on-demand" id="filter-aus200">
+												AUS200
+											</div>
+											<div class="asset-filter--display-label" data-toggle-group="filter-asset-spread-on-demand" id="filter-jpn225">
+												JPN225
+											</div>
+											<div class="asset-filter--display-label" data-toggle-group="filter-asset-spread-on-demand" id="filter-hkg33">
+												HKG33
+											</div>
+											<div class="asset-filter--display-label" data-toggle-group="filter-asset-spread-on-demand" id="filter-uk100">
+												UK100
+											</div>
+											<div class="asset-filter--display-label" data-toggle-group="filter-asset-spread-on-demand" id="filter-us30">
+												US30
+											</div>
+											<div class="asset-filter--display-label" data-toggle-group="filter-asset-spread-on-demand" id="filter-usd-jpy">
 												USD/JPY
-											</label>
-										</li>
-										
-									</ul>
+											</div>
+											<div class="asset-filter--display-label" data-toggle-group="filter-asset-spread-on-demand" id="filter-aud-usd">
+												AUD/USD
+											</div>
+											<div class="asset-filter--display-label" data-toggle-group="filter-asset-spread-on-demand" id="filter-eur-jpy">
+												EUR/JPY
+											</div>
+											<div class="asset-filter--display-label" data-toggle-group="filter-asset-spread-on-demand" id="filter-eur-usd">
+												EUR/USD
+											</div>
+											<div class="asset-filter--display-label" data-toggle-group="filter-asset-spread-on-demand" id="filter-gbp-jpy">
+												GBP/JPY
+											</div>
+											<div class="asset-filter--display-label" data-toggle-group="filter-asset-spread-on-demand" id="filter-gbp-usd">
+												GBP/USD
+											</div>
+											<div class="asset-filter--display-label" data-toggle-group="filter-asset-spread-on-demand" id="filter-nzd-jpy">
+												NZD/JPY
+											</div>
+											<div class="asset-filter--display-label" data-toggle-group="filter-asset-spread-on-demand" id="filter-nzd-usd">
+												NZD/USD
+											</div>
+											<div class="asset-filter--display-label" data-toggle-group="filter-asset-spread-on-demand" id="filter-aud-jpy">
+												AUD/JPY
+											</div>
+											<div class="asset-filter--display-label" data-toggle-group="filter-asset-spread-on-demand" id="filter-gold">
+												Gold
+											</div>
+											<div class="asset-filter--display-label" data-toggle-group="filter-asset-spread-on-demand" id="filter-silver">
+												Silver
+											</div>
+											<div class="asset-filter--display-label" data-toggle-group="filter-asset-spread-on-demand" id="filter-aud-jpy">
+												Oil
+											</div>
+										</div>
+									</div>
 								</div>
 								<div class="instrument-selector-widget-collapse-toggle">
 								</div>
@@ -13068,7 +13488,8 @@
 																	data-instrument-duration="1 min"
 																	data-instrument-duration-id="1min"
 																	data-instrument-duration-value="60000" 
-																	data-instrument-seed-rate="115.45"
+																	data-instrument-seed-rate="0.75441"
+																	data-instrument-pip="5"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -13128,7 +13549,8 @@
 																	data-instrument-duration="1 min"
 																	data-instrument-duration-id="1min"
 																	data-instrument-duration-value="60000" 
-																	data-instrument-seed-rate="98.442"
+																	data-instrument-seed-rate="135.740"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -13188,7 +13610,8 @@
 																	data-instrument-duration="1 min"
 																	data-instrument-duration-id="1min"
 																	data-instrument-duration-value="60000" 
-																	data-instrument-seed-rate="111.24"
+																	data-instrument-seed-rate="1.12560"
+																	data-instrument-pip="5"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -13249,6 +13672,7 @@
 																	data-instrument-duration-id="1min"
 																	data-instrument-duration-value="60000" 
 																	data-instrument-seed-rate="224.86"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -13308,7 +13732,8 @@
 																	data-instrument-duration="1 min"
 																	data-instrument-duration-id="1min"
 																	data-instrument-duration-value="60000" 
-																	data-instrument-seed-rate="123.54"
+																	data-instrument-seed-rate="135.740"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -13372,7 +13797,8 @@
 																	data-instrument-duration="1 min"
 																	data-instrument-duration-id="1min"
 																	data-instrument-duration-value="60000" 
-																	data-instrument-seed-rate="167.27"
+																	data-instrument-seed-rate="1.12560"
+																	data-instrument-pip="5"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -13433,6 +13859,7 @@
 																	data-instrument-duration-id="1min"
 																	data-instrument-duration-value="60000" 
 																	data-instrument-seed-rate="145.15"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -13493,6 +13920,7 @@
 																	data-instrument-duration-id="1min"
 																	data-instrument-duration-value="60000" 
 																	data-instrument-seed-rate="165.52"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -13553,6 +13981,7 @@
 																	data-instrument-duration-id="1min"
 																	data-instrument-duration-value="60000" 
 																	data-instrument-seed-rate="135.59"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -13613,6 +14042,7 @@
 																	data-instrument-duration-id="1min"
 																	data-instrument-duration-value="60000" 
 																	data-instrument-seed-rate="115.54"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -13677,6 +14107,7 @@
 																	data-instrument-duration-id="1min"
 																	data-instrument-duration-value="60000" 
 																	data-instrument-seed-rate="112.43"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -13740,7 +14171,8 @@
 																	data-instrument-duration="3 min"
 																	data-instrument-duration-id="3min"
 																	data-instrument-duration-value="180000" 
-																	data-instrument-seed-rate="115.45"
+																	data-instrument-seed-rate="0.75441"
+																	data-instrument-pip="5"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -13800,7 +14232,8 @@
 																	data-instrument-duration="3 min"
 																	data-instrument-duration-id="3min"
 																	data-instrument-duration-value="180000" 
-																	data-instrument-seed-rate="98.442"
+																	data-instrument-seed-rate="135.740"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -13860,7 +14293,8 @@
 																	data-instrument-duration="3 min"
 																	data-instrument-duration-id="3min"
 																	data-instrument-duration-value="180000" 
-																	data-instrument-seed-rate="111.24"
+																	data-instrument-seed-rate="1.12560"
+																	data-instrument-pip="5"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -13921,6 +14355,7 @@
 																	data-instrument-duration-id="3min"
 																	data-instrument-duration-value="180000" 
 																	data-instrument-seed-rate="224.86"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -13984,7 +14419,8 @@
 																	data-instrument-duration="3 min"
 																	data-instrument-duration-id="3min"
 																	data-instrument-duration-value="180000" 
-																	data-instrument-seed-rate="123.54"
+																	data-instrument-seed-rate="135.740"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -14044,7 +14480,8 @@
 																	data-instrument-duration="3 min"
 																	data-instrument-duration-id="3min"
 																	data-instrument-duration-value="180000" 
-																	data-instrument-seed-rate="167.27"
+																	data-instrument-seed-rate="1.12560"
+																	data-instrument-pip="5"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -14105,6 +14542,7 @@
 																	data-instrument-duration-id="3min"
 																	data-instrument-duration-value="180000" 
 																	data-instrument-seed-rate="145.15"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -14165,6 +14603,7 @@
 																	data-instrument-duration-id="3min"
 																	data-instrument-duration-value="180000" 
 																	data-instrument-seed-rate="165.52"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -14225,6 +14664,7 @@
 																	data-instrument-duration-id="3min"
 																	data-instrument-duration-value="180000" 
 																	data-instrument-seed-rate="135.59"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -14289,6 +14729,7 @@
 																	data-instrument-duration-id="3min"
 																	data-instrument-duration-value="180000" 
 																	data-instrument-seed-rate="115.54"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -14349,6 +14790,7 @@
 																	data-instrument-duration-id="3min"
 																	data-instrument-duration-value="180000" 
 																	data-instrument-seed-rate="112.43"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -14412,7 +14854,8 @@
 																	data-instrument-duration="5 min"
 																	data-instrument-duration-id="5min"
 																	data-instrument-duration-value="300000" 
-																	data-instrument-seed-rate="115.45"
+																	data-instrument-seed-rate="0.75441"
+																	data-instrument-pip="5"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -14472,7 +14915,8 @@
 																	data-instrument-duration="5 min"
 																	data-instrument-duration-id="5min"
 																	data-instrument-duration-value="300000" 
-																	data-instrument-seed-rate="98.442"
+																	data-instrument-seed-rate="135.740"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -14532,7 +14976,8 @@
 																	data-instrument-duration="5 min"
 																	data-instrument-duration-id="5min"
 																	data-instrument-duration-value="300000" 
-																	data-instrument-seed-rate="111.24"
+																	data-instrument-seed-rate="1.12560"
+																	data-instrument-pip="5"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -14597,6 +15042,7 @@
 																	data-instrument-duration-id="5min"
 																	data-instrument-duration-value="300000" 
 																	data-instrument-seed-rate="224.86"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -14656,7 +15102,8 @@
 																	data-instrument-duration="5 min"
 																	data-instrument-duration-id="5min"
 																	data-instrument-duration-value="300000" 
-																	data-instrument-seed-rate="123.54"
+																	data-instrument-seed-rate="135.740"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -14716,7 +15163,8 @@
 																	data-instrument-duration="5 min"
 																	data-instrument-duration-id="5min"
 																	data-instrument-duration-value="300000" 
-																	data-instrument-seed-rate="167.27"
+																	data-instrument-seed-rate="1.12560"
+																	data-instrument-pip="5"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -14777,6 +15225,7 @@
 																	data-instrument-duration-id="5min"
 																	data-instrument-duration-value="300000" 
 																	data-instrument-seed-rate="145.15"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -14837,6 +15286,7 @@
 																	data-instrument-duration-id="5min"
 																	data-instrument-duration-value="300000" 
 																	data-instrument-seed-rate="165.52"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -14901,6 +15351,7 @@
 																	data-instrument-duration-id="5min"
 																	data-instrument-duration-value="300000" 
 																	data-instrument-seed-rate="135.59"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -14961,6 +15412,7 @@
 																	data-instrument-duration-id="5min"
 																	data-instrument-duration-value="300000" 
 																	data-instrument-seed-rate="115.54"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -15021,6 +15473,7 @@
 																	data-instrument-duration-id="5min"
 																	data-instrument-duration-value="300000" 
 																	data-instrument-seed-rate="112.43"
+																	data-instrument-pip="3"
 																>
 																	<div class="instrument-panel-header">
 																		<div class="instrument-panel-title">
@@ -15100,7 +15553,8 @@
 															data-instrument-duration="1 min"
 															data-instrument-duration-id="1min"
 															data-instrument-duration-value="60000" 
-															data-instrument-seed-rate="115.45"
+															data-instrument-seed-rate="0.75441"
+															data-instrument-pip="5"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -15157,7 +15611,8 @@
 															data-instrument-duration="1 min"
 															data-instrument-duration-id="1min"
 															data-instrument-duration-value="60000" 
-															data-instrument-seed-rate="98.442"
+															data-instrument-seed-rate="135.740"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -15214,7 +15669,8 @@
 															data-instrument-duration="1 min"
 															data-instrument-duration-id="1min"
 															data-instrument-duration-value="60000" 
-															data-instrument-seed-rate="111.24"
+															data-instrument-seed-rate="1.12560"
+															data-instrument-pip="5"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -15272,6 +15728,7 @@
 															data-instrument-duration-id="1min"
 															data-instrument-duration-value="60000" 
 															data-instrument-seed-rate="224.86"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -15328,7 +15785,8 @@
 															data-instrument-duration="1 min"
 															data-instrument-duration-id="1min"
 															data-instrument-duration-value="60000" 
-															data-instrument-seed-rate="123.54"
+															data-instrument-seed-rate="135.740"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -15389,7 +15847,8 @@
 															data-instrument-duration="1 min"
 															data-instrument-duration-id="1min"
 															data-instrument-duration-value="60000" 
-															data-instrument-seed-rate="167.27"
+															data-instrument-seed-rate="1.12560"
+															data-instrument-pip="5"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -15447,6 +15906,7 @@
 															data-instrument-duration-id="1min"
 															data-instrument-duration-value="60000" 
 															data-instrument-seed-rate="145.15"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -15504,6 +15964,7 @@
 															data-instrument-duration-id="1min"
 															data-instrument-duration-value="60000" 
 															data-instrument-seed-rate="165.52"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -15561,6 +16022,7 @@
 															data-instrument-duration-id="1min"
 															data-instrument-duration-value="60000" 
 															data-instrument-seed-rate="135.59"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -15618,6 +16080,7 @@
 															data-instrument-duration-id="1min"
 															data-instrument-duration-value="60000" 
 															data-instrument-seed-rate="115.54"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -15679,6 +16142,7 @@
 															data-instrument-duration-id="1min"
 															data-instrument-duration-value="60000" 
 															data-instrument-seed-rate="112.43"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -15755,7 +16219,8 @@
 															data-instrument-duration="3 min"
 															data-instrument-duration-id="3min"
 															data-instrument-duration-value="180000" 
-															data-instrument-seed-rate="115.45"
+															data-instrument-seed-rate="0.75441"
+															data-instrument-pip="5"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -15812,7 +16277,8 @@
 															data-instrument-duration="3 min"
 															data-instrument-duration-id="3min"
 															data-instrument-duration-value="180000" 
-															data-instrument-seed-rate="98.442"
+															data-instrument-seed-rate="135.740"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -15869,7 +16335,8 @@
 															data-instrument-duration="3 min"
 															data-instrument-duration-id="3min"
 															data-instrument-duration-value="180000" 
-															data-instrument-seed-rate="111.24"
+															data-instrument-seed-rate="1.12560"
+															data-instrument-pip="5"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -15927,6 +16394,7 @@
 															data-instrument-duration-id="3min"
 															data-instrument-duration-value="180000" 
 															data-instrument-seed-rate="224.86"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -15983,7 +16451,8 @@
 															data-instrument-duration="3 min"
 															data-instrument-duration-id="3min"
 															data-instrument-duration-value="180000" 
-															data-instrument-seed-rate="123.54"
+															data-instrument-seed-rate="135.740"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -16044,7 +16513,8 @@
 															data-instrument-duration="3 min"
 															data-instrument-duration-id="3min"
 															data-instrument-duration-value="180000" 
-															data-instrument-seed-rate="167.27"
+															data-instrument-seed-rate="1.12560"
+															data-instrument-pip="5"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -16102,6 +16572,7 @@
 															data-instrument-duration-id="3min"
 															data-instrument-duration-value="180000" 
 															data-instrument-seed-rate="145.15"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -16159,6 +16630,7 @@
 															data-instrument-duration-id="3min"
 															data-instrument-duration-value="180000" 
 															data-instrument-seed-rate="165.52"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -16216,6 +16688,7 @@
 															data-instrument-duration-id="3min"
 															data-instrument-duration-value="180000" 
 															data-instrument-seed-rate="135.59"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -16273,6 +16746,7 @@
 															data-instrument-duration-id="3min"
 															data-instrument-duration-value="180000" 
 															data-instrument-seed-rate="115.54"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -16334,6 +16808,7 @@
 															data-instrument-duration-id="3min"
 															data-instrument-duration-value="180000" 
 															data-instrument-seed-rate="112.43"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -16410,7 +16885,8 @@
 															data-instrument-duration="5 min"
 															data-instrument-duration-id="5min"
 															data-instrument-duration-value="300000" 
-															data-instrument-seed-rate="115.45"
+															data-instrument-seed-rate="0.75441"
+															data-instrument-pip="5"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -16467,7 +16943,8 @@
 															data-instrument-duration="5 min"
 															data-instrument-duration-id="5min"
 															data-instrument-duration-value="300000" 
-															data-instrument-seed-rate="98.442"
+															data-instrument-seed-rate="135.740"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -16524,7 +17001,8 @@
 															data-instrument-duration="5 min"
 															data-instrument-duration-id="5min"
 															data-instrument-duration-value="300000" 
-															data-instrument-seed-rate="111.24"
+															data-instrument-seed-rate="1.12560"
+															data-instrument-pip="5"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -16582,6 +17060,7 @@
 															data-instrument-duration-id="5min"
 															data-instrument-duration-value="300000" 
 															data-instrument-seed-rate="224.86"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -16638,7 +17117,8 @@
 															data-instrument-duration="5 min"
 															data-instrument-duration-id="5min"
 															data-instrument-duration-value="300000" 
-															data-instrument-seed-rate="123.54"
+															data-instrument-seed-rate="135.740"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -16699,7 +17179,8 @@
 															data-instrument-duration="5 min"
 															data-instrument-duration-id="5min"
 															data-instrument-duration-value="300000" 
-															data-instrument-seed-rate="167.27"
+															data-instrument-seed-rate="1.12560"
+															data-instrument-pip="5"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -16757,6 +17238,7 @@
 															data-instrument-duration-id="5min"
 															data-instrument-duration-value="300000" 
 															data-instrument-seed-rate="145.15"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -16814,6 +17296,7 @@
 															data-instrument-duration-id="5min"
 															data-instrument-duration-value="300000" 
 															data-instrument-seed-rate="165.52"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -16871,6 +17354,7 @@
 															data-instrument-duration-id="5min"
 															data-instrument-duration-value="300000" 
 															data-instrument-seed-rate="135.59"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -16928,6 +17412,7 @@
 															data-instrument-duration-id="5min"
 															data-instrument-duration-value="300000" 
 															data-instrument-seed-rate="115.54"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -16989,6 +17474,7 @@
 															data-instrument-duration-id="5min"
 															data-instrument-duration-value="300000" 
 															data-instrument-seed-rate="112.43"
+															data-instrument-pip="3"
 														>
 															<div class="instrument-panel-header">
 																<div class="instrument-panel-title">
@@ -17071,7 +17557,7 @@
 					</div>
 					<div class="panel panel-default trading-platform main-view" id="spread-on-demand-main-view">
 						<div class="panel-header">
-							<div class="pull-left">
+							<div class="pull-left chart-panel instrument-details-display walk-through-step">
 								<span class="trading-platform-instrument-title font-sb">
 									
 								</span>
@@ -17084,7 +17570,7 @@
 								
 								<img src="public/trade-platform/images/loading.gif" class="loading-icon"/>
 							</div>
-							<div class="pull-right">
+							<div class="pull-right time-display chart-control walk-through-step">
 								<img src="public/trade-platform/images/loading.gif" class="processing"/>
 							
 								<span class="trading-platform-instrument-market-close-time">
@@ -17114,37 +17600,39 @@
 							</div>
 						</div>
 						<div class="panel-body">
-							<div class="heatmap collapsed tooltip-container" id="spread-on-demand-heatmap" data-target="spread-on-demand-graph">
-								<div class="label high">
-									31%
-								</div>
-								<div class="meter">
-									<div class="fill high" style="height: 31%;">
+							<span class="chart-panel chart walk-through-step">
+								<div class="heatmap collapsed tooltip-container" id="spread-on-demand-heatmap" data-target="spread-on-demand-graph">
+									<div class="label high">
+										31%
 									</div>
-									<div class="fill low" style="height: 69%;">
+									<div class="meter">
+										<div class="fill high" style="height: 31%;">
+										</div>
+										<div class="fill low" style="height: 69%;">
+										</div>
+									</div>
+									<div class="label low">
+										69%
+									</div>
+									<div class="toggle">
+										
+									</div>
+									<div class="expander">
+									</div>
+									<div class="tooltip trader-choice">
+										<div class="title">
+											Traders Choice
+										</div>
+										<div class="content">
+											Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+										</div>
 									</div>
 								</div>
-								<div class="label low">
-									69%
+								<div class="trading-platform-live-graph">
+									<div id="spread-on-demand-graph" class="live-graph"></div>
 								</div>
-								<div class="toggle">
-									
-								</div>
-								<div class="expander">
-								</div>
-								<div class="tooltip trader-choice">
-									<div class="title">
-										Traders Choice
-									</div>
-									<div class="content">
-										Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-									</div>
-								</div>
-							</div>
-							<div class="trading-platform-live-graph">
-								<div id="spread-on-demand-graph" class="live-graph"></div>
-							</div>
-							<div class="trading-platform-main-controls ">
+							</span>
+							<div class="trading-platform-main-controls chart-control walk-through-step">
 								<div class="trading-platform-main-controls-instrument-title font-sb">
 									USD/JPY
 								</div>
@@ -17244,7 +17732,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="panel panel-default trading-app-container trading-platform ">
+	<div class="panel panel-default trading-app-container trading-platform walk-through-step current-activity-table">
 		<div class="panel-header light-grey">
 			<div class="pull-left">
 				<div class="font-m-b">

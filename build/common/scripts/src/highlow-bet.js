@@ -133,8 +133,8 @@ highlowApp.betSystem = {
 	},
 	updateBetEntry : function (bet,model) {
 		var entryId = '[data-uid="'+bet.uid+'"]',
-			strike = parseFloat(bet.strike).toFixed(highlowApp.marketSimulator.rounding),
-			rate = parseFloat(model.currentRate).toFixed(highlowApp.marketSimulator.rounding);
+			strike = parseFloat(bet.strike).toFixed(model.pip),
+			rate = parseFloat(model.currentRate).toFixed(model.pip);
 
 
 		var status,
@@ -261,14 +261,14 @@ highlowApp.betSystem = {
 		}
 
 
-		var strike = strikeValue.toFixed(3);
+		var strike = strikeValue.toFixed(model.pip);
 
 		if (type=="spread") {
 			if(bet=="high") {
-				strike = (strikeValue+highlowApp.marketSimulator.spread).toFixed(3);
+				strike = (strikeValue+highlowApp.marketSimulator.spread).toFixed(model.pip);
 			}
 			if(bet=="low") {
-				strike = (strikeValue-highlowApp.marketSimulator.spread).toFixed(3);
+				strike = (strikeValue-highlowApp.marketSimulator.spread).toFixed(model.pip);
 			}
 		}
 
