@@ -25,18 +25,7 @@ highlowApp.toggler = {
 			var off = function() {
 				$('[data-toggle-target="'+self.data('toggleTarget')+'"]').removeClass(toggleClass);
 
-				if(self.hasClass('asset-filter--asset--label')) {
-					console.log('OOOOOFFFF');
-					console.log(target);
-					console.log(toggleClass);
-				}
-
 				target.removeClass(toggleClass);
-
-				if(self.hasClass('asset-filter--asset--label')) {
-					console.log('AFTER OOOOOFFFF');
-					console.log(target);
-				}
 
 				if(toggleBodyFixedHeight) {
 					$('body').removeClass('fixed-height');
@@ -52,8 +41,6 @@ highlowApp.toggler = {
 				focusTarget.focus();
 				focusTarget.select();
 				self.addClass(toggleClass);
-				console.log("CAI DU ME");
-				console.log(self);
 				
 				target.addClass(toggleClass);
 				if(toggleBodyFixedHeight) {
@@ -69,10 +56,7 @@ highlowApp.toggler = {
 			var toggle = function() {
 
 				if(target.hasClass(toggleClass) && !toggleSelfOffDisabled) {
-					if(self.hasClass('asset-filter--asset--label')) {
-						console.log('BEFORE OFFF');
-						console.log(target);
-					}
+
 					off();
 				} else {
 					if(!toggleSelfOnDisabled) {

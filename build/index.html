@@ -55,14 +55,15 @@
 							<div class="instrument-selector-widget-duration-selectors-container tab-view-tab-selectors-container-wrapper">
 								<div class="instrument-selector-widget-instrument-filter pull-right">
 									<div id="highlow-asset-filter" class="asset-filter hl-toggler" data-toggle-self-on-disabled="true" data-toggle-off-click="true">
-										<span class="asset-filter--placeholder hl-toggler" data-toggle-target="#highlow-asset-filter">
+										<span class="asset-filter--opener hl-toggler" data-toggle-target="#highlow-asset-filter"></span>
+										<span class="asset-filter--placeholder">
 											Filter assets
 										</span>
 										<div class="asset-filter--category hl-toggler" data-toggle-group="filter-asset-highlow">
-											<span class="asset-filter--clear hl-toggler" data-toggle-target="#highlow-asset-filter">Clear filter</span>
+											<span class="asset-filter--clear hl-toggler" data-toggle-target="#highlow-asset-filter">All assets</span>
 										</div>
 										<div class="asset-filter--category indicies">
-											Indicies
+											<span class="asset-filter--category--label hl-toggler" data-toggle-group="filter-asset-highlow" data-toggle-self-off-disabled="true" data-toggle-target="#filter-indicies"><span class="asset-filter--asset--label-content hl-toggler" data-toggle-target="#highlow-asset-filter">Indicies</span></span>
 											<div class="asset-filter--assets">
 												<div class="asset-filter--asset hl-toggler" data-toggle-group="filter-asset-highlow" data-toggle-self-off-disabled="true" data-toggle-target="#filter-aus200">
 													<span class="asset-filter--asset--label hl-toggler" data-toggle-target="#highlow-asset-filter">AUS200</span>
@@ -82,7 +83,9 @@
 											</div>
 										</div>
 										<div class="asset-filter--category currencies">
-											Currencies
+											<span class="asset-filter--category--label hl-toggler" data-toggle-group="filter-asset-highlow" data-toggle-self-off-disabled="true" data-toggle-target="#filter-currencies">
+												<span class="asset-filter--asset--label-content hl-toggler" data-toggle-target="#highlow-asset-filter">Currencies</span>
+											</span>
 											<div class="asset-filter--assets">
 												<div class="asset-filter--asset hl-toggler" data-toggle-group="filter-asset-highlow" data-toggle-self-off-disabled="true" data-toggle-target="#filter-usd-jpy">
 													<span class="asset-filter--asset--label hl-toggler" data-toggle-target="#highlow-asset-filter">USD/JPY</span>
@@ -114,7 +117,9 @@
 											</div>
 										</div>
 										<div class="asset-filter--category commodities">
-											Commodities
+											<span class="asset-filter--category--label hl-toggler" data-toggle-group="filter-asset-highlow" data-toggle-self-off-disabled="true" data-toggle-target="#filter-commodities">
+												<span class="asset-filter--asset--label-content hl-toggler" data-toggle-target="#highlow-asset-filter">Commodities</span>
+											</span>
 											<div class="asset-filter--assets">
 												<div class="asset-filter--asset hl-toggler" data-toggle-group="filter-asset-highlow" data-toggle-self-off-disabled="true" data-toggle-target="#filter-gold">
 													<span class="asset-filter--asset--label hl-toggler" data-toggle-target="#highlow-asset-filter">Gold</span>
@@ -128,6 +133,15 @@
 											</div>
 										</div>
 										<div class="asset-filter--display-labels">
+											<div class="asset-filter--display-label" data-toggle-group="filter-asset-highlow" id="filter-indicies">
+												All indicies
+											</div>
+											<div class="asset-filter--display-label" data-toggle-group="filter-asset-highlow" id="filter-currencies">
+												All currencies
+											</div>
+											<div class="asset-filter--display-label" data-toggle-group="filter-asset-highlow" id="filter-commodities">
+												All commodities
+											</div>
 											<div class="asset-filter--display-label" data-toggle-group="filter-asset-highlow" id="filter-aus200">
 												AUS200
 											</div>
@@ -176,7 +190,7 @@
 											<div class="asset-filter--display-label" data-toggle-group="filter-asset-highlow" id="filter-silver">
 												Silver
 											</div>
-											<div class="asset-filter--display-label" data-toggle-group="filter-asset-highlow" id="filter-aud-jpy">
+											<div class="asset-filter--display-label" data-toggle-group="filter-asset-highlow" id="filter-oil">
 												Oil
 											</div>
 										</div>
@@ -4173,14 +4187,15 @@
 							<div class="instrument-selector-widget-duration-selectors-container tab-view-tab-selectors-container-wrapper">
 								<div class="instrument-selector-widget-instrument-filter pull-right">
 									<div id="spread-asset-filter" class="asset-filter hl-toggler" data-toggle-self-on-disabled="true" data-toggle-off-click="true">
-										<span class="asset-filter--placeholder hl-toggler" data-toggle-target="#spread-asset-filter">
+										<span class="asset-filter--opener hl-toggler" data-toggle-target="#spread-asset-filter"></span>
+										<span class="asset-filter--placeholder">
 											Filter assets
 										</span>
 										<div class="asset-filter--category hl-toggler" data-toggle-group="filter-asset-spread">
-											<span class="asset-filter--clear hl-toggler" data-toggle-target="#spread-asset-filter">Clear filter</span>
+											<span class="asset-filter--clear hl-toggler" data-toggle-target="#spread-asset-filter">All assets</span>
 										</div>
 										<div class="asset-filter--category indicies">
-											Indicies
+											<span class="asset-filter--category--label hl-toggler" data-toggle-group="filter-asset-spread" data-toggle-self-off-disabled="true" data-toggle-target="#filter-indicies"><span class="asset-filter--asset--label-content hl-toggler" data-toggle-target="#spread-asset-filter">Indicies</span></span>
 											<div class="asset-filter--assets">
 												<div class="asset-filter--asset hl-toggler" data-toggle-group="filter-asset-spread" data-toggle-self-off-disabled="true" data-toggle-target="#filter-aus200">
 													<span class="asset-filter--asset--label hl-toggler" data-toggle-target="#spread-asset-filter">AUS200</span>
@@ -4200,7 +4215,9 @@
 											</div>
 										</div>
 										<div class="asset-filter--category currencies">
-											Currencies
+											<span class="asset-filter--category--label hl-toggler" data-toggle-group="filter-asset-spread" data-toggle-self-off-disabled="true" data-toggle-target="#filter-currencies">
+												<span class="asset-filter--asset--label-content hl-toggler" data-toggle-target="#spread-asset-filter">Currencies</span>
+											</span>
 											<div class="asset-filter--assets">
 												<div class="asset-filter--asset hl-toggler" data-toggle-group="filter-asset-spread" data-toggle-self-off-disabled="true" data-toggle-target="#filter-usd-jpy">
 													<span class="asset-filter--asset--label hl-toggler" data-toggle-target="#spread-asset-filter">USD/JPY</span>
@@ -4232,7 +4249,9 @@
 											</div>
 										</div>
 										<div class="asset-filter--category commodities">
-											Commodities
+											<span class="asset-filter--category--label hl-toggler" data-toggle-group="filter-asset-spread" data-toggle-self-off-disabled="true" data-toggle-target="#filter-commodities">
+												<span class="asset-filter--asset--label-content hl-toggler" data-toggle-target="#spread-asset-filter">Commodities</span>
+											</span>
 											<div class="asset-filter--assets">
 												<div class="asset-filter--asset hl-toggler" data-toggle-group="filter-asset-spread" data-toggle-self-off-disabled="true" data-toggle-target="#filter-gold">
 													<span class="asset-filter--asset--label hl-toggler" data-toggle-target="#spread-asset-filter">Gold</span>
@@ -4246,6 +4265,15 @@
 											</div>
 										</div>
 										<div class="asset-filter--display-labels">
+											<div class="asset-filter--display-label" data-toggle-group="filter-asset-spread" id="filter-indicies">
+												All indicies
+											</div>
+											<div class="asset-filter--display-label" data-toggle-group="filter-asset-spread" id="filter-currencies">
+												All currencies
+											</div>
+											<div class="asset-filter--display-label" data-toggle-group="filter-asset-spread" id="filter-commodities">
+												All commodities
+											</div>
 											<div class="asset-filter--display-label" data-toggle-group="filter-asset-spread" id="filter-aus200">
 												AUS200
 											</div>
@@ -4294,7 +4322,7 @@
 											<div class="asset-filter--display-label" data-toggle-group="filter-asset-spread" id="filter-silver">
 												Silver
 											</div>
-											<div class="asset-filter--display-label" data-toggle-group="filter-asset-spread" id="filter-aud-jpy">
+											<div class="asset-filter--display-label" data-toggle-group="filter-asset-spread" id="filter-oil">
 												Oil
 											</div>
 										</div>
@@ -8608,14 +8636,15 @@
 							<div class="instrument-selector-widget-duration-selectors-container tab-view-tab-selectors-container-wrapper">
 								<div class="instrument-selector-widget-instrument-filter pull-right">
 									<div id="on-demand-asset-filter" class="asset-filter hl-toggler" data-toggle-self-on-disabled="true" data-toggle-off-click="true">
-										<span class="asset-filter--placeholder hl-toggler" data-toggle-target="#on-demand-asset-filter">
+										<span class="asset-filter--opener hl-toggler" data-toggle-target="#on-demand-asset-filter"></span>
+										<span class="asset-filter--placeholder">
 											Filter assets
 										</span>
 										<div class="asset-filter--category hl-toggler" data-toggle-group="filter-asset-on-demand">
-											<span class="asset-filter--clear hl-toggler" data-toggle-target="#on-demand-asset-filter">Clear filter</span>
+											<span class="asset-filter--clear hl-toggler" data-toggle-target="#on-demand-asset-filter">All assets</span>
 										</div>
 										<div class="asset-filter--category indicies">
-											Indicies
+											<span class="asset-filter--category--label hl-toggler" data-toggle-group="filter-asset-on-demand" data-toggle-self-off-disabled="true" data-toggle-target="#filter-indicies"><span class="asset-filter--asset--label-content hl-toggler" data-toggle-target="#on-demand-asset-filter">Indicies</span></span>
 											<div class="asset-filter--assets">
 												<div class="asset-filter--asset hl-toggler" data-toggle-group="filter-asset-on-demand" data-toggle-self-off-disabled="true" data-toggle-target="#filter-aus200">
 													<span class="asset-filter--asset--label hl-toggler" data-toggle-target="#on-demand-asset-filter">AUS200</span>
@@ -8635,7 +8664,9 @@
 											</div>
 										</div>
 										<div class="asset-filter--category currencies">
-											Currencies
+											<span class="asset-filter--category--label hl-toggler" data-toggle-group="filter-asset-on-demand" data-toggle-self-off-disabled="true" data-toggle-target="#filter-currencies">
+												<span class="asset-filter--asset--label-content hl-toggler" data-toggle-target="#on-demand-asset-filter">Currencies</span>
+											</span>
 											<div class="asset-filter--assets">
 												<div class="asset-filter--asset hl-toggler" data-toggle-group="filter-asset-on-demand" data-toggle-self-off-disabled="true" data-toggle-target="#filter-usd-jpy">
 													<span class="asset-filter--asset--label hl-toggler" data-toggle-target="#on-demand-asset-filter">USD/JPY</span>
@@ -8667,7 +8698,9 @@
 											</div>
 										</div>
 										<div class="asset-filter--category commodities">
-											Commodities
+											<span class="asset-filter--category--label hl-toggler" data-toggle-group="filter-asset-on-demand" data-toggle-self-off-disabled="true" data-toggle-target="#filter-commodities">
+												<span class="asset-filter--asset--label-content hl-toggler" data-toggle-target="#on-demand-asset-filter">Commodities</span>
+											</span>
 											<div class="asset-filter--assets">
 												<div class="asset-filter--asset hl-toggler" data-toggle-group="filter-asset-on-demand" data-toggle-self-off-disabled="true" data-toggle-target="#filter-gold">
 													<span class="asset-filter--asset--label hl-toggler" data-toggle-target="#on-demand-asset-filter">Gold</span>
@@ -8681,6 +8714,15 @@
 											</div>
 										</div>
 										<div class="asset-filter--display-labels">
+											<div class="asset-filter--display-label" data-toggle-group="filter-asset-on-demand" id="filter-indicies">
+												All indicies
+											</div>
+											<div class="asset-filter--display-label" data-toggle-group="filter-asset-on-demand" id="filter-currencies">
+												All currencies
+											</div>
+											<div class="asset-filter--display-label" data-toggle-group="filter-asset-on-demand" id="filter-commodities">
+												All commodities
+											</div>
 											<div class="asset-filter--display-label" data-toggle-group="filter-asset-on-demand" id="filter-aus200">
 												AUS200
 											</div>
@@ -8729,7 +8771,7 @@
 											<div class="asset-filter--display-label" data-toggle-group="filter-asset-on-demand" id="filter-silver">
 												Silver
 											</div>
-											<div class="asset-filter--display-label" data-toggle-group="filter-asset-on-demand" id="filter-aud-jpy">
+											<div class="asset-filter--display-label" data-toggle-group="filter-asset-on-demand" id="filter-oil">
 												Oil
 											</div>
 										</div>
@@ -13296,14 +13338,15 @@
 							<div class="instrument-selector-widget-duration-selectors-container tab-view-tab-selectors-container-wrapper">
 								<div class="instrument-selector-widget-instrument-filter pull-right">
 									<div id="spread-on-demand-asset-filter" class="asset-filter hl-toggler" data-toggle-self-on-disabled="true" data-toggle-off-click="true">
-										<span class="asset-filter--placeholder hl-toggler" data-toggle-target="#spread-on-demand-asset-filter">
+										<span class="asset-filter--opener hl-toggler" data-toggle-target="#spread-on-demand-asset-filter"></span>
+										<span class="asset-filter--placeholder">
 											Filter assets
 										</span>
 										<div class="asset-filter--category hl-toggler" data-toggle-group="filter-asset-spread-on-demand">
-											<span class="asset-filter--clear hl-toggler" data-toggle-target="#spread-on-demand-asset-filter">Clear filter</span>
+											<span class="asset-filter--clear hl-toggler" data-toggle-target="#spread-on-demand-asset-filter">All assets</span>
 										</div>
 										<div class="asset-filter--category indicies">
-											Indicies
+											<span class="asset-filter--category--label hl-toggler" data-toggle-group="filter-asset-spread-on-demand" data-toggle-self-off-disabled="true" data-toggle-target="#filter-indicies"><span class="asset-filter--asset--label-content hl-toggler" data-toggle-target="#spread-on-demand-asset-filter">Indicies</span></span>
 											<div class="asset-filter--assets">
 												<div class="asset-filter--asset hl-toggler" data-toggle-group="filter-asset-spread-on-demand" data-toggle-self-off-disabled="true" data-toggle-target="#filter-aus200">
 													<span class="asset-filter--asset--label hl-toggler" data-toggle-target="#spread-on-demand-asset-filter">AUS200</span>
@@ -13323,7 +13366,9 @@
 											</div>
 										</div>
 										<div class="asset-filter--category currencies">
-											Currencies
+											<span class="asset-filter--category--label hl-toggler" data-toggle-group="filter-asset-spread-on-demand" data-toggle-self-off-disabled="true" data-toggle-target="#filter-currencies">
+												<span class="asset-filter--asset--label-content hl-toggler" data-toggle-target="#spread-on-demand-asset-filter">Currencies</span>
+											</span>
 											<div class="asset-filter--assets">
 												<div class="asset-filter--asset hl-toggler" data-toggle-group="filter-asset-spread-on-demand" data-toggle-self-off-disabled="true" data-toggle-target="#filter-usd-jpy">
 													<span class="asset-filter--asset--label hl-toggler" data-toggle-target="#spread-on-demand-asset-filter">USD/JPY</span>
@@ -13355,7 +13400,9 @@
 											</div>
 										</div>
 										<div class="asset-filter--category commodities">
-											Commodities
+											<span class="asset-filter--category--label hl-toggler" data-toggle-group="filter-asset-spread-on-demand" data-toggle-self-off-disabled="true" data-toggle-target="#filter-commodities">
+												<span class="asset-filter--asset--label-content hl-toggler" data-toggle-target="#spread-on-demand-asset-filter">Commodities</span>
+											</span>
 											<div class="asset-filter--assets">
 												<div class="asset-filter--asset hl-toggler" data-toggle-group="filter-asset-spread-on-demand" data-toggle-self-off-disabled="true" data-toggle-target="#filter-gold">
 													<span class="asset-filter--asset--label hl-toggler" data-toggle-target="#spread-on-demand-asset-filter">Gold</span>
@@ -13369,6 +13416,15 @@
 											</div>
 										</div>
 										<div class="asset-filter--display-labels">
+											<div class="asset-filter--display-label" data-toggle-group="filter-asset-spread-on-demand" id="filter-indicies">
+												All indicies
+											</div>
+											<div class="asset-filter--display-label" data-toggle-group="filter-asset-spread-on-demand" id="filter-currencies">
+												All currencies
+											</div>
+											<div class="asset-filter--display-label" data-toggle-group="filter-asset-spread-on-demand" id="filter-commodities">
+												All commodities
+											</div>
 											<div class="asset-filter--display-label" data-toggle-group="filter-asset-spread-on-demand" id="filter-aus200">
 												AUS200
 											</div>
@@ -13417,7 +13473,7 @@
 											<div class="asset-filter--display-label" data-toggle-group="filter-asset-spread-on-demand" id="filter-silver">
 												Silver
 											</div>
-											<div class="asset-filter--display-label" data-toggle-group="filter-asset-spread-on-demand" id="filter-aud-jpy">
+											<div class="asset-filter--display-label" data-toggle-group="filter-asset-spread-on-demand" id="filter-oil">
 												Oil
 											</div>
 										</div>

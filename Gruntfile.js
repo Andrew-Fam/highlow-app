@@ -1369,8 +1369,8 @@ module.exports = function(grunt) {
 			      destinationFileEndPattern: '<!-- end-platform -->'
 			  },	
 			  files: {
-			      '../highlow-public-page/templates/trade-platform.liquid': ['build/index.html'],
-			      '../highlow-public-page/templates/ja-trade-platform.liquid': ['build/ja-index.html']
+			      '../highlow-public-page/templates/includes/platform.liquid': ['build/index.html'],
+			      '../highlow-public-page/templates/includes/ja-platform.liquid': ['build/ja-index.html']
 			  }
 			},
 			copyPlatformToNewSite: {
