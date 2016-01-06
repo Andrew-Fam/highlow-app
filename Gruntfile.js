@@ -18,15 +18,15 @@ module.exports = function(grunt) {
 		less: {
 			main: {
 				files: {
-					'common/css/main.css': [
+					'common/css/main.min.css': [
 						'common/less/main.less'
 					]
 				},
 				options: {
 					compress: true,
 					sourceMap: true,
-					sourceMapFilename: 'common/css/main.css.map',
-					sourceMapURL: '/common/css/main.css.map',
+					sourceMapFilename: 'common/css/main.min.css.map',
+					sourceMapURL: '/common/css/main.min.css.map',
 					sourceMapRootpath: '/'
 				}
 			}
@@ -54,6 +54,7 @@ module.exports = function(grunt) {
 						id: "highlow",
 						range: false,
 						default: true,
+						_new: false,
 						instruments: [
 							{
 								label:"USD/JPY",
@@ -343,6 +344,7 @@ module.exports = function(grunt) {
 						id: "spread",
 						range: 0.005,
 						default: false,
+						_new: false,
 						instruments: [
 							{
 								label: "AUD/JPY",
@@ -653,6 +655,7 @@ module.exports = function(grunt) {
 						id: "on-demand",
 						default: false,
 						range: false,
+						_new: false,
 						instruments: [
 							{
 								label: "AUD/JPY",
@@ -963,6 +966,7 @@ module.exports = function(grunt) {
 						id: "spread-on-demand",
 						default: false,
 						range: 0.005,
+						_new: false,
 						instruments: [
 							{
 								label: "AUD/JPY",
@@ -1268,6 +1272,143 @@ module.exports = function(grunt) {
 							}
 						]
 					}
+					,
+					{
+						label: "Sprint",
+						jaLabel: "Sprint",
+						id: "extreme-on-demand",
+						default: false,
+						range: 0.005,
+						_new: true,
+						instruments: [
+							{
+								label: "AUD/JPY",
+								id: "aud-jpy"
+							},
+							{
+								label:"AUD/USD",
+								id: "aud-usd"
+							},
+							{
+								label:"EUR/JPY",
+								id: "eur-jpy"
+							},
+							{
+								label:"EUR/USD",
+								id: "eur-usd"
+							},
+							{
+								label:"GBP/JPY",
+								id: "gbp-jpy"
+							},
+							{
+								label:"GBP/USD",
+								id: "gbp-usd"
+							},
+							{
+								label:"NZD/JPY",
+								id: "nzd-jpy"
+							},
+							{
+								label:"NZD/USD",
+								id: "nzd-usd"
+							},
+							{
+								label:"USD/JPY",
+								id: "usd-jpy"
+							}
+						],
+						intervals: [
+							{
+								id: "30sec",
+								label: "30 SEC",
+								jaLabel: "0.5<span class='jap-word'>分</span>",
+								value: 0.5*60*1000,
+								shortLabel: "30s",
+								jaShortLabel: "0.5<span class='jap-word'>分</span>",
+								mediumLabel: "30 sec",
+								instruments: [
+									{
+										label:"AUD/USD",
+										id: "aud-usd",
+										payout: "1.80",
+										rate: "0.75441",
+										pip: 5
+									},
+									{
+										label:"EUR/JPY",
+										id: "eur-jpy",
+										payout: "1.80",
+										rate: "135.740",
+										pip: 3
+									},
+									{
+										label:"EUR/USD",
+										id: "eur-usd",
+										payout: "1.80",
+										rate: "1.12560",
+										pip: 5
+									},
+									{
+										label:"GBP/JPY",
+										id: "gbp-jpy",
+										payout: "1.80",
+										rate: "224.86",
+										pip: 3
+									},
+									{
+										label:"EUR/JPY",
+										id: "eur-jpy",
+										payout: "1.80",
+										rate: "135.740",
+										pip: 3
+									},
+									{
+										label:"EUR/USD",
+										id: "eur-usd",
+										payout: "1.80",
+										rate: "1.12560",
+										pip: 5
+									},
+									{
+										label:"GBP/JPY",
+										id: "gbp-jpy",
+										payout: "1.80",
+										rate: "145.15",
+										pip: 3
+									},
+									{
+										label:"GBP/USD",
+										id: "gbp-usd",
+										payout: "1.80",
+										rate: "165.52",
+										pip: 3
+									},
+									{
+										label:"NZD/JPY",
+										id: "nzd-jpy",
+										payout: "1.80",
+										rate: "135.59",
+										pip: 3
+									},
+									{
+										label:"NZD/USD",
+										id: "nzd-usd",
+										payout: "1.80",
+										rate: "115.54",
+										pip: 3
+									},
+									{
+										label:"USD/JPY",
+										id: "usd-jpy",
+										payout: "1.80",
+										rate: "112.43",
+										pip: 3
+									}
+								]
+							}
+						]
+					}
 				]
 			},
 			pages: {
@@ -1401,7 +1542,7 @@ module.exports = function(grunt) {
 		watch: {
 			styles: {
 				files: ['**/*.less'],
-				tasks: ['less'],
+				tasks: ['less','copy'],
 				options: {
 					nospawn: false,
 					livereload: true
@@ -1436,7 +1577,7 @@ module.exports = function(grunt) {
 			},
 			copy: {
 				files: ['common/**/*.*','templates/**/*.*'],
-				tasks: ['newer:copy','newer:copy-part-of-file']
+				tasks: ['copy','newer:copy-part-of-file']
 			}
 		},
 		concurrent: {
@@ -1449,7 +1590,7 @@ module.exports = function(grunt) {
 		}
 	});
 
-	grunt.registerTask('default', ['sprite', 'newer:less', 'newer:concat', 'newer:liquid', 'newer:copy', 'replace','copy-part-of-file','concurrent:all']);
+	grunt.registerTask('default', ['sprite', 'less', 'newer:concat', 'newer:liquid', 'copy', 'replace','copy-part-of-file','concurrent:all']);
 	grunt.registerTask('build', ['sprite', 'less', 'newer:concat', 'newer:liquid', 'newer:copy', 'copy-part-of-file','replace']);
 	grunt.registerTask('build-platform-to-public-page',[ 'sprite', 'less', 'newer:concat', 'newer:liquid', 'newer:copy','copy-part-of-file:copyPlatform','replace']);
 	grunt.registerTask('asset', ['sprite', 'less', 'concat', 'liquid', 'copy','replace']);

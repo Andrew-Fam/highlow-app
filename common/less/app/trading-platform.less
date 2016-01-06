@@ -25,7 +25,7 @@
 .trading-platform {
 	line-height: @trading-platform-title-font-size;
 	width: @trading-platform-width;
-	z-index: 0;
+	z-index: 1;
 	position: relative;
 	background-color: @ink;
 	.one-click-control {
@@ -76,11 +76,16 @@
 		&:before {
 			.inline-icon();
 			.sprite(@closing-time);
+		    position: relative;
+		    top: 1px;
 		}
 	}
 
 	.trading-platform-instrument-market-close-time {
 		margin-right: 81px;
+		.ja & {
+			margin-right: 131px;
+		}
 	}
 
 	.trading-platform-instrument-time-left {
@@ -91,9 +96,10 @@
 		vertical-align: sub;
 
 		&:before {
-
 			.inline-icon();
 			.sprite(@timer);
+		    position: relative;
+		    top: 1px;
 		}
 
 		.dead & {
@@ -146,6 +152,7 @@
 		padding-left: 18px;
 		float: right;
 		position: relative;
+		top: 4px;
 
 		.trading-platform-instrument-spread-range {
 			font-size: 12px;
@@ -177,12 +184,12 @@
 			margin-bottom: @trading-platform-main-controls-title-font-size/3;
 		}
 		.trading-platform-main-controls-live-rate {
-			font-size: @trading-platform-duration-font-size;
+			font-size: 18px;
 			.jap-word {
 				font-size: 14px;
 			}
 			line-height: @trading-platform-title-font-size;
-			margin-bottom: @trading-platform-input-font-size/1.5;
+			margin-bottom: 16px;
 			.clearfix();
 		}
 		.trading-platform-main-controls-investment {
@@ -276,7 +283,7 @@
 			}
 		}
 		.trading-platform-main-controls-options {
-			margin-bottom: 16px;
+			margin-bottom: 8px;
 
 			&.none-one-click-control {
 				margin-bottom: 3px;

@@ -60,13 +60,13 @@
 			color: @light-mid-grey;
 			line-height: inherit;
 			position: absolute;
-			left: 109px;
-
-
+			left: 100px;
 
 			&:before {
 				.inline-icon();
 				.sprite(@clock-grey);
+			    top: 1px;
+			    position: relative;
 			}
 		}
 		.instrument-panel-favourite {
@@ -110,19 +110,19 @@
 		.jap-word {
 			font-size: 12px;
 		}
-		padding: @instrument-panel-body-padding;
+		padding: 13px 16px 12px 19px;
 		height: 90px;
 		.transition(@instrument-panel-transition);
 	}
 		.instrument-panel-payout-wrap {
-			width: 89px;
+			width: 82px;
 		}
 		.instrument-panel-payout {
 
 			&:extend(.font-sb);
 
 			display: block;
-			font-size: @instrument-panel-payout-font-size;
+			font-size: 23px;
 			letter-spacing: 0.025em;
 			margin-top: 4px;
 		}
@@ -130,9 +130,9 @@
 
 			&:extend(.font-sb);
 			color: white;
-			font-size: @instrument-panel-rate-font-size;
+			font-size: 17px;
 			display: block;
-			margin-top: 4px;
+    		margin-top: 3px;
 			vertical-align: sub;
 
 		}
@@ -154,11 +154,15 @@
 		}
 		.instrument-panel-rate {
 
-			margin-top: 0.25em;
+			margin-top: 1px;
+
+			&.highlow-low {
+				margin-top: 6px;
+			}
 
 		}
 		.instrument-panel-closing {
-			margin-top: 0.175em;
+			margin-top: 0px;
 		}
 }
 
@@ -173,9 +177,11 @@
 }
 
 .instrument-highlow-panel,
-.instrument-on-demand-panel {
+.instrument-on-demand-panel,
+.instrument-extreme-on-demand-panel, {
 	.instrument-panel-rate {
-		font-size: 17px!important;
+		font-size: 18px!important;
+		margin-bottom: -2px;
 	}
 }
 

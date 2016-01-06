@@ -8,6 +8,11 @@
 				{% for type in tradingTypes %}
 				<li class="tab-view-tab-selector {% if type.default %} active {% endif %} {{ type.id }}" data-target="#{{ type.id }}-mode">
 					{{type.jaLabel}}
+					{% if type._new %}
+					<span class="tab-view-tab-selector--new">
+						NEW!
+					</span>
+					{% endif %}
 				</li>
 				{% endfor %}
 			</ul>
@@ -246,7 +251,7 @@
 																				</div>
 																				<div class="pull-left clearfix">
 																					<div class="jap-word font-sb">
-																						提示価格
+																						&nbsp;
 																					</div>
 																					<div class="instrument-panel-rate highlow-high">
 																					</div>
@@ -280,16 +285,16 @@
 																				{% endif %}
 																				</div>
 																				<div class="pull-left clearfix">
-																					<div class="jap-word font-sb">
-																						提示価格
-																					</div>
+																					{% comment %}<div class="jap-word font-sb">
+																						&nbsp;
+																					</div>{% endcomment %}
 																					<div class="instrument-panel-rate highlow-high">
 																					</div>
 																					<div class="instrument-panel-rate highlow-low">
 																					</div>
 																				</div>
 																			</div>
-																		{% elsif type.id == 'on-demand' or type.id == 'turbo' %}
+																		{% elsif type.id == 'on-demand' or type.id == 'extreme-on-demand' %}
 																			<div class="clearfix">
 																				<div class="instrument-panel-payout-wrap pull-left clearfix">
 																					<div class="jap-word font-sb">
@@ -304,7 +309,7 @@
 																				</div>
 																				<div class="pull-left clearfix">
 																					<div class="jap-word font-sb">
-																						提示価格
+																						&nbsp;
 																					</div>
 																					<div class="instrument-panel-rate highlow-high">
 																					</div>
@@ -390,7 +395,7 @@
 																		</div>
 																		<div class="pull-left clearfix">
 																			<div class="jap-word font-sb">
-																				提示価格
+																				&nbsp;
 																			</div>
 																			<div class="instrument-panel-rate highlow-high">
 																			</div>
@@ -424,16 +429,16 @@
 																		{% endif %}
 																		</div>
 																		<div class="pull-left clearfix">
-																			<div class="jap-word font-sb">
-																				提示価格
-																			</div>
+																			{% comment %}<div class="jap-word font-sb">
+																				&nbsp;
+																			</div>{% endcomment %}
 																			<div class="instrument-panel-rate highlow-high">
 																			</div>
 																			<div class="instrument-panel-rate highlow-low">
 																			</div>
 																		</div>
 																	</div>
-																{% elsif type.id == 'on-demand' %}
+																{% elsif type.id == 'on-demand' or type.id == 'extreme-on-demand' %}
 																	<div class="clearfix">
 																		<div class="instrument-panel-payout-wrap pull-left clearfix">
 																			<div class="jap-word font-sb">
@@ -448,7 +453,7 @@
 																		</div>
 																		<div class="pull-left clearfix">
 																			<div class="jap-word font-sb">
-																				提示価格
+																				&nbsp;
 																			</div>
 																			<div class="instrument-panel-rate highlow-high">
 																			</div>
@@ -512,7 +517,7 @@
 								<span class="trading-platform-instrument-title font-sb">
 									
 								</span>
-								<span class="trading-platform-instrument-rate highlow-high current-rate">
+								<span class="trading-platform-instrument-rate highlow-high current-rate eng">
 								</span>
 								{% if type.range %}
 								<span class="trading-platform-instrument-spread-range">
@@ -523,7 +528,7 @@
 							</div>
 							<div class="pull-right time-display chart-control walk-through-step">
 								<img src="public/trade-platform/images/loading.gif" class="processing"/>
-							{% if type.id != 'on-demand' and type.id != 'spread-on-demand' %}
+							{% if type.id != 'on-demand' and type.id != 'spread-on-demand' and type.id != 'extreme-on-demand' %}
 								<span class="trading-platform-instrument-closing-time">
 									
 								</span>
@@ -538,10 +543,10 @@
 								<a class="trading-platform-instrument-one-click-toggler tooltip-container">
 									<div class="tooltip one-touch">
 										<div class="title jap-word">
-											ワンタッチ取引
+											ワンクリック注文
 										</div>
 										<div class="content">
-											Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+											<p><span class="word">より早い</span><span class="word">約定が</span><span class="word">可能な</span><span class="word">ワンクリック注文に</span><span class="word">切替える。</span></p><p><span class="word">注：</span><span class="word">ワンクリック注文を</span><span class="word">有効に</span><span class="word">すると、</span><span class="word">チャート上</span><span class="word">および</span><span class="word">トレードパネル</span><span class="word">両方で</span><span class="word">有効と</span><span class="word">なります。</span></p>
 										</div>
 									</div>
 								</a>
@@ -579,10 +584,10 @@
 									</div>
 									<div class="tooltip trader-choice">
 										<div class="title jap-word">
-											トレーダーズ<br/>チョイス
+											トレーダース<br/>・チョイス
 										</div>
 										<div class="content">
-											Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+											<span class="word">トレーダース・チョイス</span><span class="word">では、</span><span class="word">当社で</span><span class="word">お取引</span><span class="word">いただいている</span><span class="word">他の</span><span class="word">お客様の</span><span class="word">市場</span><span class="word">センチメントが、</span><span class="word">リアルタイムで</span><span class="word">ご確認</span><span class="word">いただけます。</span>
 										</div>
 									</div>
 								</div>
@@ -591,16 +596,13 @@
 								</div>
 							</span>
 							<div class="trading-platform-main-controls chart-control walk-through-step">
-								<div class="trading-platform-main-controls-instrument-title font-sb">
-									USD/JPY
-								</div>
-								<div class="trading-platform-main-controls-live-rate">
-									<div class="pull-left font-sb jap-word">
-										提示価格
+								<div class="clearfix">
+									<div class="trading-platform-main-controls-instrument-title font-sb pull-left">
+										USD/JPY
 									</div>
-									<div class="pull-right">
-										
-										<span class="highlow-high current-rate">
+									<div class="trading-platform-main-controls-live-rate pull-right">
+											
+										<span class="highlow-high current-rate eng">
 											102.77 
 										</span>
 
@@ -609,8 +611,8 @@
 											+/- {{type.range}}
 										</span>
 										{% endif %}
-									</div>
 
+									</div>
 								</div>
 								<div class="trading-platform-main-controls-investment jap font-m form-control">
 									¥<input type="text" class="number-only" id="{{type.id}}-investment-value-input" value="50000"/>
@@ -650,14 +652,14 @@
 										ペイアウト
 									</div>
 									<div class="pull-right">
-										<span class="trading-platform-main-controls-payout-rate">1.85</span>
+										<span class="trading-platform-main-controls-payout-rate eng">1.85</span>
 									</div>
 								</div>
 								<div class="trading-platform-main-controls-return">
 									<div class="pull-left font-sb jap-word">
 										ペイアウト額
 									</div>
-									<div class="pull-right trading-platform-maximum-return">
+									<div class="pull-right trading-platform-maximum-return eng">
 										$925.00
 									</div>
 								</div>
@@ -756,10 +758,10 @@
 					<div class="trading-platform-popup-body">
 						<div class="panel trading-platform-sell-popup-details">
 							<div class="panel-header">
-								<div class="trading-platform-sell-popup-instrument pull-left font-sb">
+								<div class="trading-platform-sell-popup-instrument eng pull-left font-sb">
 									USD/JPY
 								</div>
-								<div class="trading-platform-sell-popup-rate pull-right highlow-high current-rate">
+								<div class="trading-platform-sell-popup-rate pull-right highlow-high current-rate eng">
 									102.77
 								</div>
 							</div>
@@ -815,10 +817,10 @@
 					</div>
 					<div class="trading-platform-popup-body">
 						<div class="trading-platform-invest-popup-live-rate">
-							<div class="trading-platform-main-controls-instrument-title pull-left font-sb">
+							<div class="trading-platform-main-controls-instrument-title eng pull-left font-sb">
 								USD/JPY
 							</div>
-							<div class="pull-right highlow-high current-rate">
+							<div class="pull-right highlow-high current-rate eng">
 								102.77
 							</div>
 						</div>
@@ -827,7 +829,7 @@
 								ペイアウト
 							</div>
 							<div class="pull-right">
-								<span class="trading-platform-main-controls-payout-rate">1.85</span>
+								<span class="trading-platform-main-controls-payout-rate eng">1.85</span>
 							</div>
 						</div>
 						<div class="trading-platform-main-controls-investment jap font-m form-control">
@@ -880,14 +882,14 @@
 						<div class="trading-platform-popup-close close"></div>
 					</div>
 					<div class="trading-platform-popup-body">
-						<iframe scrolling="no" src="ja-deposit-iframe.html"></iframe>
+						<iframe scrolling="no" src="http://point.agency/highlow/new-site/ja-deposit-iframe.html"></iframe>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
-<div class="trading-platform-popup-wrapper trading-platform-widget-popup concealed overlay" id="make-withdrawal-popup">
+{% comment %}<div class="trading-platform-popup-wrapper trading-platform-widget-popup concealed overlay" id="make-withdrawal-popup">
 	<div class="trading-platform-popup">
 		<div class="trading-platform-popup-content-wrapper">
 			<div class="trading-platform-popup-content">
@@ -903,7 +905,7 @@
 			</div>
 		</div>
 	</div>
-</div>
+</div>{% endcomment %}
 <div class="message-triggers tucked-away">
 	<div class="toggle"></div>
 	<div class="wrapper">

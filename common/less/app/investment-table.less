@@ -11,6 +11,7 @@
 	font-size: 12px;
 	a {
 		text-decoration: none!important;
+		color: white;
 		&:hover,
 		&:active,
 		&:focus {
@@ -118,6 +119,13 @@
 							}
 						}
 
+						&.investment-type.extreme-on-demand {
+							text-align: center;
+							&:before {
+								.inline-icon();
+								.sprite(@extreme-on-demand-win);
+							}
+						}
 						
 					}
 
@@ -161,6 +169,13 @@
 								.sprite(@spread-on-demand-lose);
 							}
 						}
+						&.investment-type.extreme-on-demand {
+							text-align: center;
+							&:before {
+								.inline-icon();
+								.sprite(@extreme-on-demand-lose);
+							}
+						}
 					}
 				}
 
@@ -199,6 +214,13 @@
 							&:before {
 								.inline-icon();
 								.sprite(@spread-on-demand-tie);
+							}
+						}
+						&.investment-type.extreme-on-demand {
+							text-align: center;
+							&:before {
+								.inline-icon();
+								.sprite(@extreme-on-demand-tie);
 							}
 						}
 

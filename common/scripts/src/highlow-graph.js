@@ -67,13 +67,13 @@ highlowApp.graph = {
 		this.prepareGraph('#spread-graph');
 		this.prepareGraph('#on-demand-graph',2*60*1000);
 		this.prepareGraph('#spread-on-demand-graph',2*60*1000);
-		this.prepareGraph('#turbo-graph',2*60*1000);
+		this.prepareGraph('#extreme-on-demand-graph',0.5*60*1000);
 
 		this.graphs['highlow'] = Highcharts.charts[$("#highlow-graph").data('highchartsChart')];
 		this.graphs['spread'] = Highcharts.charts[$("#spread-graph").data('highchartsChart')];
 		this.graphs['on-demand'] = Highcharts.charts[$("#on-demand-graph").data('highchartsChart')];
 		this.graphs['spread-on-demand'] = Highcharts.charts[$("#spread-on-demand-graph").data('highchartsChart')];
-		this.graphs['turbo-demand'] = Highcharts.charts[$("#turbo-graph").data('highchartsChart')];
+		this.graphs['extreme-on-demand'] = Highcharts.charts[$("extreme-on-demand-graph").data('highchartsChart')];
 
 
 		this.mouse = {x:0,y:0};

@@ -1,14 +1,14 @@
 @trading-platform-popup-border: 10px solid rgba(red(@real-dark), green(@real-dark), blue(@real-dark),0.4);
 
-@trading-platform-popup-header-bg: @ink;
+@trading-platform-popup-header-bg: #353535;
 @trading-platform-popup-header-fg: white;
-@trading-platform-popup-header-font-size: 20px;
-@trading-platform-popup-header-padding: 30px;
+@trading-platform-popup-header-font-size: 17px;
+@trading-platform-popup-header-padding: 15px 30px;
 
 
-@trading-platform-popup-body-bg: @charcoal;
+@trading-platform-popup-body-bg: #404040;
 @trading-platform-popup-body-fg: white;
-@trading-platform-popup-body-padding: @trading-platform-popup-header-padding;
+@trading-platform-popup-body-padding: 20px 30px;
 
 @trading-platform-popup-transition: opacity 0.1s ease-in;
 .trading-platform-popup-wrapper {
@@ -70,6 +70,8 @@
 							.opacity(100);
 							.inline-icon();
 							.sprite(@close);
+							top: 3px;
+							position: relative;
 							&:hover {
 								.opacity(100);
 								.sprite(@close-hover);
@@ -88,12 +90,13 @@
 		font-weight: bold;
 	}
 	iframe {
-		width: 560px;
-		height: 520px;
-		overflow: hidden!important;
+	    width: 600px;
+	    height: 550px;
+	    overflow: hidden !important;
+	    display: block;
 	}
 	.trading-platform-popup {
-		width: 560px;
+		width: 600px;
 		margin: auto;
 	}
 	.trading-platform-popup-body {

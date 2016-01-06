@@ -278,6 +278,10 @@ highlowApp.betSystem = {
 			expireAt = betAt+3*60*1000;
 		}
 
+		if ( type.indexOf('extreme') >=0 ) {
+			expireAt = betAt+30*1000;
+		}
+
 		var point = series.points[series.points.length-1];
 
 		var bet = {

@@ -8,11 +8,17 @@
 				{% for type in tradingTypes %}
 				<li class="tab-view-tab-selector {% if type.default %} active {% endif %} {{ type.id }}" data-target="#{{ type.id }}-mode">
 					{{type.label}}
+
+					{% if type._new %}
+					<span class="tab-view-tab-selector--new">
+						NEW!
+					</span>
+					{% endif %}
 				</li>
 				{% endfor %}
 			</ul>
 		</div>
-	</div>
+	</div> 
 	<div class="tab-view-body-wrapper">
 		<div class="tab-view-body">
 			{% for type in tradingTypes %}
@@ -171,13 +177,13 @@
 										<li class="tab-view-tab-selector instrument-selector-widget-duration-selector active" data-target="#{{type.id}}-interval-all">
 											ALL
 										</li>
-									{% comment %}{% if type.intervals.length > 1 %} {% endcomment %}
+									{% if type.intervals.length > 1 %} 
 										{% for interval in type.intervals %}
 										<li class="tab-view-tab-selector instrument-selector-widget-duration-selector" data-target="#{{type.id}}-{{interval.id}}">
 											{{ interval.label }}
 										</li>
 										{% endfor %}
-									{% comment %}{% endif %}{% endcomment %}
+									{% endif %}
 										<li class="tab-view-tab-selector instrument-selector-widget-duration-selector favourite" data-target="#{{type.id}}-favourite">
 											FAVOURITES
 										</li>
@@ -213,7 +219,6 @@
 
 																<div 
 																	class="instrument-panel {% if countAll == '1' %}instrument-panel-active{% endif %} instrument-{{type.id}}-panel" 
-
 																	data-uid="{{type.id}}-{{instrumentItem.id}}-{{interval.id}}-{{forloop.index0}}"
 																	data-trading-type="{{type.id}}" 
 																	data-instrument-label="{{instrumentItem.label}}"
@@ -246,7 +251,7 @@
 																				</div>
 																				<div class="pull-left clearfix">
 																					<div class="font-sb">
-																						Market
+																						&nbsp;
 																					</div>
 																					<div class="instrument-panel-rate highlow-high">
 																					</div>
@@ -280,16 +285,16 @@
 																				{% endif %}
 																				</div>
 																				<div class="pull-left clearfix">
-																					<div class="font-sb">
-																						Market
-																					</div>
+																					{% comment %}<div class="font-sb">
+																						&nbsp;
+																					</div>{% endcomment %}
 																					<div class="instrument-panel-rate highlow-high">
 																					</div>
 																					<div class="instrument-panel-rate highlow-low">
 																					</div>
 																				</div>
 																			</div>
-																		{% elsif type.id == 'on-demand' or type.id == 'turbo' %}
+																		{% elsif type.id == 'on-demand' or type.id == 'extreme-on-demand' %}
 																			<div class="clearfix">
 																				<div class="instrument-panel-payout-wrap pull-left clearfix">
 																					<div class="font-sb">
@@ -304,7 +309,7 @@
 																				</div>
 																				<div class="pull-left clearfix">
 																					<div class="font-sb">
-																						Market
+																						&nbsp;
 																					</div>
 																					<div class="instrument-panel-rate highlow-high">
 																					</div>
@@ -328,8 +333,6 @@
 															{% elsif forloop.last and outerLoopLast == 'true' %}
 															</div>
 															{% endif %}
-
-															
 															{% capture countAll %}{{countAll | plus:1}}{% endcapture %}
 														{% endfor %}
 													{% endfor %}
@@ -390,7 +393,7 @@
 																		</div>
 																		<div class="pull-left clearfix">
 																			<div class="font-sb">
-																				Market
+																				&nbsp;
 																			</div>
 																			<div class="instrument-panel-rate highlow-high">
 																			</div>
@@ -424,16 +427,16 @@
 																		{% endif %}
 																		</div>
 																		<div class="pull-left clearfix">
-																			<div class="font-sb">
-																				Market
-																			</div>
+																			{% comment %}<div class="font-sb">
+																				&nbsp;
+																			</div>{% endcomment %}
 																			<div class="instrument-panel-rate highlow-high">
 																			</div>
 																			<div class="instrument-panel-rate highlow-low">
 																			</div>
 																		</div>
 																	</div>
-																{% elsif type.id == 'on-demand' or type.id == 'turbo' %}
+																{% elsif type.id == 'on-demand' or type.id == 'extreme-on-demand' %}
 																	<div class="clearfix">
 																		<div class="instrument-panel-payout-wrap pull-left clearfix">
 																			<div class="font-sb">
@@ -448,7 +451,7 @@
 																		</div>
 																		<div class="pull-left clearfix">
 																			<div class="font-sb">
-																				Market
+																				&nbsp;
 																			</div>
 																			<div class="instrument-panel-rate highlow-high">
 																			</div>
@@ -523,7 +526,7 @@
 							</div>
 							<div class="pull-right time-display chart-control walk-through-step">
 								<img src="public/trade-platform/images/loading.gif" class="processing"/>
-							{% if type.id != 'on-demand' and type.id != 'spread-on-demand' and type.id != 'turbo' %}
+							{% if type.id != 'on-demand' and type.id != 'spread-on-demand' and type.id != 'extreme-on-demand' %}
 								<span class="trading-platform-instrument-closing-time">
 									
 								</span>
@@ -538,10 +541,10 @@
 								<a class="trading-platform-instrument-one-click-toggler tooltip-container">
 									<div class="tooltip one-touch">
 										<div class="title">
-											One Touch Trading
+											One Click Trading
 										</div>
 										<div class="content">
-											Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+											<p>Switch to One Click Trading for faster trade execution. </p><p>Note: When switched on, One Click Trading will be active on both the chart and trade panel.</p>
 										</div>
 									</div>
 								</a>
@@ -582,7 +585,7 @@
 											Traders Choice
 										</div>
 										<div class="content">
-											Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+											View recent decisions by other traders with our Traders Choice sentiment indicator.
 										</div>
 									</div>
 								</div>
@@ -591,15 +594,15 @@
 								</div>
 							</span>
 							<div class="trading-platform-main-controls chart-control walk-through-step">
-								<div class="trading-platform-main-controls-instrument-title font-sb">
-									USD/JPY
-								</div>
-								<div class="trading-platform-main-controls-live-rate">
-									<div class="pull-left font-sb">
-										Market
+								<div class="clearfix">
+									<div class="trading-platform-main-controls-instrument-title font-sb pull-left">
+										USD/JPY
 									</div>
-									<div class="pull-right">
-										
+									<div class="trading-platform-main-controls-live-rate pull-right">
+										{% comment %}<div class="pull-left font-sb">
+											Market
+										</div>{% endcomment %}
+											
 										<span class="highlow-high current-rate">
 											102.77 
 										</span>
@@ -610,7 +613,6 @@
 										</span>
 										{% endif %}
 									</div>
-
 								</div>
 								<div class="trading-platform-main-controls-investment font-m form-control">
 									$<input type="text" class="number-only" id="{{type.id}}-investment-value-input" value="500"/>
@@ -678,7 +680,6 @@
 									</div>
 								</div>
 							</div>
-
 							<div class="chart-loading-screen">
 								<img src="public/trade-platform/images/loading-lighter.gif" class="loading-icon"/>
 							</div>
@@ -902,14 +903,14 @@
 						<div class="trading-platform-popup-close close"></div>
 					</div>
 					<div class="trading-platform-popup-body">
-						<iframe scrolling="no" src="deposit-iframe.html"></iframe>
+						<iframe scrolling="no" src="http://point.agency/highlow/new-site/deposit-iframe.html"></iframe>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
-<div class="trading-platform-popup-wrapper trading-platform-widget-popup concealed overlay" id="make-withdrawal-popup">
+{% comment %}<div class="trading-platform-popup-wrapper trading-platform-widget-popup concealed overlay" id="make-withdrawal-popup">
 	<div class="trading-platform-popup">
 		<div class="trading-platform-popup-content-wrapper">
 			<div class="trading-platform-popup-content">
@@ -925,7 +926,7 @@
 			</div>
 		</div>
 	</div>
-</div>
+</div>{% endcomment %}
 <div class="message-triggers tucked-away">
 	<div class="toggle"></div>
 	<div class="wrapper">

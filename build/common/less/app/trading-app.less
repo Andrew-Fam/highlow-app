@@ -31,7 +31,8 @@
 		background-color: @ink;
 	}
 	> .trading-app-root-mode-selector-container-wrapper {
-		.logged-in &{
+		.logged-in &,
+		.quick-demo &{
 			padding: @trading-app-root-mode-selector-container-wrapper-padding;
 		}
 		.tab-view-tab-selectors {
@@ -109,14 +110,14 @@
 						}
 					}
 				}
-				&.turbo {
+				&.extreme-on-demand {
 					&:before {
 						.inline-icon();
-						.sprite(@turbo-grey-sm);
+						.sprite(@extreme-grey-sm);
 					}
 					&.active {
 						&:before {
-							.sprite(@turbo-red-sm);
+							.sprite(@extreme-red-sm);
 						}
 					}
 				}

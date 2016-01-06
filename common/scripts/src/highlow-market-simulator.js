@@ -406,8 +406,6 @@ highlowApp.marketSimulator = {
 						var x = point.plotX, 
 							labelX = Math.floor(xAxis.toPixels(bet.expireAt)-17);
 
-
-
 						var textX = labelX+68,
 							textY = 141;
 						var textAttribute = {};
@@ -417,7 +415,6 @@ highlowApp.marketSimulator = {
 							labelX = labelX -5;
 
 							var label = renderer.rect(labelX,52,22,177,0);
-
 
 							textX = labelX+11;
 							textY = 85;
@@ -817,7 +814,7 @@ highlowApp.marketSimulator = {
 		instrumentModel.duration = instrumentModel.domElement.data('instrumentDurationValue');
 		instrumentModel.seedRate = instrumentModel.domElement.data('instrumentSeedRate');
 		instrumentModel.payoutRate = instrumentModel.domElement.data('instrumentPayoutRate');
-		instrumentModel.pip = instrumentModel.domElement.data('pip') || 3;
+		instrumentModel.pip = instrumentModel.domElement.data('instrumentPip') || 3;
 		instrumentModel.currentRate = parseFloat(instrumentModel.seedRate).toFixed(instrumentModel.pip);
 		instrumentModel.previousrate = instrumentModel.currentRate;
 		instrumentModel.bets = [];
@@ -831,7 +828,6 @@ highlowApp.marketSimulator = {
 		// except for on-demand type, which doesn't have a fixed open time
 
 		if(instrumentModel.type.indexOf('on-demand') < 0 && instrumentModel.type.indexOf('turbo') < 0) {
-
 
 			if(highlowApp.expiring()) {
 				instrumentModel.openAt = currentTime - 1000*60*13;
@@ -856,7 +852,7 @@ highlowApp.marketSimulator = {
 			
 		}
 
-	// Generate past data.
+		// Generate past data.
 
 		var startingPointFromNow = (20*60*1000),
 		minInterval = 1000,
@@ -881,8 +877,8 @@ highlowApp.marketSimulator = {
 		// seed highlow data array with a value
 
 		instrumentModel.data.push({
-			x :	instrumentModel.startingPoint,
-			y : instrumentModel.seedRate
+			x :	parseFloat(instrumentModel.startingPoint),
+			y : parseFloat(instrumentModel.seedRate)
 		});
 
 		// generate mock data from starting from 20 minutes ago
@@ -917,8 +913,8 @@ highlowApp.marketSimulator = {
 			// next value calculated from variation deinfed above and previous value
 
 			var point = { 
-				x : i ,
-				y : instrumentModel.data[j-1]['y'] + variation
+				x : parseFloat(i) ,
+				y : parseFloat(instrumentModel.data[j-1]['y'] + variation)
 			};
 
 			instrumentModel.data.push(point);

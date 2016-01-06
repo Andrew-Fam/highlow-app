@@ -19,7 +19,7 @@
 				position: relative;
 			}
 				.tab-view-tab-selector {
-					border-right: 0.27em solid transparent;
+					border-right: 2px solid transparent;
 					cursor: pointer;
 					display: table-cell;
 					font-size: @tab-view-selector-font-size;
@@ -121,6 +121,34 @@
 		> .tab-view-body {
 			background-color: @night;
 		}
+	}
+}
+
+.tab-view-tab-selector--new {
+	display: inline-block;
+	vertical-align: middle;
+	font-family: "Montserrat", "Helvetica", "Arial", sans-serif;
+	background-color: #ffdf47;
+	font-size: 8px;
+	letter-spacing: 0.1em;
+	color: #232323;
+	height: 17px;
+	position: relative;
+	margin-left: 10px;
+	line-height: 18px;
+	padding: 0 5px;
+	top: -1px;
+	&:before {
+		display: block;
+		content: "";
+		width: 0px;
+		height: 0px;
+		border: 3px solid transparent;
+		border-right: 6px solid #ffdf47;
+		position: absolute;
+		top: 50%;
+		margin-top: -3px;
+		left: -9px;
 	}
 }
 
