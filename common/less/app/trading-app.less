@@ -27,6 +27,11 @@
 	background-color: @night;
 	padding-bottom: 80px;
 
+	vertical-align: baseline;
+	* {
+		vertical-align: baseline;
+	}
+
 	.trading-app-body {
 		background-color: @ink;
 	}
@@ -126,8 +131,15 @@
 					position: relative;
 					display: inline-block;
     				line-height: 13px;
+    				&.cn {
+    					vertical-align: middle;
+    					img {
+    						margin-top: 2px;
+    					}
+    				}
 					img {
 						.transition(opacity 0.125s ease);
+						max-height: 18px;
 					}
 					.default {
 						.opacity(100);

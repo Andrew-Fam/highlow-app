@@ -3,9 +3,15 @@ var platformAssetUrl = "";
 $(function () {
 
 	highlowApp.jap = false;
+
+	highlowApp.cn = false;
 	
 	if($('.jap-word').length>0) {
 		highlowApp.jap = true;
+	}
+
+	if($('.cn').length>0) {
+		highlowApp.cn = true;
 	}
 
 	if($('#platform-asset-url').length>0) {

@@ -1,23 +1,24 @@
 {% extends layout %}
 {% block content %}
 <!-- start-platform -->
-<div class="tab-view tab-view-alternate trading-app-root">
+<div class="tab-view tab-view-alternate trading-app-root cn">
 	<div class="tab-view-tab-selectors-container-wrapper trading-app-root-mode-selector-container-wrapper">
 		<div class="tab-view-tab-selectors-container tab-full-width trading-app-container">
 			<ul class="tab-view-tab-selectors">
 				{% for type in tradingTypes %}
-				<li class="tab-view-tab-selector {% if type.default %} active {% endif %} {{ type.id }}" data-target="#{{ type.id }}-mode">
-					{{type.jaLabel}}
+				<li class="tab-view-tab-selector eng {% if type.default %} active {% endif %} {{ type.id }}" data-target="#{{ type.id }}-mode">
+					{{type.cnLabel}}
+
 					{% if type._new %}
-					<span class="tab-view-tab-selector--new">
-						NEW!
+					<span class="tab-view-tab-selector--new" style="font-size: 12px;">
+						&nbsp;&nbsp;新！
 					</span>
 					{% endif %}
 				</li>
 				{% endfor %}
 			</ul>
 		</div>
-	</div>
+	</div> 
 	<div class="tab-view-body-wrapper">
 		<div class="tab-view-body">
 			{% for type in tradingTypes %}
@@ -30,141 +31,141 @@
 									<div id="{{ type.id }}-asset-filter" class="asset-filter hl-toggler" data-toggle-self-on-disabled="true" data-toggle-off-click="true">
 										<span class="asset-filter--opener hl-toggler" data-toggle-target="#{{ type.id }}-asset-filter"></span>
 										<span class="asset-filter--placeholder">
-											原資産を選択する
+											选择资产
 										</span>
 										<div class="asset-filter--category hl-toggler" data-toggle-group="filter-asset-{{ type.id }}">
-											<span class="asset-filter--clear hl-toggler" data-toggle-target="#{{ type.id }}-asset-filter">全て</span>
+											<span class="asset-filter--clear hl-toggler" data-toggle-target="#{{ type.id }}-asset-filter">所有资产</span>
 										</div>
 										<div class="asset-filter--category indicies">
-											<span class="asset-filter--category--label hl-toggler" data-toggle-group="filter-asset-{{ type.id }}" data-toggle-self-off-disabled="true" data-toggle-target="#filter-indicies"><span class="asset-filter--asset--label-content hl-toggler" data-toggle-target="#{{ type.id }}-asset-filter">通貨ペア</span></span>
+											<span class="asset-filter--category--label hl-toggler" data-toggle-group="filter-asset-{{ type.id }}" data-toggle-self-off-disabled="true" data-toggle-target="#filter-indicies"><span class="asset-filter--asset--label-content hl-toggler" data-toggle-target="#{{ type.id }}-asset-filter">指数</span></span>
 											<div class="asset-filter--assets">
-												<div class="asset-filter--asset hl-toggler" data-toggle-group="filter-asset-{{ type.id }}" data-toggle-self-off-disabled="true" data-toggle-target="#filter-aus200">
+												<div class="asset-filter--asset hl-toggler eng" data-toggle-group="filter-asset-{{ type.id }}" data-toggle-self-off-disabled="true" data-toggle-target="#filter-aus200">
 													<span class="asset-filter--asset--label hl-toggler" data-toggle-target="#{{ type.id }}-asset-filter">AUS200</span>
 												</div>
-												<div class="asset-filter--asset hl-toggler" data-toggle-group="filter-asset-{{ type.id }}" data-toggle-self-off-disabled="true"  data-toggle-target="#filter-jpn225">
+												<div class="asset-filter--asset hl-toggler eng" data-toggle-group="filter-asset-{{ type.id }}" data-toggle-self-off-disabled="true"  data-toggle-target="#filter-jpn225">
 													<span class="asset-filter--asset--label hl-toggler" data-toggle-target="#{{ type.id }}-asset-filter">JPN225</span>
 												</div>
-												<div class="asset-filter--asset hl-toggler" data-toggle-group="filter-asset-{{ type.id }}" data-toggle-self-off-disabled="true"  data-toggle-target="#filter-hkg33">
+												<div class="asset-filter--asset hl-toggler eng" data-toggle-group="filter-asset-{{ type.id }}" data-toggle-self-off-disabled="true"  data-toggle-target="#filter-hkg33">
 													<span class="asset-filter--asset--label hl-toggler" data-toggle-target="#{{ type.id }}-asset-filter">HKG33</span>
 												</div>
-												<div class="asset-filter--asset hl-toggler" data-toggle-group="filter-asset-{{ type.id }}" data-toggle-self-off-disabled="true"  data-toggle-target="#filter-uk100">
+												<div class="asset-filter--asset hl-toggler eng" data-toggle-group="filter-asset-{{ type.id }}" data-toggle-self-off-disabled="true"  data-toggle-target="#filter-uk100">
 													<span class="asset-filter--asset--label hl-toggler" data-toggle-target="#{{ type.id }}-asset-filter">UK100</span>
 												</div>
-												<div class="asset-filter--asset hl-toggler" data-toggle-group="filter-asset-{{ type.id }}" data-toggle-self-off-disabled="true"  data-toggle-target="#filter-us30">
+												<div class="asset-filter--asset hl-toggler eng" data-toggle-group="filter-asset-{{ type.id }}" data-toggle-self-off-disabled="true"  data-toggle-target="#filter-us30">
 													<span class="asset-filter--asset--label hl-toggler" data-toggle-target="#{{ type.id }}-asset-filter">US30</span>
 												</div>
 											</div>
 										</div>
 										<div class="asset-filter--category currencies">
 											<span class="asset-filter--category--label hl-toggler" data-toggle-group="filter-asset-{{ type.id }}" data-toggle-self-off-disabled="true" data-toggle-target="#filter-currencies">
-												<span class="asset-filter--asset--label-content hl-toggler" data-toggle-target="#{{ type.id }}-asset-filter">株価指数</span>
+												<span class="asset-filter--asset--label-content hl-toggler" data-toggle-target="#{{ type.id }}-asset-filter">货币</span>
 											</span>
 											<div class="asset-filter--assets">
 												<div class="asset-filter--asset hl-toggler" data-toggle-group="filter-asset-{{ type.id }}" data-toggle-self-off-disabled="true" data-toggle-target="#filter-usd-jpy">
-													<span class="asset-filter--asset--label hl-toggler" data-toggle-target="#{{ type.id }}-asset-filter">USD/JPY</span>
+													<span class="asset-filter--asset--label hl-toggler eng" data-toggle-target="#{{ type.id }}-asset-filter">USD/JPY</span>
 												</div>
 												<div class="asset-filter--asset hl-toggler" data-toggle-group="filter-asset-{{ type.id }}" data-toggle-self-off-disabled="true"  data-toggle-target="#filter-aud-usd">
-													<span class="asset-filter--asset--label hl-toggler" data-toggle-target="#{{ type.id }}-asset-filter">AUD/USD</span>
+													<span class="asset-filter--asset--label hl-toggler eng" data-toggle-target="#{{ type.id }}-asset-filter">AUD/USD</span>
 												</div>
 												<div class="asset-filter--asset hl-toggler" data-toggle-group="filter-asset-{{ type.id }}" data-toggle-self-off-disabled="true"  data-toggle-target="#filter-eur-jpy">
-													<span class="asset-filter--asset--label hl-toggler" data-toggle-target="#{{ type.id }}-asset-filter">EUR/JPY</span>
+													<span class="asset-filter--asset--label hl-toggler eng" data-toggle-target="#{{ type.id }}-asset-filter">EUR/JPY</span>
 												</div>
 												<div class="asset-filter--asset hl-toggler" data-toggle-group="filter-asset-{{ type.id }}" data-toggle-self-off-disabled="true"  data-toggle-target="#filter-eur-usd">
-													<span class="asset-filter--asset--label hl-toggler" data-toggle-target="#{{ type.id }}-asset-filter">EUR/USD</span>
+													<span class="asset-filter--asset--label hl-toggler eng" data-toggle-target="#{{ type.id }}-asset-filter">EUR/USD</span>
 												</div>
 												<div class="asset-filter--asset hl-toggler" data-toggle-group="filter-asset-{{ type.id }}" data-toggle-self-off-disabled="true"  data-toggle-target="#filter-gbp-jpy">
-													<span class="asset-filter--asset--label hl-toggler" data-toggle-target="#{{ type.id }}-asset-filter">GBP/JPY</span>
+													<span class="asset-filter--asset--label hl-toggler eng" data-toggle-target="#{{ type.id }}-asset-filter">GBP/JPY</span>
 												</div>
 												<div class="asset-filter--asset hl-toggler" data-toggle-group="filter-asset-{{ type.id }}" data-toggle-self-off-disabled="true"  data-toggle-target="#filter-gbp-usd">
-													<span class="asset-filter--asset--label hl-toggler" data-toggle-target="#{{ type.id }}-asset-filter">GBP/USD</span>
+													<span class="asset-filter--asset--label hl-toggler eng" data-toggle-target="#{{ type.id }}-asset-filter">GBP/USD</span>
 												</div>
 												<div class="asset-filter--asset hl-toggler" data-toggle-group="filter-asset-{{ type.id }}" data-toggle-self-off-disabled="true"  data-toggle-target="#filter-nzd-jpy">
-													<span class="asset-filter--asset--label hl-toggler" data-toggle-target="#{{ type.id }}-asset-filter">NZD/JPY</span>
+													<span class="asset-filter--asset--label hl-toggler eng" data-toggle-target="#{{ type.id }}-asset-filter">NZD/JPY</span>
 												</div>
 												<div class="asset-filter--asset hl-toggler" data-toggle-group="filter-asset-{{ type.id }}" data-toggle-self-off-disabled="true"  data-toggle-target="#filter-nzd-usd">
-													<span class="asset-filter--asset--label hl-toggler" data-toggle-target="#{{ type.id }}-asset-filter">NZD/USD</span>
+													<span class="asset-filter--asset--label hl-toggler eng" data-toggle-target="#{{ type.id }}-asset-filter">NZD/USD</span>
 												</div>
 												<div class="asset-filter--asset hl-toggler" data-toggle-group="filter-asset-{{ type.id }}" data-toggle-self-off-disabled="true"  data-toggle-target="#filter-aud-jpy">
-													<span class="asset-filter--asset--label hl-toggler" data-toggle-target="#{{ type.id }}-asset-filter">AUD/JPY</span>
+													<span class="asset-filter--asset--label hl-toggler eng" data-toggle-target="#{{ type.id }}-asset-filter">AUD/JPY</span>
 												</div>
 											</div>
 										</div>
 										<div class="asset-filter--category commodities">
 											<span class="asset-filter--category--label hl-toggler" data-toggle-group="filter-asset-{{ type.id }}" data-toggle-self-off-disabled="true" data-toggle-target="#filter-commodities">
-												<span class="asset-filter--asset--label-content hl-toggler" data-toggle-target="#{{ type.id }}-asset-filter">商品指数</span>
+												<span class="asset-filter--asset--label-content hl-toggler" data-toggle-target="#{{ type.id }}-asset-filter">商品</span>
 											</span>
 											<div class="asset-filter--assets">
 												<div class="asset-filter--asset hl-toggler" data-toggle-group="filter-asset-{{ type.id }}" data-toggle-self-off-disabled="true" data-toggle-target="#filter-gold">
-													<span class="asset-filter--asset--label hl-toggler" data-toggle-target="#{{ type.id }}-asset-filter">Gold</span>
+													<span class="asset-filter--asset--label hl-toggler" data-toggle-target="#{{ type.id }}-asset-filter">金</span>
 												</div>
 												<div class="asset-filter--asset hl-toggler" data-toggle-group="filter-asset-{{ type.id }}" data-toggle-self-off-disabled="true"  data-toggle-target="#filter-silver">
-													<span class="asset-filter--asset--label hl-toggler" data-toggle-target="#{{ type.id }}-asset-filter">Silver</span>
+													<span class="asset-filter--asset--label hl-toggler" data-toggle-target="#{{ type.id }}-asset-filter">银</span>
 												</div>
 												<div class="asset-filter--asset hl-toggler" data-toggle-group="filter-asset-{{ type.id }}" data-toggle-self-off-disabled="true"  data-toggle-target="#filter-oil">
-													<span class="asset-filter--asset--label hl-toggler" data-toggle-target="#{{ type.id }}-asset-filter">Oil</span>
+													<span class="asset-filter--asset--label hl-toggler" data-toggle-target="#{{ type.id }}-asset-filter">石油</span>
 												</div>
 											</div>
 										</div>
 										<div class="asset-filter--display-labels">
 											<div class="asset-filter--display-label" data-toggle-group="filter-asset-{{ type.id }}" id="filter-indicies">
-												通貨ペア
+												所有指数
 											</div>
 											<div class="asset-filter--display-label" data-toggle-group="filter-asset-{{ type.id }}" id="filter-currencies">
-												株価指数
+												所有货币
 											</div>
 											<div class="asset-filter--display-label" data-toggle-group="filter-asset-{{ type.id }}" id="filter-commodities">
-												商品指数
+												所有商品
 											</div>
-											<div class="asset-filter--display-label" data-toggle-group="filter-asset-{{ type.id }}" id="filter-aus200">
+											<div class="asset-filter--display-label eng" data-toggle-group="filter-asset-{{ type.id }}" id="filter-aus200">
 												AUS200
 											</div>
-											<div class="asset-filter--display-label" data-toggle-group="filter-asset-{{ type.id }}" id="filter-jpn225">
+											<div class="asset-filter--display-label eng" data-toggle-group="filter-asset-{{ type.id }}" id="filter-jpn225">
 												JPN225
 											</div>
-											<div class="asset-filter--display-label" data-toggle-group="filter-asset-{{ type.id }}" id="filter-hkg33">
+											<div class="asset-filter--display-label eng" data-toggle-group="filter-asset-{{ type.id }}" id="filter-hkg33">
 												HKG33
 											</div>
-											<div class="asset-filter--display-label" data-toggle-group="filter-asset-{{ type.id }}" id="filter-uk100">
+											<div class="asset-filter--display-label eng" data-toggle-group="filter-asset-{{ type.id }}" id="filter-uk100">
 												UK100
 											</div>
-											<div class="asset-filter--display-label" data-toggle-group="filter-asset-{{ type.id }}" id="filter-us30">
+											<div class="asset-filter--display-label eng" data-toggle-group="filter-asset-{{ type.id }}" id="filter-us30">
 												US30
 											</div>
-											<div class="asset-filter--display-label" data-toggle-group="filter-asset-{{ type.id }}" id="filter-usd-jpy">
+											<div class="asset-filter--display-label eng" data-toggle-group="filter-asset-{{ type.id }}" id="filter-usd-jpy">
 												USD/JPY
 											</div>
-											<div class="asset-filter--display-label" data-toggle-group="filter-asset-{{ type.id }}" id="filter-aud-usd">
+											<div class="asset-filter--display-label eng" data-toggle-group="filter-asset-{{ type.id }}" id="filter-aud-usd">
 												AUD/USD
 											</div>
-											<div class="asset-filter--display-label" data-toggle-group="filter-asset-{{ type.id }}" id="filter-eur-jpy">
+											<div class="asset-filter--display-label eng" data-toggle-group="filter-asset-{{ type.id }}" id="filter-eur-jpy">
 												EUR/JPY
 											</div>
-											<div class="asset-filter--display-label" data-toggle-group="filter-asset-{{ type.id }}" id="filter-eur-usd">
+											<div class="asset-filter--display-label eng" data-toggle-group="filter-asset-{{ type.id }}" id="filter-eur-usd">
 												EUR/USD
 											</div>
-											<div class="asset-filter--display-label" data-toggle-group="filter-asset-{{ type.id }}" id="filter-gbp-jpy">
+											<div class="asset-filter--display-label eng" data-toggle-group="filter-asset-{{ type.id }}" id="filter-gbp-jpy">
 												GBP/JPY
 											</div>
-											<div class="asset-filter--display-label" data-toggle-group="filter-asset-{{ type.id }}" id="filter-gbp-usd">
+											<div class="asset-filter--display-label eng" data-toggle-group="filter-asset-{{ type.id }}" id="filter-gbp-usd">
 												GBP/USD
 											</div>
-											<div class="asset-filter--display-label" data-toggle-group="filter-asset-{{ type.id }}" id="filter-nzd-jpy">
+											<div class="asset-filter--display-label eng" data-toggle-group="filter-asset-{{ type.id }}" id="filter-nzd-jpy">
 												NZD/JPY
 											</div>
-											<div class="asset-filter--display-label" data-toggle-group="filter-asset-{{ type.id }}" id="filter-nzd-usd">
+											<div class="asset-filter--display-label eng" data-toggle-group="filter-asset-{{ type.id }}" id="filter-nzd-usd">
 												NZD/USD
 											</div>
-											<div class="asset-filter--display-label" data-toggle-group="filter-asset-{{ type.id }}" id="filter-aud-jpy">
+											<div class="asset-filter--display-label eng" data-toggle-group="filter-asset-{{ type.id }}" id="filter-aud-jpy">
 												AUD/JPY
 											</div>
 											<div class="asset-filter--display-label" data-toggle-group="filter-asset-{{ type.id }}" id="filter-gold">
-												Gold
+												金
 											</div>
 											<div class="asset-filter--display-label" data-toggle-group="filter-asset-{{ type.id }}" id="filter-silver">
-												Silver
+												银
 											</div>
 											<div class="asset-filter--display-label" data-toggle-group="filter-asset-{{ type.id }}" id="filter-oil">
-												Oil
+												石油
 											</div>
 										</div>
 									</div>
@@ -173,18 +174,18 @@
 								</div>
 								<div class="tab-view-tab-selectors-container font-m">
 									<ul class="tab-view-tab-selectors instrument-selector-widget-duration-selectors">
-										<li class="tab-view-tab-selector instrument-selector-widget-duration-selector active jap-word" data-target="#{{type.id}}-interval-all">
-											全て
+										<li class="tab-view-tab-selector instrument-selector-widget-duration-selector active" data-target="#{{type.id}}-interval-all">
+											全时段
 										</li>
 									{% if type.intervals.length > 1 %} 
 										{% for interval in type.intervals %}
 										<li class="tab-view-tab-selector instrument-selector-widget-duration-selector" data-target="#{{type.id}}-{{interval.id}}">
-											{{ interval.jaLabel }}
+											{{ interval.cnLabel }}
 										</li>
 										{% endfor %}
 									{% endif %}
-										<li class="tab-view-tab-selector instrument-selector-widget-duration-selector favourite jap-word" data-target="#{{type.id}}-favourite">
-											お気に入り
+										<li class="tab-view-tab-selector instrument-selector-widget-duration-selector favourite" data-target="#{{type.id}}-favourite">
+											收藏
 										</li>
 									</ul>
 								</div>
@@ -218,7 +219,6 @@
 
 																<div 
 																	class="instrument-panel {% if countAll == '1' %}instrument-panel-active{% endif %} instrument-{{type.id}}-panel" 
-
 																	data-uid="{{type.id}}-{{instrumentItem.id}}-{{interval.id}}-{{forloop.index0}}"
 																	data-trading-type="{{type.id}}" 
 																	data-instrument-label="{{instrumentItem.label}}"
@@ -230,30 +230,30 @@
 																	data-instrument-pip="{{instrumentItem.pip}}"
 																>
 																	<div class="instrument-panel-header">
-																		<div class="instrument-panel-title">
+																		<div class="instrument-panel-title eng">
 																			{{instrumentItem.label}}
 																		</div>
 																		<a title="Add To Favourites" class="instrument-panel-favourite"></a>
 																		<div class="instrument-panel-duration">
-																			{{interval.jaShortLabel}}
+																			{{interval.shortLabel}}
 																		</div>
 																	</div>
 																	<div class="instrument-panel-body">
 																		{% if type.id == 'highlow' %}
 																			<div class="clearfix">
 																				<div class="instrument-panel-payout-wrap pull-left clearfix">
-																					<div class="font-sb jap-word">
-																						ペイアウト
+																					<div class="font-sb">
+																						付款
 																					</div>
-																					<div class="instrument-panel-payout">
+																					<div class="instrument-panel-payout eng">
 																						{{instrumentItem.payout}}
 																					</div>
 																				</div>
 																				<div class="pull-left clearfix">
-																					<div class="jap-word font-sb">
+																					<div class="font-sb">
 																						&nbsp;
 																					</div>
-																					<div class="instrument-panel-rate highlow-high">
+																					<div class="instrument-panel-rate highlow-high eng">
 																					</div>
 																				</div>
 																			</div>
@@ -262,56 +262,56 @@
 																					Closing: <span class="expiry-time">loading...</span>
 																				</div> -->
 																				<div class="instrument-panel-closing">
-																					<span class="jap-word">判定時刻</span>: <span class="closing-at"></span>
+																					收盘：<span class="closing-at eng"></span>
 																				</div>
 																			</div>
 																		{% elsif type.id == 'spread' or type.id == 'spread-on-demand' %}
 																			<div class="clearfix">
 																				<div class="instrument-panel-payout-wrap pull-left clearfix">
-																					<div class="jap-word font-sb">
-																						ペイアウト
+																					<div class="font-sb">
+																						付款
 																					</div>
-																					<div class="instrument-panel-payout">
+																					<div class="instrument-panel-payout eng">
 																						{{instrumentItem.payout}}
 																					</div>
 																				{% if type.id == 'spread' %}
 																					<div class="instrument-panel-closing">
-																						<span class="jap-word">判定時刻</span>: <span class="closing-at"></span>
+																						收盘：<span class="closing-at eng"></span>
 																					</div>
 																				{% else %}
 																					<div class="instrument-panel-closing first-child last-child">
-																						<span class="jap-word">判定時刻</span>: 02:00
+																						收盘：<span class=" eng">02:00</span>
 																					</div>
 																				{% endif %}
 																				</div>
 																				<div class="pull-left clearfix">
-																					{% comment %}<div class="jap-word font-sb">
+																					{% comment %}<div class="font-sb">
 																						&nbsp;
 																					</div>{% endcomment %}
-																					<div class="instrument-panel-rate highlow-high">
+																					<div class="instrument-panel-rate highlow-high eng">
 																					</div>
-																					<div class="instrument-panel-rate highlow-low">
+																					<div class="instrument-panel-rate highlow-low eng">
 																					</div>
 																				</div>
 																			</div>
 																		{% elsif type.id == 'on-demand' or type.id == 'extreme-on-demand' %}
 																			<div class="clearfix">
 																				<div class="instrument-panel-payout-wrap pull-left clearfix">
-																					<div class="jap-word font-sb">
-																						ペイアウト
+																					<div class="font-sb">
+																						付款
 																					</div>
-																					<div class="instrument-panel-payout">
+																					<div class="instrument-panel-payout eng">
 																						{{instrumentItem.payout}}
 																					</div>
 																					<div class="instrument-panel-closing first-child last-child">
-																						<span class="jap-word">判定時刻</span>: 02:00
+																						收盘：<span class=" eng">02:00</span>
 																					</div>
 																				</div>
 																				<div class="pull-left clearfix">
-																					<div class="jap-word font-sb">
+																					<div class="font-sb">
 																						&nbsp;
 																					</div>
-																					<div class="instrument-panel-rate highlow-high">
+																					<div class="instrument-panel-rate highlow-high eng">
 																					</div>
 																				</div>
 																			</div>
@@ -333,8 +333,6 @@
 															{% elsif forloop.last and outerLoopLast == 'true' %}
 															</div>
 															{% endif %}
-
-															
 															{% capture countAll %}{{countAll | plus:1}}{% endcapture %}
 														{% endfor %}
 													{% endfor %}
@@ -372,32 +370,32 @@
 															data-instrument-pip="{{instrumentItem.pip}}"
 														>
 															<div class="instrument-panel-header">
-																<div class="instrument-panel-title">
+																<div class="instrument-panel-title eng">
 																	{{instrumentItem.label}}
 																</div>
 																<a title="Add To Favourites" class="instrument-panel-favourite">
 
 																</a>
 																<div class="instrument-panel-duration">
-																	{{interval.jaShortLabel}}
+																	{{interval.shortLabel}}
 																</div>
 															</div>
 															<div class="instrument-panel-body">
 																{% if type.id == 'highlow' %}
 																	<div class="clearfix">
 																		<div class="instrument-panel-payout-wrap pull-left clearfix">
-																			<div class="font-sb jap-word">
-																				ペイアウト
+																			<div class="font-sb">
+																				付款
 																			</div>
-																			<div class="instrument-panel-payout">
+																			<div class="instrument-panel-payout eng">
 																				{{instrumentItem.payout}}
 																			</div>
 																		</div>
 																		<div class="pull-left clearfix">
-																			<div class="jap-word font-sb">
+																			<div class="font-sb">
 																				&nbsp;
 																			</div>
-																			<div class="instrument-panel-rate highlow-high">
+																			<div class="instrument-panel-rate highlow-high eng">
 																			</div>
 																		</div>
 																	</div>
@@ -406,56 +404,56 @@
 																			Closing: <span class="expiry-time">loading...</span>
 																		</div> -->
 																		<div class="instrument-panel-closing">
-																			<span class="jap-word">判定時刻</span>: <span class="closing-at"></span>
+																			收盘：<span class="closing-at eng"></span>
 																		</div>
 																	</div>
 																{% elsif type.id == 'spread' or type.id == 'spread-on-demand' %}
 																	<div class="clearfix">
 																		<div class="instrument-panel-payout-wrap pull-left clearfix">
-																			<div class="font-sb jap-word">
-																				ペイアウト
+																			<div class="font-sb">
+																				付款
 																			</div>
-																			<div class="instrument-panel-payout">
-																				${{instrumentItem.payout}}
+																			<div class="instrument-panel-payout eng">
+																				{{instrumentItem.payout}}
 																			</div>
 																		{% if type.id == 'spread' %}
 																			<div class="instrument-panel-closing">
-																				<span class="jap-word">判定時刻</span>: <span class="closing-at"></span>
+																				收盘：<span class="closing-at eng"></span>
 																			</div>
 																		{% else %}
 																			<div class="instrument-panel-closing first-child last-child">
-																				<span class="jap-word">判定時刻</span>: 02:00
+																				收盘：<span class=" eng">02:00</span>
 																			</div>
 																		{% endif %}
 																		</div>
 																		<div class="pull-left clearfix">
-																			{% comment %}<div class="jap-word font-sb">
+																			{% comment %}<div class="font-sb">
 																				&nbsp;
 																			</div>{% endcomment %}
-																			<div class="instrument-panel-rate highlow-high">
+																			<div class="instrument-panel-rate highlow-high eng">
 																			</div>
-																			<div class="instrument-panel-rate highlow-low">
+																			<div class="instrument-panel-rate highlow-low eng">
 																			</div>
 																		</div>
 																	</div>
 																{% elsif type.id == 'on-demand' or type.id == 'extreme-on-demand' %}
 																	<div class="clearfix">
 																		<div class="instrument-panel-payout-wrap pull-left clearfix">
-																			<div class="jap-word font-sb">
-																				ペイアウト
+																			<div class="font-sb">
+																				付款
 																			</div>
-																			<div class="instrument-panel-payout">
+																			<div class="instrument-panel-payout eng">
 																				{{instrumentItem.payout}}
 																			</div>
 																			<div class="instrument-panel-closing first-child last-child">
-																				<span class="jap-word">判定時刻</span>: 02:00
+																				收盘：<span class=" eng">02:00</span>
 																			</div>
 																		</div>
 																		<div class="pull-left clearfix">
-																			<div class="jap-word font-sb">
+																			<div class="font-sb">
 																				&nbsp;
 																			</div>
-																			<div class="instrument-panel-rate highlow-high">
+																			<div class="instrument-panel-rate highlow-high eng">
 																			</div>
 																		</div>
 																	</div>
@@ -500,7 +498,7 @@
 												<div class="pages-wrapper">
 													
 												</div>
-												<div class="no-data jap-word">お気に入りの登録がありません。</div>
+												<div class="no-data">您目前没有收藏</div>
 											</div>
 										</div>
 
@@ -514,13 +512,13 @@
 					<div class="panel panel-default trading-platform main-view" id="{{type.id}}-main-view">
 						<div class="panel-header">
 							<div class="pull-left chart-panel instrument-details-display walk-through-step">
-								<span class="trading-platform-instrument-title font-sb">
+								<span class="trading-platform-instrument-title font-sb eng">
 									
 								</span>
 								<span class="trading-platform-instrument-rate highlow-high current-rate eng">
 								</span>
 								{% if type.range %}
-								<span class="trading-platform-instrument-spread-range">
+								<span class="trading-platform-instrument-spread-range eng">
 									+/- {{type.range}}
 								</span>
 								{% endif %}
@@ -529,24 +527,24 @@
 							<div class="pull-right time-display chart-control walk-through-step">
 								<img src="public/trade-platform/images/loading.gif" class="processing"/>
 							{% if type.id != 'on-demand' and type.id != 'spread-on-demand' and type.id != 'extreme-on-demand' %}
-								<span class="trading-platform-instrument-closing-time">
+								<span class="trading-platform-instrument-closing-time eng">
 									
 								</span>
-								<span class="trading-platform-instrument-time-left time-to-expiry">
+								<span class="trading-platform-instrument-time-left time-to-expiry eng">
 									loading...
 								</span>
 							{% else %}
 								<span class="trading-platform-instrument-market-close-time">
-									<span class="jap-word">判定時刻</span> 02:00
+									收盘时间 <span class=" eng">02:00</span>
 								</span>
 							{% endif %}
 								<a class="trading-platform-instrument-one-click-toggler tooltip-container">
 									<div class="tooltip one-touch">
-										<div class="title jap-word">
-											ワンクリック注文
+										<div class="title">
+											用一次点击来交易
 										</div>
 										<div class="content">
-											<p><span class="word">より早い</span><span class="word">約定が</span><span class="word">可能な</span><span class="word">ワンクリック注文に</span><span class="word">切替える。</span></p><p><span class="word">注：</span><span class="word">ワンクリック注文を</span><span class="word">有効に</span><span class="word">すると、</span><span class="word">チャート上</span><span class="word">および</span><span class="word">トレードパネル</span><span class="word">両方で</span><span class="word">有効と</span><span class="word">なります。</span></p>
+											<p>选择一次点击可以给您带来跟快的交易。</p><p>提示：选择一次点击后，一次点击会反应在平台的所有交易窗口和图表。</p>
 										</div>
 									</div>
 								</a>
@@ -565,7 +563,7 @@
 						<div class="panel-body">
 							<span class="chart-panel chart walk-through-step">
 								<div class="heatmap collapsed tooltip-container" id="{{type.id}}-heatmap" data-target="{{type.id}}-graph">
-									<div class="label high">
+									<div class="label high eng">
 										31%
 									</div>
 									<div class="meter">
@@ -574,7 +572,7 @@
 										<div class="fill low" style="height: 69%;">
 										</div>
 									</div>
-									<div class="label low">
+									<div class="label low eng">
 										69%
 									</div>
 									<div class="toggle">
@@ -583,11 +581,11 @@
 									<div class="expander">
 									</div>
 									<div class="tooltip trader-choice">
-										<div class="title jap-word">
-											トレーダース<br/>・チョイス
+										<div class="title">
+											交易者的选择
 										</div>
 										<div class="content">
-											<span class="word">トレーダース・チョイス</span><span class="word">では、</span><span class="word">当社で</span><span class="word">お取引</span><span class="word">いただいている</span><span class="word">他の</span><span class="word">お客様の</span><span class="word">市場</span><span class="word">センチメントが、</span><span class="word">リアルタイムで</span><span class="word">ご確認</span><span class="word">いただけます。</span>
+											查看其他交易者<br/>的投资选择
 										</div>
 									</div>
 								</div>
@@ -597,70 +595,88 @@
 							</span>
 							<div class="trading-platform-main-controls chart-control walk-through-step">
 								<div class="clearfix">
-									<div class="trading-platform-main-controls-instrument-title font-sb pull-left">
+									<div class="trading-platform-main-controls-instrument-title font-sb pull-left eng">
 										USD/JPY
 									</div>
 									<div class="trading-platform-main-controls-live-rate pull-right">
+										{% comment %}<div class="pull-left font-sb">
+											Market
+										</div>{% endcomment %}
 											
 										<span class="highlow-high current-rate eng">
 											102.77 
 										</span>
 
 										{% if type.range %}
-										<span class="trading-platform-instrument-spread-range">
+										<span class="trading-platform-instrument-spread-range eng">
 											+/- {{type.range}}
 										</span>
 										{% endif %}
-
 									</div>
 								</div>
-								<div class="trading-platform-main-controls-investment jap font-m form-control">
-									¥<input type="text" class="number-only" id="{{type.id}}-investment-value-input" value="50000"/>
+								<div class="trading-platform-main-controls-investment font-m form-control eng">
+									¥<input type="text" class="number-only eng" id="{{type.id}}-investment-value-input" value="500"/>
 								</div>
-								<div class="clearfix trading-platform-main-controls-common-amount jap">
+								<div class="clearfix trading-platform-main-controls-common-amount eng">
 									<!-- I've used div as button here because button deosn't get :focus style on click for Firefox and Safari on MAc OSX -->
 
-									<div class="btn btn-md-pad font-m" tabindex="0" onclick="document.getElementById('{{type.id}}-investment-value-input-popup').value = this.getAttribute('data-value'); document.getElementById('{{type.id}}-investment-value-input').value = this.getAttribute('data-value');" data-value="5000">¥5,000</div>
-									<div class="btn btn-md-pad font-m" tabindex="0" onclick="document.getElementById('{{type.id}}-investment-value-input-popup').value = this.getAttribute('data-value'); document.getElementById('{{type.id}}-investment-value-input').value = this.getAttribute('data-value');" data-value="10000">¥10,000</div>
-									<div class="btn btn-md-pad font-m active" tabindex="0" onclick="document.getElementById('{{type.id}}-investment-value-input-popup').value = this.getAttribute('data-value'); document.getElementById('{{type.id}}-investment-value-input').value = this.getAttribute('data-value');" data-value="50000">¥50,000</div>
+									<div class="btn btn-md-pad font-m" tabindex="0" onclick="document.getElementById('{{type.id}}-investment-value-input-popup').value = this.getAttribute('data-value'); document.getElementById('{{type.id}}-investment-value-input').value = this.getAttribute('data-value');" data-value="50">¥50</div>
+									<div class="btn btn-md-pad font-m" tabindex="0" onclick="document.getElementById('{{type.id}}-investment-value-input-popup').value = this.getAttribute('data-value'); document.getElementById('{{type.id}}-investment-value-input').value = this.getAttribute('data-value');" data-value="100">¥100</div>
+									<div class="btn btn-md-pad font-m active" tabindex="0" onclick="document.getElementById('{{type.id}}-investment-value-input-popup').value = this.getAttribute('data-value'); document.getElementById('{{type.id}}-investment-value-input').value = this.getAttribute('data-value');" data-value="500">¥500</div>
 								</div>
 								<div class="trading-platform-main-controls-options one-click-control">
 									<div class="btn btn-positive btn-extruded font-m btn-md-pad one-touch-bet bet-high {{type.id}} highlow-up"
 										data-type="{{type.id}}" data-direction="high">
-										HIGH
+										{% if type.id == 'spread' or type.id == 'spread-on-demand' %}
+											<span class="spread-high eng"></span>
+										{% else %}
+											高
+										{% endif %}
 									</div>
 									<div class="btn btn-negative btn-extruded font-m btn-md-pad one-touch-bet bet-low {{type.id}} highlow-down"
 										data-type="{{type.id}}" data-direction="low">
-										LOW
+										{% if type.id == 'spread' or type.id == 'spread-on-demand' %}
+											<span class="spread-low eng"></span>
+										{% else %}
+											低
+										{% endif %}
 									</div>
 								</div>
 								<div class="clearfix trading-platform-main-controls-options none-one-click-control">
 									<div class="trading-platform-main-controls-select-direction">
 										<label for="trading-platform-main-controls-select-direction-up-{{type.id}}" class="btn btn-extruded font-m btn-sm-pad btn-positive highlow-up trading-select-direction-{{type.id}}-high">
-											HIGH
+											{% if type.id == 'spread' or type.id == 'spread-on-demand' %}
+												<span class="spread-high"></span>
+											{% else %}
+												高
+											{% endif %}
 										</label>
 										<input type="radio" id="trading-platform-main-controls-select-direction-up-{{type.id}}" name="selectedDirection{{type.id}}" value="high"/>
 										<label for="trading-platform-main-controls-select-direction-down-{{type.id}}" class="btn btn-extruded btn-negative font-m btn-sm-pad highlow-down trading-select-direction-{{type.id}}-low">
-											LOW
+											{% if type.id == 'spread' or type.id == 'spread-on-demand' %}
+												<span class="spread-low"></span>
+											{% else %}
+												低
+											{% endif %}
 										</label>
 										<input type="radio" id="trading-platform-main-controls-select-direction-down-{{type.id}}" name="selectedDirection{{type.id}}" value="low"/>
 									</div>
-									<div class="btn btn-highlight btn-extruded font-m btn-lg-pad trading-platform-main-controls-place-bet jap-word {{type.id}}" data-type="{{type.id}}" data-direction="selectedDirection{{type.id}}">今すぐ購入</div>
+									<div class="btn btn-highlight btn-extruded font-m btn-lg-pad trading-platform-main-controls-place-bet {{type.id}}" data-type="{{type.id}}" data-direction="selectedDirection{{type.id}}">注资</div>
 								</div>
 								<div class="trading-platform-main-controls-payout">
-									<div class="pull-left font-sb jap-word">
-										ペイアウト
+									<div class="pull-left font-sb">
+										付款
 									</div>
 									<div class="pull-right">
 										<span class="trading-platform-main-controls-payout-rate eng">1.85</span>
 									</div>
 								</div>
 								<div class="trading-platform-main-controls-return">
-									<div class="pull-left font-sb jap-word">
-										ペイアウト額
+									<div class="pull-left font-sb">
+										回报额
 									</div>
 									<div class="pull-right trading-platform-maximum-return eng">
-										$925.00
+										¥925.00
 									</div>
 								</div>
 							</div>
@@ -686,54 +702,54 @@
 	<div class="panel panel-default trading-app-container trading-platform walk-through-step current-activity-table">
 		<div class="panel-header light-grey">
 			<div class="pull-left">
-				<div class="font-m-b jap-word">
-					購入オプション詳細
+				<div class="font-m-b">
+					现有交易
 				</div>
 			</div>
 			<div class="pull-right font-sb view-all-trade-actions">
-				<a class="popup-link" href="ja-trading-activity-popup.html" target="_blank"> <span class="jap-word">全ての取引を確認</span> &nbsp;<span class="icon-magnifier"></span></a>
+				<a class="popup-link" href="trading-activity-popup.html" target="_blank"> 其他的交易&nbsp;<span class="icon-magnifier"></span></a>
 			</div>
 		</div>
 		<div class="panel-body">
 			<div class="trading-platform-investments no-data">
-				<div class="trading-platform-investments-list-no-data jap-word">
-					購入済オプションがありません。
+				<div class="trading-platform-investments-list-no-data">
+					您没有进行交易
 				</div>
 				<table class="table table-stripped table-fluid-width">
 					<thead>
 						<tr>
-							<th class='jap-word'>
-								選択
+							<th>
+								选择
 							</th>
-							<th class='jap-word investment-type-header'>
-								タイプ
+							<th class="investment-type-header">
+								期权类型
 							</th>
-							<th class='jap-word'>
-								取引原資産
+							<th>
+								基础资产
 							</th>
-							<th class='jap-word'>
-								取引内容
+							<th>
+								行使价
 							</th>
-							<th class='jap-word'>
-								取引時間
+							<th>
+								开始时间
 							</th>
-							<th class='jap-word'>
-								判定時刻
+							<th>
+								到期时间
 							</th>
-							<th class='jap-word'>
-								ステータス
+							<th>
+								状态
 							</th>
-							<th class='jap-word'>
-								判定レート
+							<th>
+								到期利率
 							</th>
-							<th class='jap-word'>
-								購入
+							<th>
+								投资
 							</th>
-							<th class='jap-word'>
-								ペイアウト
+							<th>
+								收益
 							</th>
-							<th class='jap-word'>
-								転売する
+							<th>
+								行使期权
 							</th>
 						</tr>
 					</thead>
@@ -745,6 +761,10 @@
 		</div>
 	</div>
 </div>
+
+
+
+
 {% for type in tradingTypes %}
 <div class="trading-platform-popup-wrapper trading-platform-sell-popup overlay {{type.id}} concealed" id="sell-popup-{{type.id}}">
 	<div class="trading-platform-popup">
@@ -752,13 +772,13 @@
 			<div class="trading-platform-popup-content">
 				<div class="trading-platform-popup-content-inner-wrap">
 					<div class="trading-platform-popup-header">
-						<span class="jap-word">転売する</span>
+						行使期权
 						<div class="trading-platform-popup-close close"></div>
 					</div>
 					<div class="trading-platform-popup-body">
 						<div class="panel trading-platform-sell-popup-details">
 							<div class="panel-header">
-								<div class="trading-platform-sell-popup-instrument eng pull-left font-sb">
+								<div class="trading-platform-sell-popup-instrument pull-left font-sb eng">
 									USD/JPY
 								</div>
 								<div class="trading-platform-sell-popup-rate pull-right highlow-high current-rate eng">
@@ -768,38 +788,39 @@
 							<div class="panel-body">
 								<div class="trading-platform-sell-popup-strike">
 									<div class="pull-left font-sb">
-										取引内容
+										行使价
 									</div>
-									<div class="trading-platform-strike-value pull-right">
+									<div class="trading-platform-strike-value pull-right eng">
 										
 									</div>
 								</div>
 								<div class="trading-platform-sell-popup-investment">
-									<div class="pull-left font-sb jap-word">
-										購入金額
+									<div class="pull-left font-sb">
+										投资
 									</div>
-									<div class="trading-platform-investment-value pull-right">
+									<div class="trading-platform-investment-value pull-right eng">
 										
 									</div>
 								</div>
 								<div class="trading-platform-sell-popup-return-rate">
-									<div class="pull-left font-sb jap-word">
-										ペイアウト倍率
+									<div class="pull-left font-sb">
+										回报率
 									</div>
-									<div class="trading-platform-return-rate-value {{type.id}} pull-right">
+									<div class="trading-platform-return-rate-value {{type.id}} pull-right eng">
+										0.6834
 									</div>
 								</div>
 								<div class="trading-platform-sell-popup-pay-out">
-									<div class="pull-left font-sb jap-word">
-										ペイアウト
+									<div class="pull-left font-sb">
+										收益
 									</div>
-									<div class="trading-platform-pay-out-value pull-right">
+									<div class="trading-platform-pay-out-value {{type.id}} pull-right eng">
 										
 									</div>
 								</div>
 							</div>
 						</div>
-						<div class="btn btn-highlight btn-extruded full-width font-m btn-lg-pad trading-platform-sell-popup-sell jap-word">転売する</div>
+						<div class="btn btn-highlight btn-extruded full-width font-m btn-lg-pad trading-platform-sell-popup-sell">卖出期权</div>
 					</div>
 				</div>
 			</div>
@@ -812,12 +833,12 @@
 			<div class="trading-platform-popup-content">
 				<div class="trading-platform-popup-content-inner-wrap">
 					<div class="trading-platform-popup-header">
-						<span class="jap-word">今すぐ購入</span>
+						注资
 						<div class="trading-platform-popup-close close"></div>
 					</div>
 					<div class="trading-platform-popup-body">
 						<div class="trading-platform-invest-popup-live-rate">
-							<div class="trading-platform-main-controls-instrument-title eng pull-left font-sb">
+							<div class="trading-platform-main-controls-instrument-title pull-left font-sb">
 								USD/JPY
 							</div>
 							<div class="pull-right highlow-high current-rate eng">
@@ -825,45 +846,45 @@
 							</div>
 						</div>
 						<div class="trading-platform-invest-popup-payout">
-							<div class="pull-left font-sb jap-word">
-								ペイアウト
+							<div class="pull-left font-sb">
+								付款
 							</div>
 							<div class="pull-right">
 								<span class="trading-platform-main-controls-payout-rate eng">1.85</span>
 							</div>
 						</div>
-						<div class="trading-platform-main-controls-investment jap font-m form-control">
-							¥<input type="text" class="number-only" id="{{type.id}}-investment-value-input-popup" onchange="document.getElementById('{{type.id}}-investment-value-input').value = this.value;" value="50000"/>
+						<div class="trading-platform-main-controls-investment font-m form-control">
+							¥<input type="text" class="number-only eng" id="{{type.id}}-investment-value-input-popup" onchange="document.getElementById('{{type.id}}-investment-value-input').value = this.value;" value="500"/>
 						</div>
-						<div class="clearfix trading-platform-main-controls-common-amount jap">
+						<div class="clearfix trading-platform-main-controls-common-amount">
 							<!-- I've used div as button here because button deosn't get :focus style on click for Firefox and Safari on MAc OSX -->
 
-							<div class="btn btn-md-pad font-m" tabindex="0" onclick="document.getElementById('{{type.id}}-investment-value-input-popup').value = this.getAttribute('data-value'); document.getElementById('{{type.id}}-investment-value-input').value = this.getAttribute('data-value');" data-value="5000">¥5,000</div>
-							<div class="btn btn-md-pad font-m" tabindex="0" onclick="document.getElementById('{{type.id}}-investment-value-input-popup').value = this.getAttribute('data-value'); document.getElementById('{{type.id}}-investment-value-input').value = this.getAttribute('data-value');" data-value="10000">¥10,000</div>
-							<div class="btn btn-md-pad font-m active" tabindex="0" onclick="document.getElementById('{{type.id}}-investment-value-input-popup').value = this.getAttribute('data-value'); document.getElementById('{{type.id}}-investment-value-input').value = this.getAttribute('data-value');" data-value="50000">¥50,000</div>
+							<div class="btn btn-md-pad font-m" tabindex="0" onclick="document.getElementById('{{type.id}}-investment-value-input-popup').value = this.getAttribute('data-value'); document.getElementById('{{type.id}}-investment-value-input').value = this.getAttribute('data-value');" data-value="50">¥50</div>
+							<div class="btn btn-md-pad font-m" tabindex="0" onclick="document.getElementById('{{type.id}}-investment-value-input-popup').value = this.getAttribute('data-value'); document.getElementById('{{type.id}}-investment-value-input').value = this.getAttribute('data-value');" data-value="100">¥100</div>
+							<div class="btn btn-md-pad font-m active" tabindex="0" onclick="document.getElementById('{{type.id}}-investment-value-input-popup').value = this.getAttribute('data-value'); document.getElementById('{{type.id}}-investment-value-input').value = this.getAttribute('data-value');" data-value="500">¥500</div>
 						</div>
 						<div class="trading-platform-main-controls-options one-click-control">
 							<div class="btn btn-positive btn-extruded font-m btn-md-pad one-touch-bet bet-high {{type.id}} highlow-up"
 								data-type="{{type.id}}" data-direction="high">
-								HIGH
+								高
 							</div>
 							<div class="btn btn-negative btn-extruded font-m btn-md-pad one-touch-bet bet-low {{type.id}} highlow-down"
 								data-type="{{type.id}}" data-direction="low">
-								LOW
+								低
 							</div>
 						</div>
 						<div class="clearfix trading-platform-main-controls-options none-one-click-control">
 							<div class="trading-platform-main-controls-select-direction">
 								<label for="trading-platform-main-controls-select-direction-up-{{type.id}}-popup" class="btn btn-extruded font-m btn-sm-pad btn-positive highlow-up trading-select-direction-{{type.id}}-high">
-									HIGH
+									高
 								</label>
 								<input type="radio" id="trading-platform-main-controls-select-direction-up-{{type.id}}-popup" name="selectedDirection{{type.id}}Popup" value="high"/>
 								<label for="trading-platform-main-controls-select-direction-down-{{type.id}}-popup" class="btn btn-extruded btn-negative font-m btn-sm-pad highlow-down trading-select-direction-{{type.id}}-low">
-									LOW
+									低
 								</label>
 								<input type="radio" id="trading-platform-main-controls-select-direction-down-{{type.id}}-popup" name="selectedDirection{{type.id}}Popup" value="low"/>
 							</div>
-							<div class="btn btn-highlight btn-extruded jap-word font-m btn-lg-pad trading-platform-main-controls-place-bet {{type.id}}" data-type="{{type.id}}" data-direction="selectedDirection{{type.id}}Popup">今すぐ購入</div>
+							<div class="btn btn-highlight btn-extruded font-m btn-lg-pad trading-platform-main-controls-place-bet {{type.id}}" data-type="{{type.id}}" data-direction="selectedDirection{{type.id}}Popup">注资</div>
 						</div>
 					</div>
 				</div>
@@ -878,11 +899,11 @@
 			<div class="trading-platform-popup-content">
 				<div class="trading-platform-popup-content-inner-wrap">
 					<div class="trading-platform-popup-header">
-						入金
+						MAKE A DEPOSIT
 						<div class="trading-platform-popup-close close"></div>
 					</div>
 					<div class="trading-platform-popup-body">
-						<iframe src="http://point.agency/highlow/new-site/ja-deposit-iframe.html"></iframe>
+						<iframe src="http://point.agency/highlow/new-site/deposit-iframe.html"></iframe>
 					</div>
 				</div>
 			</div>
@@ -895,11 +916,11 @@
 			<div class="trading-platform-popup-content">
 				<div class="trading-platform-popup-content-inner-wrap">
 					<div class="trading-platform-popup-header">
-						出金
+						MAKE A WITHDRAWAL
 						<div class="trading-platform-popup-close close"></div>
 					</div>
 					<div class="trading-platform-popup-body">
-						<iframe scrolling="no" src="ja-withdraw-iframe.html"></iframe>
+						<iframe scrolling="no" src="withdraw-iframe.html"></iframe>
 					</div>
 				</div>
 			</div>

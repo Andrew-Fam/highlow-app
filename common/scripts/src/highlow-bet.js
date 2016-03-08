@@ -18,36 +18,47 @@ highlowApp.betSystem = {
 		expiry = new Date(betObject.expireAt),
 		strike = betObject.strike;
 
+		var sellText = (highlowApp.jap?'転売':'SELL');
 
-		var row = $('<tr data-uid="'+uid+'">'+
+		if(highlowApp.cn) {
+			sellText = '卖出期权';
+		}
+
+		var statusText = (highlowApp.jap?'取引中':'Opened');
+
+		if(highlowApp.cn) {
+			statusText = '开';
+		}
+
+		var row = $('<tr class="eng" data-uid="'+uid+'">'+
 			'<td class="investment-select">'+
 			'</td>'+
 				'<td class="investment-type '+type+'">'+ //Type
 				'</td>'+
-				'<td class="investment-asset">'+ //Asset
+				'<td class="investment-asset eng">'+ //Asset
 				bet.model.label+
 				'</td>'+
-				'<td class="investment-strike highlow-'+bet.direction+'"> '+ //Strike
+				'<td class="investment-strike eng highlow-'+bet.direction+'"> '+ //Strike
 				strike+
 				'</td>'+
-				'<td class="investment-time">'+ // Bet time
+				'<td class="investment-time eng">'+ // Bet time
 				time.getHours() + ':' + (time.getMinutes()>9?time.getMinutes():("0"+time.getMinutes())) +
 				'</td>'+
-				'<td class="investment-expiry">'+ //Expiry
+				'<td class="investment-expiry eng">'+ //Expiry
 				expiry.getHours() + ':' + (expiry.getMinutes()>9?expiry.getMinutes():("0"+expiry.getMinutes())) +
 				'</td>'+
-				'<td class="investment-status">'+(highlowApp.jap?'取引中':'Opened')+ //Status
+				'<td class="investment-status eng">'+statusText+ //Status
 				'</td>'+
-				'<td class="investment-closing-rate">-'+ // Closing rate
+				'<td class="investment-closing-rate eng">-'+ // Closing rate
 				'</td>'+
 				'<td>'+ // Investment value
 				(highlowApp.jap?'¥':'$')+
-				'<span class="investment-value">'+highlowApp.getDisplayMoney($('#'+type+'-investment-value-input').val())+
+				'<span class="investment-value eng">'+highlowApp.getDisplayMoney($('#'+type+'-investment-value-input').val())+
 				'</span>'+
 				'</td>'+
-				'<td class="investment-payout font-b">'+ // Payout
+				'<td class="investment-payout font-b eng">'+ // Payout
 				'</td>'+
-				'<td class="investment-sell"><button data-investment="'+$('#investment-value-input').val()+'" class="investment-sell-btn '+type+' btn font-m btn-sm-pad">'+(highlowApp.jap?'転売':'SELL')+'</button>'+
+				'<td class="investment-sell"><button data-investment="'+$('#investment-value-input').val()+'" class="investment-sell-btn '+type+' btn font-m btn-sm-pad">'+sellText+'</button>'+
 				'</td>'+
 				'</tr>'
 				);
@@ -104,28 +115,40 @@ highlowApp.betSystem = {
 
 		});
 
+		var cancelText = (highlowApp.jap?'取り消す':'CANCEL');
+
+		if(highlowApp.cn) {
+			cancelText = '取消';
+		}
+
 		row.on('click','.investment-sell-btn', function(e) {
 			var self = $(this);
 			e.preventDefault();
 			if(self.hasClass('clicked')) {
 				$('.trading-platform-sell-popup.'+bet.type).addClass('concealed');
 				$('.investment-sell-btn').removeClass('clicked');
-				$('.investment-sell-btn').html((highlowApp.jap?'転売':'SELL'));
+				$('.investment-sell-btn').html(sellText);
 			} else {
 				if($('.trading-platform-sell-popup.'+bet.type).hasClass('concealed')) {
 					self.addClass('clicked');
 					highlowApp.betSystem.sellPopup(bet);
-					self.html((highlowApp.jap?'取り消す':'CANCEL'));
+					self.html(cancelText);
 				} else {
 					$('.investment-sell-btn').removeClass('clicked');
-					$('.investment-sell-btn').html((highlowApp.jap?'転売':'SELL'));
+					$('.investment-sell-btn').html(sellText);
 					self.addClass('clicked');
 					highlowApp.betSystem.sellPopup(bet);
-					self.html((highlowApp.jap?'取り消す':'CANCEL'));
+					self.html(cancelText);
 				}
 			}
 			
 		})
+
+		$('#sell-popup-highlow .trading-platform-popup-close').click(function(){
+			$('.trading-platform-sell-popup.'+bet.type).addClass('concealed');
+			$('.investment-sell-btn').removeClass('clicked');
+			$('.investment-sell-btn').html(sellText);
+		});
 
 		$('.trading-platform-investments-list').append(row);
 

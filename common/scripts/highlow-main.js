@@ -3,9 +3,15 @@ var platformAssetUrl = "";
 $(function () {
 
 	highlowApp.jap = false;
+
+	highlowApp.cn = false;
 	
 	if($('.jap-word').length>0) {
 		highlowApp.jap = true;
+	}
+
+	if($('.cn').length>0) {
+		highlowApp.cn = true;
 	}
 
 	if($('#platform-asset-url').length>0) {
@@ -204,36 +210,47 @@ highlowApp.betSystem = {
 		expiry = new Date(betObject.expireAt),
 		strike = betObject.strike;
 
+		var sellText = (highlowApp.jap?'転売':'SELL');
 
-		var row = $('<tr data-uid="'+uid+'">'+
+		if(highlowApp.cn) {
+			sellText = '卖出期权';
+		}
+
+		var statusText = (highlowApp.jap?'取引中':'Opened');
+
+		if(highlowApp.cn) {
+			statusText = '开';
+		}
+
+		var row = $('<tr class="eng" data-uid="'+uid+'">'+
 			'<td class="investment-select">'+
 			'</td>'+
 				'<td class="investment-type '+type+'">'+ //Type
 				'</td>'+
-				'<td class="investment-asset">'+ //Asset
+				'<td class="investment-asset eng">'+ //Asset
 				bet.model.label+
 				'</td>'+
-				'<td class="investment-strike highlow-'+bet.direction+'"> '+ //Strike
+				'<td class="investment-strike eng highlow-'+bet.direction+'"> '+ //Strike
 				strike+
 				'</td>'+
-				'<td class="investment-time">'+ // Bet time
+				'<td class="investment-time eng">'+ // Bet time
 				time.getHours() + ':' + (time.getMinutes()>9?time.getMinutes():("0"+time.getMinutes())) +
 				'</td>'+
-				'<td class="investment-expiry">'+ //Expiry
+				'<td class="investment-expiry eng">'+ //Expiry
 				expiry.getHours() + ':' + (expiry.getMinutes()>9?expiry.getMinutes():("0"+expiry.getMinutes())) +
 				'</td>'+
-				'<td class="investment-status">'+(highlowApp.jap?'取引中':'Opened')+ //Status
+				'<td class="investment-status eng">'+statusText+ //Status
 				'</td>'+
-				'<td class="investment-closing-rate">-'+ // Closing rate
+				'<td class="investment-closing-rate eng">-'+ // Closing rate
 				'</td>'+
 				'<td>'+ // Investment value
 				(highlowApp.jap?'¥':'$')+
-				'<span class="investment-value">'+highlowApp.getDisplayMoney($('#'+type+'-investment-value-input').val())+
+				'<span class="investment-value eng">'+highlowApp.getDisplayMoney($('#'+type+'-investment-value-input').val())+
 				'</span>'+
 				'</td>'+
-				'<td class="investment-payout font-b">'+ // Payout
+				'<td class="investment-payout font-b eng">'+ // Payout
 				'</td>'+
-				'<td class="investment-sell"><button data-investment="'+$('#investment-value-input').val()+'" class="investment-sell-btn '+type+' btn font-m btn-sm-pad">'+(highlowApp.jap?'転売':'SELL')+'</button>'+
+				'<td class="investment-sell"><button data-investment="'+$('#investment-value-input').val()+'" class="investment-sell-btn '+type+' btn font-m btn-sm-pad">'+sellText+'</button>'+
 				'</td>'+
 				'</tr>'
 				);
@@ -290,28 +307,40 @@ highlowApp.betSystem = {
 
 		});
 
+		var cancelText = (highlowApp.jap?'取り消す':'CANCEL');
+
+		if(highlowApp.cn) {
+			cancelText = '取消';
+		}
+
 		row.on('click','.investment-sell-btn', function(e) {
 			var self = $(this);
 			e.preventDefault();
 			if(self.hasClass('clicked')) {
 				$('.trading-platform-sell-popup.'+bet.type).addClass('concealed');
 				$('.investment-sell-btn').removeClass('clicked');
-				$('.investment-sell-btn').html((highlowApp.jap?'転売':'SELL'));
+				$('.investment-sell-btn').html(sellText);
 			} else {
 				if($('.trading-platform-sell-popup.'+bet.type).hasClass('concealed')) {
 					self.addClass('clicked');
 					highlowApp.betSystem.sellPopup(bet);
-					self.html((highlowApp.jap?'取り消す':'CANCEL'));
+					self.html(cancelText);
 				} else {
 					$('.investment-sell-btn').removeClass('clicked');
-					$('.investment-sell-btn').html((highlowApp.jap?'転売':'SELL'));
+					$('.investment-sell-btn').html(sellText);
 					self.addClass('clicked');
 					highlowApp.betSystem.sellPopup(bet);
-					self.html((highlowApp.jap?'取り消す':'CANCEL'));
+					self.html(cancelText);
 				}
 			}
 			
 		})
+
+		$('#sell-popup-highlow .trading-platform-popup-close').click(function(){
+			$('.trading-platform-sell-popup.'+bet.type).addClass('concealed');
+			$('.investment-sell-btn').removeClass('clicked');
+			$('.investment-sell-btn').html(sellText);
+		});
 
 		$('.trading-platform-investments-list').append(row);
 
@@ -1071,9 +1100,38 @@ highlowApp.graph = {
 					});
 
 				
+				} else if(highlowApp.cn) {
+
+					var textX = xAxis.toPixels(currentTime+3*60*1000)-6,
+					textY = 141;
+
+					point.s
+
+					text = renderer.text('60秒后再次到期',textX,textY);
+
+					if(model.type.indexOf("turbo")>=0) {
+						text = renderer.text('60秒后再次到期',textX,textY);
+					}
+
+					text.css({
+						"font-family": "'PingHei', 'PingFang SC', 'Microsoft Yahei', 'SimHei' , 'SimSun' , '微软雅黑', STXihei, '华文细黑', 'Helvetica Neue', 'Helvetica', 'STHeitiSC-Light', 'Arial', sans-serif;",
+						"font-size" : '10px;',
+						"color" : "white"
+					});
+					text.attr({
+						zIndex: 6,
+						id: expiryHintTextId,
+						transform: 'translate(0,0) rotate(270 '+textX+' '+textY+')',
+						width: '177px',
+						'text-anchor': 'middle'
+					});
+
+
 				} else {
 					var textX = xAxis.toPixels(currentTime+3*60*1000)-6,
 					textY = 141;
+
+					point.s
 
 					text = renderer.text('NEXT EXPIRY IN 60 SECS',textX,textY);
 
@@ -1193,8 +1251,26 @@ highlowApp.graph = {
 				$(model.deadTimeText.element).remove();
 			}
 
-			model.startTimeText = renderer.text((highlowApp.jap?'開始: ':'Start: ')+highlowApp.timeToText(model.openAt),startTextX,24);
-			model.deadTimeText = renderer.text((highlowApp.jap?'締切: ':'Stop: ')+highlowApp.timeToText(model.deadzone),deadTextX,24);
+			var startText = 'Start: ';
+			if(highlowApp.jap) {
+				startText = '開始: ';
+			}
+
+			if(highlowApp.cn) {
+				startText = '起始';
+			}
+
+			var stopText = 'Stop: ';
+			if(highlowApp.jap) {
+				stopText = '締切: ';
+			}
+
+			if(highlowApp.cn) {
+				stopText = '结束';
+			}
+
+			model.startTimeText = renderer.text(startText+highlowApp.timeToText(model.openAt),startTextX,24);
+			model.deadTimeText = renderer.text(stopText+highlowApp.timeToText(model.deadzone),deadTextX,24);
 
 
 			if(highlowApp.jap) {
@@ -3440,9 +3516,9 @@ highlowApp.popup = {
 		});
 		
 		$('.trading-platform-popup-wrapper').on('click',function(event) {
-			if (!$(event.target).closest('.trading-platform-popup-content-inner-wrap').length) {
-				highlowApp.popup.hidePopup($(this)).addClass('concealed');
-			}
+			// if (!$(event.target).closest('.trading-platform-popup-content-inner-wrap').length) {
+			// 	highlowApp.popup.hidePopup($(this));
+			// }
 		});
 
 		$('.trading-platform-sell-popup-sell').on('click', function(){

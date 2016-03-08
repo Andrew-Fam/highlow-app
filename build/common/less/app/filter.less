@@ -1,0 +1,17 @@
+#highlow-asset-filter--options-container {
+	background-color: #454545;
+	position: absolute;
+	right: 0px;
+	top: 33px;
+	width: 0px;
+	height: 0px;
+	overflow: hidden;
+	.transition(all 0.125s ease);
+
+	#highlow-asset-filter.active & {
+
+		.transition(all 0.2s ease);
+		width: 567px;
+		height: 62px;
+	}
+}

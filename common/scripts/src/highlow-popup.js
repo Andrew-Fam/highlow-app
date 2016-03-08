@@ -7,9 +7,9 @@ highlowApp.popup = {
 		});
 		
 		$('.trading-platform-popup-wrapper').on('click',function(event) {
-			if (!$(event.target).closest('.trading-platform-popup-content-inner-wrap').length) {
-				highlowApp.popup.hidePopup($(this)).addClass('concealed');
-			}
+			// if (!$(event.target).closest('.trading-platform-popup-content-inner-wrap').length) {
+			// 	highlowApp.popup.hidePopup($(this));
+			// }
 		});
 
 		$('.trading-platform-sell-popup-sell').on('click', function(){

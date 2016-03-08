@@ -51,6 +51,7 @@ module.exports = function(grunt) {
 					{
 						label: "HighLow",
 						jaLabel: "HighLow",
+						cnLabel: "<span class='tab-graphic-text cn'><img class='default' src='public/trade-platform/images/highlow-tab-cn.png' alt='HighLow 图'/><img class='hover' src='public/trade-platform/images/highlow-tab-cn-hover.png' alt='HighLow 图'/></span>",
 						id: "highlow",
 						range: false,
 						default: true,
@@ -97,9 +98,10 @@ module.exports = function(grunt) {
 							{
 								id: "15min",
 								label: "15 MIN",
+								cnLabel: "15分钟",
 								jaLabel: "15<span class='jap-word'>分</span>",
 								value: 15*60*1000,
-								shortLabel: "15m",
+								shortLabel: "15分钟",
 								jaShortLabel: "15<span class='jap-word'>分</span>",
 								mediumLabel: "15 mins",
 								instruments: [
@@ -192,10 +194,11 @@ module.exports = function(grunt) {
 							{
 								id: "1hour",
 								label: "1 HOUR",
+								cnLabel: "1小时",
 								jaLabel: "1<span class='jap-word'>時間</span>",
 								mediumLabel: "60 mins",
 								value: 60*60*1000,
-								shortLabel: "1h",
+								shortLabel: "1小时",
 								jaShortLabel: "1<span class='jap-word'>時間</span>",
 								instruments: [
 									{
@@ -266,10 +269,11 @@ module.exports = function(grunt) {
 							{
 								id: "1day",
 								label: "1 DAY",
+								cnLabel: "1天",
 								jaLabel: "1<span class='jap-word'>日</span>",
 								mediumLabel: "24 hours",
 								value: 24*60*60*1000,
-								shortLabel: "24h",
+								shortLabel: "24小时",
 								jaShortLabel: "24<span class='jap-word'>時間</span>",
 								instruments: [
 									{
@@ -340,6 +344,7 @@ module.exports = function(grunt) {
 						]
 					},{
 						label: "HighLow Spread",
+						cnLabel: "<span class='tab-graphic-text cn'><img class='default' src='public/trade-platform/images/highlow-spread-tab-cn.png' alt='HighLow差价图'/><img class='hover' src='public/trade-platform/images/highlow-spread-tab-cn-hover.png' alt='HighLow差价图'/></span>",
 						jaLabel: "HighLow <span class='tab-graphic-text'><img class='default' src='public/trade-platform/images/spread-tab.png' alt='スプレッド'/><img class='hover' src='public/trade-platform/images/spread-tab-hover.png' alt='スプレッド'/></span>",
 						id: "spread",
 						range: 0.005,
@@ -387,9 +392,10 @@ module.exports = function(grunt) {
 							{
 								id: "15min",
 								label: "15 MIN",
+								cnLabel: "15分钟",
 								jaLabel: "15<span class='jap-word'>分</span>",
 								value: 15*60*1000,
-								shortLabel: "15m",
+								shortLabel: "15分钟",
 								jaShortLabel: "15<span class='jap-word'>分</span>",
 								mediumLabel: "15 mins",
 								instruments: [
@@ -475,10 +481,11 @@ module.exports = function(grunt) {
 							{
 								id: "1hour",
 								label: "1 HOUR",
+								cnLabel: "1小时",
 								jaLabel: "1<span class='jap-word'>時間</span>",
 								mediumLabel: "60 mins",
 								value: 60*60*1000,
-								shortLabel: "1h",
+								shortLabel: "1小时",
 								jaShortLabel: "1<span class='jap-word'>時間</span>",
 								instruments: [
 									{
@@ -563,10 +570,11 @@ module.exports = function(grunt) {
 							{
 								id: "1day",
 								label: "1 DAY",
+								cnLabel: "1天",
 								jaLabel: "1<span class='jap-word'>日</span>",
 								mediumLabel: "24 hours",
 								value: 24*60*60*1000,
-								shortLabel: "24h",
+								shortLabel: "24小时",
 								jaShortLabel: "24<span class='jap-word'>時間</span>",
 								instruments: [
 									{
@@ -652,6 +660,7 @@ module.exports = function(grunt) {
 					},{
 						label: "Turbo",
 						jaLabel: "Turbo",
+						cnLabel: "<span class='tab-graphic-text cn'><img class='default' src='public/trade-platform/images/turbo-tab-cn.png' alt='Turbo图'/><img class='hover' src='public/trade-platform/images/turbo-tab-cn-hover.png' alt='Turbo图'/></span>",
 						id: "on-demand",
 						default: false,
 						range: false,
@@ -698,9 +707,10 @@ module.exports = function(grunt) {
 							{
 								id: "1min",
 								label: "1 MIN",
+								cnLabel: "1分钟",
 								jaLabel: "1<span class='jap-word'>分</span>",
 								value: 1*60*1000,
-								shortLabel: "1m",
+								shortLabel: "1分钟",
 								jaShortLabel: "1<span class='jap-word'>分</span>",
 								mediumLabel: "1 min",
 								instruments: [
@@ -786,9 +796,10 @@ module.exports = function(grunt) {
 							{
 								id: "3min",
 								label: "3 MIN",
+								cnLabel: "3分钟",
 								jaLabel: "3<span class='jap-word'>分</span>",
 								value: 3*60*1000,
-								shortLabel: "3m",
+								shortLabel: "3分钟",
 								jaShortLabel: "3<span class='jap-word'>分</span>",
 								mediumLabel: "3 min",
 								instruments: [
@@ -874,9 +885,10 @@ module.exports = function(grunt) {
 							{
 								id: "5min",
 								label: "5 MIN",
+								cnLabel: "5分钟",
 								jaLabel: "5<span class='jap-word'>分</span>",
 								value: 5*60*1000,
-								shortLabel: "5m",
+								shortLabel: "5分钟",
 								jaShortLabel: "5<span class='jap-word'>分</span>",
 								mediumLabel: "5 min",
 								instruments: [
@@ -962,6 +974,7 @@ module.exports = function(grunt) {
 						]
 					},{
 						label: "Turbo Spread",
+						cnLabel: "<span class='tab-graphic-text cn'><img class='default' src='public/trade-platform/images/turbo-spread-tab-cn.png' alt='Turbo差价图'/><img class='hover' src='public/trade-platform/images/turbo-spread-tab-cn-hover.png' alt='Turbo差价图'/></span>",
 						jaLabel: "Turbo <span class='tab-graphic-text'><img class='default' src='public/trade-platform/images/spread-tab.png' alt='スプレッド'/><img class='hover' src='public/trade-platform/images/spread-tab-hover.png' alt='スプレッド'/></span>",
 						id: "spread-on-demand",
 						default: false,
@@ -1009,9 +1022,10 @@ module.exports = function(grunt) {
 							{
 								id: "1min",
 								label: "1 MIN",
+								cnLabel: "1分钟",
 								jaLabel: "1<span class='jap-word'>分</span>",
 								value: 1*60*1000,
-								shortLabel: "1m",
+								shortLabel: "1分钟",
 								jaShortLabel: "1<span class='jap-word'>分</span>",
 								mediumLabel: "1 min",
 								instruments: [
@@ -1097,9 +1111,10 @@ module.exports = function(grunt) {
 							{
 								id: "3min",
 								label: "3 MIN",
+								cnLabel: "3分钟",
 								jaLabel: "3<span class='jap-word'>分</span>",
 								value: 3*60*1000,
-								shortLabel: "3m",
+								shortLabel: "3分钟",
 								jaShortLabel: "3<span class='jap-word'>分</span>",
 								mediumLabel: "3 min",
 								instruments: [
@@ -1185,9 +1200,10 @@ module.exports = function(grunt) {
 							{
 								id: "5min",
 								label: "5 MIN",
+								cnLabel: "5分钟",
 								jaLabel: "5<span class='jap-word'>分</span>",
 								value: 5*60*1000,
-								shortLabel: "5m",
+								shortLabel: "5分钟",
 								jaShortLabel: "5<span class='jap-word'>分</span>",
 								mediumLabel: "5 min",
 								instruments: [
@@ -1276,6 +1292,7 @@ module.exports = function(grunt) {
 					{
 						label: "Sprint",
 						jaLabel: "Sprint",
+						cnLabel: "Sprint",
 						id: "extreme-on-demand",
 						default: false,
 						range: 0.005,
@@ -1322,6 +1339,7 @@ module.exports = function(grunt) {
 							{
 								id: "30sec",
 								label: "30 SEC",
+								cnLabel: "0.5分钟",
 								jaLabel: "0.5<span class='jap-word'>分</span>",
 								value: 0.5*60*1000,
 								shortLabel: "30s",
@@ -1492,6 +1510,7 @@ module.exports = function(grunt) {
 		  htmlURLNewSite: {
 		    src: [
 		    	'../hl-my-account/templates/includes/trade-platform.liquid',
+		    	'../hl-my-account/templates/includes/trade-platform-cn.liquid',
 		    	'../hl-my-account/templates/includes/ja-trade-platform.liquid'
 		    ],
 		    overwrite: true,                 // overwrite matched source files
@@ -1511,6 +1530,7 @@ module.exports = function(grunt) {
 			  },	
 			  files: {
 			      '../highlow-public-page/templates/includes/platform.liquid': ['build/index.html'],
+			      '../highlow-public-page/templates/includes/platform-cn.liquid': ['build/index-cn.html'],
 			      '../highlow-public-page/templates/includes/ja-platform.liquid': ['build/ja-index.html']
 			  }
 			},
@@ -1523,6 +1543,7 @@ module.exports = function(grunt) {
 			  },	
 			  files: {
 			      '../hl-my-account/templates/includes/trade-platform.liquid': ['build/index.html'],
+			      '../hl-my-account/templates/includes/trade-platform-cn.liquid': ['build/index-cn.html'],
 			      '../hl-my-account/templates/includes/ja-trade-platform.liquid': ['build/ja-index.html']
 			  }
 			},

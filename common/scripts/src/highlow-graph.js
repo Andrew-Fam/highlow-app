@@ -256,9 +256,38 @@ highlowApp.graph = {
 					});
 
 				
+				} else if(highlowApp.cn) {
+
+					var textX = xAxis.toPixels(currentTime+3*60*1000)-6,
+					textY = 141;
+
+					point.s
+
+					text = renderer.text('60秒后再次到期',textX,textY);
+
+					if(model.type.indexOf("turbo")>=0) {
+						text = renderer.text('60秒后再次到期',textX,textY);
+					}
+
+					text.css({
+						"font-family": "'PingHei', 'PingFang SC', 'Microsoft Yahei', 'SimHei' , 'SimSun' , '微软雅黑', STXihei, '华文细黑', 'Helvetica Neue', 'Helvetica', 'STHeitiSC-Light', 'Arial', sans-serif;",
+						"font-size" : '10px;',
+						"color" : "white"
+					});
+					text.attr({
+						zIndex: 6,
+						id: expiryHintTextId,
+						transform: 'translate(0,0) rotate(270 '+textX+' '+textY+')',
+						width: '177px',
+						'text-anchor': 'middle'
+					});
+
+
 				} else {
 					var textX = xAxis.toPixels(currentTime+3*60*1000)-6,
 					textY = 141;
+
+					point.s
 
 					text = renderer.text('NEXT EXPIRY IN 60 SECS',textX,textY);
 
@@ -378,8 +407,26 @@ highlowApp.graph = {
 				$(model.deadTimeText.element).remove();
 			}
 
-			model.startTimeText = renderer.text((highlowApp.jap?'開始: ':'Start: ')+highlowApp.timeToText(model.openAt),startTextX,24);
-			model.deadTimeText = renderer.text((highlowApp.jap?'締切: ':'Stop: ')+highlowApp.timeToText(model.deadzone),deadTextX,24);
+			var startText = 'Start: ';
+			if(highlowApp.jap) {
+				startText = '開始: ';
+			}
+
+			if(highlowApp.cn) {
+				startText = '起始';
+			}
+
+			var stopText = 'Stop: ';
+			if(highlowApp.jap) {
+				stopText = '締切: ';
+			}
+
+			if(highlowApp.cn) {
+				stopText = '结束';
+			}
+
+			model.startTimeText = renderer.text(startText+highlowApp.timeToText(model.openAt),startTextX,24);
+			model.deadTimeText = renderer.text(stopText+highlowApp.timeToText(model.deadzone),deadTextX,24);
 
 
 			if(highlowApp.jap) {

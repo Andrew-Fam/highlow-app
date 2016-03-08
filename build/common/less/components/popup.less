@@ -86,20 +86,124 @@
 
 #make-deposit-popup,
 #make-withdrawal-popup {
+
 	.trading-platform-popup-header  {
 		// font-weight: bold;
 	}
+
 	iframe {
 	    width: 600px;
 	    height: 550px;
 	    overflow: hidden !important;
 	    display: block;
 	}
+
 	.trading-platform-popup {
 		width: 600px;
 		margin: auto;
+		overflow: hidden;
 	}
+
 	.trading-platform-popup-body {
 		padding: 0;
+		background-color: #3d3d3d;
 	}
+
+	&.full-screen {
+		overflow: visible!important;
+		&:before {
+			background-color: #fff;
+			.opacity(70);
+			content: "";
+			display: block;
+			left: -30px;
+			right: -30px;
+			top: -30px;
+			bottom: -30px;
+			position: absolute;
+		}
+
+		.trading-platform-popup {
+			width: 100%;
+			height: 100%;
+			display: block;
+		}
+
+		.trading-platform-popup-content-wrapper {
+			display: block;
+
+		}
+
+		.trading-platform-popup-content,
+		.trading-platform-popup-content-inner-wrap {
+			width: 100%;
+			height: 100%;
+			display: block;
+			position: absolute;
+    		padding: 0px;
+		}
+
+		.trading-platform-popup-content-inner-wrap {
+			border: none;
+		}
+
+		.trading-platform-popup-header {
+		    position: absolute;
+		    cursor: auto !important;
+		    text-indent: -9999px;
+		    left: auto;
+		    width: 54px;
+		    right: 0px;
+		    padding: 0px;
+		    z-index: 1000;
+		    top: 0px;
+		    // box-shadow: -4px 4px 10px 0px rgba(0,0,0,0.1);
+		    .transition(all 0.5s ease);
+
+		    .close {
+		    	width: 54px;
+		    	height: 54px;
+		    	background: none;    
+		    	top: 0px;
+		    	&:before {
+		    		content: "";
+		    		display: block;
+					.sprite(@close);
+					position: absolute;
+					top: 50%;
+					left: 50%;
+					margin-top: -@close-height/2;
+					margin-left: -@close-width/2;
+		    	}
+				&:hover {
+		    		background: none;
+		    		&:before {
+						.sprite(@close-hover);
+		    		}
+				}
+		    }
+		}
+
+		.trading-platform-popup-body {
+			position: absolute;  
+			top: 0px;
+			left: 0px;
+			bottom: 0px;
+			right: 0px;
+		}
+
+		iframe {
+			position: absolute;
+			background-color: #fff;
+			top: 0;
+			left: 0;
+			bottom: 0;
+			right: 0;
+			width: 100%;
+			height: 100%;
+			overflow-x: hidden!important;
+			overflow-y: auto!important;
+		}
+	}
+
 }
