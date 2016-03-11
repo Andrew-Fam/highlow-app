@@ -261,8 +261,6 @@ highlowApp.graph = {
 					var textX = xAxis.toPixels(currentTime+3*60*1000)-6,
 					textY = 141;
 
-					point.s
-
 					text = renderer.text('60秒后再次到期',textX,textY);
 
 					if(model.type.indexOf("turbo")>=0) {
@@ -286,8 +284,6 @@ highlowApp.graph = {
 				} else {
 					var textX = xAxis.toPixels(currentTime+3*60*1000)-6,
 					textY = 141;
-
-					point.s
 
 					text = renderer.text('NEXT EXPIRY IN 60 SECS',textX,textY);
 

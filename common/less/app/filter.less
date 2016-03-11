@@ -1,17 +1,194 @@
-#highlow-asset-filter--options-container {
+#highlow-asset-filter--categories-container {
 	background-color: #454545;
 	position: absolute;
 	right: 0px;
 	top: 33px;
-	width: 0px;
 	height: 0px;
+	padding: 0px;
+	z-index: 1;
 	overflow: hidden;
 	.transition(all 0.125s ease);
+	-webkit-transition-delay: 0.25s; /* Safari */
+	transition-delay: 0.25s;
 
 	#highlow-asset-filter.active & {
-
-		.transition(all 0.2s ease);
+		.transition(all 0.125s ease);
+		-webkit-transition-delay: 0s; /* Safari */
+    	transition-delay: 0s;
+		overflow: visible;
 		width: 567px;
 		height: 62px;
+		border-bottom: 2px solid #383838;
+	}
+}
+
+.highlow-asset-filter--categories {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	right: 0px;
+	bottom: 0px;
+	overflow: hidden;    
+	padding: 0 14px;
+}
+
+.highlow-asset-filter--category {
+	display: block;
+	float: left;
+	font-size: 14px;
+	font-weight: 300;
+	color: #fff;
+	height: 100%;
+	padding: 10px 0px 10px;
+	position: relative;
+	text-align: center;
+	.opacity(80);
+	&.active {
+		.opacity(100);
+		font-weight: 500;
+	}
+	&:hover {
+		.opacity(100);
+	}
+}
+
+
+	.highlow-asset-filter--category--label {
+		display: block;
+		padding: 12px 19px 8px;
+		.highlow-asset-filter--category:hover &{
+			background-color: #414040;
+		}
+
+		.highlow-asset-filter--category.active:hover & {
+			background-color: transparent;
+		}
+	}
+
+#highlow-asset-filter--category--all-asset {
+	width: 104px;
+	.ja & {
+		width: 68px;
+	}
+}
+
+#highlow-asset-filter--category--all-currencies {
+	width: 108px;
+	.ja & {
+		width: 97px;
+	}
+}
+
+#highlow-asset-filter--category--all-indices {
+	width: 84px;
+	.ja & {
+		width: 102px;
+	}
+}
+
+#highlow-asset-filter--category--all-commodities {
+	width: 122px;
+}
+
+.highlow-asset-filter--category--indicator {
+	position: absolute;
+	top: 100%;
+	height: 0px;
+	width: 0px;
+}
+
+.highlow-asset-filter--category--indicator {
+	left: 50%;
+}
+
+#highlow-asset-filter--selected-category-indicator {
+	position: absolute;
+	top: 0;
+	height: 0px;
+	width: 0px;
+	.opacity(0);
+	.transition(all 0.25s ease);
+	#highlow-asset-filter.active & {
+		top: 100%;
+		.opacity(100);
+	}
+}
+
+#highlow-asset-filter--selected-category-indicator:before,
+#highlow-asset-filter--selected-category-indicator:after {
+	position: absolute;
+	content: "";
+	top: 0px;
+	left: -9px;
+	height: 0px;
+	width: 0px;
+	border: 9px solid transparent;
+	border-top-color: #454545;
+	z-index: 1;
+}
+
+#highlow-asset-filter--selected-category-indicator:before {
+	border-top-color: #383838;
+	top: 2px;
+	left: -7px;
+}
+
+#highlow-asset-filter--options-container {
+	background-color: #3b3b3b;
+	overflow: hidden;
+	width: 567px;
+	position: absolute;
+   	top: 33px;
+    right: 0;
+    height: 0px;
+	z-index: 0;
+	max-height: 0px;
+	box-shadow: 5px 5px 0px 0px rgba(0,0,0,0.2);
+	.transition(height 0.125s ease);
+
+	#highlow-asset-filter.active & {
+		max-height: none;
+	}
+
+}
+
+#highlow-asset-filter--options {
+	margin: 0;
+	padding: 88px 0 30px 35px;
+	.clearfix();
+}
+
+.highlow-asset-filter--option {
+	font-size: 12px;
+	font-weight: 400;
+	color: #fff;
+	height: 31px;
+    padding: 0px 3px;
+	width: 130px;
+	border-left: 3px solid #454545;
+	float: left;
+	display: block;
+}
+
+.highlow-asset-filter--option--label {
+	display: block;
+	padding: 7px 13px;
+	background-color: transparent;
+	.transition(all 0.125s ease);
+
+	.highlow-asset-filter--option:hover & {
+		background-color: #454545;
+	}
+
+	.highlow-asset-filter--option:active & {
+		background-color: #ffe36b;
+		color: #282828;
+	}
+
+	.highlow-asset-filter--option.selected &,
+	.highlow-asset-filter--option.selected:hover &,
+	.highlow-asset-filter--option.selected:active & {
+		background-color: #ffdc46;
+		color: #232323;
 	}
 }

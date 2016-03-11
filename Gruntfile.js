@@ -101,7 +101,8 @@ module.exports = function(grunt) {
 								cnLabel: "15分钟",
 								jaLabel: "15<span class='jap-word'>分</span>",
 								value: 15*60*1000,
-								shortLabel: "15分钟",
+								shortLabel: "15m",
+								cnShortLabel: "15分钟",
 								jaShortLabel: "15<span class='jap-word'>分</span>",
 								mediumLabel: "15 mins",
 								instruments: [
@@ -198,7 +199,8 @@ module.exports = function(grunt) {
 								jaLabel: "1<span class='jap-word'>時間</span>",
 								mediumLabel: "60 mins",
 								value: 60*60*1000,
-								shortLabel: "1小时",
+								shortLabel: "1h",
+								cnShortLabel: "1小时",
 								jaShortLabel: "1<span class='jap-word'>時間</span>",
 								instruments: [
 									{
@@ -273,7 +275,8 @@ module.exports = function(grunt) {
 								jaLabel: "1<span class='jap-word'>日</span>",
 								mediumLabel: "24 hours",
 								value: 24*60*60*1000,
-								shortLabel: "24小时",
+								shortLabel: "24h",
+								cnShortLabel: "24小时",
 								jaShortLabel: "24<span class='jap-word'>時間</span>",
 								instruments: [
 									{
@@ -395,7 +398,8 @@ module.exports = function(grunt) {
 								cnLabel: "15分钟",
 								jaLabel: "15<span class='jap-word'>分</span>",
 								value: 15*60*1000,
-								shortLabel: "15分钟",
+								shortLabel: "15m",
+								cnShortLabel: "15分钟",
 								jaShortLabel: "15<span class='jap-word'>分</span>",
 								mediumLabel: "15 mins",
 								instruments: [
@@ -485,7 +489,8 @@ module.exports = function(grunt) {
 								jaLabel: "1<span class='jap-word'>時間</span>",
 								mediumLabel: "60 mins",
 								value: 60*60*1000,
-								shortLabel: "1小时",
+								shortLabel: "1h",
+								cnShortLabel: "1小时",
 								jaShortLabel: "1<span class='jap-word'>時間</span>",
 								instruments: [
 									{
@@ -574,7 +579,8 @@ module.exports = function(grunt) {
 								jaLabel: "1<span class='jap-word'>日</span>",
 								mediumLabel: "24 hours",
 								value: 24*60*60*1000,
-								shortLabel: "24小时",
+								shortLabel: "24h",
+								cnShortLabel: "24小时",
 								jaShortLabel: "24<span class='jap-word'>時間</span>",
 								instruments: [
 									{
@@ -710,7 +716,8 @@ module.exports = function(grunt) {
 								cnLabel: "1分钟",
 								jaLabel: "1<span class='jap-word'>分</span>",
 								value: 1*60*1000,
-								shortLabel: "1分钟",
+								shortLabel: "1m",
+								cnShortLabel: "1分钟",
 								jaShortLabel: "1<span class='jap-word'>分</span>",
 								mediumLabel: "1 min",
 								instruments: [
@@ -799,7 +806,8 @@ module.exports = function(grunt) {
 								cnLabel: "3分钟",
 								jaLabel: "3<span class='jap-word'>分</span>",
 								value: 3*60*1000,
-								shortLabel: "3分钟",
+								shortLabel: "3m",
+								cnShortLabel: "3分钟",
 								jaShortLabel: "3<span class='jap-word'>分</span>",
 								mediumLabel: "3 min",
 								instruments: [
@@ -888,7 +896,8 @@ module.exports = function(grunt) {
 								cnLabel: "5分钟",
 								jaLabel: "5<span class='jap-word'>分</span>",
 								value: 5*60*1000,
-								shortLabel: "5分钟",
+								shortLabel: "5m",
+								cnShortLabel: "5分钟",
 								jaShortLabel: "5<span class='jap-word'>分</span>",
 								mediumLabel: "5 min",
 								instruments: [
@@ -1025,7 +1034,8 @@ module.exports = function(grunt) {
 								cnLabel: "1分钟",
 								jaLabel: "1<span class='jap-word'>分</span>",
 								value: 1*60*1000,
-								shortLabel: "1分钟",
+								shortLabel: "1m",
+								cnShortLabel: "1分钟",
 								jaShortLabel: "1<span class='jap-word'>分</span>",
 								mediumLabel: "1 min",
 								instruments: [
@@ -1114,7 +1124,8 @@ module.exports = function(grunt) {
 								cnLabel: "3分钟",
 								jaLabel: "3<span class='jap-word'>分</span>",
 								value: 3*60*1000,
-								shortLabel: "3分钟",
+								shortLabel: "3m",
+								cnShortLabel: "3分钟",
 								jaShortLabel: "3<span class='jap-word'>分</span>",
 								mediumLabel: "3 min",
 								instruments: [
@@ -1203,7 +1214,8 @@ module.exports = function(grunt) {
 								cnLabel: "5分钟",
 								jaLabel: "5<span class='jap-word'>分</span>",
 								value: 5*60*1000,
-								shortLabel: "5分钟",
+								shortLabel: "5m",
+								cnShortLabel: "5分钟",
 								jaShortLabel: "5<span class='jap-word'>分</span>",
 								mediumLabel: "5 min",
 								instruments: [
@@ -1343,6 +1355,7 @@ module.exports = function(grunt) {
 								jaLabel: "0.5<span class='jap-word'>分</span>",
 								value: 0.5*60*1000,
 								shortLabel: "30s",
+								cnShortLabel: "0.5分钟",
 								jaShortLabel: "0.5<span class='jap-word'>分</span>",
 								mediumLabel: "30 sec",
 								instruments: [

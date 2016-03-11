@@ -42,4 +42,5 @@ $(function () {
 	highlowApp.numberOnly.init();
 	highlowApp.balanceWidget.init();
 	highlowApp.toggler.init();
+	highlowApp.assetFilter.init();
 });

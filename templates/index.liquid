@@ -33,17 +33,174 @@
 										<span class="asset-filter--placeholder">
 											Filter Assets
 										</span>
-										<div id="highlow-asset-filter--options-container">
+										<div id="highlow-asset-filter--categories-container">
 											<ul class="highlow-asset-filter--categories">
-												<li class="highlow-asset-filter--category">
-													All Assets
+												<li id="highlow-asset-filter--category--all-asset" data-option="Filter Assets" data-category="all" class="highlow-asset-filter--category active">
+													<span class="highlow-asset-filter--category--label">All Assets</span>
+													<div class="highlow-asset-filter--category--indicator"></div>
 												</li>
-												<li class="highlow-asset-filter--category">
-													Currencies
+												<li id="highlow-asset-filter--category--all-currencies"  data-category="currencies" data-option="All Currencies" class="highlow-asset-filter--category">
+													<span class="highlow-asset-filter--category--label">Currencies</span>
+													<div class="highlow-asset-filter--category--indicator"></div>
 												</li>
-												<li class="highlow-asset-filter--category">
+												<li id="highlow-asset-filter--category--all-indices" data-category="indices" data-option="All Indices" class="highlow-asset-filter--category">
+													<span class="highlow-asset-filter--category--label">	Indices
+													</span>
+													<div class="highlow-asset-filter--category--indicator"></div>
 												</li>
-												<li class="highlow-asset-filter--category">
+												<li id="highlow-asset-filter--category--all-commodities" data-option="All Commodities" data-category="commodities" class="highlow-asset-filter--category">		<span class="highlow-asset-filter--category--label">Commodities</span>
+													<div class="highlow-asset-filter--category--indicator"></div>
+												</li>
+											</ul>
+											<div id="highlow-asset-filter--selected-category-indicator"></div>
+										</div>
+										<div id="highlow-asset-filter--options-container">
+											<ul id="highlow-asset-filter--options">
+												<li class="highlow-asset-filter--option highlow-asset-filter--option-picker" data-option="AUD/JPY" data-category="currencies">
+													<span class="highlow-asset-filter--option--label">
+														AUD/JPY
+													</span>
+												</li>
+												<li class="highlow-asset-filter--option highlow-asset-filter--option-picker" data-option="EUR/JPY" data-category="currencies">
+													<span class="highlow-asset-filter--option--label">
+														EUR/JPY
+													</span>
+												</li>
+												<li class="highlow-asset-filter--option highlow-asset-filter--option-picker" data-option="USD/CHF" data-category="currencies">
+													<span class="highlow-asset-filter--option--label">
+														USD/CHF
+													</span>
+												</li>
+												<li class="highlow-asset-filter--option highlow-asset-filter--option-picker" data-option="HKG33" data-category="indices">
+													<span class="highlow-asset-filter--option--label">
+														HKG33
+													</span>
+												</li>
+												<li class="highlow-asset-filter--option highlow-asset-filter--option-picker" data-option="AUD/NZD" data-category="currencies">
+													<span class="highlow-asset-filter--option--label">
+														AUD/NZD
+													</span>
+												</li>
+												<li class="highlow-asset-filter--option highlow-asset-filter--option-picker" data-option="EUR/USD" data-category="currencies">
+													<span class="highlow-asset-filter--option--label">
+														EUR/USD
+													</span>
+												</li>
+												<li class="highlow-asset-filter--option highlow-asset-filter--option-picker" data-option="USD/JPY" data-category="currencies">
+													<span class="highlow-asset-filter--option--label">
+														USD/JPY
+													</span>
+												</li>
+												<li class="highlow-asset-filter--option highlow-asset-filter--option-picker" data-option="JPN225" data-category="indices">
+													<span class="highlow-asset-filter--option--label">
+														JPN225
+													</span>
+												</li>
+												<li class="highlow-asset-filter--option highlow-asset-filter--option-picker" data-option="AUD/USD" data-category="currencies">
+													<span class="highlow-asset-filter--option--label">
+														AUD/USD
+													</span>
+												</li>
+												<li class="highlow-asset-filter--option highlow-asset-filter--option-picker" data-option="GBP/AUD" data-category="currencies">
+													<span class="highlow-asset-filter--option--label">
+														GBP/AUD
+													</span>
+												</li>
+												<li class="highlow-asset-filter--option highlow-asset-filter--option-picker" data-option="USD/SGD" data-category="currencies">
+													<span class="highlow-asset-filter--option--label">
+														USD/SGD
+													</span>
+												</li>
+												<li class="highlow-asset-filter--option highlow-asset-filter--option-picker" data-option="UK100" data-category="indices">
+													<span class="highlow-asset-filter--option--label">
+														UK100
+													</span>
+												</li>
+												<li class="highlow-asset-filter--option highlow-asset-filter--option-picker" data-option="CAD/JPY" data-category="currencies">
+													<span class="highlow-asset-filter--option--label">
+														CAD/JPY
+													</span>
+												</li>
+												<li class="highlow-asset-filter--option highlow-asset-filter--option-picker" data-option="GBP/JPY" data-category="currencies">
+													<span class="highlow-asset-filter--option--label">
+														GBP/JPY
+													</span>
+												</li>
+												<li class="highlow-asset-filter--option highlow-asset-filter--option-picker" data-option="GOLD" data-category="commodities">
+													<span class="highlow-asset-filter--option--label">
+														GOLD
+													</span>
+												</li>
+												<li class="highlow-asset-filter--option highlow-asset-filter--option-picker" data-option="US30" data-category="indices">
+													<span class="highlow-asset-filter--option--label">
+														US30
+													</span>
+												</li>
+												<li class="highlow-asset-filter--option highlow-asset-filter--option-picker" data-option="CHF/JPY" data-category="currencies">
+													<span class="highlow-asset-filter--option--label">
+														CHF/JPY
+													</span>
+												</li>
+												<li class="highlow-asset-filter--option highlow-asset-filter--option-picker" data-option="GBP/USD" data-category="currencies">
+													<span class="highlow-asset-filter--option--label">
+														GBP/USD
+													</span>
+												</li>
+												<li class="highlow-asset-filter--option highlow-asset-filter--option-picker" data-option="AUS200" data-category="indices">
+													<span class="highlow-asset-filter--option--label">
+														AUS200
+													</span>
+												</li>
+												<li class="highlow-asset-filter--option highlow-asset-filter--option-picker" data-option="" data-category="all">
+													&nbsp;
+												</li>
+												<li class="highlow-asset-filter--option highlow-asset-filter--option-picker" data-option="EUR/AUD" data-category="currencies">
+													<span class="highlow-asset-filter--option--label">
+														EUR/AUD
+													</span>
+												</li>
+												<li class="highlow-asset-filter--option highlow-asset-filter--option-picker" data-option="NZD/JPY" data-category="currencies">
+													<span class="highlow-asset-filter--option--label">
+														NZD/JPY
+													</span>
+												</li>
+												<li class="highlow-asset-filter--option highlow-asset-filter--option-picker" data-option="FRA40" data-category="indices">
+													<span class="highlow-asset-filter--option--label">
+														FRA40
+													</span>
+												</li>
+												<li class="highlow-asset-filter--option highlow-asset-filter--option-picker" data-option="" data-category="all">
+													&nbsp;
+												</li>
+												<li class="highlow-asset-filter--option highlow-asset-filter--option-picker" data-option="EUR/GBP" data-category="currencies">
+													<span class="highlow-asset-filter--option--label">
+														EUR/GBP
+													</span>
+												</li>
+												<li class="highlow-asset-filter--option highlow-asset-filter--option-picker" data-option="NZD/USD" data-category="currencies">
+													<span class="highlow-asset-filter--option--label">
+														NZD/USD
+													</span>
+												</li>
+												<li class="highlow-asset-filter--option highlow-asset-filter--option-picker" data-option="GER30" data-category="indices">
+													<span class="highlow-asset-filter--option--label">
+														GER30
+													</span>
+												</li>
+												<li class="highlow-asset-filter--option highlow-asset-filter--option-picker" data-option="" data-category="all">
+													&nbsp;
+												</li>
+												<li class="highlow-asset-filter--option highlow-asset-filter--option-picker" style="display: none;" data-option="" data-category="currencies">
+													&nbsp;
+												</li>
+												<li class="highlow-asset-filter--option highlow-asset-filter--option-picker" style="display: none;" data-option="" data-category="currencies">
+													&nbsp;
+												</li>
+												<li class="highlow-asset-filter--option highlow-asset-filter--option-picker" style="display: none;" data-option="" data-category="currencies">
+													&nbsp;
+												</li>
+												<li class="highlow-asset-filter--option highlow-asset-filter--option-picker" style="display: none;" data-option="" data-category="indices">
+													&nbsp;
 												</li>
 											</ul>
 										</div>
