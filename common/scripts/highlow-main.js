@@ -1001,13 +1001,7 @@ highlowApp.graph = {
 			});
 		}
 
-
-		
-
-
-
 		/* end loading screen code */
-
 
 		Highcharts.setOptions({
 		    plotOptions: {
@@ -1068,8 +1062,6 @@ highlowApp.graph = {
 	},
 	loadInstrument: function (model) {
 
-		
-
 
 		$('.trading-platform-main-controls-select-direction .btn').removeClass('active').removeClass('in-active');
 		
@@ -1077,6 +1069,7 @@ highlowApp.graph = {
 		var type = model.type;
 
 		var symbols = this.onGraphUI;
+
 		
 		// remove old button added with the last data point
 
@@ -1100,10 +1093,13 @@ highlowApp.graph = {
 		this.graphs[model.type] = $('#'+model.type+"-graph").highcharts();
 
 
+		
+
 
 		var graph = this.graphs[model.type];
 
 		var renderer = graph.renderer;
+
 
 		// add graph closing line;
 
@@ -1152,6 +1148,8 @@ highlowApp.graph = {
 		series.setData(data, true, false, false);
 
 		var xAxis = graph.xAxis[0];
+
+		var yAxis = graph.yAxis[0];
 
 
 
@@ -1404,12 +1402,11 @@ highlowApp.graph = {
 
 		}
 
-		series.points[series.points.length-1].update({
+		var lastPoint = series.points[series.points.length-1];
+
+		lastPoint.update({
 			marker : {
-				enabled : true,
-				symbol : "url(common/images/graph-marker.png)",
-				zIndex : 1000,
-				id: "strike-marker"
+				enabled: false
 			},
 			states: {
 				hover: {
@@ -1418,6 +1415,25 @@ highlowApp.graph = {
 			},
 			zIndex: 1000
 		});
+
+
+		// add price marker:
+
+		console.log(lastPoint);
+
+		var marker = renderer.label('<div class="price-marker"><img src="common/images/price-marker-1.png"/></div>',
+			lastPoint.plotX + graph.plotLeft,
+			lastPoint.plotY - graph.plotTop,
+			null,
+			null,
+			null, 
+			true, 
+			'price-marker-wrapper'
+		).add();
+
+		// start animating the price marker pulse:
+
+				
 
 		// add trace line to newest data point
 
@@ -1476,9 +1492,6 @@ highlowApp.graph = {
 		graph.xAxis[0].update({
 			tickInterval : tickInterval
 		});
-
-
-		/* hide loading screen */
 
 		
 	},
