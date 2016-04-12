@@ -38,7 +38,7 @@ $(function () {
 	highlowApp.betSystem.init();
 	highlowApp.favourite.init();
 	highlowApp.heatmap.init();
-	highlowApp.tooltip.init(1000);
+	highlowApp.tooltip.init(2500);
 	highlowApp.numberOnly.init();
 	highlowApp.balanceWidget.init();
 	highlowApp.toggler.init();
@@ -3362,7 +3362,7 @@ highlowApp.marketSimulator = {
 				if(minutesIntoGame!=undefined) {
 					instrumentModel.openAt = currentTime - 1000*60*minutesIntoGame;
 				} else {
-					instrumentModel.openAt = (Math.round(currentTime / (1000 * 60 * 5))-1) * 1000 * 60 * 5;
+					instrumentModel.openAt = (Math.floor(currentTime / (1000 * 60 * 5))) * 1000 * 60 * 5;
 				}
 			}
 

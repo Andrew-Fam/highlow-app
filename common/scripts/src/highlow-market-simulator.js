@@ -835,7 +835,7 @@ highlowApp.marketSimulator = {
 				if(minutesIntoGame!=undefined) {
 					instrumentModel.openAt = currentTime - 1000*60*minutesIntoGame;
 				} else {
-					instrumentModel.openAt = (Math.round(currentTime / (1000 * 60 * 5))-1) * 1000 * 60 * 5;
+					instrumentModel.openAt = (Math.floor(currentTime / (1000 * 60 * 5))) * 1000 * 60 * 5;
 				}
 			}
 

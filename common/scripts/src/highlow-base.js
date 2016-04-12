@@ -38,7 +38,7 @@ $(function () {
 	highlowApp.betSystem.init();
 	highlowApp.favourite.init();
 	highlowApp.heatmap.init();
-	highlowApp.tooltip.init(1000);
+	highlowApp.tooltip.init(2500);
 	highlowApp.numberOnly.init();
 	highlowApp.balanceWidget.init();
 	highlowApp.toggler.init();
