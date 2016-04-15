@@ -40,7 +40,7 @@ highlowApp.popup = {
 
 		// read memorized position
 
-		$(".trading-platform-popup-wrapper").each(function(){
+		$(".trading-platform-popup-wrapper").not('#make-deposit-popup').each(function(){
 			var self = $(this),
 			id = self.attr('id');
 			self.data('memorizedLeft',$.cookie(id+'-left'));
@@ -48,7 +48,7 @@ highlowApp.popup = {
 		});
 
 
-		$(".trading-platform-popup-wrapper").each(function(){
+		$(".trading-platform-popup-wrapper").not('#make-deposit-popup').each(function(){
 			var self = $(this);
 
 			self.draggable({
@@ -61,6 +61,31 @@ highlowApp.popup = {
 				}
 			});
 		});
+
+		// initialize make-deposit-popup
+
+		var $accountBalanceWidget = $('#account-balance');
+
+		var $makeDepositPopup = $('#make-deposit-popup');
+
+
+
+		var makeDepositPopupLeft = $accountBalanceWidget.offset().left-($makeDepositPopup.outerWidth()-$accountBalanceWidget.outerWidth()),
+			makeDepositPopupTop = $accountBalanceWidget.offset().top+$accountBalanceWidget.outerHeight();
+
+		$makeDepositPopup.css({
+			left: makeDepositPopupLeft,
+			top: makeDepositPopupTop
+		}).draggable({
+			handle: ".trading-platform-popup-header",
+			stop: function() { // remember position (not persist after close)
+				$makeDepositPopup.data('memorizedLeft',$makeDepositPopup.css('left'));
+				$makeDepositPopup.data('memorizedTop',$makeDepositPopup.css('top'));
+			}
+		});
+
+		$makeDepositPopup.data('memorizedLeft',makeDepositPopupLeft)
+			.data('memorizedTop',makeDepositPopupTop);
 
 
 	},

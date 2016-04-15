@@ -449,7 +449,10 @@ highlowApp.graph = {
 
 		lastPoint.update({
 			marker : {
-				enabled: false
+				enabled : true,
+				symbol : "url(common/images/graph-marker.png)",
+				zIndex : 1000,
+				id: "strike-marker"
 			},
 			states: {
 				hover: {
@@ -460,23 +463,23 @@ highlowApp.graph = {
 		});
 
 
-		// add price marker:
+		// // add price marker:
 
-		console.log(lastPoint);
+		// console.log(lastPoint);
 
-		var marker = renderer.label('<div class="price-marker"><img src="common/images/price-marker-1.png"/></div>',
-			lastPoint.plotX + graph.plotLeft,
-			lastPoint.plotY - graph.plotTop,
-			null,
-			null,
-			null, 
-			true, 
-			'price-marker-wrapper'
-		).add();
+		// var marker = renderer.label('<div class="price-marker"><img src="common/images/price-marker-1.png"/></div>',
+		// 	lastPoint.plotX + graph.plotLeft,
+		// 	lastPoint.plotY - graph.plotTop,
+		// 	null,
+		// 	null,
+		// 	null, 
+		// 	true, 
+		// 	'price-marker-wrapper'
+		// ).add();
 
-		// start animating the price marker pulse:
+		// // start animating the price marker pulse:
 
-				
+		// window.markerPulseTimeout;		
 
 		// add trace line to newest data point
 

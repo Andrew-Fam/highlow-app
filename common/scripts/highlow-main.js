@@ -1406,7 +1406,10 @@ highlowApp.graph = {
 
 		lastPoint.update({
 			marker : {
-				enabled: false
+				enabled : true,
+				symbol : "url(common/images/graph-marker.png)",
+				zIndex : 1000,
+				id: "strike-marker"
 			},
 			states: {
 				hover: {
@@ -1417,23 +1420,23 @@ highlowApp.graph = {
 		});
 
 
-		// add price marker:
+		// // add price marker:
 
-		console.log(lastPoint);
+		// console.log(lastPoint);
 
-		var marker = renderer.label('<div class="price-marker"><img src="common/images/price-marker-1.png"/></div>',
-			lastPoint.plotX + graph.plotLeft,
-			lastPoint.plotY - graph.plotTop,
-			null,
-			null,
-			null, 
-			true, 
-			'price-marker-wrapper'
-		).add();
+		// var marker = renderer.label('<div class="price-marker"><img src="common/images/price-marker-1.png"/></div>',
+		// 	lastPoint.plotX + graph.plotLeft,
+		// 	lastPoint.plotY - graph.plotTop,
+		// 	null,
+		// 	null,
+		// 	null, 
+		// 	true, 
+		// 	'price-marker-wrapper'
+		// ).add();
 
-		// start animating the price marker pulse:
+		// // start animating the price marker pulse:
 
-				
+		// window.markerPulseTimeout;		
 
 		// add trace line to newest data point
 
@@ -3671,7 +3674,7 @@ highlowApp.popup = {
 
 		// read memorized position
 
-		$(".trading-platform-popup-wrapper").each(function(){
+		$(".trading-platform-popup-wrapper").not('#make-deposit-popup').each(function(){
 			var self = $(this),
 			id = self.attr('id');
 			self.data('memorizedLeft',$.cookie(id+'-left'));
@@ -3679,7 +3682,7 @@ highlowApp.popup = {
 		});
 
 
-		$(".trading-platform-popup-wrapper").each(function(){
+		$(".trading-platform-popup-wrapper").not('#make-deposit-popup').each(function(){
 			var self = $(this);
 
 			self.draggable({
@@ -3692,6 +3695,31 @@ highlowApp.popup = {
 				}
 			});
 		});
+
+		// initialize make-deposit-popup
+
+		var $accountBalanceWidget = $('#account-balance');
+
+		var $makeDepositPopup = $('#make-deposit-popup');
+
+
+
+		var makeDepositPopupLeft = $accountBalanceWidget.offset().left-($makeDepositPopup.outerWidth()-$accountBalanceWidget.outerWidth()),
+			makeDepositPopupTop = $accountBalanceWidget.offset().top+$accountBalanceWidget.outerHeight();
+
+		$makeDepositPopup.css({
+			left: makeDepositPopupLeft,
+			top: makeDepositPopupTop
+		}).draggable({
+			handle: ".trading-platform-popup-header",
+			stop: function() { // remember position (not persist after close)
+				$makeDepositPopup.data('memorizedLeft',$makeDepositPopup.css('left'));
+				$makeDepositPopup.data('memorizedTop',$makeDepositPopup.css('top'));
+			}
+		});
+
+		$makeDepositPopup.data('memorizedLeft',makeDepositPopupLeft)
+			.data('memorizedTop',makeDepositPopupTop);
 
 
 	},
