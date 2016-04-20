@@ -119,76 +119,6 @@ module.exports = function(grunt) {
 										payout: "1.80",
 										rate: "92.439",
 										pip: 3
-									},
-									{
-										label:"AUD/USD",
-										id: "aud-usd",
-										payout: "1.80",
-										rate: "0.75441",
-										pip: 5
-									},
-									{
-										label:"EUR/JPY",
-										id: "eur-jpy",
-										payout: "1.75",
-										rate: "135.740",
-										pip: 3
-									},
-									{
-										label:"EUR/USD",
-										id: "eur-usd",
-										payout: "1.75",
-										rate: "1.12560",
-										pip: 5
-									},
-									{
-										label:"GBP/JPY",
-										id: "gbp-jpy",
-										payout: "1.80",
-										rate: "112.44",
-										pip: 3
-									},
-									{
-										label:"EUR/JPY",
-										id: "eur-jpy",
-										payout: "1.75",
-										rate: "135.740",
-										pip: 3
-									},
-									{
-										label:"EUR/USD",
-										id: "eur-usd",
-										payout: "1.75",
-										rate: "1.12560",
-										pip: 5
-									},
-									{
-										label:"GBP/JPY",
-										id: "gbp-jpy",
-										payout: "1.80",
-										rate: "123.12",
-										pip: 3
-									},
-									{
-										label:"GBP/USD",
-										id: "gbp-usd",
-										payout: "1.80",
-										rate: "122.44",
-										pip: 3
-									},
-									{
-										label:"NZD/JPY",
-										id: "nzd-jpy",
-										payout: "1.75",
-										rate: "111.56",
-										pip: 3
-									},
-									{
-										label:"NZD/USD",
-										id: "nzd-usd",
-										payout: "1.80",
-										rate: "114.76",
-										pip: 3
 									}
 								]
 							},
@@ -215,55 +145,6 @@ module.exports = function(grunt) {
 										id: "aud-jpy",
 										payout: "1.85",
 										rate: "92.439",
-										pip: 3
-									},
-									{
-										label:"AUD/USD",
-										id: "aud-usd",
-										payout: "1.85",
-										rate: "0.75441",
-										pip: 5
-									},
-									{
-										label:"EUR/JPY",
-										id: "eur-jpy",
-										payout: "1.85",
-										rate: "135.740",
-										pip: 3
-									},
-									{
-										label:"EUR/USD",
-										id: "eur-usd",
-										payout: "1.80",
-										rate: "1.12560",
-										pip: 5
-									},
-									{
-										label:"GBP/JPY",
-										id: "gbp-jpy",
-										payout: "1.85",
-										rate: "97.35",
-										pip: 3
-									},
-									{
-										label:"GBP/USD",
-										id: "gbp-usd",
-										payout: "1.85",
-										rate: "97.45",
-										pip: 3
-									},
-									{
-										label:"NZD/JPY",
-										id: "nzd-jpy",
-										payout: "1.80",
-										rate: "94.24",
-										pip: 3
-									},
-									{
-										label:"NZD/USD",
-										id: "nzd-usd",
-										payout: "1.85",
-										rate: "111.56",
 										pip: 3
 									}
 								]
@@ -292,55 +173,6 @@ module.exports = function(grunt) {
 										payout: "1.85",
 										rate: "92.439",
 										pip: 3
-									},
-									{
-										label:"AUD/USD",
-										id: "aud-usd",
-										payout: "1.85",
-										rate: "0.75441",
-										pip: 5
-									},
-									{
-										label:"EUR/JPY",
-										id: "eur-jpy",
-										payout: "1.85",
-										rate: "135.740",
-										pip: 3
-									},
-									{
-										label:"EUR/USD",
-										id: "eur-usd",
-										payout: "1.80",
-										rate: "1.12560",
-										pip: 5
-									},
-									{
-										label:"GBP/JPY",
-										id: "gbp-jpy",
-										payout: "1.85",
-										rate: "97.35",
-										pip: 3
-									},
-									{
-										label:"GBP/USD",
-										id: "gbp-usd",
-										payout: "1.85",
-										rate: "97.45",
-										pip: 3
-									},
-									{
-										label:"NZD/JPY",
-										id: "nzd-jpy",
-										payout: "1.80",
-										rate: "94.24",
-										pip: 3
-									},
-									{
-										label:"NZD/USD",
-										id: "nzd-usd",
-										payout: "1.85",
-										rate: "111.56",
-										pip: 3
 									}
 								]
 							}
@@ -354,10 +186,6 @@ module.exports = function(grunt) {
 						default: false,
 						_new: false,
 						instruments: [
-							{
-								label: "AUD/JPY",
-								id: "aud-jpy"
-							},
 							{
 								label:"AUD/USD",
 								id: "aud-usd"
@@ -373,22 +201,6 @@ module.exports = function(grunt) {
 							{
 								label:"GBP/JPY",
 								id: "gbp-jpy"
-							},
-							{
-								label:"GBP/USD",
-								id: "gbp-usd"
-							},
-							{
-								label:"NZD/JPY",
-								id: "nzd-jpy"
-							},
-							{
-								label:"NZD/USD",
-								id: "nzd-usd"
-							},
-							{
-								label:"USD/JPY",
-								id: "usd-jpy"
 							}
 						],
 						intervals: [
@@ -409,76 +221,6 @@ module.exports = function(grunt) {
 										payout: "2.00",
 										rate: "0.75441",
 										pip: 5
-									},
-									{
-										label:"EUR/JPY",
-										id: "eur-jpy",
-										payout: "2.00",
-										rate: "135.740",
-										pip: 3
-									},
-									{
-										label:"EUR/USD",
-										id: "eur-usd",
-										payout: "2.00",
-										rate: "1.12560",
-										pip: 5
-									},
-									{
-										label:"GBP/JPY",
-										id: "gbp-jpy",
-										payout: "2.00",
-										rate: "224.86",
-										pip: 3
-									},
-									{
-										label:"EUR/JPY",
-										id: "eur-jpy",
-										payout: "2.00",
-										rate: "135.740",
-										pip: 3
-									},
-									{
-										label:"EUR/USD",
-										id: "eur-usd",
-										payout: "2.00",
-										rate: "1.12560",
-										pip: 5
-									},
-									{
-										label:"GBP/JPY",
-										id: "gbp-jpy",
-										payout: "2.00",
-										rate: "145.15",
-										pip: 3
-									},
-									{
-										label:"GBP/USD",
-										id: "gbp-usd",
-										payout: "2.00",
-										rate: "165.52",
-										pip: 3
-									},
-									{
-										label:"NZD/JPY",
-										id: "nzd-jpy",
-										payout: "2.00",
-										rate: "135.59",
-										pip: 3
-									},
-									{
-										label:"NZD/USD",
-										id: "nzd-usd",
-										payout: "2.00",
-										rate: "115.54",
-										pip: 3
-									},
-									{
-										label:"USD/JPY",
-										id: "usd-jpy",
-										payout: "2.00",
-										rate: "112.43",
-										pip: 3
 									}
 								]
 							},
@@ -499,76 +241,6 @@ module.exports = function(grunt) {
 										payout: "2.00",
 										rate: "0.75441",
 										pip: 5
-									},
-									{
-										label:"EUR/JPY",
-										id: "eur-jpy",
-										payout: "2.00",
-										rate: "135.740",
-										pip: 3
-									},
-									{
-										label:"EUR/USD",
-										id: "eur-usd",
-										payout: "2.00",
-										rate: "1.12560",
-										pip: 5
-									},
-									{
-										label:"GBP/JPY",
-										id: "gbp-jpy",
-										payout: "2.00",
-										rate: "224.86",
-										pip: 3
-									},
-									{
-										label:"EUR/JPY",
-										id: "eur-jpy",
-										payout: "2.00",
-										rate: "135.740",
-										pip: 3
-									},
-									{
-										label:"EUR/USD",
-										id: "eur-usd",
-										payout: "2.00",
-										rate: "1.12560",
-										pip: 5
-									},
-									{
-										label:"GBP/JPY",
-										id: "gbp-jpy",
-										payout: "2.00",
-										rate: "145.15",
-										pip: 3
-									},
-									{
-										label:"GBP/USD",
-										id: "gbp-usd",
-										payout: "2.00",
-										rate: "165.52",
-										pip: 3
-									},
-									{
-										label:"NZD/JPY",
-										id: "nzd-jpy",
-										payout: "2.00",
-										rate: "135.59",
-										pip: 3
-									},
-									{
-										label:"NZD/USD",
-										id: "nzd-usd",
-										payout: "2.00",
-										rate: "115.54",
-										pip: 3
-									},
-									{
-										label:"USD/JPY",
-										id: "usd-jpy",
-										payout: "2.00",
-										rate: "112.43",
-										pip: 3
 									}
 								]
 							},
@@ -589,76 +261,6 @@ module.exports = function(grunt) {
 										payout: "2.00",
 										rate: "0.75441",
 										pip: 5
-									},
-									{
-										label:"EUR/JPY",
-										id: "eur-jpy",
-										payout: "2.00",
-										rate: "135.740",
-										pip: 3
-									},
-									{
-										label:"EUR/USD",
-										id: "eur-usd",
-										payout: "2.00",
-										rate: "1.12560",
-										pip: 5
-									},
-									{
-										label:"GBP/JPY",
-										id: "gbp-jpy",
-										payout: "2.00",
-										rate: "224.86",
-										pip: 3
-									},
-									{
-										label:"EUR/JPY",
-										id: "eur-jpy",
-										payout: "2.00",
-										rate: "135.740",
-										pip: 3
-									},
-									{
-										label:"EUR/USD",
-										id: "eur-usd",
-										payout: "2.00",
-										rate: "1.12560",
-										pip: 5
-									},
-									{
-										label:"GBP/JPY",
-										id: "gbp-jpy",
-										payout: "2.00",
-										rate: "145.15",
-										pip: 3
-									},
-									{
-										label:"GBP/USD",
-										id: "gbp-usd",
-										payout: "2.00",
-										rate: "165.52",
-										pip: 3
-									},
-									{
-										label:"NZD/JPY",
-										id: "nzd-jpy",
-										payout: "2.00",
-										rate: "135.59",
-										pip: 3
-									},
-									{
-										label:"NZD/USD",
-										id: "nzd-usd",
-										payout: "2.00",
-										rate: "115.54",
-										pip: 3
-									},
-									{
-										label:"USD/JPY",
-										id: "usd-jpy",
-										payout: "2.00",
-										rate: "112.43",
-										pip: 3
 									}
 								]
 							}
@@ -673,40 +275,8 @@ module.exports = function(grunt) {
 						_new: false,
 						instruments: [
 							{
-								label: "AUD/JPY",
-								id: "aud-jpy"
-							},
-							{
 								label:"AUD/USD",
 								id: "aud-usd"
-							},
-							{
-								label:"EUR/JPY",
-								id: "eur-jpy"
-							},
-							{
-								label:"EUR/USD",
-								id: "eur-usd"
-							},
-							{
-								label:"GBP/JPY",
-								id: "gbp-jpy"
-							},
-							{
-								label:"GBP/USD",
-								id: "gbp-usd"
-							},
-							{
-								label:"NZD/JPY",
-								id: "nzd-jpy"
-							},
-							{
-								label:"NZD/USD",
-								id: "nzd-usd"
-							},
-							{
-								label:"USD/JPY",
-								id: "usd-jpy"
 							}
 						],
 						intervals: [
@@ -727,76 +297,6 @@ module.exports = function(grunt) {
 										payout: "1.80",
 										rate: "0.75441",
 										pip: 5
-									},
-									{
-										label:"EUR/JPY",
-										id: "eur-jpy",
-										payout: "1.80",
-										rate: "135.740",
-										pip: 3
-									},
-									{
-										label:"EUR/USD",
-										id: "eur-usd",
-										payout: "1.80",
-										rate: "1.12560",
-										pip: 5
-									},
-									{
-										label:"GBP/JPY",
-										id: "gbp-jpy",
-										payout: "1.80",
-										rate: "224.86",
-										pip: 3
-									},
-									{
-										label:"EUR/JPY",
-										id: "eur-jpy",
-										payout: "1.80",
-										rate: "135.740",
-										pip: 3
-									},
-									{
-										label:"EUR/USD",
-										id: "eur-usd",
-										payout: "1.80",
-										rate: "1.12560",
-										pip: 5
-									},
-									{
-										label:"GBP/JPY",
-										id: "gbp-jpy",
-										payout: "1.80",
-										rate: "145.15",
-										pip: 3
-									},
-									{
-										label:"GBP/USD",
-										id: "gbp-usd",
-										payout: "1.80",
-										rate: "165.52",
-										pip: 3
-									},
-									{
-										label:"NZD/JPY",
-										id: "nzd-jpy",
-										payout: "1.80",
-										rate: "135.59",
-										pip: 3
-									},
-									{
-										label:"NZD/USD",
-										id: "nzd-usd",
-										payout: "1.80",
-										rate: "115.54",
-										pip: 3
-									},
-									{
-										label:"USD/JPY",
-										id: "usd-jpy",
-										payout: "1.80",
-										rate: "112.43",
-										pip: 3
 									}
 								]
 							},
@@ -817,76 +317,6 @@ module.exports = function(grunt) {
 										payout: "1.80",
 										rate: "0.75441",
 										pip: 5
-									},
-									{
-										label:"EUR/JPY",
-										id: "eur-jpy",
-										payout: "1.80",
-										rate: "135.740",
-										pip: 3
-									},
-									{
-										label:"EUR/USD",
-										id: "eur-usd",
-										payout: "1.80",
-										rate: "1.12560",
-										pip: 5
-									},
-									{
-										label:"GBP/JPY",
-										id: "gbp-jpy",
-										payout: "1.80",
-										rate: "224.86",
-										pip: 3
-									},
-									{
-										label:"EUR/JPY",
-										id: "eur-jpy",
-										payout: "1.80",
-										rate: "135.740",
-										pip: 3
-									},
-									{
-										label:"EUR/USD",
-										id: "eur-usd",
-										payout: "1.80",
-										rate: "1.12560",
-										pip: 5
-									},
-									{
-										label:"GBP/JPY",
-										id: "gbp-jpy",
-										payout: "1.80",
-										rate: "145.15",
-										pip: 3
-									},
-									{
-										label:"GBP/USD",
-										id: "gbp-usd",
-										payout: "1.80",
-										rate: "165.52",
-										pip: 3
-									},
-									{
-										label:"NZD/JPY",
-										id: "nzd-jpy",
-										payout: "1.80",
-										rate: "135.59",
-										pip: 3
-									},
-									{
-										label:"NZD/USD",
-										id: "nzd-usd",
-										payout: "1.80",
-										rate: "115.54",
-										pip: 3
-									},
-									{
-										label:"USD/JPY",
-										id: "usd-jpy",
-										payout: "1.80",
-										rate: "112.43",
-										pip: 3
 									}
 								]
 							},
@@ -907,76 +337,6 @@ module.exports = function(grunt) {
 										payout: "1.80",
 										rate: "0.75441",
 										pip: 5
-									},
-									{
-										label:"EUR/JPY",
-										id: "eur-jpy",
-										payout: "1.80",
-										rate: "135.740",
-										pip: 3
-									},
-									{
-										label:"EUR/USD",
-										id: "eur-usd",
-										payout: "1.80",
-										rate: "1.12560",
-										pip: 5
-									},
-									{
-										label:"GBP/JPY",
-										id: "gbp-jpy",
-										payout: "1.80",
-										rate: "224.86",
-										pip: 3
-									},
-									{
-										label:"EUR/JPY",
-										id: "eur-jpy",
-										payout: "1.80",
-										rate: "135.740",
-										pip: 3
-									},
-									{
-										label:"EUR/USD",
-										id: "eur-usd",
-										payout: "1.80",
-										rate: "1.12560",
-										pip: 5
-									},
-									{
-										label:"GBP/JPY",
-										id: "gbp-jpy",
-										payout: "1.80",
-										rate: "145.15",
-										pip: 3
-									},
-									{
-										label:"GBP/USD",
-										id: "gbp-usd",
-										payout: "1.80",
-										rate: "165.52",
-										pip: 3
-									},
-									{
-										label:"NZD/JPY",
-										id: "nzd-jpy",
-										payout: "1.80",
-										rate: "135.59",
-										pip: 3
-									},
-									{
-										label:"NZD/USD",
-										id: "nzd-usd",
-										payout: "1.80",
-										rate: "115.54",
-										pip: 3
-									},
-									{
-										label:"USD/JPY",
-										id: "usd-jpy",
-										payout: "1.80",
-										rate: "112.43",
-										pip: 3
 									}
 								]
 							}
@@ -991,40 +351,8 @@ module.exports = function(grunt) {
 						_new: false,
 						instruments: [
 							{
-								label: "AUD/JPY",
-								id: "aud-jpy"
-							},
-							{
 								label:"AUD/USD",
 								id: "aud-usd"
-							},
-							{
-								label:"EUR/JPY",
-								id: "eur-jpy"
-							},
-							{
-								label:"EUR/USD",
-								id: "eur-usd"
-							},
-							{
-								label:"GBP/JPY",
-								id: "gbp-jpy"
-							},
-							{
-								label:"GBP/USD",
-								id: "gbp-usd"
-							},
-							{
-								label:"NZD/JPY",
-								id: "nzd-jpy"
-							},
-							{
-								label:"NZD/USD",
-								id: "nzd-usd"
-							},
-							{
-								label:"USD/JPY",
-								id: "usd-jpy"
 							}
 						],
 						intervals: [
@@ -1045,76 +373,6 @@ module.exports = function(grunt) {
 										payout: "1.80",
 										rate: "0.75441",
 										pip: 5
-									},
-									{
-										label:"EUR/JPY",
-										id: "eur-jpy",
-										payout: "1.80",
-										rate: "135.740",
-										pip: 3
-									},
-									{
-										label:"EUR/USD",
-										id: "eur-usd",
-										payout: "1.80",
-										rate: "1.12560",
-										pip: 5
-									},
-									{
-										label:"GBP/JPY",
-										id: "gbp-jpy",
-										payout: "1.80",
-										rate: "224.86",
-										pip: 3
-									},
-									{
-										label:"EUR/JPY",
-										id: "eur-jpy",
-										payout: "1.80",
-										rate: "135.740",
-										pip: 3
-									},
-									{
-										label:"EUR/USD",
-										id: "eur-usd",
-										payout: "1.80",
-										rate: "1.12560",
-										pip: 5
-									},
-									{
-										label:"GBP/JPY",
-										id: "gbp-jpy",
-										payout: "1.80",
-										rate: "145.15",
-										pip: 3
-									},
-									{
-										label:"GBP/USD",
-										id: "gbp-usd",
-										payout: "1.80",
-										rate: "165.52",
-										pip: 3
-									},
-									{
-										label:"NZD/JPY",
-										id: "nzd-jpy",
-										payout: "1.80",
-										rate: "135.59",
-										pip: 3
-									},
-									{
-										label:"NZD/USD",
-										id: "nzd-usd",
-										payout: "1.80",
-										rate: "115.54",
-										pip: 3
-									},
-									{
-										label:"USD/JPY",
-										id: "usd-jpy",
-										payout: "1.80",
-										rate: "112.43",
-										pip: 3
 									}
 								]
 							},
@@ -1135,76 +393,6 @@ module.exports = function(grunt) {
 										payout: "1.80",
 										rate: "0.75441",
 										pip: 5
-									},
-									{
-										label:"EUR/JPY",
-										id: "eur-jpy",
-										payout: "1.80",
-										rate: "135.740",
-										pip: 3
-									},
-									{
-										label:"EUR/USD",
-										id: "eur-usd",
-										payout: "1.80",
-										rate: "1.12560",
-										pip: 5
-									},
-									{
-										label:"GBP/JPY",
-										id: "gbp-jpy",
-										payout: "1.80",
-										rate: "224.86",
-										pip: 3
-									},
-									{
-										label:"EUR/JPY",
-										id: "eur-jpy",
-										payout: "1.80",
-										rate: "135.740",
-										pip: 3
-									},
-									{
-										label:"EUR/USD",
-										id: "eur-usd",
-										payout: "1.80",
-										rate: "1.12560",
-										pip: 5
-									},
-									{
-										label:"GBP/JPY",
-										id: "gbp-jpy",
-										payout: "1.80",
-										rate: "145.15",
-										pip: 3
-									},
-									{
-										label:"GBP/USD",
-										id: "gbp-usd",
-										payout: "1.80",
-										rate: "165.52",
-										pip: 3
-									},
-									{
-										label:"NZD/JPY",
-										id: "nzd-jpy",
-										payout: "1.80",
-										rate: "135.59",
-										pip: 3
-									},
-									{
-										label:"NZD/USD",
-										id: "nzd-usd",
-										payout: "1.80",
-										rate: "115.54",
-										pip: 3
-									},
-									{
-										label:"USD/JPY",
-										id: "usd-jpy",
-										payout: "1.80",
-										rate: "112.43",
-										pip: 3
 									}
 								]
 							},
@@ -1225,76 +413,6 @@ module.exports = function(grunt) {
 										payout: "1.80",
 										rate: "0.75441",
 										pip: 5
-									},
-									{
-										label:"EUR/JPY",
-										id: "eur-jpy",
-										payout: "1.80",
-										rate: "135.740",
-										pip: 3
-									},
-									{
-										label:"EUR/USD",
-										id: "eur-usd",
-										payout: "1.80",
-										rate: "1.12560",
-										pip: 5
-									},
-									{
-										label:"GBP/JPY",
-										id: "gbp-jpy",
-										payout: "1.80",
-										rate: "224.86",
-										pip: 3
-									},
-									{
-										label:"EUR/JPY",
-										id: "eur-jpy",
-										payout: "1.80",
-										rate: "135.740",
-										pip: 3
-									},
-									{
-										label:"EUR/USD",
-										id: "eur-usd",
-										payout: "1.80",
-										rate: "1.12560",
-										pip: 5
-									},
-									{
-										label:"GBP/JPY",
-										id: "gbp-jpy",
-										payout: "1.80",
-										rate: "145.15",
-										pip: 3
-									},
-									{
-										label:"GBP/USD",
-										id: "gbp-usd",
-										payout: "1.80",
-										rate: "165.52",
-										pip: 3
-									},
-									{
-										label:"NZD/JPY",
-										id: "nzd-jpy",
-										payout: "1.80",
-										rate: "135.59",
-										pip: 3
-									},
-									{
-										label:"NZD/USD",
-										id: "nzd-usd",
-										payout: "1.80",
-										rate: "115.54",
-										pip: 3
-									},
-									{
-										label:"USD/JPY",
-										id: "usd-jpy",
-										payout: "1.80",
-										rate: "112.43",
-										pip: 3
 									}
 								]
 							}
@@ -1365,76 +483,6 @@ module.exports = function(grunt) {
 										payout: "1.80",
 										rate: "0.75441",
 										pip: 5
-									},
-									{
-										label:"EUR/JPY",
-										id: "eur-jpy",
-										payout: "1.80",
-										rate: "135.740",
-										pip: 3
-									},
-									{
-										label:"EUR/USD",
-										id: "eur-usd",
-										payout: "1.80",
-										rate: "1.12560",
-										pip: 5
-									},
-									{
-										label:"GBP/JPY",
-										id: "gbp-jpy",
-										payout: "1.80",
-										rate: "224.86",
-										pip: 3
-									},
-									{
-										label:"EUR/JPY",
-										id: "eur-jpy",
-										payout: "1.80",
-										rate: "135.740",
-										pip: 3
-									},
-									{
-										label:"EUR/USD",
-										id: "eur-usd",
-										payout: "1.80",
-										rate: "1.12560",
-										pip: 5
-									},
-									{
-										label:"GBP/JPY",
-										id: "gbp-jpy",
-										payout: "1.80",
-										rate: "145.15",
-										pip: 3
-									},
-									{
-										label:"GBP/USD",
-										id: "gbp-usd",
-										payout: "1.80",
-										rate: "165.52",
-										pip: 3
-									},
-									{
-										label:"NZD/JPY",
-										id: "nzd-jpy",
-										payout: "1.80",
-										rate: "135.59",
-										pip: 3
-									},
-									{
-										label:"NZD/USD",
-										id: "nzd-usd",
-										payout: "1.80",
-										rate: "115.54",
-										pip: 3
-									},
-									{
-										label:"USD/JPY",
-										id: "usd-jpy",
-										payout: "1.80",
-										rate: "112.43",
-										pip: 3
 									}
 								]
 							}
@@ -1528,8 +576,21 @@ module.exports = function(grunt) {
 		    ],
 		    overwrite: true,                 // overwrite matched source files
 		    replacements: [{
-		      from: 'public/trade-platform/images/',		      
+		      from: 'common/images/',		      
 		      to: 'common/trade-platform/images/'
+		    }]
+		  },
+		  htmlURLPlatformSite: {
+		    src: [
+		    	'../highlow-public-page/templates/includes/platform.liquid',
+		    	'../highlow-public-page/templates/includes/platform-cn.liquid',
+		    	'../highlow-public-page/templates/includes/ja-platform.liquid',
+		    	'../highlow-public-page/templates/includes/ja-platform-lite.liquid'
+		    ],
+		    overwrite: true,                 // overwrite matched source files
+		    replacements: [{
+		      from: 'common/images/',	
+		      to: 'public/trade-platform/images/'
 		    }]
 		  }
 		},
@@ -1547,19 +608,19 @@ module.exports = function(grunt) {
 			      '../highlow-public-page/templates/includes/ja-platform.liquid': ['build/ja-index.html']
 			  }
 			},
-			copyPlatformToNewSite: {
-			  options: {
-			      sourceFileStartPattern: '<!-- start-platform -->',
-			      sourceFileEndPattern: '<!-- end-platform -->',
-			      destinationFileStartPattern: '<!-- start-platform -->',
-			      destinationFileEndPattern: '<!-- end-platform -->'
-			  },	
-			  files: {
-			      '../hl-my-account/templates/includes/trade-platform.liquid': ['build/index.html'],
-			      '../hl-my-account/templates/includes/trade-platform-cn.liquid': ['build/index-cn.html'],
-			      '../hl-my-account/templates/includes/ja-trade-platform.liquid': ['build/ja-index.html']
-			  }
-			},
+			// copyPlatformToNewSite: {
+			//   options: {
+			//       sourceFileStartPattern: '<!-- start-platform -->',
+			//       sourceFileEndPattern: '<!-- end-platform -->',
+			//       destinationFileStartPattern: '<!-- start-platform -->',
+			//       destinationFileEndPattern: '<!-- end-platform -->'
+			//   },	
+			//   files: {
+			//       '../hl-my-account/templates/includes/trade-platform.liquid': ['build/index.html'],
+			//       '../hl-my-account/templates/includes/trade-platform-cn.liquid': ['build/index-cn.html'],
+			//       '../hl-my-account/templates/includes/ja-trade-platform.liquid': ['build/ja-index.html']
+			//   }
+			// },
 			copyTradingActivityPopup: {
 				options: {
 			      sourceFileStartPattern: '<!-- trading-activity-popup -->',
@@ -1576,7 +637,7 @@ module.exports = function(grunt) {
 		watch: {
 			styles: {
 				files: ['**/*.less'],
-				tasks: ['less','copy'],
+				tasks: ['less','copy:main'],
 				options: {
 					nospawn: false,
 					livereload: true
@@ -1584,14 +645,14 @@ module.exports = function(grunt) {
 			},
 			sprite: {
 				files: ['common/images/sprite-src/*.*'],
-				task: ['sprite','less','copy'],
+				task: ['sprite','less','copy:main'],
 				options: {
 					livereload: true
 				}
 			},
 			js: {
 				files: ['common/scripts/**/*.js'],
-				tasks: ['newer:concat:js','replace'],
+				tasks: ['newer:concat:js'],
 				options: {
 					livereload: true
 				}
@@ -1611,7 +672,7 @@ module.exports = function(grunt) {
 			},
 			copy: {
 				files: ['common/**/*.*','templates/**/*.*'],
-				tasks: ['copy','newer:copy-part-of-file']
+				tasks: ['copy:main']
 			}
 		},
 		concurrent: {
@@ -1624,8 +685,8 @@ module.exports = function(grunt) {
 		}
 	});
 
-	grunt.registerTask('default', ['sprite', 'less', 'newer:concat', 'newer:liquid', 'copy', 'replace','copy-part-of-file','concurrent:all']);
-	grunt.registerTask('build', ['sprite', 'less', 'newer:concat', 'newer:liquid', 'newer:copy', 'copy-part-of-file','replace']);
-	grunt.registerTask('build-platform-to-public-page',[ 'sprite', 'less', 'newer:concat', 'newer:liquid', 'newer:copy','copy-part-of-file:copyPlatform','replace']);
-	grunt.registerTask('asset', ['sprite', 'less', 'concat', 'liquid', 'copy','replace']);
+	grunt.registerTask('default', ['sprite', 'less', 'newer:concat', 'newer:liquid', 'copy:main', 'concurrent:all']);
+	// grunt.registerTask('build', ['sprite', 'less', 'newer:concat', 'newer:liquid', 'newer:copy', 'copy-part-of-file','replace']);
+	// grunt.registerTask('build-platform-to-public-page',[ 'sprite', 'less', 'newer:concat', 'newer:liquid', 'newer:copy:integrateInToPublic','copy-part-of-file:copyPlatform','replace']);
+	// grunt.registerTask('asset', ['sprite', 'less', 'concat', 'liquid', 'copy','replace']);
 };

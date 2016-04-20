@@ -336,8 +336,8 @@ highlowApp.betSystem = {
 		}
 
 		var row = $('<tr class="eng" data-uid="'+uid+'">'+
-			'<td class="investment-select">'+
-			'</td>'+
+			// '<td class="investment-select">'+
+			// '</td>'+
 				'<td class="investment-type '+type+'">'+ //Type
 				'</td>'+
 				'<td class="investment-asset eng">'+ //Asset
@@ -1404,12 +1404,24 @@ highlowApp.graph = {
 
 		var lastPoint = series.points[series.points.length-1];
 
+		// lastPoint.update({
+		// 	marker : {
+		// 		enabled : true,
+		// 		symbol : "url(common/images/graph-marker.png)",
+		// 		zIndex : 1000,
+		// 		id: "strike-marker"
+		// 	},
+		// 	states: {
+		// 		hover: {
+		// 			enabled: false
+		// 		}
+		// 	},
+		// 	zIndex: 1000
+		// });
+
 		lastPoint.update({
 			marker : {
-				enabled : true,
-				symbol : "url(common/images/graph-marker.png)",
-				zIndex : 1000,
-				id: "strike-marker"
+				enabled : false
 			},
 			states: {
 				hover: {
@@ -1418,25 +1430,6 @@ highlowApp.graph = {
 			},
 			zIndex: 1000
 		});
-
-
-		// // add price marker:
-
-		// console.log(lastPoint);
-
-		// var marker = renderer.label('<div class="price-marker"><img src="common/images/price-marker-1.png"/></div>',
-		// 	lastPoint.plotX + graph.plotLeft,
-		// 	lastPoint.plotY - graph.plotTop,
-		// 	null,
-		// 	null,
-		// 	null, 
-		// 	true, 
-		// 	'price-marker-wrapper'
-		// ).add();
-
-		// // start animating the price marker pulse:
-
-		// window.markerPulseTimeout;		
 
 		// add trace line to newest data point
 
@@ -1496,6 +1489,87 @@ highlowApp.graph = {
 			tickInterval : tickInterval
 		});
 
+
+
+		//@PulsingMarker: add pulsing marker:
+
+		console.log(lastPoint);
+
+		var markerPulseUrl = $('#price-marker-pulse-url').val(),
+			markerCoreUrl = $('#price-marker-core-url').val(),
+			markerPulseSize = $('#price-marker-pulse-size').val(),
+			markerPulseStyle = "",
+			pulseImageString = "";
+
+		if(markerPulseSize) {
+			markerPulseStyle = "width: "+markerPulseSize+"px; height: "+markerPulseSize+"px; margin-top: -"+(markerPulseSize/2)+"px; margin-left: -"+(markerPulseSize/2)+"px;";
+		}
+
+		if($('#price-marker-pulse-url').length>0) {
+			pulseImageString = '<img class="price-marker-pulse" style="'+markerPulseStyle+'" src="'+markerPulseUrl+'"/>';
+		}
+
+		var marker = renderer.label('<div class="price-marker">'+pulseImageString+'<img class="price-marker-core" src="'+markerCoreUrl+'"/></div>',
+			lastPoint.plotX + graph.plotLeft - 3,
+			lastPoint.plotY + 11 + graph.plotTop,
+			null,
+			null,
+			null, 
+			true, 
+			'price-marker-wrapper'
+		).add();
+
+		model.pulsingMarker = marker;
+
+		//@PulsingMarker: start animating the pulsing marker:
+
+		window.markerPulseTimeout;		
+
+		function animatePulsingMarker() {
+
+			window[model.type+'Pulsing'] = true;
+
+			var $markerPulse = $('#'+model.type+'-mode .price-marker-pulse');
+
+			$markerPulse.stop();
+
+			$markerPulse.css({
+				opacity: 0
+			});
+
+			// $markerPulse.animate({
+			// 	opacity: 1 
+			// },500,function(){
+			// 	$markerPulse.animate({
+			// 		opacity: 0
+			// 	},750, function(){
+
+			// 		animatePulsingMarker();
+
+			// 	});
+			// });
+
+			$markerPulse.animate({
+				opacity: 1 
+			},250,function(){
+
+				setTimeout(function(){
+					$markerPulse.animate({
+						opacity: 0
+					},600, function(){
+
+						animatePulsingMarker();
+
+					});
+				},250);
+
+			});
+
+		}
+
+		if(!window[model.type+'Pulsing'] && $('#price-marker-pulse-url').length>0) {
+			animatePulsingMarker();
+		}
 		
 	},
 	updateOnGraphUI: function (model,point) {
@@ -1669,6 +1743,17 @@ highlowApp.graph = {
 		var highButtonId = 'in-chart-'+type+'-high-bet',
 				lowButtonId = 'in-chart-'+type+'-low-bet';
 
+
+		// @PulsingMarker: update position
+
+		if(model.pulsingMarker) {
+			model.pulsingMarker.attr({
+				x: point.plotX + graph.plotLeft - 3,
+				y: point.plotY + 17,
+			});
+		}
+
+		
 
 		// only render button if the instrument is not dead yet
 
@@ -2606,10 +2691,10 @@ highlowApp.marketSimulator = {
 				{
 	  				x : lastPoint.x+duration,
 	  				y : lastPoint.y+difference,
-	  				marker : {
-	  					enabled : true,
-	  					symbol : "url(common/images/graph-marker.png)"
-	  				},
+	  				// marker : {
+	  				// 	enabled : true,
+	  				// 	symbol : "url(common/images/graph-marker.png)"
+	  				// },
 	  				states: {
 	  					hover: {
 	  						enabled: false
@@ -2721,10 +2806,10 @@ highlowApp.marketSimulator = {
 				{
 	  				x : offsetCurrentTime,
 	  				y : instrument.currentRate,
-	  				marker : {
-	  					enabled : true,
-	  					symbol : "url(common/images/graph-marker.png)"
-	  				},
+	  				// marker : {
+	  				// 	enabled : true,
+	  				// 	symbol : "url(common/images/graph-marker.png)"
+	  				// },
 	  				states: {
 	  					hover: {
 	  						enabled: false
@@ -3670,8 +3755,6 @@ highlowApp.popup = {
 			highlowApp.balanceWidget.close();
 		});
 
-
-
 		// read memorized position
 
 		$(".trading-platform-popup-wrapper").not('#make-deposit-popup').each(function(){
@@ -3702,26 +3785,24 @@ highlowApp.popup = {
 
 		var $makeDepositPopup = $('#make-deposit-popup');
 
-
-
-		var makeDepositPopupLeft = $accountBalanceWidget.offset().left-($makeDepositPopup.outerWidth()-$accountBalanceWidget.outerWidth()),
+		if($accountBalanceWidget.length>0) {
+			var makeDepositPopupLeft = $accountBalanceWidget.offset().left-($makeDepositPopup.outerWidth()-$accountBalanceWidget.outerWidth())+25,
 			makeDepositPopupTop = $accountBalanceWidget.offset().top+$accountBalanceWidget.outerHeight();
 
-		$makeDepositPopup.css({
-			left: makeDepositPopupLeft,
-			top: makeDepositPopupTop
-		}).draggable({
-			handle: ".trading-platform-popup-header",
-			stop: function() { // remember position (not persist after close)
-				$makeDepositPopup.data('memorizedLeft',$makeDepositPopup.css('left'));
-				$makeDepositPopup.data('memorizedTop',$makeDepositPopup.css('top'));
-			}
-		});
+			$makeDepositPopup.css({
+				left: makeDepositPopupLeft,
+				top: makeDepositPopupTop
+			}).draggable({
+				handle: ".trading-platform-popup-header",
+				stop: function() { // remember position (not persist after close)
+					$makeDepositPopup.data('memorizedLeft',$makeDepositPopup.css('left'));
+					$makeDepositPopup.data('memorizedTop',$makeDepositPopup.css('top'));
+				}
+			});
 
-		$makeDepositPopup.data('memorizedLeft',makeDepositPopupLeft)
-			.data('memorizedTop',makeDepositPopupTop);
-
-
+			$makeDepositPopup.data('memorizedLeft',makeDepositPopupLeft)
+				.data('memorizedTop',makeDepositPopupTop);
+		}
 	},
 	hidePopup: function(element) {
 		element.addClass('concealed');

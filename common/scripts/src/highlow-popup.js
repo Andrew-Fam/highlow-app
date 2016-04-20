@@ -36,8 +36,6 @@ highlowApp.popup = {
 			highlowApp.balanceWidget.close();
 		});
 
-
-
 		// read memorized position
 
 		$(".trading-platform-popup-wrapper").not('#make-deposit-popup').each(function(){
@@ -68,26 +66,24 @@ highlowApp.popup = {
 
 		var $makeDepositPopup = $('#make-deposit-popup');
 
-
-
-		var makeDepositPopupLeft = $accountBalanceWidget.offset().left-($makeDepositPopup.outerWidth()-$accountBalanceWidget.outerWidth()),
+		if($accountBalanceWidget.length>0) {
+			var makeDepositPopupLeft = $accountBalanceWidget.offset().left-($makeDepositPopup.outerWidth()-$accountBalanceWidget.outerWidth())+25,
 			makeDepositPopupTop = $accountBalanceWidget.offset().top+$accountBalanceWidget.outerHeight();
 
-		$makeDepositPopup.css({
-			left: makeDepositPopupLeft,
-			top: makeDepositPopupTop
-		}).draggable({
-			handle: ".trading-platform-popup-header",
-			stop: function() { // remember position (not persist after close)
-				$makeDepositPopup.data('memorizedLeft',$makeDepositPopup.css('left'));
-				$makeDepositPopup.data('memorizedTop',$makeDepositPopup.css('top'));
-			}
-		});
+			$makeDepositPopup.css({
+				left: makeDepositPopupLeft,
+				top: makeDepositPopupTop
+			}).draggable({
+				handle: ".trading-platform-popup-header",
+				stop: function() { // remember position (not persist after close)
+					$makeDepositPopup.data('memorizedLeft',$makeDepositPopup.css('left'));
+					$makeDepositPopup.data('memorizedTop',$makeDepositPopup.css('top'));
+				}
+			});
 
-		$makeDepositPopup.data('memorizedLeft',makeDepositPopupLeft)
-			.data('memorizedTop',makeDepositPopupTop);
-
-
+			$makeDepositPopup.data('memorizedLeft',makeDepositPopupLeft)
+				.data('memorizedTop',makeDepositPopupTop);
+		}
 	},
 	hidePopup: function(element) {
 		element.addClass('concealed');

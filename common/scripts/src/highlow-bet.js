@@ -31,8 +31,8 @@ highlowApp.betSystem = {
 		}
 
 		var row = $('<tr class="eng" data-uid="'+uid+'">'+
-			'<td class="investment-select">'+
-			'</td>'+
+			// '<td class="investment-select">'+
+			// '</td>'+
 				'<td class="investment-type '+type+'">'+ //Type
 				'</td>'+
 				'<td class="investment-asset eng">'+ //Asset

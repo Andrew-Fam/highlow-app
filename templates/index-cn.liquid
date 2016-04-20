@@ -1,6 +1,8 @@
 {% extends layout %}
 {% block content %}
 <!-- start-platform -->
+{% comment %}<input type="hidden" id="price-marker-pulse-url" value="common/images/price-marker-1-pulse.png"/>{% endcomment %}
+<input type="hidden" id="price-marker-core-url" value="common/images/graph-marker.png"/>
 <div class="tab-view tab-view-alternate trading-app-root cn">
 	<div class="tab-view-tab-selectors-container-wrapper trading-app-root-mode-selector-container-wrapper">
 		<div class="tab-view-tab-selectors-container tab-full-width trading-app-container">
@@ -559,10 +561,10 @@
 									+/- {{type.range}}
 								</span>
 								{% endif %}
-								<img src="public/trade-platform/images/loading.gif" class="loading-icon"/>
+								<img src="common/images/loading.gif" class="loading-icon"/>
 							</div>
 							<div class="pull-right time-display chart-control walk-through-step">
-								<img src="public/trade-platform/images/loading.gif" class="processing"/>
+								<img src="common/images/loading.gif" class="processing"/>
 							{% if type.id != 'on-demand' and type.id != 'spread-on-demand' and type.id != 'extreme-on-demand' %}
 								<span class="trading-platform-instrument-closing-time eng">
 									
@@ -718,7 +720,7 @@
 								</div>
 							</div>
 							<div class="chart-loading-screen">
-								<img src="public/trade-platform/images/loading-lighter.gif" class="loading-icon"/>
+								<img src="common/images/loading-lighter.gif" class="loading-icon"/>
 							</div>
 						</div>
 					</div>
@@ -728,7 +730,7 @@
 		</div>
 		<div class="platform-loading-screen">
 			<div class="header">
-			 LOADING <img src="public/trade-platform/images/loading.gif" class="loading-icon"/>
+			 LOADING <img src="common/images/loading.gif" class="loading-icon"/>
 			</div>
 			<div class="loading-bar">
 				<div class="fill">
@@ -755,9 +757,6 @@
 				<table class="table table-stripped table-fluid-width">
 					<thead>
 						<tr>
-							<th>
-								选择
-							</th>
 							<th class="investment-type-header">
 								期权类型
 							</th>
@@ -940,7 +939,7 @@
 						<div class="trading-platform-popup-close close"></div>
 					</div>
 					<div class="trading-platform-popup-body">
-						<iframe src="http://point.agency/highlow/new-site/deposit-iframe.html"></iframe>
+						<iframe onload="requestHeightSet()" id="deposit-iframe-frame" src="http://point.agency/highlow/new-site/deposit-iframe.html"></iframe>
 					</div>
 				</div>
 			</div>

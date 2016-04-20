@@ -1,15 +1,17 @@
 {% extends layout %}
 {% block content %}
 <!-- start-platform -->
-{% comment %}<input type="hidden" id="price-marker-pulse-url" value="common/images/price-marker-1-pulse.png"/>{% endcomment %}
-<input type="hidden" id="price-marker-core-url" value="common/images/graph-marker.png"/>
+<input type="hidden" id="price-marker-pulse-url" value="common/images/price-marker-pulse-soft-edge-2-white.png"/>
+<input type="hidden" id="price-marker-pulse-size" value="50"/>
+<input type="hidden" id="price-marker-core-url" value="common/images/price-marker-1-core.png"/>
 <div class="tab-view tab-view-alternate trading-app-root">
 	<div class="tab-view-tab-selectors-container-wrapper trading-app-root-mode-selector-container-wrapper">
 		<div class="tab-view-tab-selectors-container tab-full-width trading-app-container">
 			<ul class="tab-view-tab-selectors">
 				{% for type in tradingTypes %}
 				<li class="tab-view-tab-selector {% if type.default %} active {% endif %} {{ type.id }}" data-target="#{{ type.id }}-mode">
-					{{type.jaLabel}}
+					{{type.label}}
+
 					{% if type._new %}
 					<span class="tab-view-tab-selector--new">
 						NEW!
@@ -19,7 +21,7 @@
 				{% endfor %}
 			</ul>
 		</div>
-	</div>
+	</div> 
 	<div class="tab-view-body-wrapper">
 		<div class="tab-view-body">
 			{% for type in tradingTypes %}
@@ -32,25 +34,24 @@
 									<div id="{{ type.id }}-asset-filter" class="asset-filter hl-toggler" data-toggle-self-on-disabled="true" data-toggle-off-click="true">
 										<span class="asset-filter--opener hl-toggler" data-toggle-target="#{{ type.id }}-asset-filter"></span>
 										<span class="asset-filter--placeholder">
-											原資産を選択する
+											Filter Assets
 										</span>
 										<div id="highlow-asset-filter--categories-container">
 											<ul class="highlow-asset-filter--categories">
-												<li id="highlow-asset-filter--category--all-asset" data-option="原資産を選択する" data-category="all" class="highlow-asset-filter--category active">
-													<span class="highlow-asset-filter--category--label">全て</span>
+												<li id="highlow-asset-filter--category--all-asset" data-option="Filter Assets" data-category="all" class="highlow-asset-filter--category active">
+													<span class="highlow-asset-filter--category--label">All Assets</span>
 													<div class="highlow-asset-filter--category--indicator"></div>
 												</li>
-												<li id="highlow-asset-filter--category--all-currencies"  data-category="currencies" class="highlow-asset-filter--category">
-													<span class="highlow-asset-filter--category--label">株価指数</span>
+												<li id="highlow-asset-filter--category--all-currencies"  data-category="currencies" data-option="All Currencies" class="highlow-asset-filter--category">
+													<span class="highlow-asset-filter--category--label">Currencies</span>
 													<div class="highlow-asset-filter--category--indicator"></div>
 												</li>
-												<li id="highlow-asset-filter--category--all-indices" data-category="indices" class="highlow-asset-filter--category">
-													<span class="highlow-asset-filter--category--label">通貨ペア
+												<li id="highlow-asset-filter--category--all-indices" data-category="indices" data-option="All Indices" class="highlow-asset-filter--category">
+													<span class="highlow-asset-filter--category--label">	Indices
 													</span>
 													<div class="highlow-asset-filter--category--indicator"></div>
 												</li>
-												<li id="highlow-asset-filter--category--all-commodities" data-option="All Commodities" data-category="commodities" class="highlow-asset-filter--category">		
-													<span class="highlow-asset-filter--category--label">商品指数</span>
+												<li id="highlow-asset-filter--category--all-commodities" data-option="All Commodities" data-category="commodities" class="highlow-asset-filter--category">		<span class="highlow-asset-filter--category--label">Commodities</span>
 													<div class="highlow-asset-filter--category--indicator"></div>
 												</li>
 											</ul>
@@ -59,97 +60,97 @@
 										<div id="highlow-asset-filter--options-container">
 											<ul id="highlow-asset-filter--options">
 												<li class="highlow-asset-filter--option highlow-asset-filter--option-picker" data-option="AUD/JPY" data-category="currencies">
-													<span class="highlow-asset-filter--option--label eng">
+													<span class="highlow-asset-filter--option--label">
 														AUD/JPY
 													</span>
 												</li>
 												<li class="highlow-asset-filter--option highlow-asset-filter--option-picker" data-option="EUR/JPY" data-category="currencies">
-													<span class="highlow-asset-filter--option--label eng">
+													<span class="highlow-asset-filter--option--label">
 														EUR/JPY
 													</span>
 												</li>
 												<li class="highlow-asset-filter--option highlow-asset-filter--option-picker" data-option="USD/CHF" data-category="currencies">
-													<span class="highlow-asset-filter--option--label eng">
+													<span class="highlow-asset-filter--option--label">
 														USD/CHF
 													</span>
 												</li>
 												<li class="highlow-asset-filter--option highlow-asset-filter--option-picker" data-option="HKG33" data-category="indices">
-													<span class="highlow-asset-filter--option--label eng">
+													<span class="highlow-asset-filter--option--label">
 														HKG33
 													</span>
 												</li>
 												<li class="highlow-asset-filter--option highlow-asset-filter--option-picker" data-option="AUD/NZD" data-category="currencies">
-													<span class="highlow-asset-filter--option--label eng">
+													<span class="highlow-asset-filter--option--label">
 														AUD/NZD
 													</span>
 												</li>
 												<li class="highlow-asset-filter--option highlow-asset-filter--option-picker" data-option="EUR/USD" data-category="currencies">
-													<span class="highlow-asset-filter--option--label eng">
+													<span class="highlow-asset-filter--option--label">
 														EUR/USD
 													</span>
 												</li>
 												<li class="highlow-asset-filter--option highlow-asset-filter--option-picker" data-option="USD/JPY" data-category="currencies">
-													<span class="highlow-asset-filter--option--label eng">
+													<span class="highlow-asset-filter--option--label">
 														USD/JPY
 													</span>
 												</li>
 												<li class="highlow-asset-filter--option highlow-asset-filter--option-picker" data-option="JPN225" data-category="indices">
-													<span class="highlow-asset-filter--option--label eng">
+													<span class="highlow-asset-filter--option--label">
 														JPN225
 													</span>
 												</li>
 												<li class="highlow-asset-filter--option highlow-asset-filter--option-picker" data-option="AUD/USD" data-category="currencies">
-													<span class="highlow-asset-filter--option--label eng">
+													<span class="highlow-asset-filter--option--label">
 														AUD/USD
 													</span>
 												</li>
 												<li class="highlow-asset-filter--option highlow-asset-filter--option-picker" data-option="GBP/AUD" data-category="currencies">
-													<span class="highlow-asset-filter--option--label eng">
+													<span class="highlow-asset-filter--option--label">
 														GBP/AUD
 													</span>
 												</li>
 												<li class="highlow-asset-filter--option highlow-asset-filter--option-picker" data-option="USD/SGD" data-category="currencies">
-													<span class="highlow-asset-filter--option--label eng">
+													<span class="highlow-asset-filter--option--label">
 														USD/SGD
 													</span>
 												</li>
 												<li class="highlow-asset-filter--option highlow-asset-filter--option-picker" data-option="UK100" data-category="indices">
-													<span class="highlow-asset-filter--option--label eng">
+													<span class="highlow-asset-filter--option--label">
 														UK100
 													</span>
 												</li>
 												<li class="highlow-asset-filter--option highlow-asset-filter--option-picker" data-option="CAD/JPY" data-category="currencies">
-													<span class="highlow-asset-filter--option--label eng">
+													<span class="highlow-asset-filter--option--label">
 														CAD/JPY
 													</span>
 												</li>
 												<li class="highlow-asset-filter--option highlow-asset-filter--option-picker" data-option="GBP/JPY" data-category="currencies">
-													<span class="highlow-asset-filter--option--label eng">
+													<span class="highlow-asset-filter--option--label">
 														GBP/JPY
 													</span>
 												</li>
-												<li class="highlow-asset-filter--option highlow-asset-filter--option-picker" data-option="黄金" data-category="commodities">
+												<li class="highlow-asset-filter--option highlow-asset-filter--option-picker" data-option="GOLD" data-category="commodities">
 													<span class="highlow-asset-filter--option--label">
-														黄金
+														GOLD
 													</span>
 												</li>
 												<li class="highlow-asset-filter--option highlow-asset-filter--option-picker" data-option="US30" data-category="indices">
-													<span class="highlow-asset-filter--option--label eng">
+													<span class="highlow-asset-filter--option--label">
 														US30
 													</span>
 												</li>
 												<li class="highlow-asset-filter--option highlow-asset-filter--option-picker" data-option="CHF/JPY" data-category="currencies">
-													<span class="highlow-asset-filter--option--label eng">
+													<span class="highlow-asset-filter--option--label">
 														CHF/JPY
 													</span>
 												</li>
 												<li class="highlow-asset-filter--option highlow-asset-filter--option-picker" data-option="GBP/USD" data-category="currencies">
-													<span class="highlow-asset-filter--option--label eng">
+													<span class="highlow-asset-filter--option--label">
 														GBP/USD
 													</span>
 												</li>
 												<li class="highlow-asset-filter--option highlow-asset-filter--option-picker" data-option="AUS200" data-category="indices">
-													<span class="highlow-asset-filter--option--label eng">
+													<span class="highlow-asset-filter--option--label">
 														AUS200
 													</span>
 												</li>
@@ -157,17 +158,17 @@
 													&nbsp;
 												</li>
 												<li class="highlow-asset-filter--option highlow-asset-filter--option-picker" data-option="EUR/AUD" data-category="currencies">
-													<span class="highlow-asset-filter--option--label eng">
+													<span class="highlow-asset-filter--option--label">
 														EUR/AUD
 													</span>
 												</li>
 												<li class="highlow-asset-filter--option highlow-asset-filter--option-picker" data-option="NZD/JPY" data-category="currencies">
-													<span class="highlow-asset-filter--option--label eng">
+													<span class="highlow-asset-filter--option--label">
 														NZD/JPY
 													</span>
 												</li>
 												<li class="highlow-asset-filter--option highlow-asset-filter--option-picker" data-option="FRA40" data-category="indices">
-													<span class="highlow-asset-filter--option--label eng">
+													<span class="highlow-asset-filter--option--label">
 														FRA40
 													</span>
 												</li>
@@ -175,17 +176,17 @@
 													&nbsp;
 												</li>
 												<li class="highlow-asset-filter--option highlow-asset-filter--option-picker" data-option="EUR/GBP" data-category="currencies">
-													<span class="highlow-asset-filter--option--label eng">
+													<span class="highlow-asset-filter--option--label">
 														EUR/GBP
 													</span>
 												</li>
 												<li class="highlow-asset-filter--option highlow-asset-filter--option-picker" data-option="NZD/USD" data-category="currencies">
-													<span class="highlow-asset-filter--option--label eng">
+													<span class="highlow-asset-filter--option--label">
 														NZD/USD
 													</span>
 												</li>
 												<li class="highlow-asset-filter--option highlow-asset-filter--option-picker" data-option="GER30" data-category="indices">
-													<span class="highlow-asset-filter--option--label eng">
+													<span class="highlow-asset-filter--option--label">
 														GER30
 													</span>
 												</li>
@@ -212,18 +213,18 @@
 								</div>
 								<div class="tab-view-tab-selectors-container font-m">
 									<ul class="tab-view-tab-selectors instrument-selector-widget-duration-selectors">
-										<li class="tab-view-tab-selector instrument-selector-widget-duration-selector active jap-word" data-target="#{{type.id}}-interval-all">
-											全て
+										<li class="tab-view-tab-selector instrument-selector-widget-duration-selector active" data-target="#{{type.id}}-interval-all">
+											ALL
 										</li>
 									{% if type.intervals.length > 1 %} 
 										{% for interval in type.intervals %}
 										<li class="tab-view-tab-selector instrument-selector-widget-duration-selector" data-target="#{{type.id}}-{{interval.id}}">
-											{{ interval.jaLabel }}
+											{{ interval.label }}
 										</li>
 										{% endfor %}
 									{% endif %}
-										<li class="tab-view-tab-selector instrument-selector-widget-duration-selector favourite jap-word" data-target="#{{type.id}}-favourite">
-											お気に入り
+										<li class="tab-view-tab-selector instrument-selector-widget-duration-selector favourite" data-target="#{{type.id}}-favourite">
+											FAVOURITES
 										</li>
 									</ul>
 								</div>
@@ -257,7 +258,6 @@
 
 																<div 
 																	class="instrument-panel {% if countAll == '1' %}instrument-panel-active{% endif %} instrument-{{type.id}}-panel" 
-
 																	data-uid="{{type.id}}-{{instrumentItem.id}}-{{interval.id}}-{{forloop.index0}}"
 																	data-trading-type="{{type.id}}" 
 																	data-instrument-label="{{instrumentItem.label}}"
@@ -274,22 +274,22 @@
 																		</div>
 																		<a title="Add To Favourites" class="instrument-panel-favourite"></a>
 																		<div class="instrument-panel-duration">
-																			{{interval.jaShortLabel}}
+																			{{interval.shortLabel}}
 																		</div>
 																	</div>
 																	<div class="instrument-panel-body">
 																		{% if type.id == 'highlow' %}
 																			<div class="clearfix">
 																				<div class="instrument-panel-payout-wrap pull-left clearfix">
-																					<div class="font-sb jap-word">
-																						ペイアウト
+																					<div class="font-sb">
+																						Payout
 																					</div>
 																					<div class="instrument-panel-payout">
 																						{{instrumentItem.payout}}
 																					</div>
 																				</div>
 																				<div class="pull-left clearfix">
-																					<div class="jap-word font-sb">
+																					<div class="font-sb">
 																						&nbsp;
 																					</div>
 																					<div class="instrument-panel-rate highlow-high">
@@ -301,30 +301,30 @@
 																					Closing: <span class="expiry-time">loading...</span>
 																				</div> -->
 																				<div class="instrument-panel-closing">
-																					<span class="jap-word">判定時刻</span>: <span class="closing-at"></span>
+																					Closing: <span class="closing-at"></span>
 																				</div>
 																			</div>
 																		{% elsif type.id == 'spread' or type.id == 'spread-on-demand' %}
 																			<div class="clearfix">
 																				<div class="instrument-panel-payout-wrap pull-left clearfix">
-																					<div class="jap-word font-sb">
-																						ペイアウト
+																					<div class="font-sb">
+																						Payout
 																					</div>
 																					<div class="instrument-panel-payout">
 																						{{instrumentItem.payout}}
 																					</div>
 																				{% if type.id == 'spread' %}
 																					<div class="instrument-panel-closing">
-																						<span class="jap-word">判定時刻</span>: <span class="closing-at"></span>
+																						Closing: <span class="closing-at"></span>
 																					</div>
 																				{% else %}
 																					<div class="instrument-panel-closing first-child last-child">
-																						<span class="jap-word">判定時刻</span>: 02:00
+																						Closes at: 02:00
 																					</div>
 																				{% endif %}
 																				</div>
 																				<div class="pull-left clearfix">
-																					{% comment %}<div class="jap-word font-sb">
+																					{% comment %}<div class="font-sb">
 																						&nbsp;
 																					</div>{% endcomment %}
 																					<div class="instrument-panel-rate highlow-high">
@@ -336,18 +336,18 @@
 																		{% elsif type.id == 'on-demand' or type.id == 'extreme-on-demand' %}
 																			<div class="clearfix">
 																				<div class="instrument-panel-payout-wrap pull-left clearfix">
-																					<div class="jap-word font-sb">
-																						ペイアウト
+																					<div class="font-sb">
+																						Payout
 																					</div>
 																					<div class="instrument-panel-payout">
 																						{{instrumentItem.payout}}
 																					</div>
 																					<div class="instrument-panel-closing first-child last-child">
-																						<span class="jap-word">判定時刻</span>: 02:00
+																						Closes at: 02:00
 																					</div>
 																				</div>
 																				<div class="pull-left clearfix">
-																					<div class="jap-word font-sb">
+																					<div class="font-sb">
 																						&nbsp;
 																					</div>
 																					<div class="instrument-panel-rate highlow-high">
@@ -372,8 +372,6 @@
 															{% elsif forloop.last and outerLoopLast == 'true' %}
 															</div>
 															{% endif %}
-
-															
 															{% capture countAll %}{{countAll | plus:1}}{% endcapture %}
 														{% endfor %}
 													{% endfor %}
@@ -418,22 +416,22 @@
 
 																</a>
 																<div class="instrument-panel-duration">
-																	{{interval.jaShortLabel}}
+																	{{interval.shortLabel}}
 																</div>
 															</div>
 															<div class="instrument-panel-body">
 																{% if type.id == 'highlow' %}
 																	<div class="clearfix">
 																		<div class="instrument-panel-payout-wrap pull-left clearfix">
-																			<div class="font-sb jap-word">
-																				ペイアウト
+																			<div class="font-sb">
+																				Payout
 																			</div>
 																			<div class="instrument-panel-payout">
 																				{{instrumentItem.payout}}
 																			</div>
 																		</div>
 																		<div class="pull-left clearfix">
-																			<div class="jap-word font-sb">
+																			<div class="font-sb">
 																				&nbsp;
 																			</div>
 																			<div class="instrument-panel-rate highlow-high">
@@ -445,30 +443,30 @@
 																			Closing: <span class="expiry-time">loading...</span>
 																		</div> -->
 																		<div class="instrument-panel-closing">
-																			<span class="jap-word">判定時刻</span>: <span class="closing-at"></span>
+																			Closing: <span class="closing-at"></span>
 																		</div>
 																	</div>
 																{% elsif type.id == 'spread' or type.id == 'spread-on-demand' %}
 																	<div class="clearfix">
 																		<div class="instrument-panel-payout-wrap pull-left clearfix">
-																			<div class="font-sb jap-word">
-																				ペイアウト
+																			<div class="font-sb">
+																				Payout
 																			</div>
 																			<div class="instrument-panel-payout">
-																				${{instrumentItem.payout}}
+																				{{instrumentItem.payout}}
 																			</div>
 																		{% if type.id == 'spread' %}
 																			<div class="instrument-panel-closing">
-																				<span class="jap-word">判定時刻</span>: <span class="closing-at"></span>
+																				Closing: <span class="closing-at"></span>
 																			</div>
 																		{% else %}
 																			<div class="instrument-panel-closing first-child last-child">
-																				<span class="jap-word">判定時刻</span>: 02:00
+																				Closes at: 02:00
 																			</div>
 																		{% endif %}
 																		</div>
 																		<div class="pull-left clearfix">
-																			{% comment %}<div class="jap-word font-sb">
+																			{% comment %}<div class="font-sb">
 																				&nbsp;
 																			</div>{% endcomment %}
 																			<div class="instrument-panel-rate highlow-high">
@@ -480,18 +478,18 @@
 																{% elsif type.id == 'on-demand' or type.id == 'extreme-on-demand' %}
 																	<div class="clearfix">
 																		<div class="instrument-panel-payout-wrap pull-left clearfix">
-																			<div class="jap-word font-sb">
-																				ペイアウト
+																			<div class="font-sb">
+																				Payout
 																			</div>
 																			<div class="instrument-panel-payout">
 																				{{instrumentItem.payout}}
 																			</div>
 																			<div class="instrument-panel-closing first-child last-child">
-																				<span class="jap-word">判定時刻</span>: 02:00
+																				Closes at: 02:00
 																			</div>
 																		</div>
 																		<div class="pull-left clearfix">
-																			<div class="jap-word font-sb">
+																			<div class="font-sb">
 																				&nbsp;
 																			</div>
 																			<div class="instrument-panel-rate highlow-high">
@@ -539,7 +537,7 @@
 												<div class="pages-wrapper">
 													
 												</div>
-												<div class="no-data jap-word">お気に入りの登録がありません。</div>
+												<div class="no-data">You currently have no favourites</div>
 											</div>
 										</div>
 
@@ -556,7 +554,7 @@
 								<span class="trading-platform-instrument-title font-sb">
 									
 								</span>
-								<span class="trading-platform-instrument-rate highlow-high current-rate eng">
+								<span class="trading-platform-instrument-rate highlow-high current-rate">
 								</span>
 								{% if type.range %}
 								<span class="trading-platform-instrument-spread-range">
@@ -576,16 +574,16 @@
 								</span>
 							{% else %}
 								<span class="trading-platform-instrument-market-close-time">
-									<span class="jap-word">判定時刻</span> 02:00
+									Market closes at 02:00
 								</span>
 							{% endif %}
 								<a class="trading-platform-instrument-one-click-toggler tooltip-container">
 									<div class="tooltip one-touch">
-										<div class="title jap-word">
-											ワンクリック注文
+										<div class="title">
+											One Click Trading
 										</div>
 										<div class="content">
-											<p><span class="word">より早い</span><span class="word">約定が</span><span class="word">可能な</span><span class="word">ワンクリック注文に</span><span class="word">切替える。</span></p><p><span class="word">注：</span><span class="word">ワンクリック注文を</span><span class="word">有効に</span><span class="word">すると、</span><span class="word">チャート上</span><span class="word">および</span><span class="word">トレードパネル</span><span class="word">両方で</span><span class="word">有効と</span><span class="word">なります。</span></p>
+											<p>Switch to One Click Trading for faster trade execution. </p><p>Note: When switched on, One Click Trading will be active on both the chart and trade panel.</p>
 										</div>
 									</div>
 								</a>
@@ -622,11 +620,11 @@
 									<div class="expander">
 									</div>
 									<div class="tooltip trader-choice">
-										<div class="title jap-word">
-											トレーダース<br/>・チョイス
+										<div class="title">
+											Traders Choice
 										</div>
 										<div class="content">
-											<span class="word">トレーダース・チョイス</span><span class="word">では、</span><span class="word">当社で</span><span class="word">お取引</span><span class="word">いただいている</span><span class="word">他の</span><span class="word">お客様の</span><span class="word">市場</span><span class="word">センチメントが、</span><span class="word">リアルタイムで</span><span class="word">ご確認</span><span class="word">いただけます。</span>
+											View recent decisions by other traders with our Traders Choice sentiment indicator.
 										</div>
 									</div>
 								</div>
@@ -640,8 +638,11 @@
 										USD/JPY
 									</div>
 									<div class="trading-platform-main-controls-live-rate pull-right">
+										{% comment %}<div class="pull-left font-sb">
+											Market
+										</div>{% endcomment %}
 											
-										<span class="highlow-high current-rate eng">
+										<span class="highlow-high current-rate">
 											102.77 
 										</span>
 
@@ -650,55 +651,70 @@
 											+/- {{type.range}}
 										</span>
 										{% endif %}
-
 									</div>
 								</div>
-								<div class="trading-platform-main-controls-investment jap font-m form-control">
-									¥<input type="text" class="number-only" id="{{type.id}}-investment-value-input" value="50000"/>
+								<div class="trading-platform-main-controls-investment font-m form-control">
+									$<input type="text" class="number-only" id="{{type.id}}-investment-value-input" value="500"/>
 								</div>
-								<div class="clearfix trading-platform-main-controls-common-amount jap">
+								<div class="clearfix trading-platform-main-controls-common-amount">
 									<!-- I've used div as button here because button deosn't get :focus style on click for Firefox and Safari on MAc OSX -->
 
-									<div class="btn btn-md-pad font-m" tabindex="0" onclick="document.getElementById('{{type.id}}-investment-value-input-popup').value = this.getAttribute('data-value'); document.getElementById('{{type.id}}-investment-value-input').value = this.getAttribute('data-value');" data-value="5000">¥5,000</div>
-									<div class="btn btn-md-pad font-m" tabindex="0" onclick="document.getElementById('{{type.id}}-investment-value-input-popup').value = this.getAttribute('data-value'); document.getElementById('{{type.id}}-investment-value-input').value = this.getAttribute('data-value');" data-value="10000">¥10,000</div>
-									<div class="btn btn-md-pad font-m active" tabindex="0" onclick="document.getElementById('{{type.id}}-investment-value-input-popup').value = this.getAttribute('data-value'); document.getElementById('{{type.id}}-investment-value-input').value = this.getAttribute('data-value');" data-value="50000">¥50,000</div>
+									<div class="btn btn-md-pad font-m" tabindex="0" onclick="document.getElementById('{{type.id}}-investment-value-input-popup').value = this.getAttribute('data-value'); document.getElementById('{{type.id}}-investment-value-input').value = this.getAttribute('data-value');" data-value="50">$50</div>
+									<div class="btn btn-md-pad font-m" tabindex="0" onclick="document.getElementById('{{type.id}}-investment-value-input-popup').value = this.getAttribute('data-value'); document.getElementById('{{type.id}}-investment-value-input').value = this.getAttribute('data-value');" data-value="100">$100</div>
+									<div class="btn btn-md-pad font-m active" tabindex="0" onclick="document.getElementById('{{type.id}}-investment-value-input-popup').value = this.getAttribute('data-value'); document.getElementById('{{type.id}}-investment-value-input').value = this.getAttribute('data-value');" data-value="500">$500</div>
 								</div>
 								<div class="trading-platform-main-controls-options one-click-control">
 									<div class="btn btn-positive btn-extruded font-m btn-md-pad one-touch-bet bet-high {{type.id}} highlow-up"
 										data-type="{{type.id}}" data-direction="high">
-										HIGH
+										{% if type.id == 'spread' or type.id == 'spread-on-demand' %}
+											<span class="spread-high"></span>
+										{% else %}
+											HIGH
+										{% endif %}
 									</div>
 									<div class="btn btn-negative btn-extruded font-m btn-md-pad one-touch-bet bet-low {{type.id}} highlow-down"
 										data-type="{{type.id}}" data-direction="low">
-										LOW
+										{% if type.id == 'spread' or type.id == 'spread-on-demand' %}
+											<span class="spread-low"></span>
+										{% else %}
+											LOW
+										{% endif %}
 									</div>
 								</div>
 								<div class="clearfix trading-platform-main-controls-options none-one-click-control">
 									<div class="trading-platform-main-controls-select-direction">
 										<label for="trading-platform-main-controls-select-direction-up-{{type.id}}" class="btn btn-extruded font-m btn-sm-pad btn-positive highlow-up trading-select-direction-{{type.id}}-high">
-											HIGH
+											{% if type.id == 'spread' or type.id == 'spread-on-demand' %}
+												<span class="spread-high"></span>
+											{% else %}
+												HIGH
+											{% endif %}
 										</label>
 										<input type="radio" id="trading-platform-main-controls-select-direction-up-{{type.id}}" name="selectedDirection{{type.id}}" value="high"/>
 										<label for="trading-platform-main-controls-select-direction-down-{{type.id}}" class="btn btn-extruded btn-negative font-m btn-sm-pad highlow-down trading-select-direction-{{type.id}}-low">
-											LOW
+											{% if type.id == 'spread' or type.id == 'spread-on-demand' %}
+												<span class="spread-low"></span>
+											{% else %}
+												LOW
+											{% endif %}
 										</label>
 										<input type="radio" id="trading-platform-main-controls-select-direction-down-{{type.id}}" name="selectedDirection{{type.id}}" value="low"/>
 									</div>
-									<div class="btn btn-highlight btn-extruded font-m btn-lg-pad trading-platform-main-controls-place-bet jap-word {{type.id}}" data-type="{{type.id}}" data-direction="selectedDirection{{type.id}}">今すぐ購入</div>
+									<div class="btn btn-highlight btn-extruded font-m btn-lg-pad trading-platform-main-controls-place-bet {{type.id}}" data-type="{{type.id}}" data-direction="selectedDirection{{type.id}}">INVEST</div>
 								</div>
 								<div class="trading-platform-main-controls-payout">
-									<div class="pull-left font-sb jap-word">
-										ペイアウト
+									<div class="pull-left font-sb">
+										Payout
 									</div>
 									<div class="pull-right">
-										<span class="trading-platform-main-controls-payout-rate eng">1.85</span>
+										<span class="trading-platform-main-controls-payout-rate">1.85</span>
 									</div>
 								</div>
 								<div class="trading-platform-main-controls-return">
-									<div class="pull-left font-sb jap-word">
-										ペイアウト額
+									<div class="pull-left font-sb">
+										Return
 									</div>
-									<div class="pull-right trading-platform-maximum-return eng">
+									<div class="pull-right trading-platform-maximum-return">
 										$925.00
 									</div>
 								</div>
@@ -725,51 +741,51 @@
 	<div class="panel panel-default trading-app-container trading-platform walk-through-step current-activity-table">
 		<div class="panel-header light-grey">
 			<div class="pull-left">
-				<div class="font-m-b jap-word">
-					購入オプション詳細
+				<div class="font-m-b">
+					CURRENT ACTIVITY
 				</div>
 			</div>
 			<div class="pull-right font-sb view-all-trade-actions">
-				<a class="popup-link" href="ja-trading-activity-popup.html" target="_blank"> <span class="jap-word">全ての取引を確認</span> &nbsp;<span class="icon-magnifier"></span></a>
+				<a class="popup-link" href="trading-activity-popup.html" target="_blank"> View all Trade Actions &nbsp;<span class="icon-magnifier"></span></a>
 			</div>
 		</div>
 		<div class="panel-body">
 			<div class="trading-platform-investments no-data">
-				<div class="trading-platform-investments-list-no-data jap-word">
-					購入済オプションがありません。
+				<div class="trading-platform-investments-list-no-data">
+					You have no active trades
 				</div>
 				<table class="table table-stripped table-fluid-width">
 					<thead>
 						<tr>
-							<th class='jap-word investment-type-header'>
-								タイプ
+							<th class="investment-type-header">
+								Type
 							</th>
-							<th class='jap-word'>
-								取引原資産
+							<th>
+								Asset
 							</th>
-							<th class='jap-word'>
-								取引内容
+							<th>
+								Strike
 							</th>
-							<th class='jap-word'>
-								取引時間
+							<th>
+								Start time
 							</th>
-							<th class='jap-word'>
-								判定時刻
+							<th>
+								Expiry
 							</th>
-							<th class='jap-word'>
-								ステータス
+							<th>
+								Status
 							</th>
-							<th class='jap-word'>
-								判定レート
+							<th>
+								Closing rate
 							</th>
-							<th class='jap-word'>
-								購入
+							<th>
+								Investment
 							</th>
-							<th class='jap-word'>
-								ペイアウト
+							<th>
+								Payout
 							</th>
-							<th class='jap-word'>
-								転売する
+							<th>
+								Take payout
 							</th>
 						</tr>
 					</thead>
@@ -781,6 +797,10 @@
 		</div>
 	</div>
 </div>
+
+
+
+
 {% for type in tradingTypes %}
 <div class="trading-platform-popup-wrapper trading-platform-sell-popup overlay {{type.id}} concealed" id="sell-popup-{{type.id}}">
 	<div class="trading-platform-popup">
@@ -788,54 +808,55 @@
 			<div class="trading-platform-popup-content">
 				<div class="trading-platform-popup-content-inner-wrap">
 					<div class="trading-platform-popup-header">
-						<span class="jap-word">転売する</span>
+						TAKE PAYOUT
 						<div class="trading-platform-popup-close close"></div>
 					</div>
 					<div class="trading-platform-popup-body">
 						<div class="panel trading-platform-sell-popup-details">
 							<div class="panel-header">
-								<div class="trading-platform-sell-popup-instrument eng pull-left font-sb">
+								<div class="trading-platform-sell-popup-instrument pull-left font-sb">
 									USD/JPY
 								</div>
-								<div class="trading-platform-sell-popup-rate pull-right highlow-high current-rate eng">
+								<div class="trading-platform-sell-popup-rate pull-right highlow-high current-rate">
 									102.77
 								</div>
 							</div>
 							<div class="panel-body">
 								<div class="trading-platform-sell-popup-strike">
 									<div class="pull-left font-sb">
-										取引内容
+										Strike
 									</div>
 									<div class="trading-platform-strike-value pull-right">
 										
 									</div>
 								</div>
 								<div class="trading-platform-sell-popup-investment">
-									<div class="pull-left font-sb jap-word">
-										購入金額
+									<div class="pull-left font-sb">
+										Investment
 									</div>
 									<div class="trading-platform-investment-value pull-right">
 										
 									</div>
 								</div>
 								<div class="trading-platform-sell-popup-return-rate">
-									<div class="pull-left font-sb jap-word">
-										ペイアウト倍率
+									<div class="pull-left font-sb">
+										Return rate
 									</div>
 									<div class="trading-platform-return-rate-value {{type.id}} pull-right">
+										0.6834
 									</div>
 								</div>
 								<div class="trading-platform-sell-popup-pay-out">
-									<div class="pull-left font-sb jap-word">
-										ペイアウト
+									<div class="pull-left font-sb">
+										Payout
 									</div>
-									<div class="trading-platform-pay-out-value pull-right">
+									<div class="trading-platform-pay-out-value {{type.id}} pull-right">
 										
 									</div>
 								</div>
 							</div>
 						</div>
-						<div class="btn btn-highlight btn-extruded full-width font-m btn-lg-pad trading-platform-sell-popup-sell jap-word">転売する</div>
+						<div class="btn btn-highlight btn-extruded full-width font-m btn-lg-pad trading-platform-sell-popup-sell">SELL</div>
 					</div>
 				</div>
 			</div>
@@ -848,35 +869,35 @@
 			<div class="trading-platform-popup-content">
 				<div class="trading-platform-popup-content-inner-wrap">
 					<div class="trading-platform-popup-header">
-						<span class="jap-word">今すぐ購入</span>
+						INVEST
 						<div class="trading-platform-popup-close close"></div>
 					</div>
 					<div class="trading-platform-popup-body">
 						<div class="trading-platform-invest-popup-live-rate">
-							<div class="trading-platform-main-controls-instrument-title eng pull-left font-sb">
+							<div class="trading-platform-main-controls-instrument-title pull-left font-sb">
 								USD/JPY
 							</div>
-							<div class="pull-right highlow-high current-rate eng">
+							<div class="pull-right highlow-high current-rate">
 								102.77
 							</div>
 						</div>
 						<div class="trading-platform-invest-popup-payout">
-							<div class="pull-left font-sb jap-word">
-								ペイアウト
+							<div class="pull-left font-sb">
+								Payout
 							</div>
 							<div class="pull-right">
-								<span class="trading-platform-main-controls-payout-rate eng">1.85</span>
+								<span class="trading-platform-main-controls-payout-rate">1.85</span>
 							</div>
 						</div>
-						<div class="trading-platform-main-controls-investment jap font-m form-control">
-							¥<input type="text" class="number-only" id="{{type.id}}-investment-value-input-popup" onchange="document.getElementById('{{type.id}}-investment-value-input').value = this.value;" value="50000"/>
+						<div class="trading-platform-main-controls-investment font-m form-control">
+							$<input type="text" class="number-only" id="{{type.id}}-investment-value-input-popup" onchange="document.getElementById('{{type.id}}-investment-value-input').value = this.value;" value="500"/>
 						</div>
-						<div class="clearfix trading-platform-main-controls-common-amount jap">
+						<div class="clearfix trading-platform-main-controls-common-amount">
 							<!-- I've used div as button here because button deosn't get :focus style on click for Firefox and Safari on MAc OSX -->
 
-							<div class="btn btn-md-pad font-m" tabindex="0" onclick="document.getElementById('{{type.id}}-investment-value-input-popup').value = this.getAttribute('data-value'); document.getElementById('{{type.id}}-investment-value-input').value = this.getAttribute('data-value');" data-value="5000">¥5,000</div>
-							<div class="btn btn-md-pad font-m" tabindex="0" onclick="document.getElementById('{{type.id}}-investment-value-input-popup').value = this.getAttribute('data-value'); document.getElementById('{{type.id}}-investment-value-input').value = this.getAttribute('data-value');" data-value="10000">¥10,000</div>
-							<div class="btn btn-md-pad font-m active" tabindex="0" onclick="document.getElementById('{{type.id}}-investment-value-input-popup').value = this.getAttribute('data-value'); document.getElementById('{{type.id}}-investment-value-input').value = this.getAttribute('data-value');" data-value="50000">¥50,000</div>
+							<div class="btn btn-md-pad font-m" tabindex="0" onclick="document.getElementById('{{type.id}}-investment-value-input-popup').value = this.getAttribute('data-value'); document.getElementById('{{type.id}}-investment-value-input').value = this.getAttribute('data-value');" data-value="50">$50</div>
+							<div class="btn btn-md-pad font-m" tabindex="0" onclick="document.getElementById('{{type.id}}-investment-value-input-popup').value = this.getAttribute('data-value'); document.getElementById('{{type.id}}-investment-value-input').value = this.getAttribute('data-value');" data-value="100">$100</div>
+							<div class="btn btn-md-pad font-m active" tabindex="0" onclick="document.getElementById('{{type.id}}-investment-value-input-popup').value = this.getAttribute('data-value'); document.getElementById('{{type.id}}-investment-value-input').value = this.getAttribute('data-value');" data-value="500">$500</div>
 						</div>
 						<div class="trading-platform-main-controls-options one-click-control">
 							<div class="btn btn-positive btn-extruded font-m btn-md-pad one-touch-bet bet-high {{type.id}} highlow-up"
@@ -899,7 +920,7 @@
 								</label>
 								<input type="radio" id="trading-platform-main-controls-select-direction-down-{{type.id}}-popup" name="selectedDirection{{type.id}}Popup" value="low"/>
 							</div>
-							<div class="btn btn-highlight btn-extruded jap-word font-m btn-lg-pad trading-platform-main-controls-place-bet {{type.id}}" data-type="{{type.id}}" data-direction="selectedDirection{{type.id}}Popup">今すぐ購入</div>
+							<div class="btn btn-highlight btn-extruded font-m btn-lg-pad trading-platform-main-controls-place-bet {{type.id}}" data-type="{{type.id}}" data-direction="selectedDirection{{type.id}}Popup">INVEST</div>
 						</div>
 					</div>
 				</div>
@@ -914,11 +935,11 @@
 			<div class="trading-platform-popup-content">
 				<div class="trading-platform-popup-content-inner-wrap">
 					<div class="trading-platform-popup-header">
-						入金
+						MAKE A DEPOSIT
 						<div class="trading-platform-popup-close close"></div>
 					</div>
 					<div class="trading-platform-popup-body">
-						<iframe onload="requestHeightSet()" id="deposit-iframe-frame" src="http://point.agency/highlow/new-site/ja-deposit-iframe.html"></iframe>
+						<iframe onload="requestHeightSet()" id="deposit-iframe-frame" src="http://point.agency/highlow/new-site/deposit-iframe.html"></iframe>
 					</div>
 				</div>
 			</div>
@@ -931,11 +952,11 @@
 			<div class="trading-platform-popup-content">
 				<div class="trading-platform-popup-content-inner-wrap">
 					<div class="trading-platform-popup-header">
-						出金
+						MAKE A WITHDRAWAL
 						<div class="trading-platform-popup-close close"></div>
 					</div>
 					<div class="trading-platform-popup-body">
-						<iframe scrolling="no" src="ja-withdraw-iframe.html"></iframe>
+						<iframe scrolling="no" src="withdraw-iframe.html"></iframe>
 					</div>
 				</div>
 			</div>

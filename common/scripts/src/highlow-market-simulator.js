@@ -63,10 +63,10 @@ highlowApp.marketSimulator = {
 				{
 	  				x : lastPoint.x+duration,
 	  				y : lastPoint.y+difference,
-	  				marker : {
-	  					enabled : true,
-	  					symbol : "url(common/images/graph-marker.png)"
-	  				},
+	  				// marker : {
+	  				// 	enabled : true,
+	  				// 	symbol : "url(common/images/graph-marker.png)"
+	  				// },
 	  				states: {
 	  					hover: {
 	  						enabled: false
@@ -178,10 +178,10 @@ highlowApp.marketSimulator = {
 				{
 	  				x : offsetCurrentTime,
 	  				y : instrument.currentRate,
-	  				marker : {
-	  					enabled : true,
-	  					symbol : "url(common/images/graph-marker.png)"
-	  				},
+	  				// marker : {
+	  				// 	enabled : true,
+	  				// 	symbol : "url(common/images/graph-marker.png)"
+	  				// },
 	  				states: {
 	  					hover: {
 	  						enabled: false
