@@ -1134,7 +1134,7 @@ highlowApp.graph = {
 		}
 
 		markerValueLabel.attr({
-			zIndex: 14
+			zIndex: 24
 		});
 
 		markerValueLabel.css({
@@ -1142,7 +1142,7 @@ highlowApp.graph = {
 		})
 
 		markerValueText.attr({
-			zIndex: 14
+			zIndex: 24
 		});
 
 		markerValueText.css({
@@ -1218,7 +1218,7 @@ highlowApp.graph = {
 		});
 
 		markerValueLabel.attr({
-			zIndex : 10
+			zIndex : 24
 		});
 
 		markerValueLabel.attr({
@@ -1226,7 +1226,7 @@ highlowApp.graph = {
 		});
 
 		markerValueText.attr({
-			zIndex : 11
+			zIndex : 24
 		});
 
 		markerValueLabel.add();

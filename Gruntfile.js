@@ -8,7 +8,7 @@ module.exports = function(grunt) {
 		connect: {
 			server: {
 				options: {
-					port: 9001,
+					port: 9002,
 					base: './build/',
 					keepalive: true,
 					hostname: 'localhost'
@@ -51,10 +51,10 @@ module.exports = function(grunt) {
 					{
 						label: "HighLow",
 						jaLabel: "HighLow",
-						cnLabel: "<span class='tab-graphic-text cn'><img class='default' src='public/trade-platform/images/highlow-tab-cn.png' alt='HighLow 图'/><img class='hover' src='public/trade-platform/images/highlow-tab-cn-hover.png' alt='HighLow 图'/></span>",
+						cnLabel: "<span class='tab-graphic-text cn'><img class='default' src='common/images/highlow-tab-cn.png' alt='HighLow 图'/><img class='hover' src='common/images/highlow-tab-cn-hover.png' alt='HighLow 图'/></span>",
 						id: "highlow",
 						range: false,
-						default: true,
+						default: false,
 						_new: false,
 						instruments: [
 							{
@@ -179,8 +179,8 @@ module.exports = function(grunt) {
 						]
 					},{
 						label: "HighLow Spread",
-						cnLabel: "<span class='tab-graphic-text cn'><img class='default' src='public/trade-platform/images/highlow-spread-tab-cn.png' alt='HighLow差价图'/><img class='hover' src='public/trade-platform/images/highlow-spread-tab-cn-hover.png' alt='HighLow差价图'/></span>",
-						jaLabel: "HighLow <span class='tab-graphic-text'><img class='default' src='public/trade-platform/images/spread-tab.png' alt='スプレッド'/><img class='hover' src='public/trade-platform/images/spread-tab-hover.png' alt='スプレッド'/></span>",
+						cnLabel: "<span class='tab-graphic-text cn'><img class='default' src='common/images/highlow-spread-tab-cn.png' alt='HighLow差价图'/><img class='hover' src='common/images/highlow-spread-tab-cn-hover.png' alt='HighLow差价图'/></span>",
+						jaLabel: "HighLow <span class='tab-graphic-text'><img class='default' src='common/images/spread-tab.png' alt='スプレッド'/><img class='hover' src='common/images/spread-tab-hover.png' alt='スプレッド'/></span>",
 						id: "spread",
 						range: 0.005,
 						default: false,
@@ -268,9 +268,9 @@ module.exports = function(grunt) {
 					},{
 						label: "Turbo",
 						jaLabel: "Turbo",
-						cnLabel: "<span class='tab-graphic-text cn'><img class='default' src='public/trade-platform/images/turbo-tab-cn.png' alt='Turbo图'/><img class='hover' src='public/trade-platform/images/turbo-tab-cn-hover.png' alt='Turbo图'/></span>",
+						cnLabel: "<span class='tab-graphic-text cn'><img class='default' src='common/images/turbo-tab-cn.png' alt='Turbo图'/><img class='hover' src='common/images/turbo-tab-cn-hover.png' alt='Turbo图'/></span>",
 						id: "on-demand",
-						default: false,
+						default: true,
 						range: false,
 						_new: false,
 						instruments: [
@@ -343,8 +343,8 @@ module.exports = function(grunt) {
 						]
 					},{
 						label: "Turbo Spread",
-						cnLabel: "<span class='tab-graphic-text cn'><img class='default' src='public/trade-platform/images/turbo-spread-tab-cn.png' alt='Turbo差价图'/><img class='hover' src='public/trade-platform/images/turbo-spread-tab-cn-hover.png' alt='Turbo差价图'/></span>",
-						jaLabel: "Turbo <span class='tab-graphic-text'><img class='default' src='public/trade-platform/images/spread-tab.png' alt='スプレッド'/><img class='hover' src='public/trade-platform/images/spread-tab-hover.png' alt='スプレッド'/></span>",
+						cnLabel: "<span class='tab-graphic-text cn'><img class='default' src='common/images/turbo-spread-tab-cn.png' alt='Turbo差价图'/><img class='hover' src='common/images/turbo-spread-tab-cn-hover.png' alt='Turbo差价图'/></span>",
+						jaLabel: "Turbo <span class='tab-graphic-text'><img class='default' src='common/images/spread-tab.png' alt='スプレッド'/><img class='hover' src='common/images/spread-tab-hover.png' alt='スプレッド'/></span>",
 						id: "spread-on-demand",
 						default: false,
 						range: 0.005,

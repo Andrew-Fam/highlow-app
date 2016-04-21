@@ -2091,7 +2091,7 @@ highlowApp.graph = {
 		}
 
 		markerValueLabel.attr({
-			zIndex: 14
+			zIndex: 24
 		});
 
 		markerValueLabel.css({
@@ -2099,7 +2099,7 @@ highlowApp.graph = {
 		})
 
 		markerValueText.attr({
-			zIndex: 14
+			zIndex: 24
 		});
 
 		markerValueText.css({
@@ -2175,7 +2175,7 @@ highlowApp.graph = {
 		});
 
 		markerValueLabel.attr({
-			zIndex : 10
+			zIndex : 24
 		});
 
 		markerValueLabel.attr({
@@ -2183,7 +2183,7 @@ highlowApp.graph = {
 		});
 
 		markerValueText.attr({
-			zIndex : 11
+			zIndex : 24
 		});
 
 		markerValueLabel.add();
@@ -2998,9 +2998,6 @@ highlowApp.marketSimulator = {
 							zIndex: 14
 						});
 
-						$($(bet.markerValueLabel.element).parent()).append(bet.markerValueLabel.element);
-						$($(bet.markerValueText.element).parent()).append(bet.markerValueText.element);
-
 						$($(marker.element).parent()).append(marker.element);
 					}
 
@@ -3031,41 +3028,26 @@ highlowApp.marketSimulator = {
 
 					if((bet.focused || bet.hover) && !bet.expired) {
 
-						var x = point.plotX, 
-							labelX = Math.floor(xAxis.toPixels(bet.expireAt)-17);
+						var x = point.plotX;
 
-						var textX = labelX+68,
-							textY = 141;
-						var textAttribute = {};
+						var textX = xAxis.toPixels(bet.expireAt)-91,
+							textY = 9,
+							arrowX = xAxis.toPixels(bet.expireAt)-7,
+							arrowY = 14;
+
 
 						if(highlowApp.jap) {
-
-							labelX = labelX -5;
-
-							var label = renderer.rect(labelX,52,22,177,0);
-
-							textX = labelX+11;
-							textY = 85;
-
-							textAttribute = {
-								id: bet.finishTextId,
-								width: '20px',
-								'text-anchor': 'middle'
-							};
+							textX = textX-64;
 						} else {
 
-							var label = renderer.rect(labelX,52,17,177,0);
-
-							textAttribute = {
-								id: bet.finishTextId,
-								transform: 'translate(0,0) rotate(270 '+textX+' '+textY+')',
-								width: '177px',
-								'text-anchor': 'middle'
-							};
 						}
 
-						var labelAttribute = {
-							fill: '#f8f7f5'
+
+						var textAttribute = {};
+						
+						textAttribute = {
+							id: bet.finishTextId,
+							'text-anchor': 'end'
 						};
 						
 
@@ -3087,19 +3069,65 @@ highlowApp.marketSimulator = {
 								id: endLineId
 							});
 
-							labelAttribute.zIndex = '2';
-
 							textAttribute.zIndex = '6';
 							
 
 						} else {
-							xAxis.addPlotBand({
-								color: 'rgba(20,20,20,0.3)',
-								from: bet.betAt, 
-								to: bet.expireAt,
-								zIndex: 1,
-								id: plotBandId
-							});
+
+
+							switch(bet.direction) {
+								case 'high' : {
+									if (rate > strike) { // winning
+
+										xAxis.addPlotBand({
+											color: 'rgba(143,195,60,0.45)',
+											from: bet.betAt, 
+											to: bet.expireAt,
+											zIndex: 1,
+											id: plotBandId
+										});
+
+									} else if (rate <= strike) { // losing
+										
+										xAxis.addPlotBand({
+											color: 'rgba(20,20,20,0.3)',
+											from: bet.betAt, 
+											to: bet.expireAt,
+											zIndex: 1,
+											id: plotBandId
+										});	
+
+									} 
+									
+									break;
+								}
+								case 'low' : {
+									if (rate >= strike) { //losing
+										
+										xAxis.addPlotBand({
+											color: 'rgba(20,20,20,0.3)',
+											from: bet.betAt, 
+											to: bet.expireAt,
+											zIndex: 1,
+											id: plotBandId
+										});
+
+									} else if (rate < strike) { //winning
+										
+										xAxis.addPlotBand({
+											color: 'rgba(229,79,55,0.3)',
+											from: bet.betAt, 
+											to: bet.expireAt,
+											zIndex: 1,
+											id: plotBandId
+										});
+
+									} 
+									
+									break;
+								}
+								default : break;
+							}
 
 							xAxis.addPlotLine({
 								color: 'rgba(255,255,255,0.7)',
@@ -3118,15 +3146,11 @@ highlowApp.marketSimulator = {
 							});
 
 							if(bet.hover && !bet.focused) {
-								labelAttribute.zIndex = '15';
 								textAttribute.zIndex = '15';
 							} else {
-								labelAttribute.zIndex = '4';
 								textAttribute.zIndex = '4';
 							}
-							
 
-							$($(bet.markerValueLabel.element).parent()).append(bet.markerValueLabel.element);
 							$($(bet.markerValueText.element).parent()).append(bet.markerValueText.element);
 
 							$($(marker.element).parent()).append(marker.element);
@@ -3137,109 +3161,98 @@ highlowApp.marketSimulator = {
 						}
 
 
-						// add finish line label 
-				
-
-						if(bet.finishLabel == undefined) {
-
-							bet.finishLabelId = finishLabelId;
-							
-							label.attr(labelAttribute);
-
-							label.add();
-
-							bet.finishLabel = label ;
-						} else {
-							bet.finishLabel.attr({
-								x : labelX
-							});
-						}
-
-
 						if(bet.finishText==undefined) {
 
-							bet.finishTextId = finishTextId;
-
 							if(highlowApp.jap) {
-								text = renderer.text('お<br/>待<br/>ち<br/>く<br/>だ<br/>さ<br/>い',textX,textY);
+								text = renderer.label('<span>お待ちください</span>',textX,textY,null,null,null,true,null,'expiry-timer-rate');
 
-								text.css({
-									"font-family":'"Hiragino Kaku Gothic Pro","ヒラギノ角ゴ Pro W3","メイリオ",Meiryo,"ＭＳ Ｐゴシック",Helvetica,Arial,Verdana,sans-serif',
-									"font-size" : "11px;",
-									"color" : "#424242"
-								});
-
-								text.attr({
-									y: 92
-								});
 							} else {
-								text = renderer.text('loading...',textX,textY);
-
-								text.css({
-									"font-family":"Montserrat",
-									"font-size" : "10px;",
-									"color" : "#4d5158"
-								});
-
-								text.attr({
-									y: 85
-								});
+								text = renderer.label('<span>loading...</span>',textX,textY,null,null,null,true,null,'expiry-timer-rate');
 							}
-
-							
 
 							text.attr(textAttribute);
 
 							text.add();
 
-
 							bet.finishText = text;
 
+
+
+							// expiry time arrow
+
+							var arrowImgPath = 'common/images/expiry-timer-arrow.png';
+
+							arrow = renderer.label(
+								'<img src="'+arrowImgPath+'"/>',
+								arrowX,
+								arrowY,
+								null,
+								null,
+								null,
+								true
+							);
+
+							arrow.add();
+
+							bet.finishLineArrow = arrow;
+
+
+
 						} else {
-							if(highlowApp.jap) {
-								bet.finishText.attr({
-									x: textX,
-									y: 85
-								});
-							} else {
-								bet.finishText.attr({
-									x: textX,
-									y: 85,
-									'transform': 'translate(0,0) rotate(270 '+textX+' '+textY+')'
-								});
-							}
+
+							bet.finishText.attr({
+								x: textX
+							});
+
+							bet.finishLineArrow.attr({
+								x: arrowX
+							});
+
 						}
 
 						if(bet.focused && !bet.hover && model.hoveredBet) {
-							bet.finishText.attr({
-								opacity: '0.7'
+							if(bet.finishText!=undefined) {
+								bet.finishText.destroy();
+								bet.finishText = undefined;
+								bet.finishLineArrow.destroy();
+								bet.finishLineArrow = undefined;
+							}
+
+							bet.marker.css({
+								opacity: '0.5'
 							});
 
-							bet.finishLabel.attr({
-								opacity: '0.34'
-							});
 						} else {
-							bet.finishText.attr({
-								opacity: '1'
-							});
 
-							bet.finishLabel.attr({
+							bet.marker.css({
 								opacity: '1'
 							});
-						}
 						
+						}
 
 					} else {
 
 						if(bet.finishText!=undefined) {
 							bet.finishText.destroy();
-							bet.finishLabel.destroy();
 							bet.finishText = undefined;
-							bet.finishLabel = undefined;
+							bet.finishLineArrow.destroy();
+							bet.finishLineArrow = undefined;
 						}
+
+						bet.marker.css({
+							opacity: '0.5'
+						});
 					}
 
 				}
+
+				var svgParent = $($(bet.markerValueLabel.element).parent());
+
+				$(bet.markerValueLabel.element).remove();
+				$(bet.markerValueText.element).remove();
+
+				svgParent.append(bet.markerValueLabel.element);
+				svgParent.append(bet.markerValueText.element);
 				
 
 				
@@ -3357,7 +3370,7 @@ highlowApp.marketSimulator = {
 
 
 			this.updateOnDemandBet = function(bet, updateMainView) {
-				var message = "EXPIRY: ",
+				var message = "",
 				remainingTimeText = "";
 
 				var currentTime = new Date().getTime();
@@ -3370,13 +3383,15 @@ highlowApp.marketSimulator = {
 				if(minute>0) {
 					message += minute>9?minute:("0"+minute);
 
+					message += ":";
+
 					remainingTimeText += minute>9?minute:("0"+minute)+":";
 
-					message += minute>1?" MINS ":" MIN ";
+					// message += minute>1?" MINS ":" MIN ";
 				} else {
 					remainingTimeText += "0:";
 
-					message += "0 MIN ";
+					message += "0:";
 				}
 
 				if(second>0 || minute>0) {
@@ -3384,7 +3399,7 @@ highlowApp.marketSimulator = {
 
 					remainingTimeText += second>9?second:("0"+second);
 
-					message += second>1?" SECS ":" SEC ";
+					// message += second>1?" SECS ":" SEC ";
 				}
 
 				if(currentTime >= bet.expireAt || (second<=0 && minute <=0)) {
@@ -3393,15 +3408,18 @@ highlowApp.marketSimulator = {
 				}
 
 				
-				if(highlowApp.jap) {
-					message = message.replace('EXPIRY: ','判<br/>定<br/>時<br/>刻<br/>：<br/>').replace(' MINS ','<br/>分<br/>').replace(' MIN ','<br/>分<br/>').replace(' SECS ','<br/>秒<br/>').replace(' SEC ','<br/>秒<br/>');
-				}
+				// if(highlowApp.jap) {
+				// 	message = message.replace('EXPIRY: ','判<br/>定<br/>時<br/>刻<br/>：<br/>').replace(' MINS ','<br/>分<br/>').replace(' MIN ','<br/>分<br/>').replace(' SECS ','<br/>秒<br/>').replace(' SEC ','<br/>秒<br/>');
+				// }
+
+				var expiryTimeInChartIconPath = 'common/images/expiry-timer-icon.png';
+
+				message = '<img src="'+expiryTimeInChartIconPath+'"/><span>'+message+"</span>";
 
 
 				if(bet.finishText!=undefined) {
 					bet.finishText.attr({
-						text: message,
-						y: 85
+						text: message
 					});
 				}
 
