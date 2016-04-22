@@ -8,6 +8,9 @@
 		<div class="tab-view-tab-selectors-container tab-full-width trading-app-container">
 			<ul class="tab-view-tab-selectors">
 				{% for type in tradingTypes %}
+
+				{% if type._new %} <!-- hide --> {% endif %}
+
 				<li class="tab-view-tab-selector {% if type.default %} active {% endif %} {{ type.id }}" data-target="#{{ type.id }}-mode">
 					{{type.label}}
 
@@ -17,6 +20,9 @@
 					</span>
 					{% endif %}
 				</li>
+
+				{% if type._new %} <!-- end-hide --> {% endif %}
+
 				{% endfor %}
 			</ul>
 		</div>
@@ -24,707 +30,713 @@
 	<div class="tab-view-body-wrapper">
 		<div class="tab-view-body">
 			{% for type in tradingTypes %}
-			<div class="tab-view-panel {% if type.default %} active {% endif %}" id="{{ type.id }}-mode">
-				<div class="trading-app-container">
-					<div id="options-carousel" class="clearfix walk-through-step">
-						<div class="pull-left tab-view tab-view-default instrument-selector-widget">
-							<div class="instrument-selector-widget-duration-selectors-container tab-view-tab-selectors-container-wrapper">
-								<div class="instrument-selector-widget-instrument-filter pull-right">
-									<div id="{{ type.id }}-asset-filter" class="asset-filter hl-toggler" data-toggle-self-on-disabled="true" data-toggle-off-click="true">
-										<span class="asset-filter--opener hl-toggler" data-toggle-target="#{{ type.id }}-asset-filter"></span>
-										<span class="asset-filter--placeholder">
-											Filter Assets
-										</span>
-										<div id="highlow-asset-filter--categories-container">
-											<ul class="highlow-asset-filter--categories">
-												<li id="highlow-asset-filter--category--all-asset" data-option="Filter Assets" data-category="all" class="highlow-asset-filter--category active">
-													<span class="highlow-asset-filter--category--label">All Assets</span>
-													<div class="highlow-asset-filter--category--indicator"></div>
-												</li>
-												<li id="highlow-asset-filter--category--all-currencies"  data-category="currencies" data-option="All Currencies" class="highlow-asset-filter--category">
-													<span class="highlow-asset-filter--category--label">Currencies</span>
-													<div class="highlow-asset-filter--category--indicator"></div>
-												</li>
-												<li id="highlow-asset-filter--category--all-indices" data-category="indices" data-option="All Indices" class="highlow-asset-filter--category">
-													<span class="highlow-asset-filter--category--label">	Indices
-													</span>
-													<div class="highlow-asset-filter--category--indicator"></div>
-												</li>
-												<li id="highlow-asset-filter--category--all-commodities" data-option="All Commodities" data-category="commodities" class="highlow-asset-filter--category">		<span class="highlow-asset-filter--category--label">Commodities</span>
-													<div class="highlow-asset-filter--category--indicator"></div>
-												</li>
-											</ul>
-											<div id="highlow-asset-filter--selected-category-indicator"></div>
-										</div>
-										<div id="highlow-asset-filter--options-container">
-											<ul id="highlow-asset-filter--options">
-												<li class="highlow-asset-filter--option highlow-asset-filter--option-picker" data-option="AUD/JPY" data-category="currencies">
-													<span class="highlow-asset-filter--option--label">
-														AUD/JPY
-													</span>
-												</li>
-												<li class="highlow-asset-filter--option highlow-asset-filter--option-picker" data-option="EUR/JPY" data-category="currencies">
-													<span class="highlow-asset-filter--option--label">
-														EUR/JPY
-													</span>
-												</li>
-												<li class="highlow-asset-filter--option highlow-asset-filter--option-picker" data-option="USD/CHF" data-category="currencies">
-													<span class="highlow-asset-filter--option--label">
-														USD/CHF
-													</span>
-												</li>
-												<li class="highlow-asset-filter--option highlow-asset-filter--option-picker" data-option="HKG33" data-category="indices">
-													<span class="highlow-asset-filter--option--label">
-														HKG33
-													</span>
-												</li>
-												<li class="highlow-asset-filter--option highlow-asset-filter--option-picker" data-option="AUD/NZD" data-category="currencies">
-													<span class="highlow-asset-filter--option--label">
-														AUD/NZD
-													</span>
-												</li>
-												<li class="highlow-asset-filter--option highlow-asset-filter--option-picker" data-option="EUR/USD" data-category="currencies">
-													<span class="highlow-asset-filter--option--label">
-														EUR/USD
-													</span>
-												</li>
-												<li class="highlow-asset-filter--option highlow-asset-filter--option-picker" data-option="USD/JPY" data-category="currencies">
-													<span class="highlow-asset-filter--option--label">
-														USD/JPY
-													</span>
-												</li>
-												<li class="highlow-asset-filter--option highlow-asset-filter--option-picker" data-option="JPN225" data-category="indices">
-													<span class="highlow-asset-filter--option--label">
-														JPN225
-													</span>
-												</li>
-												<li class="highlow-asset-filter--option highlow-asset-filter--option-picker" data-option="AUD/USD" data-category="currencies">
-													<span class="highlow-asset-filter--option--label">
-														AUD/USD
-													</span>
-												</li>
-												<li class="highlow-asset-filter--option highlow-asset-filter--option-picker" data-option="GBP/AUD" data-category="currencies">
-													<span class="highlow-asset-filter--option--label">
-														GBP/AUD
-													</span>
-												</li>
-												<li class="highlow-asset-filter--option highlow-asset-filter--option-picker" data-option="USD/SGD" data-category="currencies">
-													<span class="highlow-asset-filter--option--label">
-														USD/SGD
-													</span>
-												</li>
-												<li class="highlow-asset-filter--option highlow-asset-filter--option-picker" data-option="UK100" data-category="indices">
-													<span class="highlow-asset-filter--option--label">
-														UK100
-													</span>
-												</li>
-												<li class="highlow-asset-filter--option highlow-asset-filter--option-picker" data-option="CAD/JPY" data-category="currencies">
-													<span class="highlow-asset-filter--option--label">
-														CAD/JPY
-													</span>
-												</li>
-												<li class="highlow-asset-filter--option highlow-asset-filter--option-picker" data-option="GBP/JPY" data-category="currencies">
-													<span class="highlow-asset-filter--option--label">
-														GBP/JPY
-													</span>
-												</li>
-												<li class="highlow-asset-filter--option highlow-asset-filter--option-picker" data-option="GOLD" data-category="commodities">
-													<span class="highlow-asset-filter--option--label">
-														GOLD
-													</span>
-												</li>
-												<li class="highlow-asset-filter--option highlow-asset-filter--option-picker" data-option="US30" data-category="indices">
-													<span class="highlow-asset-filter--option--label">
-														US30
-													</span>
-												</li>
-												<li class="highlow-asset-filter--option highlow-asset-filter--option-picker" data-option="CHF/JPY" data-category="currencies">
-													<span class="highlow-asset-filter--option--label">
-														CHF/JPY
-													</span>
-												</li>
-												<li class="highlow-asset-filter--option highlow-asset-filter--option-picker" data-option="GBP/USD" data-category="currencies">
-													<span class="highlow-asset-filter--option--label">
-														GBP/USD
-													</span>
-												</li>
-												<li class="highlow-asset-filter--option highlow-asset-filter--option-picker" data-option="AUS200" data-category="indices">
-													<span class="highlow-asset-filter--option--label">
-														AUS200
-													</span>
-												</li>
-												<li class="highlow-asset-filter--option highlow-asset-filter--option-picker" data-option="" data-category="all">
-													&nbsp;
-												</li>
-												<li class="highlow-asset-filter--option highlow-asset-filter--option-picker" data-option="EUR/AUD" data-category="currencies">
-													<span class="highlow-asset-filter--option--label">
-														EUR/AUD
-													</span>
-												</li>
-												<li class="highlow-asset-filter--option highlow-asset-filter--option-picker" data-option="NZD/JPY" data-category="currencies">
-													<span class="highlow-asset-filter--option--label">
-														NZD/JPY
-													</span>
-												</li>
-												<li class="highlow-asset-filter--option highlow-asset-filter--option-picker" data-option="FRA40" data-category="indices">
-													<span class="highlow-asset-filter--option--label">
-														FRA40
-													</span>
-												</li>
-												<li class="highlow-asset-filter--option highlow-asset-filter--option-picker" data-option="" data-category="all">
-													&nbsp;
-												</li>
-												<li class="highlow-asset-filter--option highlow-asset-filter--option-picker" data-option="EUR/GBP" data-category="currencies">
-													<span class="highlow-asset-filter--option--label">
-														EUR/GBP
-													</span>
-												</li>
-												<li class="highlow-asset-filter--option highlow-asset-filter--option-picker" data-option="NZD/USD" data-category="currencies">
-													<span class="highlow-asset-filter--option--label">
-														NZD/USD
-													</span>
-												</li>
-												<li class="highlow-asset-filter--option highlow-asset-filter--option-picker" data-option="GER30" data-category="indices">
-													<span class="highlow-asset-filter--option--label">
-														GER30
-													</span>
-												</li>
-												<li class="highlow-asset-filter--option highlow-asset-filter--option-picker" data-option="" data-category="all">
-													&nbsp;
-												</li>
-												<li class="highlow-asset-filter--option highlow-asset-filter--option-picker" style="display: none;" data-option="" data-category="currencies">
-													&nbsp;
-												</li>
-												<li class="highlow-asset-filter--option highlow-asset-filter--option-picker" style="display: none;" data-option="" data-category="currencies">
-													&nbsp;
-												</li>
-												<li class="highlow-asset-filter--option highlow-asset-filter--option-picker" style="display: none;" data-option="" data-category="currencies">
-													&nbsp;
-												</li>
-												<li class="highlow-asset-filter--option highlow-asset-filter--option-picker" style="display: none;" data-option="" data-category="indices">
-													&nbsp;
-												</li>
-											</ul>
+
+			{% unless type._walkThrough %} <!-- hide --> {% endunless %}
+
+				<div class="tab-view-panel {% if type.default %} active {% endif %}" id="{{ type.id }}-mode">
+					<div class="trading-app-container">
+						<div id="options-carousel" class="clearfix walk-through-step">
+							<div class="pull-left tab-view tab-view-default instrument-selector-widget">
+								<div class="instrument-selector-widget-duration-selectors-container tab-view-tab-selectors-container-wrapper">
+									<div class="instrument-selector-widget-instrument-filter pull-right">
+										<div id="{{ type.id }}-asset-filter" class="asset-filter hl-toggler" data-toggle-self-on-disabled="true" data-toggle-off-click="true">
+											<span class="asset-filter--opener hl-toggler" data-toggle-target="#{{ type.id }}-asset-filter"></span>
+											<span class="asset-filter--placeholder">
+												Filter Assets
+											</span>
+											<div id="highlow-asset-filter--categories-container">
+												<ul class="highlow-asset-filter--categories">
+													<li id="highlow-asset-filter--category--all-asset" data-option="Filter Assets" data-category="all" class="highlow-asset-filter--category active">
+														<span class="highlow-asset-filter--category--label">All Assets</span>
+														<div class="highlow-asset-filter--category--indicator"></div>
+													</li>
+													<li id="highlow-asset-filter--category--all-currencies"  data-category="currencies" data-option="All Currencies" class="highlow-asset-filter--category">
+														<span class="highlow-asset-filter--category--label">Currencies</span>
+														<div class="highlow-asset-filter--category--indicator"></div>
+													</li>
+													<li id="highlow-asset-filter--category--all-indices" data-category="indices" data-option="All Indices" class="highlow-asset-filter--category">
+														<span class="highlow-asset-filter--category--label">	Indices
+														</span>
+														<div class="highlow-asset-filter--category--indicator"></div>
+													</li>
+													<li id="highlow-asset-filter--category--all-commodities" data-option="All Commodities" data-category="commodities" class="highlow-asset-filter--category">		<span class="highlow-asset-filter--category--label">Commodities</span>
+														<div class="highlow-asset-filter--category--indicator"></div>
+													</li>
+												</ul>
+												<div id="highlow-asset-filter--selected-category-indicator"></div>
+											</div>
+											<div id="highlow-asset-filter--options-container">
+												<ul id="highlow-asset-filter--options">
+													<li class="highlow-asset-filter--option highlow-asset-filter--option-picker" data-option="AUD/JPY" data-category="currencies">
+														<span class="highlow-asset-filter--option--label">
+															AUD/JPY
+														</span>
+													</li>
+													<li class="highlow-asset-filter--option highlow-asset-filter--option-picker" data-option="EUR/JPY" data-category="currencies">
+														<span class="highlow-asset-filter--option--label">
+															EUR/JPY
+														</span>
+													</li>
+													<li class="highlow-asset-filter--option highlow-asset-filter--option-picker" data-option="USD/CHF" data-category="currencies">
+														<span class="highlow-asset-filter--option--label">
+															USD/CHF
+														</span>
+													</li>
+													<li class="highlow-asset-filter--option highlow-asset-filter--option-picker" data-option="HKG33" data-category="indices">
+														<span class="highlow-asset-filter--option--label">
+															HKG33
+														</span>
+													</li>
+													<li class="highlow-asset-filter--option highlow-asset-filter--option-picker" data-option="AUD/NZD" data-category="currencies">
+														<span class="highlow-asset-filter--option--label">
+															AUD/NZD
+														</span>
+													</li>
+													<li class="highlow-asset-filter--option highlow-asset-filter--option-picker" data-option="EUR/USD" data-category="currencies">
+														<span class="highlow-asset-filter--option--label">
+															EUR/USD
+														</span>
+													</li>
+													<li class="highlow-asset-filter--option highlow-asset-filter--option-picker" data-option="USD/JPY" data-category="currencies">
+														<span class="highlow-asset-filter--option--label">
+															USD/JPY
+														</span>
+													</li>
+													<li class="highlow-asset-filter--option highlow-asset-filter--option-picker" data-option="JPN225" data-category="indices">
+														<span class="highlow-asset-filter--option--label">
+															JPN225
+														</span>
+													</li>
+													<li class="highlow-asset-filter--option highlow-asset-filter--option-picker" data-option="AUD/USD" data-category="currencies">
+														<span class="highlow-asset-filter--option--label">
+															AUD/USD
+														</span>
+													</li>
+													<li class="highlow-asset-filter--option highlow-asset-filter--option-picker" data-option="GBP/AUD" data-category="currencies">
+														<span class="highlow-asset-filter--option--label">
+															GBP/AUD
+														</span>
+													</li>
+													<li class="highlow-asset-filter--option highlow-asset-filter--option-picker" data-option="USD/SGD" data-category="currencies">
+														<span class="highlow-asset-filter--option--label">
+															USD/SGD
+														</span>
+													</li>
+													<li class="highlow-asset-filter--option highlow-asset-filter--option-picker" data-option="UK100" data-category="indices">
+														<span class="highlow-asset-filter--option--label">
+															UK100
+														</span>
+													</li>
+													<li class="highlow-asset-filter--option highlow-asset-filter--option-picker" data-option="CAD/JPY" data-category="currencies">
+														<span class="highlow-asset-filter--option--label">
+															CAD/JPY
+														</span>
+													</li>
+													<li class="highlow-asset-filter--option highlow-asset-filter--option-picker" data-option="GBP/JPY" data-category="currencies">
+														<span class="highlow-asset-filter--option--label">
+															GBP/JPY
+														</span>
+													</li>
+													<li class="highlow-asset-filter--option highlow-asset-filter--option-picker" data-option="GOLD" data-category="commodities">
+														<span class="highlow-asset-filter--option--label">
+															GOLD
+														</span>
+													</li>
+													<li class="highlow-asset-filter--option highlow-asset-filter--option-picker" data-option="US30" data-category="indices">
+														<span class="highlow-asset-filter--option--label">
+															US30
+														</span>
+													</li>
+													<li class="highlow-asset-filter--option highlow-asset-filter--option-picker" data-option="CHF/JPY" data-category="currencies">
+														<span class="highlow-asset-filter--option--label">
+															CHF/JPY
+														</span>
+													</li>
+													<li class="highlow-asset-filter--option highlow-asset-filter--option-picker" data-option="GBP/USD" data-category="currencies">
+														<span class="highlow-asset-filter--option--label">
+															GBP/USD
+														</span>
+													</li>
+													<li class="highlow-asset-filter--option highlow-asset-filter--option-picker" data-option="AUS200" data-category="indices">
+														<span class="highlow-asset-filter--option--label">
+															AUS200
+														</span>
+													</li>
+													<li class="highlow-asset-filter--option highlow-asset-filter--option-picker" data-option="" data-category="all">
+														&nbsp;
+													</li>
+													<li class="highlow-asset-filter--option highlow-asset-filter--option-picker" data-option="EUR/AUD" data-category="currencies">
+														<span class="highlow-asset-filter--option--label">
+															EUR/AUD
+														</span>
+													</li>
+													<li class="highlow-asset-filter--option highlow-asset-filter--option-picker" data-option="NZD/JPY" data-category="currencies">
+														<span class="highlow-asset-filter--option--label">
+															NZD/JPY
+														</span>
+													</li>
+													<li class="highlow-asset-filter--option highlow-asset-filter--option-picker" data-option="FRA40" data-category="indices">
+														<span class="highlow-asset-filter--option--label">
+															FRA40
+														</span>
+													</li>
+													<li class="highlow-asset-filter--option highlow-asset-filter--option-picker" data-option="" data-category="all">
+														&nbsp;
+													</li>
+													<li class="highlow-asset-filter--option highlow-asset-filter--option-picker" data-option="EUR/GBP" data-category="currencies">
+														<span class="highlow-asset-filter--option--label">
+															EUR/GBP
+														</span>
+													</li>
+													<li class="highlow-asset-filter--option highlow-asset-filter--option-picker" data-option="NZD/USD" data-category="currencies">
+														<span class="highlow-asset-filter--option--label">
+															NZD/USD
+														</span>
+													</li>
+													<li class="highlow-asset-filter--option highlow-asset-filter--option-picker" data-option="GER30" data-category="indices">
+														<span class="highlow-asset-filter--option--label">
+															GER30
+														</span>
+													</li>
+													<li class="highlow-asset-filter--option highlow-asset-filter--option-picker" data-option="" data-category="all">
+														&nbsp;
+													</li>
+													<li class="highlow-asset-filter--option highlow-asset-filter--option-picker" style="display: none;" data-option="" data-category="currencies">
+														&nbsp;
+													</li>
+													<li class="highlow-asset-filter--option highlow-asset-filter--option-picker" style="display: none;" data-option="" data-category="currencies">
+														&nbsp;
+													</li>
+													<li class="highlow-asset-filter--option highlow-asset-filter--option-picker" style="display: none;" data-option="" data-category="currencies">
+														&nbsp;
+													</li>
+													<li class="highlow-asset-filter--option highlow-asset-filter--option-picker" style="display: none;" data-option="" data-category="indices">
+														&nbsp;
+													</li>
+												</ul>
+											</div>
 										</div>
 									</div>
+									<div class="instrument-selector-widget-collapse-toggle">
+									</div>
+									<div class="tab-view-tab-selectors-container font-m">
+										<ul class="tab-view-tab-selectors instrument-selector-widget-duration-selectors">
+											<li class="tab-view-tab-selector instrument-selector-widget-duration-selector active" data-target="#{{type.id}}-interval-all">
+												ALL
+											</li>
+										{% if type.intervals.length > 1 %} 
+											{% for interval in type.intervals %}
+											<li class="tab-view-tab-selector instrument-selector-widget-duration-selector" data-target="#{{type.id}}-{{interval.id}}">
+												{{ interval.label }}
+											</li>
+											{% endfor %}
+										{% endif %}
+											<li class="tab-view-tab-selector instrument-selector-widget-duration-selector favourite" data-target="#{{type.id}}-favourite">
+												FAVOURITES
+											</li>
+										</ul>
+									</div>
 								</div>
-								<div class="instrument-selector-widget-collapse-toggle">
-								</div>
-								<div class="tab-view-tab-selectors-container font-m">
-									<ul class="tab-view-tab-selectors instrument-selector-widget-duration-selectors">
-										<li class="tab-view-tab-selector instrument-selector-widget-duration-selector active" data-target="#{{type.id}}-interval-all">
-											ALL
-										</li>
-									{% if type.intervals.length > 1 %} 
-										{% for interval in type.intervals %}
-										<li class="tab-view-tab-selector instrument-selector-widget-duration-selector" data-target="#{{type.id}}-{{interval.id}}">
-											{{ interval.label }}
-										</li>
-										{% endfor %}
-									{% endif %}
-										<li class="tab-view-tab-selector instrument-selector-widget-duration-selector favourite" data-target="#{{type.id}}-favourite">
-											FAVOURITES
-										</li>
-									</ul>
-								</div>
-							</div>
-							<div class="tab-view-body-wrapper">
-								<div class="tab-view-body instrument-selector-widget-instruments-container">
+								<div class="tab-view-body-wrapper">
+									<div class="tab-view-body instrument-selector-widget-instruments-container">
 
-									{% if type.intervals.length > 0 %}
-										<div class="tab-view-panel active" id="{{type.id}}-interval-all">
-											<a class="instrument-selector-widget-instruments-slider page-slider backward" data-target="#{{type.id}}-all-pages">
-											</a>
-											<a class="instrument-selector-widget-instruments-slider page-slider forward" data-target="#{{type.id}}-all-pages">
-											</a>
-											<div class="page-container" id="{{type.id}}-all-pages">
-												<div class="slider-fade-left">
+										{% if type.intervals.length > 0 %}
+											<div class="tab-view-panel active" id="{{type.id}}-interval-all">
+												<a class="instrument-selector-widget-instruments-slider page-slider backward" data-target="#{{type.id}}-all-pages">
+												</a>
+												<a class="instrument-selector-widget-instruments-slider page-slider forward" data-target="#{{type.id}}-all-pages">
+												</a>
+												<div class="page-container" id="{{type.id}}-all-pages">
+													<div class="slider-fade-left">
 
-												</div>
-												<div class="slider-fade-right">
+													</div>
+													<div class="slider-fade-right">
 
-												</div>
-												<div class="pages-wrapper">
-													{% assign countAll = '0' %}
-													{% for interval in type.intervals %}
+													</div>
+													<div class="pages-wrapper">
+														{% assign countAll = '0' %}
+														{% for interval in type.intervals %}
 
-														{% capture outerLoopLast %}{{forloop.last}}{% endcapture %}
-														{% for instrumentItem in interval.instruments %}
-															{% capture remainder %}{{countAll | modulo:5}}{% endcapture %}
-															{% if remainder == '0' %}
-																<div class="page {% if countAll == '1' %} active {% endif %}">
-															{% endif %}
+															{% capture outerLoopLast %}{{forloop.last}}{% endcapture %}
+															{% for instrumentItem in interval.instruments %}
+																{% capture remainder %}{{countAll | modulo:5}}{% endcapture %}
+																{% if remainder == '0' %}
+																	<div class="page {% if countAll == '1' %} active {% endif %}">
+																{% endif %}
 
-																<div 
-																	class="instrument-panel {% if countAll == '1' %}instrument-panel-active{% endif %} instrument-{{type.id}}-panel" 
-																	data-uid="{{type.id}}-{{instrumentItem.id}}-{{interval.id}}-{{forloop.index0}}"
-																	data-trading-type="{{type.id}}" 
-																	data-instrument-label="{{instrumentItem.label}}"
-																	data-instrument-payout-rate="{{instrumentItem.payout}}"  
-																	data-instrument-duration="{{interval.mediumLabel}}"
-																	data-instrument-duration-id="{{interval.id}}"
-																	data-instrument-duration-value="{{interval.value}}" 
-																	data-instrument-seed-rate="{{instrumentItem.rate}}"
-																	data-instrument-pip="{{instrumentItem.pip}}"
-																>
-																	<div class="instrument-panel-header">
-																		<div class="instrument-panel-title">
-																			{{instrumentItem.label}}
-																		</div>
-																		<a title="Add To Favourites" class="instrument-panel-favourite"></a>
-																		<div class="instrument-panel-duration">
-																			{{interval.shortLabel}}
-																		</div>
-																	</div>
-																	<div class="instrument-panel-body">
-																		{% if type.id == 'highlow' %}
-																			<div class="clearfix">
-																				<div class="instrument-panel-payout-wrap pull-left clearfix">
-																					<div class="font-sb">
-																						Payout
-																					</div>
-																					<div class="instrument-panel-payout">
-																						{{instrumentItem.payout}}
-																					</div>
-																				</div>
-																				<div class="pull-left clearfix">
-																					<div class="font-sb">
-																						&nbsp;
-																					</div>
-																					<div class="instrument-panel-rate highlow-high">
-																					</div>
-																				</div>
+																	<div 
+																		class="instrument-panel {% if countAll == '1' %}instrument-panel-active{% endif %} instrument-{{type.id}}-panel" 
+																		data-uid="{{type.id}}-{{instrumentItem.id}}-{{interval.id}}-{{forloop.index0}}"
+																		data-trading-type="{{type.id}}" 
+																		data-instrument-label="{{instrumentItem.label}}"
+																		data-instrument-payout-rate="{{instrumentItem.payout}}"  
+																		data-instrument-duration="{{interval.mediumLabel}}"
+																		data-instrument-duration-id="{{interval.id}}"
+																		data-instrument-duration-value="{{interval.value}}" 
+																		data-instrument-seed-rate="{{instrumentItem.rate}}"
+																		data-instrument-pip="{{instrumentItem.pip}}"
+																	>
+																		<div class="instrument-panel-header">
+																			<div class="instrument-panel-title">
+																				{{instrumentItem.label}}
 																			</div>
-																			<div>
-																				<!-- <div class="instrument-panel-closing">
-																					Closing: <span class="expiry-time">loading...</span>
-																				</div> -->
-																				<div class="instrument-panel-closing">
-																					Closing: <span class="closing-at"></span>
-																				</div>
+																			<a title="Add To Favourites" class="instrument-panel-favourite"></a>
+																			<div class="instrument-panel-duration">
+																				{{interval.shortLabel}}
 																			</div>
-																		{% elsif type.id == 'spread' or type.id == 'spread-on-demand' %}
-																			<div class="clearfix">
-																				<div class="instrument-panel-payout-wrap pull-left clearfix">
-																					<div class="font-sb">
-																						Payout
+																		</div>
+																		<div class="instrument-panel-body">
+																			{% if type.id == 'highlow' %}
+																				<div class="clearfix">
+																					<div class="instrument-panel-payout-wrap pull-left clearfix">
+																						<div class="font-sb">
+																							Payout
+																						</div>
+																						<div class="instrument-panel-payout">
+																							{{instrumentItem.payout}}
+																						</div>
 																					</div>
-																					<div class="instrument-panel-payout">
-																						{{instrumentItem.payout}}
+																					<div class="pull-left clearfix">
+																						<div class="font-sb">
+																							&nbsp;
+																						</div>
+																						<div class="instrument-panel-rate highlow-high">
+																						</div>
 																					</div>
-																				{% if type.id == 'spread' %}
+																				</div>
+																				<div>
+																					<!-- <div class="instrument-panel-closing">
+																						Closing: <span class="expiry-time">loading...</span>
+																					</div> -->
 																					<div class="instrument-panel-closing">
 																						Closing: <span class="closing-at"></span>
 																					</div>
-																				{% else %}
-																					<div class="instrument-panel-closing first-child last-child">
-																						Closes at: 02:00
-																					</div>
-																				{% endif %}
 																				</div>
-																				<div class="pull-left clearfix">
-																					{% comment %}<div class="font-sb">
-																						&nbsp;
-																					</div>{% endcomment %}
-																					<div class="instrument-panel-rate highlow-high">
+																			{% elsif type.id == 'spread' or type.id == 'spread-on-demand' %}
+																				<div class="clearfix">
+																					<div class="instrument-panel-payout-wrap pull-left clearfix">
+																						<div class="font-sb">
+																							Payout
+																						</div>
+																						<div class="instrument-panel-payout">
+																							{{instrumentItem.payout}}
+																						</div>
+																					{% if type.id == 'spread' %}
+																						<div class="instrument-panel-closing">
+																							Closing: <span class="closing-at"></span>
+																						</div>
+																					{% else %}
+																						<div class="instrument-panel-closing first-child last-child">
+																							Closes at: 02:00
+																						</div>
+																					{% endif %}
 																					</div>
-																					<div class="instrument-panel-rate highlow-low">
-																					</div>
-																				</div>
-																			</div>
-																		{% elsif type.id == 'on-demand' or type.id == 'extreme-on-demand' %}
-																			<div class="clearfix">
-																				<div class="instrument-panel-payout-wrap pull-left clearfix">
-																					<div class="font-sb">
-																						Payout
-																					</div>
-																					<div class="instrument-panel-payout">
-																						{{instrumentItem.payout}}
-																					</div>
-																					<div class="instrument-panel-closing first-child last-child">
-																						Closes at: 02:00
-																					</div>
-																				</div>
-																				<div class="pull-left clearfix">
-																					<div class="font-sb">
-																						&nbsp;
-																					</div>
-																					<div class="instrument-panel-rate highlow-high">
+																					<div class="pull-left clearfix">
+																						{% comment %}<div class="font-sb">
+																							&nbsp;
+																						</div>{% endcomment %}
+																						<div class="instrument-panel-rate highlow-high">
+																						</div>
+																						<div class="instrument-panel-rate highlow-low">
+																						</div>
 																					</div>
 																				</div>
-																			</div>
-																			<div>
-																				<!-- <div class="instrument-panel-closing">
-																					Closing: <span class="expiry-time">loading...</span>
-																				</div> -->
-																				<!-- <div class="instrument-panel-closing">
-																					Closing: <span class="closing-at"></span>
-																				</div> -->
-																			</div>
-																		{% endif %}
-																		
+																			{% elsif type.id == 'on-demand' or type.id == 'extreme-on-demand' %}
+																				<div class="clearfix">
+																					<div class="instrument-panel-payout-wrap pull-left clearfix">
+																						<div class="font-sb">
+																							Payout
+																						</div>
+																						<div class="instrument-panel-payout">
+																							{{instrumentItem.payout}}
+																						</div>
+																						<div class="instrument-panel-closing first-child last-child">
+																							Closes at: 02:00
+																						</div>
+																					</div>
+																					<div class="pull-left clearfix">
+																						<div class="font-sb">
+																							&nbsp;
+																						</div>
+																						<div class="instrument-panel-rate highlow-high">
+																						</div>
+																					</div>
+																				</div>
+																				<div>
+																					<!-- <div class="instrument-panel-closing">
+																						Closing: <span class="expiry-time">loading...</span>
+																					</div> -->
+																					<!-- <div class="instrument-panel-closing">
+																						Closing: <span class="closing-at"></span>
+																					</div> -->
+																				</div>
+																			{% endif %}
+																			
+																		</div>
 																	</div>
-																</div>
 
-															{% if remainder == '4' %}
-															</div>
-															{% elsif forloop.last and outerLoopLast == 'true' %}
-															</div>
-															{% endif %}
-															{% capture countAll %}{{countAll | plus:1}}{% endcapture %}
+																{% if remainder == '4' %}
+																</div>
+																{% elsif forloop.last and outerLoopLast == 'true' %}
+																</div>
+																{% endif %}
+																{% capture countAll %}{{countAll | plus:1}}{% endcapture %}
+															{% endfor %}
 														{% endfor %}
-													{% endfor %}
+													</div>
 												</div>
 											</div>
-										</div>
-										{% for interval in type.intervals %}
-										<div class="tab-view-panel" id="{{type.id}}-{{interval.id}}">
-											<a class="instrument-selector-widget-instruments-slider page-slider backward" data-target="#{{type.id}}-{{interval.id}}-pages">
-											</a>
-											<a class="instrument-selector-widget-instruments-slider page-slider forward" data-target="#{{type.id}}-{{interval.id}}-pages">
-											</a>
-											<div class="page-container" id="{{type.id}}-{{interval.id}}-pages">
-												<div class="slider-fade-left">
-												</div>
-												<div class="slider-fade-right">
-												</div>
-												<div class="pages-wrapper">
-													{% for instrumentItem in interval.instruments %}
-													{% capture remainder %}{{forloop.index0 | modulo:5}}{% endcapture %}
-													
-													{% if remainder == '0' %}
-													<div class="page {% if forloop.index0 == 0 %} active {% endif %}">
-													{% endif %}
-															
-														<div class="instrument-panel js-instrument-panel-original {% if forloop.index0 == 0 %} instrument-panel-active {% endif %} instrument-{{type.id}}-panel" 
-															data-uid="{{type.id}}-{{instrumentItem.id}}-{{interval.id}}-{{forloop.index0}}" 
-															data-trading-type="{{type.id}}" 
-															data-instrument-label="{{instrumentItem.label}}"
-															data-instrument-payout-rate="{{instrumentItem.payout}}"   
-															data-instrument-duration="{{interval.mediumLabel}}"
-															data-instrument-duration-id="{{interval.id}}"
-															data-instrument-duration-value="{{interval.value}}" 
-															data-instrument-seed-rate="{{instrumentItem.rate}}"
-															data-instrument-pip="{{instrumentItem.pip}}"
-														>
-															<div class="instrument-panel-header">
-																<div class="instrument-panel-title">
-																	{{instrumentItem.label}}
-																</div>
-																<a title="Add To Favourites" class="instrument-panel-favourite">
+											{% for interval in type.intervals %}
+											<div class="tab-view-panel" id="{{type.id}}-{{interval.id}}">
+												<a class="instrument-selector-widget-instruments-slider page-slider backward" data-target="#{{type.id}}-{{interval.id}}-pages">
+												</a>
+												<a class="instrument-selector-widget-instruments-slider page-slider forward" data-target="#{{type.id}}-{{interval.id}}-pages">
+												</a>
+												<div class="page-container" id="{{type.id}}-{{interval.id}}-pages">
+													<div class="slider-fade-left">
+													</div>
+													<div class="slider-fade-right">
+													</div>
+													<div class="pages-wrapper">
+														{% for instrumentItem in interval.instruments %}
+														{% capture remainder %}{{forloop.index0 | modulo:5}}{% endcapture %}
+														
+														{% if remainder == '0' %}
+														<div class="page {% if forloop.index0 == 0 %} active {% endif %}">
+														{% endif %}
+																
+															<div class="instrument-panel js-instrument-panel-original {% if forloop.index0 == 0 %} instrument-panel-active {% endif %} instrument-{{type.id}}-panel" 
+																data-uid="{{type.id}}-{{instrumentItem.id}}-{{interval.id}}-{{forloop.index0}}" 
+																data-trading-type="{{type.id}}" 
+																data-instrument-label="{{instrumentItem.label}}"
+																data-instrument-payout-rate="{{instrumentItem.payout}}"   
+																data-instrument-duration="{{interval.mediumLabel}}"
+																data-instrument-duration-id="{{interval.id}}"
+																data-instrument-duration-value="{{interval.value}}" 
+																data-instrument-seed-rate="{{instrumentItem.rate}}"
+																data-instrument-pip="{{instrumentItem.pip}}"
+															>
+																<div class="instrument-panel-header">
+																	<div class="instrument-panel-title">
+																		{{instrumentItem.label}}
+																	</div>
+																	<a title="Add To Favourites" class="instrument-panel-favourite">
 
-																</a>
-																<div class="instrument-panel-duration">
-																	{{interval.shortLabel}}
+																	</a>
+																	<div class="instrument-panel-duration">
+																		{{interval.shortLabel}}
+																	</div>
 																</div>
-															</div>
-															<div class="instrument-panel-body">
-																{% if type.id == 'highlow' %}
-																	<div class="clearfix">
-																		<div class="instrument-panel-payout-wrap pull-left clearfix">
-																			<div class="font-sb">
-																				Payout
+																<div class="instrument-panel-body">
+																	{% if type.id == 'highlow' %}
+																		<div class="clearfix">
+																			<div class="instrument-panel-payout-wrap pull-left clearfix">
+																				<div class="font-sb">
+																					Payout
+																				</div>
+																				<div class="instrument-panel-payout">
+																					{{instrumentItem.payout}}
+																				</div>
 																			</div>
-																			<div class="instrument-panel-payout">
-																				{{instrumentItem.payout}}
+																			<div class="pull-left clearfix">
+																				<div class="font-sb">
+																					&nbsp;
+																				</div>
+																				<div class="instrument-panel-rate highlow-high">
+																				</div>
 																			</div>
 																		</div>
-																		<div class="pull-left clearfix">
-																			<div class="font-sb">
-																				&nbsp;
-																			</div>
-																			<div class="instrument-panel-rate highlow-high">
-																			</div>
-																		</div>
-																	</div>
-																	<div>
-																		<!-- <div class="instrument-panel-closing">
-																			Closing: <span class="expiry-time">loading...</span>
-																		</div> -->
-																		<div class="instrument-panel-closing">
-																			Closing: <span class="closing-at"></span>
-																		</div>
-																	</div>
-																{% elsif type.id == 'spread' or type.id == 'spread-on-demand' %}
-																	<div class="clearfix">
-																		<div class="instrument-panel-payout-wrap pull-left clearfix">
-																			<div class="font-sb">
-																				Payout
-																			</div>
-																			<div class="instrument-panel-payout">
-																				{{instrumentItem.payout}}
-																			</div>
-																		{% if type.id == 'spread' %}
+																		<div>
+																			<!-- <div class="instrument-panel-closing">
+																				Closing: <span class="expiry-time">loading...</span>
+																			</div> -->
 																			<div class="instrument-panel-closing">
 																				Closing: <span class="closing-at"></span>
 																			</div>
-																		{% else %}
-																			<div class="instrument-panel-closing first-child last-child">
-																				Closes at: 02:00
-																			</div>
-																		{% endif %}
 																		</div>
-																		<div class="pull-left clearfix">
-																			{% comment %}<div class="font-sb">
-																				&nbsp;
-																			</div>{% endcomment %}
-																			<div class="instrument-panel-rate highlow-high">
+																	{% elsif type.id == 'spread' or type.id == 'spread-on-demand' %}
+																		<div class="clearfix">
+																			<div class="instrument-panel-payout-wrap pull-left clearfix">
+																				<div class="font-sb">
+																					Payout
+																				</div>
+																				<div class="instrument-panel-payout">
+																					{{instrumentItem.payout}}
+																				</div>
+																			{% if type.id == 'spread' %}
+																				<div class="instrument-panel-closing">
+																					Closing: <span class="closing-at"></span>
+																				</div>
+																			{% else %}
+																				<div class="instrument-panel-closing first-child last-child">
+																					Closes at: 02:00
+																				</div>
+																			{% endif %}
 																			</div>
-																			<div class="instrument-panel-rate highlow-low">
-																			</div>
-																		</div>
-																	</div>
-																{% elsif type.id == 'on-demand' or type.id == 'extreme-on-demand' %}
-																	<div class="clearfix">
-																		<div class="instrument-panel-payout-wrap pull-left clearfix">
-																			<div class="font-sb">
-																				Payout
-																			</div>
-																			<div class="instrument-panel-payout">
-																				{{instrumentItem.payout}}
-																			</div>
-																			<div class="instrument-panel-closing first-child last-child">
-																				Closes at: 02:00
-																			</div>
-																		</div>
-																		<div class="pull-left clearfix">
-																			<div class="font-sb">
-																				&nbsp;
-																			</div>
-																			<div class="instrument-panel-rate highlow-high">
+																			<div class="pull-left clearfix">
+																				{% comment %}<div class="font-sb">
+																					&nbsp;
+																				</div>{% endcomment %}
+																				<div class="instrument-panel-rate highlow-high">
+																				</div>
+																				<div class="instrument-panel-rate highlow-low">
+																				</div>
 																			</div>
 																		</div>
-																	</div>
-																	<div>
-																		<!-- <div class="instrument-panel-closing">
-																			Closing: <span class="expiry-time">loading...</span>
-																		</div> -->
-																		<!-- <div class="instrument-panel-closing">
-																			Closing: <span class="closing-at"></span>
-																		</div> -->
-																	</div>
-																{% endif %}
+																	{% elsif type.id == 'on-demand' or type.id == 'extreme-on-demand' %}
+																		<div class="clearfix">
+																			<div class="instrument-panel-payout-wrap pull-left clearfix">
+																				<div class="font-sb">
+																					Payout
+																				</div>
+																				<div class="instrument-panel-payout">
+																					{{instrumentItem.payout}}
+																				</div>
+																				<div class="instrument-panel-closing first-child last-child">
+																					Closes at: 02:00
+																				</div>
+																			</div>
+																			<div class="pull-left clearfix">
+																				<div class="font-sb">
+																					&nbsp;
+																				</div>
+																				<div class="instrument-panel-rate highlow-high">
+																				</div>
+																			</div>
+																		</div>
+																		<div>
+																			<!-- <div class="instrument-panel-closing">
+																				Closing: <span class="expiry-time">loading...</span>
+																			</div> -->
+																			<!-- <div class="instrument-panel-closing">
+																				Closing: <span class="closing-at"></span>
+																			</div> -->
+																		</div>
+																	{% endif %}
+																</div>
 															</div>
-														</div>
 
-													{% if remainder == '4' %}
-														</div>
-													{% elsif forloop.last %}
-														</div>
-													{% endif %}
-												{% endfor %}
+														{% if remainder == '4' %}
+															</div>
+														{% elsif forloop.last %}
+															</div>
+														{% endif %}
+													{% endfor %}
+													</div>
 												</div>
 											</div>
-										</div>
-										{% endfor %}
+											{% endfor %}
 
 
-										<!-- favourite -->
+											<!-- favourite -->
 
-										<div class="tab-view-panel" id="{{type.id}}-favourite">
-											<a class="instrument-selector-widget-instruments-slider page-slider backward" data-target="#{{type.id}}-favourite-pages">
-											</a>
-											<a class="instrument-selector-widget-instruments-slider page-slider forward" data-target="#{{type.id}}-favourite-pages">
-											</a>
-											<div class="page-container" id="{{type.id}}-favourite-pages">
-												<div class="slider-fade-left">
+											<div class="tab-view-panel" id="{{type.id}}-favourite">
+												<a class="instrument-selector-widget-instruments-slider page-slider backward" data-target="#{{type.id}}-favourite-pages">
+												</a>
+												<a class="instrument-selector-widget-instruments-slider page-slider forward" data-target="#{{type.id}}-favourite-pages">
+												</a>
+												<div class="page-container" id="{{type.id}}-favourite-pages">
+													<div class="slider-fade-left">
 
+													</div>
+													<div class="slider-fade-right">
+
+													</div>
+													<div class="pages-wrapper">
+														
+													</div>
+													<div class="no-data">You currently have no favourites</div>
 												</div>
-												<div class="slider-fade-right">
-
-												</div>
-												<div class="pages-wrapper">
-													
-												</div>
-												<div class="no-data">You currently have no favourites</div>
 											</div>
-										</div>
 
-										<!-- end favourite -->
+											<!-- end favourite -->
 
-									{% endif %}
+										{% endif %}
+									</div>
 								</div>
 							</div>
 						</div>
-					</div>
-					<div class="panel panel-default trading-platform main-view" id="{{type.id}}-main-view">
-						<div class="panel-header">
-							<div class="pull-left chart-panel instrument-details-display walk-through-step">
-								<span class="trading-platform-instrument-title font-sb">
-									
-								</span>
-								<span class="trading-platform-instrument-rate highlow-high current-rate">
-								</span>
-								{% if type.range %}
-								<span class="trading-platform-instrument-spread-range">
-									+/- {{type.range}}
-								</span>
-								{% endif %}
-								<img src="common/images/loading.gif" class="loading-icon"/>
-							</div>
-							<div class="pull-right time-display chart-control walk-through-step">
-								<img src="common/images/loading.gif" class="processing"/>
-							{% if type.id != 'on-demand' and type.id != 'spread-on-demand' and type.id != 'extreme-on-demand' %}
-								<span class="trading-platform-instrument-closing-time">
-									
-								</span>
-								<span class="trading-platform-instrument-time-left time-to-expiry">
-									loading...
-								</span>
-							{% else %}
-								<span class="trading-platform-instrument-market-close-time">
-									Market closes at 02:00
-								</span>
-							{% endif %}
-								<a class="trading-platform-instrument-one-click-toggler tooltip-container">
-									<div class="tooltip one-touch">
-										<div class="title">
-											One Click Trading
-										</div>
-										<div class="content">
-											<p>Switch to One Click Trading for faster trade execution. </p><p>Note: When switched on, One Click Trading will be active on both the chart and trade panel.</p>
-										</div>
-									</div>
-								</a>
-							</div>
-						</div>
-						<div class="clearfix">
-							<div class="{{type.id}} demo-message message-wrapper">
-								<div class="message">
-									This is indicative of a <span class="demo-message-type"></span> dialogue
-								</div>
-								<!-- <div class="close">
-
-								</div> -->
-							</div>
-						</div>
-						<div class="panel-body">
-							<span class="chart-panel chart walk-through-step">
-								<div class="heatmap collapsed tooltip-container" id="{{type.id}}-heatmap" data-target="{{type.id}}-graph">
-									<div class="label high">
-										31%
-									</div>
-									<div class="meter">
-										<div class="fill high" style="height: 31%;">
-										</div>
-										<div class="fill low" style="height: 69%;">
-										</div>
-									</div>
-									<div class="label low">
-										69%
-									</div>
-									<div class="toggle">
+						<div class="panel panel-default trading-platform main-view" id="{{type.id}}-main-view">
+							<div class="panel-header">
+								<div class="pull-left chart-panel instrument-details-display walk-through-step">
+									<span class="trading-platform-instrument-title font-sb">
 										
-									</div>
-									<div class="expander">
-									</div>
-									<div class="tooltip trader-choice">
-										<div class="title">
-											Traders Choice
-										</div>
-										<div class="content">
-											View recent decisions by other traders with our Traders Choice sentiment indicator.
-										</div>
-									</div>
+									</span>
+									<span class="trading-platform-instrument-rate highlow-high current-rate">
+									</span>
+									{% if type.range %}
+									<span class="trading-platform-instrument-spread-range">
+										+/- {{type.range}}
+									</span>
+									{% endif %}
+									<img src="common/images/loading.gif" class="loading-icon"/>
 								</div>
-								<div class="trading-platform-live-graph">
-									<div id="{{type.id}}-graph" class="live-graph"></div>
+								<div class="pull-right time-display chart-control walk-through-step">
+									<img src="common/images/loading.gif" class="processing"/>
+								{% if type.id != 'on-demand' and type.id != 'spread-on-demand' and type.id != 'extreme-on-demand' %}
+									<span class="trading-platform-instrument-closing-time">
+										
+									</span>
+									<span class="trading-platform-instrument-time-left time-to-expiry">
+										loading...
+									</span>
+								{% else %}
+									<span class="trading-platform-instrument-market-close-time">
+										Market closes at 02:00
+									</span>
+								{% endif %}
+									<a class="trading-platform-instrument-one-click-toggler tooltip-container">
+										<div class="tooltip one-touch">
+											<div class="title">
+												One Click Trading
+											</div>
+											<div class="content">
+												<p>Switch to One Click Trading for faster trade execution. </p><p>Note: When switched on, One Click Trading will be active on both the chart and trade panel.</p>
+											</div>
+										</div>
+									</a>
 								</div>
-							</span>
-							<div class="trading-platform-main-controls chart-control walk-through-step">
-								<div class="clearfix">
-									<div class="trading-platform-main-controls-instrument-title font-sb pull-left">
-										USD/JPY
+							</div>
+							<div class="clearfix">
+								<div class="{{type.id}} demo-message message-wrapper">
+									<div class="message">
+										This is indicative of a <span class="demo-message-type"></span> dialogue
 									</div>
-									<div class="trading-platform-main-controls-live-rate pull-right">
-										{% comment %}<div class="pull-left font-sb">
-											Market
-										</div>{% endcomment %}
+									<!-- <div class="close">
+
+									</div> -->
+								</div>
+							</div>
+							<div class="panel-body">
+								<span class="chart-panel chart walk-through-step">
+									<div class="heatmap collapsed tooltip-container" id="{{type.id}}-heatmap" data-target="{{type.id}}-graph">
+										<div class="label high">
+											31%
+										</div>
+										<div class="meter">
+											<div class="fill high" style="height: 31%;">
+											</div>
+											<div class="fill low" style="height: 69%;">
+											</div>
+										</div>
+										<div class="label low">
+											69%
+										</div>
+										<div class="toggle">
 											
-										<span class="highlow-high current-rate">
-											102.77 
-										</span>
+										</div>
+										<div class="expander">
+										</div>
+										<div class="tooltip trader-choice">
+											<div class="title">
+												Traders Choice
+											</div>
+											<div class="content">
+												View recent decisions by other traders with our Traders Choice sentiment indicator.
+											</div>
+										</div>
+									</div>
+									<div class="trading-platform-live-graph">
+										<div id="{{type.id}}-graph" class="live-graph"></div>
+									</div>
+								</span>
+								<div class="trading-platform-main-controls chart-control walk-through-step">
+									<div class="clearfix">
+										<div class="trading-platform-main-controls-instrument-title font-sb pull-left">
+											USD/JPY
+										</div>
+										<div class="trading-platform-main-controls-live-rate pull-right">
+											{% comment %}<div class="pull-left font-sb">
+												Market
+											</div>{% endcomment %}
+												
+											<span class="highlow-high current-rate">
+												102.77 
+											</span>
 
-										{% if type.range %}
-										<span class="trading-platform-instrument-spread-range">
-											+/- {{type.range}}
-										</span>
-										{% endif %}
+											{% if type.range %}
+											<span class="trading-platform-instrument-spread-range">
+												+/- {{type.range}}
+											</span>
+											{% endif %}
+										</div>
 									</div>
-								</div>
-								<div class="trading-platform-main-controls-investment font-m form-control">
-									$<input type="text" class="number-only" id="{{type.id}}-investment-value-input" value="500"/>
-								</div>
-								<div class="clearfix trading-platform-main-controls-common-amount">
-									<!-- I've used div as button here because button deosn't get :focus style on click for Firefox and Safari on MAc OSX -->
+									<div class="trading-platform-main-controls-investment font-m form-control">
+										$<input type="text" class="number-only" id="{{type.id}}-investment-value-input" value="500"/>
+									</div>
+									<div class="clearfix trading-platform-main-controls-common-amount">
+										<!-- I've used div as button here because button deosn't get :focus style on click for Firefox and Safari on MAc OSX -->
 
-									<div class="btn btn-md-pad font-m" tabindex="0" onclick="document.getElementById('{{type.id}}-investment-value-input-popup').value = this.getAttribute('data-value'); document.getElementById('{{type.id}}-investment-value-input').value = this.getAttribute('data-value');" data-value="50">$50</div>
-									<div class="btn btn-md-pad font-m" tabindex="0" onclick="document.getElementById('{{type.id}}-investment-value-input-popup').value = this.getAttribute('data-value'); document.getElementById('{{type.id}}-investment-value-input').value = this.getAttribute('data-value');" data-value="100">$100</div>
-									<div class="btn btn-md-pad font-m active" tabindex="0" onclick="document.getElementById('{{type.id}}-investment-value-input-popup').value = this.getAttribute('data-value'); document.getElementById('{{type.id}}-investment-value-input').value = this.getAttribute('data-value');" data-value="500">$500</div>
-								</div>
-								<div class="trading-platform-main-controls-options one-click-control">
-									<div class="btn btn-positive btn-extruded font-m btn-md-pad one-touch-bet bet-high {{type.id}} highlow-up"
-										data-type="{{type.id}}" data-direction="high">
-										{% if type.id == 'spread' or type.id == 'spread-on-demand' %}
-											<span class="spread-high"></span>
-										{% else %}
-											HIGH
-										{% endif %}
+										<div class="btn btn-md-pad font-m" tabindex="0" onclick="document.getElementById('{{type.id}}-investment-value-input-popup').value = this.getAttribute('data-value'); document.getElementById('{{type.id}}-investment-value-input').value = this.getAttribute('data-value');" data-value="50">$50</div>
+										<div class="btn btn-md-pad font-m" tabindex="0" onclick="document.getElementById('{{type.id}}-investment-value-input-popup').value = this.getAttribute('data-value'); document.getElementById('{{type.id}}-investment-value-input').value = this.getAttribute('data-value');" data-value="100">$100</div>
+										<div class="btn btn-md-pad font-m active" tabindex="0" onclick="document.getElementById('{{type.id}}-investment-value-input-popup').value = this.getAttribute('data-value'); document.getElementById('{{type.id}}-investment-value-input').value = this.getAttribute('data-value');" data-value="500">$500</div>
 									</div>
-									<div class="btn btn-negative btn-extruded font-m btn-md-pad one-touch-bet bet-low {{type.id}} highlow-down"
-										data-type="{{type.id}}" data-direction="low">
-										{% if type.id == 'spread' or type.id == 'spread-on-demand' %}
-											<span class="spread-low"></span>
-										{% else %}
-											LOW
-										{% endif %}
-									</div>
-								</div>
-								<div class="clearfix trading-platform-main-controls-options none-one-click-control">
-									<div class="trading-platform-main-controls-select-direction">
-										<label for="trading-platform-main-controls-select-direction-up-{{type.id}}" class="btn btn-extruded font-m btn-sm-pad btn-positive highlow-up trading-select-direction-{{type.id}}-high">
+									<div class="trading-platform-main-controls-options one-click-control">
+										<div class="btn btn-positive btn-extruded font-m btn-md-pad one-touch-bet bet-high {{type.id}} highlow-up"
+											data-type="{{type.id}}" data-direction="high">
 											{% if type.id == 'spread' or type.id == 'spread-on-demand' %}
 												<span class="spread-high"></span>
 											{% else %}
 												HIGH
 											{% endif %}
-										</label>
-										<input type="radio" id="trading-platform-main-controls-select-direction-up-{{type.id}}" name="selectedDirection{{type.id}}" value="high"/>
-										<label for="trading-platform-main-controls-select-direction-down-{{type.id}}" class="btn btn-extruded btn-negative font-m btn-sm-pad highlow-down trading-select-direction-{{type.id}}-low">
+										</div>
+										<div class="btn btn-negative btn-extruded font-m btn-md-pad one-touch-bet bet-low {{type.id}} highlow-down"
+											data-type="{{type.id}}" data-direction="low">
 											{% if type.id == 'spread' or type.id == 'spread-on-demand' %}
 												<span class="spread-low"></span>
 											{% else %}
 												LOW
 											{% endif %}
-										</label>
-										<input type="radio" id="trading-platform-main-controls-select-direction-down-{{type.id}}" name="selectedDirection{{type.id}}" value="low"/>
+										</div>
 									</div>
-									<div class="btn btn-highlight btn-extruded font-m btn-lg-pad trading-platform-main-controls-place-bet {{type.id}}" data-type="{{type.id}}" data-direction="selectedDirection{{type.id}}">INVEST</div>
+									<div class="clearfix trading-platform-main-controls-options none-one-click-control">
+										<div class="trading-platform-main-controls-select-direction">
+											<label for="trading-platform-main-controls-select-direction-up-{{type.id}}" class="btn btn-extruded font-m btn-sm-pad btn-positive highlow-up trading-select-direction-{{type.id}}-high">
+												{% if type.id == 'spread' or type.id == 'spread-on-demand' %}
+													<span class="spread-high"></span>
+												{% else %}
+													HIGH
+												{% endif %}
+											</label>
+											<input type="radio" id="trading-platform-main-controls-select-direction-up-{{type.id}}" name="selectedDirection{{type.id}}" value="high"/>
+											<label for="trading-platform-main-controls-select-direction-down-{{type.id}}" class="btn btn-extruded btn-negative font-m btn-sm-pad highlow-down trading-select-direction-{{type.id}}-low">
+												{% if type.id == 'spread' or type.id == 'spread-on-demand' %}
+													<span class="spread-low"></span>
+												{% else %}
+													LOW
+												{% endif %}
+											</label>
+											<input type="radio" id="trading-platform-main-controls-select-direction-down-{{type.id}}" name="selectedDirection{{type.id}}" value="low"/>
+										</div>
+										<div class="btn btn-highlight btn-extruded font-m btn-lg-pad trading-platform-main-controls-place-bet {{type.id}}" data-type="{{type.id}}" data-direction="selectedDirection{{type.id}}">INVEST</div>
+									</div>
+									<div class="trading-platform-main-controls-payout">
+										<div class="pull-left font-sb">
+											Payout
+										</div>
+										<div class="pull-right">
+											<span class="trading-platform-main-controls-payout-rate">1.85</span>
+										</div>
+									</div>
+									<div class="trading-platform-main-controls-return">
+										<div class="pull-left font-sb">
+											Return
+										</div>
+										<div class="pull-right trading-platform-maximum-return">
+											$925.00
+										</div>
+									</div>
 								</div>
-								<div class="trading-platform-main-controls-payout">
-									<div class="pull-left font-sb">
-										Payout
-									</div>
-									<div class="pull-right">
-										<span class="trading-platform-main-controls-payout-rate">1.85</span>
-									</div>
+								<div class="chart-loading-screen">
+									<img src="common/images/loading-lighter.gif" class="loading-icon"/>
 								</div>
-								<div class="trading-platform-main-controls-return">
-									<div class="pull-left font-sb">
-										Return
-									</div>
-									<div class="pull-right trading-platform-maximum-return">
-										$925.00
-									</div>
-								</div>
-							</div>
-							<div class="chart-loading-screen">
-								<img src="common/images/loading-lighter.gif" class="loading-icon"/>
 							</div>
 						</div>
 					</div>
 				</div>
-			</div>
+
+			{% unless type._walkThrough %} <!-- end-hide --> {% endunless %}
+
 			{% endfor %}
 		</div>
 		<div class="platform-loading-screen">
@@ -801,6 +813,9 @@
 
 
 {% for type in tradingTypes %}
+
+{% unless type._walkThrough %} <!-- hide --> {% endunless %}
+
 <div class="trading-platform-popup-wrapper trading-platform-sell-popup overlay {{type.id}} concealed" id="sell-popup-{{type.id}}">
 	<div class="trading-platform-popup">
 		<div class="trading-platform-popup-content-wrapper">
@@ -927,6 +942,9 @@
 		</div>
 	</div>
 </div>
+
+{% unless type._walkThrough %} <!-- end-hide --> {% endunless %}
+
 {% endfor %}
 <div class="trading-platform-popup-wrapper trading-platform-widget-popup concealed overlay" id="make-deposit-popup">
 	<div class="trading-platform-popup">
@@ -938,7 +956,9 @@
 						<div class="trading-platform-popup-close close"></div>
 					</div>
 					<div class="trading-platform-popup-body">
+						<!-- iframe -->
 						<iframe onload="requestHeightSet()" id="deposit-iframe-frame" src="http://point.agency/highlow/new-site/deposit-iframe.html"></iframe>
+						<!-- end-iframe -->
 					</div>
 				</div>
 			</div>

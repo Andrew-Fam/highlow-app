@@ -54,46 +54,9 @@ module.exports = function(grunt) {
 						cnLabel: "<span class='tab-graphic-text cn'><img class='default' src='common/images/highlow-tab-cn.png' alt='HighLow 图'/><img class='hover' src='common/images/highlow-tab-cn-hover.png' alt='HighLow 图'/></span>",
 						id: "highlow",
 						range: false,
-						default: false,
+						default: true,
 						_new: false,
-						instruments: [
-							{
-								label:"USD/JPY",
-								id: "usd-jpy"
-							},
-							{
-								label:"AUD/USD",
-								id: "aud-usd"
-							},
-							{
-								label:"EUR/JPY",
-								id: "eur-jpy"
-							},
-							{
-								label:"EUR/USD",
-								id: "eur-usd"
-							},
-							{
-								label:"GBP/JPY",
-								id: "gbp-jpy"
-							},
-							{
-								label:"GBP/USD",
-								id: "gbp-usd"
-							},
-							{
-								label:"NZD/JPY",
-								id: "nzd-jpy"
-							},
-							{
-								label:"NZD/USD",
-								id: "nzd-usd"
-							},
-							{
-								label: "AUD/JPY",
-								id: "aud-jpy"
-							}
-						],
+						_walkThrough: true,
 						intervals: [
 							{
 								id: "15min",
@@ -109,7 +72,7 @@ module.exports = function(grunt) {
 									{
 										label:"USD/JPY",
 										id: "usd-jpy",
-										payout: "2.00",
+										payout: "1.80",
 										rate: "118.62",
 										pip: 3
 									},
@@ -118,6 +81,34 @@ module.exports = function(grunt) {
 										id: "aud-jpy",
 										payout: "1.80",
 										rate: "92.439",
+										pip: 3
+									},
+									{
+										label: "AUD/USD",
+										id: "aud-usd",
+										payout: "1.80",
+										rate: "0.75441",
+										pip: 5
+									},
+									{
+										label: "EUR/JPY",
+										id: "eur-jpy",
+										payout: "1.80",
+										rate: "135.740",
+										pip: 3
+									},
+									{
+										label: "EUR/USD",
+										id: "eur-usd",
+										payout: "1.80",
+										rate: "1.12560",
+										pip: 5
+									},
+									{
+										label: "GBP/JPY",
+										id: "gbp-jpy",
+										payout: "1.80",
+										rate: "112.44",
 										pip: 3
 									}
 								]
@@ -137,14 +128,42 @@ module.exports = function(grunt) {
 										label:"USD/JPY",
 										id: "usd-jpy",
 										payout: "1.80",
-										rate: "114.45",
+										rate: "118.62",
 										pip: 3
 									},
 									{
 										label: "AUD/JPY",
 										id: "aud-jpy",
-										payout: "1.85",
+										payout: "1.80",
 										rate: "92.439",
+										pip: 3
+									},
+									{
+										label: "AUD/USD",
+										id: "aud-usd",
+										payout: "1.80",
+										rate: "0.75441",
+										pip: 5
+									},
+									{
+										label: "EUR/JPY",
+										id: "eur-jpy",
+										payout: "1.80",
+										rate: "135.740",
+										pip: 3
+									},
+									{
+										label: "EUR/USD",
+										id: "eur-usd",
+										payout: "1.80",
+										rate: "1.12560",
+										pip: 5
+									},
+									{
+										label: "GBP/JPY",
+										id: "gbp-jpy",
+										payout: "1.80",
+										rate: "112.44",
 										pip: 3
 									}
 								]
@@ -164,14 +183,42 @@ module.exports = function(grunt) {
 										label:"USD/JPY",
 										id: "usd-jpy",
 										payout: "1.80",
-										rate: "114.45",
+										rate: "118.62",
 										pip: 3
 									},
 									{
 										label: "AUD/JPY",
 										id: "aud-jpy",
-										payout: "1.85",
+										payout: "1.80",
 										rate: "92.439",
+										pip: 3
+									},
+									{
+										label: "AUD/USD",
+										id: "aud-usd",
+										payout: "1.80",
+										rate: "0.75441",
+										pip: 5
+									},
+									{
+										label: "EUR/JPY",
+										id: "eur-jpy",
+										payout: "1.80",
+										rate: "135.740",
+										pip: 3
+									},
+									{
+										label: "EUR/USD",
+										id: "eur-usd",
+										payout: "1.80",
+										rate: "1.12560",
+										pip: 5
+									},
+									{
+										label: "GBP/JPY",
+										id: "gbp-jpy",
+										payout: "1.80",
+										rate: "112.44",
 										pip: 3
 									}
 								]
@@ -185,6 +232,7 @@ module.exports = function(grunt) {
 						range: 0.005,
 						default: false,
 						_new: false,
+						_walkThrough: false,
 						instruments: [
 							{
 								label:"AUD/USD",
@@ -270,9 +318,10 @@ module.exports = function(grunt) {
 						jaLabel: "Turbo",
 						cnLabel: "<span class='tab-graphic-text cn'><img class='default' src='common/images/turbo-tab-cn.png' alt='Turbo图'/><img class='hover' src='common/images/turbo-tab-cn-hover.png' alt='Turbo图'/></span>",
 						id: "on-demand",
-						default: true,
+						default: false,
 						range: false,
 						_new: false,
+						_walkThrough: false,
 						instruments: [
 							{
 								label:"AUD/USD",
@@ -349,6 +398,7 @@ module.exports = function(grunt) {
 						default: false,
 						range: 0.005,
 						_new: false,
+						_walkThrough: false,
 						instruments: [
 							{
 								label:"AUD/USD",
@@ -427,6 +477,7 @@ module.exports = function(grunt) {
 						default: false,
 						range: 0.005,
 						_new: true,
+						_walkThrough: false,
 						instruments: [
 							{
 								label: "AUD/JPY",
@@ -520,7 +571,7 @@ module.exports = function(grunt) {
 					dest: '../highlow-public-page/public/trade-platform/'
 				}]
 			},
-			integrateInToNewSite: {
+			assetsToWalkthrough: {
 				files: [{
 					expand: true,
 					flatten: false,
@@ -554,7 +605,7 @@ module.exports = function(grunt) {
 		      to: "public/trade-platform/images"
 		    }]
 		  },
-		  jsURLNewSite: {
+		  jsURLWalkthrough: {
 		    src: ['../hl-my-account/common/trade-platform/scripts/highlow-main.js'],
 		    overwrite: true,                 // overwrite matched source files
 		    replacements: [{
@@ -568,16 +619,48 @@ module.exports = function(grunt) {
 		    	to: '"url("+platformAssetUrl+"'
 		    }]
 		  },
-		  htmlURLNewSite: {
+		  htmlURLWalkthrough: {
 		    src: [
 		    	'../hl-my-account/templates/includes/trade-platform.liquid',
-		    	'../hl-my-account/templates/includes/trade-platform-cn.liquid',
-		    	'../hl-my-account/templates/includes/ja-trade-platform.liquid'
+		    	// '../hl-my-account/templates/includes/trade-platform-cn.liquid',
+		    	// '../hl-my-account/templates/includes/ja-trade-platform.liquid'
 		    ],
 		    overwrite: true,                 // overwrite matched source files
 		    replacements: [{
 		      from: 'common/images/',		      
 		      to: 'common/trade-platform/images/'
+		    }]
+		  },
+		  trimHTMLWalkthrough : {
+			src: [
+		    	'../hl-my-account/templates/includes/trade-platform.liquid',
+		    	// '../hl-my-account/templates/includes/trade-platform-cn.liquid',
+		    	// '../hl-my-account/templates/includes/ja-trade-platform.liquid'
+		    ],
+		    overwrite: true,                 // overwrite matched source files
+		    replacements: [{
+		      from: /<!--\shide\s-->([\s\S]*?)<!--\send-hide\s-->/g,		      
+		      to: ''
+		    }]
+		  },
+		  engIframeWalkthrough : {
+		  	src: [
+		    	'../hl-my-account/templates/includes/trade-platform.liquid'
+		    ],
+		    overwrite: true,                 // overwrite matched source files
+		    replacements: [{
+		      from: /<!--\siframe\s-->([\s\S]*?)<!--\send-iframe\s-->/g,		      
+		      to: '{% include deposit-iframe %}'
+		    }]
+		  },
+		  jpIframeWalkthrough : {
+		  	src: [
+		    	'../hl-my-account/templates/includes/ja-trade-platform.liquid'
+		    ],
+		    overwrite: true,                 // overwrite matched source files
+		    replacements: [{
+		      from: /<!--\siframe\s-->([\s\S]*?)<!--\send-iframe\s-->/g,		      
+		      to: '{% include ja-deposit-iframe %}'
 		    }]
 		  },
 		  htmlURLPlatformSite: {
@@ -608,19 +691,20 @@ module.exports = function(grunt) {
 			      '../highlow-public-page/templates/includes/ja-platform.liquid': ['build/ja-index.html']
 			  }
 			},
-			// copyPlatformToNewSite: {
-			//   options: {
-			//       sourceFileStartPattern: '<!-- start-platform -->',
-			//       sourceFileEndPattern: '<!-- end-platform -->',
-			//       destinationFileStartPattern: '<!-- start-platform -->',
-			//       destinationFileEndPattern: '<!-- end-platform -->'
-			//   },	
-			//   files: {
-			//       '../hl-my-account/templates/includes/trade-platform.liquid': ['build/index.html'],
-			//       '../hl-my-account/templates/includes/trade-platform-cn.liquid': ['build/index-cn.html'],
-			//       '../hl-my-account/templates/includes/ja-trade-platform.liquid': ['build/ja-index.html']
-			//   }
-			// },
+			platformToWalkthrough: {
+			  options: {
+			      sourceFileStartPattern: '<!-- start-platform -->',
+			      sourceFileEndPattern: '<!-- end-platform -->',
+			      destinationFileStartPattern: '<!-- start-platform -->',
+			      destinationFileEndPattern: '<!-- end-platform -->'
+			  },	
+			  files: {
+			      '../hl-my-account/templates/includes/trade-platform.liquid': ['build/index.html']
+			      // ,
+			      // '../hl-my-account/templates/includes/trade-platform-cn.liquid': ['build/index-cn.html'],
+			      // '../hl-my-account/templates/includes/ja-trade-platform.liquid': ['build/ja-index.html']
+			  }
+			},
 			copyTradingActivityPopup: {
 				options: {
 			      sourceFileStartPattern: '<!-- trading-activity-popup -->',
@@ -686,6 +770,7 @@ module.exports = function(grunt) {
 	});
 
 	grunt.registerTask('default', ['sprite', 'less', 'newer:concat', 'newer:liquid', 'copy:main', 'concurrent:all']);
+	grunt.registerTask('build-platform-to-walk-through',['liquid','copy:assetsToWalkthrough','copy-part-of-file:platformToWalkthrough','replace:jsURLWalkthrough','replace:htmlURLWalkthrough','replace:trimHTMLWalkthrough','replace:engIframeWalkthrough']);
 	// grunt.registerTask('build', ['sprite', 'less', 'newer:concat', 'newer:liquid', 'newer:copy', 'copy-part-of-file','replace']);
 	// grunt.registerTask('build-platform-to-public-page',[ 'sprite', 'less', 'newer:concat', 'newer:liquid', 'newer:copy:integrateInToPublic','copy-part-of-file:copyPlatform','replace']);
 	// grunt.registerTask('asset', ['sprite', 'less', 'concat', 'liquid', 'copy','replace']);
