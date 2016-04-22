@@ -562,7 +562,7 @@ module.exports = function(grunt) {
 					dest: 'build/common/'
 				}]
 			},
-			integrateInToPublic: {
+			assetsToMarketPulse: {
 				files: [{
 					expand: true,
 					flatten: false,
@@ -605,6 +605,19 @@ module.exports = function(grunt) {
 		      to: "public/trade-platform/images"
 		    }]
 		  },
+		  htmlURLPlatformSite: {
+		    src: [
+		    	'../highlow-public-page/templates/includes/platform.liquid',
+		    	'../highlow-public-page/templates/includes/platform-cn.liquid',
+		    	'../highlow-public-page/templates/includes/ja-platform.liquid',
+		    	'../highlow-public-page/templates/includes/ja-platform-lite.liquid'
+		    ],
+		    overwrite: true,                 // overwrite matched source files
+		    replacements: [{
+		      from: 'common/images/',	
+		      to: 'public/trade-platform/images/'
+		    }]
+		  },
 		  jsURLWalkthrough: {
 		    src: ['../hl-my-account/common/trade-platform/scripts/highlow-main.js'],
 		    overwrite: true,                 // overwrite matched source files
@@ -623,7 +636,7 @@ module.exports = function(grunt) {
 		    src: [
 		    	'../hl-my-account/templates/includes/trade-platform.liquid',
 		    	// '../hl-my-account/templates/includes/trade-platform-cn.liquid',
-		    	// '../hl-my-account/templates/includes/ja-trade-platform.liquid'
+		    	'../hl-my-account/templates/includes/ja-trade-platform.liquid'
 		    ],
 		    overwrite: true,                 // overwrite matched source files
 		    replacements: [{
@@ -635,7 +648,7 @@ module.exports = function(grunt) {
 			src: [
 		    	'../hl-my-account/templates/includes/trade-platform.liquid',
 		    	// '../hl-my-account/templates/includes/trade-platform-cn.liquid',
-		    	// '../hl-my-account/templates/includes/ja-trade-platform.liquid'
+		    	'../hl-my-account/templates/includes/ja-trade-platform.liquid'
 		    ],
 		    overwrite: true,                 // overwrite matched source files
 		    replacements: [{
@@ -662,23 +675,10 @@ module.exports = function(grunt) {
 		      from: /<!--\siframe\s-->([\s\S]*?)<!--\send-iframe\s-->/g,		      
 		      to: '{% include ja-deposit-iframe %}'
 		    }]
-		  },
-		  htmlURLPlatformSite: {
-		    src: [
-		    	'../highlow-public-page/templates/includes/platform.liquid',
-		    	'../highlow-public-page/templates/includes/platform-cn.liquid',
-		    	'../highlow-public-page/templates/includes/ja-platform.liquid',
-		    	'../highlow-public-page/templates/includes/ja-platform-lite.liquid'
-		    ],
-		    overwrite: true,                 // overwrite matched source files
-		    replacements: [{
-		      from: 'common/images/',	
-		      to: 'public/trade-platform/images/'
-		    }]
 		  }
 		},
 		'copy-part-of-file': {
-			copyPlatform: {
+			platformToMarketPulse: {
 			  options: {
 			      sourceFileStartPattern: '<!-- start-platform -->',
 			      sourceFileEndPattern: '<!-- end-platform -->',
@@ -699,13 +699,12 @@ module.exports = function(grunt) {
 			      destinationFileEndPattern: '<!-- end-platform -->'
 			  },	
 			  files: {
-			      '../hl-my-account/templates/includes/trade-platform.liquid': ['build/index.html']
-			      // ,
+			      '../hl-my-account/templates/includes/trade-platform.liquid': ['build/index.html'],
 			      // '../hl-my-account/templates/includes/trade-platform-cn.liquid': ['build/index-cn.html'],
-			      // '../hl-my-account/templates/includes/ja-trade-platform.liquid': ['build/ja-index.html']
+			      '../hl-my-account/templates/includes/ja-trade-platform.liquid': ['build/ja-index.html']
 			  }
 			},
-			copyTradingActivityPopup: {
+			tradingActivityPopupToMarketPulse: {
 				options: {
 			      sourceFileStartPattern: '<!-- trading-activity-popup -->',
 			      sourceFileEndPattern: '<!-- end-trading-activity-popup -->',
@@ -770,8 +769,7 @@ module.exports = function(grunt) {
 	});
 
 	grunt.registerTask('default', ['sprite', 'less', 'newer:concat', 'newer:liquid', 'copy:main', 'concurrent:all']);
-	grunt.registerTask('build-platform-to-walk-through',['liquid','copy:assetsToWalkthrough','copy-part-of-file:platformToWalkthrough','replace:jsURLWalkthrough','replace:htmlURLWalkthrough','replace:trimHTMLWalkthrough','replace:engIframeWalkthrough']);
-	// grunt.registerTask('build', ['sprite', 'less', 'newer:concat', 'newer:liquid', 'newer:copy', 'copy-part-of-file','replace']);
-	// grunt.registerTask('build-platform-to-public-page',[ 'sprite', 'less', 'newer:concat', 'newer:liquid', 'newer:copy:integrateInToPublic','copy-part-of-file:copyPlatform','replace']);
+	grunt.registerTask('build-platform-to-walk-through',['liquid','copy:assetsToWalkthrough','copy-part-of-file:platformToWalkthrough','replace:jsURLWalkthrough','replace:htmlURLWalkthrough','replace:trimHTMLWalkthrough','replace:engIframeWalkthrough','replace:jpIframeWalkthrough']);
+	grunt.registerTask('build-platform-to-market-pulse-page',['liquid','copy:assetsToMarketPulse','copy-part-of-file:platformToMarketPulse','copy-part-of-file:tradingActivityPopupToMarketPulse','replace:jsURL','replace:htmlURLPlatformSite']);
 	// grunt.registerTask('asset', ['sprite', 'less', 'concat', 'liquid', 'copy','replace']);
 };
