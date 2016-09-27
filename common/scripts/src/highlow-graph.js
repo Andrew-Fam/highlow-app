@@ -416,7 +416,7 @@ highlowApp.graph = {
 			}
 
 			if(highlowApp.cn) {
-				stopText = '结束';
+				stopText = '截止';
 			}
 
 			model.startTimeText = renderer.text(startText+highlowApp.timeToText(model.openAt),startTextX,24);
@@ -601,7 +601,9 @@ highlowApp.graph = {
 						opacity: 0
 					},600, function(){
 
-						animatePulsingMarker();
+						setTimeout(function(){
+							animatePulsingMarker();
+						},300);
 
 					});
 				},250);
@@ -1071,10 +1073,10 @@ highlowApp.graph = {
 
 
 		
-		var highX = pointX+40,
-		highY = pointY-24,
+		var highX = pointX+39,
+		highY = pointY-22,
 		lowX = highX,
-		lowY = pointY+4,
+		lowY = pointY+5,
 		labelHighX = pointX+28,
 		labelHighY = pointY-48,
 		labelLowX = pointX+28,
@@ -1087,18 +1089,20 @@ highlowApp.graph = {
 
 		console.log(betObject);
 
+
+		var highImgPath = "common/images/high-lose.png",
+			lowImgPath = "common/images/low-lose.png";
+
 		// if(betObject.type.indexOf('on-demand')<0) {
 		switch(betObject.direction) {
 			case 'high' : {
-				var img = renderer.image('common/images/high-lose.png',highX,highY,21,28);
+				var img = renderer.label('<img id="bet-marker-'+betObject.model.bets.length+'" src="'+highImgPath+'"/>',highX,highY,null,null,null,true,null,'bet-marker');
 
 				img.css({
 					'cursor' : 'pointer'
 				});
 
-				img.attr({
-					zIndex : 10
-				});
+			
 				img.add();
 
 
@@ -1106,20 +1110,16 @@ highlowApp.graph = {
 
 				var markerValueText = renderer.text(betObject.strike,textHighX,textHighY);
 				
-
 				
 				break;
 			}
 			case 'low' : {
-				var img = renderer.image('common/images/low-lose.png',lowX,lowY,21,28);
+				var img = renderer.label('<img id="bet-marker-'+betObject.model.bets.length+'" src="'+lowImgPath+'"/>',lowX,lowY,null,null,null,true,null,'bet-marker');
 
 				img.css({
 					'cursor' : 'pointer'
 				});
 
-				img.attr({
-					zIndex : 10
-				});
 				img.add();
 
 				var markerValueLabel = renderer.rect(labelLowX,labelLowY,43,16,0);
@@ -1154,13 +1154,19 @@ highlowApp.graph = {
 			'text-anchor': 'middle'
 		});
 
-		img.on('click', function(){
+		$(img.div).on('click', function(){
 			if(!betObject.expired) {
 				highlowApp.betSystem.sellPopup(betObject);
 			}
 		});
 
-		img.on('mouseover', function() {
+		
+
+		$(img.div).css({
+			zIndex: 100
+		});
+
+		$(img.div).on('mouseover', function() {
 
 			if ((betObject.model.type.indexOf("on-demand")>=0 || betObject.model.type.indexOf("turbo")>=0) && !betObject.expired) {
 				betObject.hover = true;
@@ -1168,8 +1174,12 @@ highlowApp.graph = {
 				highlowApp.marketSimulator.updateBetStatus(betObject.model);
 			} 
 
+			$(img.div).css({
+				zIndex: 100
+			});
+
 			if(betObject.direction == "high") {
-				img.css({
+				$(img.div).css({
 					'-ms-transform-origin': "center bottom",
 					'transform-origin': "center bottom",
 					'-moz-transform-origin': "center bottom",
@@ -1180,7 +1190,7 @@ highlowApp.graph = {
 					'transform': "scale(1.1,1.1)",
 				});
 			} else {
-				img.css({
+				$(img.div).css({
 					'transform-origin': "center top",
 					'-moz-transform-origin': "center top",
 					'-webkit-transform-origin': "center top",
@@ -1197,7 +1207,7 @@ highlowApp.graph = {
 
 			markerValueText.css({display:'block'});
 		});
-		img.on('mouseout', function() {
+		$(img.div).on('mouseout', function() {
 
 			if (betObject.model.type.indexOf("on-demand")>=0 || betObject.model.type.indexOf("turbo")>=0) {
 				betObject.hover = false;
@@ -1205,7 +1215,7 @@ highlowApp.graph = {
 				highlowApp.marketSimulator.updateBetStatus(betObject.model);
 			} 
 
-			img.css({
+			$(img.div).css({
 				'-ms-transform': "scale(1,1)",
 				'transform': "scale(1,1)",
 				'-webkit-transform': "scale(1,1)",
@@ -1215,6 +1225,9 @@ highlowApp.graph = {
 			markerValueLabel.css({display:'none'});
 
 			markerValueText.css({display:'none'});
+			$(img.div).css({
+				zIndex: 99
+			});
 		});
 
 		markerValueLabel.attr({
@@ -1238,6 +1251,8 @@ highlowApp.graph = {
 		betObject.markerValueText = markerValueText;
 
 		betObject.marker = img;
+
+		betObject.markerId = '#bet-marker-'+betObject.model.bets.length;
 
 		var model = betObject.model;
 		

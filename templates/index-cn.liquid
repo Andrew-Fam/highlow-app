@@ -9,6 +9,10 @@
 		<div class="tab-view-tab-selectors-container tab-full-width trading-app-container">
 			<ul class="tab-view-tab-selectors">
 				{% for type in tradingTypes %}
+
+
+				{% if type._new %} <!-- hide --> {% endif %}
+
 				<li class="tab-view-tab-selector eng {% if type.default %} active {% endif %} {{ type.id }}" data-target="#{{ type.id }}-mode">
 					{{type.cnLabel}}
 
@@ -18,6 +22,9 @@
 					</span>
 					{% endif %}
 				</li>
+
+				{% if type._new %} <!-- end-hide --> {% endif %}
+				
 				{% endfor %}
 			</ul>
 		</div>
@@ -25,6 +32,9 @@
 	<div class="tab-view-body-wrapper">
 		<div class="tab-view-body">
 			{% for type in tradingTypes %}
+
+			{% unless type._walkThrough %} <!-- hide --> {% endunless %}
+
 			<div class="tab-view-panel {% if type.default %} active {% endif %}" id="{{ type.id }}-mode">
 				<div class="trading-app-container">
 					<div id="options-carousel" class="clearfix walk-through-step">
@@ -727,6 +737,9 @@
 					</div>
 				</div>
 			</div>
+
+			{% unless type._walkThrough %} <!-- end-hide --> {% endunless %}
+
 			{% endfor %}
 		</div>
 		<div class="platform-loading-screen">
@@ -803,6 +816,9 @@
 
 
 {% for type in tradingTypes %}
+
+{% unless type._walkThrough %} <!-- hide --> {% endunless %}
+
 <div class="trading-platform-popup-wrapper trading-platform-sell-popup overlay {{type.id}} concealed" id="sell-popup-{{type.id}}">
 	<div class="trading-platform-popup">
 		<div class="trading-platform-popup-content-wrapper">
@@ -929,6 +945,9 @@
 		</div>
 	</div>
 </div>
+
+{% unless type._walkThrough %} <!-- end-hide --> {% endunless %}
+
 {% endfor %}
 <div class="trading-platform-popup-wrapper trading-platform-widget-popup concealed overlay" id="make-deposit-popup">
 	<div class="trading-platform-popup">
@@ -936,11 +955,13 @@
 			<div class="trading-platform-popup-content">
 				<div class="trading-platform-popup-content-inner-wrap">
 					<div class="trading-platform-popup-header">
-						MAKE A DEPOSIT
+						请选测存款方式
 						<div class="trading-platform-popup-close close"></div>
 					</div>
 					<div class="trading-platform-popup-body">
-						<iframe onload="requestHeightSet()" id="deposit-iframe-frame" src="http://point.agency/highlow/new-site/deposit-iframe.html"></iframe>
+						<!-- iframe -->
+						<iframe onload="requestHeightSet()" id="deposit-iframe-frame" src="http://point.agency/highlow/new-site/deposit-iframe-cn.html"></iframe>
+						<!-- end-iframe -->
 					</div>
 				</div>
 			</div>

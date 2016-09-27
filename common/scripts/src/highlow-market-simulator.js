@@ -177,7 +177,7 @@ highlowApp.marketSimulator = {
 				instrument,
 				{
 	  				x : offsetCurrentTime,
-	  				y : instrument.currentRate,
+	  				y : parseFloat(instrument.currentRate.toFixed(instrument.pip)),
 	  				// marker : {
 	  				// 	enabled : true,
 	  				// 	symbol : "url(common/images/graph-marker.png)"
@@ -194,7 +194,7 @@ highlowApp.marketSimulator = {
 
 		instrument.data.push({
 			x: offsetCurrentTime,
-			y: instrument.currentRate,
+			y: parseFloat(instrument.currentRate.toFixed(instrument.pip)),
 			marker : {
 				enabled: false
 			}
@@ -267,7 +267,7 @@ highlowApp.marketSimulator = {
 					case 'high': {
 						marker.attr({
 							x : point.plotX+39,
-							y : point.plotY-24
+							y : point.plotY-22
 						});
 
 						markerValueLabel.attr({
@@ -285,7 +285,7 @@ highlowApp.marketSimulator = {
 					case 'low': {
 						marker.attr({
 							x : point.plotX+39,
-							y : point.plotY+4
+							y : point.plotY+5
 						});
 
 						markerValueLabel.attr({
@@ -303,7 +303,7 @@ highlowApp.marketSimulator = {
 					}
 				}
 
-				
+				var img = $($(marker.div).find('img'));
 
 
 
@@ -314,16 +314,16 @@ highlowApp.marketSimulator = {
 					switch(bet.direction) {
 						case 'high' : {
 							if (rate > strike) { // winning
-								marker.attr({
-									'href':"common/images/high-win.png",
+								img.attr({
+									'src':"common/images/high-win.png",
 									'zIndex' : 10
 								});
 								
 								winning = true;
 
 							} else if (rate <= strike) { // losing
-								marker.attr({
-									'href':"common/images/high-lose.png",
+								img.attr({
+									'src':"common/images/high-lose.png",
 									'zIndex' : 11
 								});
 							} 
@@ -339,13 +339,13 @@ highlowApp.marketSimulator = {
 						}
 						case 'low' : {
 							if (rate >= strike) { //losing
-								marker.attr({
-									'href':"common/images/low-lose.png",
+								img.attr({
+									'src':"common/images/low-lose.png",
 									'zIndex' : 10
 								});
 							} else if (rate < strike) { //winning
-								marker.attr({
-									'href':"common/images/low-win.png",
+								img.attr({
+									'src':"common/images/low-win.png",
 									'zIndex' : 11
 								});
 
@@ -590,13 +590,13 @@ highlowApp.marketSimulator = {
 								bet.finishLineArrow = undefined;
 							}
 
-							bet.marker.css({
-								opacity: '0.5'
+							$(bet.marker.div).css({
+								opacity: '0.75'
 							});
 
 						} else {
 
-							bet.marker.css({
+							$(bet.marker.div).css({
 								opacity: '1'
 							});
 						
@@ -611,8 +611,8 @@ highlowApp.marketSimulator = {
 							bet.finishLineArrow = undefined;
 						}
 
-						bet.marker.css({
-							opacity: '0.5'
+						$(bet.marker.div).css({
+							opacity: '0.75'
 						});
 					}
 
@@ -730,7 +730,11 @@ highlowApp.marketSimulator = {
 
 				if(highlowApp.jap) {
 					$('.walk-through-instrument-time-left.'+ mainViewId).html(minutes+"分と"+seconds+"秒");
-				} else {
+				} else if (highlowApp.cn) {
+					console.log("what what what chinese");
+					$('.walk-through-instrument-time-left.'+ mainViewId).html(minutes+"分"+seconds+"秒");
+				} else  {
+					console.log("what what what eng");
 					$('.walk-through-instrument-time-left.'+ mainViewId).html(minutes+" min"+(minutes>1?'s':'')+ " and "+seconds+" second"+(seconds>1?'s':''));
 				}
 

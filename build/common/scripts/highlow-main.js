@@ -1373,7 +1373,7 @@ highlowApp.graph = {
 			}
 
 			if(highlowApp.cn) {
-				stopText = '结束';
+				stopText = '截止';
 			}
 
 			model.startTimeText = renderer.text(startText+highlowApp.timeToText(model.openAt),startTextX,24);
@@ -1558,7 +1558,9 @@ highlowApp.graph = {
 						opacity: 0
 					},600, function(){
 
-						animatePulsingMarker();
+						setTimeout(function(){
+							animatePulsingMarker();
+						},300);
 
 					});
 				},250);
@@ -2028,10 +2030,10 @@ highlowApp.graph = {
 
 
 		
-		var highX = pointX+40,
-		highY = pointY-24,
+		var highX = pointX+39,
+		highY = pointY-22,
 		lowX = highX,
-		lowY = pointY+4,
+		lowY = pointY+5,
 		labelHighX = pointX+28,
 		labelHighY = pointY-48,
 		labelLowX = pointX+28,
@@ -2044,18 +2046,20 @@ highlowApp.graph = {
 
 		console.log(betObject);
 
+
+		var highImgPath = "common/images/high-lose.png",
+			lowImgPath = "common/images/low-lose.png";
+
 		// if(betObject.type.indexOf('on-demand')<0) {
 		switch(betObject.direction) {
 			case 'high' : {
-				var img = renderer.image('common/images/high-lose.png',highX,highY,21,28);
+				var img = renderer.label('<img id="bet-marker-'+betObject.model.bets.length+'" src="'+highImgPath+'"/>',highX,highY,null,null,null,true,null,'bet-marker');
 
 				img.css({
 					'cursor' : 'pointer'
 				});
 
-				img.attr({
-					zIndex : 10
-				});
+			
 				img.add();
 
 
@@ -2063,20 +2067,16 @@ highlowApp.graph = {
 
 				var markerValueText = renderer.text(betObject.strike,textHighX,textHighY);
 				
-
 				
 				break;
 			}
 			case 'low' : {
-				var img = renderer.image('common/images/low-lose.png',lowX,lowY,21,28);
+				var img = renderer.label('<img id="bet-marker-'+betObject.model.bets.length+'" src="'+lowImgPath+'"/>',lowX,lowY,null,null,null,true,null,'bet-marker');
 
 				img.css({
 					'cursor' : 'pointer'
 				});
 
-				img.attr({
-					zIndex : 10
-				});
 				img.add();
 
 				var markerValueLabel = renderer.rect(labelLowX,labelLowY,43,16,0);
@@ -2111,13 +2111,19 @@ highlowApp.graph = {
 			'text-anchor': 'middle'
 		});
 
-		img.on('click', function(){
+		$(img.div).on('click', function(){
 			if(!betObject.expired) {
 				highlowApp.betSystem.sellPopup(betObject);
 			}
 		});
 
-		img.on('mouseover', function() {
+		
+
+		$(img.div).css({
+			zIndex: 100
+		});
+
+		$(img.div).on('mouseover', function() {
 
 			if ((betObject.model.type.indexOf("on-demand")>=0 || betObject.model.type.indexOf("turbo")>=0) && !betObject.expired) {
 				betObject.hover = true;
@@ -2125,8 +2131,12 @@ highlowApp.graph = {
 				highlowApp.marketSimulator.updateBetStatus(betObject.model);
 			} 
 
+			$(img.div).css({
+				zIndex: 100
+			});
+
 			if(betObject.direction == "high") {
-				img.css({
+				$(img.div).css({
 					'-ms-transform-origin': "center bottom",
 					'transform-origin': "center bottom",
 					'-moz-transform-origin': "center bottom",
@@ -2137,7 +2147,7 @@ highlowApp.graph = {
 					'transform': "scale(1.1,1.1)",
 				});
 			} else {
-				img.css({
+				$(img.div).css({
 					'transform-origin': "center top",
 					'-moz-transform-origin': "center top",
 					'-webkit-transform-origin': "center top",
@@ -2154,7 +2164,7 @@ highlowApp.graph = {
 
 			markerValueText.css({display:'block'});
 		});
-		img.on('mouseout', function() {
+		$(img.div).on('mouseout', function() {
 
 			if (betObject.model.type.indexOf("on-demand")>=0 || betObject.model.type.indexOf("turbo")>=0) {
 				betObject.hover = false;
@@ -2162,7 +2172,7 @@ highlowApp.graph = {
 				highlowApp.marketSimulator.updateBetStatus(betObject.model);
 			} 
 
-			img.css({
+			$(img.div).css({
 				'-ms-transform': "scale(1,1)",
 				'transform': "scale(1,1)",
 				'-webkit-transform': "scale(1,1)",
@@ -2172,6 +2182,9 @@ highlowApp.graph = {
 			markerValueLabel.css({display:'none'});
 
 			markerValueText.css({display:'none'});
+			$(img.div).css({
+				zIndex: 99
+			});
 		});
 
 		markerValueLabel.attr({
@@ -2195,6 +2208,8 @@ highlowApp.graph = {
 		betObject.markerValueText = markerValueText;
 
 		betObject.marker = img;
+
+		betObject.markerId = '#bet-marker-'+betObject.model.bets.length;
 
 		var model = betObject.model;
 		
@@ -2805,7 +2820,7 @@ highlowApp.marketSimulator = {
 				instrument,
 				{
 	  				x : offsetCurrentTime,
-	  				y : instrument.currentRate,
+	  				y : parseFloat(instrument.currentRate.toFixed(instrument.pip)),
 	  				// marker : {
 	  				// 	enabled : true,
 	  				// 	symbol : "url(common/images/graph-marker.png)"
@@ -2822,7 +2837,7 @@ highlowApp.marketSimulator = {
 
 		instrument.data.push({
 			x: offsetCurrentTime,
-			y: instrument.currentRate,
+			y: parseFloat(instrument.currentRate.toFixed(instrument.pip)),
 			marker : {
 				enabled: false
 			}
@@ -2895,7 +2910,7 @@ highlowApp.marketSimulator = {
 					case 'high': {
 						marker.attr({
 							x : point.plotX+39,
-							y : point.plotY-24
+							y : point.plotY-22
 						});
 
 						markerValueLabel.attr({
@@ -2913,7 +2928,7 @@ highlowApp.marketSimulator = {
 					case 'low': {
 						marker.attr({
 							x : point.plotX+39,
-							y : point.plotY+4
+							y : point.plotY+5
 						});
 
 						markerValueLabel.attr({
@@ -2931,7 +2946,7 @@ highlowApp.marketSimulator = {
 					}
 				}
 
-				
+				var img = $($(marker.div).find('img'));
 
 
 
@@ -2942,16 +2957,16 @@ highlowApp.marketSimulator = {
 					switch(bet.direction) {
 						case 'high' : {
 							if (rate > strike) { // winning
-								marker.attr({
-									'href':"common/images/high-win.png",
+								img.attr({
+									'src':"common/images/high-win.png",
 									'zIndex' : 10
 								});
 								
 								winning = true;
 
 							} else if (rate <= strike) { // losing
-								marker.attr({
-									'href':"common/images/high-lose.png",
+								img.attr({
+									'src':"common/images/high-lose.png",
 									'zIndex' : 11
 								});
 							} 
@@ -2967,13 +2982,13 @@ highlowApp.marketSimulator = {
 						}
 						case 'low' : {
 							if (rate >= strike) { //losing
-								marker.attr({
-									'href':"common/images/low-lose.png",
+								img.attr({
+									'src':"common/images/low-lose.png",
 									'zIndex' : 10
 								});
 							} else if (rate < strike) { //winning
-								marker.attr({
-									'href':"common/images/low-win.png",
+								img.attr({
+									'src':"common/images/low-win.png",
 									'zIndex' : 11
 								});
 
@@ -3218,13 +3233,13 @@ highlowApp.marketSimulator = {
 								bet.finishLineArrow = undefined;
 							}
 
-							bet.marker.css({
-								opacity: '0.5'
+							$(bet.marker.div).css({
+								opacity: '0.75'
 							});
 
 						} else {
 
-							bet.marker.css({
+							$(bet.marker.div).css({
 								opacity: '1'
 							});
 						
@@ -3239,8 +3254,8 @@ highlowApp.marketSimulator = {
 							bet.finishLineArrow = undefined;
 						}
 
-						bet.marker.css({
-							opacity: '0.5'
+						$(bet.marker.div).css({
+							opacity: '0.75'
 						});
 					}
 
@@ -3358,7 +3373,11 @@ highlowApp.marketSimulator = {
 
 				if(highlowApp.jap) {
 					$('.walk-through-instrument-time-left.'+ mainViewId).html(minutes+"分と"+seconds+"秒");
-				} else {
+				} else if (highlowApp.cn) {
+					console.log("what what what chinese");
+					$('.walk-through-instrument-time-left.'+ mainViewId).html(minutes+"分"+seconds+"秒");
+				} else  {
+					console.log("what what what eng");
 					$('.walk-through-instrument-time-left.'+ mainViewId).html(minutes+" min"+(minutes>1?'s':'')+ " and "+seconds+" second"+(seconds>1?'s':''));
 				}
 
@@ -3734,6 +3753,45 @@ highlowApp.oneClick = {
 		});
 	}
 }
+;
+$(document).ready(function(){
+
+	function updateClock ( )
+	{
+		var currentTime = new Date ( );
+
+		var currentHours = currentTime.getHours ( );
+		var currentMinutes = currentTime.getMinutes ( );
+		var currentSeconds = currentTime.getSeconds ( );
+
+		// Pad the minutes and seconds with leading zeros, if required
+		currentMinutes = ( currentMinutes < 10 ? "0" : "" ) + currentMinutes;
+		currentSeconds = ( currentSeconds < 10 ? "0" : "" ) + currentSeconds;
+
+		// Compose the string for display
+		var currentTimeString = currentHours + ":" + currentMinutes + ":" + currentSeconds;
+
+		// Update the time display
+		$('.platform-clock-time').each(function(){
+
+			$(this).html(currentTimeString);
+
+		});
+	}
+
+
+
+  	if($('.platform-clock-time').length>0) {
+
+  		updateClock();
+
+  		setInterval(updateClock,1000);
+
+  	}
+	
+
+
+});
 ;
 highlowApp.popup = {
 	init : function() {

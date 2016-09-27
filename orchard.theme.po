@@ -1,0 +1,688 @@
+# Orchard resource strings - ja-JP
+# Copyright (c) 2010 Outercurve Foundation
+# All rights reserved
+# This file is distributed under the BSD license
+# This file is generated using the Q42.DbTranslations module
+
+# __________________________________________________________
+# Header
+# __________________________________________________________
+
+#| msgid "Quick Demo"
+msgid "Quick Demo"
+msgstr "クイックデモ"
+
+#| msgid "For a mobile-optimised <span class='word first-child last-child'>trading experience</span>"
+msgid "For a mobile-optimised <span class='word first-child last-child'>trading experience</span>"
+msgstr "<span class='word first-child'>より快適な</span><span class='word'>取引体験を</span><span class='word'>実現するために、スマホ</span><span class='word last-child'>向けに最適化</span>"
+
+#| msgid "<span class='word first-child'>HighLow’s</span> <span class='word'>free mobile app</span> <span class='word'>is designed</span> specifically <span class='word'>to help you </span> <span class='word'>trade with ease</span> <span class='word last-child'>on your hand-held device</span>."
+msgid "<span class='word first-child'>HighLow’s</span> <span class='word'>free mobile app</span> <span class='word'>is designed</span> specifically <span class='word'>to help you </span> <span class='word'>trade with ease</span> <span class='word last-child'>on your hand-held device</span>."
+msgstr "<span class='word first-child'>携帯端末でより</span> <span class='word'>シンプルな取引を</span> <span class='word'>実現するために</span><span class='word last-child'>設計されています。</span>"
+
+#| msgid "<span class='word first-child'>Get our free app now</span> <span class='word'>and respond</span> <span class='word'>in real-time</span> to <span class='word'>market changes.</span>"
+msgid "<span class='word first-child'>Get our free app now</span> <span class='word'>and respond</span> <span class='word'>in real-time</span> to <span class='word'>market changes.</span>"
+msgstr "<span class='word first-child'>今すぐ</span> <span class='word'>無料アプリを入手して、</span> <span class='word'>マーケットの変化に</span><span class='word'>リアルタイムに対応しよう。</span>"
+
+#| msgid "<span class='word'>Trade whenever and wherever </span><span class='word last-child'>you like with HighLow for <span class='device-name first-child last-child'></span></span>"
+msgid "<span class='word'>Trade whenever and wherever </span><span class='word last-child'>you like with HighLow for <span class='device-name first-child last-child'></span></span>"
+msgstr "<span class='word last-child'>いつでも、どこでも<span class='first-child last-child'>スマホやタブレットで、</span>Highlowの取引が可能。</span>"
+
+#| msgid "REALTIME <br class='first - child'> <span class='word last - child'>MARKET CHART</span>"
+msgid "REALTIME <br class='first - child'> <span class='word last - child'>MARKET CHART</span>"
+msgstr "<span class='word'>リアルタイムの</span><br class='first - child'><span class='word last - child'>市場チャート</span>"
+
+#| msgid "<span class='word first-child'>LIVE RATE</span><br class='last-child'> UPDATE"
+msgid "<span class='word first-child'>LIVE RATE</span><br class='last-child'> UPDATE"
+msgstr "<span class='word first-child'>ライブ・レートの</span><br class='last-child'> 更新"
+
+#| msgid "<span class='word first-child'>EASY TO USE</span> <br> <span class='word last-child'> INVESTMENT SLIDER</span>"
+msgid "<span class='word first-child'>EASY TO USE</span> <br> <span class='word last-child'> INVESTMENT SLIDER</span>"
+msgstr "<span class='word first-child'>投資金額設定スライダーで、</span><br><span class='word last-child'> 取引がより簡単に</span>"
+
+#| msgid "LiveSiteTitle"
+msgid "LiveSiteTitle"
+msgstr "Binary Options Trading Australia, Binary Option Brokers - HighLow"
+
+#| msgid "LiveSiteDescriptionMeta"
+msgid "LiveSiteDescriptionMeta"
+msgstr "Maximize your profit with HighLow - Binary Options Trading Brokers. 200% Payout on winning trades. First trade risk free. Enquire online now. "
+
+#| msgid "LiveSiteKeywordsMeta"
+msgid "LiveSiteKeywordsMeta"
+msgstr "Binary Options Trading Australia, Binary Option Brokers, HighLow Binary Options"
+
+#| msgid "DemoSiteTitle"
+msgid "DemoSiteTitle"
+msgstr "Binary Options Demo Account, Binary Options Practice Account"
+
+#| msgid "DemoSiteDescriptionMeta"
+msgid "DemoSiteDescriptionMeta"
+msgstr "Maximise your profits with HighLow Binary Traders. Open an account for free and watch a demonstration to learn how to trade among the best. Enquire online!"
+
+#| msgid "DemoSiteKeywordsMeta"
+msgid "DemoSiteKeywordsMeta"
+msgstr "Binary Options Demo Account, Binary Options Practice Account"
+
+#| msgid "Full demo"
+msgid "Full demo"
+msgstr "完全版デモ"
+
+#| msgid "Existing user?"
+msgid "Existing user?"
+msgstr "既に口座をお持ちですか？"
+
+#| msgid "Log in"
+msgid "Log in"
+msgstr "ログイン"
+
+#| msgid "CLAIM YOUR $50 CASHBACK!"
+msgid "CLAIM YOUR $50 CASHBACK!"
+msgstr "無料登録はこちら"
+
+#| msgid "JOIN NOW - IT'S FREE"
+msgid "JOIN NOW - IT'S FREE"
+msgstr "無料登録はこちら"
+
+#| msgid "JOIN NOW FREE!"
+msgid "JOIN NOW FREE!"
+msgstr "無料登録はこちら"
+
+#| msgid "DEMO DAYS LEFT"
+msgid "DEMO DAYS LEFT"
+msgstr "無料デモ残り日数"
+
+#| msgid "GET FULL ACCOUNT"
+msgid "GET FULL ACCOUNT"
+msgstr "完全版デモを利用する"
+
+#| msgid "Welcome"
+msgid "Welcome"
+msgstr "様、こんにちは。"
+
+#| msgid "Welcome logged user"
+msgid "Welcome logged user"
+msgstr "{0}"
+
+#| msgid "My Account"
+msgid "My Account"
+msgstr "マイページ"
+
+#| msgid "LOG OUT"
+msgid "LOG OUT"
+msgstr "ログアウト"
+
+#| msgid "QuickDemoDepositPopupText"
+msgid "QuickDemoDepositPopupText"
+msgstr "入金機能はクイックデモで<br class='first-child last-child'> はご利用いただけません。"
+
+#| msgid "Sign up for the full demo"
+msgid "Sign up for the full demo"
+msgstr "完全版デモ申込"
+
+#| msgid "Full demo log in"
+msgid "Full demo log in"
+msgstr "完全版デモへログイン"
+
+#| msgid "Your 30 day trial has expired"
+msgid "Your 30 day trial has expired"
+msgstr "30日間のデモ口座<br/>の有効期限が終了しました。"
+
+#| msgid "DemoAccountExpiredText"
+msgid "DemoAccountExpiredText"
+msgstr "無料の本口座開設で、5,000円<br/>のキャッシュバックを。開設後、取引開始でキャッシュバックが受取ることができます。"
+
+#| msgid "Sign me up now."
+msgid "Sign me up now."
+msgstr "本口座を開設する。"
+
+
+# __________________________________________________________
+# Login Popup
+# __________________________________________________________
+
+#| msgid "SIGN IN TO HIGHLOW"
+msgid "SIGN IN TO HIGHLOW"
+msgstr "HighLowにログインする"
+
+#| msgid "Enter your HL number"
+msgid "Enter your HL number"
+msgstr "ユーザー名(HL番号)"
+
+#| msgid "Enter your password"
+msgid "Enter your password"
+msgstr "パスワード"
+
+#| msgid "Forgot your password?"
+msgid "Forgot your password?"
+msgstr "パスワードをお忘れですか？"
+
+#| msgid "SIGN IN"
+msgid "SIGN IN"
+msgstr "ログイン"
+
+#| msgid "Invalid Username or Password"
+msgid "Invalid Username or Password"
+msgstr "<span class="jap-word"><b>ユーザー名またはパスワードが正しくありません。</b><br>もう一度お試しいただくか、<b><u><a href='/GoToExternalLink?url=//jp.{rtcm-domain}/forgot-password'>再設定して下さい。</a></u></b></span>"
+
+#| msgid "Don't have an account yet?"
+msgid "Don't have an account yet?"
+msgstr "まだ口座はお持ちで無いですか？<a href='/GoToExternalLink?url=//jp.{0}/account'>口座開設して、&yen;5,000のキャッシュバックを受取る。</a>"
+
+
+# __________________________________________________________
+# Account Balance
+# __________________________________________________________
+
+#| msgid "Account Balance"
+msgid "Account Balance"
+msgstr "現在の<br/>口座残高"
+
+#| msgid "Loading..."
+msgid "Loading..."
+msgstr "処理中"
+
+#| msgid "Cashback Balance"
+msgid "Cashback Balance"
+msgstr "キャッシュバック<br/>可能額"
+
+#| msgid "Make a deposit"
+msgid "Make a deposit"
+msgstr "入金する"
+
+#| msgid "MAKE QUICK DEPOSIT"
+msgid "MAKE QUICK DEPOSIT"
+msgstr "入金"
+
+
+# __________________________________________________________
+# Games
+# __________________________________________________________
+
+#| msgid "ChangingStrike"
+msgid "ChangingStrike"
+msgstr "HighLow"
+
+#| msgid "ChangingStrikeOOD"
+msgid "ChangingStrikeOOD"
+msgstr "Turbo"
+
+#| msgid "FixedPayoutHL"
+msgid "FixedPayoutHL"
+msgstr "HighLow <span class='jap-word'>スプレッド</span>"
+
+#| msgid "FixedPayoutHLOOD"
+msgid "FixedPayoutHLOOD"
+msgstr "Turbo <span class='jap-word'>スプレッド</span>"
+
+
+# __________________________________________________________
+# Categories
+# __________________________________________________________
+
+#| msgid "All"
+msgid "All"
+msgstr "<span class='jap-word'>全て</span>"
+
+#| msgid "filterAll"
+msgid "filterAll"
+msgstr "原資産を選択する"
+
+#| msgid "AllAssets"
+msgid "AllAssets"
+msgstr "全て"
+
+#| msgid "AllIndex"
+msgid "AllIndex"
+msgstr "株価指数"
+
+#| msgid "AllCurrency"
+msgid "AllCurrency"
+msgstr "通貨ペア"
+
+#| msgid "AllCommodity"
+msgid "AllCommodity"
+msgstr "商品指数"
+
+#| msgid "AllStock"
+msgid "AllStock"
+msgstr "Stocks"
+
+
+
+#| msgid "group_Index"
+msgid "group_Index"
+msgstr "全ての株価指数"
+
+#| msgid "group_Currency"
+msgid "group_Currency"
+msgstr "全ての通貨ペア"
+
+#| msgid "group_Commodity"
+msgid "group_Commodity"
+msgstr "全ての商品指数"
+
+
+#| msgid "15 Seconds"
+msgid "15 Seconds"
+msgstr "15<span class='jap-word'>秒</span>"
+
+#| msgid "30 Seconds"
+msgid "30 Seconds"
+msgstr "30<span class='jap-word'>秒</span>"
+
+#| msgid "1 Minute"
+msgid "1 Minute"
+msgstr "1<span class='jap-word'>分</span>"
+
+#| msgid "3 Minutes"
+msgid "3 Minutes"
+msgstr "3<span class='jap-word'>分</span>"
+
+#| msgid "5 Minutes"
+msgid "5 Minutes"
+msgstr "5<span class='jap-word'>分</span>"
+
+#| msgid "15 Minutes"
+msgid "15 Minutes"
+msgstr "15<span class='jap-word'>分</span>"
+
+#| msgid "30 Minutes"
+msgid "30 Minutes"
+msgstr "30<span class='jap-word'>分</span>"
+
+#| msgid "1 Hour"
+msgid "1 Hour"
+msgstr "1<span class='jap-word'>時間</span>"
+
+#| msgid "Half-day"
+msgid "Half-day"
+msgstr "<span class='jap-word'>半日</span>"
+
+#| msgid "1 Day"
+msgid "1 Day"
+msgstr "1<span class='jap-word'>日</span>"
+
+#| msgid "Favorites"
+msgid "Favorites"
+msgstr "<span class='jap-word'>お気に入り</span>"
+
+
+# __________________________________________________________
+# Carousel
+# __________________________________________________________
+
+#| msgid "Currently there are no options"
+msgid "Currently there are no options"
+msgstr "現在、取引可能なオプションはございません。"
+
+#| msgid "You currently have no favorites"
+msgid "You currently have no favorites"
+msgstr "お気に入りの登録がありません。"
+
+#| msgid "Payout"
+msgid "Payout"
+msgstr "ペイアウト"
+
+#| msgid "Market"
+msgid "Market"
+msgstr "提示価格"
+
+#| msgid "closing"
+msgid "closing"
+msgstr "判定時刻"
+
+#| msgid "closingAt"
+msgid "closingAt"
+msgstr "判定時刻"
+
+#| msgid "openingStatusText"
+msgid "openingStatusText"
+msgstr "開始時刻 "
+
+#| msgid "TradingIsClosed"
+msgid "TradingIsClosed"
+msgstr "取引時間外です。"
+
+#| msgid "d"
+msgid "d"
+msgstr "日"
+
+#| msgid "h"
+msgid "h"
+msgstr "時間"
+
+#| msgid "m"
+msgid "m"
+msgstr "分"
+
+#| msgid "s"
+msgid "s"
+msgstr "秒"
+
+
+# __________________________________________________________
+# Chart
+# __________________________________________________________
+
+#| msgid "pleaseLogIn"
+msgid "pleaseLogIn"
+msgstr "ログインして下さい。"
+
+#| msgid "ChartHeaderMessageWhenOITimeInfoIsHidden"
+msgid "ChartHeaderMessageWhenOITimeInfoIsHidden"
+msgstr "メンテナンス"
+
+#| msgid "Currently there are no {0} options open, please choose a different tab. The next {0} option will open soon."
+msgid "Currently there are no {0} options open, please choose a different tab. The next {0} option will open soon."
+msgstr "オプションは現在閉鎖されています"
+
+#| msgid "Start"
+msgid "Start"
+msgstr "開始:"
+
+#| msgid "Stop"
+msgid "Stop"
+msgstr "締切:"
+
+#| msgid "Expiry"
+msgid "Expiry"
+msgstr "判定時刻"
+
+#| msgid "ExpiredLabel"
+msgid "ExpiredLabel"
+msgstr "    終 了    "
+
+#| msgid "ExpiryLabel"
+msgid "ExpiryLabel"
+msgstr " 判 定 時 刻 : {0} "
+
+#| msgid "NextExpiryIn"
+msgid "NextExpiryIn"
+msgstr "次回の判定時刻まで {0}"
+
+#| msgid "hours"
+msgid "hours"
+msgstr "時間"
+
+#| msgid "hour"
+msgid "hour"
+msgstr "時間"
+
+#| msgid "minutes"
+msgid "minutes"
+msgstr "分"
+
+#| msgid "minute"
+msgid "minute"
+msgstr "分"
+
+#| msgid "seconds"
+msgid "seconds"
+msgstr "秒"
+
+#| msgid "second"
+msgid "second"
+msgstr "秒"
+
+#| msgid "60 seconds"
+msgid "60 seconds"
+msgstr "60秒"
+
+#| msgid "openingAtText"
+msgid "openingAtText"
+msgstr "取引は{0}より再開いたします。 "
+
+#| msgid "openingTommorowAtText"
+msgid "openingTommorowAtText"
+msgstr "取引再開時間： {0}"
+
+#| msgid "expired"
+msgid "expired"
+msgstr "終了"
+
+#| msgid "OodCloseOptionMessage"
+msgid "OodCloseOptionMessage"
+msgstr "取引は{0}に終了いたします。"
+
+#| msgid "Traders Choice"
+msgid "Traders Choice"
+msgstr "トレーダース<br/>・チョイス"
+
+#| msgid "Traders Choice Text"
+msgid "Traders Choice Text"
+msgstr "<span class='word first-child'>トレーダース・チョイス</span><span class='word'>では、</span><span class='word'>当社で</span><span class='word'>お取引</span><span class='word'>いただいている</span><span class='word'>他の</span><span class='word'>お客様の</span><span class='word'>市場</span><span class='word'>センチメントが、</span><span class='word'>リアルタイムで</span><span class='word'>ご確認</span><span class='word last-child'>いただけます。</span>"
+
+#| msgid "OptionStart"
+msgid "OptionStart"
+msgstr "オプション開始"
+
+
+#| msgid "openingTomorrowStatusText"
+msgid "openingTomorrowStatusText"
+msgstr "取引開始時間: {HH:mm}"
+
+
+# __________________________________________________________
+# Invest Area
+# __________________________________________________________
+
+#| msgid "One Touch Trading"
+msgid "One Touch Trading"
+msgstr "ワンクリック注文"
+
+#| msgid "One click trading text"
+msgid "One click trading text"
+msgstr "<p class="first-child"><span class="word first-child">より早い</span><span class="word">約定が</span><span class="word">可能な</span><span class="word">ワンクリック注文に</span><span class="word last-child">切替える。</span></p><p class="last-child"><span class="word first-child">注：</span><span class="word">ワンクリック注文を</span><span class="word">有効に</span><span class="word">すると、</span><span class="word">チャート上</span><span class="word">および</span><span class="word">トレードパネル</span><span class="word">両方で</span><span class="word">有効と</span><span class="word last-child">なります。</span></p>"
+
+#| msgid "High"
+msgid "High"
+msgstr "High"
+
+#| msgid "Low"
+msgid "Low"
+msgstr "Low"
+
+#| msgid "UP"
+msgid "UP"
+msgstr "High"
+
+#| msgid "DOWN"
+msgid "DOWN"
+msgstr "Low"
+
+#| msgid "Invest"
+msgid "Invest"
+msgstr "今すぐ購入"
+
+#| msgid "Return"
+msgid "Return"
+msgstr "ペイアウト額"
+
+#| msgid "Trading is closed"
+msgid "Trading is closed"
+msgstr "取引時間外です。"
+
+#| msgid "Market reopens in"
+msgid "Market reopens in"
+msgstr "取引再開まであと"
+
+#| msgid "DAYS"
+msgid "DAYS"
+msgstr "日"
+
+#| msgid "HRS"
+msgid "HRS"
+msgstr "時間"
+
+#| msgid "MINS"
+msgid "MINS"
+msgstr "分"
+
+#| msgid "SECS"
+msgid "SECS"
+msgstr "秒"
+
+
+# __________________________________________________________
+# Buy/Sell Popup
+# __________________________________________________________
+
+#| msgid "TAKE PAYOUT"
+msgid "TAKE PAYOUT"
+msgstr "転売する"
+
+#| msgid "Investment"
+msgid "Investment"
+msgstr "購入"
+
+#| msgid "Return Rate [%]"
+msgid "Return Rate [%]"
+msgstr "ペイアウト倍率"
+
+#| msgid "TakePayout"
+msgid "TakePayout"
+msgstr "転売する"
+
+#| msgid "Sell Payout"
+msgid "Sell Payout"
+msgstr "転売時ペイアウト"
+
+
+# __________________________________________________________
+# Trade Actions Table
+# __________________________________________________________
+
+#| msgid "Current Activity"
+msgid "Current Activity"
+msgstr "購入オプション詳細"
+
+#| msgid "View all Trade Actions"
+msgid "View all Trade Actions"
+msgstr "全ての取引を確認"
+
+#| msgid "You have no active trades"
+msgid "You have no active trades"
+msgstr "購入済オプションがありません。"
+
+#| msgid "Select"
+msgid "Select"
+msgstr "選択"
+
+#| msgid "Type"
+msgid "Type"
+msgstr "タイプ"
+
+#| msgid "Asset"
+msgid "Asset"
+msgstr "取引原資産"
+
+#| msgid "Strike"
+msgid "Strike"
+msgstr "取引内容"
+
+#| msgid "Start time"
+msgid "Start time"
+msgstr "取引時間"
+
+#| msgid "Expiry"
+msgid "Expiry"
+msgstr "判定時刻"
+
+#| msgid "Status"
+msgid "Status"
+msgstr "ステータス"
+
+#| msgid "Closing rate"
+msgid "Closing rate"
+msgstr "判定レート"
+
+#| msgid "Investment"
+msgid "Investment"
+msgstr "購入"
+
+#| msgid "Expiry Payout"
+msgid "Expiry Payout"
+msgstr "判定時ペイアウト"
+
+#| msgid "Sell Option"
+msgid "Sell Option"
+msgstr "転売する"
+
+#| msgid "Sell"
+msgid "Sell"
+msgstr "転売"
+
+#| msgid "Cancel"
+msgid "Cancel"
+msgstr "取り消す"
+
+# __________________________________________________________
+# MSys
+# __________________________________________________________
+
+#| msgid "CashbackSuccessMessage"
+msgid "CashbackSuccessMessage"
+msgstr "<span class="word first-child">おめでとうございます！</span><br><span class="word"><span class="cashback-balance"></span>円の</span><span class="word">キャッシュバックが</span><span class="word">利用</span><span class="word last-child">できます。</span>"
+
+#| msgid "CashbackInsufficientFundsMessage"
+msgid "CashbackInsufficientFundsMessage"
+msgstr "<p class="first-child"><span class="word first-child">おめでとうございます！</span><br><span class="word"><span class="cashback-balance"></span>円の</span><span class="word">キャッシュバックが</span><span class="word">利用</span><span class="word last-child">できます。</span></p><p><span class="word first-child">使用には</span><span class="word">最低</span><span class="word"><span class="min-deposit-amount"></span>円の</span><br><span class="word">入金が</span><span class="word last-child">必要です。</span></p>"
+
+#| msgid "AWESOME! LET'S TRADE"
+msgid "AWESOME! LET'S TRADE"
+msgstr "今すぐ取引を開始！"
+
+
+# __________________________________________________________
+# Error/Pending/Success Messages
+# __________________________________________________________
+
+#| msgid "success"
+msgid "success"
+msgstr "成功"
+
+#| msgid "errorCode215"
+msgid "errorCode215"
+msgstr "この取引は既に転売されています。"
+
+#| msgid "errorCode221"
+msgid "errorCode221"
+msgstr "権利放棄は出来ません。"
+
+
+# __________________________________________________________
+# News Feed
+# __________________________________________________________
+
+#| msgid "Market News is deactivated."
+msgid "Market News is deactivated."
+msgstr "ニュース配信は、<br/>現在無効です。"
+
+#| msgid "Switch it on"
+msgid "Switch it on"
+msgstr "有効にする。"
+
+#| msgid "Click on the icon to expand Market News into new window"
+msgid "Click on the icon to expand Market News into new window"
+msgstr "アイコンをクリックすると、<br/>別ウィンドウで全文が表示されます。"
+
+#| msgid "NB: You can switch off Market News in My Account &gt; Settings."
+msgid "NB: You can switch off Market News in My Account &gt; Settings."
+msgstr "マイページの設定画面から、<br/>ニュース配信のオン・オフの<br/>切り替えが可能です。"
+
+#| msgid "Live* Market News headlines and stories are available in real accounts only"
+msgid "Live* Market News headlines and stories are available in real accounts only"
+msgstr "リアルタイムでのニュース<br/>配信サービスは、ログイン<br/>してからご確認いただけます。"
+
+#| msgid "Sign-up for free and receive a $50 cash-back"
+msgid "Sign-up for free and receive a $50 cash-back"
+msgstr "口座開設をして￥5,000の<br/>キャッシュバックを受取る。"
+
+#| msgid "Sign me up now!"
+msgid "Sign me up now!"
+msgstr "今すぐ申込む"
+
+#| msgid "* feed is delayed on public pages"
+msgid "* feed is delayed on public pages"
+msgstr "* トップページおよびデモ口座のニュース配信は、<br/>リアルタイムに更新されておりません。"
